@@ -200,3 +200,42 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* styles.css */
+
+.popup {
+    display: none; /* Hide the pop-up by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Black with opacity */
+}
+
+.popup-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    max-width: 1024px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}

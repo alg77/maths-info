@@ -106,9 +106,49 @@
             </article>
         </section>
     </main>
+
+    <!-- Pop-up container -->
+    <div id="popup" class="popup">
+        <span class="close">&times;</span>
+        <img class="popup-content" id="popup-img">
+    </div>
     
     <footer>
         <p>&copy; 2024 Mes Cours de Maths et de NSI - Tous droits réservés</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Get the pop-up elements
+        var popup = document.getElementById("popup");
+        var popupImg = document.getElementById("popup-img");
+        var close = document.getElementsByClassName("close")[0];
+
+        // Function to open the pop-up
+        function openPopup(src) {
+            popup.style.display = "block";
+            popupImg.src = src;
+        }
+
+        // Function to close the pop-up
+        close.onclick = function() {
+            popup.style.display = "none";
+        }
+
+        // Close the pop-up when clicking outside of the image
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+
+        // Add click event to all images with class 'pdf-preview'
+        var images = document.getElementsByClassName('pdf-preview');
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = function() {
+                openPopup(this.src);
+            }
+        }
+    </script>
 </body>
 </html>
