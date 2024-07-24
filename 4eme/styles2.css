@@ -1,0 +1,190 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../Images/math-1500720.jpg'); /* Chemin de l'image de fond */
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #fff; /* Pour que le texte soit lisible sur l'image de fond */
+}
+
+header {
+    background: rgba(0, 102, 51, 0.8); /* Vert foncé avec transparence */
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.logo-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.logo {
+    height: 100px; /* Ajustez la taille du logo selon vos besoins */
+    width: auto;
+    border-radius: 50%; /* Bords arrondis */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-family: 'Lobster', cursive; /* Utilisation de la police Lobster */
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+header nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+header nav ul li a .fas {
+    margin-right: 8px;
+}
+
+header nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 102, 51, 0.8); /* Vert foncé avec transparence */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+header nav ul li .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+header nav ul li .dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+header nav ul li:hover .dropdown-content {
+    display: block;
+}
+
+main {
+    padding: 2rem;
+    background: rgba(0, 102, 51, 0.5); /* Vert foncé avec transparence */
+    margin: 0 auto;
+    max-width: 1200px; /* Limite la largeur du contenu pour une meilleure lisibilité */
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+h2, h3 {
+    font-family: 'Lobster', cursive; /* Utilisation de la police Lobster */
+}
+
+.course-card {
+    background: rgba(0, 153, 76, 0.7); /* Vert avec transparence */
+    color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout d'une légère ombre portée pour le relief */
+}
+
+.course-card-content {
+    width: 100%;
+}
+
+.course-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.competences li {
+    border: 2px solid #28a745; /* Bordure verte */
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    background-color: rgba(40, 167, 69, 0.1); /* Fond vert clair avec transparence */
+    display: flex;
+    align-items: center;
+}
+
+.competences li i {
+    margin-right: 10px;
+}
+
+.course-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.course-card ul li {
+    margin-bottom: 0.5rem;
+}
+
+.course-card ul li a {
+    color: #28a745; /* Lien vert */
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.course-card ul li a:hover {
+    text-decoration: underline;
+}
+
+.pdf-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.pdf-link:hover {
+    background-color: #0056b3;
+}
+
+.pdf-preview {
+    float: right;
+    margin-left: 20px;
+    width: 150px;
+    height: auto;
+}
+
+.video-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+footer {
+    background: rgba(0, 102, 51, 0.8); /* Vert foncé avec transparence */
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
