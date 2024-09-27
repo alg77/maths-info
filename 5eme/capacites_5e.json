@@ -1,0 +1,80 @@
+{
+    "cours_5n1.html": [
+        "Utiliser le bon vocabulaire (somme, différence, termes, produit, quotient, facteur)",
+        "Calculer avec et sans parenthèses en utilisant les priorités opératoires",
+        "Calculer des quotients écrits avec une barre de fractions",
+        "Produire une expression numérique pour résoudre des problèmes"
+    ],
+    "cours_5n2.html": [
+        "Produire une expression littérale (simple, modéliser un programme de calcul)",
+        "Calculer la valeur d’une expression littérale (utiliser des formules de périmètres, d’aires et de volumes et effectuer des conversions d’unités de longueur et d’aire)",
+        "Tester une égalité",
+        "Simplifier l’écriture d’une expression littérale",
+        "Réduire des expressions de type ax + bx"
+    ],
+    "cours_5n3.html": [
+        "Représenter des situations à l'aide de fractions",
+        "Comparer et ranger des fractions",
+        "Additionner et soustraire des fractions"
+    ],
+    "cours_5n4.html": [
+        "Résoudre des problèmes en utilisant les fractions"
+    ],
+    "cours_5n5.html": [
+        "Utiliser les propriétés de la proportionnalité pour résoudre des problèmes",
+        "Représenter graphiquement des situations de proportionnalité"
+    ],
+    "cours_5n6.html": [
+        "Utiliser les propriétés de la proportionnalité pour résoudre des problèmes"
+    ],
+    "cours_5n7.html": [
+        "Représenter graphiquement des situations de proportionnalité",
+        "Interpréter des graphiques de proportionnalité"
+    ],
+    "cours_5n8.html": ["Résoudre des problèmes en utilisant les propriétés des fractions"],
+
+    "cours_5g1.html": [
+        "Reconnaître et construire des figures par symétrie axiale",
+        "Utiliser les propriétés de la symétrie axiale dans des démonstrations"
+    ],
+    "cours_5g2.html": [
+        "Décrire et représenter des solides géométriques",
+        "Calculer des volumes et des aires de solides"
+    ],
+    "cours_5g3.html": [
+        "Construire des triangles et leurs éléments remarquables",
+        "Utiliser les propriétés des triangles dans des démonstrations"
+    ],
+    "cours_5g4.html": [
+        "Utiliser les propriétés de la symétrie centrale dans des démonstrations",
+        "Reconnaître et construire des figures par symétrie centrale"
+    ],
+    "cours_5g5.html": [
+        "Reconnaître et utiliser les angles particuliers et les droites parallèles",
+        "Utiliser les propriétés des angles dans des démonstrations"
+    ],
+    "cours_5g6.html": [
+        "Utiliser les propriétés des angles dans des triangles pour résoudre des problèmes",
+        "Reconnaître et utiliser les angles dans des démonstrations"
+    ],
+    "cours_5g7.html": [
+        "Définir et construire des parallélogrammes",
+        "Utiliser les propriétés des parallélogrammes dans des démonstrations"
+    ],
+    "cours_5d1.html": [
+        "Reconnaître et utiliser les situations de proportionnalité",
+        "Résoudre des problèmes en utilisant les propriétés de la proportionnalité"
+    ],
+    "cours_5d2.html": [
+        "Utiliser les pourcentages pour résoudre des problèmes",
+        "Calculer des pourcentages dans différentes situations"
+    ],
+    "cours_5d3.html": [
+        "Représenter des données sous forme de graphiques",
+        "Interpréter des graphiques de données"
+    ],
+    "cours_5d4.html": [
+        "Calculer des probabilités dans des situations simples",
+        "Utiliser les propriétés des probabilités pour résoudre des problèmes"
+    ]
+}

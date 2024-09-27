@@ -1,0 +1,21 @@
+{
+    "cours_5n1.html": ["Ch2", "Ca1"],
+    "cours_5n2.html": ["Mo1", "Ca3"],
+    "cours_5n3.html": ["Re1", "Mo2"],
+    "cours_5n4.html": ["Ra1", "Co1"],
+    "cours_5n5.html": ["Ch1", "Re3"],
+    "cours_5n6.html": ["Ca2", "Mo3"],
+    "cours_5n7.html": ["Ch3", "Re4"],
+    "cours_5n8.html": ["Ca3", "Mo4"],
+    "cours_5g1.html": ["Re2", "Co2"],
+    "cours_5g2.html": ["Mo1", "Ca1"],
+    "cours_5g3.html": ["Ch4", "Ra2"],
+    "cours_5g4.html": ["Ra3", "Mo2"],
+    "cours_5g5.html": ["Ca2", "Re4"],
+    "cours_5g6.html": ["Ra4", "Ch3"],
+    "cours_5g7.html": ["Re3", "Mo3"],
+    "cours_5d1.html": ["Ch2", "Ra1"],
+    "cours_5d2.html": ["Ca1", "Mo2"],
+    "cours_5d3.html": ["Re1", "Co3"],
+    "cours_5d4.html": ["Ch4", "Ra2"]
+}

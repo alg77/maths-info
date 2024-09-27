@@ -98,6 +98,30 @@ section {
     margin-bottom: 2rem;
 }
 
+/* Style pour les liens */
+a {
+    color: #ffffff; /* Couleur du lien, blanc pour contraster avec le fond sombre */
+    text-decoration: underline; /* Souligne les liens pour plus de visibilité */
+    font-weight: bold; /* Gras pour une meilleure lisibilité */
+    transition: color 0.3s ease; /* Transition douce lors du survol */
+}
+
+a:hover {
+    color: #ffd700; /* Couleur or lors du survol pour attirer l'attention */
+    text-decoration: none; /* Retire le soulignement au survol pour une meilleure esthétique */
+}
+
+a:visited {
+    color: #d3d3d3; /* Légèrement gris pour les liens déjà visités */
+}
+
+/* Optionnel : Style spécifique pour les liens dans les sections */
+.section a {
+    font-size: 1.2em; /* Taille légèrement plus grande */
+    margin-bottom: 10px; /* Espacement sous les liens */
+    display: inline-block; /* Pour bien gérer l'espacement */
+}
+
 h2, h3 {
     font-family: 'Style Script', cursive; /* Utilisation de la police Lobster */
 }

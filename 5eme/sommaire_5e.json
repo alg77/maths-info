@@ -1,0 +1,26 @@
+{
+    "Nombres et Calculs": [
+        {"chapitre": "N1. Calculer avec les nombres décimaux", "fichier": "cours_5n1.html"},
+        {"chapitre": "N2. Écrire et utiliser une expression littérale", "fichier": "cours_5n2.html"},
+        {"chapitre": "N3. Définir, utiliser et représenter des nombres rationnels", "fichier": "cours_5n3.html"},
+        {"chapitre": "N4. Utiliser les nombres entiers", "fichier": "cours_5n4.html"},
+        {"chapitre": "N5. Découvrir, repérer et comparer les nombres relatifs", "fichier": "cours_5n5.html"},
+        {"chapitre": "N6. Reconnaître et utiliser des fractions égales - Comparer des fractions", "fichier": "cours_5n6.html"},
+        {"chapitre": "N7. Additionner et soustraire des nombres relatifs", "fichier": "cours_5n7.html"},
+        {"chapitre": "N8. Additionner et soustraire des fractions", "fichier": "cours_5n8.html"}
+    ],
+    "Géométrie et Espace": [
+        {"chapitre": "G2. Décrire et représenter le cylindre et le prisme droit", "fichier": "cours_5g2.html"},
+        {"chapitre": "G3. Construire un triangle et ses droites remarquables", "fichier": "cours_5g3.html"},
+        {"chapitre": "G4. Utiliser les propriétés de la symétrie centrale pour construire et démontrer", "fichier": "cours_5g4.html"},
+        {"chapitre": "G5. Reconnaître des angles particuliers et des droites parallèles", "fichier": "cours_5g5.html"},
+        {"chapitre": "G6. Construire et démontrer avec les angles d’un triangle", "fichier": "cours_5g6.html"},
+        {"chapitre": "G7. Définir, construire et reconnaître un parallélogramme", "fichier": "cours_5g7.html"}
+    ],
+    "Organisation et Gestion de Données": [
+        {"chapitre": "D1. Reconnaître et utiliser la proportionnalité pour résoudre des problèmes", "fichier": "cours_5d1.html"},
+        {"chapitre": "D2. Utiliser les pourcentages et les échelles", "fichier": "cours_5d2.html"},
+        {"chapitre": "D3. Traiter et représenter des données", "fichier": "cours_5d3.html"},
+        {"chapitre": "D4. S’initier aux probabilités", "fichier": "cours_5d4.html"}
+    ]
+}
