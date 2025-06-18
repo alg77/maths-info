@@ -209,6 +209,21 @@ h2, h3 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le relief */
 }
 
+/* Bouton pour revenir à l'accueil depuis les pages de garde */
+.home-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.home-button:hover {
+    background-color: #f43182;
+}
+
 .video-container {
     margin: 2rem 0;
     text-align: center;
