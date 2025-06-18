@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&family=Style+Script&display=swap');
 
 * {
     margin: 0;
@@ -8,31 +8,36 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../Images/background.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #fff;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
+    background: rgba(0, 102, 51, 0.5);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 10px;
-    color: #333;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 2em;
+    color: #fff;
+    font-family: 'Style Script', cursive;
+    font-size: 2.5em;
 }
 
 .instruction {
     text-align: center;
     margin-bottom: 30px;
     font-size: 1.3em;
-    color: #555;
+    color: #fff;
     font-family: 'Open Sans', sans-serif;
 }
 
