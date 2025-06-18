@@ -1,17 +1,23 @@
 import json
 import os
 
+# Répertoire contenant ce script. Les fichiers JSON et les fichiers HTML
+# générés sont situés dans ce même dossier.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 # Fonction pour charger les données JSON
-def load_json(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
+def load_json(file_path: str):
+    """Charge un fichier JSON situé dans le répertoire du script."""
+    json_path = os.path.join(BASE_DIR, file_path)
+    with open(json_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 # Charger les données du sommaire et des compétences
-sommaire = load_json('sommaire_5e.json')
-competences = load_json('competences_5e.json')
-capacites = load_json('capacites_5e.json')
+sommaire = load_json("sommaire_5e.json")
+competences = load_json("competences_5e.json")
+capacites = load_json("capacites_5e.json")
 
 # Dictionnaire des compétences avec descriptions
 descriptions_competences = {
@@ -205,8 +211,9 @@ for theme, chapitres in sommaire.items():
             video_url=video_url
         )
 
-        # Écrire le fichier HTML
-        with open(fichier, 'w', encoding='utf-8') as file:
+        # Écrire le fichier HTML dans le même répertoire que ce script
+        output_path = os.path.join(BASE_DIR, fichier)
+        with open(output_path, "w", encoding="utf-8") as file:
             file.write(html_content)
 
 print("Les fichiers HTML ont été générés avec succès.")
