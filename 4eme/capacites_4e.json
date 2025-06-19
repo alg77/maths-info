@@ -1,0 +1,18 @@
+{
+    "cours_4n1.html": [
+        "Effectuer des additions de nombres relatifs",
+        "Effectuer des soustractions de nombres relatifs",
+        "Effectuer des enchaînements d'additions et de soustractions de nombres relatifs"
+    ],
+    "cours_4n2.html": [
+        "Multiplier des nombres relatifs",
+        "Diviser des nombres relatifs",
+        "Enchaîner multiplications et divisions de nombres relatifs"
+    ],
+    "cours_4n3.html": [
+        "Comprendre le calcul littéral",
+        "Simplifier des expressions littérales",
+        "Utiliser le calcul littéral pour résoudre des problèmes"
+    ],
+    "default": ["À définir"]
+}
