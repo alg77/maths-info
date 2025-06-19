@@ -1,0 +1,26 @@
+{
+    "Nombres et Calculs": [
+        {"chapitre": "N1. Nombres relatifs : addition et soustraction", "fichier": "cours_4n1.html"},
+        {"chapitre": "N2. Nombres relatifs : multiplication et division", "fichier": "cours_4n2.html"},
+        {"chapitre": "N3. Calcul littéral 1", "fichier": "cours_4n3.html"},
+        {"chapitre": "N4. Équations", "fichier": "cours_4n4.html"},
+        {"chapitre": "N5. Fractions 1 : addition, soustraction et comparaison", "fichier": "cours_4n5.html"},
+        {"chapitre": "N6. Calcul littéral 2 : développement et factorisation", "fichier": "cours_4n6.html"},
+        {"chapitre": "N7. Fractions 2 : multiplication et division", "fichier": "cours_4n7.html"},
+        {"chapitre": "N8. Puissances de dix", "fichier": "cours_4n8.html"}
+    ],
+    "Géométrie et Espace": [
+        {"chapitre": "G1. Angles et triangles", "fichier": "cours_4g1.html"},
+        {"chapitre": "G2. Égalité de Pythagore (sens direct)", "fichier": "cours_4g2.html"},
+        {"chapitre": "G3. Quadrilatères particuliers", "fichier": "cours_4g3.html"},
+        {"chapitre": "G4. Égalité de Pythagore (sens indirect)", "fichier": "cours_4g4.html"},
+        {"chapitre": "G5. Transformations : translation", "fichier": "cours_4g5.html"},
+        {"chapitre": "G6. Transformations : rotation", "fichier": "cours_4g6.html"},
+        {"chapitre": "G7. Solides de l’espace : pyramide et cône", "fichier": "cours_4g7.html"}
+    ],
+    "Organisation et Gestion de Données": [
+        {"chapitre": "D1. Proportionnalité", "fichier": "cours_4d1.html"},
+        {"chapitre": "D2. Statistiques", "fichier": "cours_4d2.html"},
+        {"chapitre": "D3. Grandeurs produits et grandeurs quotients", "fichier": "cours_4d3.html"}
+    ]
+}
