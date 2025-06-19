@@ -87,7 +87,7 @@ html_template = """
 <body>
     <header>
         <div class="logo-container">
-            <img src="Images/Maths-logo2.webp" alt="Logo Maths" class="logo">
+            <img src="../Images/Maths-logo2.webp" alt="Logo Maths" class="logo">
         </div>
         <h1>Mes Cours de Maths - 5<sup>ème</sup></h1>
         <nav>
