@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux - Mots croisés</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="scripts/crossword-layout-generator.js"></script>
+    <script src="scripts/crosswords_data.js"></script>
+    <script src="scripts/crossword.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img loading="lazy" src="Images/Maths-logo2.webp" alt="Logo Maths" class="logo">
+        </div>
+        <h1>Jeux - Mots croisés</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <label for="niveau">Choisissez le niveau :</label>
+            <select id="niveau">
+                <option value="6e">6e</option>
+                <option value="5e">5e</option>
+                <option value="4e">4e</option>
+                <option value="nsi1ere">NSI 1ère</option>
+                <option value="nsiterminale">NSI Terminale</option>
+            </select>
+            <button id="generate">Générer</button>
+
+            <div id="crossword"></div>
+            <div id="clues">
+                <h3>Définitions</h3>
+                <ol id="clues-list"></ol>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mes Cours de Maths et d'Informatique - Mme LE GUERN</p>
+    </footer>
+</body>
+</html>
