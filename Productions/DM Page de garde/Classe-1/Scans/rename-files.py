@@ -5,9 +5,12 @@ folder_path = "./"
 
 # Liste des fichiers dans le dossier
 files = os.listdir(folder_path)
+print(folder_path)
+print(files)
 
 # Filtre les fichiers qui correspondent à "Page de garde_page-000X.jpg"
-files_to_rename = [f for f in files if f.startswith("Page de garde_page-") and f.endswith(".jpg")]
+files_to_rename = [f for f in files if f.endswith(".jpg")]
+print(files_to_rename)
 
 # Renommer chaque fichier
 for idx, filename in enumerate(sorted(files_to_rename), start=1):
