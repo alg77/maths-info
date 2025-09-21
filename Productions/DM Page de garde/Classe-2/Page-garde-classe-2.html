@@ -158,13 +158,19 @@
     <script>
         // Ouvre l'image en plein écran
         function openImage(src) {
-            document.getElementById("popup").style.display = "block";
-            document.getElementById("popupImage").src = src;
+            const popup = document.getElementById("popup");
+            const popupImage = document.getElementById("popupImage");
+            popupImage.src = src;
+            popup.style.display = "flex";
+            document.body.style.overflow = "hidden";
         }
 
         // Ferme l'image en plein écran
         function closeImage() {
-            document.getElementById("popup").style.display = "none";
+            const popup = document.getElementById("popup");
+            popup.style.display = "none";
+            document.getElementById("popupImage").src = "";
+            document.body.style.overflow = "";
         }
     </script>
 </body>
