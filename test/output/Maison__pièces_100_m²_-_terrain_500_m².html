@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Maison  pièces 100 m² - terrain 500 m²</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body { font-family:'Open Sans',sans-serif; margin:20px; }
+    .header { display: flex; flex-wrap: wrap; gap: 20px; }
+    .main-image { flex: 2; min-width: 300px; }
+    .sidebar { flex: 1; min-width: 250px; }
+    .main-image img { width: 100%; height: auto; border-radius:4px; }
+    .price { font-size:2em; color:#d9534f; margin-bottom:5px; }
+    .links p { margin: 5px 0; color:#337ab7; }
+    .map-preview { width:100%; height:200px; border:1px solid #ccc; margin-bottom:20px; }
+    .gallery { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .gallery div { flex: 0 0 150px; }
+    .gallery img { width:100%; border-radius:4px; cursor:pointer; }
+    .description { margin:20px 0; }
+    .agences ul { list-style:disc; margin-left:20px; }
+    .details ul { list-style:none; padding:0; }
+    .details li { margin-bottom:5px; }
+    /* Lightbox */
+    .overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; }
+    .overlay img { max-width:90%; max-height:90%; }
+    .arrow, .close { position:absolute; color:#fff; font-size:2em; cursor:pointer; user-select:none; }
+    .arrow.prev { left:20px; top:50%; transform:translateY(-50%); }
+    .arrow.next { right:20px; top:50%; transform:translateY(-50%); }
+    .close { right:30px; top:20px; }
+  </style>
+</head>
+<body>
+  <h1>Maison  pièces 100 m² - terrain 500 m² - Conches-sur-Gondoire (77600.0)</h1>
+  <div class="header">
+    <div class="main-image">
+      
+    </div>
+    <div class="sidebar">
+      <div class="price">Prix : 418 000 €</div>
+      <p><strong>Leboncoin : <a href="nan"> nan</a></strong></p><p><strong>SeLoger : <a href="https://www.seloger.com/annonces/achat/maison/lagny-sur-marne-77/clemenceau-pointcare-sud/245039293.htm"> https://www.seloger.com/annonces/achat/maison/lagny-sur-marne-77/clemenceau-pointcare-sud/245039293.htm</a></strong></p>
+      
+      <div>État : nan</div>
+      <div>Secteur : Lycée Van Dongen</div>
+      <div>Sous-sol : total</div>
+      <div>Garage : nan</div>
+      <div>Combles : nan</div>
+      
+    </div>
+  </div>
+  
+  <div class="description">
+    <p><strong>Description1:</strong> Conches sur Gondoire - Limite Lagny
+Idéalement située dans un quartier pavillonnaire, à proximité immédiate de Lagny sur Marne et du lycée Van Dongen. Sur une parcelle de 500 m², maison 5 pièces de 100 m² habitables (140 m² utiles), élevée sur sous sol total.
+Au RDC : entrée, double séjour donnant accès à la terrasse et son jardin exposé SUD, cuisine ouverte équipée, cellier, wc séparés et nombreux rangements.
+Au 1er étage : pallier desservant 2 chambres (possibilité 3), un bureau, un dressing, salle de bains, wc séparés et nombreux rangements.
+Sous sol total avec double garage et atelier.
+DPE : D ; GES : B
+Côté Est Immobilier - Agence du Golf, 17/19 rue de la Madeleine 77600 Guermantes</p>
+  </div>
+  <div class="agences"><h2>Agences</h2><ul><li>Coté Est</li></ul></div>
+  <div class="details">
+    <h2>Détails</h2>
+    <ul>
+      <li><strong>DPE:</strong> D</li><li><strong>GES:</strong> B</li>
+    </ul>
+  </div>
+  <!-- Lightbox overlay -->
+  <div id="overlay" class="overlay">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="arrow prev" onclick="prevImg()">&#10094;</span>
+    <img id="lightbox-img" src=""/>
+    <span class="arrow next" onclick="nextImg()">&#10095;</span>
+  </div>
+  <script>
+    let imgs = [], current = 0;
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.gallery img').forEach((el,i) => { imgs.push(el.src); el.addEventListener('click', () => openLightbox(i)); });
+    });
+    const overlay = document.getElementById('overlay');
+    const lightboxImg = document.getElementById('lightbox-img');
+    function openLightbox(idx) { current = idx; lightboxImg.src = imgs[current]; overlay.style.display = 'flex'; }
+    function closeLightbox() { overlay.style.display = 'none'; }
+    function prevImg() { current = (current - 1 + imgs.length) % imgs.length; lightboxImg.src = imgs[current]; }
+    function nextImg() { current = (current + 1) % imgs.length; lightboxImg.src = imgs[current]; }
+  </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Maison 4 pièces 94 m² - terrain 295 m²</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root { --card:#fff; --ink:#1f2937; --muted:#6b7280; --accent:#0ea5e9; --bg:#f3f4f6; }
+    @media (prefers-color-scheme: dark) { :root { --card:#111827; --ink:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --bg:#0b1220; } }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:16px; color:var(--ink); background:var(--bg); }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
+    .main { flex:2 1 420px; }
+    .side { flex:1 1 280px; background:var(--card); border-radius:12px; padding:16px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .hero { position:relative; }
+    .hero img { width:100%; height:auto; border-radius:12px; }
+    h1 { margin:8px 0 2px; }
+    .sub { color:var(--muted); margin-bottom:8px; }
+    .price { font-size:1.8rem; font-weight:700; margin:8px 0 4px; }
+    .ppm2 { color:var(--muted); margin-bottom:8px; }
+    .kv { display:grid; grid-template-columns: 1fr 1fr; gap:8px 16px; margin:10px 0; }
+    .kv div strong { display:block; font-size:.85rem; color:var(--muted); }
+    .map-preview { width:100%; height:220px; border:0; border-radius:10px; margin:10px 0; }
+    .links a { display:block; margin:6px 0; }
+    .gallery { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; }
+    .gallery div { width:150px; }
+    .gallery img { width:100%; height:auto; border-radius:10px; cursor:pointer; }
+    .desc p { background:var(--card); padding:12px; border-radius:10px; }
+    .badges { display:flex; gap:8px; align-items:center; margin:6px 0; }
+    .badge { padding:4px 8px; border-radius:999px; font-weight:600; font-size:.8rem; }
+    .dpe-A { background:#16a34a22; border:1px solid #16a34a55; }
+    .dpe-B { background:#22c55e22; border:1px solid #22c55e55; }
+    .dpe-C { background:#84cc1622; border:1px solid #84cc1655; }
+    .dpe-D { background:#eab30822; border:1px solid #eab30855; }
+    .dpe-E { background:#f9731622; border:1px solid #f9731655; }
+    .dpe-F { background:#ef444422; border:1px solid #ef444455; }
+    .dpe-G { background:#991b1b22; border:1px solid #991b1b55; }
+    .ges-A, .ges-B, .ges-C, .ges-D, .ges-E, .ges-F, .ges-G { background:#33415522; border:1px solid #33415555; }
+    .tray { background:var(--card); padding:12px; border-radius:10px; margin:10px 0; }
+    .tray li { margin:6px 0; }
+    /* RIBBONS */
+    .ribbon { position:absolute; top:12px; left:12px; font-weight:700; padding:6px 12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.25); text-transform:uppercase; letter-spacing:.5px; color:#fff; }
+    .ribbon-red { background:#ef4444; }
+    .ribbon-amber { background:#f59e0b; }
+    .ribbon-gray { background:#6b7280; }
+    /* Lightbox */
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; }
+    .overlay img { max-width:90vw; max-height:90vh; border-radius:10px; }
+    .overlay .nav { position:absolute; top:50%; transform:translateY(-50%); font-size:2rem; color:#fff; cursor:pointer; user-select:none; padding:0 16px; }
+    .overlay .prev { left:0; } .overlay .next { right:0; }
+    .overlay .close { position:absolute; top:8px; right:16px; font-size:2rem; color:#fff; cursor:pointer; }
+
+    /* Flags (visité / contact) */
+    .flag { position:absolute; top:12px; right:12px; padding:4px 10px; border-radius:999px; font-weight:700; color:#0b1220; background:#e5e7eb; margin-left:8px; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+    .flag + .flag { top:46px; }
+    .flag-green { background:#bbf7d0; }
+    .flag-blue  { background:#bae6fd; }
+
+  .fiche-bar{padding:12px 16px}
+.btn-fiche{display:inline-block;padding:.6rem .9rem;border:none;border-radius:.5rem;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:600}
+.btn-fiche:hover{filter:brightness(.95)}
+/* --- Immo patches: keep favorite icon visible & energy colors --- */
+.card{ position:relative; overflow:visible; }
+.card .title{ flex:1 1 auto; min-width:0; margin:0 0 4px; font-weight:700; }
+.card .title a{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fav, .favorite, .star{ position:absolute; top:8px; right:10px; font-size:1.25rem; line-height:1; cursor:pointer; user-select:none; z-index:3; }
+.grid{ overflow:visible; }
+/* Chip base */
+.energy{ color:#fff; border:none !important; font-weight:600; }
+.energy.A{ background:#1a9850; }
+.energy.B{ background:#66bd63; }
+.energy.C{ background:#a6d96a; }
+.energy.D{ background:#fdae61; color:#222; }
+.energy.E{ background:#f46d43; }
+.energy.F{ background:#d73027; }
+.energy.G{ background:#a50026; }
+.energy.unknown{ background:#999; }
+
+</style>
+</head>
+<body>
+  <div class="fiche-bar"><a href="Maison_4_pièces_94_m²_-_terrain_295_m²_fiche.html" target="_blank" class="btn-fiche">📝 Fiche</a></div>
+  <h1>Maison 4 pièces 94 m² - terrain 295 m²</h1>
+  <div class="sub">Lagny-sur-Marne (77400.0)</div>
+  <div class="wrap">
+    <div class="main">
+      <div class="hero"><div class="ribbon ribbon-amber">Sous compromis — 04/06/2025</div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo01.jpg" alt="Photo principale" loading="eager"/></div>
+      <div class="gallery"><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo01.jpg" data-idx="0" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo02.jpg" data-idx="1" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo03.jpg" data-idx="2" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo04.jpg" data-idx="3" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo05.jpg" data-idx="4" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo06.jpg" data-idx="5" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo07.jpg" data-idx="6" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo08.jpg" data-idx="7" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo09.jpg" data-idx="8" loading="lazy"/></div><div><img src="../images/Maison_4_pièces_94_m²_-_terrain_295_m²/photo10.jpg" data-idx="9" loading="lazy"/></div></div>
+      <div class="desc"><p><strong>Description1 :</strong><br>EXCLUSIVITE AGENCITY LAGNY : Découvrez cette belle maison rénovée d'environ 94 m2 habitables et à 15' à pieds du centre-ville
+
+Au rez-de-chaussée : une entrée, une cuisine aménagée et équipée, un espace buanderie, un grand séjour lumineux, un dressing, une salle de bains, un wc indépendant et un espace permettant de créer une chambre d'environ 12m2.
+Au 1er étage : une chambre avec sa salle d'eau, une 2e chambre de 17m2.
+Au 2e étage : une 3e grande chambre d'environ 27m2 au sol.
+Un jardin avec espace terrasse. 3 stationnements extérieurs.
+
+Les + : Aucun vis-à-vis, luminosité, excellent état général, proximité écoles et centre-ville, possibilité d'agrandissement.
+
+Honoraires à la charge du vendeur. Classe énergie D, Classe climat D Montant estimé des dépenses annuelles d'énergie pour un usage standard : entre 1710.00 euros et 2370.00 euros sur les années 2021, 2022 et 2023 (abonnements compris). Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : georisques.gouv.fr.</p></div>
+    </div>
+    <aside class="side">
+      <div class="price">Prix : 329 900 €</div>
+      <div class="ppm2">~3510 €/m²</div>
+      <div class="badges">
+        <span style="display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;background:#facc15;color:#0b1220;">DPE D</span> <span style="display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;background:#facc15;color:#0b1220;">GES D</span>
+        <span class="badge">94 m²</span>
+        <span class="badge">4 p.</span>
+        
+      </div>
+      <div class="kv">
+        
+        <div><strong>État</strong>Refait à neuf</div>
+        <div><strong>Secteur</strong>à 15' à pieds du centre-ville</div>
+        <div><strong>Adresse</strong>2 Rue de la Grange du Bois 77400.0 Lagny-sur-Marne</div>
+      </div>
+      
+      <div class="tray">
+        <strong>Liens</strong>
+        <div class="links">
+          <a href="https://www.leboncoin.fr/ad/ventes_immobilieres/2944797838" target="_blank">→ Leboncoin</a><a href="https://www.seloger.com/annonces/achat/maison/lagny-sur-marne-77/236725743.htm" target="_blank">→ Seloger</a>
+          <a href="https://maps.google.com/?q=2 Rue de la Grange du Bois" target="_blank">→ Ouvrir l’adresse dans Maps</a>
+          <a href="https://maps.app.goo.gl/BocvEgijWcYs7ZP29" target="_blank">→ Lien Maps (Localisation)</a>
+        </div>
+      </div>
+      
+      
+
+      
+    </aside>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="overlay" class="overlay">
+    <span class="close" onclick="closeLb()">×</span>
+    <span class="nav prev" onclick="prevLb()">❮</span>
+    <img id="lbimg" src=""/>
+    <span class="nav next" onclick="nextLb()">❯</span>
+  </div>
+  <script>
+    let imgs = [], cur = 0;
+    document.querySelectorAll('.gallery img').forEach((el,i)=>{ imgs.push(el.src); el.addEventListener('click',()=>openLb(i)); });
+    const ov = document.getElementById('overlay'); const lb = document.getElementById('lbimg');
+    function openLb(i){ cur=i; lb.src=imgs[cur]; ov.style.display='flex'; }
+    function closeLb(){ ov.style.display='none'; }
+    function prevLb(){ cur=(cur-1+imgs.length)%imgs.length; lb.src=imgs[cur]; }
+    function nextLb(){ cur=(cur+1)%imgs.length; lb.src=imgs[cur]; }
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') prevLb(); if(e.key==='ArrowRight') nextLb(); });
+  </script>
+</body>
+</html>

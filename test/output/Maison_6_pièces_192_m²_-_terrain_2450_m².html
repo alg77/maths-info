@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Maison 6 pièces 192 m² - terrain 2450 m²</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root { --card:#fff; --ink:#1f2937; --muted:#6b7280; --accent:#0ea5e9; --bg:#f3f4f6; }
+    @media (prefers-color-scheme: dark) { :root { --card:#111827; --ink:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --bg:#0b1220; } }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:16px; color:var(--ink); background:var(--bg); }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
+    .main { flex:2 1 420px; }
+    .side { flex:1 1 280px; background:var(--card); border-radius:12px; padding:16px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .hero { position:relative; }
+    .hero img { width:100%; height:auto; border-radius:12px; }
+    h1 { margin:8px 0 2px; }
+    .sub { color:var(--muted); margin-bottom:8px; }
+    .price { font-size:1.8rem; font-weight:700; margin:8px 0 4px; }
+    .ppm2 { color:var(--muted); margin-bottom:8px; }
+    .kv { display:grid; grid-template-columns: 1fr 1fr; gap:8px 16px; margin:10px 0; }
+    .kv div strong { display:block; font-size:.85rem; color:var(--muted); }
+    .map-preview { width:100%; height:220px; border:0; border-radius:10px; margin:10px 0; }
+    .links a { display:block; margin:6px 0; }
+    .gallery { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; }
+    .gallery div { width:150px; }
+    .gallery img { width:100%; height:auto; border-radius:10px; cursor:pointer; }
+    .desc p { background:var(--card); padding:12px; border-radius:10px; }
+    .badges { display:flex; gap:8px; align-items:center; margin:6px 0; }
+    .badge { padding:4px 8px; border-radius:999px; font-weight:600; font-size:.8rem; }
+    .dpe-A { background:#16a34a22; border:1px solid #16a34a55; }
+    .dpe-B { background:#22c55e22; border:1px solid #22c55e55; }
+    .dpe-C { background:#84cc1622; border:1px solid #84cc1655; }
+    .dpe-D { background:#eab30822; border:1px solid #eab30855; }
+    .dpe-E { background:#f9731622; border:1px solid #f9731655; }
+    .dpe-F { background:#ef444422; border:1px solid #ef444455; }
+    .dpe-G { background:#991b1b22; border:1px solid #991b1b55; }
+    .ges-A, .ges-B, .ges-C, .ges-D, .ges-E, .ges-F, .ges-G { background:#33415522; border:1px solid #33415555; }
+    .tray { background:var(--card); padding:12px; border-radius:10px; margin:10px 0; }
+    .tray li { margin:6px 0; }
+    /* RIBBONS */
+    .ribbon { position:absolute; top:12px; left:12px; font-weight:700; padding:6px 12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.25); text-transform:uppercase; letter-spacing:.5px; color:#fff; }
+    .ribbon-red { background:#ef4444; }
+    .ribbon-amber { background:#f59e0b; }
+    .ribbon-gray { background:#6b7280; }
+    /* Lightbox */
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; }
+    .overlay img { max-width:90vw; max-height:90vh; border-radius:10px; }
+    .overlay .nav { position:absolute; top:50%; transform:translateY(-50%); font-size:2rem; color:#fff; cursor:pointer; user-select:none; padding:0 16px; }
+    .overlay .prev { left:0; } .overlay .next { right:0; }
+    .overlay .close { position:absolute; top:8px; right:16px; font-size:2rem; color:#fff; cursor:pointer; }
+
+    /* Flags (visité / contact) */
+    .flag { position:absolute; top:12px; right:12px; padding:4px 10px; border-radius:999px; font-weight:700; color:#0b1220; background:#e5e7eb; margin-left:8px; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+    .flag + .flag { top:46px; }
+    .flag-green { background:#bbf7d0; }
+    .flag-blue  { background:#bae6fd; }
+
+  .fiche-bar{padding:12px 16px}
+.btn-fiche{display:inline-block;padding:.6rem .9rem;border:none;border-radius:.5rem;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:600}
+.btn-fiche:hover{filter:brightness(.95)}
+/* --- Immo patches: keep favorite icon visible & energy colors --- */
+.card{ position:relative; overflow:visible; }
+.card .title{ flex:1 1 auto; min-width:0; margin:0 0 4px; font-weight:700; }
+.card .title a{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fav, .favorite, .star{ position:absolute; top:8px; right:10px; font-size:1.25rem; line-height:1; cursor:pointer; user-select:none; z-index:3; }
+.grid{ overflow:visible; }
+/* Chip base */
+.energy{ color:#fff; border:none !important; font-weight:600; }
+.energy.A{ background:#1a9850; }
+.energy.B{ background:#66bd63; }
+.energy.C{ background:#a6d96a; }
+.energy.D{ background:#fdae61; color:#222; }
+.energy.E{ background:#f46d43; }
+.energy.F{ background:#d73027; }
+.energy.G{ background:#a50026; }
+.energy.unknown{ background:#999; }
+
+</style>
+</head>
+<body>
+  <div class="fiche-bar"><a href="Maison_6_pièces_192_m²_-_terrain_2450_m²_fiche.html" target="_blank" class="btn-fiche">📝 Fiche</a></div>
+  <h1>Maison 6 pièces 192 m² - terrain 2450 m²</h1>
+  <div class="sub">Lesches (77450.0)</div>
+  <div class="wrap">
+    <div class="main">
+      <div class="hero"><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo01.jpg" alt="Photo principale" loading="eager"/></div>
+      <div class="gallery"><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo01.jpg" data-idx="0" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo01.webp" data-idx="1" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo02.jpg" data-idx="2" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo02.webp" data-idx="3" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo03.jpg" data-idx="4" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo03.webp" data-idx="5" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo04.jpg" data-idx="6" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo04.webp" data-idx="7" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo05.jpg" data-idx="8" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo05.webp" data-idx="9" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo06.jpg" data-idx="10" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo06.webp" data-idx="11" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo07.jpg" data-idx="12" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo07.webp" data-idx="13" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo08.jpg" data-idx="14" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo08.webp" data-idx="15" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo09.jpg" data-idx="16" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo09.webp" data-idx="17" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo10.jpg" data-idx="18" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo10.webp" data-idx="19" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo11.jpg" data-idx="20" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo11.webp" data-idx="21" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo12.jpg" data-idx="22" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo12.webp" data-idx="23" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo13.webp" data-idx="24" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_192_m²_-_terrain_2450_m²/photo14.webp" data-idx="25" loading="lazy"/></div></div>
+      <div class="desc"><p><strong>Description1 :</strong><br>A LESCHES Plongez dans un cadre de vie paisible avec cette maison familiale de 192,72 m², implantée sur un terrain de 2 450 m² dont environ 1 000 m² en pente arborée, donnant un charme de sous-bois unique.
+
+Dès l'entrée, vous serez séduits par les volumes généreux : un vaste séjour avec cheminée centrale et hauts plafonds, une cuisine salle à manger baignée de lumière, ainsi qu'une véranda qui prolonge l'espace de vie vers le jardin. La maison dispose de quatre chambres dont deux suites parentales, d'une mezzanine pouvant accueillir un bureau ou une salle de jeux, et d'un grand garage avec plusieurs pièces annexes telles qu'un sauna et une salle de jeux.
+
+Cette maison présente de réels atouts mais nécessite des travaux. Les salles d'eau, fonctionnelles mais restées dans leur état d'origine des années 1990, sont à moderniser. Le compteur électrique devra être remplacé et certains rafraîchissements sont à prévoir. En contrepartie, son prix attractif tient déjà compte de ces éléments.
+
+Autre avantage : la maison est équipée d'une micro-station d'épuration récente qui ne demande pas d'entretien, avec la possibilité de raccordement au tout-à-l'égout, autorisation déjà obtenue.
+
+Un bien rare pour ceux qui recherchent de l'espace, un environnement naturel et la liberté de personnaliser leur maison selon leurs goûts. --
+Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : georisques.gouv. fr
+--
+Cette annonce immobilière est rédigée sous la responsabilité de votre agent commercial. Contactez Sylvie MARIN N° RSAC : 818 994 295 MEAUX</p><p><strong>Description2 :</strong><br>Je vends la maison familiale.
+La maison est nichée dans un écrin de verdure et pourtant à 7 min à pied seulement de la gare d'Esbly, menant rapidement jusqu'à Paris Gare de l'Est en 30 min ou bien encore à 10 min de Disneyland par les lignes de bus qui mènent à Marne la Vallée Chessy pour le RER A et le TGV.
+Une situation parfaite tout est proche.
+Esbly est une petite ville où il fait bon vivre, une ambiance communale très active, des commerces de proximité et deux supermarchés.
+Les écoles maternelles et élémentaires sont au cœur des deux espaces de la ville et le collège organise un ramassage.
+Les activités associatives sont variées, très accueillantes.
+En ouvrant le portail, votre vue se pose sur un petit escalier et une grande allée descendant au garage, parsemés de verdure fleurie.
+Votre regard sera immédiatement attiré par le balcon de la suite parentale surplombée de sa tourelle à l'architecture élégante .
+La porte d'entrée ouvre sur un grand espace muni de grands placards encastrés et ouvrant en alcôve sur le grand séjour cathédrale de 38 m2.
+Les portes fenêtres du salon donnent sur le grand balcon duquel vous appréciez la partie boisée du jardin où le point de vue se perd sur l'horizon du paysage de campagne.
+Cette immense pièce est le lieu parfait pour les longues soirées d'hiver au coin du feu où trônera votre gigantesque sapin de Noël !
+La cuisine est présentée plein Sud, la partie cuisson aménagée d'une table pour le petit déjeuner. Elle est ouverte sur un spacieux espace de vie où la table de ferme accueille les moments partagés. La lumière y est toujours rayonnante, le soleil réchauffe ce bel espace qui donne directement sur une véranda par la partie Sud-Ouest et une grande terrasse plein Sud. Un store banne protège des quelques gouttes possibles et du soleil d'été permettant de profiter de l'extérieur de mars à octobre.
+La maison est dotée de deux grandes suites avec salles de bain munies de baignoires et de deux autres chambres plus.</p></div>
+    </div>
+    <aside class="side">
+      <div class="price">Prix : 450 000 €</div>
+      <div class="ppm2">~2344 €/m²</div>
+      <div class="badges">
+        <span style="display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;background:#fdba74;color:#0b1220;">DPE E</span> <span style="display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;background:#bbf7d0;color:#0b1220;">GES B</span>
+        <span class="badge">192 m²</span>
+        <span class="badge">6 p.</span>
+        
+      </div>
+      <div class="kv">
+        
+        
+        
+        
+      </div>
+      
+      <div class="tray">
+        <strong>Liens</strong>
+        <div class="links">
+          <a href="https://www.seloger.com/annonces/achat/maison/lesches-77/251381289.htm" target="_blank">→ Seloger</a><a href="BL Agents" target="_blank">→ Agence</a>
+          
+          
+        </div>
+      </div>
+      
+      
+
+      
+    </aside>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="overlay" class="overlay">
+    <span class="close" onclick="closeLb()">×</span>
+    <span class="nav prev" onclick="prevLb()">❮</span>
+    <img id="lbimg" src=""/>
+    <span class="nav next" onclick="nextLb()">❯</span>
+  </div>
+  <script>
+    let imgs = [], cur = 0;
+    document.querySelectorAll('.gallery img').forEach((el,i)=>{ imgs.push(el.src); el.addEventListener('click',()=>openLb(i)); });
+    const ov = document.getElementById('overlay'); const lb = document.getElementById('lbimg');
+    function openLb(i){ cur=i; lb.src=imgs[cur]; ov.style.display='flex'; }
+    function closeLb(){ ov.style.display='none'; }
+    function prevLb(){ cur=(cur-1+imgs.length)%imgs.length; lb.src=imgs[cur]; }
+    function nextLb(){ cur=(cur+1)%imgs.length; lb.src=imgs[cur]; }
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') prevLb(); if(e.key==='ArrowRight') nextLb(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Maison 6 pièces 105 m² - terrain 362 m²</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root { --card:#fff; --ink:#1f2937; --muted:#6b7280; --accent:#0ea5e9; --bg:#f3f4f6; }
+    @media (prefers-color-scheme: dark) { :root { --card:#111827; --ink:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --bg:#0b1220; } }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:16px; color:var(--ink); background:var(--bg); }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
+    .main { flex:2 1 420px; }
+    .side { flex:1 1 280px; background:var(--card); border-radius:12px; padding:16px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .hero { position:relative; }
+    .hero img { width:100%; height:auto; border-radius:12px; }
+    h1 { margin:8px 0 2px; }
+    .sub { color:var(--muted); margin-bottom:8px; }
+    .price { font-size:1.8rem; font-weight:700; margin:8px 0 4px; }
+    .ppm2 { color:var(--muted); margin-bottom:8px; }
+    .kv { display:grid; grid-template-columns: 1fr 1fr; gap:8px 16px; margin:10px 0; }
+    .kv div strong { display:block; font-size:.85rem; color:var(--muted); }
+    .map-preview { width:100%; height:220px; border:0; border-radius:10px; margin:10px 0; }
+    .links a { display:block; margin:6px 0; }
+    .gallery { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; }
+    .gallery div { width:150px; }
+    .gallery img { width:100%; height:auto; border-radius:10px; cursor:pointer; }
+    .desc p { background:var(--card); padding:12px; border-radius:10px; }
+    .badges { display:flex; gap:8px; align-items:center; margin:6px 0; }
+    .badge { padding:4px 8px; border-radius:999px; font-weight:600; font-size:.8rem; }
+    .dpe-A { background:#16a34a22; border:1px solid #16a34a55; }
+    .dpe-B { background:#22c55e22; border:1px solid #22c55e55; }
+    .dpe-C { background:#84cc1622; border:1px solid #84cc1655; }
+    .dpe-D { background:#eab30822; border:1px solid #eab30855; }
+    .dpe-E { background:#f9731622; border:1px solid #f9731655; }
+    .dpe-F { background:#ef444422; border:1px solid #ef444455; }
+    .dpe-G { background:#991b1b22; border:1px solid #991b1b55; }
+    .ges-A, .ges-B, .ges-C, .ges-D, .ges-E, .ges-F, .ges-G { background:#33415522; border:1px solid #33415555; }
+    .tray { background:var(--card); padding:12px; border-radius:10px; margin:10px 0; }
+    .tray li { margin:6px 0; }
+    /* RIBBONS */
+    .ribbon { position:absolute; top:12px; left:12px; font-weight:700; padding:6px 12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.25); text-transform:uppercase; letter-spacing:.5px; color:#fff; }
+    .ribbon-red { background:#ef4444; }
+    .ribbon-amber { background:#f59e0b; }
+    .ribbon-gray { background:#6b7280; }
+    /* Lightbox */
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; }
+    .overlay img { max-width:90vw; max-height:90vh; border-radius:10px; }
+    .overlay .nav { position:absolute; top:50%; transform:translateY(-50%); font-size:2rem; color:#fff; cursor:pointer; user-select:none; padding:0 16px; }
+    .overlay .prev { left:0; } .overlay .next { right:0; }
+    .overlay .close { position:absolute; top:8px; right:16px; font-size:2rem; color:#fff; cursor:pointer; }
+
+    /* Flags (visité / contact) */
+    .flag { position:absolute; top:12px; right:12px; padding:4px 10px; border-radius:999px; font-weight:700; color:#0b1220; background:#e5e7eb; margin-left:8px; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+    .flag + .flag { top:46px; }
+    .flag-green { background:#bbf7d0; }
+    .flag-blue  { background:#bae6fd; }
+
+  .fiche-bar{padding:12px 16px}
+.btn-fiche{display:inline-block;padding:.6rem .9rem;border:none;border-radius:.5rem;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:600}
+.btn-fiche:hover{filter:brightness(.95)}
+/* --- Immo patches: keep favorite icon visible & energy colors --- */
+.card{ position:relative; overflow:visible; }
+.card .title{ flex:1 1 auto; min-width:0; margin:0 0 4px; font-weight:700; }
+.card .title a{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fav, .favorite, .star{ position:absolute; top:8px; right:10px; font-size:1.25rem; line-height:1; cursor:pointer; user-select:none; z-index:3; }
+.grid{ overflow:visible; }
+/* Chip base */
+.energy{ color:#fff; border:none !important; font-weight:600; }
+.energy.A{ background:#1a9850; }
+.energy.B{ background:#66bd63; }
+.energy.C{ background:#a6d96a; }
+.energy.D{ background:#fdae61; color:#222; }
+.energy.E{ background:#f46d43; }
+.energy.F{ background:#d73027; }
+.energy.G{ background:#a50026; }
+.energy.unknown{ background:#999; }
+
+</style>
+</head>
+<body>
+  <div class="fiche-bar"><a href="Maison_6_pièces_105_m²_-_terrain_362_m²_fiche.html" target="_blank" class="btn-fiche">📝 Fiche</a></div>
+  <h1>Maison 6 pièces 105 m² - terrain 362 m²</h1>
+  <div class="sub">Lagny-sur-Marne (77400.0)</div>
+  <div class="wrap">
+    <div class="main">
+      <div class="hero"><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo001.jpg" alt="Photo principale" loading="eager"/></div>
+      <div class="gallery"><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo001.jpg" data-idx="0" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo01.jpg" data-idx="1" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo02.jpg" data-idx="2" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo03.jpg" data-idx="3" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo04.jpg" data-idx="4" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo05.jpg" data-idx="5" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo06.jpg" data-idx="6" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo07.jpg" data-idx="7" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo08.jpg" data-idx="8" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo09.jpg" data-idx="9" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo10.jpg" data-idx="10" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo11.jpg" data-idx="11" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo12.jpg" data-idx="12" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo13.jpg" data-idx="13" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo14.jpg" data-idx="14" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo16.jpg" data-idx="15" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo17.jpg" data-idx="16" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo18.jpg" data-idx="17" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo19.jpg" data-idx="18" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo20.jpg" data-idx="19" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo21.jpg" data-idx="20" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo22.jpg" data-idx="21" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo23.jpg" data-idx="22" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo24.jpg" data-idx="23" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo25.jpg" data-idx="24" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo26.jpg" data-idx="25" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo27.jpg" data-idx="26" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo28.jpg" data-idx="27" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo29.jpg" data-idx="28" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo30.jpg" data-idx="29" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo31.jpg" data-idx="30" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo32.jpg" data-idx="31" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo33.jpg" data-idx="32" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo34.jpg" data-idx="33" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo35.jpg" data-idx="34" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo36.jpg" data-idx="35" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo37.jpg" data-idx="36" loading="lazy"/></div><div><img src="../images/Maison_6_pièces_105_m²_-_terrain_362_m²/photo38.jpg" data-idx="37" loading="lazy"/></div></div>
+      <div class="desc"><p><strong>Description1 :</strong><br>KUBIMMO vous propose de découvrir sans tarder : une belle maison familiale non mitoyenne de 6 pièces, idéalement située dans un quartier pavillonnaire recherché, sur les hauteurs de Lagny-sur-Marne, à proximité immédiate de Chanteloup-en-Brie.
+Les atouts de cette maison :
+Surface habitable : environ 105 m²
+Terrain : parcelle de 367 m²
+Année de construction : 2005
+Au rez-de-chaussée :
+Un grand séjour lumineux avec véranda récente sous garantie décennale et cheminée
+Une cuisine spacieuse et entièrement aménagée
+Une première chambre +++
+Un WC indépendant avec lave-mains
+À l'étage :
+Trois belles chambres aux volumes généreux
+Une belle salle d'eau
+Un deuxième WC
+
+Les extérieurs et annexes :
+Garage motorisé avec accès direct à la maison et coin buanderie
+Mezzanine pratique pour le rangement ou pour aménager un espace hobby
+Jardin, idéal pour les moments en famille ou entre amis
+Aucun travaux à prévoir. Située à proximité des écoles, commerces et transports, cette maison est prête à accueillir votre famille dans un cadre calme et agréable.
+
+Coup de coeur assuré ! Venez la visiter ! Contactez-nous au [Coordonnées masquées] !
+
+Surface : 105 m²
+Prix du bien : 449000 €
+Honoraires à la charge du vendeur
+
+Consommation énergie primaire : 201 kWh/m²/an
+Consommation énergie finale : Non communiqué
+
+Montant estimé des dépenses annuelles d'énergie pour un usage standard : entre 1 710 € et 2 360 € par an. Prix moyens des énergies indexés sur l'année 2023 (abonnements compris)
+
+Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr</p><p><strong>Description2 :</strong><br>iad France - Philippe Konstantinidis vous propose: EXCLUSIVITÉ BELLE MAISON FAMILIALE
+
+Venez découvrir cette magnifique maison familiale non mitoyenne de 6 pièces, située dans un quartier pavillonnaire sur les hauts de Lagny, à quelques pas de Chanteloup-en-Brie.
+
+Caractéristiques de la maison :
+
+Surface habitable : 105 m² environ
+Parcelle : 367 m² environ
+Année de construction : 2005
+Rez-de-chaussée :
+
+Salon/Salle à manger : Spacieux avec véranda sous décennale et cheminée.
+Cuisine : Grande et équipée.
+Chambre 1 : Une première chambre.
+WC : Un WC.
+Étage :
+
+Chambres : 3 grandes chambres.
+Salle de bain : Spacieuse.
+WC : Un WC supplémentaire.
+Extérieurs et équipements supplémentaires :
+
+Garage motorisé : Avec accès intérieur, coin cuisine d'été et buanderie.
+Mezzanine : Idéale pour le stockage ou pour diverses passions.
+Jardin : Arboré et parfaitement entretenu.
+Aucun travaux à prévoir. Cette maison est à proximité des écoles et des transports. Une visite s'impose pour découvrir tous ses atouts.
+
+Honoraires d'agence à la charge du vendeur.
+Information d'affichage énergétique sur ce bien : classe ENERGIE D indice 201 et classe CLIMAT D indice 31. Les informations sur les risques auxquels ce bien est exposé, y compris l'obligation légale de débroussaillement, sont disponibles sur le site Géorisques :
+La présente annonce immobilière a été rédigée sous la responsabilité éditoriale de M Philippe Konstantinidis mandataire indépendant en immobilier (sans détention de fonds), agent commercial de la SAS I@D France immatriculé au RSAC de Meaux sous le numéro 842209934, titulaire de la carte de démarchage immobilier pour le compte de la société I@D France SAS.</p></div>
+    </div>
+    <aside class="side">
+      <div class="price">Prix : 434 000 €</div>
+      <div class="ppm2">~4133 €/m²</div>
+      <div class="badges">
+        <span style="display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;background:#facc15;color:#0b1220;">DPE D</span> <span style="display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;background:#facc15;color:#0b1220;">GES D</span>
+        <span class="badge">105 m²</span>
+        <span class="badge">6 p.</span>
+        
+      </div>
+      <div class="kv">
+        
+        <div><strong>État</strong>Aucun travaux à prévoir</div>
+        <div><strong>Secteur</strong>Située dans un quartier pavillonnaire sur les hauts de Lagny, à quelques pas de Chanteloup-en-Brie / juste à côté de Van Dongen</div>
+        <div><strong>Adresse</strong>20 Rue des Fleurs
+Lagny-sur-Marne 77400.0 Lagny-sur-Marne</div>
+      </div>
+      <iframe class="map-preview" src="https://maps.google.com/maps?q=48.866137,2.718383&z=15&output=embed" loading="lazy"></iframe>
+      <div class="tray">
+        <strong>Liens</strong>
+        <div class="links">
+          <a href="https://www.leboncoin.fr/ad/ventes_immobilieres/2982693401" target="_blank">→ Leboncoin</a><a href="https://www.seloger.com/annonces/achat/maison/lagny-sur-marne-77/240385403.htm" target="_blank">→ Seloger</a><a href="https://www.iadfrance.fr/annonce/maison-vente-6-pieces-lagny-sur-marne-105m2/r1569663" target="_blank">→ Agence</a>
+          <a href="https://maps.google.com/?q=20 Rue des Fleurs
+Lagny-sur-Marne" target="_blank">→ Ouvrir l’adresse dans Maps</a>
+          
+        </div>
+      </div>
+      <div class="tray"><strong>Trajets</strong><ul><li><a href="https://www.google.com/maps/dir/48.866137,2.718383/10 rue des Sources, 77400 Lagny sur Marne" target="_blank">Itinéraire → St Laurent</a> — ~1.3 km, ~2 min</li><li><a href="https://www.google.com/maps/dir/48.866137,2.718383/Collège Lycée GASNIER-GUY-SAINTE-BATHILDE, 77500 Chelles" target="_blank">Itinéraire → GGSB</a> — ~9.3 km, ~11 min</li></ul></div>
+      
+
+      
+    </aside>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="overlay" class="overlay">
+    <span class="close" onclick="closeLb()">×</span>
+    <span class="nav prev" onclick="prevLb()">❮</span>
+    <img id="lbimg" src=""/>
+    <span class="nav next" onclick="nextLb()">❯</span>
+  </div>
+  <script>
+    let imgs = [], cur = 0;
+    document.querySelectorAll('.gallery img').forEach((el,i)=>{ imgs.push(el.src); el.addEventListener('click',()=>openLb(i)); });
+    const ov = document.getElementById('overlay'); const lb = document.getElementById('lbimg');
+    function openLb(i){ cur=i; lb.src=imgs[cur]; ov.style.display='flex'; }
+    function closeLb(){ ov.style.display='none'; }
+    function prevLb(){ cur=(cur-1+imgs.length)%imgs.length; lb.src=imgs[cur]; }
+    function nextLb(){ cur=(cur+1)%imgs.length; lb.src=imgs[cur]; }
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') prevLb(); if(e.key==='ArrowRight') nextLb(); });
+  </script>
+</body>
+</html>
