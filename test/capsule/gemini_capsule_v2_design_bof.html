@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Digital Closet • Deep Autumn</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette Deep Autumn (Pour l'affichage CSS) */
+            --rust: #9E4624;
+            --navy: #1B263B;
+            --mustard: #D4A017;
+            --forest: #254E38;
+            --grenat: #681725;
+            --cream: #FDFBF7;
+            --choco: #4B3621;
+            --camel: #B87333;
+            --teal: #005F60;
+            
+            /* Design du Site */
+            --bg-site: #F9F8F6; /* Crème très pâle */
+            --text-main: #2C3E50; /* Bleu Encre */
+            --text-light: #5D6D7E;
+            --border-color: #E5E0D8;
+            --accent: #A55D35; /* Terracotta */
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-site);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER CHIC --- */
+        header {
+            background-color: #fff;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        header::after { /* Petite ligne décorative double */
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- TITRES DE SECTIONS --- */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* --- BLOC COLORIMÉTRIE (NOUVEAU) --- */
+        .color-analysis {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) { .palette-grid { grid-template-columns: 1fr; } }
+
+        .palette-group h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-top: 0;
+            color: var(--text-main);
+        }
+
+        .swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .swatch-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70px;
+        }
+
+        .swatch-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 5px;
+        }
+
+        .swatch-name {
+            font-size: 0.7rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+        }
+
+        /* Croix pour les couleurs interdites */
+        .forbidden .swatch-circle {
+            position: relative;
+            opacity: 0.7;
+        }
+        .forbidden .swatch-circle::after {
+            content: "✕";
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+
+        /* --- GRILLE VÊTEMENTS --- */
+        .wardrobe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .item-info { padding: 12px; text-align: center; }
+        .item-name { font-weight: 700; font-size: 0.85rem; line-height: 1.3; color: var(--text-main); margin-top: 5px; font-family: 'Lato', sans-serif;}
+        .item-tag { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; display:block;}
+        
+        .new-badge {
+            position: absolute; top: 8px; right: 8px;
+            background: var(--grenat); color: white;
+            font-size: 0.6rem; padding: 3px 8px;
+            border-radius: 20px; font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* --- LOOKBOOKS --- */
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .look-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        
+        .look-card:hover { border-color: var(--accent); }
+
+        .look-header {
+            border-bottom: 1px solid var(--bg-site);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .look-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .look-items {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--bg-site);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .mini-img {
+            width: 70px;
+            height: 95px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white;
+            padding: 2px;
+        }
+
+        .look-comment {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-top: auto;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .look-comment::before {
+            content: "“";
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--mustard);
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            opacity: 0.3;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mon Digital Closet</h1>
+    <div class="subtitle">AUTOMNE PROFOND • PREPPY ROMANTIQUE</div>
+</header>
+
+<div class="container">
+
+    <section class="color-analysis">
+        <div class="palette-grid">
+            
+            <div class="palette-group">
+                <h3>✨ Ma Palette "Signature" (Deep Autumn)</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Privilégier les tons chauds, riches, profonds et épicés.</p>
+                <div class="swatches">
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--rust);"></div>
+                        <span class="swatch-name">Rouille</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--forest);"></div>
+                        <span class="swatch-name">Vert Sapin</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--choco);"></div>
+                        <span class="swatch-name">Chocolat</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--mustard);"></div>
+                        <span class="swatch-name">Ocre/Moutarde</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--navy);"></div>
+                        <span class="swatch-name">Marine</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--grenat);"></div>
+                        <span class="swatch-name">Grenat</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--camel);"></div>
+                        <span class="swatch-name">Camel</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: var(--cream); border:1px solid #ddd;"></div>
+                        <span class="swatch-name">Écru</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="palette-group forbidden">
+                <h3>🚫 Couleurs à Éviter</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Éviter les tons froids, glacés ou trop fades qui grisent le teint.</p>
+                <div class="swatches">
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: #ffffff; border:1px solid #ddd;"></div>
+                        <span class="swatch-name">Blanc Optique</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: #000000;"></div>
+                        <span class="swatch-name">Noir (Visage)</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: #E0F7FA;"></div>
+                        <span class="swatch-name">Pastel Glacé</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: #FF00FF;"></div>
+                        <span class="swatch-name">Néon / Fuchsia</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="swatch-circle" style="background: #D3D3D3;"></div>
+                        <span class="swatch-name">Gris Clair</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <h2>Mon Dressing</h2>
+    <div class="section-desc">Une sélection curatée de pièces texturées et intemporelles.</div>
+    <div id="wardrobe-container" class="wardrobe-grid"></div>
+
+    <h2>🏢 Office & Preppy</h2>
+    <div class="section-desc">Chic, structuré et crédible pour le travail.</div>
+    <div id="lookbook-work" class="lookbook-grid"></div>
+
+    <h2>🧶 Layering Masterclass</h2>
+    <div class="section-desc">L'art de superposer les mailles (Samuel, Ron) sur les cols travaillés.</div>
+    <div id="lookbook-layering" class="lookbook-grid"></div>
+
+    <h2>🍂 Weekend & Cozy</h2>
+    <div class="section-desc">Confort absolu, textures douces et chaleur automnale.</div>
+    <div id="lookbook-weekend" class="lookbook-grid"></div>
+
+    <h2>✨ Soirée & Hiver Chic</h2>
+    <div class="section-desc">Le grand froid abordé avec élégance.</div>
+    <div id="lookbook-evening" class="lookbook-grid"></div>
+
+</div>
+
+<script>
+    // --- DONNÉES (V16) ---
+    
+    const wardrobe = [
+        // --- MANTEAU & PULLS SAMUEL ---
+        { id: 'v_clyde', name: 'Manteau Clyde Chocolat', category: 'Veste', img: 'sézane_manteau_clyde_chocolat.avif', new: true },
+        { id: 'v_james', name: 'Manteau James Bordeaux', category: 'Veste', img: 'sézane_manteau_james-bordeaux-foncé - Copie.avif' },
+        { id: 'v_ander', name: 'Manteau Ander Cannelle', category: 'Veste', img: 'sézane_manteau_ander-cannelle - Copie.avif' },
+        
+        { id: 's_grenat', name: 'Samuel Grenat', category: 'Maille', img: 'sézane_pull_samuel_grenat.avif' },
+        { id: 's_vert', name: 'Samuel Vert Parfait', category: 'Maille', img: 'sézane_pull_samuel_vert-parfait-foncé.avif' },
+        { id: 's_taupe', name: 'Samuel Taupe', category: 'Maille', img: 'sézane_pull_samuel_taupe-foncé.avif' },
+        { id: 's_acajou', name: 'Samuel Acajou', category: 'Maille', img: 'sézane_pull_samuel_acajou.avif' },
+        { id: 's_vanille', name: 'Samuel Vanille', category: 'Maille', img: 'sézane_pull_samuel_vanille.avif' },
+        { id: 's_pistache', name: 'Samuel Vert Pistache', category: 'Maille', img: 'sézane_pull_samuel_vert-pistache.avif' },
+        
+        // --- AUTRES MAILLES ---
+        { id: 'h_ron', name: 'Top Ron Crochet', category: 'Haut', img: 'sézane_top_ron.avif' },
+        { id: 'm1', name: 'Gilet Betty Marine', category: 'Maille', img: 'sézane_gilet_betty_marine.avif' },
+        { id: 'm9', name: 'Gilet Betty Crochet', category: 'Maille', img: 'sézane_gilet_betty_crochet_marine.avif' },
+        { id: 'm2', name: 'Gilet Gaspard Camel', category: 'Maille', img: 'sézane_maille-gaspard-camel.avif' },
+        { id: 'm7', name: 'Veste Thaïs Vert Parfait', category: 'Maille', img: 'sézane_veste-thais-vert-parfait.avif' },
+        { id: 'm6', name: 'Pull Stacy Grenat', category: 'Maille', img: 'sézane_maille-stacy-grenat.avif' },
+        { id: 'm8', name: 'Gilet Long DPH Kaki', category: 'Maille', img: 'dph_gilet-denia-graine-kaki2.webp' },
+        { id: 'm4', name: 'Pull Louisa Beige', category: 'Maille', img: 'sézane_maille-louisa_beige_chiné.avif' },
+        { id: 'm5', name: 'Gilet Barry Blush', category: 'Maille', img: 'sézane_maille_barry_blush.webp' },
+        { id: 'm_maxime', name: 'Gilet Maxime Ocre', category: 'Maille', img: 'sézane_gilet_maxime-ocre.avif' },
+        { id: 'm_maxime_moka', name: 'Gilet Maxime Moka', category: 'Maille', img: 'sézane_gilet_maxime-moka.avif' },
+
+        // --- BAS ---
+        { id: 'b5', name: 'Jupe Plissée Camel', category: 'Bas', img: 'uniqlo_jupe-plissée-camel.jpg' },
+        { id: 'b4', name: 'Jupe Caroll Marine', category: 'Bas', img: 'caroll_jupe-plissée-marine.webp' },
+        { id: 'b1', name: 'Jupe Opaline Carreaux', category: 'Bas', img: 'sézane_jupe_opaline.avif' },
+        { id: 'b2', name: 'Jupe Peter Taupe', category: 'Bas', img: 'sézane_jupe_peter_taupe.png' },
+        { id: 'b3', name: 'Jupe Velours Bordeaux', category: 'Bas', img: 'nafnaf_jupe_bordeaux_velours_côtelé.png' },
+
+        // --- HAUTS ---
+        { id: 'h1', name: 'Chemise Honey Écru', category: 'Haut', img: 'sézane_chemise_honey_écru.avif' },
+        { id: 'h2', name: 'Chemise Guipure Ocre', category: 'Haut', img: 'sézane_chemise_guipure_contrastée_ocre.avif' },
+        { id: 'h3', name: 'Chemise Chlo Rayée', category: 'Haut', img: 'sézane_chemise_chlo_rayée_écru_bleu.avif' },
+        { id: 'h5', name: 'Chemise Rym Col Montant', category: 'Haut', img: 'sézane_chemise_rym_écru.avif' },
+        { id: 'h4', name: 'Blouse Bianca Dentelle', category: 'Haut', img: 'sézane_blouse_bianca.avif' },
+
+        // --- VESTE ---
+        { id: 'v1', name: 'Perfecto Zig Terracotta', category: 'Veste', img: 'sézane_perfecto_zig-terracotta.webp' },
+
+        // --- ROBES ---
+        { id: 'r1', name: 'Robe Evy Fleurs', category: 'Robe', img: 'sézane_robe_evy_fleurs_violet2.webp' },
+        { id: 'r2', name: 'Robe Fond Noir', category: 'Robe', img: 'sézane_robe_fleurie1.webp' },
+        { id: 'r3', name: 'Robe Naomi Fleurs', category: 'Robe', img: 'sézane_robe_naomi.webp' },
+        
+        // --- ACCESSOIRES ---
+        { id: 'a2', name: 'Écharpe Camel', category: 'Accessoire', img: 'sézane_écharpe_marianne_camel.avif' },
+        { id: 'a3', name: 'Écharpe Vert', category: 'Accessoire', img: 'sézane_écharpe_marianne_vert-parfait.avif' },
+        { id: 'a4', name: 'Écharpe Grenat', category: 'Accessoire', img: 'sézane_écharpe_marianne_grenat.avif' },
+        { id: 'a_marine', name: 'Écharpe Marine', category: 'Accessoire', img: 'sézane_écharpe_marianne_marine.avif' },
+        { id: 'a_moka', name: 'Écharpe Moka', category: 'Accessoire', img: 'sézane_écharpe_marianne_moka.avif' },
+        { id: 'a_blush', name: 'Écharpe Blush', category: 'Accessoire', img: 'sézane_écharpe_marianne_blush.avif' },
+        { id: 'a_ecru', name: 'Écharpe Ecru', category: 'Accessoire', img: 'sézane_écharpe_marianne_écru.avif' },
+        
+        { id: 'c1', name: 'Bottes Anna Field Daim', category: 'Chaussures', img: 'anna-field-bottes-marron.jpg' },
+        { id: 'c2', name: 'Low Bridget Chocolat', category: 'Chaussures', img: 'sézane_bottes_low-bridget-chocolat-glacé.avif' },
+        { id: 'c_theo', name: 'Bottes Théodora Chocolat', category: 'Chaussures', img: 'sézane_bottes_théodora-chocolat-glacé.avif' },
+        { id: 'c_theo_taupe', name: 'Bottes Théodora Taupe', category: 'Chaussures', img: 'sézane_bottes_théodora-taupe-clair.avif' },
+    ];
+
+    // --- LOOKBOOKS ---
+    const looksWork = [
+        {
+            title: "L'Officier Chic",
+            items: ['h1', 'm1', 'b4', 'c2'], 
+            comment: "Honey + Betty Marine + Jupe Caroll. Le col dentelle dépasse du gilet marine. Un classique structuré pour le bureau."
+        },
+        {
+            title: "British Twist",
+            items: ['h3', 'b1', 'm2', 'c1'], 
+            comment: "Chlo Rayée + Jupe Opaline + Gaspard Camel. Le mix rayures/carreaux fonctionne grâce aux tons doux. Très 'Sézane'."
+        },
+        {
+            title: "L'Élégance Taupe",
+            items: ['h5', 'b2', 'v_clyde', 'c2'], 
+            comment: "Rym + Jupe Peter + Manteau Chocolat. Le camaïeu Taupe/Chocolat est ultra-raffiné et allonge ta silhouette."
+        },
+        {
+            title: "Le Duo Complémentaire",
+            items: ['h4', 'm7', 'b2', 'c1'], 
+            comment: "Bianca + Veste Verte + Jupe Taupe. Le vert sapin de la veste donne du punch au neutre de la jupe."
+        },
+        {
+            title: "Preppy Moderne",
+            items: ['h5', 's_taupe', 'b4', 'c2'], 
+            comment: "Rym + Samuel Taupe + Jupe Caroll. Le pull sans manches Taupe adoucit le bleu marine de la jupe."
+        },
+        {
+            title: "Schoolgirl Ocre",
+            items: ['h3', 'm_maxime', 'b4', 'c1'], 
+            comment: "Chemise Bleu + Gilet Maxime Ocre + Jupe Marine. L'Ocre et le Marine sont des complémentaires parfaits."
+        }
+    ];
+
+    const looksLayering = [
+        {
+            title: "La Signature 'Ron'",
+            items: ['h1', 'h_ron', 'b4', 'v_clyde'], 
+            comment: "Honey + Ron + Jupe Marine + Clyde. Ton look signature, encadré par le manteau Chocolat pour l'hiver."
+        },
+        {
+            title: "Grenat & Dentelle",
+            items: ['h1', 's_grenat', 'b5', 'c1'], 
+            comment: "Honey + Samuel Grenat + Jupe Camel. L'association Grenat/Camel est luxueuse et chaude."
+        },
+        {
+            title: "Le Vert Profond",
+            items: ['h3', 's_vert', 'b5', 'a2'], 
+            comment: "Chlo + Samuel Vert + Jupe Camel. Le vert forêt sur le bleu clair de la chemise est superbe."
+        },
+        {
+            title: "Acajou Intense",
+            items: ['h4', 's_acajou', 'b2', 'v_clyde'], 
+            comment: "Bianca + Samuel Acajou + Jupe Peter. Un cœur de tenue chaud encadré par le manteau chocolat."
+        },
+        {
+            title: "Pistache Surprise",
+            items: ['h1', 's_pistache', 'b1', 'c1'], 
+            comment: "Honey + Samuel Pistache + Jupe Opaline. Une touche de fraîcheur verte qui éclaire le motif carreaux."
+        },
+        {
+            title: "Vanille Douceur",
+            items: ['h3', 's_vanille', 'b5', 'a2'], 
+            comment: "Chlo + Samuel Vanille + Jupe Camel. Une harmonie très claire et lumineuse pour les jours gris."
+        }
+    ];
+
+    const looksWeekend = [
+        {
+            title: "Velours & Grosse Maille",
+            items: ['m6', 'b3', 'a2', 'c1'], 
+            comment: "Pull Stacy Grenat + Jupe Bordeaux. Le camaïeu de rouges est ultra cosy. Echarpe camel pour la lumière."
+        },
+        {
+            title: "Bohème Chic",
+            items: ['h2', 'b5', 'm8', 'c1'], 
+            comment: "Ocre + Jupe Camel + Gilet Kaki. Trois couleurs de terre qui vibrent ensemble. Look 'Promenade' idéal."
+        },
+        {
+            title: "Rock Doux",
+            items: ['m4', 'b2', 'v1', 'a3'], 
+            comment: "Pull Louisa Beige + Jupe Taupe + Perfecto. Une base neutre réveillée par le cuir Terracotta."
+        },
+        {
+            title: "Confort Absolu",
+            items: ['r1', 'm2', 'c1', 'a2'], 
+            comment: "Robe Evy + Gaspard Camel + Bottes Daim. Le confort sans perdre le style."
+        },
+        {
+            title: "Moka & Ocre",
+            items: ['h2', 'm_maxime_moka', 'b1', 'c1'], 
+            comment: "Chemise Ocre + Gilet Moka + Jupe Opaline. Des tons chauds et gourmands, parfaits pour l'Automne Profond."
+        },
+        {
+            title: "Simple & Efficace",
+            items: ['m4', 'b1', 'v_clyde', 'a4'], 
+            comment: "Pull Beige + Jupe Opaline + Manteau. Simple, mais l'écharpe Grenat apporte le 'pop' de couleur."
+        }
+    ];
+
+    const looksEvening = [
+        {
+            title: "Allure Rétro",
+            items: ['r3', 'm9', 'c2', 'v_clyde'], 
+            comment: "Robe Naomi + Betty Crochet + Manteau. Le crochet donne un air années 70 très tendance à la robe."
+        },
+        {
+            title: "La Dame en Noir",
+            items: ['r2', 'm1', 'c2', 'a4'], 
+            comment: "Robe Fond Noir + Betty Marine. Le mélange Noir/Marine est le chic ultime. Touche grenat pour la passion."
+        },
+        {
+            title: "Gold & velvet",
+            items: ['h2', 'b3', 'v1', 'c_theo'], 
+            comment: "Chemise Ocre + Jupe Bordeaux + Bottes Chocolat. Ocre (Or) et Bordeaux (Rubis) : des couleurs bijoux."
+        },
+        {
+            title: "Romance Hivernale",
+            items: ['r1', 'v_clyde', 'a3', 'c2'], 
+            comment: "Robe Evy + Manteau Chocolat. L'écharpe Verte fait écho aux motifs de la robe. Très poétique."
+        },
+        {
+            title: "Le Chic Structuré",
+            items: ['h4', 'm7', 'b4', 'c2'], 
+            comment: "Bianca + Veste Verte + Jupe Caroll. La veste verte fermée sur la dentelle blanche fait très habillé."
+        },
+        {
+            title: "Grand Froid",
+            items: ['m6', 'b3', 'v_james', 'a_marine'], 
+            comment: "Pull Grenat + Jupe Bordeaux + Manteau James. Si tu as le manteau Bordeaux, c'est le total look monochrome !"
+        }
+    ];
+
+    // --- FONCTIONS D'AFFICHAGE ---
+    function renderWardrobe() {
+        const container = document.getElementById('wardrobe-container');
+        container.innerHTML = '';
+        wardrobe.forEach(item => {
+            const isNew = item.new ? '<span class="new-badge">❤️ NEW</span>' : '';
+            const imagePath = item.img.startsWith('http') ? item.img : 'images/' + item.img;
+            
+            const card = `
+                <div class="item-card">
+                    ${isNew}
+                    <div style="height: 180px; overflow: hidden; background: #fff;">
+                        <img src="${imagePath}" alt="${item.name}" class="item-img" style="width: 100%; height: 100%; object-fit: cover; object-position: top;" onerror="this.src='https://placehold.co/200x250/EEE/31343C?text=Image'">
+                    </div>
+                    <div class="item-info">
+                        <span class="item-tag">${item.category}</span>
+                        <div class="item-name">${item.name}</div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    function renderSection(looksData, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = ''; 
+        looksData.forEach(look => {
+            const lookItems = look.items.map(id => wardrobe.find(w => w.id === id)).filter(Boolean);
+            let imagesHtml = '';
+            lookItems.forEach(item => {
+                const imagePath = item.img.startsWith('http') ? item.img : 'images/' + item.img;
+                imagesHtml += `<img src="${imagePath}" class="mini-img" title="${item.name}" onerror="this.src='https://placehold.co/100x120/EEE/31343C?text=...'">`;
+            });
+
+            const card = `
+                <div class="look-card">
+                    <div class="look-header">
+                        <h3 class="look-title">${look.title}</h3>
+                    </div>
+                    <div class="look-items">
+                        ${imagesHtml}
+                    </div>
+                    <div class="look-comment">
+                        ${look.comment}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    // Lancement
+    renderWardrobe();
+    renderSection(looksWork, 'lookbook-work');
+    renderSection(looksLayering, 'lookbook-layering');
+    renderSection(looksWeekend, 'lookbook-weekend');
+    renderSection(looksEvening, 'lookbook-evening');
+
+</script>
+</body>
+</html>

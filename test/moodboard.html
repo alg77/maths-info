@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Générateur de Moodboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f2eb;
+      color: #2f241a;
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fffaf3;
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #f0e0c3;
+    }
+
+    .palette-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .palette-inputs label {
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .palette-inputs input[type="color"] {
+      width: 3rem;
+      height: 2rem;
+      border: none;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .palette-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .swatch {
+      height: 45px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.7rem;
+      color: #2f241a;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 0.75rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      background: #c97a57;
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: transform 0.05s ease, box-shadow 0.05s ease, background 0.15s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+      background: #b46745;
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    input[type="number"] {
+      width: 4rem;
+      padding: 0.25rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    input[type="file"] {
+      font-size: 0.85rem;
+    }
+
+    .thumbnails {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      flex-shrink: 0;
+      background: #eee;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #moodboards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .moodboard {
+      background: #f0e5d5;
+      border-radius: 18px;
+      padding: 0.6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 0.4rem;
+      min-height: 120px;
+    }
+
+    .mood-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .moodboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .empty-state {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-top: 0.3rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0.8rem;
+      }
+
+      .card {
+        padding: 0.9rem 1rem;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="card">
+      <h1>Moodboard garde-robe & colorimétrie</h1>
+      <p>
+        1) Choisis ta palette de couleurs.  
+        2) Ajoute des photos de vêtements / inspirations.  
+        3) Génère un ou plusieurs moodboards automatiquement.
+      </p>
+    </header>
+
+    <!-- PALETTE -->
+    <section class="card">
+      <div class="card-header">
+        <h2>1. Palette de couleurs</h2>
+        <span class="badge">Automne doux / warm & soft</span>
+      </div>
+
+      <p>Tu peux modifier les couleurs ci-dessous ou garder cette base.</p>
+
+      <div class="palette-inputs">
+        <label>
+          Vert sauge
+          <input type="color" value="#C4C9A6" class="color-input">
+        </label>
+        <label>
+          Olive doux
+          <input type="color" value="#8A8F4A" class="color-input">
+        </label>
+        <label>
+          Terracotta
+          <input type="color" value="#C97A57" class="color-input">
+        </label>
+        <label>
+          Camel
+          <input type="color" value="#C8A878" class="color-input">
+        </label>
+        <label>
+          Bleu pétrole
+          <input type="color" value="#3A5F63" class="color-input">
+        </label>
+        <label>
+          Ivoire
+          <input type="color" value="#F4EAD3" class="color-input">
+        </label>
+      </div>
+
+      <button id="updatePalette">Mettre à jour la palette</button>
+
+      <div id="paletteDisplay" class="palette-display"></div>
+    </section>
+
+    <!-- IMAGES -->
+    <section class="card">
+      <div class="card-header">
+        <h2>2. Tes images (vêtements, inspis…)</h2>
+        <span class="badge">Upload local, rien n’est envoyé</span>
+      </div>
+
+      <p>Ajoute ici des photos de tes vêtements ou captures d’inspiration.</p>
+
+      <input type="file" id="imageInput" accept="image/*" multiple />
+      <div class="empty-state">Sélectionne des fichiers pour voir les miniatures.</div>
+      <div id="thumbnails" class="thumbnails"></div>
+    </section>
+
+    <!-- MOODBOARDS -->
+    <section class="card">
+      <div class="card-header">
+        <h2>3. Générer un moodboard</h2>
+        <span class="badge">Expérimentation & combinaisons</span>
+      </div>
+
+      <p>Choisis combien d’images tu veux par moodboard et génère-en un ou plusieurs.</p>
+
+      <div class="controls-row">
+        <label for="nbImages">
+          Nb d’images :
+          <input type="number" id="nbImages" min="3" max="15" value="7" />
+        </label>
+
+        <button id="generateOne">Générer un moodboard</button>
+        <button id="generateThree">En générer 3 différents</button>
+        <button id="clearMoodboards" style="background:#8b6b4b;">Tout effacer</button>
+      </div>
+
+      <div id="moodboards">
+        <p class="empty-state">
+          Pour commencer, ajoute des images puis clique sur “Générer un moodboard”.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const paletteInputs = document.querySelectorAll(".color-input");
+    const paletteDisplay = document.getElementById("paletteDisplay");
+    const updatePaletteBtn = document.getElementById("updatePalette");
+
+    const imageInput = document.getElementById("imageInput");
+    const thumbnails = document.getElementById("thumbnails");
+    const moodboardsContainer = document.getElementById("moodboards");
+    const nbImagesInput = document.getElementById("nbImages");
+    const generateOneBtn = document.getElementById("generateOne");
+    const generateThreeBtn = document.getElementById("generateThree");
+    const clearMoodboardsBtn = document.getElementById("clearMoodboards");
+
+    let imageSources = [];
+
+    function renderPalette() {
+      paletteDisplay.innerHTML = "";
+      paletteInputs.forEach((input) => {
+        const color = input.value;
+        const swatch = document.createElement("div");
+        swatch.className = "swatch";
+        swatch.style.background = color;
+        swatch.textContent = color.toUpperCase();
+        paletteDisplay.appendChild(swatch);
+      });
+    }
+
+    updatePaletteBtn.addEventListener("click", renderPalette);
+    renderPalette(); // initial
+
+    imageInput.addEventListener("change", (event) => {
+      const files = Array.from(event.target.files || []);
+      imageSources = [];
+      thumbnails.innerHTML = "";
+
+      if (!files.length) return;
+
+      files.forEach((file) => {
+        if (!file.type.startsWith("image/")) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const src = e.target.result;
+          imageSources.push(src);
+
+          const thumb = document.createElement("div");
+          thumb.className = "thumb";
+          const img = document.createElement("img");
+          img.src = src;
+          thumb.appendChild(img);
+          thumbnails.appendChild(thumb);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    function shuffleArray(array) {
+      const arr = array.slice();
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function createMoodboard(indexLabel = null) {
+      if (imageSources.length === 0) {
+        alert("Ajoute d’abord des images 😊");
+        return;
+      }
+
+      const n = Math.max(
+        3,
+        Math.min(parseInt(nbImagesInput.value || "0", 10), 15)
+      );
+
+      const shuffled = shuffleArray(imageSources);
+      const selection = shuffled.slice(0, Math.min(n, shuffled.length));
+
+      // on supprime l’état vide
+      const empty = moodboardsContainer.querySelector(".empty-state");
+      if (empty) empty.remove();
+
+      const wrapper = document.createElement("div");
+
+      if (indexLabel !== null) {
+        const header = document.createElement("div");
+        header.className = "moodboard-header";
+        header.innerHTML = `<span>Moodboard ${indexLabel}</span><span>${selection.length} images</span>`;
+        wrapper.appendChild(header);
+      }
+
+      const board = document.createElement("div");
+      board.className = "moodboard";
+
+      selection.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.className = "mood-img";
+        board.appendChild(img);
+      });
+
+      wrapper.appendChild(board);
+      moodboardsContainer.appendChild(wrapper);
+    }
+
+    generateOneBtn.addEventListener("click", () => {
+      createMoodboard(moodboardsContainer.children.length + 1);
+    });
+
+    generateThreeBtn.addEventListener("click", () => {
+      createMoodboard(moodboardsContainer.children.length + 1);
+      createMoodboard(moodboardsContainer.children.length + 1);
+      createMoodboard(moodboardsContainer.children.length + 1);
+    });
+
+    clearMoodboardsBtn.addEventListener("click", () => {
+      moodboardsContainer.innerHTML = `
+        <p class="empty-state">
+          Pour commencer, ajoute des images puis clique sur “Générer un moodboard”.
+        </p>
+      `;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Moodboard garde-robe & colorimétrie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f2eb;
+      color: #2f241a;
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fffaf3;
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #f0e0c3;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .palette-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .palette-inputs label {
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .palette-inputs input[type="color"] {
+      width: 3rem;
+      height: 2rem;
+      border: none;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .palette-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .swatch {
+      height: 45px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.7rem;
+      color: #2f241a;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 0.75rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      background: #c97a57;
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: transform 0.05s ease, box-shadow 0.05s ease, background 0.15s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+      background: #b46745;
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    input[type="number"],
+    input[type="text"],
+    select {
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.15);
+      padding: 0.25rem 0.6rem;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    input[type="file"] {
+      font-size: 0.85rem;
+    }
+
+    .thumbnails {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      flex-shrink: 0;
+      background: #eee;
+      position: relative; /* AJOUT IMPORTANT */
+    }
+
+    .thumb-info {
+      position: absolute;
+      left: 4px;
+      bottom: 4px;
+      padding: 0.1rem 0.35rem;
+      border-radius: 999px;
+      background: rgba(255, 250, 243, 0.9);
+      font-size: 0.6rem;
+      line-height: 1;
+      max-width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #moodboards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .moodboard {
+      background: #f0e5d5;
+      border-radius: 18px;
+      padding: 0.6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 0.4rem;
+      min-height: 120px;
+    }
+
+    .mood-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .moodboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .empty-state {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-top: 0.3rem;
+    }
+
+    .db-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .db-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      .grid-two {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0.8rem;
+      }
+
+      .card {
+        padding: 0.9rem 1rem;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="card">
+      <h1>Moodboard garde-robe & colorimétrie</h1>
+      <p>
+        1) Palette automne doux • 2) Garde-robe (BDD) • 3) Moodboards à partir de tes images (Sézane, photos persos, etc.).
+      </p>
+    </header>
+
+    <section class="grid-two">
+      <!-- PALETTE -->
+      <section class="card">
+        <div class="card-header">
+          <h2>1. Palette de couleurs</h2>
+          <span class="badge">Automne doux / warm & soft</span>
+        </div>
+
+        <p>Tu peux modifier les couleurs ci-dessous ou garder cette base.</p>
+
+        <div class="palette-inputs">
+          <label>
+            Vert sauge
+            <input type="color" value="#C4C9A6" class="color-input">
+          </label>
+          <label>
+            Olive doux
+            <input type="color" value="#8A8F4A" class="color-input">
+          </label>
+          <label>
+            Terracotta
+            <input type="color" value="#C97A57" class="color-input">
+          </label>
+          <label>
+            Camel
+            <input type="color" value="#C8A878" class="color-input">
+          </label>
+          <label>
+            Bleu pétrole
+            <input type="color" value="#3A5F63" class="color-input">
+          </label>
+          <label>
+            Ivoire
+            <input type="color" value="#F4EAD3" class="color-input">
+          </label>
+        </div>
+
+        <button id="updatePalette">Mettre à jour la palette</button>
+
+        <div id="paletteDisplay" class="palette-display"></div>
+      </section>
+
+      <!-- BDD GARDE-ROBE -->
+      <section class="card">
+        <div class="card-header">
+          <h2>2. Ma garde-robe (BDD)</h2>
+          <span class="badge">Pièces Sézane & co</span>
+        </div>
+
+        <p>
+          Choisis une pièce de ta BDD, colle l’URL de l’image (Sézane, Pinterest, photo perso en ligne) et ajoute-la au moodboard.
+        </p>
+
+        <div class="db-controls">
+          <div class="db-row">
+            <label for="dbSelect">Pièce :</label>
+            <select id="dbSelect"></select>
+          </div>
+          <div class="db-row">
+            <label for="dbImageUrl">URL de l’image :</label>
+            <input type="text" id="dbImageUrl" placeholder="https://...jpg" style="min-width: 220px;" />
+          </div>
+          <div class="db-row">
+            <button id="addFromDb">Ajouter au moodboard</button>
+            <span class="tagline">Astuce : sur Sézane → clic droit sur la photo &ldquo;Copier l’adresse de l’image&rdquo;.</span>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- IMAGES UPLOAD -->
+    <section class="card">
+      <div class="card-header">
+        <h2>3. Tes images (upload)</h2>
+        <span class="badge">Local uniquement</span>
+      </div>
+
+      <p>Tu peux aussi ajouter des photos de tes vêtements depuis ton ordinateur.</p>
+
+      <input type="file" id="imageInput" accept="image/*" multiple />
+      <div class="empty-state">Sélectionne des fichiers pour voir les miniatures.</div>
+      <div id="thumbnails" class="thumbnails"></div>
+    </section>
+
+    <!-- MOODBOARDS -->
+    <section class="card">
+      <div class="card-header">
+        <h2>4. Générer un moodboard</h2>
+        <span class="badge">Expérimenter les combinaisons</span>
+      </div>
+
+      <p>Choisis combien d’images tu veux par moodboard et génère-en un ou plusieurs.</p>
+
+      <div class="controls-row">
+        <label for="nbImages">
+          Nb d’images :
+          <input type="number" id="nbImages" min="3" max="15" value="7" />
+        </label>
+
+        <button id="generateOne">Générer un moodboard</button>
+        <button id="generateThree">En générer 3 différents</button>
+        <button id="clearMoodboards" style="background:#8b6b4b;">Tout effacer</button>
+      </div>
+
+      <div id="moodboards">
+        <p class="empty-state">
+          Ajoute des images (BDD ou upload) puis clique sur “Générer un moodboard”.
+        </p>
+      </div>
+    </section>
+  </div>
+
+<script>
+  // ========= 1. BDD GARDE-ROBE =========
+  // verdict : "excellent", "bon", "bien_avec_contraste_chaud", "mitige", "eviter"
+  // temperature : "warm", "cool", "neutral"
+  const wardrobeDB = [
+    // HAUTS
+    { id: "othello_bois_de_rose", label: "Gilet Othello - Bois de rose (gilet)", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "louisa_beige", label: "Pull Louisa - Beige chiné clair (pull)", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "betty_marine", label: "Gilet Betty - Crochet marine", category: "haut", verdict: "bien_avec_contraste_chaud", score: 3, temperature: "neutral" },
+    { id: "gaspard_rouge", label: "Gilet Gaspard - Rouge", category: "haut", verdict: "eviter", score: 1, temperature: "cool" },
+    { id: "gaspard_camel", label: "Gilet Gaspard - Camel", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "barry_ecru", label: "Gilet Barry - Écru", category: "haut", verdict: "bon", score: 4, temperature: "warm" },
+    { id: "etienne_raisin", label: "Pull Étienne - Raisin/Rose", category: "haut", verdict: "mitige", score: 2, temperature: "cool" },
+    { id: "stacy_grenat", label: "Pull Stacy - Grenat", category: "haut", verdict: "eviter", score: 1, temperature: "cool" },
+    { id: "top_ron", label: "Top Ron - Écru/Noir", category: "haut", verdict: "eviter", score: 1, temperature: "cool" },
+    { id: "pull_peche_pinterest", label: "Pull pêche doux (Pinterest)", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "pull_rose_poudre", label: "Pull rose poudré torsadé", category: "haut", verdict: "bon", score: 4, temperature: "warm" },
+    { id: "col_roule_rose", label: "Pull col roulé rose chaud", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+
+    // CHEMISES / BLOUSES
+    { id: "chloe_rayee", label: "Chemise Chloé - Rayures écru/bleu", category: "chemise", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "chloe_ocre", label: "Chemise Chloé - Guipure écru/ocre", category: "chemise", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "honey_ecru", label: "Chemise Honey - Écru", category: "chemise", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "blouse_bianca_like", label: "Blouse écrue style Bianca (Mango)", category: "chemise", verdict: "excellent", score: 5, temperature: "warm" },
+
+    // ROBES
+    { id: "abigail_ecru", label: "Robe Abigail - Écru", category: "robe", verdict: "bon", score: 4, temperature: "warm" },
+    { id: "robe_ecru_fleurs", label: "Robe écru imprimée fleurs", category: "robe", verdict: "mitige", score: 3, temperature: "warm" },
+    { id: "robe_fleurie_1robe1soir", label: "Robe fleurie ample automnale", category: "robe", verdict: "mitige", score: 3, temperature: "warm" },
+
+    // JUPES
+    { id: "malia_rouge", label: "Jupe Malia - Pied-de-poule rouge", category: "jupe", verdict: "eviter", score: 1, temperature: "cool" },
+    { id: "peter_taupe", label: "Jupe Peter - Taupe", category: "jupe", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "jupe_tweed_camel", label: "Jupe tweed beige/camel", category: "jupe", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "jupe_camel_boutons", label: "Jupe camel boutonnée", category: "jupe", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "jupe_midi_fleurs", label: "Jupe midi fleurie beige", category: "jupe", verdict: "excellent", score: 5, temperature: "warm" },
+
+    // ÉCHARPES
+    { id: "echarpe_blush", label: "Écharpe Marianne - Blush", category: "echarpe", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "echarpe_vert_parfait", label: "Écharpe Marianne - Vert parfait", category: "echarpe", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "echarpe_camel", label: "Écharpe Marianne - Camel", category: "echarpe", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "echarpe_beige_chine", label: "Écharpe Marianne - Beige chiné clair", category: "echarpe", verdict: "bon", score: 4, temperature: "warm" },
+
+    // Wishlist gilets
+    { id: "gaspard_sauge", label: "Gilet Gaspard - Sauge (wishlist)", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "othello_vert_olive", label: "Gilet Othello - Vert olive (wishlist)", category: "haut", verdict: "excellent", score: 5, temperature: "warm" },
+    { id: "betty_tomette", label: "Gilet Betty - Crochet tomette (wishlist)", category: "haut", verdict: "bon", score: 4, temperature: "warm" },
+    { id: "betty_marine_ecru", label: "Gilet Betty - Marine détails écru (wishlist)", category: "haut", verdict: "bon", score: 4, temperature: "neutral" },
+    { id: "angie_ecru", label: "Gilet Angie - Écru (wishlist)", category: "haut", verdict: "bon", score: 4, temperature: "warm" },
+    { id: "carlota_figue", label: "Pull Carlota - Figue (wishlist)", category: "haut", verdict: "eviter", score: 1, temperature: "cool" }
+  ];
+
+  const verdictMessages = {
+    excellent: "✔ Couleur parfaite pour ton Automne Doux : chaleureuse, douce et très harmonieuse.",
+    bon: "✔ Bonne couleur, harmonieuse et facile à porter.",
+    bien_avec_contraste_chaud: "✔ OK si tu ajoutes une couleur chaude près du visage (camel, pêche, terracotta).",
+    mitige: "⚠️ Peut fonctionner, mais à réchauffer avec camel ou pêche.",
+    eviter: "❌ Pas idéal pour ton Automne Doux : trop froid ou trop contrasté."
+  };
+
+  const temperatureLabels = {
+    warm: "chaud",
+    cool: "froid",
+    neutral: "neutre"
+  };
+
+  // ========= 2. PALETTE =========
+  const paletteInputs = document.querySelectorAll(".color-input");
+  const paletteDisplay = document.getElementById("paletteDisplay");
+  const updatePaletteBtn = document.getElementById("updatePalette");
+
+  function renderPalette() {
+    paletteDisplay.innerHTML = "";
+    paletteInputs.forEach((input) => {
+      const color = input.value;
+      const swatch = document.createElement("div");
+      swatch.className = "swatch";
+      swatch.style.background = color;
+      swatch.textContent = color.toUpperCase();
+      paletteDisplay.appendChild(swatch);
+    });
+  }
+
+  updatePaletteBtn.addEventListener("click", renderPalette);
+  renderPalette();
+
+  // ========= 3. GESTION IMAGES =========
+  const imageInput = document.getElementById("imageInput");
+  const thumbnails = document.getElementById("thumbnails");
+  const moodboardsContainer = document.getElementById("moodboards");
+  const nbImagesInput = document.getElementById("nbImages");
+  const generateOneBtn = document.getElementById("generateOne");
+  const generateThreeBtn = document.getElementById("generateThree");
+  const clearMoodboardsBtn = document.getElementById("clearMoodboards");
+
+  const dbSelect = document.getElementById("dbSelect");
+  const dbImageUrl = document.getElementById("dbImageUrl");
+  const addFromDbBtn = document.getElementById("addFromDb");
+
+  // imageSources contient maintenant des objets
+  // { src, label, verdict, score, temperature, from }
+  let imageSources = [];
+
+  // Remplir la liste déroulante BDD
+  function populateDbSelect() {
+    dbSelect.innerHTML = "";
+    wardrobeDB.forEach(item => {
+      const opt = document.createElement("option");
+      opt.value = item.id;
+      opt.textContent = item.label + ` – score ${item.score}/5`;
+      dbSelect.appendChild(opt);
+    });
+  }
+  populateDbSelect();
+
+  // Crée une vignette avec bulle d'info
+  function createThumbnail(entry) {
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+
+    const img = document.createElement("img");
+    img.src = entry.src;
+    thumb.appendChild(img);
+
+    const info = document.createElement("div");
+    info.className = "thumb-info";
+
+    if (entry.verdict) {
+      const temp = temperatureLabels[entry.temperature] || "";
+      const stars = "★".repeat(entry.score) + "☆".repeat(5 - entry.score);
+      info.textContent = `${stars} ${temp}`;
+    } else {
+      info.textContent = "image perso";
+    }
+
+    thumb.appendChild(info);
+    thumbnails.appendChild(thumb);
+  }
+
+  // Ajout depuis BDD (URL d'image)
+  addFromDbBtn.addEventListener("click", () => {
+    const url = dbImageUrl.value.trim();
+    if (!url) {
+      alert("Colle d’abord l’URL de l’image 😉");
+      return;
+    }
+
+    const selectedId = dbSelect.value;
+    const item = wardrobeDB.find(i => i.id === selectedId);
+
+    const entry = {
+      src: url,
+      label: item ? item.label : "Image BDD",
+      verdict: item ? item.verdict : null,
+      score: item ? item.score : null,
+      temperature: item ? item.temperature : null,
+      from: "bdd"
+    };
+
+    imageSources.push(entry);
+    createThumbnail(entry);
+    dbImageUrl.value = "";
+
+    if (item && item.verdict) {
+      const msg = verdictMessages[item.verdict] || "";
+      const tempLabel = temperatureLabels[item.temperature] || "";
+      const scoreTxt = item.score != null ? `Score colorimétrie : ${item.score}/5 (${tempLabel}).` : "";
+      alert(`${item.label}\n\n${msg}\n${scoreTxt}`);
+    }
+
+    updateMoodboardSummary();
+  });
+
+  // Upload local
+  imageInput.addEventListener("change", (event) => {
+    const files = Array.from(event.target.files || []);
+    thumbnails.innerHTML = "";
+    imageSources = [];
+
+    if (!files.length) return;
+
+    files.forEach((file) => {
+      if (!file.type.startsWith("image/")) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const src = e.target.result;
+        const entry = {
+          src,
+          label: "Image locale",
+          verdict: null,
+          score: null,
+          temperature: null,
+          from: "upload"
+        };
+        imageSources.push(entry);
+        createThumbnail(entry);
+        updateMoodboardSummary();
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  // ========= 4. MOODBOARDS =========
+  function shuffleArray(array) {
+    const arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function createMoodboard(indexLabel = null) {
+    if (imageSources.length === 0) {
+      alert("Ajoute d’abord des images (BDD ou upload) 😊");
+      return;
+    }
+
+    const n = Math.max(
+      3,
+      Math.min(parseInt(nbImagesInput.value || "0", 10), 15)
+    );
+
+    const shuffled = shuffleArray(imageSources);
+    const selection = shuffled.slice(0, Math.min(n, shuffled.length));
+
+    const empty = moodboardsContainer.querySelector(".empty-state");
+    if (empty) empty.remove();
+
+    const wrapper = document.createElement("div");
+
+    if (indexLabel !== null) {
+      const header = document.createElement("div");
+      header.className = "moodboard-header";
+      header.innerHTML = `<span>Moodboard ${indexLabel}</span><span>${selection.length} images</span>`;
+      wrapper.appendChild(header);
+    }
+
+    const board = document.createElement("div");
+    board.className = "moodboard";
+
+    selection.forEach((entry) => {
+      const img = document.createElement("img");
+      img.src = entry.src;
+      img.className = "mood-img";
+      img.title = entry.label || "";
+      board.appendChild(img);
+    });
+
+    wrapper.appendChild(board);
+    moodboardsContainer.appendChild(wrapper);
+  }
+
+  generateOneBtn.addEventListener("click", () => {
+    createMoodboard(moodboardsContainer.children.length + 1);
+  });
+
+  generateThreeBtn.addEventListener("click", () => {
+    createMoodboard(moodboardsContainer.children.length + 1);
+    createMoodboard(moodboardsContainer.children.length + 1);
+    createMoodboard(moodboardsContainer.children.length + 1);
+  });
+
+  clearMoodboardsBtn.addEventListener("click", () => {
+    moodboardsContainer.innerHTML = `
+      <p class="empty-state">
+        Ajoute des images (BDD ou upload) puis clique sur “Générer un moodboard”.
+      </p>
+    `;
+  });
+
+  // ========= 5. Résumé global moodboard =========
+  function updateMoodboardSummary() {
+    let warm = 0, cool = 0, neutral = 0, scored = 0, sumScore = 0;
+
+    imageSources.forEach(e => {
+      if (e.score != null) {
+        scored++;
+        sumScore += e.score;
+      }
+      if (e.temperature === "warm") warm++;
+      else if (e.temperature === "cool") cool++;
+      else if (e.temperature === "neutral") neutral++;
+    });
+
+    let summary = document.getElementById("moodSummary");
+    if (!summary) {
+      summary = document.createElement("p");
+      summary.id = "moodSummary";
+      summary.className = "empty-state";
+      moodboardsContainer.parentElement.appendChild(summary);
+    }
+
+    if (!imageSources.length) {
+      summary.textContent = "";
+      return;
+    }
+
+    const avg = scored ? (sumScore / scored).toFixed(1) : "-";
+    summary.textContent =
+      `Images BDD : ${scored} • Chaudes : ${warm} • Froides : ${cool} • Neutres : ${neutral} • Score moyen colorimétrie : ${avg}/5.`;
+  }
+</script>
+</body>
+</html>

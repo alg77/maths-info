@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Capsule wardrobe – Automne doux</title>
+<style>
+    body { font-family: Arial, sans-serif; background:#faf8f3; margin:0; padding:20px; }
+    h2 { margin-top:40px; color:#4a3b2f; }
+    .thumb { width:110px; height:130px; border-radius:8px; overflow:hidden; margin:6px; position:relative; display:inline-block; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.1); cursor:pointer; }
+    .thumb img { width:100%; height:100%; object-fit:cover; }
+    .tooltip { 
+        display:none; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
+        background:rgba(0,0,0,0.8); color:#fff; padding:6px 10px; border-radius:6px; 
+        font-size:12px; width:140px; text-align:center; z-index:99;
+    }
+    .thumb:hover .tooltip { display:block; }
+
+    .look-card { background:#fff; padding:15px; border-radius:12px; 
+        box-shadow:0 2px 6px rgba(0,0,0,0.1); margin:10px 0; }
+    .look-images img { width:130px; height:160px; object-fit:cover; border-radius:8px; margin-right:8px; }
+</style>
+</head>
+
+<body>
+
+<h1>Capsule wardrobe – Automne doux 🍂</h1>
+
+
+<!-- ========================================= -->
+<!-- 1. PALETTE                               -->
+<!-- ========================================= -->
+<h2>1. Palette de couleurs</h2>
+<div id="palette"></div>
+
+
+<!-- ========================================= -->
+<!-- 2. BDD + GALERIE                          -->
+<!-- ========================================= -->
+<h2>2. Mes images (BDD + Upload)</h2>
+<input type="file" id="fileInput" multiple />
+<div id="gallery"></div>
+
+
+<!-- ========================================= -->
+<!-- 3. LOOKS PAR PIÈCE                         -->
+<!-- ========================================= -->
+<h2>3. Looks proposés pour : <span id="currentPieceName">---</span></h2>
+<select id="pieceSelector"></select>
+<div id="looksContainer"></div>
+
+
+<script>
+// ----------------------------------------------------
+//  PALETTE AUTOMNE DOUX
+// ----------------------------------------------------
+const palette = [
+  "#C4C9A6","#8A8F4A","#C97A57","#C8A878","#3A5F63","#F4EAD3"
+];
+
+document.getElementById("palette").innerHTML =
+  palette.map(c=>`<span style="display:inline-block;width:40px;height:40px;background:${c};border-radius:6px;margin:4px;"></span>`).join("");
+
+
+
+// ----------------------------------------------------
+//  BDD VÊTEMENTS
+// ----------------------------------------------------
+const wardrobeDB = [
+  // ========== JUPES ==========
+  {
+    id:"peter_taupe",
+    label:"Jupe Peter - Taupe",
+    category:"jupe",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_jupe_peter_taupe.png"
+  },
+  {
+    id:"jupe_opaline",
+    label:"Jupe Opaline - Taupe",
+    category:"jupe",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_jupe_opaline.avif"
+  },
+  {
+    id:"jupe_velours_bordeaux",
+    label:"Jupe velours bordeaux (Naf Naf)",
+    category:"jupe",
+    verdict:"mitige",
+    score:3,
+    temperature:"warm",
+    imageFile:"images/nafnaf_jupe_bordeaux_velours_côtelé.png"
+  },
+
+  // ========== HAUTS ==========
+  {
+    id:"othello_bois_de_rose",
+    label:"Gilet Othello - Bois de rose",
+    category:"haut",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_maille-othello-bois-de-rose-foncé.avif"
+  },
+  {
+    id:"betty_marine",
+    label:"Gilet Betty - Crochet marine",
+    category:"haut",
+    verdict:"mitige",
+    score:3,
+    temperature:"neutral",
+    imageFile:"images/sézane_gilet_betty_crochet_marine.avif"
+  },
+
+  // ========== CHEMISES ==========
+  {
+    id:"bianca_like",
+    label:"Blouse style Bianca (Mango)",
+    category:"chemise",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_blouse_bianca.avif"
+  },
+  {
+    id:"chloe_raye",
+    label:"Chemise Chloé rayée écru/bleu",
+    category:"chemise",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_chemise_chlo_rayée_écru_bleu.avif"
+  },
+  {
+    id:"chloe_ocre",
+    label:"Chemise Chloé guipure écru/ocre",
+    category:"chemise",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_chemise_guipure_contrastée_ocre.avif"
+  },
+  {
+    id:"honey_ecru",
+    label:"Chemise Honey écru",
+    category:"chemise",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_chemise_honey_écru.avif"
+  },
+  {
+    id:"rym_ecru",
+    label:"Chemise Rym écru",
+    category:"chemise",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_chemise_rym_écru.avif"
+  },
+
+  // ========== ÉCHARPES ==========
+  {
+    id:"echarpe_blush",
+    label:"Écharpe Marianne - Blush",
+    category:"ech",
+    verdict:"excellent",
+    score:5,
+    temperature:"warm",
+    imageFile:"images/sézane_écharpe_marianne_blush.avif"
+  }
+];
+
+const verdictMessages = {
+  excellent : "Automne doux : couleur chaude et harmonieuse",
+  mitige    : "Peut fonctionner si réchauffé",
+  froid     : "Couleur froide : moins harmonieuse"
+};
+
+
+// ----------------------------------------------------
+//  GÉNÉRATION MINIATURES
+// ----------------------------------------------------
+const gallery = document.getElementById("gallery");
+const imageSources = [];
+
+
+function createThumbnail(entry){
+    const div = document.createElement("div");
+    div.className = "thumb";
+
+    div.innerHTML = `
+      <img src="${entry.src}">
+      <div class="tooltip">${entry.comment || ""}</div>
+    `;
+    gallery.appendChild(div);
+}
+
+function initLocalImages(){
+  wardrobeDB.forEach(item=>{
+    let entry = {
+      src:item.imageFile,
+      label:item.label,
+      verdict:item.verdict,
+      score:item.score,
+      comment: verdictMessages[item.verdict] || ""
+    };
+    imageSources.push(entry);
+    createThumbnail(entry);
+  });
+}
+initLocalImages();
+
+
+// ----------------------------------------------------
+//  LOOKS PAR PIÈCE
+// ----------------------------------------------------
+const pieceSelector = document.getElementById("pieceSelector");
+const looksContainer = document.getElementById("looksContainer");
+
+wardrobeDB.forEach(p=>{
+  let opt=document.createElement("option");
+  opt.value=p.id;
+  opt.textContent=p.label;
+  pieceSelector.appendChild(opt);
+});
+
+pieceSelector.addEventListener("change",()=>{
+  showLooks(pieceSelector.value);
+});
+
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+
+function showLooks(pieceId){
+  const item = wardrobeDB.find(x => x.id === pieceId);
+  const nameSpan = document.getElementById("currentPieceName");
+  nameSpan.textContent = item ? item.label : "---";
+
+  looksContainer.innerHTML = "";
+
+  if (!item) return;
+
+  const looks = [];
+  const NB_LOOKS = 5;
+
+  if (item.category === "jupe") {
+    // ⚠ jupe = on propose seulement : chemise/blouse + maille
+    const chemises = wardrobeDB.filter(x => x.category === "chemise" && x.score >= 4 && x.imageFile);
+    const mailles  = wardrobeDB.filter(x => x.category === "haut"    && x.score >= 4 && x.imageFile);
+
+    if (!chemises.length || !mailles.length) {
+      looksContainer.textContent = "Pas encore assez de chemises/mailles pour proposer des looks.";
+      return;
+    }
+
+    for (let i = 0; i < NB_LOOKS; i++) {
+      const c = pickRandom(chemises);
+      const m = pickRandom(mailles);
+      looks.push({
+        pieces: [item, c, m],
+        desc: `Jupe + chemise/blouse + maille : ${c.label} + ${m.label}`
+      });
+    }
+  }
+  else if (item.category === "haut") {
+    // ⚠ maille = on propose : chemise/blouse + jupe/bas
+    const chemises = wardrobeDB.filter(x => x.category === "chemise" && x.score >= 4 && x.imageFile);
+    const jupes    = wardrobeDB.filter(x => x.category === "jupe"    && x.score >= 4 && x.imageFile);
+
+    if (!chemises.length || !jupes.length) {
+      looksContainer.textContent = "Pas encore assez de chemises/jupes pour proposer des looks.";
+      return;
+    }
+
+    for (let i = 0; i < NB_LOOKS; i++) {
+      const c = pickRandom(chemises);
+      const j = pickRandom(jupes);
+      looks.push({
+        pieces: [item, c, j],
+        desc: `Maille + chemise/blouse + jupe : ${c.label} + ${j.label}`
+      });
+    }
+  }
+  else {
+    // Cas générique (si un jour tu sélectionnes une écharpe, etc.)
+    const compatibles = wardrobeDB.filter(x => x.id !== item.id && x.score >= 4 && x.imageFile);
+    if (!compatibles.length) {
+      looksContainer.textContent = "Pas assez de pièces compatibles pour générer des looks.";
+      return;
+    }
+    for (let i = 0; i < NB_LOOKS; i++) {
+      const sample = [item, ...compatibles.sort(() => Math.random() - 0.5).slice(0, 2)];
+      looks.push({
+        pieces: sample,
+        desc: sample.slice(1).map(p => p.label).join(" + ")
+      });
+    }
+  }
+
+  // Rendu des looks
+  looksContainer.innerHTML = looks.map(l => `
+    <div class="look-card">
+      <div class="look-images">
+        ${l.pieces.map(p => `<img src="${p.imageFile}" alt="${p.label}">`).join("")}
+      </div>
+      <div style="margin-top:6px;font-size:13px;opacity:.8;">${l.desc}</div>
+    </div>
+  `).join("");
+}
+
+showLooks(pieceSelector.value);
+
+</script>
+
+</body>
+</html>

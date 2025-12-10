@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Digital Closet • Deep Autumn</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette Deep Autumn */
+            --rust: #9E4624;
+            --navy: #1B263B;
+            --mustard: #D4A017;
+            --forest: #254E38;
+            --cream: #FDFBF7;
+            --text: #4A4A4A;
+            --border: #EAE6DF;
+            
+            /* Hexa pour affichage */
+            --hex-rust: #9E4624;
+            --hex-forest: #254E38;
+            --hex-choco: #4B3621;
+            --hex-mustard: #D4A017;
+            --hex-navy: #1B263B;
+            --hex-grenat: #76232F;
+            --hex-camel: #B87333;
+            --hex-ecru: #FDFBF7;
+        }
+
+        body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+
+        header { text-align: center; padding: 3rem 1rem; background-color: var(--rust); color: white; box-shadow: 0 4px 15px rgba(158, 70, 36, 0.2); margin-bottom: 50px; position: relative; }
+        header::before { content: ""; position: absolute; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; letter-spacing: 1px; }
+        .subtitle { font-family: 'Lato', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: rgba(255,255,255,0.9); margin-top: 10px; font-weight: 700; }
+
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 20px 60px; }
+
+        .palette-container { background: white; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 60px; text-align: center; border: 1px solid white; }
+        .palette-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .color-group { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .swatch { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 3px solid white; transition: transform 0.3s; cursor: pointer; position: relative; }
+        .swatch:hover { transform: scale(1.15); z-index: 10; }
+        .swatch::after { content: attr(data-hex); position: absolute; bottom: 75px; left: 50%; transform: translateX(-50%) translateY(10px); background: #222; color: #fff; padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; opacity: 0; visibility: hidden; transition: all 0.2s ease; pointer-events: none; white-space: nowrap; }
+        .swatch:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .color-name { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #555; font-weight: 700; }
+        .forbidden-zone { margin-top: 40px; padding-top: 30px; border-top: 1px dashed var(--border); }
+        .swatch.forbidden { opacity: 0.6; }
+        .cross-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: rgba(0,0,0,0.4); pointer-events: none; }
+
+        h3.category-title { font-family: 'Lato', sans-serif; font-size: 1.2rem; color: var(--rust); text-transform: uppercase; letter-spacing: 2px; margin-top: 60px; margin-bottom: 25px; font-weight: 700; display: flex; align-items: center; gap: 15px; }
+        h3.category-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--rust), transparent); opacity: 0.3; }
+
+        .wardrobe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; }
+        .item-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: all 0.3s ease; border: 1px solid transparent; position: relative; }
+        .item-card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0,0,0,0.08); border-color: var(--mustard); }
+        .img-container { height: 220px; overflow: hidden; position: relative; }
+        .item-img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        
+        .badge { position: absolute; top: 10px; right: 10px; font-size: 0.6rem; padding: 3px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 2; }
+        .badge-owned { background: var(--forest); color: white; }
+        .badge-wish { background: var(--rust); color: white; }
+        .badge-sell { background: #999; color: white; }
+
+        .item-info { padding: 12px; text-align: center; }
+        .item-name { font-size: 0.85rem; color: var(--navy); font-weight: 700; line-height: 1.3; }
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); text-align: center; margin-top: 80px; margin-bottom: 10px; }
+        .look-intro { text-align: center; color: #777; margin-bottom: 40px; font-style: italic; }
+        .lookbook-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 30px; }
+        .look-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid var(--border); display: flex; flex-direction: column; }
+        .look-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--rust); margin: 0 0 15px 0; text-align: center; }
+        .look-items { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; background: var(--cream); padding: 15px; border-radius: 8px; }
+        .mini-img { width: 85px; height: 115px; object-fit: cover; object-position: top; border-radius: 4px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); border: 2px solid white; }
+        .look-comment { font-style: italic; color: #555; font-size: 0.95rem; line-height: 1.5; text-align: center; margin-top: auto; }
+        #container-vinted .item-card { opacity: 0.8; border: 1px dashed #ccc; }
+        @media (max-width: 768px) { .lookbook-grid { grid-template-columns: 1fr; } h1 { font-size: 2rem; } .palette-flex { gap: 15px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mon Digital Closet</h1>
+    <div class="subtitle">AUTOMNE PROFOND • V25 RÉALISTE</div>
+</header>
+
+<div class="container">
+
+    <div class="palette-container">
+        <div class="palette-flex">
+            <div class="color-group"><div class="swatch" style="background: var(--hex-rust);" data-hex="#9E4624"></div><span class="color-name">Rouille</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-forest);" data-hex="#254E38"></div><span class="color-name">Sapin</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-choco);" data-hex="#4B3621"></div><span class="color-name">Chocolat</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-mustard);" data-hex="#D4A017"></div><span class="color-name">Ocre</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-grenat);" data-hex="#76232F"></div><span class="color-name">Grenat</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-navy);" data-hex="#1B263B"></div><span class="color-name">Marine</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-camel);" data-hex="#B87333"></div><span class="color-name">Camel</span></div>
+            <div class="color-group"><div class="swatch" style="background: var(--hex-ecru); border:1px solid #ddd;" data-hex="#FDFBF7"></div><span class="color-name">Écru</span></div>
+        </div>
+    </div>
+
+    <h3 class="category-title">🧥 Vestes & Manteaux</h3>
+    <div id="container-vestes" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">🧶 Mailles & Pulls</h3>
+    <div id="container-mailles" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👚 Hauts & Chemises</h3>
+    <div id="container-hauts" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👖 Jupes & Bas</h3>
+    <div id="container-bas" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👖 Jeans & Pantalons</h3>
+    <div id="container-jeans" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👗 Robes</h3>
+    <div id="container-robes" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👜 Chaussures & Accessoires</h3>
+    <div id="container-accessoires" class="wardrobe-grid"></div>
+
+    <h3 class="category-title" style="color: #777; border-top: 2px dashed #ddd; padding-top: 20px;">👋 À Vendre / Moins Adapté</h3>
+    <div id="container-vinted" class="wardrobe-grid"></div>
+
+
+    <h2>📸 Mes Tenues Portées (Validées !)</h2>
+    <div id="lookbook-real" class="lookbook-grid"></div>
+
+    <h2>🏢 Office & Preppy</h2>
+    <div id="lookbook-work" class="lookbook-grid"></div>
+
+    <h2>🧶 Layering Masterclass</h2>
+    <div id="lookbook-layering" class="lookbook-grid"></div>
+
+    <h2>🍂 Weekend & Cozy</h2>
+    <div id="lookbook-weekend" class="lookbook-grid"></div>
+
+    <h2>✨ Soirée & Chic</h2>
+    <div id="lookbook-evening" class="lookbook-grid"></div>
+
+</div>
+
+<script>
+    // --- DONNÉES V25 (100% Ce que tu as + Samuel Taupe) ---
+    
+    const wardrobe = [
+        // --- WISHLIST / PRIORITÉ ---
+        { id: 's_taupe', name: 'Samuel Taupe', category: 'Maille', img: 'sézane_pull_samuel_taupe-foncé.avif', wishlist: true },
+
+        // --- NOUVEAUTÉS (Tes Pépites Intégrées) ---
+        { id: 'm_prune', name: 'Pull Brodé Prune', category: 'Maille', img: 'PXL_20251121_154145077~2.jpg', owned: true },
+        { id: 'r_selena_real', name: 'Robe Selena Marine', category: 'Robe', img: 'sézane_robe_selena_marine.avif', owned: true }, /* Ta vraie photo */
+
+        // --- DRESSING ACTUEL (Owned) ---
+        { id: 'v1', name: 'Perfecto Zig Terracotta', category: 'Veste', img: 'sézane_perfecto_zig-terracotta.webp', owned: true },
+        
+        { id: 'm1', name: 'Gilet Betty Marine', category: 'Maille', img: 'sézane_gilet_betty_marine.avif', owned: true },
+        { id: 'm9', name: 'Gilet Betty Crochet', category: 'Maille', img: 'sézane_gilet_betty_crochet_marine.avif', owned: true },
+        { id: 'm2', name: 'Gilet Gaspard Camel', category: 'Maille', img: 'sézane_maille-gaspard-camel.avif', owned: true },
+        { id: 'm7', name: 'Veste Thaïs Vert Parfait', category: 'Maille', img: 'sézane_veste-thais-vert-parfait.avif', owned: true },
+        { id: 'm6', name: 'Pull Stacy Grenat', category: 'Maille', img: 'sézane_maille-stacy-grenat.avif', owned: true },
+        { id: 'm8', name: 'Gilet Long DPH Kaki', category: 'Maille', img: 'dph_gilet-denia-graine-kaki2.webp', owned: true },
+        { id: 'm4', name: 'Pull Louisa Beige', category: 'Maille', img: 'sézane_maille-louisa_beige_chiné.avif', owned: true },
+        { id: 'm_angie', name: 'Gilet Angie Rose', category: 'Maille', img: 'sézane-maille_angie_rose.jpg', owned: true },
+        { id: 'm_carlota', name: 'Pull Carlota Vert Garden', category: 'Maille', img: 'sézane-maille_carlota_vert_garden.jpg', owned: true },
+
+        { id: 'h_ron', name: 'Top Ron Crochet', category: 'Haut', img: 'sézane_top_ron.avif', owned: true },
+        { id: 'h1', name: 'Chemise Honey Écru', category: 'Haut', img: 'sézane_chemise_honey_écru.avif', owned: true },
+        { id: 'h2', name: 'Chemise Guipure Ocre', category: 'Haut', img: 'sézane_chemise_guipure_contrastée_ocre.avif', owned: true },
+        { id: 'h3', name: 'Chemise Chlo Rayée', category: 'Haut', img: 'sézane_chemise_chlo_rayée_écru_bleu.avif', owned: true },
+        { id: 'h4', name: 'Blouse Bianca Dentelle', category: 'Haut', img: 'sézane_blouse_bianca.avif', owned: true },
+        { id: 'h_uniqlo', name: 'Blouse Uniqlo Blanche', category: 'Haut', img: 'uniqlo_blouse_rayonne-blanche.avif', owned: true },
+        { id: 'h_uniqlo_bleu', name: 'Chemise Boxy Rayée', category: 'Haut', img: 'uniqlo_chemise-boxy-bleu-rayée.avif', owned: true },
+
+        { id: 'b5', name: 'Jupe Plissée Camel', category: 'Bas', img: 'uniqlo_jupe-plissée-camel.jpg', owned: true },
+        { id: 'b4', name: 'Jupe Caroll Marine', category: 'Bas', img: 'caroll_jupe-plissée-marine.webp', owned: true },
+        { id: 'b1', name: 'Jupe Opaline Carreaux', category: 'Bas', img: 'sézane_jupe_opaline.avif', owned: true },
+        { id: 'b2', name: 'Jupe Peter Taupe', category: 'Bas', img: 'sézane_jupe_peter_taupe.png', owned: true },
+        { id: 'b3', name: 'Jupe Velours Bordeaux', category: 'Bas', img: 'nafnaf_jupe_bordeaux_velours_côtelé.png', owned: true },
+        { id: 'b_caro_miel', name: 'Jupe Carolina Miel', category: 'Bas', img: 'sézane-jupe_carolina_fleurs_miel.jpg', owned: true },
+        { id: 'b_caro_rose', name: 'Jupe Carolina Rose', category: 'Bas', img: 'sézane-jupe_carolina_fleurs_roses.jpg', owned: true },
+
+        { id: 'j_bleu', name: 'Jean Slim Bleu', category: 'Jeans', img: 'sézane_jean_slim_parfait_bleu_denim.avif', owned: true },
+        { id: 'j_noir', name: 'Jean Slim Noir', category: 'Jeans', img: 'sézane_jean_slim_parfait_noir.avif', owned: true },
+
+        { id: 'r1', name: 'Robe Evy Fleurs', category: 'Robe', img: 'sézane_robe_evy_fleurs_violet2.webp', owned: true },
+        { id: 'r2', name: 'Robe Fond Noir', category: 'Robe', img: 'sézane_robe_fleurie1.webp', owned: true },
+        { id: 'r3', name: 'Robe Naomi Fleurs', category: 'Robe', img: 'sézane_robe_naomi.webp', owned: true },
+        
+        { id: 'c1', name: 'Bottes Anna Field Daim', category: 'Chaussures', img: 'anna-field-bottes-marron.jpg', owned: true },
+        { id: 'a_ecru', name: 'Écharpe Ecru', category: 'Accessoire', img: 'sézane_écharpe_marianne_écru.avif', owned: true },
+        { id: 'a_beige', name: 'Écharpe Beige Chiné', category: 'Accessoire', img: 'sézane_écharpe_marianne_beige-chiné-clair.avif', owned: true },
+
+        // --- À VENDRE / MOINS ADAPTÉ ---
+        { id: 'm5', name: 'Gilet Barry Blush', category: 'Maille', img: 'sézane_maille_barry_blush.webp', owned: true, sell: true, reason: "Trop froid/Été" },
+        { id: 'a_blush', name: 'Écharpe Blush', category: 'Accessoire', img: 'sézane_écharpe_marianne_blush.avif', owned: true, sell: true, reason: "Grise le teint" },
+    ];
+
+    // --- LOOKBOOKS ---
+    const looksReal = [
+        { title: "L'Écolière Rétro", items: ['h1', 'h_ron', 'b4'], comment: "Ton look photo : La chemise Honey sous le Top Ron avec la jupe Caroll. Le mix dentelle/crochet est superbe !" },
+        { title: "Soft Autumn", items: ['h1', 'h_ron', 'b5'], comment: "Ton look photo : Le même layering mais avec la jupe Camel Uniqlo. Plus doux, plus lumineux." },
+        { title: "Office Minimalist", items: ['m1', 'b5', 'c1'], comment: "Ton look photo : Le gilet Betty Marine fermé sur la jupe Camel. Simple, efficace et très chic." }
+    ];
+
+    const looksWork = [
+        { title: "Working Girl Chic", items: ['h_uniqlo', 's_taupe', 'b2', 'c1'], comment: "Blouse Uniqlo Blanche + Samuel Taupe + Jupe Peter. Le blanc illumine le visage, le taupe et la jupe marron ancrent le look dans l'automne." },
+        { title: "Selena Belted", items: ['r_selena_real', 'm2', 'c1'], comment: "Robe Selena Marine + Gilet Gaspard Camel. Ceinture le gilet sur la robe pour marquer la taille." },
+        { title: "Classique Efficace", items: ['h3', 'm1', 'j_bleu', 'a_ecru'], comment: "Chlo Rayée + Betty Marine + Jean Bleu. Un camaïeu de bleus réveillé par l'écharpe Écru." },
+        { title: "Le Duo Complémentaire", items: ['h4', 'm7', 'b2', 'c1'], comment: "Bianca + Veste Verte + Jupe Taupe. Le vert sapin de la veste donne du punch au neutre de la jupe." }
+    ];
+
+    const looksLayering = [
+        { title: "Le Ron Chic", items: ['h_ron', 'b1', 'm1', 'c1'], comment: "Top Ron + Jupe Opaline + Betty Marine. Mix de textures crochet/carreaux." },
+        { title: "Flower Power", items: ['b_caro_miel', 'h_uniqlo_bleu', 's_taupe'], comment: "Jupe Miel + Chemise Rayée + Samuel Taupe. Un mélange d'imprimés audacieux calmé par le pull sans manches." },
+        { title: "Boxy Contrast", items: ['h_uniqlo_bleu', 'm_prune', 'j_noir'], comment: "Chemise Boxy + Pull Prune + Jean Noir. La couleur prune est magnifique sur le bleu ciel." }
+    ];
+
+    const looksWeekend = [
+        { title: "Prune & Taupe", items: ['m_prune', 'b2', 'c1'], comment: "Pull Brodé Prune + Jupe Peter Taupe. Deux couleurs riches qui se répondent parfaitement." },
+        { title: "Confort Jean", items: ['m_carlota', 'j_bleu', 'a_beige'], comment: "Pull Carlota Vert + Jean Bleu + Écharpe Beige. Simple, efficace, naturel." },
+        { title: "Pink Pop", items: ['m_angie', 'j_noir', 'c1'], comment: "Gilet Angie Rose + Jean Noir. Le rose vif est calmé par le noir du jean et le marron des bottes." },
+        { title: "Bohème Chic", items: ['h2', 'b5', 'm8', 'c1'], comment: "Ocre + Jupe Camel + Gilet Kaki. Trois couleurs de terre qui vibrent ensemble." },
+        { title: "Rock Doux", items: ['m4', 'b2', 'v1', 'a_ecru'], comment: "Pull Louisa Beige + Jupe Taupe + Perfecto. Une base neutre réveillée par le cuir Terracotta." }
+    ];
+
+    const looksEvening = [
+        { title: "Allure Rétro", items: ['r3', 'm9', 'c1'], comment: "Robe Naomi + Betty Crochet. Le crochet donne un air années 70 très tendance à la robe." },
+        { title: "La Dame en Noir", items: ['r2', 'm1', 'c1', 'a_ecru'], comment: "Robe Fond Noir + Betty Marine. Le mélange Noir/Marine est le chic ultime." },
+        { title: "Gold & velvet", items: ['h2', 'b3', 'v1', 'c1'], comment: "Chemise Ocre + Jupe Bordeaux + Bottes Daim. Ocre et Bordeaux : couleurs bijoux." },
+        { title: "Fleurs Miel", items: ['h1', 'b_caro_miel', 'm2'], comment: "Honey + Jupe Carolina Miel + Gaspard Camel. Un look très lumineux et chaud pour le soir." }
+    ];
+
+    // --- AFFICHAGE ---
+    function renderCategory(catName, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        
+        let items;
+        if (containerId === 'container-vinted') {
+            items = wardrobe.filter(item => item.sell === true);
+        } else {
+            items = wardrobe.filter(item => {
+                if (item.sell === true) return false;
+                if (containerId === 'container-jeans') return item.category === 'Jeans';
+                if (containerId === 'container-accessoires') return item.category === 'Accessoire' || item.category === 'Chaussures';
+                if (containerId === 'container-mailles') return item.category === 'Maille';
+                return item.category === catName;
+            });
+        }
+
+        items.forEach(item => {
+            let badgeHtml = '';
+            if (item.wishlist) {
+                badgeHtml = '<span class="badge badge-wish">À SHOPPER</span>';
+            } else if (item.owned) {
+                badgeHtml = '<span class="badge badge-owned">DRESSING</span>';
+            } else if (item.sell) {
+                badgeHtml = '<span class="badge badge-sell">À VENDRE</span>';
+            }
+
+            const imagePath = item.img.startsWith('http') ? item.img : 'images/' + item.img;
+            let reasonHtml = item.sell ? `<div style="font-size:0.7rem; color:#999; margin-top:5px;"><em>${item.reason}</em></div>` : '';
+
+            const card = `
+                <div class="item-card">
+                    ${badgeHtml}
+                    <div class="img-container">
+                        <img src="${imagePath}" alt="${item.name}" class="item-img" onerror="this.src='https://placehold.co/200x250/EEE/31343C?text=Image'">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        ${reasonHtml}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    function renderAllWardrobe() {
+        renderCategory('Veste', 'container-vestes');
+        renderCategory('Maille', 'container-mailles'); 
+        renderCategory('Haut', 'container-hauts');
+        renderCategory('Bas', 'container-bas');
+        renderCategory('Jeans', 'container-jeans');
+        renderCategory('Robe', 'container-robes');
+        renderCategory('Accessoire', 'container-accessoires'); 
+        renderCategory('Vinted', 'container-vinted');
+    }
+
+    function renderSection(looksData, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = ''; 
+        looksData.forEach(look => {
+            const lookItems = look.items.map(id => wardrobe.find(w => w.id === id)).filter(Boolean);
+            let imagesHtml = '';
+            lookItems.forEach(item => {
+                const imagePath = item.img.startsWith('http') ? item.img : 'images/' + item.img;
+                imagesHtml += `<img src="${imagePath}" class="mini-img" title="${item.name}" onerror="this.src='https://placehold.co/100x120/EEE/31343C?text=...'">`;
+            });
+
+            const card = `
+                <div class="look-card">
+                    <div class="look-title">${look.title}</div>
+                    <div class="look-items">
+                        ${imagesHtml}
+                    </div>
+                    <div class="look-comment">
+                        ${look.comment}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    renderAllWardrobe();
+    renderSection(looksReal, 'lookbook-real');
+    renderSection(looksWork, 'lookbook-work');
+    renderSection(looksLayering, 'lookbook-layering');
+    renderSection(looksWeekend, 'lookbook-weekend');
+    renderSection(looksEvening, 'lookbook-evening');
+
+</script>
+</body>
+</html>
