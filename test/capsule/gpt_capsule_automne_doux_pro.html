@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Capsule Wardrobe • Automne doux</title>
+  <style>
+    :root{
+      /* Palette Automne doux (warm & soft) */
+      --bg:#FBF6EE;
+      --panel:#FFF9F1;
+      --text:#1F2328;
+      --muted:#5A616B;
+      --border:rgba(31,35,40,.10);
+      --shadow: 0 10px 30px rgba(31,35,40,.10);
+      --accent:#C77755;  /* terracotta doux */
+      --accent2:#3A5F63; /* bleu pétrole doux */
+      --ok:#2E7D32;
+      --warn:#B26A00;
+      --bad:#B00020;
+
+      --p1:#C4C9A6; /* sauge */
+      --p2:#8A8F4A; /* olive doux */
+      --p3:#C97A57; /* terracotta */
+      --p4:#C8A878; /* camel */
+      --p5:#3A5F63; /* pétrole */
+      --p6:#F4EAD3; /* ivoire */
+      --p7:#8B6F57; /* taupe chaud */
+      --p8:#5A3A2E; /* chocolat doux */
+      --p9:#6E3B3B; /* bordeaux doux */
+      --p10:#2F3E46; /* marine chaude / charbon doux */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at 20% 10%, rgba(199,119,85,.18), transparent 55%),
+        radial-gradient(900px 650px at 85% 30%, rgba(58,95,99,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{max-width:1120px;margin:0 auto;padding:22px 16px 48px}
+    header{
+      display:flex;gap:14px;align-items:flex-start;justify-content:space-between;
+      padding:18px 18px 12px;border:1px solid var(--border);background:rgba(255,249,241,.72);
+      border-radius:18px; box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    .brand{
+      display:flex;gap:12px;align-items:center;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(199,119,85,.95), rgba(58,95,99,.85));
+      box-shadow: 0 10px 22px rgba(31,35,40,.18);
+      position:relative;overflow:hidden;
+    }
+    .logo:after{
+      content:"";position:absolute;inset:-30px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%);
+      transform: rotate(15deg);
+    }
+    h1{margin:0;font-size:18px;letter-spacing:.2px}
+    .subtitle{margin-top:2px;font-size:12.5px;color:var(--muted)}
+    .pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    .pill{
+      padding:8px 10px;border-radius:999px;border:1px solid var(--border);
+      background:rgba(255,255,255,.55);
+      font-size:12px;color:var(--muted);
+      display:flex;gap:8px;align-items:center;
+    }
+    .pill b{color:var(--text);font-weight:650}
+    .btn{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.68);
+      color:var(--text);
+      padding:10px 12px;border-radius:12px;
+      font-weight:650; font-size:13px;
+      cursor:pointer;
+      transition:.15s transform ease, .15s background ease, .15s border-color ease;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(31,35,40,.18); background:rgba(255,255,255,.82)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(199,119,85,.92), rgba(199,119,85,.82));
+      border-color: rgba(199,119,85,.35);
+      color:#fff;
+    }
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(199,119,85,.98), rgba(199,119,85,.88))}
+    .btn.ghost{background:transparent}
+    .btn.small{padding:8px 10px;border-radius:10px;font-size:12px}
+    .btn.danger{background:rgba(176,0,32,.08);border-color:rgba(176,0,32,.20);color:var(--bad)}
+    .btn.danger:hover{background:rgba(176,0,32,.12)}
+    .row{display:flex;gap:14px;flex-wrap:wrap}
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .grid.three{grid-template-columns: repeat(3, minmax(0,1fr))}
+    @media (max-width: 920px){ .grid.two,.grid.three{grid-template-columns:1fr} }
+
+    section.card{
+      border:1px solid var(--border);
+      background:rgba(255,249,241,.78);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      padding:16px;
+      overflow:hidden;
+    }
+    .section-title{
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      margin-bottom:12px;
+    }
+    .section-title h2{margin:0;font-size:16px}
+    .section-title p{margin:0;color:var(--muted);font-size:12.5px}
+    .divider{height:1px;background:var(--border);margin:12px 0}
+
+    /* Palette */
+    .swatches{display:grid;grid-template-columns: repeat(10, minmax(0,1fr));gap:10px}
+    @media (max-width: 920px){ .swatches{grid-template-columns: repeat(5, minmax(0,1fr));}}
+    @media (max-width: 520px){ .swatches{grid-template-columns: repeat(3, minmax(0,1fr));}}
+    .swatch{
+      border:1px solid rgba(31,35,40,.12);
+      background:#fff;border-radius:14px;overflow:hidden;
+      box-shadow: 0 6px 16px rgba(31,35,40,.08);
+    }
+    .swatch .color{height:40px}
+    .swatch .meta{padding:8px 10px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+    .swatch code{font-size:11px;color:rgba(31,35,40,.6)}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.60);font-size:12px;color:var(--muted)}
+    .chip .dot{width:10px;height:10px;border-radius:999px;background:var(--accent)}
+    .mini{font-size:12px;color:var(--muted);line-height:1.5}
+
+    /* Controls */
+    .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .input, select, textarea{
+      border:1px solid var(--border);background:rgba(255,255,255,.72);
+      padding:10px 12px;border-radius:12px;font-size:13px;color:var(--text);
+      outline:none; width:100%;
+    }
+    textarea{min-height:84px;resize:vertical}
+    .controls .input, .controls select{width:auto;min-width:220px}
+    .controls .input.small{min-width:140px}
+    label.small{font-size:12px;color:var(--muted);display:block;margin:4px 0 6px}
+    .field{min-width:220px;flex:1}
+    .field.tight{min-width:160px}
+
+    /* Wardrobe cards */
+    .wardrobe{
+      display:grid;grid-template-columns: repeat(6, minmax(0,1fr));gap:12px;
+    }
+    @media (max-width: 1100px){ .wardrobe{grid-template-columns: repeat(4, minmax(0,1fr));} }
+    @media (max-width: 720px){ .wardrobe{grid-template-columns: repeat(2, minmax(0,1fr));} }
+
+    .item{
+      border:1px solid var(--border); border-radius:16px; overflow:hidden;
+      background:rgba(255,255,255,.62);
+      box-shadow: 0 8px 20px rgba(31,35,40,.08);
+      position:relative;
+      transition:.15s transform ease, .15s box-shadow ease, .15s border-color ease;
+    }
+    .item:hover{transform: translateY(-2px); box-shadow: 0 14px 30px rgba(31,35,40,.12); border-color: rgba(31,35,40,.18)}
+    .thumb{
+      height:132px;background: #f1ede6;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb .fallback{
+      padding:10px;color:rgba(31,35,40,.55);font-size:12px;text-align:center
+    }
+    .item .body{padding:10px 10px 12px}
+    .title{font-size:12.5px;font-weight:750;margin:0 0 4px}
+    .meta2{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+    .tag{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 8px;border-radius:999px;border:1px solid var(--border);
+      background:rgba(255,255,255,.55);
+      font-size:11px;color:var(--muted)
+    }
+    .scoreBadge{
+      position:absolute;top:10px;left:10px;
+      display:flex;gap:6px;align-items:center;
+      padding:6px 9px;border-radius:999px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(31,35,40,.10);
+      font-size:12px;font-weight:750;color:var(--text);
+      box-shadow: 0 10px 20px rgba(31,35,40,.10);
+    }
+    .scoreBadge .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
+    .scoreBadge.warn .dot{background:var(--warn)}
+    .scoreBadge.bad .dot{background:var(--bad)}
+    .note{
+      position:absolute;inset:auto 10px 10px 10px;
+      background:rgba(31,35,40,.88);
+      color:#fff;
+      border-radius:14px;
+      padding:10px;
+      font-size:12px;
+      line-height:1.35;
+      opacity:0; transform: translateY(6px);
+      pointer-events:none;
+      transition:.15s ease;
+    }
+    .item:hover .note{opacity:1; transform: translateY(0)}
+    .actions{
+      display:flex;gap:8px;margin-top:10px;flex-wrap:wrap
+    }
+    .actions .btn{padding:7px 9px;border-radius:10px;font-size:12px}
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.42);
+      display:none; align-items:center; justify-content:center;
+      padding:16px;
+      z-index: 50;
+    }
+    .modal.open{display:flex}
+    .modalCard{
+      width:min(980px, 100%);
+      background: var(--panel);
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex;gap:14px;align-items:flex-start;justify-content:space-between;
+      padding:14px 16px;border-bottom:1px solid var(--border);
+      background: rgba(255,255,255,.40);
+    }
+    .modalTop h3{margin:0;font-size:15px}
+    .modalGrid{
+      display:grid;grid-template-columns: 360px 1fr; gap:0;
+    }
+    @media (max-width: 900px){ .modalGrid{grid-template-columns:1fr} }
+    .modalMedia{
+      background:#f0ece5;
+      min-height:320px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .modalMedia img{width:100%;height:100%;object-fit:cover;display:block}
+    .modalBody{padding:14px 16px}
+    .kv{display:grid;grid-template-columns: 140px 1fr; gap:8px 10px;font-size:13px; align-items:start}
+    .kv .k{color:var(--muted)}
+    .kv .v{color:var(--text);font-weight:650}
+    .hint{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.45}
+    .looksGrid{
+      margin-top:14px;
+      display:grid;grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width: 900px){ .looksGrid{grid-template-columns:1fr} }
+    .look{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      border-radius:16px;
+      overflow:hidden;
+      padding:10px;
+    }
+    .look h4{margin:0 0 8px;font-size:12.5px}
+    .lookRow{display:flex;gap:10px}
+    .miniCard{
+      flex:1;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;
+    }
+    .miniCard .mthumb{height:86px;background:#f0ece5}
+    .miniCard .mthumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .miniCard .mbody{padding:8px}
+    .miniCard .mtitle{font-size:11.5px;font-weight:750;margin:0 0 2px}
+    .miniCard .msub{font-size:11px;color:var(--muted)}
+    .iconCard{
+      flex:1;border:1px dashed rgba(31,35,40,.20);border-radius:14px;background:rgba(255,255,255,.35);
+      display:flex;align-items:center;justify-content:center;min-height:126px;
+      color:rgba(31,35,40,.55);font-size:12px;text-align:center;padding:10px;
+    }
+
+    /* Capsule */
+    .capsule{
+      display:grid;grid-template-columns: 1fr 1fr; gap:12px; align-items:start;
+    }
+    @media (max-width: 920px){ .capsule{grid-template-columns:1fr} }
+    .capsuleList{
+      border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.55);
+      padding:10px;max-height:340px;overflow:auto;
+    }
+    .capsuleList label{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:8px 8px;border-radius:12px;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+    .capsuleList label:hover{background:rgba(199,119,85,.08);border-color:rgba(199,119,85,.18)}
+    .capsuleList .left{display:flex;gap:10px;align-items:center}
+    .capsuleList input{transform:scale(1.05)}
+    .miniBadge{
+      padding:5px 8px;border-radius:999px;border:1px solid var(--border);
+      background:rgba(255,255,255,.75);font-size:12px;font-weight:750;color:var(--text);
+      display:flex;gap:6px;align-items:center;
+    }
+    .miniBadge .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
+    .miniBadge.warn .dot{background:var(--warn)}
+    .miniBadge.bad .dot{background:var(--bad)}
+    .capsuleGrid{
+      display:grid;grid-template-columns: repeat(5, minmax(0,1fr)); gap:10px;
+    }
+    @media (max-width: 920px){ .capsuleGrid{grid-template-columns: repeat(3, minmax(0,1fr));} }
+    .capsuleThumb{
+      border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#fff;
+      box-shadow: 0 8px 18px rgba(31,35,40,.08);
+      position:relative;
+    }
+    .capsuleThumb img{width:100%;height:100px;object-fit:cover;display:block}
+    .capsuleThumb .capLabel{
+      padding:8px 8px 10px;font-size:11.5px;font-weight:750;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+
+    /* Footer */
+    footer{margin-top:18px;color:rgba(90,97,107,.9);font-size:12.5px;text-align:center}
+    a{color:inherit}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Capsule Wardrobe • <span style="color:var(--accent)">Automne doux</span></h1>
+          <div class="subtitle">Preppy chic comfy — avec scoring colorimétrie + générateur de looks (local, sans serveur).</div>
+        </div>
+      </div>
+      <div class="pills">
+        <div class="pill"><span class="dot" style="width:10px;height:10px;border-radius:999px;background:var(--accent)"></span><b>Palette</b> warm & soft</div>
+        <button class="btn small" id="btnExport">Exporter CSV</button>
+        <label class="btn small" style="display:inline-flex;gap:8px;align-items:center;cursor:pointer">
+          Importer CSV <input id="csvFile" type="file" accept=".csv,text/csv" style="display:none" />
+        </label>
+        <button class="btn primary small" id="btnReset">Réinitialiser</button>
+      </div>
+    </header>
+
+    <div class="grid two" style="margin-top:14px">
+      <section class="card">
+        <div class="section-title">
+          <div>
+            <h2>1) Ta palette (Automne doux)</h2>
+            <p>Chaleureuse, douce, légèrement sourde. Neutres “ivoire / taupe chaud / chocolat doux”, accents “olive / sauge / terracotta / pétrole”.</p>
+          </div>
+          <div class="controls">
+            <span class="chip"><span class="dot"></span>score basé sur proximité + saturation + contraste</span>
+          </div>
+        </div>
+        <div class="swatches" id="swatches"></div>
+        <div class="divider"></div>
+        <div class="mini">
+          Astuce: pour toi, les “noirs” et gris froids très durs font souvent <i>trop contrastés</i>. Remplace-les par <b>chocolat</b>, <b>charbon chaud</b>, <b>marine chaude</b>, <b>taupe</b>.
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <div>
+            <h2>2) Ajouter une pièce à ta BDD</h2>
+            <p>Image locale (dossier <b>images/</b>) ou upload rapide. Le score s’auto-calcule si tu mets une couleur dominante.</p>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="field">
+            <label class="small">Nom</label>
+            <input class="input" id="fName" placeholder="ex: Jupe camel plissée" />
+          </div>
+          <div class="field tight">
+            <label class="small">Catégorie</label>
+            <select id="fCat">
+              <option>Maille</option>
+              <option>Blouse/Chemise</option>
+              <option>Jupe</option>
+              <option>Pantalon/Jean</option>
+              <option>Robe</option>
+              <option>Manteau</option>
+              <option>Accessoire</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="small">Marque</label>
+            <input class="input" id="fBrand" placeholder="Sézane / Uniqlo / Mango..." />
+          </div>
+          <div class="field tight">
+            <label class="small">Dominante (hex)</label>
+            <input class="input small" id="fHex" placeholder="#C8A878" />
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:10px">
+          <div class="field">
+            <label class="small">Image (chemin relatif)</label>
+            <input class="input" id="fImg" placeholder="images/mon_fichier.avif" />
+            <div class="mini" style="margin-top:6px">Ex: <code>images/sézane_jupe_peter_taupe.png</code> (les accents marchent si ton serveur gère l’URL ; sinon, renomme en sans accents).</div>
+          </div>
+          <div class="field">
+            <label class="small">Ou upload rapide (local)</label>
+            <input class="input" id="fUpload" type="file" accept="image/*" />
+            <div class="mini" style="margin-top:6px">Upload = stocké en localStorage (ok pour tests, pas idéal si tu mets 200 photos).</div>
+          </div>
+        </div>
+
+        <div class="controls" style="margin-top:12px">
+          <button class="btn primary" id="btnAdd">Ajouter à la BDD</button>
+          <button class="btn" id="btnAddWishlist">Ajouter en wishlist</button>
+          <span class="mini" id="addHint" style="margin-left:auto"></span>
+        </div>
+
+        <div class="divider"></div>
+        <div class="mini">
+          Colonnes CSV supportées: <b>id</b>, <b>name</b>, <b>category</b>, <b>brand</b>, <b>img</b>, <b>hex</b>, <b>owned</b>, <b>wishlist</b>, <b>notes</b>.
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:14px">
+      <div class="section-title">
+        <div>
+          <h2>3) Ta garde-robe (BDD)</h2>
+          <p>Filtre, recherche, et “why” au survol.</p>
+        </div>
+        <div class="controls">
+          <input class="input" id="q" placeholder="Rechercher (ex: Sézane, jupe, camel...)" />
+          <select id="filterCat">
+            <option value="">Toutes catégories</option>
+            <option>Maille</option>
+            <option>Blouse/Chemise</option>
+            <option>Jupe</option>
+            <option>Pantalon/Jean</option>
+            <option>Robe</option>
+            <option>Manteau</option>
+            <option>Accessoire</option>
+          </select>
+          <select id="filterOwn">
+            <option value="">Tout</option>
+            <option value="owned">Possédé</option>
+            <option value="wishlist">Wishlist</option>
+          </select>
+          <select id="sortBy">
+            <option value="score">Trier: score</option>
+            <option value="name">Trier: nom</option>
+            <option value="cat">Trier: catégorie</option>
+          </select>
+          <button class="btn" id="btnSeedLooks">Préparer des looks</button>
+        </div>
+      </div>
+      <div class="wardrobe" id="wardrobe"></div>
+    </section>
+
+    <section class="card" style="margin-top:14px">
+      <div class="section-title">
+        <div>
+          <h2>4) Capsule wardrobe</h2>
+          <p>Sélectionne tes “best of”.</p>
+        </div>
+        <div class="controls">
+          <button class="btn" id="btnBest">Pré-sélectionner (score ≥ 4)</button>
+          <button class="btn primary" id="btnSaveCapsule">Mettre à jour</button>
+          <button class="btn danger" id="btnClearCapsule">Vider</button>
+        </div>
+      </div>
+      <div class="capsule">
+        <div>
+          <div class="mini" style="margin-bottom:8px">À gauche : sélection. À droite : aperçu de ta capsule.</div>
+          <div class="capsuleList" id="capsuleList"></div>
+        </div>
+        <div>
+          <div class="mini" style="margin-bottom:8px">Aperçu (clique pour ouvrir et générer des looks).</div>
+          <div class="capsuleGrid" id="capsuleGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px">
+      <div class="section-title">
+        <div>
+          <h2>5) Looks par pièce (illustrés)</h2>
+          <p>Règle: si tu choisis une <b>jupe</b> → je propose des <b>hauts</b> (chemise/blouse + maille). Si tu choisis une <b>maille</b> → je propose <b>chemise/blouse + bas</b>.</p>
+        </div>
+        <div class="controls">
+          <select id="focusSelect" style="min-width:320px"></select>
+          <select id="lookStyle" style="min-width:220px">
+            <option value="mix">Mix (15)</option>
+            <option value="teacher">Teacher preppy (5)</option>
+            <option value="sezane">Sézane pur (5)</option>
+            <option value="comfy">Comfy (5)</option>
+          </select>
+          <button class="btn primary" id="btnGenLooks">Générer</button>
+        </div>
+      </div>
+      <div id="looksArea" class="looksGrid"></div>
+    </section>
+
+    <footer>
+      Tout est en local (fichier HTML). Pour partager / publier: mets le dossier <b>images/</b> + ce fichier sur GitHub Pages ou Netlify.
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true">
+      <div class="modalTop">
+        <div>
+          <h3 id="mTitle">Détail</h3>
+          <div class="mini" id="mSubtitle"></div>
+        </div>
+        <div class="controls">
+          <button class="btn small" id="mGen">Générer 15 looks</button>
+          <button class="btn small" id="mClose">Fermer</button>
+        </div>
+      </div>
+      <div class="modalGrid">
+        <div class="modalMedia" id="mMedia"></div>
+        <div class="modalBody">
+          <div class="kv" id="mKV"></div>
+          <div class="hint" id="mHint"></div>
+          <div class="looksGrid" id="mLooks"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* =======================
+   0) Palette Automne doux
+   ======================= */
+const PALETTE = [
+  {name:"Sauge", hex:getCss("--p1")},
+  {name:"Olive doux", hex:getCss("--p2")},
+  {name:"Terracotta", hex:getCss("--p3")},
+  {name:"Camel", hex:getCss("--p4")},
+  {name:"Pétrole doux", hex:getCss("--p5")},
+  {name:"Ivoire", hex:getCss("--p6")},
+  {name:"Taupe chaud", hex:getCss("--p7")},
+  {name:"Chocolat doux", hex:getCss("--p8")},
+  {name:"Bordeaux doux", hex:getCss("--p9")},
+  {name:"Marine chaude", hex:getCss("--p10")},
+];
+
+function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+/* =======================
+   1) Données (BDD)
+   ======================= */
+const DEFAULT_WARDROBE = [
+  // Les tiennes (exemples basés sur tes fichiers /images)
+  {id:"s_jupe_peter_taupe", name:"Jupe Peter (taupe)", category:"Jupe", brand:"Sézane", img:"images/sézane_jupe_peter_taupe.png", hex:"#8B6F57", owned:true, wishlist:false, notes:"Chaud + sourd = très automne doux. Super base."},
+  {id:"n_jupe_velours_bordeaux", name:"Jupe velours côtelé (bordeaux)", category:"Jupe", brand:"Naf Naf", img:"images/nafnaf_jupe_bordeaux_velours_côtelé.png", hex:"#6E2C3A", owned:true, wishlist:false, notes:"Bordeaux doux OK. À calmer avec ivoire/camel."},
+  {id:"s_blouse_bianca_ecru", name:"Blouse Bianca (écru)", category:"Blouse/Chemise", brand:"Sézane", img:"images/sézane_blouse_bianca.avif", hex:"#F4EAD3", owned:true, wishlist:false, notes:"Ivoire chaud parfait proche du visage."},
+  {id:"s_chlo_rayures", name:"Chemise Chlo (rayures écru/bleu)", category:"Blouse/Chemise", brand:"Sézane", img:"images/sézane_chemise_chlo_rayée_écru_bleu.avif", hex:"#CFE0E8", owned:true, wishlist:false, notes:"Le bleu peut être un peu frais. Top si tu ajoutes camel/olive en maille."},
+  {id:"s_chlo_guipure_ocre", name:"Chemise Chlo (guipure écru/ocre)", category:"Blouse/Chemise", brand:"Sézane", img:"images/sézane_chemise_guipure_contrastée_ocre.avif", hex:"#D8B06D", owned:true, wishlist:false, notes:"Ocre doux = très bon pour ton automne doux."},
+  {id:"s_honey_ecru", name:"Chemise Honey (écru)", category:"Blouse/Chemise", brand:"Sézane", img:"images/sézane_chemise_honey_écru.avif", hex:"#F1E6CF", owned:true, wishlist:false, notes:"Neutre chaud très facile pour tes looks preppy."},
+  {id:"s_rym_ecru", name:"Chemise Rym (écru)", category:"Blouse/Chemise", brand:"Sézane", img:"images/sézane_chemise_rym_écru.avif", hex:"#F2E6D0", owned:true, wishlist:false, notes:"Même vibe: doux et lumineux sans être blanc froid."},
+  {id:"s_echarpe_blush", name:"Écharpe Marianne (blush)", category:"Accessoire", brand:"Sézane", img:"images/sézane_écharpe_marianne_blush.avif", hex:"#C98A7F", owned:true, wishlist:false, notes:"Blush chaud/poudré = parfait sur toi (pas trop froid, pas trop vif)."},
+  {id:"s_gilet_betty_marine", name:"Gilet Betty (crochet marine)", category:"Maille", brand:"Sézane", img:"images/sézane_gilet_betty_crochet_marine.avif", hex:"#1F2E3B", owned:true, wishlist:false, notes:"Marine ok si 'chaude' et pas trop noire. Adoucis avec ivoire/camel."},
+  {id:"s_jupe_opaline", name:"Jupe Opaline", category:"Jupe", brand:"Sézane", img:"images/sézane_jupe_opaline.avif", hex:"#2F3E46", owned:true, wishlist:false, notes:"Si c'est une teinte très froide/noire → à éviter près du visage. Avec hauts chauds, ça passe."},
+];
+
+/* =======================
+   2) Stockage local
+   ======================= */
+const LS_KEY = "capsule_wardrobe_softautumn_v1";
+const LS_CAPSULE = "capsule_selected_softautumn_v1";
+
+function loadWardrobe(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return structuredClone(DEFAULT_WARDROBE);
+    const data = JSON.parse(raw);
+    if(!Array.isArray(data)) return structuredClone(DEFAULT_WARDROBE);
+    return data;
+  }catch(e){
+    return structuredClone(DEFAULT_WARDROBE);
+  }
+}
+
+function saveWardrobe(){
+  localStorage.setItem(LS_KEY, JSON.stringify(wardrobe));
+}
+
+function loadCapsule(){
+  try{
+    const raw = localStorage.getItem(LS_CAPSULE);
+    if(!raw) return [];
+    const ids = JSON.parse(raw);
+    return Array.isArray(ids) ? ids : [];
+  }catch(e){ return []; }
+}
+
+function saveCapsule(ids){
+  localStorage.setItem(LS_CAPSULE, JSON.stringify(ids));
+}
+
+/* =======================
+   3) Color science (simple)
+   - hex -> rgb -> lab
+   - distance -> score 1..5
+   - warm/cool + "softness" penalty
+   ======================= */
+function hexToRgb(hex){
+  if(!hex) return null;
+  const h = hex.trim().replace("#","");
+  if(h.length===3){
+    const r=parseInt(h[0]+h[0],16), g=parseInt(h[1]+h[1],16), b=parseInt(h[2]+h[2],16);
+    return {r,g,b};
+  }
+  if(h.length!==6) return null;
+  const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16);
+  if(Number.isNaN(r)||Number.isNaN(g)||Number.isNaN(b)) return null;
+  return {r,g,b};
+}
+
+function srgbToLinear(c){
+  c/=255;
+  return c<=0.04045 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4);
+}
+function rgbToXyz({r,g,b}){
+  const R=srgbToLinear(r), G=srgbToLinear(g), B=srgbToLinear(b);
+  // D65
+  const x = (0.4124*R + 0.3576*G + 0.1805*B) * 100;
+  const y = (0.2126*R + 0.7152*G + 0.0722*B) * 100;
+  const z = (0.0193*R + 0.1192*G + 0.9505*B) * 100;
+  return {x,y,z};
+}
+function xyzToLab({x,y,z}){
+  const refX=95.047, refY=100.0, refZ=108.883;
+  let X=x/refX, Y=y/refY, Z=z/refZ;
+  const f = (t)=> t>0.008856 ? Math.cbrt(t) : (7.787*t + 16/116);
+  const fx=f(X), fy=f(Y), fz=f(Z);
+  const L=116*fy-16, a=500*(fx-fy), b=200*(fy-fz);
+  return {L,a,b};
+}
+function hexToLab(hex){
+  const rgb = hexToRgb(hex);
+  if(!rgb) return null;
+  return xyzToLab(rgbToXyz(rgb));
+}
+function labDist(l1,l2){
+  // simple euclidean (good enough here)
+  return Math.sqrt((l1.L-l2.L)**2 + (l1.a-l2.a)**2 + (l1.b-l2.b)**2);
+}
+function rgbToHsv({r,g,b}){
+  r/=255; g/=255; b/=255;
+  const mx=Math.max(r,g,b), mn=Math.min(r,g,b);
+  const d=mx-mn;
+  let h=0;
+  if(d!==0){
+    if(mx===r) h=((g-b)/d)%6;
+    else if(mx===g) h=(b-r)/d+2;
+    else h=(r-g)/d+4;
+    h*=60;
+    if(h<0) h+=360;
+  }
+  const s = mx===0 ? 0 : d/mx;
+  const v = mx;
+  return {h,s,v};
+}
+function warmthLabel(hex){
+  const rgb = hexToRgb(hex); if(!rgb) return "neutre";
+  const {h,s,v} = rgbToHsv(rgb);
+  if(s<0.12 || v<0.08) return "neutre";
+  // warm: reds/oranges/yellows/olives
+  if((h>=0 && h<=85) || (h>=300 && h<=360) || (h>=85 && h<=110 && s<0.45)) return "chaud";
+  return "froid";
+}
+
+function scoreForHex(hex){
+  const lab = hexToLab(hex);
+  if(!lab) return {score:3, label:"neutre", why:"Pas de couleur dominante → score par défaut."};
+  const dists = PALETTE.map(p => ({p, d: labDist(lab, hexToLab(p.hex))}));
+  dists.sort((a,b)=>a.d-b.d);
+  const best = dists[0];
+  const second = dists[1];
+
+  // softness penalties: very saturated or very stark/bright
+  const {s,v} = rgbToHsv(hexToRgb(hex));
+  let penalty = 0;
+  if(s > 0.55) penalty += 0.9;          // trop vif pour automne doux
+  if(v > 0.92 && s > 0.25) penalty += 0.5; // trop "flashy"
+  if(v < 0.12) penalty += 0.6;          // trop noir (dur)
+  const warm = warmthLabel(hex);
+
+  // base score from distance (lower = better)
+  const dist = best.d + penalty*10; // inflate a bit
+  let score = 5;
+  if(dist>26) score=4;
+  if(dist>38) score=3;
+  if(dist>52) score=2;
+  if(dist>66) score=1;
+
+  // additional soft-autumn logic: if cool + quite saturated => lower
+  if(warm==="froid" && s>0.32) score = Math.max(1, score-1);
+
+  const why = `Proche de "${best.p.name}" (Δ≈${best.d.toFixed(1)}). ${penalty?`Pénalité douceur (${penalty.toFixed(1)}). `:""}2e plus proche: ${second.p.name}.`;
+  return {score, label:warm, best:best.p, why};
+}
+
+/* =======================
+   4) Rendering
+   ======================= */
+let wardrobe = loadWardrobe();
+let capsuleIds = loadCapsule();
+
+const el = (id)=>document.getElementById(id);
+const swatchesEl = el("swatches");
+const wardrobeEl = el("wardrobe");
+const qEl = el("q");
+const filterCatEl = el("filterCat");
+const filterOwnEl = el("filterOwn");
+const sortByEl = el("sortBy");
+const capsuleListEl = el("capsuleList");
+const capsuleGridEl = el("capsuleGrid");
+const focusSelectEl = el("focusSelect");
+const looksAreaEl = el("looksArea");
+
+function renderSwatches(){
+  swatchesEl.innerHTML = "";
+  for(const p of PALETTE){
+    const div = document.createElement("div");
+    div.className="swatch";
+    div.innerHTML = `
+      <div class="color" style="background:${p.hex}"></div>
+      <div class="meta"><span>${p.name}</span><code>${p.hex}</code></div>
+    `;
+    swatchesEl.appendChild(div);
+  }
+}
+
+function safeSrc(src){
+  // handle accents/spaces
+  return src ? encodeURI(src) : "";
+}
+
+function itemComputed(it){
+  const hex = it.hex || null;
+  const info = scoreForHex(hex);
+  const score = it.scoreOverride ?? info.score;
+  const label = info.label;
+  const badgeClass = score>=4 ? "" : (score===3 ? "warn" : "bad");
+  const dotClass = score>=4 ? "" : (score===3 ? "warn" : "bad");
+  const why = it.notes ? `${it.notes} • ${info.why}` : info.why;
+  return {score,label,badgeClass,dotClass,why, best: info.best};
+}
+
+function renderWardrobe(){
+  const q = (qEl.value||"").toLowerCase().trim();
+  const cat = filterCatEl.value || "";
+  const own = filterOwnEl.value || "";
+  const sortBy = sortByEl.value;
+
+  let list = wardrobe.slice();
+
+  // filter search
+  if(q){
+    list = list.filter(it =>
+      (it.name||"").toLowerCase().includes(q) ||
+      (it.brand||"").toLowerCase().includes(q) ||
+      (it.category||"").toLowerCase().includes(q)
+    );
+  }
+  if(cat) list = list.filter(it => it.category===cat);
+  if(own==="owned") list = list.filter(it => !!it.owned);
+  if(own==="wishlist") list = list.filter(it => !!it.wishlist);
+
+  // sort
+  list.sort((a,b)=>{
+    const ca=itemComputed(a), cb=itemComputed(b);
+    if(sortBy==="score") return cb.score - ca.score;
+    if(sortBy==="name") return (a.name||"").localeCompare(b.name||"","fr");
+    if(sortBy==="cat") return (a.category||"").localeCompare(b.category||"","fr");
+    return 0;
+  });
+
+  wardrobeEl.innerHTML = "";
+  for(const it of list){
+    const {score,label,badgeClass,why} = itemComputed(it);
+    const div = document.createElement("div");
+    div.className="item";
+    div.innerHTML = `
+      <div class="thumb">
+        ${it.img ? `<img src="${safeSrc(it.img)}" alt="">` : `<div class="fallback">Pas d'image</div>`}
+        <div class="scoreBadge ${badgeClass}">
+          <span class="dot"></span> ${score}/5
+        </div>
+        <div class="note"><b>${label}</b> — ${escapeHtml(why)}</div>
+      </div>
+      <div class="body">
+        <p class="title">${escapeHtml(it.name||"Sans nom")}</p>
+        <div class="meta2">
+          <span class="tag">${escapeHtml(it.category||"")}</span>
+          ${it.brand?`<span class="tag">${escapeHtml(it.brand)}</span>`:""}
+          ${it.owned?`<span class="tag">✓ possédé</span>`:""}
+          ${it.wishlist?`<span class="tag">★ wishlist</span>`:""}
+        </div>
+        <div class="actions">
+          <button class="btn small" data-open="${it.id}">Détail</button>
+          <button class="btn small" data-toggle="${it.id}">${it.wishlist?"Retirer wishlist":"Wishlist"}</button>
+          <button class="btn small" data-del="${it.id}">Supprimer</button>
+        </div>
+      </div>
+    `;
+    wardrobeEl.appendChild(div);
+  }
+
+  // bind buttons
+  wardrobeEl.querySelectorAll("[data-open]").forEach(btn=>{
+    btn.addEventListener("click",()=>openModal(btn.dataset.open));
+  });
+  wardrobeEl.querySelectorAll("[data-toggle]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const id=btn.dataset.toggle;
+      const it=wardrobe.find(x=>x.id===id);
+      if(!it) return;
+      it.wishlist = !it.wishlist;
+      if(it.wishlist) it.owned=false;
+      saveWardrobe();
+      renderAll();
+    });
+  });
+  wardrobeEl.querySelectorAll("[data-del]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const id=btn.dataset.del;
+      wardrobe = wardrobe.filter(x=>x.id!==id);
+      capsuleIds = capsuleIds.filter(x=>x!==id);
+      saveWardrobe(); saveCapsule(capsuleIds);
+      renderAll();
+    });
+  });
+
+  renderCapsulePicker();
+  renderFocusSelect();
+}
+
+function renderCapsulePicker(){
+  capsuleListEl.innerHTML = "";
+  const list = wardrobe.slice().sort((a,b)=> (b.category||"").localeCompare(a.category||"","fr"));
+  for(const it of list){
+    const {score,badgeClass} = itemComputed(it);
+    const row = document.createElement("label");
+    row.innerHTML = `
+      <span class="left">
+        <input type="checkbox" ${capsuleIds.includes(it.id)?"checked":""} data-cap="${it.id}">
+        <span>${escapeHtml(it.name)}</span>
+      </span>
+      <span class="miniBadge ${badgeClass}"><span class="dot"></span>${score}/5</span>
+    `;
+    capsuleListEl.appendChild(row);
+  }
+  capsuleListEl.querySelectorAll("[data-cap]").forEach(cb=>{
+    cb.addEventListener("change",()=>{
+      const id=cb.dataset.cap;
+      if(cb.checked){ if(!capsuleIds.includes(id)) capsuleIds.push(id); }
+      else capsuleIds = capsuleIds.filter(x=>x!==id);
+      renderCapsuleGrid();
+    });
+  });
+
+  renderCapsuleGrid();
+}
+
+function renderCapsuleGrid(){
+  capsuleGridEl.innerHTML = "";
+  const items = capsuleIds.map(id=>wardrobe.find(x=>x.id===id)).filter(Boolean);
+  for(const it of items){
+    const div = document.createElement("div");
+    div.className="capsuleThumb";
+    div.innerHTML = `
+      ${it.img ? `<img src="${safeSrc(it.img)}" alt="">` : `<div style="height:100px;display:flex;align-items:center;justify-content:center;color:rgba(31,35,40,.5)">Sans image</div>`}
+      <div class="capLabel">${escapeHtml(it.name||"")}</div>
+    `;
+    div.addEventListener("click",()=>openModal(it.id));
+    capsuleGridEl.appendChild(div);
+  }
+}
+
+function renderFocusSelect(){
+  const prev = focusSelectEl.value;
+  focusSelectEl.innerHTML = "";
+  const sorted = wardrobe.slice().sort((a,b)=> (a.category||"").localeCompare(b.category||"","fr") || (a.name||"").localeCompare(b.name||"","fr"));
+  for(const it of sorted){
+    const opt=document.createElement("option");
+    opt.value=it.id;
+    opt.textContent = `${it.category} — ${it.name}`;
+    focusSelectEl.appendChild(opt);
+  }
+  if(prev) focusSelectEl.value = prev;
+}
+
+/* =======================
+   5) Looks generator
+   ======================= */
+function pick(arr, n){
+  const a = arr.slice();
+  const out=[];
+  while(a.length && out.length<n){
+    const i = Math.floor(Math.random()*a.length);
+    out.push(a.splice(i,1)[0]);
+  }
+  return out;
+}
+function bestItems(filterFn, limit=50){
+  const items = wardrobe.filter(filterFn).map(it=>({it, c:itemComputed(it)}));
+  items.sort((a,b)=> b.c.score - a.c.score);
+  return items.slice(0,limit).map(x=>x.it);
+}
+
+function generateLooksForItem(baseId, style="mix", count=15){
+  const base = wardrobe.find(x=>x.id===baseId);
+  if(!base) return [];
+
+  // pools (prefer capsule first, then wardrobe)
+  const capsule = capsuleIds.map(id=>wardrobe.find(x=>x.id===id)).filter(Boolean);
+  const pool = (fn)=> {
+    const cap = capsule.filter(fn);
+    if(cap.length>=4) return cap;
+    return bestItems(fn, 80);
+  };
+
+  const blouses = pool(it=>it.category==="Blouse/Chemise");
+  const knits = pool(it=>it.category==="Maille");
+  const skirts = pool(it=>it.category==="Jupe");
+  const pants = pool(it=>it.category==="Pantalon/Jean");
+  const coats = pool(it=>it.category==="Manteau");
+  const accs = pool(it=>it.category==="Accessoire");
+
+  const styleSets = {
+    teacher: {count:5, note:"Teacher preppy (salle de classe)"},
+    sezane: {count:5, note:"Sézane pur (romantique/bohème chic maîtrisé)"},
+    comfy:  {count:5, note:"Comfy (cocoon + propre)"},
+    mix:    {count:15, note:"Mix (varié)"},
+  };
+  const wanted = styleSets[style]?.count ?? count;
+
+  const out = [];
+
+  function addLook(name, top1, top2, bottom, extra){
+    out.push({name, items:[top1, top2, bottom].filter(Boolean), extra});
+  }
+
+  const baseCat = base.category;
+
+  // Helper accessories text (placeholder)
+  const accText = (tone)=>({
+    shoes: tone==="teacher" ? "Mocassins camel / derbies chocolat" :
+           tone==="sezane"  ? "Bottines daim camel / babies bordeaux" :
+           "Sneakers écru / bottines confort",
+    bag: tone==="teacher" ? "Sac structuré camel / chocolat" :
+         tone==="sezane"  ? "Sac vintage cognac" :
+         "Tote ivoire / sac seau cognac",
+    coat: tone==="teacher" ? "Manteau taupe/chocolat" :
+          tone==="sezane"  ? "Manteau cannelle / écureuil" :
+          "Doudoune taupe / manteau oversize cacao"
+  });
+
+  const tones = style==="mix" ? ["teacher","sezane","comfy"] : [style];
+
+  // Generate based on rules requested
+  if(baseCat==="Jupe"){
+    // skirt -> blouse + knit
+    const blousePick = pick(blouses, wanted*2);
+    const knitPick = pick(knits, wanted*2);
+
+    for(let i=0;i<wanted;i++){
+      const tone = tones[i % tones.length];
+      const b = blousePick[i % blousePick.length] || blouses[0];
+      const k = knitPick[(i*2) % knitPick.length] || knits[0];
+      addLook(
+        tone==="teacher" ? "Preppy prof (net & efficace)" :
+        tone==="sezane" ? "Sézane pur (romantique doux)" :
+        "Comfy chic (cocoon)",
+        b, k, base,
+        accText(tone)
+      );
+    }
+  }else if(baseCat==="Maille"){
+    // knit -> blouse + bottom
+    const blousePick = pick(blouses, wanted*2);
+    const bottomPool = [...skirts, ...pants].filter(Boolean);
+    const bottomPick = pick(bottomPool, wanted*2);
+
+    for(let i=0;i<wanted;i++){
+      const tone = tones[i % tones.length];
+      const b = blousePick[i % blousePick.length] || blouses[0];
+      const bot = bottomPick[i % bottomPick.length] || bottomPool[0];
+      addLook(
+        tone==="teacher" ? "Preppy prof (col + maille)" :
+        tone==="sezane" ? "Sézane pur (matières + détails)" :
+        "Comfy chic (simple & doux)",
+        b, base, bot,
+        accText(tone)
+      );
+    }
+  }else if(baseCat==="Blouse/Chemise"){
+    // blouse -> knit + bottom
+    const knitPick = pick(knits, wanted*2);
+    const bottomPool = [...skirts, ...pants].filter(Boolean);
+    const bottomPick = pick(bottomPool, wanted*2);
+
+    for(let i=0;i<wanted;i++){
+      const tone = tones[i % tones.length];
+      const k = knitPick[i % knitPick.length] || knits[0];
+      const bot = bottomPick[i % bottomPick.length] || bottomPool[0];
+      addLook(
+        tone==="teacher" ? "Preppy prof (superposition)" :
+        tone==="sezane" ? "Sézane pur (détails)" :
+        "Comfy chic (layering)",
+        base, k, bot,
+        accText(tone)
+      );
+    }
+  }else{
+    // fallback: base + 2 best complementary
+    const b = blouses[0], k = knits[0], s = skirts[0];
+    for(let i=0;i<wanted;i++){
+      const tone = tones[i % tones.length];
+      addLook("Look inspiré", b, k, s, accText(tone));
+    }
+  }
+
+  return out.slice(0,wanted);
+}
+
+function renderLooks(targetEl, looks){
+  targetEl.innerHTML = "";
+  for(const look of looks){
+    const card = document.createElement("div");
+    card.className="look";
+    card.innerHTML = `
+      <h4>${escapeHtml(look.name)}</h4>
+      <div class="lookRow">
+        ${look.items.map(it=>miniItemCard(it)).join("")}
+        <div class="iconCard">
+          <div>
+            <div style="font-weight:750;margin-bottom:6px">Accessoires</div>
+            <div>👞 ${escapeHtml(look.extra?.shoes||"")}</div>
+            <div>👜 ${escapeHtml(look.extra?.bag||"")}</div>
+            <div>🧥 ${escapeHtml(look.extra?.coat||"")}</div>
+          </div>
+        </div>
+      </div>
+    `;
+    targetEl.appendChild(card);
+  }
+}
+function miniItemCard(it){
+  if(!it) return "";
+  const {score,badgeClass} = itemComputed(it);
+  return `
+    <div class="miniCard" title="${escapeHtml(it.name)}">
+      <div class="mthumb">${it.img?`<img src="${safeSrc(it.img)}" alt="">`:""}</div>
+      <div class="mbody">
+        <p class="mtitle">${escapeHtml(shorten(it.name, 20))}</p>
+        <div class="msub">${escapeHtml(it.category)} • ${score}/5</div>
+      </div>
+    </div>
+  `;
+}
+
+function shorten(s,n){
+  if(!s) return "";
+  return s.length>n ? s.slice(0,n-1)+"…" : s;
+}
+function escapeHtml(s){
+  return String(s||"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+/* =======================
+   6) Modal
+   ======================= */
+const modalEl = el("modal");
+const mTitleEl = el("mTitle");
+const mSubtitleEl = el("mSubtitle");
+const mMediaEl = el("mMedia");
+const mKVEl = el("mKV");
+const mHintEl = el("mHint");
+const mLooksEl = el("mLooks");
+
+function openModal(id){
+  const it = wardrobe.find(x=>x.id===id);
+  if(!it) return;
+  const c = itemComputed(it);
+
+  mTitleEl.textContent = it.name;
+  mSubtitleEl.textContent = `${it.brand||""} • ${it.category} • ${c.score}/5 • ${c.label}`;
+  mMediaEl.innerHTML = it.img ? `<img src="${safeSrc(it.img)}" alt="">` : `<div class="fallback">Pas d'image</div>`;
+  mKVEl.innerHTML = `
+    <div class="k">Couleur</div><div class="v">${it.hex||"—"}</div>
+    <div class="k">Meilleure harmonie</div><div class="v">${c.best?c.best.name:"—"}</div>
+    <div class="k">Statut</div><div class="v">${it.owned?"Possédé": it.wishlist?"Wishlist":"—"}</div>
+  `;
+  mHintEl.textContent = c.why;
+
+  const looks = generateLooksForItem(it.id, "mix", 15);
+  renderLooks(mLooksEl, looks);
+
+  modalEl.classList.add("open");
+  modalEl.setAttribute("aria-hidden","false");
+  modalEl.dataset.item = it.id;
+}
+
+function closeModal(){
+  modalEl.classList.remove("open");
+  modalEl.setAttribute("aria-hidden","true");
+}
+
+el("mClose").addEventListener("click", closeModal);
+modalEl.addEventListener("click",(e)=>{ if(e.target===modalEl) closeModal(); });
+el("mGen").addEventListener("click", ()=>{
+  const id = modalEl.dataset.item;
+  const looks = generateLooksForItem(id, "mix", 15);
+  renderLooks(mLooksEl, looks);
+});
+
+/* =======================
+   7) Events (UI)
+   ======================= */
+[qEl, filterCatEl, filterOwnEl, sortByEl].forEach(x=>x.addEventListener("input", renderWardrobe));
+
+el("btnBest").addEventListener("click", ()=>{
+  const best = wardrobe.filter(it=> itemComputed(it).score>=4);
+  capsuleIds = Array.from(new Set([...capsuleIds, ...best.map(x=>x.id)]));
+  renderAll();
+});
+
+el("btnSaveCapsule").addEventListener("click", ()=>{
+  saveCapsule(capsuleIds);
+  toast("Capsule enregistrée ✓");
+});
+
+el("btnClearCapsule").addEventListener("click", ()=>{
+  capsuleIds = [];
+  saveCapsule(capsuleIds);
+  renderAll();
+});
+
+el("btnSeedLooks").addEventListener("click", ()=>{
+  // quick helper: select best blouse/knit/skirt into capsule if empty
+  if(capsuleIds.length>0){ toast("Capsule déjà remplie 🙂"); return; }
+  const pickBest = (cat, n)=> bestItems(it=>it.category===cat, 50).slice(0,n);
+  capsuleIds = [
+    ...pickBest("Blouse/Chemise", 4).map(x=>x.id),
+    ...pickBest("Maille", 4).map(x=>x.id),
+    ...pickBest("Jupe", 3).map(x=>x.id),
+    ...pickBest("Pantalon/Jean", 2).map(x=>x.id),
+    ...pickBest("Manteau", 1).map(x=>x.id),
+    ...pickBest("Accessoire", 2).map(x=>x.id),
+  ].filter(Boolean);
+  renderAll();
+  toast("Capsule de départ créée ✨");
+});
+
+el("btnGenLooks").addEventListener("click", ()=>{
+  const baseId = focusSelectEl.value;
+  const style = el("lookStyle").value;
+  const looks = generateLooksForItem(baseId, style, style==="mix"?15:5);
+  renderLooks(looksAreaEl, looks);
+});
+
+focusSelectEl.addEventListener("change", ()=>{
+  const looks = generateLooksForItem(focusSelectEl.value, el("lookStyle").value, 15);
+  renderLooks(looksAreaEl, looks);
+});
+
+function makeId(name){
+  return "u_" + (name||"piece").toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"")
+    + "_" + Math.random().toString(16).slice(2,8);
+}
+
+function addItem({wishlist=false}={}){
+  const name = el("fName").value.trim();
+  const category = el("fCat").value;
+  const brand = el("fBrand").value.trim();
+  const img = el("fImg").value.trim();
+  const hex = el("fHex").value.trim();
+  const upload = el("fUpload").files?.[0] || null;
+
+  if(!name){ toast("Il me faut au moins un nom 🙂"); return; }
+
+  const item = {
+    id: makeId(name),
+    name, category,
+    brand: brand||"",
+    img: img||"",
+    hex: hex||"",
+    owned: !wishlist,
+    wishlist: !!wishlist,
+    notes: ""
+  };
+
+  if(upload){
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      item.img = reader.result; // dataURL
+      finalizeAdd(item);
+    };
+    reader.readAsDataURL(upload);
+  }else{
+    finalizeAdd(item);
+  }
+}
+
+function finalizeAdd(item){
+  // quick auto note from scoring
+  const c = itemComputed(item);
+  item.notes = item.notes || (c.score>=4 ? "Bonne couleur (automne doux)." :
+                c.score===3 ? "Peut marcher, mais à équilibrer avec des neutres chauds." :
+                "Risque trop froid/vif/dur pour ta palette.");
+  wardrobe.unshift(item);
+  saveWardrobe();
+  renderAll();
+  toast("Ajouté à la BDD ✨");
+  el("fName").value=""; el("fBrand").value=""; el("fImg").value=""; el("fHex").value=""; el("fUpload").value="";
+}
+el("btnAdd").addEventListener("click", ()=>addItem({wishlist:false}));
+el("btnAddWishlist").addEventListener("click", ()=>addItem({wishlist:true}));
+
+el("btnReset").addEventListener("click", ()=>{
+  localStorage.removeItem(LS_KEY);
+  localStorage.removeItem(LS_CAPSULE);
+  wardrobe = structuredClone(DEFAULT_WARDROBE);
+  capsuleIds = [];
+  renderAll();
+  toast("Réinitialisé ✓");
+});
+
+/* =======================
+   8) CSV import/export
+   ======================= */
+el("btnExport").addEventListener("click", ()=>{
+  const cols = ["id","name","category","brand","img","hex","owned","wishlist","notes"];
+  const rows = [cols.join(",")];
+  for(const it of wardrobe){
+    rows.push(cols.map(c=>csvEscape(String(it[c] ?? ""))).join(","));
+  }
+  const blob = new Blob([rows.join("\n")], {type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "capsule_bdd.csv";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+});
+
+function csvEscape(s){
+  if(/[",\n]/.test(s)) return `"${s.replaceAll('"','""')}"`;
+  return s;
+}
+
+el("csvFile").addEventListener("change", async (e)=>{
+  const file = e.target.files?.[0];
+  if(!file) return;
+  const text = await file.text();
+  const parsed = parseCSV(text);
+  if(!parsed.length){ toast("CSV vide ou illisible."); return; }
+
+  // header-based mapping
+  const header = parsed[0].map(h=>h.trim());
+  const idx = (name)=> header.findIndex(h=>h.toLowerCase()===name.toLowerCase());
+
+  const out=[];
+  for(let i=1;i<parsed.length;i++){
+    const row = parsed[i];
+    if(row.every(x=>!String(x||"").trim())) continue;
+    const it = {
+      id: row[idx("id")] || makeId(row[idx("name")]||"piece"),
+      name: row[idx("name")] || "Sans nom",
+      category: row[idx("category")] || "Maille",
+      brand: row[idx("brand")] || "",
+      img: row[idx("img")] || "",
+      hex: row[idx("hex")] || "",
+      owned: toBool(row[idx("owned")]),
+      wishlist: toBool(row[idx("wishlist")]),
+      notes: row[idx("notes")] || ""
+    };
+    out.push(it);
+  }
+  wardrobe = out.length ? out : wardrobe;
+  saveWardrobe();
+  renderAll();
+  toast("CSV importé ✓");
+  e.target.value="";
+});
+
+function toBool(v){
+  const s = String(v ?? "").trim().toLowerCase();
+  return ["1","true","yes","oui","y"].includes(s);
+}
+
+// Minimal CSV parser (handles quotes)
+function parseCSV(text){
+  const rows=[];
+  let row=[], cur="", inQ=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i], nx=text[i+1];
+    if(inQ){
+      if(ch==='"' && nx==='"'){ cur+='"'; i++; continue; }
+      if(ch==='"'){ inQ=false; continue; }
+      cur+=ch; continue;
+    }
+    if(ch==='"'){ inQ=true; continue; }
+    if(ch===','){ row.push(cur); cur=""; continue; }
+    if(ch==='\n'){ row.push(cur); rows.push(row); row=[]; cur=""; continue; }
+    if(ch==='\r'){ continue; }
+    cur+=ch;
+  }
+  row.push(cur); rows.push(row);
+  return rows;
+}
+
+/* =======================
+   9) Toast
+   ======================= */
+let toastTimer=null;
+function toast(msg){
+  const id="toast";
+  let t=document.getElementById(id);
+  if(!t){
+    t=document.createElement("div");
+    t.id=id;
+    t.style.position="fixed";
+    t.style.left="50%";
+    t.style.bottom="18px";
+    t.style.transform="translateX(-50%)";
+    t.style.background="rgba(31,35,40,.88)";
+    t.style.color="#fff";
+    t.style.padding="10px 12px";
+    t.style.borderRadius="14px";
+    t.style.boxShadow="0 18px 40px rgba(0,0,0,.28)";
+    t.style.zIndex="99";
+    t.style.fontSize="13px";
+    t.style.opacity="0";
+    t.style.transition=".15s ease";
+    document.body.appendChild(t);
+  }
+  t.textContent=msg;
+  requestAnimationFrame(()=>{t.style.opacity="1";});
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.style.opacity="0";}, 1800);
+}
+
+/* =======================
+   10) Init
+   ======================= */
+function renderAll(){
+  renderSwatches();
+  renderWardrobe();
+  renderCapsuleGrid();
+  // init looks view
+  if(focusSelectEl.value){
+    const looks = generateLooksForItem(focusSelectEl.value, "mix", 15);
+    renderLooks(looksAreaEl, looks);
+  }
+}
+
+renderAll();
+</script>
+</body>
+</html>

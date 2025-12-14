@@ -80,7 +80,7 @@
         #container-wishlist .item-card { border: 2px dashed var(--accent); background: #fffdf9; }
         #container-vinted .item-card { opacity: 0.7; filter: grayscale(0.3); }
 
-        /* PRIORITÉS */
+        /* PRIORITÉS (Style V37) */
         .priority-box { background: linear-gradient(135deg, #fffcf5, #fff); border: 2px solid var(--accent); border-radius: 16px; padding: 30px; margin-bottom: 50px; position: relative; margin-top: 40px; box-shadow: 0 10px 30px rgba(212, 160, 23, 0.15); }
         .priority-badge-title { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .priority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 15px; }
@@ -96,7 +96,7 @@
 
 <header>
     <h1>My Digital Closet</h1>
-    <div class="subtitle">Édition Automne Profond • Stratégie V41</div>
+    <div class="subtitle">Édition Automne Profond • V39 Validée</div>
 </header>
 
 <div class="container">
@@ -167,9 +167,6 @@
     <h3 class="category-title">📸 Mes Tenues Portées</h3>
     <div id="lookbook-real" class="lookbook-grid"></div>
 
-    <h3 class="category-title">🧡 Spécial "Tomette" (Ta Couleur Phare)</h3>
-    <div id="lookbook-tomette" class="lookbook-grid"></div>
-
     <h3 class="category-title">🌸 Le Challenge "Blush"</h3>
     <div id="lookbook-blush" class="lookbook-grid"></div>
 
@@ -191,41 +188,38 @@
 </div>
 
 <script>
-    // --- DONNÉES V41 CORRIGÉES ---
+    // --- DONNÉES V39 (AJOUTS BASÉS SUR TON PANIER) ---
     
     const wardrobe = [
-        // --- PRIORITÉS (PANIER) ---
-        { id: 's_vert', name: 'Samuel Vert Parfait', category: 'Maille', img: 'sézane_pull_samuel_vert-parfait-foncé.avif', wishlist: true, priority: true, priority_reason: "Alternative au Taupe. Éclat immédiat.", c_score: 10, c_tip: "Couleur pépite." },
-        { id: 'm_betty_tomette', name: 'Gilet Betty Tomette', category: 'Maille', img: 'sézane_gilet_betty_crochet_tomette.avif', owned: true, c_score: 10, c_tip: "Couleur Wouah !" }, /* Passé en Owned */
-        { id: 'b_wallace', name: 'Short Wallace Taupe', category: 'Bas', img: 'sézane_short_wallace-taupe.avif', wishlist: true, priority: true, priority_reason: "Parfait pour une Petite : montre les jambes avec élégance.", c_score: 9, c_tip: "Excellent neutre." },
-        { id: 'm_louisa_choco', name: 'Pull Louisa Chocolat', category: 'Maille', img: 'sézane_maille-louisa_chocolat-clair.avif', wishlist: true, priority: true, priority_reason: "Remplace le Samuel Taupe. Liant sombre et chaud.", c_score: 10, c_tip: "Basique idéal." },
+        // --- TOP PRIORITÉS (PANIER VALIDÉ) ---
+        { id: 'm_betty_tomette', name: 'Gilet Betty Tomette', category: 'Maille', img: '1000040462.png', wishlist: true, priority: true, priority_reason: "Ta couleur 'Power'. Coupe courte idéale.", c_score: 10, c_tip: "Couleur Wouah !" },
+        { id: 's_vert_parfait', name: 'Samuel Vert Parfait', category: 'Maille', img: '1000040885.png', wishlist: true, priority: true, priority_reason: "Coup d'éclat qui remplace le Taupe.", c_score: 10, c_tip: "Vert Profond." },
+        { id: 'sh_wallace', name: 'Short Wallace Taupe', category: 'Bas', img: '1000040886.png', wishlist: true, priority: true, priority_reason: "L'alternative chic pour montrer tes jambes.", c_score: 9, c_tip: "Neutre chaud." },
 
-        // --- WISHLIST ---
-        { id: 'v_clyde', name: 'Manteau Clyde Chocolat', category: 'Veste', img: 'sézane_manteau_clyde_chocolat.avif', wishlist: true, c_score: 10, c_tip: "Indispensable." },
-        { id: 'v_rafael', name: 'Manteau Rafael Écureuil', category: 'Veste', img: 'sézane_manteau_rafael-écureuil.avif', wishlist: true, c_score: 10, c_tip: "Mieux que le Clyde pour 1m60 !" },
-        { id: 'r_print_autom', name: 'Robe Aurora Fleurs Automne', category: 'Robe', img: 'sézane-robe-aurora-paris-est-une-fête.jpg', wishlist: true, c_score: 9, c_tip: "Palette respectée." },
-        { id: 'v_james', name: 'Manteau James Bordeaux', category: 'Veste', img: 'sézane_manteau_james-bordeaux-foncé - Copie.avif', wishlist: true, c_score: 10, c_tip: "Chic et chaud." },
-        { id: 'v_ander', name: 'Manteau Ander Cannelle', category: 'Veste', img: 'sézane_manteau_ander-cannelle - Copie.avif', wishlist: true, c_score: 10, c_tip: "Lumineux." },
-        { id: 'v_jayden', name: 'Manteau Jayden Épice', category: 'Veste', img: 'sézane_manteau_jayden-épice.avif', wishlist: true, c_score: 10, c_tip: "Magnifique ocre." },
-        { id: 'm_lizy', name: 'Gilet Lizy Caramel', category: 'Maille', img: 'sézane_gilet-lizy-camel.webp', wishlist: true, c_score: 10, c_tip: "Festif et chaud." },
-        { id: 'h_lise', name: 'Chemise Lise Écru', category: 'Haut', img: 'sézane_chemise_lise_écru.avif', wishlist: true, c_score: 8, c_tip: "Détails romantiques." },
-        { id: 'c2', name: 'Low Bridget Chocolat', category: 'Chaussures', img: 'sézane_bottes_low-bridget-chocolat-glacé.avif', wishlist: true, c_score: 10, c_tip: "Va avec tout." },
-        { id: 'c_theo', name: 'Bottes Théodora Chocolat', category: 'Chaussures', img: 'sézane_bottes_théodora-chocolat-glacé.avif', wishlist: true, c_score: 10, c_tip: "Élégance." },
-        { id: 'm_maxime', name: 'Gilet Maxime Ocre', category: 'Maille', img: 'sézane_gilet_maxime-ocre.avif', wishlist: true, c_score: 9.5, c_tip: "Lumière pure." },
-        { id: 'm_maxime_moka', name: 'Gilet Maxime Moka', category: 'Maille', img: 'sézane_gilet_maxime-moka.avif', wishlist: true, c_score: 9.5, c_tip: "Chocolat doux." },
-        { id: 'h5', name: 'Chemise Rym', category: 'Haut', img: 'sézane_chemise_rym_écru.avif', wishlist: true, c_score: 8 },
-        { id: 'a2', name: 'Écharpe Camel', category: 'Accessoire', img: 'sézane_écharpe_marianne_camel.avif', wishlist: true, c_score: 9, c_tip: "Bonne mine." },
-        { id: 'a3', name: 'Écharpe Vert', category: 'Accessoire', img: 'sézane_écharpe_marianne_vert-parfait.avif', wishlist: true, c_score: 9.5 },
-        { id: 'a4', name: 'Écharpe Grenat', category: 'Accessoire', img: 'sézane_écharpe_marianne_grenat.avif', wishlist: true, c_score: 9.5 },
-        { id: 'a_marine', name: 'Écharpe Marine', category: 'Accessoire', img: 'sézane_écharpe_marianne_marine.avif', wishlist: true, c_score: 8.5 },
-        { id: 's_grenat', name: 'Samuel Grenat', category: 'Maille', img: 'sézane_pull_samuel_grenat.avif', wishlist: true, c_score: 10, c_tip: "Rouge parfait." },
-        { id: 's_pistache', name: 'Samuel Vert Pistache', category: 'Maille', img: 'sézane_pull_samuel_vert-pistache.avif', wishlist: true, c_score: 6, c_tip: "Trop clair." },
-        { id: 's_acajou', name: 'Samuel Acajou', category: 'Maille', img: 'sézane_pull_samuel_acajou.avif', wishlist: true, c_score: 10, c_tip: "Automne pur." },
+        // --- WISHLIST SECONDAIRE ---
+        { id: 'm_louisa_choco', name: 'Pull Louisa Chocolat', category: 'Maille', img: '1000040449.png', wishlist: true, c_score: 10, c_tip: "Bon basique." },
+        { id: 'r_print_autom', name: 'Robe Fleurs Automne', category: 'Robe', img: '1000040457.png', wishlist: true, c_score: 9, c_tip: "Palette respectée." },
+        { id: 'm_lizy', name: 'Gilet Lizy Caramel', category: 'Maille', img: '1000040447.png', wishlist: true, c_score: 10, c_tip: "Festif et chaud." },
+        { id: 'v_jayden', name: 'Manteau Jayden Épice', category: 'Veste', img: 'sézane_manteau_jayden-épice.avif', wishlist: true, c_score: 10 },
+        { id: 'v_james', name: 'Manteau James Bordeaux', category: 'Veste', img: 'sézane_manteau_james-bordeaux-foncé - Copie.avif', wishlist: true, c_score: 10 },
+        { id: 'h_lise', name: 'Chemise Lise Écru', category: 'Haut', img: '1000040448.png', wishlist: true, c_score: 8 },
+        { id: 'c2', name: 'Low Bridget Chocolat', category: 'Chaussures', img: 'sézane_bottes_low-bridget-chocolat-glacé.avif', wishlist: true, c_score: 10 },
+        { id: 'c_theo', name: 'Bottes Théodora Chocolat', category: 'Chaussures', img: 'sézane_bottes_théodora-chocolat-glacé.avif', wishlist: true, c_score: 10 },
+        { id: 'm_maxime', name: 'Gilet Maxime Ocre', category: 'Maille', img: 'sézane_gilet_maxime-ocre.avif', wishlist: true, c_score: 9.5 },
+        { id: 'm_maxime_moka', name: 'Gilet Maxime Moka', category: 'Maille', img: 'sézane_gilet_maxime-moka.avif', wishlist: true, c_score: 9.5 },
+        { id: 'h5', name: 'Chemise Rym', category: 'Haut', img: 'sezane_chemise_rym_écru.avif', wishlist: true, c_score: 8 },
+        { id: 'a2', name: 'Écharpe Camel', category: 'Accessoire', img: 'sezane_écharpe_marianne_camel.avif', wishlist: true, c_score: 9 },
+        { id: 'a3', name: 'Écharpe Vert', category: 'Accessoire', img: 'sezane_écharpe_marianne_vert-parfait.avif', wishlist: true, c_score: 9.5 },
+        { id: 'a4', name: 'Écharpe Grenat', category: 'Accessoire', img: 'sezane_écharpe_marianne_grenat.avif', wishlist: true, c_score: 9.5 },
+        { id: 'a_marine', name: 'Écharpe Marine', category: 'Accessoire', img: 'sezane_écharpe_marianne_marine.avif', wishlist: true, c_score: 8.5 },
+        { id: 's_grenat', name: 'Samuel Grenat', category: 'Maille', img: 'sézane_pull_samuel_grenat.avif', wishlist: true, c_score: 10 },
+        { id: 's_acajou', name: 'Samuel Acajou', category: 'Maille', img: 'sézane_pull_samuel_acajou.avif', wishlist: true, c_score: 10 },
 
-        // --- DRESSING (CE QUE TU AS VRAIMENT) ---
+        // --- DRESSING ---
         { id: 'v1', name: 'Perfecto Zig Terracotta', category: 'Veste', img: 'sézane_perfecto_zig-terracotta.webp', owned: true, c_score: 10, c_tip: "Ta couleur reine." },
+        { id: 'v_rafael', name: 'Manteau Rafael Écureuil', category: 'Veste', img: 'sézane_manteau_rafael-écureuil.avif', owned: true, c_score: 10, c_tip: "Chaleur intense." },
         
-        // m1 (Betty Marine) supprimé comme demandé
+        { id: 'm1', name: 'Gilet Betty Marine', category: 'Maille', img: 'sezane_gilet_betty_crochet_marine.avif', owned: true, c_score: 8.5, c_tip: "Neutre chic." },
         { id: 'm2', name: 'Gilet Gaspard Camel', category: 'Maille', img: 'sézane_maille-gaspard-camel.avif', owned: true, c_score: 8.5, c_tip: "Douceur." },
         { id: 'm_gaspard_rouge', name: 'Gilet Gaspard Rouge', category: 'Maille', img: 'sézane_maille-gaspard-rouge.avif', owned: true, c_score: 9, c_tip: "Vrai rouge chaud." },
         { id: 'm_gaspard_boug', name: 'Gilet Gaspard Boug.', category: 'Maille', img: 'sézane_maille-gaspard-bougainvilliers.avif', owned: true, c_score: 7, c_tip: "Un peu froid." },
@@ -237,18 +231,19 @@
         { id: 'm_angie', name: 'Gilet Angie Rose', category: 'Maille', img: 'sézane-maille_angie_rose.jpg', owned: true, c_score: 6, c_tip: "Attention rose froid." },
         { id: 'm_carlota', name: 'Pull Carlota Vert', category: 'Maille', img: 'sézane-maille_carlota_vert_garden.jpg', owned: true, c_score: 9.5, c_tip: "Vert profond." },
         { id: 'm_luke', name: 'Pull Luke Beige', category: 'Maille', img: 'sézane-maille_luke-beige-chiné.jpg', owned: true, c_score: 7.5, c_tip: "Neutre." },
+        { id: 'm_prune', name: 'Pull Brodé Prune', category: 'Maille', img: 'PXL_20251121_154145077~2.jpg', owned: true, c_score: 9, c_tip: "Riche." },
 
         { id: 'h_ron', name: 'Top Ron Crochet', category: 'Haut', img: 'sézane_top_ron.avif', owned: true, c_score: 8, c_tip: "Texture." },
-        { id: 'h1', name: 'Chemise Honey Écru', category: 'Haut', img: 'sézane_chemise_honey_écru.avif', owned: true, c_score: 8, c_tip: "Lumière." },
-        { id: 'h2', name: 'Chemise Guipure Ocre', category: 'Haut', img: 'sézane_chemise_guipure_contrastée_ocre.avif', owned: true, c_score: 9.5, c_tip: "Or." },
+        { id: 'h1', name: 'Chemise Honey Écru', category: 'Haut', img: 'sezane_chemise_honey_écru.avif', owned: true, c_score: 8, c_tip: "Lumière." },
+        { id: 'h2', name: 'Chemise Guipure Ocre', category: 'Haut', img: 'sezane_chemise_guipure_contrastée_ocre.avif', owned: true, c_score: 9.5, c_tip: "Or." },
         { id: 'h3', name: 'Chemise Chlo Rayée', category: 'Haut', img: 'sézane_chemise_chlo_rayée_écru_bleu.avif', owned: true, c_score: 7, c_tip: "Rayures froides." },
-        { id: 'h4', name: 'Blouse Bianca Dentelle', category: 'Haut', img: 'sézane_blouse_bianca.avif', owned: true, c_score: 8, c_tip: "Joli écru." },
+        { id: 'h4', name: 'Blouse Bianca Dentelle', category: 'Haut', img: 'sezane_blouse_bianca.avif', owned: true, c_score: 8, c_tip: "Joli écru." },
         { id: 'h_uniqlo', name: 'Blouse Uniqlo Blanche', category: 'Haut', img: 'uniqlo_blouse_rayonne-blanche.avif', owned: true, c_score: 6.5, c_tip: "Blanc pur dur." },
         { id: 'h_uniqlo_bleu', name: 'Chemise Boxy Rayée', category: 'Haut', img: 'uniqlo_chemise-boxy-bleu-rayée.avif', owned: true, c_score: 6, c_tip: "Bleu ciel été." },
 
         { id: 'b5', name: 'Jupe Plissée Camel', category: 'Bas', img: 'uniqlo_jupe-plissée-camel.jpg', owned: true, c_score: 9, c_tip: "Chaud." },
         { id: 'b4', name: 'Jupe Caroll Marine', category: 'Bas', img: 'caroll_jupe-plissée-marine.webp', owned: true, c_score: 8.5, c_tip: "Classique." },
-        { id: 'b1', name: 'Jupe Opaline Carreaux', category: 'Bas', img: 'sézane_jupe_opaline.avif', owned: true, c_score: 9, c_tip: "Tons automne." },
+        { id: 'b1', name: 'Jupe Opaline Carreaux', category: 'Bas', img: 'sezane_jupe_opaline.avif', owned: true, c_score: 9, c_tip: "Tons automne." },
         { id: 'b2', name: 'Jupe Peter Taupe', category: 'Bas', img: 'sézane_jupe_peter_taupe.png', owned: true, c_score: 8.5, c_tip: "Neutre doux." },
         { id: 'b3', name: 'Jupe Velours Bordeaux', category: 'Bas', img: 'nafnaf_jupe_bordeaux_velours_côtelé.png', owned: true, c_score: 9.5, c_tip: "Texture riche." },
         { id: 'b_caro_rose', name: 'Jupe Carolina Rose', category: 'Bas', img: 'sézane-jupe_carolina_fleurs_roses.jpg', owned: true, c_score: 7, c_tip: "Un peu pâle." },
@@ -259,16 +254,16 @@
         { id: 'r1', name: 'Robe Evy Fleurs', category: 'Robe', img: 'sézane_robe_evy_fleurs_violet2.webp', owned: true, c_score: 8.5, c_tip: "Joli." },
         { id: 'r2', name: 'Robe Fond Noir', category: 'Robe', img: 'sézane_robe_fleurie1.webp', owned: true, c_score: 7.5, c_tip: "Noir un peu dur." },
         { id: 'r3', name: 'Robe Naomi Fleurs', category: 'Robe', img: 'sézane_robe_naomi.webp', owned: true, c_score: 8, c_tip: "Sombre." },
-        { id: 'r_selena', name: 'Robe Selena Marine', category: 'Robe', img: 'sézane_robe_selena_marine.avif', owned: true, c_score: 9, c_tip: "Marine parfait." },
+        { id: 'r_selena', name: 'Robe Selena Marine', category: 'Robe', img: 'PXL_20250207_162236515.jpg', owned: true, c_score: 9, c_tip: "Marine parfait." },
         { id: 'r_abigail', name: 'Robe Abigail Écru', category: 'Robe', img: 'sézane_robe_abigail.avif', owned: true, c_score: 8, c_tip: "Lumière." },
         
         { id: 'c1', name: 'Bottes Anna Field Daim', category: 'Chaussures', img: 'anna-field-bottes-marron.jpg', owned: true, c_score: 9, c_tip: "Cognac top." },
-        { id: 'a_blush', name: 'Écharpe Blush', category: 'Accessoire', img: 'sézane_écharpe_marianne_blush.avif', owned: true, c_score: 4, c_tip: "Froid." },
+        { id: 'a_blush', name: 'Écharpe Blush', category: 'Accessoire', img: 'sezane_écharpe_marianne_blush.avif', owned: true, sell: true, c_score: 4, c_tip: "Froid." },
         { id: 'a_moka', name: 'Écharpe Moka', category: 'Accessoire', img: 'sézane_écharpe_marianne_moka.avif', owned: true, c_score: 9.5, c_tip: "Neutre chaud." },
-        { id: 'a_ecru', name: 'Écharpe Ecru', category: 'Accessoire', img: 'sézane_écharpe_marianne_écru.avif', owned: true, c_score: 8, c_tip: "Lumière." },
+        { id: 'a_ecru', name: 'Écharpe Ecru', category: 'Accessoire', img: 'sezane_écharpe_marianne_écru.avif', owned: true, c_score: 8, c_tip: "Lumière." },
 
-        // VINTED (Retour du Blush ici ou gardé en Owned ? Le user a dit "je garde les pièces blush")
-        { id: 'm5', name: 'Gilet Barry Blush', category: 'Maille', img: 'sézane_maille_barry_blush.webp', owned: true, c_score: 4, c_tip: "Rose froid." },
+        // VINTED
+        { id: 'm5', name: 'Gilet Barry Blush', category: 'Maille', img: 'sézane_maille_barry_blush.webp', owned: true, sell: true, reason: "Trop froid/Été", c_score: 4, c_tip: "Rose froid." },
     ];
 
     // --- LOOKBOOKS ---
@@ -276,23 +271,18 @@
     const looksReal = [
         { title: "L'Écolière Rétro", items: ['h1', 'h_ron', 'b4'], m_score: 10, m_justif: "Top court + Jupe courte.", comment: "Ton look signature !" },
         { title: "Soft Autumn", items: ['h1', 'h_ron', 'b5'], m_score: 10, m_justif: "Proportions parfaites.", comment: "Douceur et lumière." },
-        { title: "Minimaliste Tomette", items: ['m_betty_tomette', 'b5', 'c1'], m_score: 10, m_justif: "Taille marquée.", comment: "Le rouille sur le camel : l'accord parfait." }
-    ];
-
-    const looksTomette = [
-        { title: "Tomette & Marine", items: ['m_betty_tomette', 'b4', 'c1'], m_score: 9.5, m_justif: "Contraste Chic.", comment: "Le gilet rouille réveille la jupe marine classique." },
-        { title: "Tomette & Jean", items: ['m_betty_tomette', 'j_bleu', 'a_moka'], m_score: 9, m_justif: "Casual parfait.", comment: "Simple mais percutant grâce à la couleur." },
-        { title: "Look Short", items: ['m_betty_tomette', 'b_wallace', 'c1'], m_score: 10, m_justif: "Jambes allongées.", comment: "Le short taupe et le gilet rouille s'adorent." }
+        { title: "Office Minimalist", items: ['m1', 'b5', 'c1'], m_score: 9.5, m_justif: "Taille marquée.", comment: "Simple et chic." }
     ];
 
     const looksWork = [
-        { title: "Working Girl Chic", items: ['h_uniqlo', 's_vert', 'b2', 'c1'], m_score: 9, m_justif: "Ligne verticale.", comment: "Le vert sapin remplace le taupe avec brio." },
-        { title: "Selena Structurée", items: ['r_selena', 'm_maxime', 'c1'], m_score: 9, m_justif: "Gilet court.", comment: "Structure la robe fluide." },
+        { title: "Working Girl Chic", items: ['h_uniqlo', 's_vert_parfait', 'b2', 'c1'], m_score: 9, m_justif: "Verticalité du pull.", comment: "L'élégance neutre réveillée par le Vert." },
+        { title: "Selena Structurée", items: ['r_selena', 'm1', 'c1'], m_score: 9, m_justif: "Gilet court.", comment: "Structure la robe fluide." },
         { title: "Le Duo Vert", items: ['h4', 'm7', 'b2', 'c1'], m_score: 9.5, m_justif: "Veste courte idéale.", comment: "Contraste Vert/Taupe." },
         { title: "Prune & Taupe", items: ['m_etienne', 'b2', 'c1'], m_score: 9, m_justif: "Pull rentré.", comment: "Tons riches." },
-        { title: "L'Officier", items: ['h4', 'm_betty_tomette', 'b4', 'c1'], m_score: 10, m_justif: "Silhouette nette.", comment: "Le Tomette remplace le Marine pour plus de peps." },
+        { title: "L'Officier", items: ['h4', 'm1', 'b4', 'c1'], m_score: 10, m_justif: "Silhouette nette.", comment: "Total look bleu." },
+        { title: "Caramel & Marine", items: ['m_lizy', 'b4', 'c1'], m_score: 8.5, m_justif: "Ceinturer le gilet.", comment: "Éclat caramel." },
         { title: "Gaspard Classique", items: ['h3', 'm2', 'j_bleu'], m_score: 8, m_justif: "Attention longueur.", comment: "Casual Friday." },
-        { title: "Preppy Moderne", items: ['h1', 's_vert', 'b4', 'c1'], m_score: 9, m_justif: "Layering structuré.", comment: "Pro et féminin." },
+        { title: "Preppy Moderne", items: ['h1', 'm_louisa_choco', 'b4', 'c1'], m_score: 9, m_justif: "Layering structuré.", comment: "Pro et féminin." },
         { title: "Abigail Hiver", items: ['r_abigail', 'm_gaspard_rouge', 'c1'], m_score: 8, m_justif: "Jeu de longueurs.", comment: "Rouge sur écru." }
     ];
 
@@ -300,21 +290,21 @@
         { title: "Boxy & Prune", items: ['h_uniqlo_bleu', 'm_etienne', 'j_noir'], m_score: 7.5, m_justif: "Attention volume.", comment: "Contraste froid/chaud." },
         { title: "Layering Écureuil", items: ['h3', 'm_maxime', 'b1', 'c1'], m_score: 8.5, m_justif: "Ligne verticale.", comment: "Harmonie automnale." },
         { title: "Lise & Rafael", items: ['h_lise', 'v_rafael', 'j_bleu', 'a_moka'], m_score: 9.5, m_justif: "Manteau mi-cuisse.", comment: "Chaleur intense." },
-        { title: "Le Ron Chic", items: ['h_ron', 'b1', 'm_betty_tomette', 'c1'], m_score: 10, m_justif: "Taille dégagée.", comment: "Mix de textures." },
-        { title: "Flower Power", items: ['b_caro_miel', 'h_uniqlo_bleu', 's_vert'], m_score: 9, m_justif: "Équilibre volumes.", comment: "Mix d'imprimés." },
-        { title: "Taupe sur Dentelle", items: ['h4', 'm_louisa_choco', 'b3'], m_score: 9.5, m_justif: "Coupe trapèze.", comment: "Douceur chocolat." },
+        { title: "Le Ron Chic", items: ['h_ron', 'b1', 'm1', 'c1'], m_score: 10, m_justif: "Taille dégagée.", comment: "Mix de textures." },
+        { title: "Flower Power", items: ['b_caro_miel', 'h_uniqlo_bleu', 's_vert_parfait'], m_score: 9, m_justif: "Équilibre volumes.", comment: "Mix d'imprimés." },
+        { title: "Taupe sur Dentelle", items: ['h4', 'm_louisa_choco', 'b3'], m_score: 9.5, m_justif: "Coupe trapèze.", comment: "Douceur." },
         { title: "Boxy Contrast", items: ['h_uniqlo_bleu', 'm_gaspard_rouge', 'j_noir'], m_score: 8, m_justif: "Regard haut.", comment: "Rouge dynamique." },
         { title: "Flower Layer", items: ['b_caro_miel', 'h1', 'm2'], m_score: 9, m_justif: "Fluidité.", comment: "Douceur florale." },
-        { title: "Classique Rayures", items: ['h3', 's_vert', 'b5'], m_score: 9, m_justif: "Lignes verticales.", comment: "Layering facile." }
+        { title: "Classique Rayures", items: ['h3', 's_vert_parfait', 'b5'], m_score: 9, m_justif: "Lignes verticales.", comment: "Layering facile." }
     ];
 
     const looksWeekend = [
-        { title: "Luke & Moka", items: ['m_luke', 'j_bleu', 'a_moka'], m_score: 8, m_justif: "Confort.", comment: "Beige et marron." },
+        { title: "Short & Choco", items: ['m_louisa_choco', 'sh_wallace', 'c1'], m_score: 10, m_justif: "Jambes mises en valeur.", comment: "Ton nouveau look phare !" },
         { title: "Bohème Rose", items: ['m_angie', 'b_caro_rose', 'c1'], m_score: 8, m_justif: "Jupe courte.", comment: "Total rose poudré." },
         { title: "Miel & Ocre", items: ['h2', 'b_caro_miel', 'm2'], m_score: 9.5, m_justif: "Allonge.", comment: "Rayonnant !" },
         { title: "Rock Doux", items: ['m4', 'b2', 'v1'], m_score: 10, m_justif: "Veste courte.", comment: "Neutre et cuir." },
         { title: "Écureuil Flamboyant", items: ['h2', 'v_rafael', 'j_bleu'], m_score: 9.5, m_justif: "Manteau droit.", comment: "L'automne incarné." },
-        { title: "Velours Cosy", items: ['m6', 'b3', 'c1'], m_score: 9.5, m_justif: "Taille haute.", comment: "Rouges profonds." },
+        { title: "Velours Cosy", items: ['m6', 'b3', 'a_moka'], m_score: 9.5, m_justif: "Taille haute.", comment: "Rouges profonds." },
         { title: "Vert Garden", items: ['m_carlota', 'j_bleu', 'a_moka'], m_score: 8, m_justif: "Simple.", comment: "Naturel et frais." },
         { title: "Confort Absolu", items: ['r1', 'm2', 'c1'], m_score: 9, m_justif: "Jambes.", comment: "Robe et bottes." },
         { title: "Louisa Choco", items: ['m_louisa_choco', 'b5', 'v_rafael'], m_score: 9, m_justif: "Camaïeu.", comment: "Bruns chauds." }
@@ -322,10 +312,10 @@
 
     const looksEvening = [
         { title: "Festive Lizy", items: ['m_lizy', 'b4', 'c1'], m_score: 10, m_justif: "Gilet court.", comment: "Sequins chics." },
-        { title: "Allure Rétro", items: ['r3', 'm_betty_tomette', 'v_rafael'], m_score: 9, m_justif: "Structure buste.", comment: "Lumière sur sombre." },
-        { title: "La Dame en Noir", items: ['r2', 'm_betty_tomette', 'a_moka'], m_score: 9, m_justif: "Col V.", comment: "Le Tomette réveille le noir." },
+        { title: "Allure Rétro", items: ['r3', 'm9', 'v_rafael'], m_score: 9, m_justif: "Structure buste.", comment: "Lumière sur sombre." },
+        { title: "La Dame en Noir", items: ['r2', 'm1', 'a_moka'], m_score: 9, m_justif: "Col V.", comment: "Chic ultime." },
         { title: "Gold & Velvet", items: ['h2', 'b3', 'v1'], m_score: 10, m_justif: "Silhouette X.", comment: "Couleurs bijoux." },
-        { title: "Bougainvilliers", items: ['r2', 'm_gaspard_boug'], m_score: 8.5, m_justif: "Ouvrir le gilet.", comment: "Touche vive." },
+        { title: "Bougainvilliers", items: ['r2', 'm_gaspard_boug'], m_score: 8.5, m_justif: "Ouvrir gilet.", comment: "Touche vive." },
         { title: "Dentelle du Soir", items: ['h_lise', 'b3', 'c1'], m_score: 9, m_justif: "Texture.", comment: "Raffiné." },
         { title: "Manteau Chocolat", items: ['r1', 'v_clyde', 'c2'], m_score: 9.5, m_justif: "Long/Court.", comment: "Grand froid chic." },
         { title: "Étienne Raisin", items: ['m_etienne', 'b2', 'c1'], m_score: 9, m_justif: "Épaules marquées.", comment: "Sophistiqué." },
@@ -340,7 +330,7 @@
         { title: "Bleu & Écureuil", items: ['h_uniqlo_bleu', 'v_rafael', 'j_bleu', 'c1'], m_score: 9, m_justif: "Verticalité manteau.", comment: "Le manteau sauve le bleu froid." },
         { title: "Vintage Moka", items: ['h5', 'm_maxime_moka', 'b3'], m_score: 9, m_justif: "Taille haute.", comment: "Ambiance rétro chic." },
         { title: "Gaspard & Marine", items: ['m2', 'b4', 'a_ecru'], m_score: 9, m_justif: "Basique efficace.", comment: "Sézane touch." },
-        { title: "Double Maille", items: ['h1', 's_vert', 'm1', 'j_bleu'], m_score: 8.5, m_justif: "Chaleur.", comment: "Cozy chic pour grand froid." },
+        { title: "Double Maille", items: ['h1', 's_vert_parfait', 'm1', 'j_bleu'], m_score: 8.5, m_justif: "Chaleur.", comment: "Cozy chic pour grand froid." },
         { title: "Robe & Pull", items: ['r_print_autom', 'm_louisa_choco', 'c_theo'], m_score: 9, m_justif: "Robe en jupe.", comment: "Transforme ta robe !" },
         { title: "Rouille & Rose", items: ['m_angie', 'b3', 'v1'], m_score: 8, m_justif: "Audacieux.", comment: "Mélange inattendu de chauds et froids." },
         { title: "Abigail Contrast", items: ['r_abigail', 'm_etienne', 'c2'], m_score: 8.5, m_justif: "Taille marquée.", comment: "Le pull sombre sur la robe claire." },
@@ -469,7 +459,6 @@
     renderSection(looksWeekend, 'lookbook-weekend');
     renderSection(looksEvening, 'lookbook-evening');
     renderSection(looksCreative, 'lookbook-creative');
-    renderSection(looksTomette, 'lookbook-tomette');
     renderSection(looksBlush, 'lookbook-blush');
 
 </script>
