@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Smart Closet • Deep Autumn</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #9E4624; --secondary: #1B263B; --accent: #D4A017;
+            --bg: #FAFAF5; --text: #2C3333; --light-text: #666;
+            --success: #27ae60; --danger: #c0392b;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
+
+        header { text-align: center; padding: 3rem 1rem; background: linear-gradient(135deg, var(--primary), #76232F); color: white; margin-bottom: 40px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin: 0; }
+        .subtitle { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; opacity: 0.9; margin-top: 10px; }
+
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 20px 80px; }
+
+        /* FILTRES SAISON */
+        .filters { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .filter-btn { padding: 10px 20px; border: 1px solid var(--secondary); background: transparent; border-radius: 30px; cursor: pointer; font-family: 'Montserrat'; font-weight: 600; transition: all 0.3s; }
+        .filter-btn.active, .filter-btn:hover { background: var(--secondary); color: white; }
+
+        /* GRILLE */
+        h3.category-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary); margin: 50px 0 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        
+        .wardrobe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
+        
+        .item-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; position: relative; }
+        .item-card:hover { transform: translateY(-5px); }
+        
+        .img-container { height: 250px; overflow: hidden; position: relative; background: #f4f4f4; }
+        .item-img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        
+        .item-info { padding: 15px; }
+        .item-name { font-size: 0.85rem; font-weight: 700; margin-bottom: 5px; color: var(--secondary); height: 35px; overflow: hidden; }
+        
+        /* TRACKER & PRIX */
+        .tracker-box { background: #f9f9f9; padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 0.75rem; }
+        .tracker-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .cpp-val { font-weight: bold; color: var(--success); }
+        .btn-count { background: #eee; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-weight: bold; color: #555; }
+        .btn-count:hover { background: var(--accent); color: white; }
+
+        /* BADGES */
+        .badge { position: absolute; top: 10px; right: 10px; padding: 4px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: bold; color: white; z-index: 2; }
+        .badge.wish { background: var(--accent); }
+        .badge.owned { background: var(--forest); }
+        
+        /* LOOKBOOKS */
+        h2 { text-align: center; font-family: 'Playfair Display', serif; margin-top: 80px; color: var(--secondary); }
+        .lookbook-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .look-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .look-title { text-align: center; font-family: 'Playfair Display'; font-size: 1.2rem; margin-bottom: 15px; color: var(--primary); }
+        .look-comp { display: flex; justify-content: center; gap: 5px; margin-bottom: 15px; }
+        .mini-img { width: 70px; height: 90px; object-fit: cover; border-radius: 4px; border: 1px solid #eee; }
+        .look-note { text-align: center; font-size: 0.8rem; font-style: italic; color: #666; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Smart Closet</h1>
+    <div class="subtitle">TRACKER & ANALYTICS • V42</div>
+</header>
+
+<div class="container">
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterSeason('all')">Tout voir</button>
+        <button class="filter-btn" onclick="filterSeason('winter')">🍂 Automne / Hiver</button>
+        <button class="filter-btn" onclick="filterSeason('summer')">☀️ Printemps / Été</button>
+    </div>
+
+    <h3 class="category-title">🧥 Vestes & Manteaux</h3>
+    <div id="container-vestes" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">🧶 Mailles</h3>
+    <div id="container-mailles" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👚 Hauts & Chemises</h3>
+    <div id="container-hauts" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👖 Bas (Jupes & Jeans)</h3>
+    <div id="container-bas" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👗 Robes</h3>
+    <div id="container-robes" class="wardrobe-grid"></div>
+
+    <h3 class="category-title">👜 Accessoires & Chaussures</h3>
+    <div id="container-accessoires" class="wardrobe-grid"></div>
+
+    <h3 class="category-title" style="color:#777;">🎽 Les Invisibles (Sous-couches Techniques)</h3>
+    <div id="container-tech" class="wardrobe-grid"></div>
+
+    <h3 class="category-title" style="color: var(--accent); margin-top: 60px;">✨ Wishlist & Priorités</h3>
+    <div id="container-wishlist" class="wardrobe-grid"></div>
+
+    <h2>Mes Lookbooks</h2>
+    <div id="lookbook-section" class="lookbook-grid"></div>
+
+</div>
+
+<script>
+    // --- DONNÉES V42 (AVEC PRIX ESTIMÉS POUR LE CALCUL) ---
+    // price: Prix d'achat estimé
+    // wear_count: Nombre de fois porté (initialisé à 0 ou simulation)
+    
+    const wardrobe = [
+        // --- WISHLIST (Prix affichés pour budget) ---
+        { id: 'v_clyde', name: 'Manteau Clyde Chocolat', category: 'Veste', img: 'sézane_manteau_clyde_chocolat.avif', wishlist: true, price: 350, season: 'winter' },
+        { id: 's_vert', name: 'Samuel Vert Parfait', category: 'Maille', img: '1000040885.png', wishlist: true, price: 95, season: 'winter' },
+        { id: 'm_betty_tomette', name: 'Gilet Betty Tomette', category: 'Maille', img: '1000040462.png', wishlist: true, price: 120, season: 'all' },
+        { id: 'b_wallace', name: 'Short Wallace Taupe', category: 'Bas', img: '1000040886.png', wishlist: true, price: 95, season: 'winter' },
+        { id: 'm_louisa_choco', name: 'Pull Louisa Chocolat', category: 'Maille', img: '1000040886.png', wishlist: true, price: 110, season: 'winter' },
+        { id: 'v_rafael', name: 'Manteau Rafael Écureuil', category: 'Veste', img: 'sézane_manteau_rafael-écureuil.avif', wishlist: true, price: 290, season: 'winter' },
+        
+        // --- DRESSING OWNED (Compteurs Actifs) ---
+        // VESTES
+        { id: 'v1', name: 'Perfecto Zig Terracotta', category: 'Veste', img: 'sézane_perfecto_zig-terracotta.webp', owned: true, price: 180, wear_count: 12, season: 'all' },
+        
+        // MAILLES
+        { id: 'm2', name: 'Gilet Gaspard Camel', category: 'Maille', img: 'sézane_maille-gaspard-camel.avif', owned: true, price: 110, wear_count: 5, season: 'all' },
+        { id: 'm_etienne', name: 'Pull Étienne Raisin', category: 'Maille', img: 'sézane_maille-étienne-raisin.avif', owned: true, price: 120, wear_count: 2, season: 'winter' },
+        { id: 'm4', name: 'Pull Louisa Beige', category: 'Maille', img: 'sézane_maille-louisa_beige_chiné.avif', owned: true, price: 110, wear_count: 8, season: 'winter' },
+        { id: 'm_angie', name: 'Gilet Angie Rose', category: 'Maille', img: 'sézane-maille_angie_rose.jpg', owned: true, price: 115, wear_count: 3, season: 'winter' },
+        { id: 'm_carlota', name: 'Pull Carlota Vert', category: 'Maille', img: 'sézane-maille_carlota_vert_garden.jpg', owned: true, price: 110, wear_count: 1, season: 'winter' },
+        { id: 'm_luke', name: 'Pull Luke Beige', category: 'Maille', img: 'sézane-maille_luke-beige-chiné.jpg', owned: true, price: 110, wear_count: 6, season: 'winter' },
+        { id: 'm_prune', name: 'Pull Brodé Prune', category: 'Maille', img: 'PXL_20251121_154145077~2.jpg', owned: true, price: 100, wear_count: 4, season: 'winter' },
+        { id: 'm7', name: 'Veste Thaïs Vert', category: 'Maille', img: 'sézane_veste-thais-vert-parfait.avif', owned: true, price: 130, wear_count: 2, season: 'winter' },
+        { id: 'm6', name: 'Pull Stacy Grenat', category: 'Maille', img: 'sézane_maille-stacy-grenat.avif', owned: true, price: 110, wear_count: 0, season: 'winter' },
+        
+        // HAUTS
+        { id: 'h_ron', name: 'Top Ron Crochet', category: 'Haut', img: 'sézane_top_ron.avif', owned: true, price: 90, wear_count: 10, season: 'all' },
+        { id: 'h1', name: 'Chemise Honey Écru', category: 'Haut', img: 'sezane_chemise_honey_écru.avif', owned: true, price: 95, wear_count: 15, season: 'all' },
+        { id: 'h2', name: 'Chemise Guipure Ocre', category: 'Haut', img: 'sezane_chemise_guipure_contrastée_ocre.avif', owned: true, price: 95, wear_count: 3, season: 'all' },
+        { id: 'h3', name: 'Chemise Chlo Rayée', category: 'Haut', img: 'sézane_chemise_chlo_rayée_écru_bleu2.avif', owned: true, price: 95, wear_count: 7, season: 'all' },
+        { id: 'h4', name: 'Blouse Bianca', category: 'Haut', img: 'sezane_blouse_bianca.avif', owned: true, price: 95, wear_count: 5, season: 'all' },
+        { id: 'h_uniqlo', name: 'Blouse Uniqlo Blanche', category: 'Haut', img: 'uniqlo_blouse_rayonne-blanche.avif', owned: true, price: 30, wear_count: 20, season: 'all' },
+        { id: 'h_lise', name: 'Chemise Lise Écru', category: 'Haut', img: '1000040448.png', owned: true, price: 95, wear_count: 1, season: 'all' },
+
+        // BAS
+        { id: 'b5', name: 'Jupe Plissée Camel', category: 'Bas', img: 'uniqlo_jupe-plissée-camel.jpg', owned: true, price: 40, wear_count: 12, season: 'all' },
+        { id: 'b4', name: 'Jupe Caroll Marine', category: 'Bas', img: 'caroll_jupe-plissée-marine.webp', owned: true, price: 60, wear_count: 8, season: 'all' },
+        { id: 'b1', name: 'Jupe Opaline Carreaux', category: 'Bas', img: 'sezane_jupe_opaline.avif', owned: true, price: 95, wear_count: 4, season: 'winter' },
+        { id: 'b2', name: 'Jupe Peter Taupe', category: 'Bas', img: 'sézane_jupe_peter_taupe.png', owned: true, price: 90, wear_count: 6, season: 'winter' },
+        { id: 'b3', name: 'Jupe Velours Bordeaux', category: 'Bas', img: 'nafnaf_jupe_bordeaux_velours_côtelé.png', owned: true, price: 50, wear_count: 5, season: 'winter' },
+        { id: 'b_caro_rose', name: 'Jupe Carolina Rose', category: 'Bas', img: 'sézane-jupe_carolina_fleurs_roses.jpg', owned: true, price: 95, wear_count: 2, season: 'all' },
+        { id: 'b_caro_miel', name: 'Jupe Carolina Miel', category: 'Bas', img: 'sézane-jupe_carolina_fleurs_miel.jpg', owned: true, price: 95, wear_count: 3, season: 'all' },
+        { id: 'j_bleu', name: 'Jean Slim Bleu', category: 'Bas', img: 'sézane_jean_slim_parfait_bleu_denim.avif', owned: true, price: 100, wear_count: 30, season: 'all' },
+        { id: 'j_noir', name: 'Jean Slim Noir', category: 'Bas', img: 'sézane_jean_slim_parfait_noir.avif', owned: true, price: 100, wear_count: 25, season: 'all' },
+
+        // ROBES
+        { id: 'r1', name: 'Robe Evy Fleurs', category: 'Robe', img: 'sézane_robe_evy_fleurs_violet2.webp', owned: true, price: 145, wear_count: 4, season: 'all' },
+        { id: 'r2', name: 'Robe Fond Noir', category: 'Robe', img: 'sézane_robe_fleurie1.webp', owned: true, price: 130, wear_count: 5, season: 'all' },
+        { id: 'r_selena', name: 'Robe Selena Marine', category: 'Robe', img: 'PXL_20250207_162236515.jpg', owned: true, price: 145, wear_count: 2, season: 'all' },
+        { id: 'r_abigail', name: 'Robe Abigail Écru', category: 'Robe', img: 'sézane_robe_abigail.avif', owned: true, price: 150, wear_count: 1, season: 'all' },
+        
+        // ACCESSOIRES & TECH
+        { id: 'c1', name: 'Bottes Anna Field', category: 'Chaussures', img: 'anna-field-bottes-marron.jpg', owned: true, price: 60, wear_count: 40, season: 'winter' },
+        { id: 'a_artemis', name: 'Ceinture Artemis', category: 'Accessoire', img: 'sézane_ceinture-cuir-naturel-héritage.avif', owned: true, price: 55, wear_count: 10, season: 'all' },
+        { id: 'a_moka', name: 'Écharpe Moka', category: 'Accessoire', img: 'sézane_écharpe_marianne_moka.avif', owned: true, price: 80, wear_count: 15, season: 'winter' },
+        
+        // INVISIBLES (Tech)
+        { id: 't_heat_noir', name: 'Heattech Noir', category: 'Tech', img: 'https://placehold.co/200x250/111/FFF?text=Heattech', owned: true, price: 15, wear_count: 50, season: 'winter' },
+        { id: 't_heat_chair', name: 'Heattech Chair', category: 'Tech', img: 'https://placehold.co/200x250/e3c5a8/555?text=Heattech', owned: true, price: 15, wear_count: 45, season: 'winter' },
+        { id: 't_top_dentelle', name: 'Top Dentelle Blanc', category: 'Tech', img: 'https://placehold.co/200x250/fff/333?text=Dentelle', owned: true, price: 25, wear_count: 20, season: 'all' },
+    ];
+
+    // --- LOGIQUE TRACKER ---
+    function updateCount(id, change) {
+        const item = wardrobe.find(i => i.id === id);
+        if (item) {
+            item.wear_count = Math.max(0, (item.wear_count || 0) + change);
+            renderAllWardrobe(); // Re-render pour mettre à jour l'affichage
+        }
+    }
+
+    function calculateCPP(price, count) {
+        if (!price) return "N/A";
+        if (!count || count === 0) return price + "€"; // Coût complet si jamais porté
+        return (price / count).toFixed(2) + "€";
+    }
+
+    // --- AFFICHAGE ---
+    function renderCategory(catName, containerId) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        container.innerHTML = '';
+        
+        // Filtre de base
+        let items = wardrobe.filter(item => {
+            if (containerId === 'container-wishlist' && !item.wishlist) return false;
+            if (containerId !== 'container-wishlist' && item.wishlist) return false;
+            
+            // Filtre catégorie
+            if (containerId === 'container-accessoires') return ['Accessoire', 'Chaussures'].includes(item.category);
+            if (containerId === 'container-mailles') return item.category === 'Maille';
+            if (containerId === 'container-bas') return ['Bas', 'Jeans'].includes(item.category);
+            if (containerId === 'container-tech') return item.category === 'Tech';
+            if (item.category !== catName && !['Accessoire', 'Chaussures', 'Maille', 'Bas', 'Jeans', 'Tech'].includes(catName)) return false; // Fallback
+            
+            return item.category === catName || (containerId.includes(item.category.toLowerCase()) || (containerId === 'container-bas' && ['Bas','Jeans'].includes(item.category)) || (containerId === 'container-accessoires' && ['Accessoire','Chaussures'].includes(item.category)));
+        });
+
+        items.forEach(item => {
+            const imagePath = item.img.startsWith('http') ? item.img : 'images/' + item.img;
+            let badgeHtml = item.wishlist ? '<span class="badge wish">Wishlist</span>' : '<span class="badge owned">Dressing</span>';
+            
+            // Bloc Tracker (Uniquement pour Owned)
+            let trackerHtml = '';
+            if (item.owned) {
+                let cpp = calculateCPP(item.price, item.wear_count);
+                trackerHtml = `
+                    <div class="tracker-box">
+                        <div class="tracker-row">
+                            <span>Porté : <strong>${item.wear_count || 0}</strong> x</span>
+                            <div>
+                                <button class="btn-count" onclick="updateCount('${item.id}', -1)">-</button>
+                                <button class="btn-count" onclick="updateCount('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="tracker-row" style="border-top:1px solid #eee; padding-top:5px; margin-top:5px;">
+                            <span>Coût/Port :</span>
+                            <span class="cpp-val">${cpp}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                trackerHtml = `<div class="tracker-box" style="text-align:center;">Prix estimé : <strong>${item.price}€</strong></div>`;
+            }
+
+            const card = `
+                <div class="item-card">
+                    ${badgeHtml}
+                    <div class="img-container">
+                        <img src="${imagePath}" alt="${item.name}" class="item-img" onerror="this.style.opacity='0.2'">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        ${trackerHtml}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    function renderLookbooks() {
+        const container = document.getElementById('lookbook-section');
+        container.innerHTML = '';
+        
+        // Exemple de looks (Données simulées pour l'exemple)
+        const looks = [
+            { title: "Working Girl Chic", items: ['h_uniqlo', 's_vert', 'b2', 'c1'] },
+            { title: "Weekend Tomette", items: ['m_betty_tomette', 'b_wallace', 'c1'] },
+            { title: "Soirée Lise", items: ['h_lise', 'b3', 'c1'] }
+        ];
+
+        looks.forEach(look => {
+            let imagesHtml = '';
+            look.items.forEach(id => {
+                const item = wardrobe.find(i => i.id === id);
+                if(item) {
+                    const img = item.img.startsWith('http') ? item.img : 'images/' + item.img;
+                    imagesHtml += `<img src="${img}" class="mini-img">`;
+                }
+            });
+            
+            container.innerHTML += `
+                <div class="look-card">
+                    <div class="look-title">${look.title}</div>
+                    <div class="look-comp">${imagesHtml}</div>
+                    <div class="look-note">Porte-le demain !</div>
+                </div>
+            `;
+        });
+    }
+
+    function renderAllWardrobe() {
+        renderCategory('Veste', 'container-vestes');
+        renderCategory('Maille', 'container-mailles'); 
+        renderCategory('Haut', 'container-hauts');
+        renderCategory('Bas', 'container-bas');
+        renderCategory('Robe', 'container-robes');
+        renderCategory('Accessoire', 'container-accessoires'); 
+        renderCategory('Tech', 'container-tech');
+        renderCategory('Wishlist', 'container-wishlist'); // Force render
+    }
+
+    // Init
+    renderAllWardrobe();
+    renderLookbooks();
+
+</script>
+</body>
+</html>
