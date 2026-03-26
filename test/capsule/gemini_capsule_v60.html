@@ -463,43 +463,94 @@
             .mini-img { width: 80px; height: 110px; margin-left: -15px; margin-right: -15px; }
         }
 
-/* STYLE LOOK DU JOUR */
-.today-box {
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    margin-top: 60px;
-    border: 2px solid var(--primary);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
+    /* STYLE LOOK DU JOUR */
+    .today-box {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        margin-top: 60px;
+        border: 2px solid var(--primary);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
 
-/* Style des items à sélectionner */
-.select-card {
-    border: 2px solid transparent;
-    border-radius: 8px;
-    overflow: hidden;
-    opacity: 0.6;
-    transition: all 0.2s;
-    cursor: pointer;
-}
-.select-card.active {
-    border-color: var(--success);
-    opacity: 1;
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
-}
-.select-card img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-}
+    /* Style des items à sélectionner */
+    .select-card {
+        border: 2px solid transparent;
+        border-radius: 8px;
+        overflow: hidden;
+        opacity: 0.6;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+    .select-card.active {
+        border-color: var(--success);
+        opacity: 1;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    }
+    .select-card img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+    }
+
+
+    /* --- STYLE MATRICE & LISIBILITÉ --- */
+
+    /* 1. Le Texte (Plus gros et lisible) */
+    .look-comment {
+        font-family: 'Quicksand', sans-serif !important; /* On force la police lisible */
+        font-size: 0.95rem !important; /* Texte plus gros */
+        line-height: 1.4;
+        color: #444;
+        font-style: normal; /* On enlève l'italique pour la lisibilité */
+        margin-top: 10px;
+        background: #fafafa;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+
+    /* 2. Le Duo de Cartes (Effet Poker à 2 cartes) */
+    .matrix-card {
+        width: 90px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        background-color: #fff;
+    }
+
+    /* Carte de Gauche (Le Haut) */
+    .matrix-left {
+        transform: rotate(-10deg) translateX(15px); /* Penche à gauche */
+        z-index: 2; /* Passe devant */
+    }
+
+    /* Carte de Droite (Le Bas) */
+    .matrix-right {
+        transform: rotate(10deg) translateX(-15px); /* Penche à droite */
+        z-index: 1; /* Passe derrière */
+    }
+
+    /* Au survol, elles se redressent */
+    .matrix-card:hover {
+        transform: scale(1.15) rotate(0deg) !important;
+        z-index: 100 !important;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
     </style>
 </head>
 <body>
 
 <nav class="floating-nav">
     <a href="#section-generator" class="nav-item" data-title="Magic"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
-    <a href="#section-planner" class="nav-item" data-title="Agenda"><i class="fa-regular fa-calendar-check"></i></a>
+    <a href="#section-planner" class="nav-item" data-title="Agenda"><i class="fa-solid fa-calendar-check"></i></a>
+    <a href="#section-matrix" class="nav-item" data-title="Matrice des combinaisons"><i class="fa-solid fa-flask"></i></a>
     <a href="#section-dressing" class="nav-item" data-title="Dressing"><i class="fa-solid fa-shirt"></i></a>
     <a href="#section-looks" class="nav-item" data-title="Looks"><i class="fa-solid fa-heart"></i></a>
     <a href="#section-wishlist" class="nav-item" data-title="Wishlist" style="color:var(--accent);"><i class="fa-solid fa-gift"></i></a>
@@ -575,6 +626,17 @@
 
     <h2 id="section-planner">Ma Semaine</h2>
     <div id="weekly-planner" class="weekly-grid"></div>
+
+    
+    <h2 id="section-matrix"style="margin-top:60px;">🔮 La Matrice des Combinaisons</h2>
+    <div style="text-align:center; margin-bottom:20px;">
+        <p>Je teste tes <strong><span id="total-combos">0</span> combinaisons</strong> possibles...</p>
+        <button onclick="generateMatrix()" style="background:var(--secondary); color:white; border:none; padding:12px 25px; border-radius:30px; font-weight:bold; cursor:pointer;">
+            Lancer l'Analyse Complète 🚀
+        </button>
+    </div>
+    <div id="matrix-results" class="lookbook-grid"></div>
+
     <h2 id="section-dressing" style="margin-top:80px;">Mon Dressing</h2>
     
     <h3 class="category-title">🧥 Vestes & Manteaux</h3>
@@ -806,52 +868,6 @@
 
     // --- LOOKBOOKS ETENDUS ---
     const allLooks = [
-// --- LOOKS PREPPY / LIGHT ACADEMIA (Tes nouveaux favoris) ---
-        { 
-            title: "British Librarian", 
-            items: ['h_chlo_rayée', 'm_betty_tomette', 'b_jupe_marine', 'c_boots_noeud'], 
-            m_score: 10, 
-            m_justif: "Mix Rayures & Tomette.", 
-            comment: "Le col rayé qui dépasse du gilet Tomette : l'association intellectuelle chic par excellence." 
-        },
-        { 
-            title: "Slytherin Soft", 
-            items: ['h_col_nude', 's_vert', 'b_jupe_marine', 'c_boots_noeud'], 
-            m_score: 9.5, 
-            m_justif: "Marine & Vert : Duo Profond.", 
-            comment: "L'écru du col roulé illumine le vert sapin. Très élégant." 
-        },
-        { 
-            title: "Golden Camaïeu", 
-            items: ['h_bianca', 'm_louisa_choco', 'b_jupe_camel', 'c_boots_noeud'], 
-            m_score: 10, 
-            m_justif: "Harmonie Chocolat/Camel.", 
-            comment: "Jupe Camel + Bottines Camel = Jambes infinies. Le Chocolat adoucit le tout." 
-        },
-        { 
-            title: "Velours Academy", 
-            items: ['h_col_bordeaux', 'b3', 'm_betty_tomette', 'a_artemis'], 
-            m_score: 9.5, 
-            m_justif: "Monochrome Rouge/Bordeaux.", 
-            comment: "Le gilet Tomette sur la jupe Bordeaux velours : un camaïeu chaud sublime." 
-        },
-        
-        // --- LOOKS CASUAL CHIC (Week-end) ---
-        { 
-            title: "Cool & Coquelicot", 
-            items: ['h_uniqlo', 'm_louisa_choco', 'b_wallace', 'c_coquelicot'], 
-            m_score: 9, 
-            m_justif: "Mix & Match textures.", 
-            comment: "Les baskets rouges rappellent le chaud du pull chocolat." 
-        },
-        { 
-            title: "Panda roux Relax", 
-            items: ['h_ron', 'm_gaspard_rouge', 'j_bleu', 'c_panda'], 
-            m_score: 8.5, 
-            m_justif: "Confort absolu.", 
-            comment: "Le Gaspard rouge porté ouvert sur le top crochet." 
-        },
-
     // --- NOUVELLE VAGUE : LOOKS PREPPY AVANCÉS ---
         { 
             title: "British Librarian", 
@@ -913,7 +929,7 @@
         },
         { 
             title: "Tartan Academy", 
-            items: ['h_col_choco', 'm_betty_tomette', 'b_opaline', 'c1'], 
+            items: ['h_col_choco', 'm_betty_tomette', 'b1', 'c1'], 
             m_score: 9.5, 
             m_justif: "Chaud et Rétro.", 
             comment: "Le gilet ouvert sur le col roulé structure la silhouette." 
@@ -941,17 +957,17 @@
         { title: "Tomette & Marine", items: ['m_betty_tomette', 'b_jupe_marine', 'c_boots_noeud'], m_score: 9.5, m_justif: "Contraste Chic.", comment: "Le rouille et le marine s'adorent." },
         { title: "Tomette & Jean", items: ['m_betty_tomette', 'j_bleu', 'a_moka'], m_score: 9, m_justif: "Casual.", comment: "Peps immédiat sur du denim." },
         { title: "Look Short", items: ['m_betty_tomette', 'b_wallace', 'c1'], m_score: 10, m_justif: "Jambes allongées.", comment: "Le short taupe et le gilet rouille s'adorent." },
-        { title: "Tomette Opale", items: ['m_betty_tomette', 'b_opaline', 'c1'], m_score: 9.5, m_justif: "Mix Imprimé.", comment: "Le gilet reprend les tons chauds de la jupe." },
-        { title: "Romance Berry", items: ['h_bianca', 'm5', 'b_velours_bx'], m_score: 9, m_justif: "Gilet ouvert.", comment: "Le blush adoucit le bordeaux." },
+        { title: "Tomette Opale", items: ['m_betty_tomette', 'b1', 'c1'], m_score: 9.5, m_justif: "Mix Imprimé.", comment: "Le gilet reprend les tons chauds de la jupe." },
+        { title: "Romance Berry", items: ['h_bianca', 'm5', 'b3'], m_score: 9, m_justif: "Gilet ouvert.", comment: "Le blush adoucit le bordeaux." },
         { title: "Douceur Cuir", items: ['m5', 'b_jupe_camel', 'v1'], m_score: 9.5, m_justif: "Structuré.", comment: "Cuir + Maille mousseuse." },
         { title: "Othello Noir", items: ['m_othello_rose', 'j_noir', 'c_boots_noeud', 'a_artemis'], m_score: 9, m_justif: "Simple.", comment: "Le vieux rose réchauffe le noir." },
         { title: "Working Girl", items: ['h_uniqlo', 's_vert', 'b_peter'], m_score: 9, m_justif: "Verticalité.", comment: "Le vert remplace le taupe." },
         { title: "Selena & Ocre", items: ['r_selena', 'm_maxime', 'a_artemis'], m_score: 9, m_justif: "Ceinturé.", comment: "Bleu et Or." },
         { title: "Duo Vert", items: ['h_bianca', 'm7', 'b_peter', 'c1'], m_score: 9.5, m_justif: "Veste courte.", comment: "Top pour 1m60." },
         { title: "L'Officier", items: ['h_bianca', 'm_betty_tomette', 'b_jupe_marine'], m_score: 10, m_justif: "Silhouette nette.", comment: "Le Tomette en structure." },
-        { title: "Le Ron Chic", items: ['h_ron', 'b_opaline', 'm_betty_tomette'], m_score: 10, m_justif: "Taille haute.", comment: "Mix textures." },
+        { title: "Le Ron Chic", items: ['h_ron', 'b1', 'm_betty_tomette'], m_score: 10, m_justif: "Taille haute.", comment: "Mix textures." },
         { title: "Flower Power", items: ['b_caro_miel', 'h_uniqlo_bleu', 's_vert'], m_score: 9, m_justif: "Volumes OK.", comment: "Le vert calme l'imprimé." },
-        { title: "Taupe sur Dentelle", items: ['h_bianca', 'm_louisa_choco', 'b_velours_bx'], m_score: 9.5, m_justif: "Trapèze.", comment: "Douceur chocolat." },
+        { title: "Taupe sur Dentelle", items: ['h_bianca', 'm_louisa_choco', 'b3'], m_score: 9.5, m_justif: "Trapèze.", comment: "Douceur chocolat." },
         { title: "Etienne Layer", items: ['h_uniqlo', 'm_etienne', 'j_bleu'], m_score: 8.5, m_justif: "Col visible.", comment: "Le col blanc illumine le pull sombre." },
         { title: "Miel & Ocre", items: ['h2', 'b_caro_miel', 'm2'], m_score: 9.5, m_justif: "Monochrome.", comment: "Rayonnant." },
         { title: "Rock Doux", items: ['m4', 'b_peter', 'v1'], m_score: 10, m_justif: "Veste courte.", comment: "Neutre et cuir." },
@@ -959,7 +975,7 @@
         { title: "Kaki Nature", items: ['m8', 'b_jupe_camel', 'h_ron'], m_score: 9, m_justif: "Longiligne.", comment: "Gilet long sur jupe plissée." },
         { title: "Festive Lizy", items: ['m_lizy', 'b_jupe_marine'], m_score: 10, m_justif: "Gilet court.", comment: "Sequins chics." },
         { title: "Allure Rétro", items: ['r3', 'm_betty_tomette'], m_score: 9, m_justif: "Structure.", comment: "Gilet fermé sur robe." },
-        { title: "Velours Chic", items: ['h_lise', 'b_velours_bx', 'c_theo'], m_score: 9.5, m_justif: "Matières.", comment: "Dentelle et Velours." },
+        { title: "Velours Chic", items: ['h_lise', 'b3', 'c_theo'], m_score: 9.5, m_justif: "Matières.", comment: "Dentelle et Velours." },
         { title: "Betty Tomette", items: ['m_betty_tomette', 'b_wallace', 'c1'], m_score: 10, m_justif: "Silhouette idéale.", comment: "Perfection." },
         { title: "Choco-Crème", items: ['h_lise', 'b_peter', 'v_clyde'], m_score: 9, m_justif: "Contraste doux.", comment: "Mélange gourmand." },
         { title: "Double Maille", items: ['h1', 's_vert', 'm2', 'j_bleu'], m_score: 8.5, m_justif: "Chaleur.", comment: "Cozy chic." },
@@ -1473,6 +1489,137 @@
                 </div>`;
         });
     }
+
+
+// --- GENERATION MATRICE LOOKS ---
+    function generateMatrix() {
+        const container = document.getElementById('matrix-results');
+        // Petit loader sympa
+        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:20px; color:var(--secondary);">✨ Brassage des cartes... Recherche des meilleurs duos...</div>';
+        
+        setTimeout(() => { // Petit délai pour voir le message
+            // 1. FILTRAGE
+            const tops = wardrobe.filter(i => (i.category === 'Haut' || i.category === 'Maille') && (i.owned || i.priority));
+            const bottoms = wardrobe.filter(i => (i.category === 'Bas' || i.category === 'Jeans') && (i.owned || i.priority));
+            
+            const dresses = wardrobe.filter(i => i.category === 'Robe' && (i.owned || i.priority));
+            const knits = wardrobe.filter(i => i.category === 'Maille' && (i.owned || i.priority));
+
+            let allCombos = [];
+            let totalCount = (tops.length * bottoms.length) + (dresses.length * knits.length);
+            document.getElementById('total-combos').innerText = totalCount;
+
+            // --- PARTIE 1 : HAUTS + BAS ---
+            tops.forEach(top => {
+                bottoms.forEach(bottom => {
+                    allCombos.push(calculateMatch(top, bottom, false));
+                });
+            });
+
+            // --- PARTIE 2 : ROBES + MAILLES ---
+            dresses.forEach(dress => {
+                knits.forEach(knit => {
+                    allCombos.push(calculateMatch(knit, dress, true));
+                });
+            });
+
+            // 3. Tri
+            allCombos.sort((a, b) => b.finalScore - a.finalScore);
+            
+            // 4. Affichage
+            container.innerHTML = '';
+            
+            // On affiche le TOP 60 pour ne pas surcharger
+            allCombos.slice(0, 60).forEach(combo => {
+                let barColor = combo.finalScore >= 9 ? 'var(--success)' : (combo.finalScore >= 7 ? '#f39c12' : 'var(--danger)');
+                let w = combo.finalScore * 10;
+                
+                // Gestion des images
+                const imgTop = combo.top.img.startsWith('http') ? combo.top.img : 'images/' + combo.top.img;
+                const imgBot = combo.bottom.img.startsWith('http') ? combo.bottom.img : 'images/' + combo.bottom.img;
+                
+                // Badge Panier
+                let badge = (combo.top.priority || combo.bottom.priority) ? '<span style="position:absolute; top:-5px; right:-5px; background:white; border-radius:50%; padding:2px; box-shadow:0 2px 5px rgba(0,0,0,0.1); font-size:1.2rem;">🛒</span>' : '';
+
+                container.innerHTML += `
+                    <div class="look-card">
+                        <div class="look-items" style="height:150px !important; overflow:visible !important;">
+                            ${badge}
+                            <img src="${imgTop}" class="matrix-card matrix-left" title="${combo.top.name}">
+                            <img src="${imgBot}" class="matrix-card matrix-right" title="${combo.bottom.name}">
+                        </div>
+                        
+                        <div class="morpho-block">
+                            <div class="morpho-header">
+                                <span>Compatibilité</span>
+                                <span style="color:${barColor}">${combo.finalScore}/10</span>
+                            </div>
+                            <div class="morpho-bar-bg">
+                                <span class="morpho-bar-fill" style="width:${w}%; background-color:${barColor}"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="look-comment">
+                            <strong>${combo.top.name} + ${combo.bottom.name}</strong>
+                            <br><br>
+                            ${combo.finalComment}
+                        </div>
+                    </div>`;
+            });
+        }, 300); // Fin du délai
+    }
+
+    // FONCTION DE CALCUL INTELLIGENTE (Séparée pour clarté)
+    function calculateMatch(top, bottom, isDressCombo) {
+        let score = 7;
+        let comments = [];
+        const tName = top.name.toLowerCase();
+        const bName = bottom.name.toLowerCase();
+
+        // --- LOGIQUE SPÉCIALE ROBE + MAILLE ---
+        if (isDressCombo) {
+            // Règle 1 : La Ceinture Artemis
+            if (tName.includes('samuel')) {
+                score += 2; 
+                comments.push("✨ <strong>ASTUCE :</strong> Ceinture le Samuel avec ton Artemis Camel pour structurer !");
+            } else if (tName.includes('louisa') || (top.category === 'Maille' && !tName.includes('gilet'))) {
+                comments.push("💡 Fais blouser le pull dans ta ceinture Artemis portée sur la robe.");
+            } else if (tName.includes('betty') || tName.includes('maxime')) {
+                score += 1;
+                comments.push("Porte le gilet ouvert pour montrer la robe.");
+            }
+
+            // Règle 2 : Volumes
+            if (bName.includes('courte') && tName.includes('long')) {
+                comments.push("Joli jeu de longueurs (Robe courte + Gilet).");
+            }
+        }
+
+        // --- RÈGLES COULEURS (Valable pour tout) ---
+        // Accords Magiques Automne Profond
+        if ((tName.includes('vert') && bName.includes('marine')) || (tName.includes('marine') && bName.includes('vert'))) {
+            score += 2; comments.push("Accord 'Forêt Profonde' sublime.");
+        }
+        if ((tName.includes('choco') && bName.includes('camel')) || (tName.includes('camel') && bName.includes('choco'))) {
+            score += 3; comments.push("Le Camaïeu parfait Chocolat/Camel !");
+        }
+        if (tName.includes('tomette') || tName.includes('rouille')) {
+            if (bName.includes('marine') || bName.includes('bleu')) {
+                score += 2; comments.push("Le chaud (Tomette) réveille le froid (Bleu).");
+            }
+        }
+        // Le Vert et le Bordeaux
+        if ((tName.includes('vert') && bName.includes('bordeaux')) || (tName.includes('bordeaux') && bName.includes('vert'))) {
+            score += 1; comments.push("Duo audacieux et très couture.");
+        }
+
+        // --- FINITIONS ---
+        score = Math.min(10, Math.max(1, score));
+        if (comments.length === 0) comments.push(isDressCombo ? "Un layering simple pour avoir chaud." : "Une association efficace.");
+
+        return { top: top, bottom: bottom, finalScore: score, finalComment: comments.join(' ') };
+    }
+
 
     // --- INITIALISATION GLOBALE (LE MOTEUR) ---
     function renderAllWardrobe() {

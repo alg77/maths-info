@@ -497,6 +497,11 @@
 
     /* --- STYLE MATRICE & LISIBILITÉ --- */
 
+
+    /* Au survol, tout s'écarte pour qu'on voie bien */
+    .look-card:hover .matrix-c1 { transform: rotate(-20deg) translateX(-10px) scale(1.1); z-index:10; }
+    .look-card:hover .matrix-c2 { transform: translateY(-15px) scale(1.1); z-index:11; }
+    .look-card:hover .matrix-c3 { transform: rotate(20deg) translateX(10px) scale(1.1); z-index:10; }
     /* 1. Le Texte (Plus gros et lisible) */
     .look-comment {
         font-family: 'Quicksand', sans-serif !important; /* On force la police lisible */
@@ -524,16 +529,25 @@
         background-color: #fff;
     }
 
-    /* Carte de Gauche (Le Haut) */
-    .matrix-left {
-        transform: rotate(-10deg) translateX(15px); /* Penche à gauche */
-        z-index: 2; /* Passe devant */
-    }
+    /* --- STYLE MATRICE (Mise à jour 3 Cartes) --- */
 
-    /* Carte de Droite (Le Bas) */
-    .matrix-right {
-        transform: rotate(10deg) translateX(-15px); /* Penche à droite */
-        z-index: 1; /* Passe derrière */
+    /* Cas 2 Cartes (Haut + Bas) - inchangé */
+    .matrix-left { transform: rotate(-10deg) translateX(20px); z-index: 2; }
+    .matrix-right { transform: rotate(10deg) translateX(-20px); z-index: 1; }
+
+    /* NOUVEAU : Cas 3 Cartes (Veste + Haut + Bas) */
+    .matrix-c1 { /* La Veste (Gauche) */
+        transform: rotate(-15deg) translateX(25px) translateY(5px); 
+        z-index: 3; 
+    }
+    .matrix-c2 { /* Le Haut (Milieu - un peu caché) */
+        transform: scale(0.9) translateY(-5px); 
+        z-index: 1; 
+        filter: brightness(0.95); /* Un peu plus sombre pour la profondeur */
+    }
+    .matrix-c3 { /* Le Bas (Droite) */
+        transform: rotate(15deg) translateX(-25px) translateY(5px); 
+        z-index: 2; 
     }
 
     /* Au survol, elles se redressent */
@@ -549,8 +563,8 @@
 
 <nav class="floating-nav">
     <a href="#section-generator" class="nav-item" data-title="Magic"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
-    <a href="#section-planner" class="nav-item" data-title="Agenda"><i class="fa-regular fa-calendar-check"></i></a>
-    <a href="#section-matrix" class="nav-item" data-title="Matrice des combinaisons"><i class="fa-solid fa-layer-group"></i></a>
+    <a href="#section-planner" class="nav-item" data-title="Agenda"><i class="fa-solid fa-calendar-check"></i></a>
+    <a href="#section-matrix" class="nav-item" data-title="Matrice des combinaisons"><i class="fa-solid fa-flask"></i></a>
     <a href="#section-dressing" class="nav-item" data-title="Dressing"><i class="fa-solid fa-shirt"></i></a>
     <a href="#section-looks" class="nav-item" data-title="Looks"><i class="fa-solid fa-heart"></i></a>
     <a href="#section-wishlist" class="nav-item" data-title="Wishlist" style="color:var(--accent);"><i class="fa-solid fa-gift"></i></a>
@@ -681,41 +695,15 @@
     // --- BDD RESTAURÉE AVEC NOMS EXACTS ---
     
     const wardrobe = [
-        // --- PRIORITÉS (PANIER) ---
-        { id: 'b_wallace', name: 'Short Wallace Taupe', category: 'Bas', img: 'sézane_short_wallace-taupe.avif', wishlist: true, priority: true, priority_reason: "Parfait pour une Petite : montre les jambes avec élégance.", c_score: 9, c_tip: "Excellent neutre.", price: 105 },
+        { id: 'm_cheryl_roi', name: 'Pull Cheryle Bleau Roi', category: 'Maille', img: 'sézane_maille_cheryl_bleu-roi.png', owned: true, price: 70, wear_count: 0, c_score: 6 },
+        { id: 'm_cheryl_chataigne', name: 'Pull Cheryle Chataîgne', category: 'Maille', img: 'sézane_maille-cheryle-chataigne.avif', owned: true, price: 70, wear_count: 0, c_score: 9.5 },
 
-        { 
-            id: 'm_patchwork_vinted', 
-            name: 'Pull Sézane Hollie Patchwork', 
-            category: 'Maille', 
-            img: 'sézane-maille_hollie-rose.jpg', // Ton image Vinted
-            wishlist: true, // Mets 'owned: true' si tu l'achètes !
-            priority: false, 
-            c_score: 9, 
-            c_tip: "Le bordeaux et le doré sauvent le rose pâle. Superbe éclat.", 
-            price: 74 // Prix avec frais estimés
-        },
-        // --- NOUVEAUTÉS (IMAGES FOURNIES) ---
-        { id: 'c_panda', name: 'Baskets Panda Roux', category: 'Chaussures', img: 'minuit_virevolte_panda_roux_1100x.webp', owned: true, price: 130, wear_count: 0, c_score: 10 },
-        { id: 'c_coquelicot', name: 'Baskets Coquelicot', category: 'Chaussures', img: 'minuit_virevolte_coquelicot.jpg', owned: true, price: 130, wear_count: 0, c_score: 9.5 },
-        { id: 'c_corgi', name: 'Baskets Corgi', category: 'Chaussures', img: 'minuit_virevolte_corgi.jpg', owned: true, price: 130, wear_count: 0, c_score: 7 },
-        { id: 'c_boots_noeud', name: 'Bottines Camel Nœud', category: 'Chaussures', img: 'bottines-marron-lovely-skull.webp', owned: true, price: 80, wear_count: 0, c_score: 10 },
-        { id: 'm_cheryl_roi', name: 'Pull Cheryl Roi', category: 'Maille', img: 'sézane_maille_cheryl_bleu-roi.png', owned: true, price: 120, wear_count: 0, c_score: 6 },
         { id: 'm_othello_rose', name: 'Gilet Othello Rose', category: 'Maille', img: 'sézane_maille-othello-bois-de-rose-foncé.avif', owned: true, price: 125, wear_count: 0, c_score: 9.5 },
         { id: 'a_artemis', name: 'Ceinture Artemis', category: 'Accessoire', img: 'sézane_ceinture-cuir-naturel-héritage.png', owned: true, price: 65, wear_count: 0, c_score: 9 },
 
         // --- OWNED (V60 Names) ---
         { id: 's_vert', name: 'Samuel Vert Parfait', category: 'Maille', img: 'sézane_pull_samuel_vert-parfait-foncé.avif', owned: true, c_score: 10, c_tip: "Couleur pépite.", price: 100,  wear_count: 0 },
         { id: 'm_betty_tomette', name: 'Gilet Betty Tomette', category: 'Maille', img: 'sézane_gilet_betty_crochet_tomette.avif', owned: true, c_score: 10, c_tip: "Couleur Wouah !", price: 125, wear_count: 0 }, 
-        { id: 'm_louisa_choco', name: 'Pull Louisa Chocolat', category: 'Maille', img: 'sézane_maille-louisa_chocolat-clair.avif', owned: true, c_score: 10, c_tip: "Basique idéal.", price: 115, wear_count: 0 },
-        { 
-            id: 'g_maxime_cuivre', 
-            name: 'Gilet Maxime Cuivre (12A)', 
-            category: 'Maille', 
-            img: 'petit_sézane_gilet-maxime-cuivre.avif', // Ton image du Maxime
-            owned: true, c_score: 9, price: 65, wear_count: 0 },
-
-
 
         { id: 'v1', name: 'Perfecto Zig Terracotta', category: 'Veste', img: 'sézane_perfecto_zig-terracotta.webp', owned: true, price: 190, wear_count: 0, c_score: 10 },
         { id: 'm2', name: 'Gilet Gaspard Camel', category: 'Maille', img: 'sézane_maille-gaspard-camel.avif', owned: true, price: 120, wear_count: 0, c_score: 8.5 },
@@ -769,52 +757,29 @@
             category: 'Tech', 
             img: 'calzedonia-30d-strong-sculpt-nude-11.webp', 
             owned: true, 
-            price: 15 
+            price: 15,
+            wear_count: 3
         },
         { 
             id: 'b_leg_navy', 
             name: 'Legging Heattech Marine', 
-            category: 'Bas', // Je le mets en Bas pour qu'il soit proposé dans les tenues casual
+            category: 'Tech', // Je le mets en Bas pour qu'il soit proposé dans les tenues casual
             img: 'uniqlo_legging-heattech-noir.avif', 
             owned: true, 
             price: 25,
             c_score: 7 // Bien, mais attention au mix avec le noir
         },
         
-        { id: 'c1', name: 'Bottes Anna Field', category: 'Chaussures', img: 'anna-field-bottes-marron.jpg', owned: true, price: 70, wear_count: 0, c_score: 9 },
-        { id: 'a_blush', name: 'Écharpe Blush', category: 'Accessoire', img: 'sézane_écharpe_marianne_blush.avif', owned: true, price: 75, wear_count: 0, c_score: 4 },
-        { id: 'a2', name: 'Écharpe Camel', category: 'Accessoire', img: 'sézane_écharpe_marianne_camel.avif', owned: true, price: 75, wear_count: 0,c_score: 9 },
 
-    // WISHLIST
-        { id: 'v_clyde', name: 'Manteau Clyde Chocolat', category: 'Veste', img: 'sézane_manteau_clyde_chocolat.avif', wishlist: true, c_score: 10 },
-        { id: 'v_rafael', name: 'Manteau Rafael Écureuil', category: 'Veste', img: 'sézane_manteau_rafael-écureuil.avif', wishlist: true, c_score: 10, c_tip: "Mieux que le Clyde !" },
-        { id: 'r_print_autom', name: 'Robe Fleurs Automne', category: 'Robe', img: 'sézane-robe-aurora-paris-est-une-fête.jpg', wishlist: true, c_score: 9 },
-        { id: 'v_james', name: 'Manteau James Bordeaux', category: 'Veste', img: 'sézane_manteau_james-bordeaux-foncé - Copie.avif', wishlist: true, c_score: 10 },
-        { id: 'v_ander', name: 'Manteau Ander Cannelle', category: 'Veste', img: 'sézane_manteau_ander-cannelle - Copie.avif', wishlist: true, c_score: 10 },
-        { id: 'v_jayden', name: 'Manteau Jayden Épice', category: 'Veste', img: 'sézane_manteau_jayden-épice.avif', wishlist: true, c_score: 10 },
-        { id: 'm_lizy', name: 'Gilet Lizy Caramel', category: 'Maille', img: 'sézane_gilet-lizy-camel.webp', wishlist: true, c_score: 10 },
-        { id: 'c2', name: 'Low Bridget Chocolat', category: 'Chaussures', img: 'sézane_bottes_low-bridget-chocolat-glacé.avif', wishlist: true, c_score: 10 },
-        { id: 'c_theo', name: 'Bottes Théodora Chocolat', category: 'Chaussures', img: 'sézane_bottes_théodora-chocolat-glacé.avif', wishlist: true, c_score: 10 },
-        { id: 'm_maxime', name: 'Gilet Maxime Ocre', category: 'Maille', img: 'sézane_gilet_maxime-ocre.avif', wishlist: true, c_score: 9.5 },
-        { id: 'm_maxime_moka', name: 'Gilet Maxime Moka', category: 'Maille', img: 'sézane_gilet_maxime-moka.avif', wishlist: true, c_score: 9.5 },
-        { id: 'h5', name: 'Chemise Rym', category: 'Haut', img: 'sézane_chemise_rym_écru.avif', wishlist: true, c_score: 8 },
-        { id: 'h_lise', name: 'Chemise Lise Écru', category: 'Haut', img: 'sézane_chemise_lise_écru.avif', wishlist: true, c_score: 8 },
-        { id: 'a3', name: 'Écharpe Vert', category: 'Accessoire', img: 'sézane_écharpe_marianne_vert-parfait.avif', wishlist: true, c_score: 9.5 },
-        { id: 'a4', name: 'Écharpe Grenat', category: 'Accessoire', img: 'sézane_écharpe_marianne_grenat.avif', wishlist: true, c_score: 9.5 },
-        { id: 'a_moka', name: 'Écharpe Moka', category: 'Accessoire', img: 'sézane_écharpe_marianne_moka.avif', wishlist: true, c_score: 9.5 },
-        { id: 'a_marine', name: 'Écharpe Marine', category: 'Accessoire', img: 'sézane_écharpe_marianne_marine.avif', wishlist: true, c_score: 8.5 },
-        { id: 'a_ecru', name: 'Écharpe Ecru', category: 'Accessoire', img: 'sézane_écharpe_marianne_écru.avif', wishlist: true, c_score: 8 },
-        { id: 's_grenat', name: 'Samuel Grenat', category: 'Maille', img: 'sézane_pull_samuel_grenat.avif', wishlist: true, c_score: 10 },
-        { id: 's_pistache', name: 'Samuel Pistache', category: 'Maille', img: 'sézane_pull_samuel_vert-pistache.avif', wishlist: true, c_score: 6 },
-        { id: 's_acajou', name: 'Samuel Acajou', category: 'Maille', img: 'sézane_pull_samuel_acajou.avif', wishlist: true, c_score: 10 },
-        { 
-            id: 't_col_marron', 
-            name: 'Collants Marron 50D', 
-            category: 'Tech', 
-            img: 'calzedonia-50d-soft-comfort-marron.webp', 
-            wishlist: true, 
-            price: 7.95 
-        },
+        // --- ACCESSOIRES / ECHARPES / CEINTURES / CHAUSSURES ---
+        { id: 'a2', name: 'Écharpe Camel', category: 'Accessoire', img: 'sézane_écharpe_marianne_camel.avif', owned: true, price: 75, wear_count: 2,c_score: 9 },
+        { id: 'a_blush', name: 'Écharpe Blush', category: 'Accessoire', img: 'sézane_écharpe_marianne_blush.avif', owned: true, price: 75, wear_count: 1, c_score: 4 },
+        { id: 'c1', name: 'Bottes Anna Field', category: 'Chaussures', img: 'anna-field-bottes-marron.jpg', owned: true, price: 70, wear_count: 0, c_score: 9 },
+        { id: 'c_boots_noeud', name: 'Bottines Camel Nœud', category: 'Chaussures', img: 'bottines-marron-lovely-skull.webp', owned: true, price: 80, wear_count: 0, c_score: 10 },
+        { id: 'c_panda', name: 'Baskets Panda Roux', category: 'Chaussures', img: 'minuit_virevolte_panda_roux_1100x.webp', owned: true, price: 130, wear_count: 0, c_score: 10 },
+        { id: 'c_coquelicot', name: 'Baskets Coquelicot', category: 'Chaussures', img: 'minuit_virevolte_coquelicot.jpg', owned: true, price: 130, wear_count: 0, c_score: 9.5 },
+        { id: 'c_corgi', name: 'Baskets Corgi', category: 'Chaussures', img: 'minuit_virevolte_corgi.jpg', owned: true, price: 130, wear_count: 0, c_score: 7 },
+
     // --- BASIQUES UNIQLO HIVER (CACHE-CŒUR DU DRESSING) ---
         { 
             id: 'h_col_choco', 
@@ -856,15 +821,66 @@
             c_score: 9,
             c_tip: "Change du noir, allonge la jambe." 
         },
-    // VINTED
-        { id: 'm5', name: 'Gilet Barry Blush', category: 'Maille', img: 'sézane_maille_barry_blush.webp', owned: true, sell: true, reason: "Trop froid", c_score: 4 },
-        { id: 'm1', name: 'Gilet Betty Marine', category: 'Maille', img: 'sézane_gilet_betty_crochet_marine.avif', owned: true, sell: true, reason: "Retour", c_score: 8.5 },
         
     // TECH
         { id: 't_heat_noir', name: 'Heattech Noir', category: 'Tech', img: 'https://placehold.co/200x250/333/FFF?text=Heattech', owned: true, price: 20, wear_count: 0 },
         { id: 't_heat_chair', name: 'Heattech Chair', category: 'Tech', img: 'https://placehold.co/200x250/e3c5a8/555?text=Heattech', owned: true, price: 20, wear_count: 0 },
         { id: 't_top_dentelle', name: 'Top Dentelle Blanc', category: 'Tech', img: 'https://placehold.co/200x250/fafafa/333?text=Dentelle', owned: true, price: 35, wear_count: 0 },
+
+    // VINTED
+        { id: 'm5', name: 'Gilet Barry Blush', category: 'Maille', img: 'sézane_maille_barry_blush.webp', owned: true, sell: true, reason: "Trop froid", c_score: 4 },
+        { id: 'm1', name: 'Gilet Betty Marine', category: 'Maille', img: 'sézane_gilet_betty_crochet_marine.avif', owned: true, sell: true, reason: "Retour", c_score: 8.5 },
+
+    // WISHLIST
+
+        // --- PRIORITÉS (PANIER) ---
+        { id: 'm_lizy', name: 'Gilet Lizy Caramel', category: 'Maille', img: 'sézane_maille-lizy-camel-doré.avif', wishlist: true, priority: true, c_score: 10 },
+
+        { 
+            id: 'm_patchwork_vinted', 
+            name: 'Pull Sézane Hollie Patchwork', 
+            category: 'Maille', 
+            img: 'sézane-maille_hollie-rose.jpg', // Ton image Vinted
+            wishlist: true, // Mets 'owned: true' si tu l'achètes !
+            priority: true, 
+            c_score: 9, 
+            c_tip: "Le bordeaux et le doré sauvent le rose pâle. Superbe éclat.", 
+            price: 74 // Prix avec frais estimés
+        },
+        { id: 'r_print_autom', name: 'Robe Fleurs Automne', category: 'Robe', img: 'sézane-robe-aurora-paris-est-une-fête.jpg', wishlist: true, c_score: 9 },
+
+        { id: 'v_clyde', name: 'Manteau Clyde Chocolat', category: 'Veste', img: 'sézane_manteau_clyde_chocolat.avif', wishlist: true, c_score: 10 },
+        { id: 'v_rafael', name: 'Manteau Rafael Écureuil', category: 'Veste', img: 'sézane_manteau_rafael-écureuil.avif', wishlist: true, c_score: 10, c_tip: "Mieux que le Clyde !" },
+        { id: 'v_james', name: 'Manteau James Bordeaux', category: 'Veste', img: 'sézane_manteau_james-bordeaux-foncé - Copie.avif', wishlist: true, c_score: 10 },
+        { id: 'v_ander', name: 'Manteau Ander Cannelle', category: 'Veste', img: 'sézane_manteau_ander-cannelle - Copie.avif', wishlist: true, c_score: 10 },
+        { id: 'v_jayden', name: 'Manteau Jayden Épice', category: 'Veste', img: 'sézane_manteau_jayden-épice.avif', wishlist: true, c_score: 10 },
+        { id: 'c2', name: 'Low Bridget Chocolat', category: 'Chaussures', img: 'sézane_bottes_low-bridget-chocolat-glacé.avif', wishlist: true, c_score: 10 },
+        { id: 'c_theo', name: 'Bottes Théodora Chocolat', category: 'Chaussures', img: 'sézane_bottes_théodora-chocolat-glacé.avif', wishlist: true, c_score: 10 },
+        { id: 'm_louisa_choco', name: 'Pull Louisa Chocolat', category: 'Maille', img: 'sézane_maille-louisa_chocolat-clair.avif', wishlist: true, c_score: 10},
+        { id: 'm_maxime', name: 'Gilet Maxime Ocre', category: 'Maille', img: 'sézane_gilet_maxime-ocre.avif', wishlist: true, c_score: 9.5 },
+        { id: 'm_maxime_moka', name: 'Gilet Maxime Moka', category: 'Maille', img: 'sézane_gilet_maxime-moka.avif', wishlist: true, c_score: 9.5 },
+        { id: 'h5', name: 'Chemise Rym', category: 'Haut', img: 'sézane_chemise_rym_écru.avif', wishlist: true, c_score: 8 },
+        { id: 'h_lise', name: 'Chemise Lise Écru', category: 'Haut', img: 'sézane_chemise_lise_écru.avif', wishlist: true, c_score: 8 },
+        { id: 'a3', name: 'Écharpe Vert', category: 'Accessoire', img: 'sézane_écharpe_marianne_vert-parfait.avif', wishlist: true, c_score: 9.5 },
+        { id: 'a4', name: 'Écharpe Grenat', category: 'Accessoire', img: 'sézane_écharpe_marianne_grenat.avif', wishlist: true, c_score: 9.5 },
+        { id: 'a_moka', name: 'Écharpe Moka', category: 'Accessoire', img: 'sézane_écharpe_marianne_moka.avif', wishlist: true, c_score: 9.5 },
+        { id: 'a_marine', name: 'Écharpe Marine', category: 'Accessoire', img: 'sézane_écharpe_marianne_marine.avif', wishlist: true, c_score: 8.5 },
+        { id: 'a_ecru', name: 'Écharpe Ecru', category: 'Accessoire', img: 'sézane_écharpe_marianne_écru.avif', wishlist: true, c_score: 8 },
+        { id: 's_grenat', name: 'Samuel Grenat', category: 'Maille', img: 'sézane_pull_samuel_grenat.avif', wishlist: true, c_score: 10 },
+        { id: 's_pistache', name: 'Samuel Pistache', category: 'Maille', img: 'sézane_pull_samuel_vert-pistache.avif', wishlist: true, c_score: 6 },
+        { id: 's_acajou', name: 'Samuel Acajou', category: 'Maille', img: 'sézane_pull_samuel_acajou.avif', wishlist: true, c_score: 10 },
+        { 
+            id: 't_col_marron', 
+            name: 'Collants Marron 50D', 
+            category: 'Tech', 
+            img: 'calzedonia-50d-soft-comfort-marron.webp', 
+            wishlist: true, 
+            price: 7.95 
+        },
+        { id: 'b_wallace', name: 'Short Wallace Taupe', category: 'Bas', img: 'sézane_short_wallace-taupe.avif', wishlist: true, priority_reason: "Parfait pour une Petite : montre les jambes avec élégance.", c_score: 9, c_tip: "Excellent neutre.", price: 105 },
+
     ];
+
 
     // --- LOOKBOOKS ETENDUS ---
     const allLooks = [
@@ -1494,79 +1510,128 @@
 // --- GENERATION MATRICE LOOKS ---
     function generateMatrix() {
         const container = document.getElementById('matrix-results');
-        // Petit loader sympa
-        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:20px; color:var(--secondary);">✨ Brassage des cartes... Recherche des meilleurs duos...</div>';
+        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:20px; color:var(--secondary);">✨ Recherche des trios Veste/Haut/Bas...</div>';
         
-        setTimeout(() => { // Petit délai pour voir le message
-            // 1. FILTRAGE
-            const tops = wardrobe.filter(i => (i.category === 'Haut' || i.category === 'Maille') && (i.owned || i.priority));
+        setTimeout(() => {
+            // 1. RECUPERATION DES PIECES
+            // On sépare bien les catégories
+            const jackets = wardrobe.filter(i => i.category === 'Veste' && (i.owned || i.priority));
             const bottoms = wardrobe.filter(i => (i.category === 'Bas' || i.category === 'Jeans') && (i.owned || i.priority));
+            const tops = wardrobe.filter(i => (i.category === 'Haut' || i.category === 'Maille') && (i.owned || i.priority));
+            
+            // Pour le "sous-couche", on préfère les hauts fins (pas les gros pulls)
+            const innerTops = wardrobe.filter(i => i.category === 'Haut' && (i.owned || i.priority)); 
             
             const dresses = wardrobe.filter(i => i.category === 'Robe' && (i.owned || i.priority));
             const knits = wardrobe.filter(i => i.category === 'Maille' && (i.owned || i.priority));
 
             let allCombos = [];
-            let totalCount = (tops.length * bottoms.length) + (dresses.length * knits.length);
-            document.getElementById('total-combos').innerText = totalCount;
 
-            // --- PARTIE 1 : HAUTS + BAS ---
+            // --- BOUCLE 1 : VESTE + BAS (+ MEILLEUR HAUT) ---
+            jackets.forEach(jacket => {
+                bottoms.forEach(bottom => {
+                    // On cherche le meilleur haut pour ce duo
+                    let bestTop = null;
+                    let bestScore = -1;
+                    let bestReason = "";
+
+                    innerTops.forEach(top => {
+                        // On calcule la compatibilité Veste+Haut et Haut+Bas
+                        let scoreVH = calculateMatch(jacket, top, false).finalScore;
+                        let scoreHB = calculateMatch(top, bottom, false).finalScore;
+                        
+                        // Moyenne des scores
+                        let currentScore = (scoreVH + scoreHB) / 2;
+                        
+                        // Bonus si le haut est neutre (Ecru/Blanc) sous une veste
+                        if (top.name.toLowerCase().includes('écru') || top.name.toLowerCase().includes('blanc') || top.name.toLowerCase().includes('top')) {
+                            currentScore += 1;
+                        }
+
+                        if (currentScore > bestScore) {
+                            bestScore = currentScore;
+                            bestTop = top;
+                            // On génère une petite phrase
+                            if (currentScore > 9) bestReason = "Trio Parfait.";
+                            else if (top.name.includes('Ecru')) bestReason = "La base claire illumine la veste.";
+                            else bestReason = "Accord de couleurs harmonieux.";
+                        }
+                    });
+
+                    // Si on a trouvé un haut potable, on crée le look
+                    if (bestTop && bestScore >= 7) {
+                         allCombos.push({
+                            type: '3-pièces',
+                            items: [jacket, bestTop, bottom],
+                            finalScore: Math.min(10, Math.floor(bestScore)),
+                            finalComment: `${bestReason} (Veste ${jacket.name})`
+                        });
+                    }
+                });
+            });
+
+            // --- BOUCLE 2 : HAUTS + BAS (Classique) ---
             tops.forEach(top => {
                 bottoms.forEach(bottom => {
-                    allCombos.push(calculateMatch(top, bottom, false));
+                    let res = calculateMatch(top, bottom, false);
+                    allCombos.push({ type: '2-pièces', ...res });
                 });
             });
 
-            // --- PARTIE 2 : ROBES + MAILLES ---
+            // --- BOUCLE 3 : ROBES + MAILLES ---
             dresses.forEach(dress => {
                 knits.forEach(knit => {
-                    allCombos.push(calculateMatch(knit, dress, true));
+                     let res = calculateMatch(knit, dress, true);
+                     allCombos.push({ type: '2-pièces', ...res });
                 });
             });
 
-            // 3. Tri
+            // TRI PAR SCORE
             allCombos.sort((a, b) => b.finalScore - a.finalScore);
             
-            // 4. Affichage
+            // AFFICHAGE
             container.innerHTML = '';
-            
-            // On affiche le TOP 60 pour ne pas surcharger
+            document.getElementById('total-combos').innerText = allCombos.length;
+
             allCombos.slice(0, 60).forEach(combo => {
-                let barColor = combo.finalScore >= 9 ? 'var(--success)' : (combo.finalScore >= 7 ? '#f39c12' : 'var(--danger)');
+                let barColor = combo.finalScore >= 9 ? 'var(--success)' : '#f39c12';
                 let w = combo.finalScore * 10;
-                
-                // Gestion des images
-                const imgTop = combo.top.img.startsWith('http') ? combo.top.img : 'images/' + combo.top.img;
-                const imgBot = combo.bottom.img.startsWith('http') ? combo.bottom.img : 'images/' + combo.bottom.img;
-                
-                // Badge Panier
-                let badge = (combo.top.priority || combo.bottom.priority) ? '<span style="position:absolute; top:-5px; right:-5px; background:white; border-radius:50%; padding:2px; box-shadow:0 2px 5px rgba(0,0,0,0.1); font-size:1.2rem;">🛒</span>' : '';
+                let htmlImages = '';
+                let titleNames = '';
+
+                if (combo.type === '3-pièces') {
+                    // Affichage 3 cartes
+                    htmlImages = `
+                        <img src="images/${combo.items[0].img}" class="matrix-card matrix-c1" title="${combo.items[0].name}" style="background:#fff;">
+                        <img src="images/${combo.items[1].img}" class="matrix-card matrix-c2" title="${combo.items[1].name}" style="background:#fff;">
+                        <img src="images/${combo.items[2].img}" class="matrix-card matrix-c3" title="${combo.items[2].name}" style="background:#fff;">
+                    `;
+                    titleNames = `<strong>${combo.items[0].name}</strong> + ${combo.items[1].name} + ${combo.items[2].name}`;
+                } else {
+                    // Affichage 2 cartes
+                    htmlImages = `
+                        <img src="images/${combo.top.img}" class="matrix-card matrix-left" title="${combo.top.name}" style="background:#fff;">
+                        <img src="images/${combo.bottom.img}" class="matrix-card matrix-right" title="${combo.bottom.name}" style="background:#fff;">
+                    `;
+                    titleNames = `<strong>${combo.top.name} + ${combo.bottom.name}</strong>`;
+                }
 
                 container.innerHTML += `
                     <div class="look-card">
                         <div class="look-items" style="height:150px !important; overflow:visible !important;">
-                            ${badge}
-                            <img src="${imgTop}" class="matrix-card matrix-left" title="${combo.top.name}">
-                            <img src="${imgBot}" class="matrix-card matrix-right" title="${combo.bottom.name}">
+                            ${htmlImages}
                         </div>
-                        
                         <div class="morpho-block">
-                            <div class="morpho-header">
-                                <span>Compatibilité</span>
-                                <span style="color:${barColor}">${combo.finalScore}/10</span>
-                            </div>
-                            <div class="morpho-bar-bg">
-                                <span class="morpho-bar-fill" style="width:${w}%; background-color:${barColor}"></span>
-                            </div>
+                            <div class="morpho-header"><span>Note</span><span style="color:${barColor}">${combo.finalScore}/10</span></div>
+                            <div class="morpho-bar-bg"><span class="morpho-bar-fill" style="width:${w}%; background-color:${barColor}"></span></div>
                         </div>
-                        
                         <div class="look-comment">
-                            <strong>${combo.top.name} + ${combo.bottom.name}</strong>
-                            <br><br>
+                            ${titleNames}<br><br>
                             ${combo.finalComment}
                         </div>
                     </div>`;
             });
-        }, 300); // Fin du délai
+        }, 300);
     }
 
     // FONCTION DE CALCUL INTELLIGENTE (Séparée pour clarté)
