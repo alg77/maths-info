@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanbok Moderne — Guide Concert BTS ARIRANG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+KR:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:        #1a1410;
+    --ink-soft:   #4a3f38;
+    --ink-muted:  #8a7a72;
+    --paper:      #ffffff;
+    --paper-warm: #fdf9f5;
+    --paper-tint: #f8f2eb;
+
+    --red:        #c0392b;
+    --red-light:  #e8c5c0;
+    --red-pale:   #fdf0ee;
+    --red-dark:   #8b1a12;
+
+    --plum:       #6b2d5e;
+    --plum-light: #d4a8cc;
+    --plum-pale:  #f5edf3;
+
+    --ivory:      #f5ede0;
+    --ivory-dark: #d4c4a8;
+
+    --gold:       #b8860b;
+    --gold-light: #e8d5a0;
+
+    --border:     #e8ddd5;
+    --rule:       #c8bdb5;
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TYPO ── */
+  .f-display { font-family: 'Cormorant Garamond', serif; }
+  .f-korean  { font-family: 'Noto Serif KR', serif; }
+  .f-body    { font-family: 'DM Sans', sans-serif; }
+
+  /* ── LAYOUT ── */
+  .page-wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  /* ── HEADER ── */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 3rem 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 0;
+  }
+  .masthead-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .masthead h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .masthead-sub {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin-top: 1rem;
+    letter-spacing: 0.03em;
+  }
+  .masthead-korean {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--red);
+    opacity: 0.15;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    margin-top: 4rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── COULEUR RECOMMENDATION ── */
+  .color-hero {
+    margin-top: 3rem;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .color-verdict {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-left: 2px solid var(--red);
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .color-verdict strong {
+    font-style: normal;
+    color: var(--red);
+    font-weight: 500;
+  }
+
+  /* ── PALETTES ── */
+  .palette-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .palette-option {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+  }
+  .palette-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .palette-badge {
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    background: var(--red);
+    color: white;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .palette-badge.neutral { background: var(--ink-muted); }
+  .swatches {
+    display: flex;
+    height: 44px;
+    gap: 3px;
+  }
+  .swatch {
+    flex: 1;
+    position: relative;
+  }
+  .swatch-label {
+    position: absolute;
+    bottom: -1.4rem;
+    left: 0;
+    right: 0;
+    font-size: 0.6rem;
+    color: var(--ink-muted);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .swatches-wrap { padding-bottom: 1.75rem; }
+
+  /* ── ANALYSE COULEUR EXPANDÉE ── */
+  .color-analysis {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .color-cell {
+    background: var(--paper);
+    padding: 1.25rem 1rem;
+  }
+  .color-cell-swatch {
+    width: 100%;
+    height: 6px;
+    margin-bottom: 0.85rem;
+  }
+  .color-cell h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+  .color-cell p {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  /* ── SILHOUETTES ── */
+  .silhouettes-section {
+    margin-top: 4rem;
+  }
+  .silhouettes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+  .silhouette-panel {
+    background: var(--paper);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .silhouette-panel.tinted { background: var(--paper-warm); }
+  .silhouette-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  .silhouette-header .who {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .silhouette-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .silhouette-figure { width: 140px; margin: 0 auto 1.75rem; }
+  .silhouette-details { width: 100%; }
+  .detail-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-item:last-child { border-bottom: none; }
+  .detail-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+
+  /* ── PATRONS ── */
+  .patrons-section { margin-top: 4rem; }
+  .patron-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .patron-row {
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    align-items: start;
+  }
+  .patron-row:nth-child(even) { background: var(--paper-warm); }
+  .patron-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--red);
+    opacity: 0.35;
+    line-height: 1;
+  }
+  .patron-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  .patron-desc { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.55; }
+  .patron-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.5rem; }
+  .ptag {
+    font-size: 0.6rem;
+    padding: 2px 7px;
+    border: 1px solid var(--border);
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .ptag.red { border-color: var(--red-light); color: var(--red); background: var(--red-pale); }
+  .patron-link {
+    font-size: 0.7rem;
+    color: var(--red);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--red-light);
+    padding-bottom: 1px;
+    align-self: start;
+    margin-top: 0.35rem;
+  }
+
+  /* ── ÉTAPES COUTURE ── */
+  .steps-section { margin-top: 4rem; }
+  .steps-intro {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 620px;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .step-card {
+    background: var(--paper);
+    padding: 1.5rem;
+    position: relative;
+  }
+  .step-card:nth-child(even) { background: var(--paper-warm); }
+  .step-card.full-width {
+    grid-column: 1 / -1;
+    background: var(--paper-tint);
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--red);
+    opacity: 0.2;
+    line-height: 1;
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+  }
+  .step-phase {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.4rem;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    padding-right: 2.5rem;
+    line-height: 1.25;
+  }
+  .step-actions { list-style: none; }
+  .step-actions li {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0.6rem;
+    line-height: 1.45;
+  }
+  .step-actions li:last-child { border-bottom: none; }
+  .step-actions li::before {
+    content: '›';
+    color: var(--red);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+  .step-note {
+    margin-top: 0.75rem;
+    font-size: 0.72rem;
+    color: var(--red);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── TISSUS ── */
+  .tissus-section { margin-top: 4rem; }
+  .tissus-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .tissu-card {
+    background: var(--paper);
+    padding: 1.25rem;
+  }
+  .tissu-card:nth-child(even) { background: var(--paper-warm); }
+  .tissu-band {
+    width: 32px;
+    height: 4px;
+    margin-bottom: 0.85rem;
+  }
+  .tissu-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .tissu-desc { font-size: 0.75rem; color: var(--ink-muted); line-height: 1.55; }
+  .tissu-rating {
+    margin-top: 0.6rem;
+    display: flex;
+    gap: 3px;
+  }
+  .rating-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .rating-dot.filled { background: var(--red); }
+
+  /* ── GLOSSAIRE ── */
+  .glossaire-section { margin-top: 4rem; }
+  .glossaire-table {
+    margin-top: 2rem;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .glossaire-table thead tr {
+    background: var(--ink);
+    color: white;
+  }
+  .glossaire-table thead th {
+    padding: 0.75rem 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: left;
+  }
+  .glossaire-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+  .glossaire-table tbody tr:nth-child(even) {
+    background: var(--paper-warm);
+  }
+  .glossaire-table td {
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .glossaire-table td:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .glossaire-table td:nth-child(2) {
+    font-size: 0.7rem;
+    color: var(--red);
+    font-style: italic;
+    white-space: nowrap;
+  }
+  .glossaire-table td:nth-child(3) {
+    color: var(--ink-soft);
+  }
+
+  /* ── PLANNING ── */
+  .planning-section { margin-top: 4rem; }
+  .planning-timeline {
+    margin-top: 2rem;
+    position: relative;
+  }
+  .planning-timeline::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .planning-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .planning-item:last-child { border-bottom: none; }
+  .planning-when {
+    font-size: 0.68rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+    text-align: right;
+    padding-top: 0.2rem;
+    line-height: 1.4;
+  }
+  .planning-dot {
+    position: absolute;
+    left: 80px;
+    top: 1.55rem;
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  .planning-content { padding-left: 1.5rem; }
+  .planning-task {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+  .planning-detail { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.55; }
+
+  /* ── PIÈCES TABLEAU ── */
+  .pieces-section { margin-top: 4rem; }
+  .pieces-table {
+    margin-top: 2rem;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+  }
+  .pieces-table thead tr { background: var(--ink); color: white; }
+  .pieces-table thead th {
+    padding: 0.65rem 0.875rem;
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: left;
+  }
+  .pieces-table tbody tr { border-bottom: 1px solid var(--border); }
+  .pieces-table tbody tr:nth-child(even) { background: var(--paper-warm); }
+  .pieces-table td {
+    padding: 0.65rem 0.875rem;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+  .pieces-table td:first-child { font-weight: 500; }
+  .pieces-table td:nth-child(2) { text-align: center; color: var(--red); font-weight: 500; }
+  .pieces-table td:nth-child(3) { font-size: 0.72rem; color: var(--ink-muted); font-style: italic; }
+
+  /* ── CONSEILS ── */
+  .conseils-section { margin-top: 4rem; }
+  .conseils-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .conseil-card {
+    background: var(--paper);
+    padding: 1.5rem;
+  }
+  .conseil-card:nth-child(even) { background: var(--paper-warm); }
+  .conseil-card.accent-card {
+    background: var(--red-pale);
+    grid-column: 1 / -1;
+    border-top: 2px solid var(--red);
+  }
+  .conseil-icon { font-size: 1.2rem; margin-bottom: 0.75rem; }
+  .conseil-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .conseil-text { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.6; }
+  .conseil-text li {
+    list-style: none;
+    padding: 0.25rem 0;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .conseil-text li::before { content: '—'; color: var(--red); flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--red);
+  }
+  .footer-right { font-size: 0.7rem; color: var(--ink-muted); text-align: right; line-height: 1.6; }
+
+  /* ── DIVIDER ── */
+  .ornament {
+    text-align: center;
+    margin: 3rem 0;
+    color: var(--red);
+    opacity: 0.4;
+    letter-spacing: 1em;
+    font-size: 0.6rem;
+  }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    border-left: 2px solid var(--red);
+    background: var(--red-pale);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .note-box strong { color: var(--red); }
+
+  @media (max-width: 640px) {
+    .masthead { grid-template-columns: 1fr; }
+    .masthead-korean { display: none; }
+    .silhouettes-grid, .steps-grid, .color-hero,
+    .tissus-grid, .conseils-grid, .color-analysis { grid-template-columns: 1fr; }
+    .patron-row { grid-template-columns: 48px 1fr; }
+    .patron-link { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div>
+      <p class="masthead-kicker">BTS · ARIRANG World Tour · Stade de France — 18 juillet</p>
+      <h1 class="f-display">Guide complet<br><em>Hanbok moderne</em><br>mère-fille</h1>
+      <p class="masthead-sub">Couture · Couleurs · Patrons · Planning · Étapes</p>
+    </div>
+    <div class="masthead-korean f-korean" aria-hidden="true">한복</div>
+  </header>
+
+  <!-- ── SECTION 1 : COULEURS ─────────────────────────── -->
+  <div class="section-label">01 — Analyse des couleurs</div>
+  <h2 class="section-title f-display">Quelle palette pour la tournée <em>ARIRANG</em> ?</h2>
+
+  <div class="color-hero">
+    <div>
+      <p class="color-verdict">
+        La tournée ARIRANG a pour couleur officielle le <strong>rouge intense</strong> — Las Vegas sera illuminée en "Arirang Red" pour les concerts. Le violet reste la couleur des ARMY. Ces deux codes créent une tension fertile pour un hanbok qui honore les deux.
+      </p>
+      <p style="font-size:0.82rem; color: var(--ink-soft); line-height:1.65; margin-bottom:1rem;">
+        Notre recommandation : ne pas choisir entre les deux — les fusionner. Le <strong>bordeaux prune</strong> est le point de rencontre naturel entre le rouge Arirang et le violet ARMY. Associé à de l'<strong>ivoire crème</strong>, il compose un hanbok immédiatement identifiable, élégant en concert, et très photogénique en lumière de stade.
+      </p>
+      <p style="font-size:0.82rem; color: var(--ink-soft); line-height:1.65;">
+        Les <strong>goreum en rouge cerise</strong> (satin) ancrent explicitement le look dans la tournée tout en apportant le contraste dramatique propre au hanbok traditionnel.
+      </p>
+    </div>
+    <div class="palette-grid">
+
+      <div class="palette-option">
+        <div class="palette-name">
+          Notre recommandation
+          <span class="palette-badge">⭐ Top choix</span>
+        </div>
+        <div class="swatches-wrap">
+          <div class="swatches">
+            <div class="swatch" style="background:#f5ede0;"><span class="swatch-label">Ivoire</span></div>
+            <div class="swatch" style="background:#d4a8cc;"><span class="swatch-label">Lilas pâle</span></div>
+            <div class="swatch" style="background:#6b2d5e;"><span class="swatch-label">Prune</span></div>
+            <div class="swatch" style="background:#8b1a12;"><span class="swatch-label">Bordeaux</span></div>
+            <div class="swatch" style="background:#c0392b;"><span class="swatch-label">Rouge Arirang</span></div>
+          </div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--ink-muted);line-height:1.5;">Tissu ivoire + prune avec goreum rouge cerise. Synthèse élégante des deux codes.</p>
+      </div>
+
+      <div class="palette-option">
+        <div class="palette-name">
+          Option ARMY pure
+          <span class="palette-badge neutral">Alternative</span>
+        </div>
+        <div class="swatches-wrap">
+          <div class="swatches">
+            <div class="swatch" style="background:#f5ede0;"><span class="swatch-label">Ivoire</span></div>
+            <div class="swatch" style="background:#d4a8cc;"><span class="swatch-label">Lilas</span></div>
+            <div class="swatch" style="background:#9b6c9a;"><span class="swatch-label">Violet</span></div>
+            <div class="swatch" style="background:#5f2568;"><span class="swatch-label">Prune vif</span></div>
+            <div class="swatch" style="background:#c0392b;"><span class="swatch-label">Accent rouge</span></div>
+          </div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--ink-muted);line-height:1.5;">Plus fidèle à l'identité ARMY. Goreum rouges pour le lien Arirang.</p>
+      </div>
+
+      <div class="palette-option">
+        <div class="palette-name">
+          Option Arirang pure
+          <span class="palette-badge neutral">Audacieux</span>
+        </div>
+        <div class="swatches-wrap">
+          <div class="swatches">
+            <div class="swatch" style="background:#fdf9f5;"><span class="swatch-label">Blanc crème</span></div>
+            <div class="swatch" style="background:#e8c5c0;"><span class="swatch-label">Rose pâle</span></div>
+            <div class="swatch" style="background:#c0392b;"><span class="swatch-label">Rouge vif</span></div>
+            <div class="swatch" style="background:#8b1a12;"><span class="swatch-label">Bordeaux</span></div>
+            <div class="swatch" style="background:#1a1410;"><span class="swatch-label">Encre</span></div>
+          </div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--ink-muted);line-height:1.5;">Blanc + rouge + noir : la palette officielle de la tournée. Très dramatique, fort impact photo.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="color-analysis">
+    <div class="color-cell">
+      <div class="color-cell-swatch" style="background: linear-gradient(90deg, #f5ede0, #6b2d5e, #c0392b);"></div>
+      <h4 class="f-display">Ivoire + Prune + Rouge</h4>
+      <p>Notre recommandation. Fusionne l'élégance du hanbok traditionnel, l'identité ARMY et le code Arirang. Le plus photogénique en lumière de stade.</p>
+    </div>
+    <div class="color-cell">
+      <div class="color-cell-swatch" style="background: linear-gradient(90deg, #f5ede0, #9b6c9a, #5f2568);"></div>
+      <h4 class="f-display">Ivoire + Violet ARMY</h4>
+      <p>Le choix classique et immédiatement reconnaissable des ARMY. Très cohérent avec votre vision initiale.</p>
+    </div>
+    <div class="color-cell">
+      <div class="color-cell-swatch" style="background: linear-gradient(90deg, #fdf9f5, #c0392b, #1a1410);"></div>
+      <h4 class="f-display">Blanc + Rouge + Noir</h4>
+      <p>La palette officielle ARIRANG. Très audacieux en hanbok — lisible de loin, fort impact. Mais moins "doux" que les autres options.</p>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 : SILHOUETTES ─────────────────────── -->
+  <div class="section-label">02 — Silhouettes</div>
+  <h2 class="section-title f-display">Vision du duo mère-fille</h2>
+
+  <div class="silhouettes-grid">
+
+    <!-- MÈRE -->
+    <div class="silhouette-panel">
+      <div class="silhouette-header">
+        <p class="who">Mère</p>
+        <h3 class="f-display">Robe portefeuille<br>jeogori long</h3>
+      </div>
+      <!-- SVG silhouette mère -->
+      <div class="silhouette-figure">
+        <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg" width="140" height="280">
+          <!-- tête -->
+          <ellipse cx="70" cy="22" rx="14" ry="16" fill="#e8d0c0" stroke="#c4a898" stroke-width="0.5"/>
+          <!-- cheveux -->
+          <path d="M57 16 Q70 5 83 16 Q80 8 70 7 Q60 8 57 16Z" fill="#4a3020"/>
+          <!-- col hanbok blanc -->
+          <path d="M58 42 L70 50 L82 42 L80 38 Q70 44 60 38Z" fill="#f5ede0" stroke="#e0cdb5" stroke-width="0.5"/>
+          <!-- corps jeogori — ivoire -->
+          <path d="M52 40 Q42 50 38 75 L50 78 L50 68 L70 72 L90 68 L90 78 L102 75 Q98 50 88 40 Q80 34 70 34 Q60 34 52 40Z" fill="#f5ede0" stroke="#d4c4a8" stroke-width="0.5"/>
+          <!-- ouverture croisée -->
+          <path d="M70 50 Q64 56 60 72" fill="none" stroke="#d4c4a8" stroke-width="0.7"/>
+          <!-- goreum gauche -->
+          <path d="M62 44 Q50 55 44 68" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- goreum droit (long) -->
+          <path d="M65 46 Q72 60 68 78" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- manches longues évasées -->
+          <path d="M52 40 Q40 48 28 56 Q24 60 20 72" fill="none" stroke="#f5ede0" stroke-width="9" stroke-linecap="round"/>
+          <path d="M52 40 Q40 48 28 56 Q24 60 20 72" fill="none" stroke="#d4c4a8" stroke-width="0.5" stroke-linecap="round"/>
+          <path d="M88 40 Q100 48 112 56 Q116 60 120 72" fill="none" stroke="#f5ede0" stroke-width="9" stroke-linecap="round"/>
+          <path d="M88 40 Q100 48 112 56 Q116 60 120 72" fill="none" stroke="#d4c4a8" stroke-width="0.5" stroke-linecap="round"/>
+          <!-- ceinture / waistband prune -->
+          <rect x="50" y="78" width="40" height="8" rx="0" fill="#6b2d5e"/>
+          <!-- jupe fluide prune -->
+          <path d="M50 86 Q42 140 38 240 Q54 248 70 248 Q86 248 102 240 Q98 140 90 86Z" fill="#6b2d5e" stroke="#5a2550" stroke-width="0.5"/>
+          <!-- plis jupe -->
+          <path d="M70 86 L66 248" stroke="#5a2550" stroke-width="0.4" stroke-dasharray="4,4"/>
+          <path d="M58 88 L55 246" stroke="#5a2550" stroke-width="0.3" stroke-dasharray="4,4" opacity="0.5"/>
+          <path d="M82 88 L85 246" stroke="#5a2550" stroke-width="0.3" stroke-dasharray="4,4" opacity="0.5"/>
+          <!-- ourlet -->
+          <path d="M38 240 Q54 248 70 248 Q86 248 102 240 L100 244 Q86 252 70 252 Q54 252 40 244Z" fill="#5a2550"/>
+        </svg>
+      </div>
+      <div class="silhouette-details">
+        <div class="detail-item"><div class="detail-dot"></div><span>Jeogori croisé à col en V asymétrique, manches longues évasées</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Tissu ivoire pour le corsage, prune pour la jupe</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Goreum longs en satin rouge cerise — effet dramatique</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Jupe plissée ou fluide jusqu'aux chevilles</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Ceinture prune structurante entre corsage et jupe</span></div>
+      </div>
+    </div>
+
+    <!-- FILLE -->
+    <div class="silhouette-panel tinted">
+      <div class="silhouette-header">
+        <p class="who">Fille · 12 ans</p>
+        <h3 class="f-display">Mini jeogori<br>version coordonnée</h3>
+      </div>
+      <!-- SVG silhouette fille -->
+      <div class="silhouette-figure">
+        <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg" width="140" height="280">
+          <!-- tête -->
+          <ellipse cx="70" cy="24" rx="13" ry="15" fill="#e8d0c0" stroke="#c4a898" stroke-width="0.5"/>
+          <!-- cheveux tressés -->
+          <path d="M58 18 Q70 7 82 18 Q79 9 70 8 Q61 9 58 18Z" fill="#4a3020"/>
+          <path d="M57 28 Q55 40 58 52" fill="none" stroke="#4a3020" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- col hanbok -->
+          <path d="M60 44 L70 51 L80 44 L78 40 Q70 46 62 40Z" fill="#f5ede0" stroke="#e0cdb5" stroke-width="0.5"/>
+          <!-- corps jeogori — prune (inversé de la mère) -->
+          <path d="M54 42 Q45 51 42 73 L53 76 L53 67 L70 71 L87 67 L87 76 L98 73 Q95 51 86 42 Q79 36 70 36 Q61 36 54 42Z" fill="#6b2d5e" stroke="#5a2550" stroke-width="0.5"/>
+          <!-- ouverture croisée -->
+          <path d="M70 51 Q65 57 62 70" fill="none" stroke="#5a2550" stroke-width="0.7"/>
+          <!-- goreum rouges -->
+          <path d="M63 46 Q53 56 48 67" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M66 47 Q72 58 69 75" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- manches 3/4 légèrement évasées -->
+          <path d="M54 42 Q44 50 34 60" fill="none" stroke="#6b2d5e" stroke-width="8" stroke-linecap="round"/>
+          <path d="M54 42 Q44 50 34 60" fill="none" stroke="#5a2550" stroke-width="0.5" stroke-linecap="round"/>
+          <path d="M86 42 Q96 50 106 60" fill="none" stroke="#6b2d5e" stroke-width="8" stroke-linecap="round"/>
+          <path d="M86 42 Q96 50 106 60" fill="none" stroke="#5a2550" stroke-width="0.5" stroke-linecap="round"/>
+          <!-- ceinture ivoire -->
+          <rect x="53" y="76" width="34" height="7" rx="0" fill="#d4c4a8"/>
+          <!-- jupe midi ivoire (inversé de la mère) -->
+          <path d="M53 83 Q47 130 45 210 Q58 218 70 218 Q82 218 95 210 Q93 130 87 83Z" fill="#f5ede0" stroke="#e0cdb5" stroke-width="0.5"/>
+          <!-- plis jupe -->
+          <path d="M70 83 L70 218" stroke="#e0cdb5" stroke-width="0.5" stroke-dasharray="4,4"/>
+          <path d="M60 85 L58 216" stroke="#e0cdb5" stroke-width="0.3" stroke-dasharray="4,4" opacity="0.5"/>
+          <path d="M80 85 L82 216" stroke="#e0cdb5" stroke-width="0.3" stroke-dasharray="4,4" opacity="0.5"/>
+          <!-- ourlet -->
+          <path d="M45 210 Q58 218 70 218 Q82 218 95 210 L93 214 Q82 222 70 222 Q58 222 47 214Z" fill="#e0cdb5"/>
+        </svg>
+      </div>
+      <div class="silhouette-details">
+        <div class="detail-item"><div class="detail-dot"></div><span>Mini jeogori croisé — même col, même construction</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Couleurs inversées : corsage prune, jupe ivoire</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Goreum rouges coordonnés — fil conducteur du duo</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Manches 3/4 légèrement évasées — confort + style</span></div>
+        <div class="detail-item"><div class="detail-dot"></div><span>Jupe midi plissée — mobilité assurée pour le concert</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note-box">
+    <strong>Le secret du duo :</strong> l'inversion des couleurs (corsage ivoire / jupe prune pour la mère · corsage prune / jupe ivoire pour la fille) crée une cohérence immédiate sans uniformité. Les goreum rouges sont le seul élément identique — c'est le "signe" partagé. Ce principe est emprunté au hanbok traditionnel lui-même, où les couleurs varient selon l'âge.
+  </div>
+
+  <!-- ── SECTION 3 : PATRONS ─────────────────────────── -->
+  <div class="section-label">03 — Patrons recommandés</div>
+  <h2 class="section-title f-display">Où trouver le bon patron</h2>
+
+  <div class="patron-list">
+    <div class="patron-row">
+      <div class="patron-number f-display">1</div>
+      <div>
+        <div class="patron-title f-display">Chemisier Hanbok — disclothed paris</div>
+        <div class="patron-desc">Patron français, inspiré du hanbok authentique, manches longues évasées dramatiques. Instructions en français avec vidéo tuto. Marges incluses, morceaux non superposés. Le plus accessible pour débuter accompagnée.</div>
+        <div class="patron-tags">
+          <span class="ptag red">🇫🇷 Français</span>
+          <span class="ptag">Vidéo tuto</span>
+          <span class="ptag">12,90 €</span>
+          <span class="ptag">Débutante ok</span>
+          <span class="ptag">5–7h</span>
+        </div>
+      </div>
+      <a class="patron-link" href="https://disclothed-paris.com/products/patron-chemisier-hanbok" target="_blank">→ disclothed-paris.com</a>
+    </div>
+
+    <div class="patron-row">
+      <div class="patron-number f-display">2</div>
+      <div>
+        <div class="patron-title f-display">Hanbok Wrap Dress PDF — Sewing Therapy ⭐</div>
+        <div class="patron-desc">Robe portefeuille complète inspirée du hanbok, tailles XS–3XL. Sewalong vidéo complet sur YouTube avec chapitres. Goreum intégrés au patron. La version la plus proche d'un vrai hanbok dans un patron occidental accessible.</div>
+        <div class="patron-tags">
+          <span class="ptag red">⭐ Meilleur hanbok</span>
+          <span class="ptag">XS–3XL</span>
+          <span class="ptag">Sewalong YouTube</span>
+          <span class="ptag">~15 €</span>
+          <span class="ptag">Intermédiaire</span>
+        </div>
+      </div>
+      <a class="patron-link" href="https://www.etsy.com/listing/1554928000/pdf-hanbok-wrap-dress-sewing-therapy" target="_blank">→ Etsy Sewing Therapy</a>
+    </div>
+
+    <div class="patron-row">
+      <div class="patron-number f-display">3</div>
+      <div>
+        <div class="patron-title f-display">Hanbok Wrap Skirt — Sewing Therapy</div>
+        <div class="patron-desc">Jupe portefeuille plissée réversible. Peut être raccourcie pour la version enfant. Idéale en complément du chemisier disclothed. Niveau débutante, sewalong vidéo dédié.</div>
+        <div class="patron-tags">
+          <span class="ptag">XS–3XL</span>
+          <span class="ptag">Réversible</span>
+          <span class="ptag">~12 €</span>
+          <span class="ptag">Débutante</span>
+          <span class="ptag">Adaptable enfant</span>
+        </div>
+      </div>
+      <a class="patron-link" href="https://www.etsy.com/listing/1588739110/pdf-hanbok-wrap-skirt-sewing-therapy" target="_blank">→ Etsy Sewing Therapy</a>
+    </div>
+
+    <div class="patron-row">
+      <div class="patron-number f-display">4</div>
+      <div>
+        <div class="patron-title f-display">Hanbok Top & Jacket — Sewing Therapy</div>
+        <div class="patron-desc">Top jeogori + veste séparés. Votre collègue expérimentée peut le grader (adapter) en version enfant. Permet de combiner librement avec n'importe quelle jupe plissée.</div>
+        <div class="patron-tags">
+          <span class="ptag">Jeogori pur</span>
+          <span class="ptag">Adaptable enfant</span>
+          <span class="ptag">~15 €</span>
+          <span class="ptag">Intermédiaire</span>
+        </div>
+      </div>
+      <a class="patron-link" href="https://twooninefabric.ca/collections/sewing-therapy-pdf-patterns" target="_blank">→ twooninefabric.ca</a>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 : PIÈCES À DÉCOUPER ──────────────── -->
+  <div class="section-label">04 — Découpe</div>
+  <h2 class="section-title f-display">Les pièces à couper</h2>
+
+  <div class="note-box">
+    <strong>Avant de couper :</strong> pré-lavez et séchez votre tissu pour éviter tout rétrécissement. Ajoutez les marges de couture autour de chaque pièce (le patron Sewing Therapy les indique clairement). Taillez une <em>toile</em> dans un coton bon marché avant de couper dans votre tissu définitif.
+  </div>
+
+  <table class="pieces-table">
+    <thead>
+      <tr>
+        <th>Pièce</th>
+        <th>Qté</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Devant corsage (Front Bodice)</td><td>2</td><td>En miroir — marges partout</td></tr>
+      <tr><td>Dos corsage (Back Bodice)</td><td>2</td><td>En miroir — marges partout</td></tr>
+      <tr><td>Col (Collar)</td><td>2</td><td>Dont 1 avec thermocollant</td></tr>
+      <tr><td>Parementure devant (Front Lining)</td><td>2</td><td>En miroir + thermocollant</td></tr>
+      <tr><td>Manche (Sleeve)</td><td>2</td><td>En miroir — marges partout</td></tr>
+      <tr><td>Panneau de jupe (Skirt Panel)</td><td>2 (3 pour L/XL)</td><td>Marge ourlet 5 cm en bas</td></tr>
+      <tr><td>Grand lien (Main Tie)</td><td>2</td><td>—</td></tr>
+      <tr><td>Lien supérieur (Upper Tie) — adulte</td><td>2</td><td>Version adulte seulement</td></tr>
+      <tr><td>Ceinture (Waistband) — adulte</td><td>1</td><td>Version adulte seulement</td></tr>
+      <tr><td>Lien intérieur (Inner Tie)</td><td>2</td><td>Ou remplacer par ruban coton</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ── SECTION 5 : ÉTAPES ─────────────────────────── -->
+  <div class="section-label">05 — Étapes de couture</div>
+  <h2 class="section-title f-display">Les 10 étapes du tutoriel</h2>
+
+  <p class="steps-intro">
+    D'après le sewalong Sewing Therapy (deux parties). Regardez chaque vidéo avant de commencer l'étape correspondante. Les termes techniques anglais sont expliqués dans le glossaire ci-dessous.
+  </p>
+
+  <div class="steps-grid">
+
+    <div class="step-card">
+      <div class="step-num f-display">0</div>
+      <div class="step-phase">Préparation</div>
+      <div class="step-title f-display">Thermocollant & confection des liens</div>
+      <ul class="step-actions">
+        <li>Coller le thermocollant sur 1 col et 2 parementures au fer</li>
+        <li>Confectionner 6 liens : 2 intérieurs, 2 supérieurs, 2 grands</li>
+        <li>Plier, repasser, piquer au bord (edgestitch) chaque lien</li>
+        <li>Option : remplacer les liens intérieurs par du ruban coton</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">1</div>
+      <div class="step-phase">Adulte seulement</div>
+      <div class="step-title f-display">Les pinces (Darts)</div>
+      <ul class="step-actions">
+        <li>Plier en alignant les repères, endroit contre endroit</li>
+        <li>Coudre de l'extérieur vers la pointe — sans point d'arrêt</li>
+        <li>Double nœud à la main sur les fils, couper à 1 cm</li>
+        <li>Repasser les pinces vers le côté et vers le bas</li>
+      </ul>
+      <p class="step-note">La version fille n'a pas de pinces.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">2</div>
+      <div class="step-phase">Partie 1</div>
+      <div class="step-title f-display">Assembler le dos</div>
+      <ul class="step-actions">
+        <li>Coudre les 2 pièces dos, endroit contre endroit</li>
+        <li>Surjeter le bord de couture</li>
+        <li>Repasser la couture d'un côté</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">3</div>
+      <div class="step-phase">Partie 1</div>
+      <div class="step-title f-display">Assembler corsage & liens latéraux</div>
+      <ul class="step-actions">
+        <li>Coudre dos et devants aux épaules (RST) — surjeter</li>
+        <li>Repasser les coutures d'épaule vers le dos</li>
+        <li>Bâtir un lien supérieur sur le côté, endroit contre endroit</li>
+        <li>Bâtir un lien intérieur sur l'envers</li>
+        <li>Coudre les côtés du corsage — surjeter</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">4</div>
+      <div class="step-phase">Adulte seulement</div>
+      <div class="step-title f-display">La ceinture (Waistband)</div>
+      <ul class="step-actions">
+        <li>Coudre un long bord de la ceinture au bas du corsage (RST)</li>
+        <li>Surjeter — repasser vers la ceinture</li>
+        <li>Piquer au bord ou surpiquer (topstitch)</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">5</div>
+      <div class="step-phase">Partie 1</div>
+      <div class="step-title f-display">Les manches (Sleeves)</div>
+      <ul class="step-actions">
+        <li>Coudre la couture de dessous de bras (RST) — surjeter</li>
+        <li>2 rangées de grands points (longueur 4–5) sur la tête de manche</li>
+        <li>Tirer les fils pour froncer régulièrement</li>
+        <li>Introduire la manche dans l'emmanchure (RST) — aligner les crans</li>
+        <li>Répartir les fronces — épingler — coudre — surjeter</li>
+        <li>Double ourlet + edgestitch ou topstitch</li>
+      </ul>
+      <p class="step-note">Sara raccourcit de 7,5 cm. Ajustez selon votre préférence.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">6</div>
+      <div class="step-phase">Partie 1 — fin</div>
+      <div class="step-title f-display">Parementure devant & liens</div>
+      <ul class="step-actions">
+        <li>Bâtir le lien intérieur sur la parementure (RST)</li>
+        <li>Bâtir un lien supérieur et un grand lien aux emplacements</li>
+        <li>Coudre la parementure sur le devant du corsage (RST)</li>
+        <li>Repasser la parementure vers l'intérieur — sous-piquer</li>
+        <li>Plier sur la ligne principale — repasser</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">7</div>
+      <div class="step-phase">Partie 2</div>
+      <div class="step-title f-display">La jupe (Skirt)</div>
+      <ul class="step-actions">
+        <li>Coudre les côtés des panneaux (RST) — surjeter</li>
+        <li>Double pli sur les bords latéraux (WST) — edgestitch</li>
+        <li>Marquer et former les plis selon les repères du patron</li>
+        <li>Vérifier que la longueur de taille correspond à la ceinture</li>
+        <li>Bâtir les plis pour les maintenir</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">8</div>
+      <div class="step-phase">Partie 2</div>
+      <div class="step-title f-display">Assembler corsage et jupe</div>
+      <ul class="step-actions">
+        <li>Épingler et coudre ceinture + jupe (RST)</li>
+        <li>Surjeter en commençant par la parementure</li>
+        <li>Repasser vers la ceinture</li>
+        <li>Plier et repasser le bord de parementure vers l'intérieur</li>
+        <li>Surpiquer depuis l'endroit — edgestitch le bord replié</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num f-display">9</div>
+      <div class="step-phase">Partie 2</div>
+      <div class="step-title f-display">Le col (Collar)</div>
+      <ul class="step-actions">
+        <li>Plier et repasser la marge du bord arrondi (WST)</li>
+        <li>Coudre les bords supérieur et latéraux des 2 pièces (RST)</li>
+        <li>Retourner — repasser soigneusement</li>
+        <li>Épingler le col à l'encolure (RST) — aligner les lignes de couture</li>
+        <li>Faire chevaucher le bord replié sur la ligne de couture</li>
+        <li>Maintenir avec Wonder Tape — topstitch depuis l'endroit</li>
+      </ul>
+      <p class="step-note">L'étape la plus délicate — prenez votre temps.</p>
+    </div>
+
+    <div class="step-card full-width">
+      <div class="step-num f-display" style="opacity:0.15;">10</div>
+      <div class="step-phase">Partie 2 — finition</div>
+      <div class="step-title f-display">Grand lien (Main Tie) — et c'est terminé !</div>
+      <ul class="step-actions">
+        <li>Coudre le grand lien sur la ceinture à l'emplacement prévu</li>
+        <li>Vérifier toutes les finitions — couper les fils restants</li>
+        <li>Repasser l'ensemble pour un tombé parfait</li>
+        <li>Essayage final — ajuster la longueur de la jupe si nécessaire</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 6 : TISSUS ─────────────────────────── -->
+  <div class="section-label">06 — Tissus</div>
+  <h2 class="section-title f-display">Quel tissu choisir pour l'été</h2>
+
+  <div class="tissus-grid">
+    <div class="tissu-card">
+      <div class="tissu-band" style="background: linear-gradient(90deg, #f0ece8, #e8e0d8);"></div>
+      <div class="tissu-name f-display">Crêpe georgette</div>
+      <div class="tissu-desc">Fluide, léger, ne froisse pas. Même effet drapé que la soie mais plus facile à coudre. Idéal pour la jupe et le corsage.</div>
+      <div class="tissu-rating">
+        <div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot"></div>
+      </div>
+      <p style="font-size:0.65rem;color:var(--red);margin-top:0.4rem;">Recommandé — corsage & jupe</p>
+    </div>
+    <div class="tissu-card">
+      <div class="tissu-band" style="background: linear-gradient(90deg, #f8f4f0, #f0e8e0);"></div>
+      <div class="tissu-name f-display">Mousseline de soie</div>
+      <div class="tissu-desc">Très photogénique en mouvement. Exigeante à la coupe (glisse). Votre collègue guidera l'assemblage.</div>
+      <div class="tissu-rating">
+        <div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot"></div><div class="rating-dot"></div>
+      </div>
+      <p style="font-size:0.65rem;color:var(--red);margin-top:0.4rem;">Manches & insertions</p>
+    </div>
+    <div class="tissu-card">
+      <div class="tissu-band" style="background: linear-gradient(90deg, #e8e4de, #d8d2c8);"></div>
+      <div class="tissu-name f-display">Lin léger</div>
+      <div class="tissu-desc">Respirant, tombe bien, facile à coudre. Léger effet texturé qui rappelle les hanboks traditionnels d'été.</div>
+      <div class="tissu-rating">
+        <div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot"></div>
+      </div>
+      <p style="font-size:0.65rem;color:var(--ink-muted);margin-top:0.4rem;">Excellent pour débuter</p>
+    </div>
+    <div class="tissu-card">
+      <div class="tissu-band" style="background: linear-gradient(90deg, #f0e8e4, #e0d0c8);"></div>
+      <div class="tissu-name f-display">Popeline de coton</div>
+      <div class="tissu-desc">Option économique parfaite pour la toile de test ou la tenue enfant. Estructure bien le jeogori.</div>
+      <div class="tissu-rating">
+        <div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div>
+      </div>
+      <p style="font-size:0.65rem;color:var(--ink-muted);margin-top:0.4rem;">Toile de test + version fille</p>
+    </div>
+    <div class="tissu-card">
+      <div class="tissu-band" style="background: linear-gradient(90deg, #b8a0b0, #8b6080);"></div>
+      <div class="tissu-name f-display">Jacquard floral</div>
+      <div class="tissu-desc">Texture coréenne authentique. Motif délicat (fleurs de prunier ou pivoines) pour le jeogori. Très photogénique.</div>
+      <div class="tissu-rating">
+        <div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot"></div><div class="rating-dot"></div>
+      </div>
+      <p style="font-size:0.65rem;color:var(--red);margin-top:0.4rem;">Accent corsage</p>
+    </div>
+    <div class="tissu-card">
+      <div class="tissu-band" style="background: linear-gradient(90deg, #c02b24, #8b1a12);"></div>
+      <div class="tissu-name f-display">Satin rouge (goreum)</div>
+      <div class="tissu-desc">Pour les liens seulement. 1,5 m par tenue suffit. Satin duchesse fin pour les goreum — l'accent rouge Arirang.</div>
+      <div class="tissu-rating">
+        <div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div><div class="rating-dot filled"></div>
+      </div>
+      <p style="font-size:0.65rem;color:var(--red);margin-top:0.4rem;">Goreum — clé du look</p>
+    </div>
+  </div>
+
+  <!-- ── SECTION 7 : GLOSSAIRE ──────────────────────── -->
+  <div class="section-label">07 — Glossaire</div>
+  <h2 class="section-title f-display">Termes techniques anglais traduits</h2>
+
+  <table class="glossaire-table">
+    <thead>
+      <tr>
+        <th>Terme anglais</th>
+        <th>Prononciation</th>
+        <th>Traduction et explication</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>RST</td><td>R·S·T</td><td>Endroit contre endroit — les beaux côtés du tissu se font face</td></tr>
+      <tr><td>WST</td><td>W·S·T</td><td>Envers contre envers — les mauvais côtés se font face</td></tr>
+      <tr><td>Serge / Serger</td><td>surge</td><td>Surjeter à la surjeteuse pour éviter l'effilochage des bords</td></tr>
+      <tr><td>Baste / Basting</td><td>beïst</td><td>Bâtir — grands points provisoires pour maintenir avant couture définitive</td></tr>
+      <tr><td>Edgestitch</td><td>ège-stitch</td><td>Piquer au bord — à 1–2 mm du bord ou d'une couture</td></tr>
+      <tr><td>Topstitch</td><td>top-stitch</td><td>Surpiquer — piqûre visible sur l'endroit du tissu</td></tr>
+      <tr><td>Understitch</td><td>ander-stitch</td><td>Sous-piquer la parementure — invisible de l'endroit, tient la doublure</td></tr>
+      <tr><td>Press</td><td>press</td><td>Repasser — étape indispensable après chaque couture</td></tr>
+      <tr><td>Seam Allowance (SA)</td><td>sime alaouans</td><td>Marge de couture — distance entre le bord coupé et la ligne de piqûre</td></tr>
+      <tr><td>Dart</td><td>dart</td><td>Pince — couture conique qui donne du galbe au corsage adulte</td></tr>
+      <tr><td>Gather / Gathers</td><td>gadher</td><td>Fronces — tissu rassemblé pour créer du volume (tête de manche)</td></tr>
+      <tr><td>Pleat</td><td>plite</td><td>Pli — tissu plié et bâti pour réduire la largeur de la jupe</td></tr>
+      <tr><td>Sleeve cap</td><td>slive cap</td><td>Tête de manche — partie arrondie en haut, à froncer pour l'emmanchure</td></tr>
+      <tr><td>Notch</td><td>notch</td><td>Cran — encoche sur le patron pour aligner les pièces entre elles</td></tr>
+      <tr><td>Fusible interfacing</td><td>fiouzibl inter-feïcing</td><td>Thermocollant — entoilage qui se colle au fer sur l'envers du tissu</td></tr>
+      <tr><td>Bodice</td><td>bodiss</td><td>Corsage — la partie supérieure de la robe</td></tr>
+      <tr><td>Lining</td><td>laïning</td><td>Parementure ou doublure — pièce cousue à l'intérieur pour finir proprement</td></tr>
+      <tr><td>Tie / Goreum</td><td>taï / go-reum</td><td>Lien, cordon d'attache — les rubans caractéristiques du hanbok</td></tr>
+      <tr><td>Waistband</td><td>ouèst-band</td><td>Ceinture — pièce structurante entre le corsage et la jupe</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ── SECTION 8 : PLANNING ───────────────────────── -->
+  <div class="section-label">08 — Planning</div>
+  <h2 class="section-title f-display">Avant le 18 juillet</h2>
+
+  <div class="planning-timeline">
+
+    <div class="planning-item">
+      <div class="planning-when">Maintenant<br>→ fin mai</div>
+      <div class="planning-dot"></div>
+      <div class="planning-content">
+        <div class="planning-task f-display">Commander les patrons & trancher sur la palette</div>
+        <div class="planning-detail">Décider entre robe wrap complète (Sewing Therapy) ou top + jupe séparés (disclothed + jupe wrap). Prendre les mensurations des deux. Confirmer la palette ivoire/prune/rouge.</div>
+      </div>
+    </div>
+
+    <div class="planning-item">
+      <div class="planning-when">Début<br>juin</div>
+      <div class="planning-dot"></div>
+      <div class="planning-content">
+        <div class="planning-task f-display">Acheter les tissus</div>
+        <div class="planning-detail">Marché Saint-Pierre (Montmartre, Paris) ou Mondial Tissus. Prévoir +20 % de tissu pour les erreurs de débutante. Acheter le satin rouge pour les goreum en même temps.</div>
+      </div>
+    </div>
+
+    <div class="planning-item">
+      <div class="planning-when">Mi-juin<br>week-end 1</div>
+      <div class="planning-dot"></div>
+      <div class="planning-content">
+        <div class="planning-task f-display">Toile de test — tenue adulte</div>
+        <div class="planning-detail">Coudre une version complète en popeline bon marché pour valider la taille et le tombé. Faire les ajustements nécessaires avant de couper dans le tissu définitif.</div>
+      </div>
+    </div>
+
+    <div class="planning-item">
+      <div class="planning-when">Mi-juin<br>week-end 2</div>
+      <div class="planning-dot"></div>
+      <div class="planning-content">
+        <div class="planning-task f-display">Tenue mère — tissu définitif</div>
+        <div class="planning-detail">Couture avec votre collègue expérimentée. Goreum en satin rouge, finitions, essayage complet. Prévoir 2 journées selon le patron choisi (5–7h selon niveau).</div>
+      </div>
+    </div>
+
+    <div class="planning-item">
+      <div class="planning-when">Fin juin<br>début juillet</div>
+      <div class="planning-dot"></div>
+      <div class="planning-content">
+        <div class="planning-task f-display">Tenue fille</div>
+        <div class="planning-detail">Patron adapté ou graded down par votre collègue. Votre fille peut participer à certaines étapes simples : découpe, bâtissage, pose des goreum. Moment pédagogique et mémorable.</div>
+      </div>
+    </div>
+
+    <div class="planning-item">
+      <div class="planning-when">10–15<br>juillet</div>
+      <div class="planning-dot"></div>
+      <div class="planning-content">
+        <div class="planning-task f-display">Finitions, accessoires & répétition photo</div>
+        <div class="planning-detail">Essayage duo complet, séance photo test à la maison. Commander le norigae (pendentif traditionnel) sur Etsy si souhaité. Prévoir une tenue légère de rechange par précaution.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 9 : CONSEILS ───────────────────────── -->
+  <div class="section-label">09 — Conseils</div>
+  <h2 class="section-title f-display">Astuces pour réussir</h2>
+
+  <div class="conseils-grid">
+    <div class="conseil-card">
+      <div class="conseil-icon">🧵</div>
+      <div class="conseil-title f-display">La toile de test est obligatoire</div>
+      <ul class="conseil-text">
+        <li>Toujours coudre une version test avant le tissu définitif</li>
+        <li>Les patrons Sewing Therapy sont pensés pour des morphologies variées mais vérifiez les mesures de poitrine et de taille</li>
+        <li>Votre collègue peut grader (adapter) entre deux tailles</li>
+      </ul>
+    </div>
+
+    <div class="conseil-card">
+      <div class="conseil-icon">🔥</div>
+      <div class="conseil-title f-display">Repasser après chaque étape</div>
+      <ul class="conseil-text">
+        <li>Ne pas attendre la fin — repasser à chaque couture</li>
+        <li>C'est ce qui distingue un résultat professionnel d'un résultat terne</li>
+        <li>Pattemouille indispensable pour les tissus fluides</li>
+        <li>Tester la température sur une chute avant</li>
+      </ul>
+    </div>
+
+    <div class="conseil-card">
+      <div class="conseil-icon">✂️</div>
+      <div class="conseil-title f-display">Coupe des tissus fluides</div>
+      <ul class="conseil-text">
+        <li>Épingler le tissu sur du papier de soie avant de couper</li>
+        <li>Ciseaux très aiguisés — indispensable pour la mousseline</li>
+        <li>Couper lentement, lames bien fermées jusqu'au bout</li>
+      </ul>
+    </div>
+
+    <div class="conseil-card">
+      <div class="conseil-icon">🪡</div>
+      <div class="conseil-title f-display">La tête de manche</div>
+      <ul class="conseil-text">
+        <li>Étape la plus délicate — ne pas serrer les fronces trop fort</li>
+        <li>Répartir depuis le centre vers les côtés</li>
+        <li>Aiguille neuve + coudre lentement sur la partie froncée</li>
+        <li>La vidéo Sewing Therapy est très claire sur cette étape</li>
+      </ul>
+    </div>
+
+    <div class="conseil-card">
+      <div class="conseil-icon">🎗️</div>
+      <div class="conseil-title f-display">Le col — patience récompensée</div>
+      <ul class="conseil-text">
+        <li>Wonder Tape pour maintenir pendant la piqûre</li>
+        <li>Aligner les lignes de couture, pas les bords coupés</li>
+        <li>Si le col gondole : vapeur intense et laisser sécher à plat</li>
+      </ul>
+    </div>
+
+    <div class="conseil-card">
+      <div class="conseil-icon">👟</div>
+      <div class="conseil-title f-display">Confort pour le concert</div>
+      <ul class="conseil-text">
+        <li>Choisir un tissu qui respire — plusieurs heures debout + chaleur</li>
+        <li>Jupe pas trop longue pour monter les escaliers en gradins</li>
+        <li>Chaussures à talon bas bloc — beauté ET confort</li>
+        <li>Prévoir une paire de collants en cas de fraîcheur le soir</li>
+      </ul>
+    </div>
+
+    <div class="conseil-card accent-card" style="grid-column:1/-1;">
+      <div class="conseil-icon">💜</div>
+      <div class="conseil-title f-display">Le secret du duo parfait</div>
+      <ul class="conseil-text" style="column-count:2; column-gap:2rem;">
+        <li>Inverser les couleurs entre les deux tenues crée une cohérence immédiate sans uniformité</li>
+        <li>Les goreum rouges identiques sont le seul élément "miroir" — c'est le signe secret partagé</li>
+        <li>Tenir les goreum côté gauche au même angle lors des photos de groupe</li>
+        <li>Un norigae (pendentif traditionnel) accroché aux goreum est le détail qui fait tout</li>
+        <li>Prévoir la photo au coucher du soleil pour exploiter les reflets du satin</li>
+        <li>Cette tenue évoque le "Lyrical Armor" de Jay Songzio porté par BTS à Gwanghwamun</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <footer class="page-footer">
+    <div class="footer-left f-display">Bon courage et bonne couture 💜</div>
+    <div class="footer-right">
+      Tutoriel original : sewingtherapy.net — Sara SJ<br>
+      BTS ARIRANG World Tour · Stade de France · 18 juillet
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Évaluation – Pont Connecté · Impression</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e8e8;
+    font-family: 'Nunito', sans-serif;
+    padding: 20px;
+  }
+
+  .print-info {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #666;
+    font-family: 'Nunito', sans-serif;
+  }
+  .print-info strong { color: #333; }
+  .print-btn {
+    display: inline-block;
+    margin-top: 8px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .print-btn:hover { background: #1557b0; }
+
+  /* ═══════════════════════════════════════
+     PAGE A4 : 2 fiches par page
+  ═══════════════════════════════════════ */
+  .a4-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+
+  /* ═══════════════════════════════════════
+     UNE FICHE (demi-page A4)
+  ═══════════════════════════════════════ */
+  .fiche {
+    flex: 1;
+    padding: 10mm 12mm 8mm;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Séparateur entre les deux fiches */
+  .separator {
+    height: 0;
+    border-top: 2px dashed #ccc;
+    margin: 0 12mm;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .separator::before {
+    content: '✂';
+    position: absolute;
+    top: -10px;
+    left: -18px;
+    font-size: 14px;
+    color: #bbb;
+    background: white;
+    padding: 0 4px;
+  }
+
+  /* Déco coins */
+  .deco-tl {
+    position: absolute;
+    top: 0; left: 0;
+    width: 40mm; height: 16mm;
+    background: linear-gradient(135deg, #e8f4fd, transparent);
+    pointer-events: none;
+  }
+  .deco-tr {
+    position: absolute;
+    top: 0; right: 0;
+    width: 30mm; height: 30mm;
+    background: radial-gradient(ellipse at top right, #fff3e0, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-left {}
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #e8f4fd;
+    border: 1.5px solid #b3d9f5;
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 8px;
+    font-weight: 800;
+    color: #1a6fa8;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .header-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #1a1a2e;
+    line-height: 1.15;
+  }
+  .header-title span {
+    color: #0080cc;
+  }
+  .header-sub {
+    font-size: 8.5px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* Score global (right) */
+  .header-score {
+    flex-shrink: 0;
+    text-align: center;
+    background: #f5f5f5;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 6px 12px;
+    min-width: 55px;
+  }
+  .header-score-label {
+    font-size: 7px;
+    font-weight: 800;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .header-score-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+  }
+  .header-score-val span { font-size: 11px; color: #bbb; }
+
+  /* ── GROUPE ── */
+  .group-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #dde8f5;
+    border-radius: 8px;
+    padding: 5px 10px;
+    background: #f8fbff;
+    position: relative;
+    z-index: 1;
+  }
+  .group-icon { font-size: 14px; flex-shrink: 0; }
+  .group-label {
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #0080cc;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+  }
+  .group-dots {
+    flex: 1;
+    border-bottom: 1.5px dotted #ccc;
+    height: 16px;
+    margin-left: 4px;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+
+  .card {
+    border-radius: 10px;
+    padding: 8px 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-top-width: 3px;
+    border-top-style: solid;
+    border-right: 1.5px solid;
+    border-bottom: 1.5px solid;
+    border-left: 1.5px solid;
+  }
+
+  .card-q {
+    background: #f0f8ff;
+    border-top-color: #0080cc;
+    border-right-color: #b3d9f5;
+    border-bottom-color: #b3d9f5;
+    border-left-color: #b3d9f5;
+  }
+  .card-e {
+    background: #fff8f0;
+    border-top-color: #e06000;
+    border-right-color: #f5d0a0;
+    border-bottom-color: #f5d0a0;
+    border-left-color: #f5d0a0;
+  }
+  .card-t {
+    background: #f0fff8;
+    border-top-color: #00a06a;
+    border-right-color: #a0e8cc;
+    border-bottom-color: #a0e8cc;
+    border-left-color: #a0e8cc;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .card-icon { font-size: 16px; }
+  .card-letter {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .card-q .card-letter { color: #0080cc; }
+  .card-e .card-letter { color: #e06000; }
+  .card-t .card-letter { color: #00a06a; }
+
+  .card-score-badge {
+    margin-left: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+  .card-q .card-score-badge { background: #d0eaf8; color: #0060a0; }
+  .card-e .card-score-badge { background: #fce8cc; color: #b04800; }
+  .card-t .card-score-badge { background: #c8f0e0; color: #007050; }
+
+  .card-title {
+    font-size: 9px;
+    font-weight: 900;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+  .card-eval {
+    font-size: 8px;
+    color: #888;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* Levels */
+  .levels { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+
+  .level {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 6px;
+    padding: 4px 6px;
+    border: 1px solid;
+    flex: 1;
+  }
+  .card-q .level { background: #e8f4fd; border-color: #c0ddf0; }
+  .card-e .level { background: #fdf3e8; border-color: #f0d8b0; }
+  .card-t .level { background: #e8fdf3; border-color: #b0e8d0; }
+
+  .level-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    width: 12px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .card-q .level-num { color: #0080cc; }
+  .card-e .level-num { color: #e06000; }
+  .card-t .level-num { color: #00a06a; }
+
+  .level-content { flex: 1; }
+  .level-tag {
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #333;
+    line-height: 1.3;
+  }
+  .level-desc {
+    font-size: 7.5px;
+    color: #777;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .level-check {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid;
+    flex-shrink: 0;
+    background: white;
+  }
+  .card-q .level-check { border-color: #0080cc; }
+  .card-e .level-check { border-color: #e06000; }
+  .card-t .level-check { border-color: #00a06a; }
+
+  /* Note mini */
+  .card-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 3px 4px;
+    background: white;
+    border-radius: 6px;
+    border: 1px dashed;
+    margin-top: 2px;
+  }
+  .card-q .card-note { border-color: #80c0e8; }
+  .card-e .card-note { border-color: #e0a860; }
+  .card-t .card-note { border-color: #60c8a0; }
+
+  .note-label {
+    font-size: 7px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #aaa;
+  }
+  .note-box {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid;
+  }
+  .card-q .note-box { border-color: #0080cc; color: #0080cc; background: #e8f4fd; }
+  .card-e .note-box { border-color: #e06000; color: #e06000; background: #fff0e0; }
+  .card-t .note-box { border-color: #00a06a; color: #00a06a; background: #e0f8ec; }
+  .note-denom { font-family: 'Space Mono', monospace; font-size: 9px; color: #bbb; font-weight: 700; }
+
+  /* ── BOTTOM ROW (Bonus + Total + Comment) ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 6px;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Bonus */
+  .bonus {
+    background: #fffbe8;
+    border: 1.5px solid #f0d060;
+    border-top: 3px solid #f0c000;
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .bonus-icon { font-size: 18px; }
+  .bonus-content {}
+  .bonus-title {
+    font-size: 8.5px;
+    font-weight: 900;
+    color: #a06000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .bonus-text {
+    font-size: 7.5px;
+    color: #888;
+    font-weight: 600;
+    line-height: 1.3;
+    max-width: 90px;
+  }
+  .bonus-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #c08000;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+
+  /* Total */
+  .total {
+    background: #f5f5f5;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+  .total-top {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .total-label {
+    font-size: 9px;
+    font-weight: 900;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-right: 2px;
+  }
+  .chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  .chip-q { background: #d0eaf8; color: #0060a0; }
+  .chip-e { background: #fce8cc; color: #b04800; }
+  .chip-t { background: #c8f0e0; color: #007050; }
+  .chip-b { background: #fce8a0; color: #806000; }
+  .chip-sep { font-size: 9px; color: #ccc; font-weight: 700; }
+
+  .total-bottom {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .total-box {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    width: 32px;
+    height: 28px;
+    border-radius: 6px;
+    border: 2px dashed #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #333;
+  }
+  .total-sep { font-family: 'Space Mono', monospace; font-size: 12px; color: #bbb; }
+  .total-max { font-family: 'Space Mono', monospace; font-size: 12px; color: #aaa; font-weight: 700; }
+
+  /* Comment */
+  .comment {
+    background: #fafafa;
+    border: 1.5px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    min-width: 80px;
+  }
+  .comment-label {
+    font-size: 8px;
+    font-weight: 800;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .comment-lines { display: flex; flex-direction: column; gap: 5px; flex: 1; justify-content: center; }
+  .comment-line { height: 1px; background: #ddd; }
+
+  /* ── FOOTER ── */
+  .fiche-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-text {
+    font-size: 7px;
+    color: #ccc;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .footer-dots { display: flex; gap: 3px; }
+  .fdot { width: 5px; height: 5px; border-radius: 50%; }
+  .fdot-b { background: #0080cc; opacity: 0.5; }
+  .fdot-o { background: #e06000; opacity: 0.5; }
+  .fdot-g { background: #00a06a; opacity: 0.5; }
+
+  /* ══════════════════
+     IMPRESSION
+  ══════════════════ */
+  @media print {
+    body { background: none; padding: 0; }
+    .print-info { display: none; }
+    .a4-page {
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-info">
+  2 fiches par page A4 · <strong>Imprimer</strong> : Fichier → Imprimer → A4 Portrait → "Arrière-plans graphiques" activé<br>
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimer</button>
+</div>
+
+<!-- PAGE 1 -->
+<div class="a4-page">
+  <div class="fiche">
+    <div class="deco-tl"></div>
+    <div class="deco-tr"></div>
+
+    <div class="header">
+      <div class="header-left">
+        <div class="header-badge">🛠️ Technologie · Collège · 4e</div>
+        <div class="header-title">Évaluation – <span>Pont Connecté</span></div>
+        <div class="header-sub">Projet de technologie · Arduino &amp; Vittascience</div>
+      </div>
+      <div class="header-score">
+        <div class="header-score-label">Note</div>
+        <div class="header-score-val">&nbsp;&nbsp;<span>/ 10</span></div>
+      </div>
+    </div>
+
+    <div class="group-row">
+      <div class="group-icon">👥</div>
+      <div class="group-label">Groupe :</div>
+      <div class="group-dots"></div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card card-q">
+        <div class="card-header">
+          <div class="card-icon">🌉</div>
+          <div class="card-letter">Q</div>
+          <div class="card-score-badge">/3 pts</div>
+        </div>
+        <div class="card-title">Qualité du pont</div>
+        <div class="card-eval">Structure · solidité · soin · design</div>
+        <div class="levels">
+          <div class="level">
+            <div class="level-num">3</div>
+            <div class="level-content">
+              <div class="level-tag">🤩 Waouh !</div>
+              <div class="level-desc">Solide, soigné, joli, créatif</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">2</div>
+            <div class="level-content">
+              <div class="level-tag">🙂 Ça va</div>
+              <div class="level-desc">Correct, terminé</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">1</div>
+            <div class="level-content">
+              <div class="level-tag">😅 Bof</div>
+              <div class="level-desc">Fragile, peu soigné ou inachevé</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+        </div>
+        <div class="card-note">
+          <div class="note-label">Note</div>
+          <div class="note-box"></div>
+          <div class="note-denom">/ 3</div>
+        </div>
+      </div>
+
+      <div class="card card-e">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div class="card-letter">E</div>
+          <div class="card-score-badge">/3 pts</div>
+        </div>
+        <div class="card-title">Électricité &amp; Fonctionnement</div>
+        <div class="card-eval">Montage · intégration · fonctionnement</div>
+        <div class="levels">
+          <div class="level">
+            <div class="level-num">3</div>
+            <div class="level-content">
+              <div class="level-tag">🤩 Waouh !</div>
+              <div class="level-desc">Fonctionne bien, intégré au pont</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">2</div>
+            <div class="level-content">
+              <div class="level-tag">🙂 Ça va</div>
+              <div class="level-desc">Partiel ou peu intégré</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">1</div>
+            <div class="level-content">
+              <div class="level-tag">😅 Bof</div>
+              <div class="level-desc">Incomplet ou non fonctionnel</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+        </div>
+        <div class="card-note">
+          <div class="note-label">Note</div>
+          <div class="note-box"></div>
+          <div class="note-denom">/ 3</div>
+        </div>
+      </div>
+
+      <div class="card card-t">
+        <div class="card-header">
+          <div class="card-icon">🤝</div>
+          <div class="card-letter">T</div>
+          <div class="card-score-badge">/3 pts</div>
+        </div>
+        <div class="card-title">Travail d'équipe</div>
+        <div class="card-eval">Coopération · implication · autonomie</div>
+        <div class="levels">
+          <div class="level">
+            <div class="level-num">3</div>
+            <div class="level-content">
+              <div class="level-tag">🤩 Waouh !</div>
+              <div class="level-desc">Super équipe, tous impliqués</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">2</div>
+            <div class="level-content">
+              <div class="level-tag">🙂 Ça va</div>
+              <div class="level-desc">Bonne coopération globale</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">1</div>
+            <div class="level-content">
+              <div class="level-tag">😅 Bof</div>
+              <div class="level-desc">Participation inégale</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+        </div>
+        <div class="card-note">
+          <div class="note-label">Note</div>
+          <div class="note-box"></div>
+          <div class="note-denom">/ 3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="bonus">
+        <div class="bonus-icon">⭐</div>
+        <div class="bonus-content">
+          <div class="bonus-title">Bonus participation</div>
+          <div class="bonus-text">Pour l'investissement de tous les groupes</div>
+        </div>
+        <div class="bonus-val">+1</div>
+      </div>
+      <div class="total">
+        <div class="total-top">
+          <div class="total-label">🏆 Total</div>
+          <span class="chip chip-q">Q</span><span class="chip-sep">+</span>
+          <span class="chip chip-e">E</span><span class="chip-sep">+</span>
+          <span class="chip chip-t">T</span><span class="chip-sep">+</span>
+          <span class="chip chip-b">⭐</span><span class="chip-sep">=</span>
+        </div>
+        <div class="total-bottom">
+          <div class="total-box"></div>
+          <div class="total-sep">/</div>
+          <div class="total-max">10</div>
+        </div>
+      </div>
+      <div class="comment">
+        <div class="comment-label">💬 Commentaire</div>
+        <div class="comment-lines">
+          <div class="comment-line"></div>
+          <div class="comment-line"></div>
+          <div class="comment-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fiche-footer">
+      <div class="footer-text">Technologie · 4e · Pont Connecté</div>
+      <div class="footer-dots">
+        <div class="fdot fdot-b"></div>
+        <div class="fdot fdot-o"></div>
+        <div class="fdot fdot-g"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SÉPARATEUR CISEAU -->
+  <div class="separator"></div>
+
+  <!-- FICHE 2 (identique) -->
+  <div class="fiche">
+    <div class="deco-tl"></div>
+    <div class="deco-tr"></div>
+
+    <div class="header">
+      <div class="header-left">
+        <div class="header-badge">🛠️ Technologie · Collège · 4e</div>
+        <div class="header-title">Évaluation – <span>Pont Connecté</span></div>
+        <div class="header-sub">Projet de technologie · Arduino &amp; Vittascience</div>
+      </div>
+      <div class="header-score">
+        <div class="header-score-label">Note</div>
+        <div class="header-score-val">&nbsp;&nbsp;<span>/ 10</span></div>
+      </div>
+    </div>
+
+    <div class="group-row">
+      <div class="group-icon">👥</div>
+      <div class="group-label">Groupe :</div>
+      <div class="group-dots"></div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card card-q">
+        <div class="card-header">
+          <div class="card-icon">🌉</div>
+          <div class="card-letter">Q</div>
+          <div class="card-score-badge">/3 pts</div>
+        </div>
+        <div class="card-title">Qualité du pont</div>
+        <div class="card-eval">Structure · solidité · soin · design</div>
+        <div class="levels">
+          <div class="level">
+            <div class="level-num">3</div>
+            <div class="level-content">
+              <div class="level-tag">🤩 Waouh !</div>
+              <div class="level-desc">Solide, soigné, joli, créatif</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">2</div>
+            <div class="level-content">
+              <div class="level-tag">🙂 Ça va</div>
+              <div class="level-desc">Correct, terminé</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">1</div>
+            <div class="level-content">
+              <div class="level-tag">😅 Bof</div>
+              <div class="level-desc">Fragile, peu soigné ou inachevé</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+        </div>
+        <div class="card-note">
+          <div class="note-label">Note</div>
+          <div class="note-box"></div>
+          <div class="note-denom">/ 3</div>
+        </div>
+      </div>
+
+      <div class="card card-e">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div class="card-letter">E</div>
+          <div class="card-score-badge">/3 pts</div>
+        </div>
+        <div class="card-title">Électricité &amp; Fonctionnement</div>
+        <div class="card-eval">Montage · intégration · fonctionnement</div>
+        <div class="levels">
+          <div class="level">
+            <div class="level-num">3</div>
+            <div class="level-content">
+              <div class="level-tag">🤩 Waouh !</div>
+              <div class="level-desc">Fonctionne bien, intégré au pont</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">2</div>
+            <div class="level-content">
+              <div class="level-tag">🙂 Ça va</div>
+              <div class="level-desc">Partiel ou peu intégré</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">1</div>
+            <div class="level-content">
+              <div class="level-tag">😅 Bof</div>
+              <div class="level-desc">Incomplet ou non fonctionnel</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+        </div>
+        <div class="card-note">
+          <div class="note-label">Note</div>
+          <div class="note-box"></div>
+          <div class="note-denom">/ 3</div>
+        </div>
+      </div>
+
+      <div class="card card-t">
+        <div class="card-header">
+          <div class="card-icon">🤝</div>
+          <div class="card-letter">T</div>
+          <div class="card-score-badge">/3 pts</div>
+        </div>
+        <div class="card-title">Travail d'équipe</div>
+        <div class="card-eval">Coopération · implication · autonomie</div>
+        <div class="levels">
+          <div class="level">
+            <div class="level-num">3</div>
+            <div class="level-content">
+              <div class="level-tag">🤩 Waouh !</div>
+              <div class="level-desc">Super équipe, tous impliqués</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">2</div>
+            <div class="level-content">
+              <div class="level-tag">🙂 Ça va</div>
+              <div class="level-desc">Bonne coopération globale</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+          <div class="level">
+            <div class="level-num">1</div>
+            <div class="level-content">
+              <div class="level-tag">😅 Bof</div>
+              <div class="level-desc">Participation inégale</div>
+            </div>
+            <div class="level-check"></div>
+          </div>
+        </div>
+        <div class="card-note">
+          <div class="note-label">Note</div>
+          <div class="note-box"></div>
+          <div class="note-denom">/ 3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="bonus">
+        <div class="bonus-icon">⭐</div>
+        <div class="bonus-content">
+          <div class="bonus-title">Bonus participation</div>
+          <div class="bonus-text">Pour l'investissement de tous les groupes</div>
+        </div>
+        <div class="bonus-val">+1</div>
+      </div>
+      <div class="total">
+        <div class="total-top">
+          <div class="total-label">🏆 Total</div>
+          <span class="chip chip-q">Q</span><span class="chip-sep">+</span>
+          <span class="chip chip-e">E</span><span class="chip-sep">+</span>
+          <span class="chip chip-t">T</span><span class="chip-sep">+</span>
+          <span class="chip chip-b">⭐</span><span class="chip-sep">=</span>
+        </div>
+        <div class="total-bottom">
+          <div class="total-box"></div>
+          <div class="total-sep">/</div>
+          <div class="total-max">10</div>
+        </div>
+      </div>
+      <div class="comment">
+        <div class="comment-label">💬 Commentaire</div>
+        <div class="comment-lines">
+          <div class="comment-line"></div>
+          <div class="comment-line"></div>
+          <div class="comment-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fiche-footer">
+      <div class="footer-text">Technologie · 4e · Pont Connecté</div>
+      <div class="footer-dots">
+        <div class="fdot fdot-b"></div>
+        <div class="fdot fdot-o"></div>
+        <div class="fdot fdot-g"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
