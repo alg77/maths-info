@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuto Hanbok Shirt & Coat Sewing Therapy — Traduction française</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --lilas: #8B7DC8; --lilas-light: #C4B8E8; --lilas-pale: #EDE8F8;
+  --lilas-deep: #5B4BAA; --violet: #4A3580;
+  --rouge: #B83040; --rouge-light: #E8A0A8; --rouge-pale: #FDF0F2;
+  --or: #C8A850; --or-light: #F0E0A0; --ivoire: #FDF8F0;
+  --encre: #2A1F3D; --texte: #3D3050; --texte-doux: #6A5880;
+  --blanc: #FFFFFF; --border: rgba(139,125,200,0.15);
+  --ombre: 0 4px 24px rgba(74,53,128,0.10);
+  --ombre-sm: 0 2px 10px rgba(74,53,128,0.07);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; background: var(--ivoire); color: var(--texte); line-height: 1.7; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--lilas-pale);
+  padding: 0.7rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  box-shadow: 0 2px 12px rgba(74,53,128,0.08);
+}
+.nav-back {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  text-decoration: none; color: var(--lilas-deep);
+  font-size: 0.82rem; font-weight: 700;
+  padding: 0.35rem 0.9rem; border-radius: 20px;
+  border: 1.5px solid var(--lilas-light);
+  transition: background 0.2s; white-space: nowrap;
+}
+.nav-back:hover { background: var(--lilas-pale); }
+.nav-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--violet); font-style: italic; }
+.nav-src { font-size: 0.72rem; color: var(--texte-doux); white-space: nowrap; }
+.nav-src a { color: var(--lilas-deep); text-decoration: none; border-bottom: 1px solid var(--lilas-light); }
+
+/* ── HERO ── */
+.page-hero {
+  background: linear-gradient(135deg, var(--lilas-pale) 0%, #F5E8EE 100%);
+  border-bottom: 1px solid var(--lilas-light);
+  padding: 3.5rem 2rem 2.5rem; text-align: center;
+}
+.hero-eyebrow {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--rouge); margin-bottom: 0.75rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content: '✿'; color: var(--lilas-light); }
+.page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--violet); line-height: 1.2; margin-bottom: 0.75rem; }
+.page-hero h1 em { color: var(--rouge); font-style: italic; }
+.hero-sub { font-size: 0.9rem; color: var(--texte-doux); max-width: 560px; margin: 0 auto 1.5rem; line-height: 1.7; }
+.hero-meta { display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; font-size: 0.75rem; color: var(--texte-doux); }
+.hero-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+/* ── LAYOUT ── */
+.page-wrap { max-width: 780px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+/* ── COMPARATIF ── */
+.compare-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin: 2rem 0;
+}
+.compare-card {
+  background: white; border-radius: 16px; padding: 1.25rem;
+  border: 1px solid var(--border); box-shadow: var(--ombre-sm);
+}
+.compare-card.star { border: 2px solid var(--lilas); }
+.compare-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--violet); margin-bottom: 0.5rem; }
+.compare-tag { font-size: 0.62rem; font-weight: 700; padding: 0.18rem 0.6rem; border-radius: 20px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; display: inline-block; }
+.compare-tag.jeogori { background: var(--lilas-pale); color: var(--lilas-deep); }
+.compare-tag.coat { background: var(--or-light); color: #7a5c00; }
+.compare-list { list-style: none; font-size: 0.78rem; color: var(--texte-doux); line-height: 1.7; }
+.compare-list li { display: flex; gap: 0.5rem; padding: 0.2rem 0; border-bottom: 1px solid var(--lilas-pale); }
+.compare-list li:last-child { border-bottom: none; }
+.compare-list li::before { content: '→'; color: var(--lilas-light); flex-shrink: 0; }
+
+/* ── SOURCE BOX ── */
+.source-box {
+  max-width: 100%; margin: 2rem 0;
+  background: white; border: 1.5px solid var(--lilas-light);
+  border-radius: 16px; padding: 1.1rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+  font-size: 0.8rem; color: var(--texte-doux); line-height: 1.6;
+  box-shadow: var(--ombre);
+}
+.source-icon { font-size: 1.4rem; flex-shrink: 0; }
+.source-box a { color: var(--lilas-deep); font-weight: 700; }
+
+/* ── SOMMAIRE ── */
+.sommaire { background: white; border-radius: 16px; border: 1px solid var(--border); padding: 1.5rem 1.75rem; margin: 2.5rem 0; box-shadow: var(--ombre); }
+.sommaire-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--violet); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.sommaire-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.sommaire-list li a { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--texte-doux); font-size: 0.82rem; font-weight: 600; padding: 0.4rem 0.75rem; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+.sommaire-list li a:hover { background: var(--lilas-pale); color: var(--lilas-deep); }
+.som-num { width: 22px; height: 22px; border-radius: 50%; background: var(--lilas-pale); color: var(--lilas-deep); font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* ── SECTIONS ── */
+.tuto-section { margin-top: 3.5rem; }
+.section-anchor { scroll-margin-top: 80px; }
+.section-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rouge); display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--rouge-light); }
+.section-h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--violet); margin-bottom: 1rem; line-height: 1.25; }
+.section-intro { font-size: 0.88rem; color: var(--texte-doux); line-height: 1.75; margin-bottom: 1.5rem; }
+
+/* ── STEP BLOCKS ── */
+.step-block { background: white; border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--ombre); overflow: hidden; margin-bottom: 1.25rem; }
+.step-header { display: flex; align-items: stretch; }
+.step-num-col { background: linear-gradient(180deg, var(--lilas), var(--lilas-deep)); color: white; min-width: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.25rem 0.75rem; font-family: 'Playfair Display', serif; }
+.step-num-label { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.1rem; }
+.step-num-val { font-size: 2.2rem; font-weight: 700; line-height: 1; }
+.step-header-content { flex: 1; padding: 1rem 1.25rem; border-bottom: 1px solid var(--lilas-pale); background: linear-gradient(135deg, #FDFBFF, white); }
+.step-phase { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rouge); margin-bottom: 0.2rem; }
+.step-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--violet); line-height: 1.3; }
+.step-body { padding: 1.25rem 1.5rem; }
+.step-body p { font-size: 0.85rem; color: var(--texte-doux); line-height: 1.75; margin-bottom: 0.6rem; }
+.step-body p:last-child { margin-bottom: 0; }
+.step-actions { list-style: none; display: flex; flex-direction: column; }
+.step-actions li { font-size: 0.83rem; color: var(--texte-doux); padding: 0.5rem 0; border-bottom: 1px solid var(--lilas-pale); display: flex; gap: 0.75rem; line-height: 1.55; align-items: flex-start; }
+.step-actions li:last-child { border-bottom: none; }
+.step-actions li::before { content: '›'; color: var(--lilas); font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.step-tip { margin-top: 1rem; padding: 0.75rem 1rem; background: var(--lilas-pale); border-radius: 10px; border-left: 3px solid var(--lilas); font-size: 0.78rem; color: var(--lilas-deep); line-height: 1.6; font-style: italic; }
+.step-warning { margin-top: 0.75rem; padding: 0.75rem 1rem; background: var(--rouge-pale); border-radius: 10px; border-left: 3px solid var(--rouge); font-size: 0.78rem; color: var(--rouge); line-height: 1.6; }
+.step-fr-en { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.fr-en-tag { font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid var(--lilas-light); color: var(--lilas-deep); background: var(--lilas-pale); }
+
+/* ── NOTE BOX ── */
+.note-box { background: white; border-radius: 14px; border-left: 4px solid var(--or); padding: 1.1rem 1.25rem; margin: 1.5rem 0; font-size: 0.83rem; color: var(--texte-doux); line-height: 1.7; box-shadow: var(--ombre-sm); }
+.note-box .note-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--or); margin-bottom: 0.4rem; }
+
+/* ── VIDEO ── */
+.video-wrap { background: #111; border-radius: 14px; overflow: hidden; margin: 1.5rem 0; box-shadow: var(--ombre); position: relative; padding-bottom: 56.25%; }
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.video-caption { font-size: 0.75rem; color: var(--texte-doux); text-align: center; margin-top: 0.5rem; margin-bottom: 1.25rem; font-style: italic; }
+
+/* ── DIFF TABLE ── */
+.diff-table { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; box-shadow: var(--ombre); margin: 1.5rem 0; }
+.diff-table thead tr { background: var(--encre); color: white; }
+.diff-table thead th { padding: 0.75rem 1rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-align: left; text-transform: uppercase; }
+.diff-table tbody tr { border-bottom: 1px solid var(--lilas-pale); }
+.diff-table tbody tr:nth-child(even) { background: var(--lilas-pale); }
+.diff-table td { padding: 0.7rem 1rem; font-size: 0.82rem; color: var(--texte-doux); line-height: 1.5; }
+.diff-table td:first-child { font-weight: 700; color: var(--violet); }
+
+/* ── FOOTER ── */
+.page-footer { background: var(--encre); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.75rem; line-height: 1.8; margin-top: 4rem; }
+.page-footer a { color: var(--lilas-light); }
+
+@media (max-width: 640px) {
+  .compare-grid { grid-template-columns: 1fr; }
+  nav { flex-wrap: wrap; gap: 0.5rem; }
+  .nav-src { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="hanbok_tuto_site.html">← Retour au site</a>
+  <span class="nav-title">Hanbok Shirt &amp; Coat — traduction française</span>
+  <span class="nav-src">Source : <a href="https://sewingtherapy.net/hanbok-coat-sewing-tutorial/" target="_blank" rel="noopener">sewingtherapy.net ↗</a></span>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-eyebrow">Traduction française complète</div>
+  <h1>Hanbok Shirt &amp; Coat<br><em>Le jeogori moderne — guide en français</em></h1>
+  <p class="hero-sub">Traduction et adaptation du tutoriel "DIY Hanbok Shirt and Coat" de Sara SJ (Sewing Therapy, janvier 2025). Ce patron propose deux versions : une chemise jeogori courte et un manteau jeogori long — c'est la version chemise qui correspond à votre projet.</p>
+  <div class="hero-meta">
+    <span>✂️ Niveau : débutante accompagnée</span>
+    <span>⏱️ 3 à 5h pour la version shirt</span>
+    <span>🧵 Patron PDF Sewing Therapy requis</span>
+    <span>🇫🇷 Traduction non officielle</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <div class="source-box">
+    <div class="source-icon">ℹ️</div>
+    <div>
+      <strong>Source originale :</strong> tutoriel <em>"DIY Hanbok Shirt and Coat: Effortless Elegance Made Easy!"</em> par Sara SJ — <a href="https://sewingtherapy.net/hanbok-coat-sewing-tutorial/" target="_blank" rel="noopener">sewingtherapy.net</a>. Patron PDF disponible sur <a href="https://twooninefabric.ca/products/pdf-hanbok-shirt-and-coat-pattern-sewing-therapy" target="_blank" rel="noopener">twooninefabric.ca</a>. Ce document est une traduction commentée, non officielle, destinée aux couturières francophones.
+    </div>
+  </div>
+
+  <!-- VIDÉO PRINCIPALE -->
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/Kvtt6xD3VqA" title="Sewing Therapy — Hanbok Shirt and Coat Tutorial" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <p class="video-caption">▲ Vidéo tuto complète — regardez en entier avant de commencer. Activez les sous-titres → ⚙️ → Sous-titres → Traduire automatiquement → Français</p>
+
+  <!-- DEUX VERSIONS -->
+  <div class="tuto-section section-anchor" id="versions">
+    <div class="section-eyebrow">Comprendre le patron</div>
+    <h2 class="section-h2">Deux versions dans un seul patron</h2>
+    <p class="section-intro">Le patron "Hanbok Shirt &amp; Coat" propose deux silhouettes très différentes à partir des mêmes pièces de base. Pour votre projet concert, c'est clairement la <strong>version Shirt (chemise jeogori)</strong> qui convient.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card star">
+        <span class="compare-tag jeogori">✅ Votre version</span>
+        <div class="compare-title">Hanbok Shirt — Chemise jeogori</div>
+        <ul class="compare-list">
+          <li>Longueur courte, s'arrête à la taille ou aux hanches</li>
+          <li>Col croisé hanbok avec goreum proéminents</li>
+          <li>Manches 3/4 ou longues légèrement évasées</li>
+          <li>Se porte sur la jupe Uniqlo ou n'importe quel bas</li>
+          <li>Construction plus simple — idéale en premier projet</li>
+          <li>Effet cache-cœur authentique, plus proche du jeogori traditionnel</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <span class="compare-tag coat">Version secondaire</span>
+        <div class="compare-title">Hanbok Coat — Manteau jeogori</div>
+        <ul class="compare-list">
+          <li>Longueur genou ou mi-mollet</li>
+          <li>Même col croisé, goreum plus longs</li>
+          <li>Se porte comme veste ouverte ou fermée</li>
+          <li>Plus formel, adapté à des occasions cérémonieuses</li>
+          <li>Construction identique, juste plus long à coudre</li>
+          <li>Intéressant pour une future version hiver</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-title">💡 Pourquoi ce patron plutôt que la Wrap Dress ?</div>
+      Contrairement au patron Hanbok Wrap Dress (qui inclut la jupe), ce patron ne fait que le <strong>haut jeogori</strong> — exactement ce dont vous avez besoin puisque vous avez déjà les jupes Uniqlo. Il est également plus récent (janvier 2025) et bénéficie de la construction la plus affinée de Sara. L'effet cache-cœur et la profondeur du col sont plus prononcés que sur la Wrap Dress.
+    </div>
+  </div>
+
+  <!-- SOMMAIRE -->
+  <div class="sommaire">
+    <div class="sommaire-title">📋 Étapes du tutoriel</div>
+    <ul class="sommaire-list">
+      <li><a href="#preparation"><div class="som-num">0</div>Préparation — fournitures et thermocollant</a></li>
+      <li><a href="#etape1"><div class="som-num">1</div>Les pinces — version avec galbe seulement</a></li>
+      <li><a href="#etape2"><div class="som-num">2</div>Confection des goreum (liens)</a></li>
+      <li><a href="#etape3"><div class="som-num">3</div>Assembler les pièces principales du corsage</a></li>
+      <li><a href="#etape4"><div class="som-num">4</div>Les manches — montage et pose</a></li>
+      <li><a href="#etape5"><div class="som-num">5</div>Parementure et goreum latéraux</a></li>
+      <li><a href="#etape6"><div class="som-num">6</div>Le col croisé hanbok</a></li>
+      <li><a href="#etape7"><div class="som-num">7</div>Ourlet et finitions</a></li>
+      <li><a href="#ajustements"><div class="som-num">★</div>Ajustements taille & goreum — l'avantage du jeogori</a></li>
+      <li><a href="#diff-adulte-fille"><div class="som-num">👧</div>Adapter pour votre fille (XS ou S adulte)</a></li>
+    </ul>
+  </div>
+
+  <!-- ÉTAPE 0 -->
+  <div class="tuto-section section-anchor" id="preparation">
+    <div class="section-eyebrow">Étape 0</div>
+    <h2 class="section-h2">Préparation</h2>
+
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">0</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Avant de coudre</div>
+          <div class="step-title">Fournitures, tissu et thermocollant</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p><strong>Fournitures nécessaires :</strong></p>
+        <ul class="step-actions">
+          <li>Tissu principal — crêpe georgette, mousseline, lin léger ou coton japonais en lilas (prévoir +20%)</li>
+          <li>Thermocollant léger (non-tissé) — pour le col et les parementures</li>
+          <li>Ruban satin pour les goreum — rouge cerise, env. 1,5 m par tenue</li>
+          <li>Fil assorti, épingles, ciseaux bien aiguisés</li>
+          <li>Fer à repasser + pattemouille pour tissu délicat</li>
+          <li>Wonder Tape (ruban hydrosoluble) — optionnel mais très utile pour le col</li>
+        </ul>
+        <p style="margin-top:0.85rem;"><strong>Pré-traitement du tissu :</strong> lavez et séchez votre tissu à la température habituelle avant de couper. Repassez bien à plat. Pour les tissus fluides (georgette, mousseline), épinglez sur du papier de soie avant de couper pour éviter qu'ils glissent.</p>
+        <p style="margin-top:0.75rem;"><strong>Thermocollant :</strong> collez-le au fer (côté colle contre l'envers du tissu) sur :</p>
+        <ul class="step-actions">
+          <li>Les 2 pièces de parementure devant (front facing)</li>
+          <li>1 pièce de col (la pièce extérieure visible)</li>
+        </ul>
+        <div class="step-tip">💡 Posez le thermocollant côté brillant (colle) contre l'envers du tissu, couvrez d'un linge humide, et pressez 10-15 secondes sans faire glisser le fer. Laissez refroidir avant de manipuler.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Thermocollant = Fusible interfacing</span>
+          <span class="fr-en-tag">Envers = Wrong side (WS)</span>
+          <span class="fr-en-tag">Endroit = Right side (RS)</span>
+          <span class="fr-en-tag">Parementure = Facing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 1 -->
+  <div class="tuto-section section-anchor" id="etape1">
+    <div class="section-eyebrow">Étape 1</div>
+    <h2 class="section-h2">Les pinces (si applicable)</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">1</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Selon la version du patron choisie</div>
+          <div class="step-title">Pinces de poitrine sur le devant</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Certaines versions du patron incluent des pinces pour les tailles avec plus de galbe. Si votre patron en a, voici comment les coudre :</p>
+        <ul class="step-actions">
+          <li>Repérer les marques de pince sur la pièce devant du corsage</li>
+          <li>Plier endroit contre endroit en alignant les deux repères — épingler</li>
+          <li>Coudre en effilant vers la pointe — <strong>ne pas faire de point d'arrêt machine</strong> à la pointe</li>
+          <li>Faire un double nœud à la main en bout de fil, couper en laissant 1 cm</li>
+          <li>Repasser la pince vers le bas et vers le côté</li>
+        </ul>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Pince = Dart</span>
+          <span class="fr-en-tag">Repère = Mark / Notch</span>
+          <span class="fr-en-tag">Endroit contre endroit = RST</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 2 -->
+  <div class="tuto-section section-anchor" id="etape2">
+    <div class="section-eyebrow">Étape 2</div>
+    <h2 class="section-h2">Confection des goreum</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">2</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Les rubans caractéristiques du hanbok</div>
+          <div class="step-title">Préparer les goreum (고름)</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Les goreum sont les longs rubans qui ferment le jeogori et donnent tout son caractère au vêtement. Pour votre version, vous utiliserez du ruban satin rouge cerise — l'accent Arirang.</p>
+        <ul class="step-actions">
+          <li>Si vous cousez les goreum dans le tissu : plier chaque bande en deux dans la longueur, envers contre envers — repasser</li>
+          <li>Ouvrir, plier les bords longs vers le centre — repasser</li>
+          <li>Refermer et piquer au bord (edgestitch) sur toute la longueur</li>
+          <li>Plier et piquer un bord court pour finir proprement</li>
+          <li><strong>Version simplifiée :</strong> utiliser directement du ruban satin de la bonne largeur — identique visuellement, beaucoup plus rapide</li>
+        </ul>
+        <p style="margin-top:0.75rem;">Il vous faut au minimum <strong>2 goreum</strong> pour le jeogori shirt (un court côté, un long devant). Certaines versions incluent aussi un lien intérieur caché qui aide à maintenir le croisé.</p>
+        <div class="step-tip">💡 Sara recommande le ruban de coton pour les liens intérieurs (invisible) et un tissu assorti ou contrasté pour les goreum visibles. Pour vous : ruban satin rouge cerise pour les goreum visibles, ruban coton lilas pour le lien intérieur.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Goreum = Tie / Ribbon</span>
+          <span class="fr-en-tag">Piquer au bord = Edgestitch</span>
+          <span class="fr-en-tag">Lien intérieur = Inner tie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 3 -->
+  <div class="tuto-section section-anchor" id="etape3">
+    <div class="section-eyebrow">Étape 3</div>
+    <h2 class="section-h2">Assembler le corsage</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">3</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Construction principale</div>
+          <div class="step-title">Dos, épaules et côtés</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <ul class="step-actions">
+          <li>Assembler les 2 pièces dos le long de la couture centrale, endroit contre endroit — surjeter et repasser d'un côté</li>
+          <li>Coudre les coutures d'épaule (dos + devants), endroit contre endroit — surjeter</li>
+          <li>Repasser les coutures d'épaule vers le dos</li>
+          <li>Bâtir un goreum (lien latéral) sur le bord du côté droit, endroit contre endroit — il sera pris dans la couture de côté</li>
+          <li>Coudre les coutures de côté (dos + devants) — surjeter</li>
+          <li>Repasser les coutures de côté vers le dos</li>
+        </ul>
+        <div class="step-tip">💡 "Bâtir" = coudre avec de grands points (longueur 5) pour maintenir provisoirement. Ces points seront inclus dans la couture définitive — ils n'ont pas besoin d'être parfaits.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Dos = Back</span>
+          <span class="fr-en-tag">Devant = Front</span>
+          <span class="fr-en-tag">Épaule = Shoulder seam</span>
+          <span class="fr-en-tag">Côté = Side seam</span>
+          <span class="fr-en-tag">Surjeter = Serge</span>
+          <span class="fr-en-tag">Bâtir = Baste</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 4 -->
+  <div class="tuto-section section-anchor" id="etape4">
+    <div class="section-eyebrow">Étape 4 — Clé du projet</div>
+    <h2 class="section-h2">Les manches</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col" style="background:linear-gradient(180deg, var(--rouge), #8b1a12);"><div class="step-num-label">Étape</div><div class="step-num-val">4</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">⚡ Regardez la vidéo sur cette partie avant de commencer</div>
+          <div class="step-title">Confection et pose des manches évasées</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Les manches du jeogori sont légèrement évasées au bas — c'est ce qui donne la silhouette si caractéristique. La tête de manche (partie arrondie du haut) doit être froncée pour entrer dans l'emmanchure.</p>
+        <ul class="step-actions">
+          <li>Plier chaque manche et coudre la couture de dessous de bras, endroit contre endroit — surjeter</li>
+          <li>Coudre 2 rangées de grands points (longueur 4-5) sur la tête de manche entre les crans — <strong>sans point d'arrêt</strong>, laisser de longs fils</li>
+          <li>Tirer les fils de dessous progressivement pour froncer jusqu'à la largeur de l'emmanchure</li>
+          <li>Répartir les fronces régulièrement, surtout au sommet de la manche</li>
+          <li>Introduire la manche dans l'emmanchure, endroit contre endroit — aligner les crans et la couture d'épaule</li>
+          <li>Épingler depuis le centre en allant vers les côtés — coudre — surjeter</li>
+          <li>Si des manches 3/4 : raccourcir de la longueur souhaitée avant l'ourlet</li>
+          <li>Double ourlet au bas de manche : replier 1 cm, repasser, replier encore, piquer au bord</li>
+        </ul>
+        <div class="step-warning">⚠️ Tirez les fils de fronces progressivement et des deux côtés à la fois. Un fil qui casse à cette étape = recommencer les points de fronces sur cette partie.</div>
+        <div class="step-tip">💡 Pour les manches évasées du jeogori, on peut couper légèrement en biais le bas de la manche avant l'ourlet — cela accentue l'évasé naturel et l'effet dramatique coréen.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Tête de manche = Sleeve cap</span>
+          <span class="fr-en-tag">Emmanchure = Armhole</span>
+          <span class="fr-en-tag">Fronces = Gathers</span>
+          <span class="fr-en-tag">Cran = Notch</span>
+          <span class="fr-en-tag">Dessous de bras = Underarm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 5 -->
+  <div class="tuto-section section-anchor" id="etape5">
+    <div class="section-eyebrow">Étape 5</div>
+    <h2 class="section-h2">Parementure et goreum latéraux</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">5</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Finition intérieure et pose des liens</div>
+          <div class="step-title">Poser la parementure devant et les goreum</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>La <strong>parementure</strong> (facing) finit proprement l'intérieur du devant gauche — celui qui croise par-dessus. C'est sur cette pièce qu'on fixe les goreum principaux.</p>
+        <ul class="step-actions">
+          <li>Bâtir le lien intérieur (côté invisible) sur la parementure aux repères indiqués</li>
+          <li>Bâtir le grand goreum rouge (côté visible) à l'emplacement du patron</li>
+          <li>Poser la parementure sur le devant du corsage, endroit contre endroit — coudre</li>
+          <li>Repasser la parementure vers l'intérieur</li>
+          <li>Sous-piquer (understitch) : depuis l'endroit, piquer à 2mm de la couture pour aplatir la parementure et l'empêcher de rouler vers l'extérieur</li>
+          <li>Plier sur la ligne de pli principale — repasser soigneusement avec vapeur</li>
+        </ul>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Parementure = Facing</span>
+          <span class="fr-en-tag">Sous-piquer = Understitch</span>
+          <span class="fr-en-tag">Repasser = Press</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 6 -->
+  <div class="tuto-section section-anchor" id="etape6">
+    <div class="section-eyebrow">Étape 6 — La plus délicate</div>
+    <h2 class="section-h2">Le col croisé hanbok</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col" style="background:linear-gradient(180deg, var(--or), #a07800);"><div class="step-num-label">Étape</div><div class="step-num-val">6</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Prenez votre temps — c'est lui qui fait tout</div>
+          <div class="step-title">Poser le col croisé — la signature du jeogori</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Le col est la pièce signature du jeogori. Sur le Hanbok Shirt, il est plus profond et plus visible que sur la Wrap Dress — c'est lui qui crée cet effet cache-cœur si caractéristique du hanbok authentique. Prenez le temps de bien le faire.</p>
+        <ul class="step-actions">
+          <li>Plier et repasser la marge du bord arrondi du bas du col vers l'envers</li>
+          <li>Assembler les 2 pièces col (endroit contre endroit) sur les bords supérieur et latéraux — coudre et couper les coins en diagonale pour enlever du volume</li>
+          <li>Retourner le col — repasser en commençant par les coins avec un repassage vapeur généreux</li>
+          <li>Épingler le col sur l'encolure du corsage, endroit du col contre endroit du corsage — <strong>aligner les lignes de couture</strong>, pas les bords coupés</li>
+          <li>S'assurer que le bord replié du bas du col ne sera pas pris dans la couture</li>
+          <li>Maintenir avec du Wonder Tape ou des épingles très rapprochées</li>
+          <li>Piquer depuis l'endroit (topstitch) régulièrement le long du col</li>
+          <li>Fermer la parementure sur le dessus pour finir proprement l'intérieur</li>
+        </ul>
+        <div class="step-tip">💡 Le biais intérieur du col (la bande qui borde l'intérieur du croisé) est visible quand le jeogori est porté ouvert. Soignez particulièrement cette finition — c'est elle qui fait "élégant" plutôt que "débraillé" lors d'un ajustement des goreum.</div>
+        <div class="step-warning">⚠️ Si le col gondole après la pose : vapeur intensive appuyée, puis séchage à plat sous un poids léger (livre, planche à découper). Ne jamais tirer sur un col humide.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Col = Collar</span>
+          <span class="fr-en-tag">Encolure = Neckline</span>
+          <span class="fr-en-tag">Bord arrondi = Curved edge</span>
+          <span class="fr-en-tag">Surpiquer = Topstitch</span>
+          <span class="fr-en-tag">Wonder Tape = ruban hydrosoluble</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 7 -->
+  <div class="tuto-section section-anchor" id="etape7">
+    <div class="section-eyebrow">Étape 7 — Finition</div>
+    <h2 class="section-h2">Ourlet et finitions finales</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col" style="background:linear-gradient(180deg, #2E7D32, #1B5E20);"><div class="step-num-label">Étape</div><div class="step-num-val">7</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">C'est presque terminé ! 🎉</div>
+          <div class="step-title">Ourlet du bas et finitions intérieures</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <ul class="step-actions">
+          <li>Double ourlet au bas du jeogori : replier 1 cm vers l'envers, repasser, replier encore 1 cm, repasser, piquer au bord</li>
+          <li>Couper tous les fils dépassants à l'intérieur</li>
+          <li><strong>Repassage final complet</strong> — c'est l'étape qui transforme un résultat moyen en résultat professionnel</li>
+          <li>Essayage ! Nouer les goreum rouges en otgoreum (nœud hanbok traditionnel)</li>
+          <li>Vérifier que les goreum sont à la bonne longueur — couper si trop longs, laisser 1 cm de plus si trop courts</li>
+        </ul>
+        <div class="step-tip">🎀 Pour nouer en otgoreum : le ruban gauche passe par-dessus le droit, forme une boucle vers le haut, le ruban droit vient s'enrouler et forme la deuxième boucle. Cherchez "otgoreum knot tutorial" sur YouTube pour une démonstration de 2 minutes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AJUSTEMENTS GOREUM -->
+  <div class="tuto-section section-anchor" id="ajustements">
+    <div class="section-eyebrow">Avantage unique du jeogori</div>
+    <h2 class="section-h2">L'intelligence des goreum — ajuster sans recoudre</h2>
+    <p class="section-intro">C'est l'une des grandes intelligences du hanbok traditionnel : le jeogori n'a pas de fermeture rigide. Les goreum permettent un réglage infini du croisé.</p>
+
+    <table class="diff-table">
+      <thead><tr><th>Situation</th><th>Ce qu'on fait</th><th>Résultat</th></tr></thead>
+      <tbody>
+        <tr><td>Trop serré ce jour-là</td><td>On desserre légèrement les goreum avant de nouer</td><td>Le col s'ouvre un peu — le biais intérieur devient visible → élégant si bien fini</td></tr>
+        <tr><td>On a pris quelques kilos</td><td>On ouvre davantage le croisé et on noue les goreum plus haut</td><td>Silhouette maintenue, confort garanti</td></tr>
+        <tr><td>On a maigri</td><td>On resserre le croisé et on renoue plus bas</td><td>Le jeogori suit la morphologie sans retouche</td></tr>
+        <tr><td>Concert en plein été (chaud)</td><td>On ouvre légèrement le col côté droit</td><td>Plus d'aération, look "décontracté élégant"</td></tr>
+        <tr><td>Photo officielle</td><td>On resserre bien et on noue un otgoreum parfait</td><td>Silhouette formelle et photogénique</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <div class="note-title">🎀 La clé : soigner le biais intérieur du col</div>
+      Le biais intérieur (la bande qui borde l'intérieur du col croisé, visible à l'ouverture) est ce qui transforme une ouverture en "élégante" ou en "négligée". Votre moodboard page 3 montre bien ce liseré lilas pâle à l'intérieur du col croisé — c'est ce détail qu'on voit précisément quand le jeogori est légèrement ouvert. Soignez cette finition lors de la pose du col, et vous pourrez ajuster librement sans jamais paraître débraillée.
+    </div>
+  </div>
+
+  <!-- ADAPTER POUR LA FILLE -->
+  <div class="tuto-section section-anchor" id="diff-adulte-fille">
+    <div class="section-eyebrow">Pour votre fille</div>
+    <h2 class="section-h2">Adapter pour une taille XS ou S adulte</h2>
+    <p class="section-intro">Votre fille (12 ans) peut porter directement le patron adulte en taille XS ou S avec peu d'ajustements. Voici ce que votre amie devra adapter.</p>
+
+    <table class="diff-table">
+      <thead><tr><th>Élément</th><th>Taille adulte XS/S</th><th>Ajustement pour votre fille</th></tr></thead>
+      <tbody>
+        <tr><td>Patron de base</td><td>XS ou S selon les mensurations</td><td>Probablement XS — mesurer poitrine et épaules d'abord</td></tr>
+        <tr><td>Longueur du corsage</td><td>Standard adulte</td><td>Raccourcir de 3-5 cm si nécessaire selon sa taille</td></tr>
+        <tr><td>Manches</td><td>Longueur adulte</td><td>Raccourcir selon sa longueur de bras — faire essayage avant l'ourlet</td></tr>
+        <tr><td>Emmanchure</td><td>Standard adulte</td><td>Votre amie peut légèrement réduire si les épaules semblent trop larges</td></tr>
+        <tr><td>Goreum</td><td>Longueur standard</td><td>Raccourcir légèrement pour l'échelle de la tenue enfant</td></tr>
+        <tr><td>Col</td><td>Standard</td><td>Construction identique — peut nécessiter un petit rétrécissement</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <div class="note-title">🧵 Conseil pratique</div>
+      Commencez par coudre la toile de test (en popeline bon marché) <strong>en taille adulte XS/S</strong>, puis faites-la essayer à votre fille avant de couper dans le tissu lilas. Vous verrez immédiatement ce qui doit être raccourci ou ajusté. Votre amie expérimentée saura faire ces ajustements en une heure.
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  Traduction française non officielle du tutoriel <strong>"DIY Hanbok Shirt and Coat"</strong> de Sara SJ — <a href="https://sewingtherapy.net" target="_blank">sewingtherapy.net</a><br>
+  Patron disponible sur <a href="https://twooninefabric.ca/products/pdf-hanbok-shirt-and-coat-pattern-sewing-therapy" target="_blank">twooninefabric.ca</a><br>
+  Créée dans le cadre d'un projet couture mère &amp; fille · Concert BTS ARIRANG · Stade de France · 18 juillet 2026 💜<br>
+  <a href="hanbok_tuto_site.html">← Retour au guide principal</a>
+</div>
+
+</body>
+</html>
