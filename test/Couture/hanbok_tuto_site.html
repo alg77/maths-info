@@ -44,7 +44,7 @@ body {
 .petals-bg {
   position: fixed; inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 999;
   overflow: hidden;
 }
 .petal {
@@ -748,60 +748,65 @@ section { position: relative; z-index: 5; }
   font-size: 0.78rem; color: var(--texte-doux); line-height: 1.55;
 }
 
-/* ─── PLANNING ─── */
+/* ─── RÉTRO-PLANNING VISUEL ─── */
 .planning-section {
   padding: 6rem 0;
-  background: white;
+  background: linear-gradient(180deg, var(--lilas-pale) 0%, white 100%);
 }
-.planning-timeline {
+.rp-frise {
   position: relative;
-  max-width: 780px; margin: 3rem auto 0;
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 1rem; margin-top: 3rem; padding-top: 2rem;
 }
-.planning-timeline::before {
-  content: '';
-  position: absolute; left: 72px; top: 0; bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--lilas), var(--rouge));
+.rp-bar {
+  position: absolute; top: 2.35rem;
+  left: calc(100% / 12); right: calc(100% / 12);
+  height: 3px;
+  background: linear-gradient(90deg, var(--lilas-light), var(--lilas), var(--lilas-deep), var(--rouge-light), var(--rouge));
+  border-radius: 3px; z-index: 0;
 }
-.plan-item {
-  display: flex; gap: 2rem;
-  padding: 0 0 2.5rem;
-  position: relative;
+.rp-card { position: relative; z-index: 1; display: flex; flex-direction: column; }
+.rp-card-top { display: flex; flex-direction: column; align-items: center; margin-bottom: 0.85rem; }
+.rp-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--lilas-light); border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--lilas-light);
+  margin-bottom: 0.5rem; flex-shrink: 0;
 }
-.plan-item:last-child { padding-bottom: 0; }
-.plan-when {
-  width: 72px; flex-shrink: 0;
-  font-size: 0.7rem; font-weight: 700;
-  color: var(--texte-doux); text-align: right;
-  line-height: 1.4; padding-top: 0.35rem;
+.rp-date { font-size: 0.68rem; font-weight: 700; color: var(--texte-doux); text-align: center; line-height: 1.35; letter-spacing: 0.03em; }
+.rp-card-body {
+  background: white; border-radius: 14px;
+  border: 1px solid var(--border); padding: 1rem;
+  box-shadow: 0 3px 16px rgba(74,53,128,0.08);
+  flex: 1; display: flex; flex-direction: column; gap: 0.4rem;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.plan-dot {
-  position: absolute;
-  left: 72px; top: 0.45rem;
-  width: 12px; height: 12px;
-  background: var(--lilas);
-  border: 3px solid white;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 0 3px var(--lilas-light);
+.rp-card-body:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(74,53,128,0.14); }
+.rp-card--star .rp-card-body { border: 2px solid var(--lilas); background: linear-gradient(145deg, #FDFBFF, var(--lilas-pale)); }
+.rp-card--final .rp-card-body { border: 2px solid var(--rouge-light); background: linear-gradient(145deg, white, var(--rouge-pale)); }
+.rp-icon { font-size: 1.4rem; line-height: 1; margin-bottom: 0.1rem; }
+.rp-task { font-family: 'Playfair Display', serif; font-size: 0.82rem; font-weight: 600; color: var(--violet); line-height: 1.3; }
+.rp-detail { font-size: 0.72rem; color: var(--texte-doux); line-height: 1.5; flex: 1; }
+.rp-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.25rem; }
+.rp-tag { font-size: 0.58rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; }
+.rp-tag--buy { background: #E8F5E9; color: #2E7D32; }
+.rp-tag--sew { background: var(--lilas-pale); color: var(--lilas-deep); }
+.rp-tag--amie { background: #FFF8E1; color: #F57F17; }
+.rp-tag--fille { background: var(--rouge-pale); color: var(--rouge); }
+.rp-tag--key { background: var(--violet); color: white; }
+.rp-concert {
+  margin-top: 3rem; background: var(--encre); border-radius: 20px;
+  padding: 1.75rem 2rem; display: flex; align-items: center; gap: 1.75rem;
+  box-shadow: 0 8px 32px rgba(26,18,48,0.25);
 }
-.plan-content {
-  flex: 1;
-  padding-left: 2rem;
-  background: white;
-  border-radius: 16px;
-  padding: 1rem 1.25rem 1rem 1.5rem;
-  box-shadow: var(--ombre-sm);
-  border: 1px solid rgba(139,125,200,0.12);
-}
-.plan-task {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.98rem; font-weight: 600;
-  color: var(--violet); margin-bottom: 0.3rem;
-}
-.plan-detail {
-  font-size: 0.78rem; color: var(--texte-doux); line-height: 1.6;
-}
+.rp-concert-date { text-align: center; flex-shrink: 0; background: var(--rouge); border-radius: 12px; padding: 0.75rem 1.25rem; }
+.rp-concert-day { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: white; line-height: 1; }
+.rp-concert-month { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.8); letter-spacing: 0.15em; }
+.rp-concert-sep { font-size: 1.8rem; flex-shrink: 0; }
+.rp-concert-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: white; margin-bottom: 0.35rem; }
+.rp-concert-sub { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+@media (max-width: 900px) { .rp-frise { grid-template-columns: repeat(3, 1fr); } .rp-bar { display: none; } }
+@media (max-width: 540px) { .rp-frise { grid-template-columns: repeat(2, 1fr); } .rp-concert { flex-direction: column; text-align: center; gap: 1rem; } }
 
 /* ─── FOOTER ─── */
 footer {
@@ -950,6 +955,70 @@ footer::before {
 .uniqlo-conseil-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
 @media (max-width: 640px) {
   .uniqlo-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Lien tuto dans carte vidéo */
+.video-tuto-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  margin-top: 0.75rem;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--lilas-deep);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--lilas-light);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+  line-height: 1.4;
+}
+.video-tuto-link:hover { color: var(--rouge); border-color: var(--rouge-light); }
+
+/* Encart patrons FR/EN */
+.patron-lang-note {
+  margin-top: 2rem;
+  background: linear-gradient(135deg, var(--lilas-pale), #FDF5F7);
+  border-radius: 20px;
+  padding: 1.75rem;
+  border: 1px solid rgba(139,125,200,0.18);
+}
+.patron-lang-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.patron-lang-col {
+  background: white; border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--ombre-sm);
+}
+.patron-lang-col.fr { border-top: 3px solid var(--rouge); }
+.patron-lang-col.en { border-top: 3px solid var(--lilas); }
+.patron-lang-title {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.patron-lang-col.fr .patron-lang-title { color: var(--rouge); }
+.patron-lang-col.en .patron-lang-title { color: var(--lilas-deep); }
+.patron-lang-list {
+  list-style: none; font-size: 0.78rem;
+  color: var(--texte-doux); line-height: 1.7;
+}
+.patron-lang-list li {
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--lilas-pale);
+  display: flex; gap: 0.5rem;
+}
+.patron-lang-list li::before { content: '→'; color: var(--lilas-light); flex-shrink: 0; }
+.patron-lang-list li:last-child { border-bottom: none; }
+.patron-lang-tip {
+  background: white; border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.8rem; color: var(--texte-doux);
+  line-height: 1.65;
+  border-left: 3px solid var(--lilas);
+  box-shadow: var(--ombre-sm);
+}
+@media (max-width: 640px) {
+  .patron-lang-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── MOODBOARD ─── */
@@ -1386,6 +1455,9 @@ footer::before {
           <div class="video-note">
             💡 <strong>Astuce :</strong> regardez d'abord la vidéo en entier avant de commencer à coudre — puis repassez les étapes une à une avec votre amie.
           </div>
+          <a class="video-tuto-link" href="tuto-sewing-therapy-fr.html">
+            📖 Lire le tutoriel complet traduit en français →
+          </a>
         </div>
       </div>
 
@@ -1408,8 +1480,8 @@ footer::before {
       <!-- Hanbok Wrap Skirt -->
       <div class="video-card">
         <div class="video-embed">
-          <div class="yt-facade" data-vid="bwoIr0WkQ1Q">
-            <img src="https://i.ytimg.com/vi/bwoIr0WkQ1Q/hqdefault.jpg" alt="Hanbok Wrap Skirt">
+          <div class="yt-facade" data-vid="DJp8D_Jsl3U">
+            <img src="https://i.ytimg.com/vi/DJp8D_Jsl3U/hqdefault.jpg" alt="Hanbok Wrap Skirt">
             <button class="yt-play" aria-label="Lire la vidéo">▶</button>
           </div>
         </div>
@@ -1439,6 +1511,26 @@ footer::before {
         </div>
       </div>
 
+      <!-- HalfSoyBean -->
+      <div class="video-card">
+        <div class="video-embed">
+          <div class="yt-facade" data-vid="bwoIr0WkQ1Q">
+            <img src="https://i.ytimg.com/vi/bwoIr0WkQ1Q/hqdefault.jpg" alt="HalfSoyBean — DIY Reversible Hanbok Jeogori">
+            <button class="yt-play" aria-label="Lire la vidéo">▶</button>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag en">🇬🇧 Anglais · sous-titres FR</div>
+          <div class="video-title">DIY Reversible Hanbok Jeogori — HalfSoyBean</div>
+          <div class="video-meta">HalfSoyBean · halfsoybean.com</div>
+          <div class="video-desc">Tuto de jeogori réversible très détaillé — une technique astucieuse pour avoir deux looks en un. Style moderne et accessible, montre bien la construction du col croisé et des goreum.</div>
+          <div class="video-note" style="display:flex; flex-direction:column; gap:0.4rem;">
+            <span>🛍️ HalfSoyBean vend aussi ses propres patrons :</span>
+            <a href="http://halfsoybean.com/shop" target="_blank" rel="noopener" style="color:var(--lilas-deep); font-weight:700; font-size:0.75rem;">→ halfsoybean.com/shop</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Disclothed Paris — français -->
       <div class="video-card">
         <div class="video-embed" style="background: linear-gradient(135deg, #F5F0FF, var(--rouge-pale)); display:flex; align-items:center; justify-content:center; padding-bottom:0; height:180px;">
@@ -1454,6 +1546,9 @@ footer::before {
           <div class="video-title">Chemisier Hanbok — tutoriel vidéo complet</div>
           <div class="video-meta">disclothed paris · Marque française</div>
           <div class="video-desc">Le seul tutoriel vidéo 100% en français pour un jeogori moderne. Gamme de montage illustrée + vidéo pas à pas. Inclus avec l'achat du patron (dès 12,90€). Idéal en complément des vidéos anglaises.</div>
+          <a class="video-tuto-link" href="https://disclothed-paris.com/blogs/nos-gammes-de-montage/le-chemisier-hanbok" target="_blank" rel="noopener">
+            📖 Voir la gamme de montage en ligne (gratuite) →
+          </a>
         </div>
       </div>
 
@@ -1494,7 +1589,7 @@ footer::before {
         </div>
         <div class="strategy-row">
           <span class="strategy-label">Jeogori fille</span>
-          <span class="strategy-value">Patron adapté par votre amie</span>
+          <span class="strategy-value">Taille XS ou S adulte — adapté par votre amie</span>
           <span class="strategy-pill pill-sew">Couture · 2–3h</span>
         </div>
         <div class="strategy-row">
@@ -1616,11 +1711,20 @@ footer::before {
           <div class="patron-icon-wrap lilas">🇫🇷</div>
           <div>
             <div class="patron-hname">Chemisier Hanbok — disclothed paris</div>
-            <div class="patron-htag">⭐ Top choix · Tutoriel vidéo en français</div>
+            <div class="patron-htag">🇫🇷 Tuto vidéo en français · Style crop moderne</div>
           </div>
         </div>
         <div class="patron-body">
-          <p class="patron-desc">Le seul patron de jeogori avec un tuto vidéo complet en français. Haut uniquement (parfait pour votre projet), manches longues ou 3/4 évasées, col croisé hanbok, goreum intégrés. Patron papier grand format, marges incluses, pièces non superposées. Niveau débutante accompagnée tout à fait accessible.</p>
+          <div class="patron-img-wrap">
+            <img src="Canva/Visuel-site-image.png"
+              alt="Illustration jeogori hanbok moderne"
+              style="width:100%; height:200px; object-fit:cover; border-radius:10px; margin-bottom:0.85rem; display:block;"
+              onerror="this.style.display='none'">
+          </div>
+          <div style="background:var(--lilas-pale); border-left:3px solid var(--lilas); border-radius:0 10px 10px 0; padding:0.75rem 1rem; margin-bottom:0.85rem; font-size:0.78rem; color:var(--lilas-deep); line-height:1.6;">
+            💬 <strong>À noter :</strong> ce patron est davantage un <em>chemisier crop col croisé</em> inspiré du hanbok qu'un vrai jeogori — on perd l'effet cache-cœur et la profondeur du col. Excellent pour un look plus quotidien et accessible, moins authentique visuellement que Sewing Therapy. <strong>Avantage décisif : tuto vidéo 100% en français.</strong>
+          </div>
+          <p class="patron-desc">Haut uniquement (parfait pour votre projet), manches longues ou 3/4 évasées, col croisé hanbok, goreum intégrés. Patron papier grand format, marges incluses, pièces non superposées. Niveau débutante accompagnée tout à fait accessible.</p>
           <div class="patron-tags">
             <span class="ptag accent">🇫🇷 Tutoriel FR</span>
             <span class="ptag accent">Haut seulement</span>
@@ -1781,6 +1885,30 @@ footer::before {
       <!-- Instructions pour remplacer les images -->
     </div><!-- /uniqlo-section -->
 
+    <!-- Encart langues & ressources FR -->
+    <div class="patron-lang-note">
+      <div class="patron-lang-grid">
+        <div class="patron-lang-col fr">
+          <div class="patron-lang-title">✅ Ressources en français</div>
+          <ul class="patron-lang-list">
+            <li><strong>disclothed paris</strong> — patron papier + tuto vidéo FR intégral, gamme de montage illustrée en ligne (gratuite)</li>
+            <li><strong>Sous-titres FR automatiques</strong> sur toutes les vidéos Sewing Therapy et HalfSoyBean via YouTube</li>
+          </ul>
+        </div>
+        <div class="patron-lang-col en">
+          <div class="patron-lang-title">🇬🇧 En anglais — avec notre glossaire</div>
+          <ul class="patron-lang-list">
+            <li><strong>Sewing Therapy</strong> — sewalong vidéo chapitré, très visuel</li>
+            <li><strong>HalfSoyBean</strong> — jeogori réversible détaillé</li>
+            <li><strong>Folkwear #141</strong> — patron papier traditionnel (adulte + enfant 4–14 ans)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="patron-lang-tip">
+        💜 <strong>Conseil :</strong> utilisez ce site comme guide de traduction. Le glossaire ci-dessous couvre tous les termes que vous rencontrerez chez Sewing Therapy et HalfSoyBean — avec votre amie et le glossaire sous la main, vous pouvez suivre les tutos anglais sans difficultés.
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1816,67 +1944,107 @@ footer::before {
   <div class="section-wrap">
     <div class="section-header">
       <div class="section-kicker">Avant le 18 juillet</div>
-      <h2 class="section-title">Planning semaine par semaine</h2>
+      <h2 class="section-title">Rétro-planning</h2>
       <p class="section-desc">Un calendrier réaliste avec votre amie, pour arriver au concert sereine et fière de votre création.</p>
     </div>
 
-    <div class="planning-timeline">
+    <!-- Frise horizontale -->
+    <div class="rp-frise">
+      <div class="rp-bar"></div>
 
-      <div class="plan-item">
-        <div class="plan-when">Maintenant<br>→ fin mai</div>
-        <div class="plan-dot"></div>
-        <div class="plan-content">
-          <div class="plan-task">Commander le patron &amp; acheter la jupe Uniqlo</div>
-          <div class="plan-detail">Choisir entre disclothed paris (FR) ou Sewing Therapy (PDF Etsy). Commander dès maintenant — les délais de livraison peuvent varier. Acheter les deux jupes Uniqlo pendant que le blanc est disponible en toutes tailles.</div>
+      <div class="rp-card rp-card--done">
+        <div class="rp-card-top">
+          <div class="rp-dot" style="background:var(--lilas-light);"></div>
+          <div class="rp-date">Maintenant<br>→ fin mai</div>
+        </div>
+        <div class="rp-card-body">
+          <div class="rp-icon">🛍️</div>
+          <div class="rp-task">Commander patron &amp; jupes Uniqlo</div>
+          <div class="rp-detail">Choisir le patron (disclothed FR ou Sewing Therapy). Acheter les jupes Uniqlo blanc pendant qu'elles sont disponibles.</div>
+          <div class="rp-tags"><span class="rp-tag rp-tag--buy">Achat</span></div>
         </div>
       </div>
 
-      <div class="plan-item">
-        <div class="plan-when">Début<br>juin</div>
-        <div class="plan-dot" style="background:var(--lilas-light);"></div>
-        <div class="plan-content">
-          <div class="plan-task">Acheter les tissus &amp; fournitures</div>
-          <div class="plan-detail">Marché Saint-Pierre (Montmartre) ou Mondial Tissus. Tissu lilas pour les deux hauts : crêpe georgette ou broderie anglaise lilas. Ruban satin rouge cerise pour les goreum. Thermocollant léger. Prévoir +20% de tissu.</div>
+      <div class="rp-card">
+        <div class="rp-card-top">
+          <div class="rp-dot" style="background:var(--lilas);"></div>
+          <div class="rp-date">Début juin</div>
+        </div>
+        <div class="rp-card-body">
+          <div class="rp-icon">🧵</div>
+          <div class="rp-task">Acheter tissus &amp; fournitures</div>
+          <div class="rp-detail">Marché Saint-Pierre (Montmartre) ou Mondial Tissus. Tissu lilas, ruban satin rouge, thermocollant. Prévoir +20%.</div>
+          <div class="rp-tags"><span class="rp-tag rp-tag--buy">Achat</span></div>
         </div>
       </div>
 
-      <div class="plan-item">
-        <div class="plan-when">Mi-juin<br>WE 1</div>
-        <div class="plan-dot" style="background:var(--lilas);"></div>
-        <div class="plan-content">
-          <div class="plan-task">Toile de test — jeogori adulte</div>
-          <div class="plan-detail">Coudre le jeogori mère en popeline bon marché pour valider la taille, l'emmanchure et le tombé. Faire tous les ajustements nécessaires avant de couper dans le tissu lilas définitif.</div>
+      <div class="rp-card">
+        <div class="rp-card-top">
+          <div class="rp-dot" style="background:var(--lilas-deep);"></div>
+          <div class="rp-date">Mi-juin<br>WE 1</div>
+        </div>
+        <div class="rp-card-body">
+          <div class="rp-icon">📐</div>
+          <div class="rp-task">Toile de test — mère</div>
+          <div class="rp-detail">Coudre en popeline bon marché pour valider taille, emmanchure et tombé avant de couper dans le lilas.</div>
+          <div class="rp-tags"><span class="rp-tag rp-tag--sew">Couture</span><span class="rp-tag rp-tag--amie">Avec amie</span></div>
         </div>
       </div>
 
-      <div class="plan-item">
-        <div class="plan-when">Mi-juin<br>WE 2</div>
-        <div class="plan-dot" style="background:var(--lilas-deep);"></div>
-        <div class="plan-content">
-          <div class="plan-task">Jeogori mère — tissu définitif</div>
-          <div class="plan-detail">Couture avec votre amie. Tissu lilas, goreum en satin rouge, finitions et essayage complet. Prévoir une journée de découpe/préparation + une journée d'assemblage.</div>
+      <div class="rp-card rp-card--star">
+        <div class="rp-card-top">
+          <div class="rp-dot" style="background:var(--violet); box-shadow:0 0 0 4px rgba(91,75,170,0.2);"></div>
+          <div class="rp-date">Mi-juin<br>WE 2</div>
+        </div>
+        <div class="rp-card-body">
+          <div class="rp-icon">✨</div>
+          <div class="rp-task">Jeogori mère — tissu définitif</div>
+          <div class="rp-detail">Tissu lilas, goreum rouge cerise. 1 journée découpe + 1 journée assemblage avec votre amie. Essayage final.</div>
+          <div class="rp-tags"><span class="rp-tag rp-tag--sew">Couture</span><span class="rp-tag rp-tag--amie">Avec amie</span><span class="rp-tag rp-tag--key">Étape clé</span></div>
         </div>
       </div>
 
-      <div class="plan-item">
-        <div class="plan-when">Fin juin<br>début juil.</div>
-        <div class="plan-dot" style="background:var(--rouge-light);"></div>
-        <div class="plan-content">
-          <div class="plan-task">Jeogori fille</div>
-          <div class="plan-detail">Patron XS adapté par votre amie. Votre fille peut participer à certaines étapes : découpe, pose des goreum, bâtissage. Un beau moment pédagogique avant le concert !</div>
+      <div class="rp-card">
+        <div class="rp-card-top">
+          <div class="rp-dot" style="background:var(--rouge-light);"></div>
+          <div class="rp-date">Fin juin<br>début juil.</div>
+        </div>
+        <div class="rp-card-body">
+          <div class="rp-icon">👧</div>
+          <div class="rp-task">Jeogori fille — XS ou S</div>
+          <div class="rp-detail">Patron XS/S adapté par votre amie. Votre fille peut participer : découpe, goreum, bâtissage. Moment mémorable !</div>
+          <div class="rp-tags"><span class="rp-tag rp-tag--sew">Couture</span><span class="rp-tag rp-tag--fille">Avec fille</span></div>
         </div>
       </div>
 
-      <div class="plan-item">
-        <div class="plan-when">10–15<br>juillet</div>
-        <div class="plan-dot" style="background:var(--rouge);"></div>
-        <div class="plan-content">
-          <div class="plan-task">Finitions, accessoires &amp; séance photo test</div>
-          <div class="plan-detail">Essayage duo complet avec les jupes Uniqlo. Photos test à la maison pour vérifier le rendu. Commander le norigae (pendentif traditionnel) sur Etsy si souhaité. Prévoir une pochette coordonnée.</div>
+      <div class="rp-card rp-card--final">
+        <div class="rp-card-top">
+          <div class="rp-dot" style="background:var(--rouge); box-shadow:0 0 0 4px rgba(184,48,64,0.2);"></div>
+          <div class="rp-date">10–15 juillet</div>
+        </div>
+        <div class="rp-card-body">
+          <div class="rp-icon">📸</div>
+          <div class="rp-task">Finitions &amp; séance photo test</div>
+          <div class="rp-detail">Essayage duo complet. Photos test à la maison. Norigae sur Etsy si souhaité. Pochette coordonnée.</div>
+          <div class="rp-tags"><span class="rp-tag rp-tag--buy">Finitions</span></div>
         </div>
       </div>
 
     </div>
+
+    <!-- Compte à rebours concert -->
+    <div class="rp-concert">
+      <div class="rp-concert-date">
+        <div class="rp-concert-day">18</div>
+        <div class="rp-concert-month">JUILLET</div>
+      </div>
+      <div class="rp-concert-sep">💜</div>
+      <div class="rp-concert-info">
+        <div class="rp-concert-title">BTS ARIRANG · Stade de France</div>
+        <div class="rp-concert-sub">Dernière date européenne · Premier concert de votre fille · Tenues faites main avec amour</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2023,7 +2191,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.palette-card, .video-card, .step-card, .patron-card, .gloss-card, .plan-item').forEach(el => {
+document.querySelectorAll('.palette-card, .video-card, .step-card, .patron-card, .gloss-card, .rp-card-body').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';

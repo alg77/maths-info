@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuto Hanbok Sewing Therapy — Traduction française complète</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --lilas: #8B7DC8; --lilas-light: #C4B8E8; --lilas-pale: #EDE8F8;
+  --lilas-deep: #5B4BAA; --violet: #4A3580;
+  --rouge: #B83040; --rouge-light: #E8A0A8; --rouge-pale: #FDF0F2;
+  --or: #C8A850; --ivoire: #FDF8F0;
+  --encre: #2A1F3D; --texte: #3D3050; --texte-doux: #6A5880;
+  --blanc: #FFFFFF; --border: rgba(139,125,200,0.15);
+  --ombre: 0 4px 24px rgba(74,53,128,0.10);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; background: var(--ivoire); color: var(--texte); line-height: 1.7; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--lilas-pale);
+  padding: 0.7rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(74,53,128,0.08);
+}
+.nav-back {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  text-decoration: none; color: var(--lilas-deep);
+  font-size: 0.82rem; font-weight: 700;
+  padding: 0.35rem 0.9rem; border-radius: 20px;
+  border: 1.5px solid var(--lilas-light);
+  transition: background 0.2s;
+}
+.nav-back:hover { background: var(--lilas-pale); }
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 600; color: var(--violet);
+  font-style: italic;
+}
+.nav-src {
+  font-size: 0.72rem; color: var(--texte-doux);
+}
+.nav-src a { color: var(--lilas-deep); text-decoration: none; border-bottom: 1px solid var(--lilas-light); }
+
+/* ── HERO ── */
+.page-hero {
+  background: linear-gradient(135deg, var(--lilas-pale) 0%, #F5E8EE 100%);
+  border-bottom: 1px solid var(--lilas-light);
+  padding: 3.5rem 2rem 2.5rem;
+  text-align: center;
+}
+.hero-eyebrow {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--rouge);
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content: '✿'; color: var(--lilas-light); }
+.page-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700; color: var(--violet);
+  line-height: 1.2; margin-bottom: 0.75rem;
+}
+.page-hero h1 em { color: var(--rouge); font-style: italic; }
+.hero-sub {
+  font-size: 0.9rem; color: var(--texte-doux);
+  max-width: 560px; margin: 0 auto 1.5rem; line-height: 1.7;
+}
+.hero-meta {
+  display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+  font-size: 0.75rem; color: var(--texte-doux);
+}
+.hero-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+/* ── SOURCE BOX ── */
+.source-box {
+  max-width: 780px; margin: 2rem auto;
+  background: white; border: 1.5px solid var(--lilas-light);
+  border-radius: 16px; padding: 1.1rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+  font-size: 0.8rem; color: var(--texte-doux); line-height: 1.6;
+  box-shadow: var(--ombre);
+}
+.source-icon { font-size: 1.4rem; flex-shrink: 0; }
+.source-box a { color: var(--lilas-deep); font-weight: 700; }
+
+/* ── LAYOUT ── */
+.page-wrap { max-width: 780px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+/* ── SOMMAIRE ── */
+.sommaire {
+  background: white; border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.75rem; margin: 2.5rem 0;
+  box-shadow: var(--ombre);
+}
+.sommaire-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 600; color: var(--violet);
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.sommaire-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.sommaire-list li a {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none; color: var(--texte-doux);
+  font-size: 0.82rem; font-weight: 600;
+  padding: 0.4rem 0.75rem; border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+.sommaire-list li a:hover { background: var(--lilas-pale); color: var(--lilas-deep); }
+.som-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--lilas-pale); color: var(--lilas-deep);
+  font-size: 0.65rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── SECTIONS ── */
+.tuto-section { margin-top: 3.5rem; }
+.section-anchor { scroll-margin-top: 80px; }
+.section-eyebrow {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--rouge);
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--rouge-light); }
+.section-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem; font-weight: 700; color: var(--violet);
+  margin-bottom: 1rem; line-height: 1.25;
+}
+.section-intro { font-size: 0.88rem; color: var(--texte-doux); line-height: 1.75; margin-bottom: 1.5rem; }
+
+/* ── ÉTAPES ── */
+.step-block {
+  background: white; border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--ombre);
+  overflow: hidden; margin-bottom: 1.25rem;
+}
+.step-header {
+  display: flex; align-items: stretch; gap: 0;
+}
+.step-num-col {
+  background: linear-gradient(180deg, var(--lilas), var(--lilas-deep));
+  color: white; min-width: 72px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 1.25rem 0.75rem;
+  font-family: 'Playfair Display', serif;
+}
+.step-num-label { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.1rem; }
+.step-num-val { font-size: 2.2rem; font-weight: 700; line-height: 1; }
+.step-header-content {
+  flex: 1; padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--lilas-pale);
+  background: linear-gradient(135deg, #FDFBFF, white);
+}
+.step-phase {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--rouge); margin-bottom: 0.2rem;
+}
+.step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 600; color: var(--violet);
+  line-height: 1.3;
+}
+.step-body { padding: 1.25rem 1.5rem; }
+.step-body p { font-size: 0.85rem; color: var(--texte-doux); line-height: 1.75; margin-bottom: 0.6rem; }
+.step-body p:last-child { margin-bottom: 0; }
+.step-actions { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.step-actions li {
+  font-size: 0.83rem; color: var(--texte-doux);
+  padding: 0.5rem 0; border-bottom: 1px solid var(--lilas-pale);
+  display: flex; gap: 0.75rem; line-height: 1.55; align-items: flex-start;
+}
+.step-actions li:last-child { border-bottom: none; }
+.step-actions li::before {
+  content: '›'; color: var(--lilas);
+  font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem;
+}
+.step-tip {
+  margin-top: 1rem; padding: 0.75rem 1rem;
+  background: var(--lilas-pale); border-radius: 10px;
+  border-left: 3px solid var(--lilas);
+  font-size: 0.78rem; color: var(--lilas-deep); line-height: 1.6;
+  font-style: italic;
+}
+.step-warning {
+  margin-top: 0.75rem; padding: 0.75rem 1rem;
+  background: var(--rouge-pale); border-radius: 10px;
+  border-left: 3px solid var(--rouge);
+  font-size: 0.78rem; color: var(--rouge); line-height: 1.6;
+}
+.step-fr-en {
+  margin-top: 1rem;
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+.fr-en-tag {
+  font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.65rem;
+  border-radius: 20px; border: 1px solid var(--lilas-light);
+  color: var(--lilas-deep); background: var(--lilas-pale);
+}
+
+/* ── NOTE BOX ── */
+.note-box {
+  background: white; border-radius: 14px;
+  border-left: 4px solid var(--or);
+  padding: 1.1rem 1.25rem; margin: 1.5rem 0;
+  font-size: 0.83rem; color: var(--texte-doux); line-height: 1.7;
+  box-shadow: var(--ombre);
+}
+.note-box strong { color: var(--violet); }
+.note-box .note-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--or); margin-bottom: 0.4rem;
+}
+
+/* ── DIFFÉRENCES ── */
+.diff-table {
+  width: 100%; border-collapse: collapse;
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--ombre); margin: 1.5rem 0;
+}
+.diff-table thead tr { background: var(--encre); color: white; }
+.diff-table thead th {
+  padding: 0.75rem 1rem; font-size: 0.72rem;
+  font-weight: 600; letter-spacing: 0.08em; text-align: left;
+  text-transform: uppercase;
+}
+.diff-table tbody tr { border-bottom: 1px solid var(--lilas-pale); }
+.diff-table tbody tr:nth-child(even) { background: var(--lilas-pale); }
+.diff-table td { padding: 0.7rem 1rem; font-size: 0.82rem; color: var(--texte-doux); }
+.diff-table td:first-child { font-weight: 700; color: var(--violet); }
+.check { color: #2E7D32; font-weight: 700; }
+.cross { color: var(--texte-doux); }
+
+/* ── VOCABULAIRE ── */
+.vocab-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 10px; margin: 1.5rem 0;
+}
+.vocab-card {
+  background: white; border-radius: 12px;
+  border: 1px solid var(--border); padding: 0.85rem 1rem;
+  display: flex; gap: 0.85rem; align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(74,53,128,0.06);
+}
+.vocab-en {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.88rem; font-weight: 600; color: var(--lilas-deep);
+  white-space: nowrap; min-width: 90px;
+}
+.vocab-fr { font-size: 0.78rem; color: var(--texte-doux); line-height: 1.5; }
+.vocab-sep { color: var(--lilas-light); flex-shrink: 0; }
+
+/* ── VIDEO EMBED ── */
+.video-wrap {
+  background: #111; border-radius: 14px; overflow: hidden;
+  margin: 1.5rem 0; box-shadow: var(--ombre);
+  position: relative; padding-bottom: 56.25%;
+}
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.video-caption {
+  font-size: 0.75rem; color: var(--texte-doux); text-align: center;
+  margin-top: -0.5rem; margin-bottom: 1rem; font-style: italic;
+}
+
+/* ── FOOTER ── */
+.page-footer {
+  background: var(--encre); color: rgba(255,255,255,0.5);
+  text-align: center; padding: 2rem;
+  font-size: 0.75rem; line-height: 1.8;
+  margin-top: 4rem;
+}
+.page-footer a { color: var(--lilas-light); }
+
+@media (max-width: 640px) {
+  .vocab-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-direction: column; align-items: center; gap: 0.5rem; }
+  nav { flex-wrap: wrap; gap: 0.5rem; }
+  .nav-src { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="hanbok_tuto_site.html">← Retour au site</a>
+  <span class="nav-title">Tuto Sewing Therapy — traduction française</span>
+  <span class="nav-src">Source : <a href="https://sewingtherapy.net/hanbok-sew-along-tutorial/" target="_blank" rel="noopener">sewingtherapy.net ↗</a></span>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-eyebrow">Traduction française complète</div>
+  <h1>Hanbok Sew Along<br><em>Guide pas à pas en français</em></h1>
+  <p class="hero-sub">Traduction et adaptation du tutoriel original de Sara SJ (Sewing Therapy). Toutes les étapes sont détaillées, les termes anglais traduits et expliqués, avec des conseils supplémentaires pour débutantes accompagnées.</p>
+  <div class="hero-meta">
+    <span>✂️ Niveau : débutante accompagnée</span>
+    <span>⏱️ 3 à 5h selon le rythme</span>
+    <span>🧵 Patron Sewing Therapy requis</span>
+    <span>🇫🇷 Traduction non officielle</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <div class="source-box">
+    <div class="source-icon">ℹ️</div>
+    <div>
+      <strong>Source originale :</strong> ce guide est une traduction commentée du tutoriel <em>"Modern Hanbok Sew Along"</em> de Sara SJ, publié sur <a href="https://sewingtherapy.net/hanbok-sew-along-tutorial/" target="_blank" rel="noopener">sewingtherapy.net</a>. Les vidéos sewalong sont disponibles gratuitement sur <a href="https://www.youtube.com/@SewingTherapy" target="_blank" rel="noopener">YouTube @SewingTherapy</a>. Le patron est vendu séparément sur Etsy / twooninefabric.ca. Ce document n'est pas officiel — il vise à faciliter le suivi pour les couturières francophones.
+    </div>
+  </div>
+
+  <!-- SOMMAIRE -->
+  <div class="sommaire">
+    <div class="sommaire-title">📋 Sommaire du tutoriel</div>
+    <ul class="sommaire-list">
+      <li><a href="#avant"><div class="som-num">0</div>Avant de commencer — préparation et fournitures</a></li>
+      <li><a href="#differences"><div class="som-num">★</div>Différences adulte / fille</a></li>
+      <li><a href="#etape1"><div class="som-num">1</div>Les pinces (adulte seulement)</a></li>
+      <li><a href="#etape2"><div class="som-num">2</div>Assembler le dos</a></li>
+      <li><a href="#etape3"><div class="som-num">3</div>Corsage + liens latéraux</a></li>
+      <li><a href="#etape4"><div class="som-num">4</div>La ceinture (adulte seulement)</a></li>
+      <li><a href="#etape5"><div class="som-num">5</div>Les manches — étape clé</a></li>
+      <li><a href="#etape6"><div class="som-num">6</div>Parementure devant et goreum</a></li>
+      <li><a href="#etape7"><div class="som-num">7</div>La jupe plissée</a></li>
+      <li><a href="#etape8"><div class="som-num">8</div>Assembler corsage et jupe</a></li>
+      <li><a href="#etape9"><div class="som-num">9</div>Le col — étape la plus délicate</a></li>
+      <li><a href="#etape10"><div class="som-num">10</div>Le grand goreum et finitions</a></li>
+      <li><a href="#vocabulaire"><div class="som-num">📖</div>Vocabulaire anglais → français</a></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 0 — AVANT DE COMMENCER -->
+  <div class="tuto-section section-anchor" id="avant">
+    <div class="section-eyebrow">Étape 0</div>
+    <h2 class="section-h2">Avant de commencer</h2>
+    <p class="section-intro">Prenez le temps de tout préparer avant de coudre — c'est ce qui distingue un projet réussi d'un projet frustrant. Sara recommande de regarder chaque vidéo en entier <em>avant</em> de commencer l'étape correspondante.</p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/-xpyUbsSibY" title="Sewing Therapy Hanbok Sew Along Part 1" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="video-caption">▲ Vidéo Partie 1 — Regardez en entier avant de commencer. Activez les sous-titres → ⚙️ → Sous-titres → Traduire automatiquement → Français</p>
+
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col">
+          <div class="step-num-label">Étape</div>
+          <div class="step-num-val">0</div>
+        </div>
+        <div class="step-header-content">
+          <div class="step-phase">Préparation</div>
+          <div class="step-title">Thermocollant & confection des goreum (les rubans)</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Le <strong>thermocollant</strong> (ou entoilage thermocollant) est un tissu non-tissé qui se colle au fer sur l'envers de certaines pièces pour leur donner de la rigidité. Vous en aurez besoin sur :</p>
+        <ul class="step-actions">
+          <li>1 pièce de col (celle qui sera visible côté endroit)</li>
+          <li>2 parementures devant (les pièces qui finissent l'intérieur du corsage)</li>
+        </ul>
+        <p style="margin-top:0.85rem;">Posez le thermocollant côté colle (brillant) contre l'envers du tissu. Recouvrez d'un tissu humide et appuyez avec le fer chaud sans glisser, 10–15 secondes par zone. Laissez refroidir avant de décoller.</p>
+
+        <p style="margin-top:0.85rem;"><strong>Les goreum</strong> (고름) sont les longs rubans qui ferment le jeogori. Il en faut 6 au total :</p>
+        <ul class="step-actions">
+          <li>2 liens intérieurs <em>(Inner Ties)</em> — petits, cachés, ils servent à fixer côté droit sous la parementure</li>
+          <li>2 liens supérieurs <em>(Upper Ties)</em> — adulte seulement, fixés sur le côté</li>
+          <li>2 grands liens <em>(Main Ties)</em> — les goreum visibles, ceux qu'on noue sur le devant</li>
+        </ul>
+        <p style="margin-top:0.85rem;">Pour chaque lien : plier en deux dans la longueur envers contre envers → repasser → piquer au bord (edgestitch) sur toute la longueur → plier un bord court vers l'intérieur et piquer.</p>
+        <div class="step-tip">💡 Astuce de Sara : pour les liens intérieurs, vous pouvez simplement utiliser du ruban de coton de la bonne largeur — ça évite une étape de couture et le résultat est identique.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Thermocollant = Fusible interfacing</span>
+          <span class="fr-en-tag">Envers = Wrong side (WS)</span>
+          <span class="fr-en-tag">Goreum = Tie</span>
+          <span class="fr-en-tag">Piquer au bord = Edgestitch</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-title">🧺 Pré-laver le tissu</div>
+      Avant toute découpe, lavez et séchez votre tissu à la température que vous utiliserez pour l'entretenir. Cela évite tout rétrécissement après confection. Repassez-le ensuite soigneusement avant de poser le patron.
+    </div>
+  </div>
+
+  <!-- DIFFÉRENCES ADULTE / FILLE -->
+  <div class="tuto-section section-anchor" id="differences">
+    <div class="section-eyebrow">Point important</div>
+    <h2 class="section-h2">Différences version adulte / version fille</h2>
+    <p class="section-intro">Sara couvre les deux versions dans son tutoriel. La version fille est plus simple car elle n'a pas de pinces ni de ceinture séparée. Pour votre fille (12 ans), le patron adulte en taille XS ou S conviendra avec très peu d'ajustements.</p>
+    <table class="diff-table">
+      <thead><tr><th>Élément</th><th>Adulte</th><th>Fille (XS/S adulte)</th></tr></thead>
+      <tbody>
+        <tr><td>Pinces (darts)</td><td class="check">✓ Oui — donnent du galbe</td><td class="cross">✗ Non — silhouette droite</td></tr>
+        <tr><td>Ceinture (waistband)</td><td class="check">✓ Oui — pièce séparée</td><td class="cross">✗ Non — corsage direct à la jupe</td></tr>
+        <tr><td>Upper Ties (liens sup.)</td><td class="check">✓ 2 liens supplémentaires</td><td class="cross">✗ Optionnel</td></tr>
+        <tr><td>Panneaux de jupe</td><td class="check">2 ou 3 selon la taille</td><td class="check">2 panneaux</td></tr>
+        <tr><td>Manches</td><td class="check">Longues, raccourcissables</td><td class="check">Même construction, longueur adaptée</td></tr>
+        <tr><td>Patron</td><td class="check">XS–3XL (Sewing Therapy PDF)</td><td class="check">XS ou S adulte avec petits ajustements</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">
+      <div class="note-title">💡 Pour le jeogori — avantage du col croisé</div>
+      L'une des grandes intelligences du hanbok : les <strong>goreum permettent d'ajuster l'ouverture librement</strong>. Trop serré ? On desserre légèrement les rubans. On a changé de taille depuis la confection ? On adapte le nœud. C'est valable pour les deux tenues. La seule chose à soigner : <strong>la finition du biais intérieur du col</strong>, car c'est lui qui est visible quand le jeogori est légèrement ouvert — c'est lui qui fait "élégant" ou "débraillé".
+    </div>
+  </div>
+
+  <!-- ÉTAPE 1 -->
+  <div class="tuto-section section-anchor" id="etape1">
+    <div class="section-eyebrow">Étape 1 — Adulte seulement</div>
+    <h2 class="section-h2">Les pinces</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">1</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Adulte seulement · version fille : passer à l'étape 2</div>
+          <div class="step-title">Coudre les pinces du corsage</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Les <strong>pinces</strong> (darts) sont de petites coutures coniques qui donnent du volume au corsage au niveau de la poitrine. Elles n'existent que sur la version adulte.</p>
+        <ul class="step-actions">
+          <li>Repérer les repères de pince sur les pièces devant du corsage (petites marques sur le patron)</li>
+          <li>Plier la pièce endroit contre endroit en alignant les deux repères — épingler</li>
+          <li>Coudre depuis le bord du tissu vers la pointe de la pince en effilant progressivement — <strong>ne pas faire de point d'arrêt à la machine en bout de pince</strong></li>
+          <li>Laisser de longs fils, sortir l'ouvrage, faire un double nœud à la main sur les fils à la pointe</li>
+          <li>Couper les fils en laissant environ 1 cm</li>
+          <li>Repasser la pince vers le bas et vers le côté avec le fer</li>
+        </ul>
+        <div class="step-tip">💡 Pourquoi ne pas faire de point d'arrêt ? Les points d'arrêt machine créent un renflement disgracieux à la pointe. Le nœud à la main est invisible et bien plus propre.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Pince = Dart</span>
+          <span class="fr-en-tag">Endroit contre endroit = RST (Right sides together)</span>
+          <span class="fr-en-tag">Repère = Notch / Mark</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 2 -->
+  <div class="tuto-section section-anchor" id="etape2">
+    <div class="section-eyebrow">Étape 2</div>
+    <h2 class="section-h2">Assembler le dos du corsage</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">2</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 1 — corsage</div>
+          <div class="step-title">Coudre les deux pièces dos ensemble</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <ul class="step-actions">
+          <li>Poser les deux pièces dos <strong>endroit contre endroit</strong> (RST) — les jolis côtés du tissu se font face</li>
+          <li>Coudre le long de la couture centrale dos, en respectant la marge de couture indiquée</li>
+          <li><strong>Surjeter</strong> (ou point zigzag) le bord de couture pour éviter l'effilochage</li>
+          <li>Repasser la couture d'un côté (pas ouverte)</li>
+        </ul>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Endroit contre endroit = RST</span>
+          <span class="fr-en-tag">Surjeter = Serge / Overlock</span>
+          <span class="fr-en-tag">Marge de couture = Seam allowance (SA)</span>
+          <span class="fr-en-tag">Repasser = Press</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 3 -->
+  <div class="tuto-section section-anchor" id="etape3">
+    <div class="section-eyebrow">Étape 3</div>
+    <h2 class="section-h2">Assembler corsage + liens latéraux</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">3</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 1 — corsage</div>
+          <div class="step-title">Épaules, côtés et premiers goreum</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>On assemble maintenant le dos et les devants, et on place les premiers liens qui permettront de fermer la robe sur le côté.</p>
+        <ul class="step-actions">
+          <li>Coudre le dos et les deux pièces devant aux <strong>coutures d'épaule</strong>, endroit contre endroit — surjeter</li>
+          <li>Repasser les coutures d'épaule vers le dos</li>
+          <li><strong>Côté droit :</strong> bâtir (grands points provisoires) un lien supérieur (Upper Tie) sur le bord latéral, endroit contre endroit — il sera pris dans la couture de côté</li>
+          <li><strong>Côté gauche :</strong> bâtir un lien intérieur (Inner Tie) sur l'envers du bord latéral</li>
+          <li>Coudre les coutures de côté du corsage (dos + devants) — surjeter</li>
+        </ul>
+        <div class="step-tip">💡 "Bâtir" signifie coudre avec des grands points (longueur 5) pour maintenir provisoirement. Ces points seront pris dans la couture définitive et n'ont pas besoin d'être parfaits.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Bâtir = Baste</span>
+          <span class="fr-en-tag">Couture d'épaule = Shoulder seam</span>
+          <span class="fr-en-tag">Côté = Side seam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 4 -->
+  <div class="tuto-section section-anchor" id="etape4">
+    <div class="section-eyebrow">Étape 4 — Adulte seulement</div>
+    <h2 class="section-h2">La ceinture</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">4</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Adulte seulement · version fille : passer à l'étape 5</div>
+          <div class="step-title">Fixer la ceinture au bas du corsage</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>La ceinture structure la taille et fait la jonction entre le corsage et la jupe. Sur la version fille, cette pièce n'existe pas.</p>
+        <ul class="step-actions">
+          <li>Coudre un long bord de la ceinture au bas du corsage, endroit contre endroit — surjeter</li>
+          <li>Repasser la couture vers la ceinture</li>
+          <li>Sous-piquer (<em>understitch</em>) ou surpiquer (<em>topstitch</em>) : depuis l'endroit, piquer à 2 mm de la couture pour aplatir la ceinture</li>
+        </ul>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Ceinture = Waistband</span>
+          <span class="fr-en-tag">Sous-piquer = Understitch</span>
+          <span class="fr-en-tag">Surpiquer = Topstitch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 5 -->
+  <div class="tuto-section section-anchor" id="etape5">
+    <div class="section-eyebrow">Étape 5 — Clé du projet</div>
+    <h2 class="section-h2">Les manches</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col" style="background:linear-gradient(180deg, var(--rouge), #8b1a12);">
+          <div class="step-num-label">Étape</div><div class="step-num-val">5</div>
+        </div>
+        <div class="step-header-content">
+          <div class="step-phase">⚡ Étape la plus délicate — regardez la vidéo d'abord</div>
+          <div class="step-title">Confection et pose des manches</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>La <strong>tête de manche</strong> (sleeve cap) est la partie arrondie en haut de la manche. Elle est légèrement plus grande que l'emmanchure et doit être froncée pour s'y adapter. C'est l'étape qui intimide le plus, mais avec patience elle devient maîtrisable.</p>
+        <ul class="step-actions">
+          <li>Plier chaque manche et coudre la <strong>couture de dessous de bras</strong>, endroit contre endroit — surjeter</li>
+          <li>Coudre 2 rangées de <strong>grands points</strong> (longueur 4 à 5) sur la tête de manche, entre les crans indiqués — <strong>ne pas faire de point d'arrêt</strong>, laisser de longs fils</li>
+          <li>Tirer doucement sur les fils de dessous des deux côtés pour <strong>former des fronces</strong> régulières — la tête de manche doit se réduire à la largeur de l'emmanchure</li>
+          <li>Introduire la manche dans l'emmanchure <strong>endroit contre endroit</strong>, tête de manche vers le haut — aligner la couture de dessous de bras avec la couture de côté du corsage</li>
+          <li>Aligner les crans (encoches) du patron — épingler en répartissant les fronces régulièrement depuis le centre vers les côtés</li>
+          <li>Coudre en tenant la manche côté vous (dessus) pour contrôler les fronces — surjeter</li>
+          <li>Faire un <strong>double ourlet</strong> au bas de la manche : replier 1 cm vers l'envers, repasser, replier encore 1 cm, repasser, piquer au bord</li>
+        </ul>
+        <div class="step-tip">💡 Sara raccourcit ses manches de 7,5 cm dans le tutoriel pour des manches 3/4. Ajustez selon votre préférence avant de faire l'ourlet.</div>
+        <div class="step-warning">⚠️ Ne serrez pas les fronces trop fort d'un coup — tirez progressivement et répartissez. Un fil qui casse à cette étape oblige à recommencer.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Tête de manche = Sleeve cap</span>
+          <span class="fr-en-tag">Fronces = Gathers</span>
+          <span class="fr-en-tag">Emmanchure = Armhole</span>
+          <span class="fr-en-tag">Cran = Notch</span>
+          <span class="fr-en-tag">Dessous de bras = Underarm seam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 6 -->
+  <div class="tuto-section section-anchor" id="etape6">
+    <div class="section-eyebrow">Étape 6</div>
+    <h2 class="section-h2">Parementure devant & goreum</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">6</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 1 — fin</div>
+          <div class="step-title">Finir le devant gauche et poser les goreum principaux</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>La <strong>parementure</strong> (lining/facing) est la pièce qui finit proprement l'intérieur du devant gauche du corsage — celui qui croise par-dessus. C'est sur cette pièce qu'on fixe les goreum.</p>
+        <ul class="step-actions">
+          <li>Bâtir le lien intérieur sur la parementure aux repères indiqués, endroit contre endroit</li>
+          <li>Bâtir un lien supérieur <em>(Upper Tie)</em> et un grand lien <em>(Main Tie)</em> aux emplacements du patron</li>
+          <li>Coudre la parementure sur le devant du corsage, endroit contre endroit</li>
+          <li>Repasser la parementure vers l'intérieur — <strong>sous-piquer</strong> (understitch) pour l'aplatir et l'empêcher de rouler vers l'endroit</li>
+          <li>Plier sur la ligne principale indiquée — repasser soigneusement avec la vapeur</li>
+        </ul>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Parementure = Facing / Lining</span>
+          <span class="fr-en-tag">Sous-piquer = Understitch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTIE 2 -->
+  <div class="note-box" style="background: var(--lilas-pale); border-left-color: var(--lilas); margin-top: 3rem;">
+    <div class="note-title">▶ Partie 2 du sewalong</div>
+    Regardez la vidéo Partie 2 avant de continuer — elle couvre la jupe, l'assemblage et le col.
+    <div style="margin-top:0.75rem;">
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/IWKS-KTDIJo" title="Sewing Therapy Part 2" allowfullscreen loading="lazy" style="border-radius:10px; border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 7 -->
+  <div class="tuto-section section-anchor" id="etape7">
+    <div class="section-eyebrow">Étape 7</div>
+    <h2 class="section-h2">La jupe plissée</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">7</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 2 — jupe</div>
+          <div class="step-title">Confectionner la jupe à plis</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p><strong>Note :</strong> si vous utilisez la jupe Uniqlo active (short intégré), vous pouvez <strong>passer directement à l'étape 8</strong> pour assembler avec le corsage cousu.</p>
+        <ul class="step-actions">
+          <li>Coudre les côtés des panneaux de jupe, endroit contre endroit — surjeter</li>
+          <li>Double pli sur les bords latéraux (envers contre envers) — repasser et piquer au bord</li>
+          <li>Plier la jupe en deux pour trouver le centre — marquer avec une épingle</li>
+          <li>Former les plis selon les repères du patron — plier et épingler en partant du centre</li>
+          <li>Vérifier que la largeur de la taille de la jupe correspond exactement à la base de la ceinture</li>
+          <li>Bâtir les plis (grands points) pour les maintenir en place avant l'assemblage</li>
+        </ul>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Pli = Pleat</span>
+          <span class="fr-en-tag">Panneau = Panel</span>
+          <span class="fr-en-tag">Envers contre envers = WST (Wrong sides together)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 8 -->
+  <div class="tuto-section section-anchor" id="etape8">
+    <div class="section-eyebrow">Étape 8</div>
+    <h2 class="section-h2">Assembler corsage et jupe</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">8</div></div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 2 — assemblage principal</div>
+          <div class="step-title">Réunir le haut et le bas</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>C'est l'étape centrale du projet : on réunit le corsage et la jupe. Si la longueur de taille de la jupe ne correspond pas exactement, Sara dit de faire de son mieux en répartissant l'écart uniformément.</p>
+        <ul class="step-actions">
+          <li>Épingler la ceinture (ou le bas du corsage fille) et la jupe, endroit contre endroit</li>
+          <li>Coudre — surjeter en commençant du côté de la parementure</li>
+          <li>Repasser la couture vers la ceinture</li>
+          <li>Plier et repasser le bord libre de la parementure vers l'intérieur du corsage</li>
+          <li>Replier la parementure sur le corsage — épingler</li>
+          <li>Surpiquer (topstitch) depuis l'endroit pour tout fermer proprement</li>
+          <li>Piquer au bord le bord replié de la parementure sur l'intérieur</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 9 -->
+  <div class="tuto-section section-anchor" id="etape9">
+    <div class="section-eyebrow">Étape 9 — La plus délicate</div>
+    <h2 class="section-h2">Le col hanbok</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col" style="background:linear-gradient(180deg, var(--or), #a07800);">
+          <div class="step-num-label">Étape</div><div class="step-num-val">9</div>
+        </div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 2 — col · prenez votre temps</div>
+          <div class="step-title">Poser le col croisé style hanbok</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Le col est la pièce signature du jeogori — c'est lui qui crée l'effet croisé caractéristique. C'est l'étape qui demande le plus de soin, mais le résultat en vaut la peine.</p>
+        <ul class="step-actions">
+          <li>Plier et repasser la marge de couture du bord arrondi (bas du col) vers l'envers</li>
+          <li>Assembler les deux pièces col, endroit contre endroit, en cousant les bords supérieur et latéraux</li>
+          <li>Retourner le col — repasser soigneusement en commençant par les coins</li>
+          <li>Épingler le col à l'encolure du corsage, <strong>endroit contre endroit</strong> — aligner les <em>lignes de couture</em> (pas les bords coupés)</li>
+          <li>Veiller à ne pas prendre le bord replié du bas du col dans la couture</li>
+          <li>Maintenir avec des épingles rapprochées ou du Wonder Tape (ruban hydrosoluble)</li>
+          <li>Piquer depuis l'endroit (topstitch) en restant régulière</li>
+        </ul>
+        <div class="step-tip">💡 Le Wonder Tape (ruban adhésif hydrosoluble, en mercerie) est très utile ici : il maintient le col pendant la piqûre sans épingles qui gênent. Il disparaît au premier lavage.</div>
+        <div class="step-warning">⚠️ Si le col gondole après la pose : vapeur intensive et séchage à plat sous un poids. Un col bien repassé est un col bien posé.</div>
+        <div class="step-fr-en">
+          <span class="fr-en-tag">Col = Collar</span>
+          <span class="fr-en-tag">Encolure = Neckline</span>
+          <span class="fr-en-tag">Bord arrondi = Curved edge</span>
+          <span class="fr-en-tag">Wonder Tape = ruban hydrosoluble</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 10 -->
+  <div class="tuto-section section-anchor" id="etape10">
+    <div class="section-eyebrow">Étape 10 — Finition</div>
+    <h2 class="section-h2">Grand goreum & finitions finales</h2>
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-num-col" style="background:linear-gradient(180deg, #2E7D32, #1B5E20);">
+          <div class="step-num-label">Étape</div><div class="step-num-val">10</div>
+        </div>
+        <div class="step-header-content">
+          <div class="step-phase">Partie 2 — et c'est fini ! 🎉</div>
+          <div class="step-title">Poser le grand goreum et finaliser</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <ul class="step-actions">
+          <li>Coudre le grand goreum (Main Tie) sur la ceinture ou le bas du corsage à l'emplacement indiqué</li>
+          <li>Couper tous les fils dépassants à l'intérieur</li>
+          <li>Repasser l'ensemble — c'est la dernière étape qui fait toute la différence</li>
+          <li>Essayage ! Nouer les goreum en <em>otgoreum</em> (le nœud hanbok traditionnel)</li>
+          <li>Ajuster si nécessaire la longueur de la jupe ou des manches</li>
+        </ul>
+        <div class="step-tip">🎀 Pour nouer les goreum en style hanbok : le ruban gauche passe par-dessus le droit, forme une boucle, et le ruban droit vient s'enrouler autour avant de former la deuxième boucle. Différent d'un nœud papillon — cherchez "otgoreum" sur YouTube pour un tutoriel vidéo de 2 minutes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOCABULAIRE -->
+  <div class="tuto-section section-anchor" id="vocabulaire">
+    <div class="section-eyebrow">Référence</div>
+    <h2 class="section-h2">Vocabulaire anglais → français</h2>
+    <p class="section-intro">Tous les termes que vous rencontrerez dans les vidéos Sewing Therapy et HalfSoyBean, avec leur traduction et explication.</p>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-en">RST</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Endroit contre endroit</strong> — les beaux côtés se font face avant de coudre</div></div>
+      <div class="vocab-card"><div class="vocab-en">WST</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Envers contre envers</strong> — les mauvais côtés se font face</div></div>
+      <div class="vocab-card"><div class="vocab-en">Serge</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Surjeter</strong> — finir le bord à la surjeteuse ou en zigzag</div></div>
+      <div class="vocab-card"><div class="vocab-en">Baste</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Bâtir</strong> — grands points provisoires pour maintenir</div></div>
+      <div class="vocab-card"><div class="vocab-en">Edgestitch</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Piquer au bord</strong> — à 1–2 mm du bord ou d'une couture</div></div>
+      <div class="vocab-card"><div class="vocab-en">Topstitch</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Surpiquer</strong> — piqûre décorative visible sur l'endroit</div></div>
+      <div class="vocab-card"><div class="vocab-en">Understitch</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Sous-piquer</strong> — maintient la parementure à l'intérieur</div></div>
+      <div class="vocab-card"><div class="vocab-en">Press</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Repasser</strong> — indispensable après chaque étape</div></div>
+      <div class="vocab-card"><div class="vocab-en">Seam allowance</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Marge de couture</strong> — espace entre le bord coupé et la ligne de couture</div></div>
+      <div class="vocab-card"><div class="vocab-en">Dart</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Pince</strong> — couture conique qui donne du galbe</div></div>
+      <div class="vocab-card"><div class="vocab-en">Gather / Gathers</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Fronces</strong> — tissu rassemblé pour créer du volume</div></div>
+      <div class="vocab-card"><div class="vocab-en">Sleeve cap</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Tête de manche</strong> — partie arrondie en haut de la manche</div></div>
+      <div class="vocab-card"><div class="vocab-en">Notch</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Cran</strong> — encoche sur le patron pour aligner les pièces</div></div>
+      <div class="vocab-card"><div class="vocab-en">Fusible interfacing</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Thermocollant</strong> — entoilage qui se colle au fer</div></div>
+      <div class="vocab-card"><div class="vocab-en">Bodice</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Corsage</strong> — le haut de la robe, couvrant le buste</div></div>
+      <div class="vocab-card"><div class="vocab-en">Facing / Lining</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Parementure</strong> — pièce qui finit proprement l'intérieur</div></div>
+      <div class="vocab-card"><div class="vocab-en">Waistband</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Ceinture</strong> — bande qui structure la taille</div></div>
+      <div class="vocab-card"><div class="vocab-en">Goreum / Tie</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Goreum (고름)</strong> — les longs rubans du hanbok</div></div>
+      <div class="vocab-card"><div class="vocab-en">Pleat</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Pli</strong> — tissu plié et fixé pour structurer la jupe</div></div>
+      <div class="vocab-card"><div class="vocab-en">Armhole</div><div class="vocab-sep">→</div><div class="vocab-fr"><strong>Emmanchure</strong> — l'ouverture du corsage où s'insère la manche</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  Traduction française non officielle du tutoriel <strong>Modern Hanbok Sew Along</strong> de Sara SJ — <a href="https://sewingtherapy.net" target="_blank">sewingtherapy.net</a><br>
+  Créée dans le cadre d'un projet couture mère &amp; fille · Concert BTS ARIRANG · Stade de France · 18 juillet 2026 💜<br>
+  <a href="hanbok_tuto_site.html">← Retour au guide principal</a>
+</div>
+
+</body>
+</html>
