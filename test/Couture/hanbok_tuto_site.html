@@ -63,47 +63,110 @@ body {
 /* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0.9rem 2.5rem;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(139,125,200,0.2);
+  padding: 0.75rem 2rem;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(139,125,200,0.18);
+  transition: box-shadow 0.3s;
 }
+nav.scrolled { box-shadow: 0 2px 20px rgba(74,53,128,0.12); }
 .nav-brand {
   display: flex; align-items: center; gap: 0.6rem;
-  text-decoration: none;
+  text-decoration: none; flex-shrink: 0;
 }
 .nav-logo {
-  width: 32px; height: 32px;
-  background: var(--violet);
-  border-radius: 8px;
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--lilas-deep), var(--violet));
+  border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.75rem; color: white; font-weight: 700;
+  font-size: 0.8rem; color: white; font-weight: 700;
+  box-shadow: 0 2px 8px rgba(91,75,170,0.3);
 }
 .nav-title {
   font-family: 'Playfair Display', serif;
   font-size: 1rem; font-weight: 500;
   color: var(--violet);
 }
+/* Liens desktop */
 .nav-links {
-  display: flex; gap: 2rem; list-style: none;
+  display: flex; gap: 0.25rem; list-style: none;
   align-items: center;
 }
 .nav-links a {
-  font-size: 0.8rem; font-weight: 600;
+  font-size: 0.78rem; font-weight: 600;
   text-decoration: none;
   color: var(--texte-doux);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: color 0.2s;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.18s, color 0.18s;
 }
-.nav-links a:hover { color: var(--lilas-deep); }
+.nav-links a:hover {
+  color: var(--lilas-deep);
+  background: var(--lilas-pale);
+}
+.nav-links a.active {
+  color: var(--lilas-deep);
+  background: var(--lilas-pale);
+}
 .nav-cta {
-  background: var(--lilas-deep);
+  background: linear-gradient(135deg, var(--lilas-deep), var(--violet)) !important;
   color: white !important;
-  padding: 0.45rem 1.1rem;
+  padding: 0.45rem 1.1rem !important;
   border-radius: 20px;
+  box-shadow: 0 3px 12px rgba(91,75,170,0.35);
+  margin-left: 0.5rem;
+}
+.nav-cta:hover {
+  background: var(--violet) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(91,75,170,0.45);
+}
+/* Burger mobile */
+.nav-burger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+  background: none; border: none;
+}
+.nav-burger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--violet); border-radius: 2px;
+  transition: all 0.25s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Drawer mobile */
+.nav-drawer {
+  display: none;
+  position: fixed; top: 60px; left: 0; right: 0;
+  background: white;
+  border-bottom: 2px solid var(--lilas-pale);
+  box-shadow: 0 8px 32px rgba(74,53,128,0.12);
+  z-index: 199; padding: 1rem 1.5rem 1.5rem;
+  flex-direction: column; gap: 0.25rem;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  font-size: 0.88rem; font-weight: 600;
+  text-decoration: none;
+  color: var(--texte-doux);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.7rem 1rem; border-radius: 10px;
+  transition: background 0.15s, color 0.15s;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.nav-drawer a:hover { background: var(--lilas-pale); color: var(--lilas-deep); }
+.nav-drawer .drawer-cta {
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, var(--lilas-deep), var(--violet));
+  color: white !important;
+  text-align: center; border-radius: 12px;
+  justify-content: center;
 }
 
 /* ─── HERO ─── */
@@ -885,39 +948,6 @@ footer::before {
   box-shadow: var(--ombre-sm);
 }
 .uniqlo-conseil-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
-.uniqlo-instructions {
-  background: var(--encre); border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-}
-.ui-title {
-  font-size: 0.78rem; font-weight: 700;
-  color: var(--lilas-light); margin-bottom: 0.75rem;
-  letter-spacing: 0.04em;
-}
-.ui-steps {
-  list-style: none; counter-reset: steps;
-  display: flex; flex-direction: column; gap: 0.4rem;
-}
-.ui-steps li {
-  counter-increment: steps;
-  font-size: 0.76rem; color: rgba(255,255,255,0.6);
-  display: flex; gap: 0.75rem; align-items: flex-start;
-  line-height: 1.5;
-}
-.ui-steps li::before {
-  content: counter(steps);
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--lilas-deep); color: white;
-  font-size: 0.65rem; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 0.05rem;
-}
-.ui-steps code {
-  background: rgba(255,255,255,0.12);
-  color: var(--lilas-light);
-  padding: 0.1rem 0.4rem; border-radius: 4px;
-  font-size: 0.72rem; font-family: monospace;
-}
 @media (max-width: 640px) {
   .uniqlo-grid { grid-template-columns: 1fr; }
 }
@@ -1099,6 +1129,7 @@ footer::before {
   .patrons-grid { grid-template-columns: 1fr; }
   .glossaire-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
 }
 </style>
 </head>
@@ -1108,19 +1139,36 @@ footer::before {
 <div class="petals-bg" aria-hidden="true" id="petals"></div>
 
 <!-- ─── NAV ─── -->
-<nav>
+<nav id="mainNav">
   <a class="nav-brand" href="#">
     <div class="nav-logo">한</div>
     <span class="nav-title">Hanbok Moderne</span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#videos">Tutos vidéo</a></li>
-    <li><a href="#etapes">Étapes</a></li>
-    <li><a href="#patrons">Patrons</a></li>
-    <li><a href="#planning">Planning</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#moodboard">🎨 Moodboard</a></li>
+    <li><a href="#palette">🎨 Palette</a></li>
+    <li><a href="#videos">▶ Tutos</a></li>
+    <li><a href="#etapes">✂️ Étapes</a></li>
+    <li><a href="#patrons">🧵 Patrons</a></li>
+    <li><a href="#glossaire">📖 Glossaire</a></li>
+    <li><a href="#planning">📅 Planning</a></li>
     <li><a href="#etapes" class="nav-cta">Commencer →</a></li>
   </ul>
+  <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- Drawer mobile -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#moodboard">🎨 Moodboard</a>
+  <a href="#palette">🎨 Palette</a>
+  <a href="#videos">▶ Tutos vidéo</a>
+  <a href="#etapes">✂️ Étapes de couture</a>
+  <a href="#patrons">🧵 Patrons</a>
+  <a href="#glossaire">📖 Glossaire</a>
+  <a href="#planning">📅 Planning</a>
+  <a href="#etapes" class="drawer-cta">Commencer le projet →</a>
+</div>
 
 <!-- ─── HERO ─── -->
 <header class="hero hero-banner">
@@ -1212,6 +1260,53 @@ footer::before {
     </div>
   </div>
 </header>
+
+<!-- ─── MOODBOARD ─── -->
+<section class="moodboard-section" id="moodboard">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-kicker">Moodboard &amp; inspiration</div>
+      <h2 class="section-title">Le projet en images</h2>
+      <p class="section-desc">16 planches de direction artistique pour visualiser la tenue, la palette et l'univers du projet.</p>
+    </div>
+
+    <div class="moodboard-grid" id="moodboardGrid">
+      <div class="mb-item" data-index="0"><img src="Canva/Couture-hanbok-01.png" alt="Moodboard 01" loading="lazy"><div class="mb-num">01</div></div>
+      <div class="mb-item" data-index="1"><img src="Canva/Couture-hanbok-01b.png" alt="Moodboard 01b" loading="lazy"><div class="mb-num">01b</div></div>
+      <div class="mb-item" data-index="2"><img src="Canva/Couture-hanbok-02a.png" alt="Moodboard 02a" loading="lazy"><div class="mb-num">02a</div></div>
+      <div class="mb-item" data-index="3"><img src="Canva/Couture-hanbok-02b.png" alt="Moodboard 02b" loading="lazy"><div class="mb-num">02b</div></div>
+      <div class="mb-item" data-index="4"><img src="Canva/Couture-hanbok-03a.png" alt="Moodboard 03a" loading="lazy"><div class="mb-num">03a</div></div>
+      <div class="mb-item" data-index="5"><img src="Canva/Couture-hanbok-03b.png" alt="Moodboard 03b" loading="lazy"><div class="mb-num">03b</div></div>
+      <div class="mb-item" data-index="6"><img src="Canva/Couture-hanbok-04.png" alt="Moodboard 04" loading="lazy"><div class="mb-num">04</div></div>
+      <div class="mb-item" data-index="7"><img src="Canva/Couture-hanbok-04b.png" alt="Moodboard 04b" loading="lazy"><div class="mb-num">04b</div></div>
+      <div class="mb-item" data-index="8"><img src="Canva/Couture-hanbok-04c.png" alt="Moodboard 04c" loading="lazy"><div class="mb-num">04c</div></div>
+      <div class="mb-item" data-index="9"><img src="Canva/Couture-hanbok-05.png" alt="Moodboard 05" loading="lazy"><div class="mb-num">05</div></div>
+      <div class="mb-item" data-index="10"><img src="Canva/Couture-hanbok-06.png" alt="Moodboard 06" loading="lazy"><div class="mb-num">06</div></div>
+      <div class="mb-item" data-index="11"><img src="Canva/Couture-hanbok-07.png" alt="Moodboard 07" loading="lazy"><div class="mb-num">07</div></div>
+      <div class="mb-item" data-index="12"><img src="Canva/Couture-hanbok-08a.png" alt="Moodboard 08a" loading="lazy"><div class="mb-num">08a</div></div>
+      <div class="mb-item" data-index="13"><img src="Canva/Couture-hanbok-08b.png" alt="Moodboard 08b" loading="lazy"><div class="mb-num">08b</div></div>
+      <div class="mb-item" data-index="14"><img src="Canva/Couture-hanbok-08c.png" alt="Moodboard 08c" loading="lazy"><div class="mb-num">08c</div></div>
+      <div class="mb-item" data-index="15"><img src="Canva/Couture-hanbok-09-choix-tissus.png" alt="Moodboard choix tissus" loading="lazy"><div class="mb-num">09</div></div>
+      <div class="mb-item" data-index="16"><img src="Canva/Couture-hanbok-10-comparatif.png" alt="Moodboard comparatif" loading="lazy"><div class="mb-num">10</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="mb-lightbox" id="mbLightbox" role="dialog" aria-modal="true" aria-label="Visionneuse moodboard">
+  <button class="mb-lb-close" id="mbClose" aria-label="Fermer">✕</button>
+  <button class="mb-lb-nav mb-lb-prev" id="mbPrev" aria-label="Image précédente">‹</button>
+  <div class="mb-lb-img-wrap">
+    <img src="" alt="" id="mbImg">
+    <div class="mb-lb-counter" id="mbCounter"></div>
+
+
+
+  </div>
+  <button class="mb-lb-nav mb-lb-next" id="mbNext" aria-label="Image suivante">›</button>
+</div>
+
+
 
 <!-- ─── PALETTE ─── -->
 <section class="palette-section" id="palette">
@@ -1684,16 +1779,6 @@ footer::before {
       </div>
 
       <!-- Instructions pour remplacer les images -->
-      <div class="uniqlo-instructions">
-        <div class="ui-title">📸 Pour ajouter vos photos Uniqlo</div>
-        <ol class="ui-steps">
-          <li>Faites une capture d'écran de chaque jupe sur uniqlo.com (vue de face, fond blanc)</li>
-          <li>Enregistrez-les sous les noms <code>uniqlo-jupe-1.jpg</code> et <code>uniqlo-jupe-2.jpg</code></li>
-          <li>Placez ces fichiers dans le même dossier que ce fichier HTML</li>
-          <li>Rechargez la page — les images s'afficheront automatiquement à la place des silhouettes</li>
-        </ol>
-      </div>
-
     </div><!-- /uniqlo-section -->
 
   </div>
@@ -1796,48 +1881,6 @@ footer::before {
 </section>
 
 <!-- ─── FOOTER ─── -->
-<!-- ─── MOODBOARD ─── -->
-<section class="moodboard-section" id="moodboard">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div class="section-kicker">Moodboard &amp; inspiration</div>
-      <h2 class="section-title">Le projet en images</h2>
-      <p class="section-desc">16 planches de direction artistique pour visualiser la tenue, la palette et l'univers du projet.</p>
-    </div>
-
-    <div class="moodboard-grid" id="moodboardGrid">
-      <div class="mb-item" data-index="0"><img src="Canva/Couture-hanbok-01.png" alt="Moodboard 01" loading="lazy"><div class="mb-num">01</div></div>
-      <div class="mb-item" data-index="1"><img src="Canva/Couture-hanbok-01b.png" alt="Moodboard 01b" loading="lazy"><div class="mb-num">01b</div></div>
-      <div class="mb-item" data-index="2"><img src="Canva/Couture-hanbok-02a.png" alt="Moodboard 02a" loading="lazy"><div class="mb-num">02a</div></div>
-      <div class="mb-item" data-index="3"><img src="Canva/Couture-hanbok-02b.png" alt="Moodboard 02b" loading="lazy"><div class="mb-num">02b</div></div>
-      <div class="mb-item" data-index="4"><img src="Canva/Couture-hanbok-03a.png" alt="Moodboard 03a" loading="lazy"><div class="mb-num">03a</div></div>
-      <div class="mb-item" data-index="5"><img src="Canva/Couture-hanbok-03b.png" alt="Moodboard 03b" loading="lazy"><div class="mb-num">03b</div></div>
-      <div class="mb-item" data-index="6"><img src="Canva/Couture-hanbok-04.png" alt="Moodboard 04" loading="lazy"><div class="mb-num">04</div></div>
-      <div class="mb-item" data-index="7"><img src="Canva/Couture-hanbok-04b.png" alt="Moodboard 04b" loading="lazy"><div class="mb-num">04b</div></div>
-      <div class="mb-item" data-index="8"><img src="Canva/Couture-hanbok-04c.png" alt="Moodboard 04c" loading="lazy"><div class="mb-num">04c</div></div>
-      <div class="mb-item" data-index="9"><img src="Canva/Couture-hanbok-05.png" alt="Moodboard 05" loading="lazy"><div class="mb-num">05</div></div>
-      <div class="mb-item" data-index="10"><img src="Canva/Couture-hanbok-06.png" alt="Moodboard 06" loading="lazy"><div class="mb-num">06</div></div>
-      <div class="mb-item" data-index="11"><img src="Canva/Couture-hanbok-07.png" alt="Moodboard 07" loading="lazy"><div class="mb-num">07</div></div>
-      <div class="mb-item" data-index="12"><img src="Canva/Couture-hanbok-08a.png" alt="Moodboard 08a" loading="lazy"><div class="mb-num">08a</div></div>
-      <div class="mb-item" data-index="13"><img src="Canva/Couture-hanbok-08b.png" alt="Moodboard 08b" loading="lazy"><div class="mb-num">08b</div></div>
-      <div class="mb-item" data-index="14"><img src="Canva/Couture-hanbok-08c.png" alt="Moodboard 08c" loading="lazy"><div class="mb-num">08c</div></div>
-      <div class="mb-item" data-index="15"><img src="Canva/Couture-hanbok-09-choix-tissus.png" alt="Moodboard choix tissus" loading="lazy"><div class="mb-num">09</div></div>
-      <div class="mb-item" data-index="16"><img src="Canva/Couture-hanbok-10-comparatif.png" alt="Moodboard comparatif" loading="lazy"><div class="mb-num">10</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Lightbox -->
-<div class="mb-lightbox" id="mbLightbox" role="dialog" aria-modal="true" aria-label="Visionneuse moodboard">
-  <button class="mb-lb-close" id="mbClose" aria-label="Fermer">✕</button>
-  <button class="mb-lb-nav mb-lb-prev" id="mbPrev" aria-label="Image précédente">‹</button>
-  <div class="mb-lb-img-wrap">
-    <img src="" alt="" id="mbImg">
-    <div class="mb-lb-counter" id="mbCounter"></div>
-  </div>
-  <button class="mb-lb-nav mb-lb-next" id="mbNext" aria-label="Image suivante">›</button>
-</div>
-
 <footer>
   <div class="footer-title">Pour toi, pour elle, pour nous. Pour BTS. 💜</div>
   <div class="footer-sub">
@@ -1902,7 +1945,44 @@ document.addEventListener('keydown', e => {
 });
 lbImg.style.transition = 'opacity 0.12s ease';
 
-// ── Façades YouTube — clic pour charger l'iframe
+// ── Nav burger mobile ──
+const burger = document.getElementById('navBurger');
+const drawer = document.getElementById('navDrawer');
+burger.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+// Fermer le drawer au clic sur un lien
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    drawer.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+  });
+});
+
+// ── Shadow nav au scroll ──
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  mainNav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Lien actif au scroll (highlight nav) ──
+const sections = document.querySelectorAll('section[id], header[id]');
+const navAs = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+const observer2 = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer2.observe(s));
+
+
 document.querySelectorAll('.yt-facade').forEach(facade => {
   facade.addEventListener('click', () => {
     const vid = facade.dataset.vid;
