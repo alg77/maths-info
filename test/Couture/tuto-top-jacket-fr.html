@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuto Hanbok Top & Jacket Sewing Therapy — Traduction française</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --lilas:#8B7DC8;--lilas-light:#C4B8E8;--lilas-pale:#EDE8F8;
+  --lilas-deep:#5B4BAA;--violet:#4A3580;
+  --rouge:#B83040;--rouge-light:#E8A0A8;--rouge-pale:#FDF0F2;
+  --or:#C8A850;--or-light:#F0E0A0;--ivoire:#FDF8F0;
+  --encre:#2A1F3D;--texte:#3D3050;--texte-doux:#6A5880;
+  --blanc:#FFFFFF;--border:rgba(139,125,200,0.15);
+  --ombre:0 4px 24px rgba(74,53,128,0.10);
+  --ombre-sm:0 2px 10px rgba(74,53,128,0.07);
+}
+html { scroll-behavior:smooth; }
+body { font-family:'Nunito',sans-serif; background:var(--ivoire); color:var(--texte); line-height:1.7; }
+
+nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(255,255,255,0.97); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--lilas-pale);
+  padding:0.7rem 2rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  box-shadow:0 2px 12px rgba(74,53,128,0.08);
+}
+.nav-back { display:inline-flex; align-items:center; gap:0.4rem; text-decoration:none; color:var(--lilas-deep); font-size:0.82rem; font-weight:700; padding:0.35rem 0.9rem; border-radius:20px; border:1.5px solid var(--lilas-light); transition:background 0.2s; white-space:nowrap; }
+.nav-back:hover { background:var(--lilas-pale); }
+.nav-title { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:600; color:var(--violet); font-style:italic; }
+.nav-src { font-size:0.72rem; color:var(--texte-doux); white-space:nowrap; }
+.nav-src a { color:var(--lilas-deep); text-decoration:none; border-bottom:1px solid var(--lilas-light); }
+
+.page-hero { background:linear-gradient(135deg, var(--lilas-pale) 0%, #F5E8EE 100%); border-bottom:1px solid var(--lilas-light); padding:3.5rem 2rem 2.5rem; text-align:center; }
+.hero-eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.75rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; }
+.hero-eyebrow::before,.hero-eyebrow::after { content:'✿'; color:var(--lilas-light); }
+.page-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; color:var(--violet); line-height:1.2; margin-bottom:0.75rem; }
+.page-hero h1 em { color:var(--rouge); font-style:italic; }
+.hero-sub { font-size:0.9rem; color:var(--texte-doux); max-width:560px; margin:0 auto 1.5rem; line-height:1.7; }
+.hero-meta { display:inline-flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; font-size:0.75rem; color:var(--texte-doux); }
+.hero-meta span { display:flex; align-items:center; gap:0.3rem; }
+
+.page-wrap { max-width:780px; margin:0 auto; padding:0 1.5rem 5rem; }
+
+.source-box { max-width:100%; margin:2rem 0; background:white; border:1.5px solid var(--lilas-light); border-radius:16px; padding:1.1rem 1.5rem; display:flex; gap:1rem; align-items:flex-start; font-size:0.8rem; color:var(--texte-doux); line-height:1.6; box-shadow:var(--ombre); }
+.source-icon { font-size:1.4rem; flex-shrink:0; }
+.source-box a { color:var(--lilas-deep); font-weight:700; }
+
+.video-wrap { background:#111; border-radius:14px; overflow:hidden; margin:1.5rem 0; box-shadow:var(--ombre); position:relative; padding-bottom:56.25%; }
+.video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
+.video-caption { font-size:0.75rem; color:var(--texte-doux); text-align:center; margin-top:0.5rem; margin-bottom:1.25rem; font-style:italic; }
+
+/* Diff box */
+.diff-box { background:white; border-radius:16px; border:1px solid var(--border); box-shadow:var(--ombre-sm); overflow:hidden; margin:1.5rem 0; }
+.diff-box-header { background:linear-gradient(135deg, var(--lilas-pale), white); padding:1rem 1.25rem; border-bottom:1px solid var(--border); }
+.diff-box-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:var(--violet); margin-bottom:0.25rem; }
+.diff-box-sub { font-size:0.78rem; color:var(--texte-doux); }
+.diff-grid { display:grid; grid-template-columns:1fr 1fr; }
+.diff-col { padding:1.1rem 1.25rem; }
+.diff-col:first-child { border-right:1px solid var(--border); }
+.diff-label { font-size:0.65rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.6rem; }
+.diff-label.top { color:var(--rouge); }
+.diff-label.jacket { color:var(--or); }
+.diff-list { list-style:none; font-size:0.8rem; color:var(--texte-doux); line-height:1.7; }
+.diff-list li { display:flex; gap:0.5rem; padding:0.2rem 0; border-bottom:1px solid var(--lilas-pale); }
+.diff-list li:last-child { border-bottom:none; }
+.diff-list li::before { content:'→'; color:var(--lilas-light); flex-shrink:0; }
+
+/* Step layout 2/3 + 1/3 */
+.tuto-section { margin-top:3.5rem; }
+.section-anchor { scroll-margin-top:80px; }
+.section-eyebrow { font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--rouge); display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem; }
+.section-eyebrow::after { content:''; flex:1; height:1px; background:var(--rouge-light); }
+.section-h2 { font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:700; color:var(--violet); margin-bottom:1rem; line-height:1.25; }
+.section-intro { font-size:0.88rem; color:var(--texte-doux); line-height:1.75; margin-bottom:1.5rem; }
+
+.step-with-visual { display:grid; grid-template-columns:2fr 1fr; gap:2rem; align-items:start; margin-bottom:1.25rem; }
+.step-visual { position:sticky; top:90px; border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(74,53,128,0.15); border:1px solid var(--border); cursor:zoom-in; transition:transform 0.22s,box-shadow 0.22s; }
+.step-visual:hover { transform:scale(1.02); box-shadow:0 14px 44px rgba(74,53,128,0.22); }
+.step-visual img { width:100%; height:auto; display:block; }
+.step-visual-caption { background:linear-gradient(135deg,var(--lilas-pale),white); padding:0.6rem 0.85rem; font-size:0.68rem; font-weight:700; color:var(--lilas-deep); text-align:center; letter-spacing:0.06em; text-transform:uppercase; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:center; gap:0.4rem; }
+
+/* Visuels multiples pour étape 1 */
+.step-visuals-stack { position:sticky; top:90px; display:flex; flex-direction:column; gap:0.6rem; }
+.step-visual-small { border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(74,53,128,0.12); border:1px solid var(--border); cursor:zoom-in; transition:transform 0.2s; }
+.step-visual-small:hover { transform:scale(1.02); }
+.step-visual-small img { width:100%; height:auto; display:block; }
+.step-visual-small .step-visual-caption { padding:0.4rem 0.6rem; font-size:0.6rem; }
+
+.step-block { background:white; border-radius:16px; border:1px solid var(--border); box-shadow:var(--ombre); overflow:hidden; }
+.step-header { display:flex; align-items:stretch; }
+.step-num-col { background:linear-gradient(180deg,var(--lilas),var(--lilas-deep)); color:white; min-width:72px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.25rem 0.75rem; font-family:'Playfair Display',serif; }
+.step-num-label { font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.75; margin-bottom:0.1rem; }
+.step-num-val { font-size:2.2rem; font-weight:700; line-height:1; }
+.step-header-content { flex:1; padding:1rem 1.25rem; border-bottom:1px solid var(--lilas-pale); background:linear-gradient(135deg,#FDFBFF,white); }
+.step-phase { font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.2rem; }
+.step-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; color:var(--violet); line-height:1.3; }
+.step-body { padding:1.25rem 1.5rem; }
+.step-body p { font-size:0.85rem; color:var(--texte-doux); line-height:1.75; margin-bottom:0.6rem; }
+.step-actions { list-style:none; display:flex; flex-direction:column; }
+.step-actions li { font-size:0.83rem; color:var(--texte-doux); padding:0.5rem 0; border-bottom:1px solid var(--lilas-pale); display:flex; gap:0.75rem; line-height:1.55; align-items:flex-start; }
+.step-actions li:last-child { border-bottom:none; }
+.step-actions li::before { content:'›'; color:var(--lilas); font-size:1rem; flex-shrink:0; margin-top:0.05rem; }
+.step-tip { margin-top:1rem; padding:0.75rem 1rem; background:var(--lilas-pale); border-radius:10px; border-left:3px solid var(--lilas); font-size:0.78rem; color:var(--lilas-deep); line-height:1.6; font-style:italic; }
+.step-warning { margin-top:0.75rem; padding:0.75rem 1rem; background:var(--rouge-pale); border-radius:10px; border-left:3px solid var(--rouge); font-size:0.78rem; color:var(--rouge); line-height:1.6; }
+.step-fr-en { margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap; }
+.fr-en-tag { font-size:0.65rem; font-weight:700; padding:0.2rem 0.65rem; border-radius:20px; border:1px solid var(--lilas-light); color:var(--lilas-deep); background:var(--lilas-pale); }
+
+.note-box { background:white; border-radius:14px; border-left:4px solid var(--or); padding:1.1rem 1.25rem; margin:1.5rem 0; font-size:0.83rem; color:var(--texte-doux); line-height:1.7; box-shadow:var(--ombre-sm); }
+.note-box .note-title { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--or); margin-bottom:0.4rem; }
+
+/* Lightbox */
+.page-lightbox { position:fixed; inset:0; background:rgba(20,10,40,0.97); backdrop-filter:blur(12px); z-index:9999; display:none; align-items:center; justify-content:center; }
+.page-lightbox.open { display:flex; }
+.page-lightbox img { max-width:88vw; max-height:92vh; object-fit:contain; border-radius:12px; box-shadow:0 20px 80px rgba(0,0,0,0.7); }
+.page-lb-close { position:fixed; top:1.25rem; right:1.5rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); color:white; font-size:1.1rem; width:40px; height:40px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10000; transition:background 0.2s; }
+.page-lb-close:hover { background:rgba(184,48,64,0.6); }
+
+.page-footer { background:var(--encre); color:rgba(255,255,255,0.5); text-align:center; padding:2rem; font-size:0.75rem; line-height:1.8; margin-top:4rem; }
+.page-footer a { color:var(--lilas-light); }
+
+.sommaire { background:white; border-radius:16px; border:1px solid var(--border); padding:1.5rem 1.75rem; margin:2.5rem 0; box-shadow:var(--ombre); }
+.sommaire-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:var(--violet); margin-bottom:1rem; }
+.sommaire-list { list-style:none; display:flex; flex-direction:column; gap:0.3rem; }
+.sommaire-list li a { display:flex; align-items:center; gap:0.75rem; text-decoration:none; color:var(--texte-doux); font-size:0.82rem; font-weight:600; padding:0.4rem 0.75rem; border-radius:8px; transition:background 0.15s,color 0.15s; }
+.sommaire-list li a:hover { background:var(--lilas-pale); color:var(--lilas-deep); }
+.som-num { width:22px; height:22px; border-radius:50%; background:var(--lilas-pale); color:var(--lilas-deep); font-size:0.65rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+@media (max-width:700px) {
+  .step-with-visual { grid-template-columns:1fr; }
+  .step-visual,.step-visuals-stack { position:static; max-width:320px; margin:0 auto; }
+  .diff-grid { grid-template-columns:1fr; }
+  nav { flex-wrap:wrap; gap:0.5rem; }
+  .nav-src { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="hanbok_tuto_site.html">← Retour au site</a>
+  <span class="nav-title">Hanbok Top &amp; Jacket — traduction française</span>
+  <span class="nav-src">Source : <a href="https://sewingtherapy.net" target="_blank" rel="noopener">sewingtherapy.net ↗</a></span>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-eyebrow">Traduction française complète</div>
+  <h1>Hanbok Top &amp; Jacket<br><em>Deux jeogori en un patron</em></h1>
+  <p class="hero-sub">Traduction et adaptation du tutoriel "DIY Hanbok Top and Jacket" de Sara SJ (Sewing Therapy). Un seul patron, deux looks : un top court pour le quotidien et une veste longue pour les occasions. Version idéale si vous voulez un haut porté ouvert sans goreum.</p>
+  <div class="hero-meta">
+    <span>✂️ Niveau : débutante accompagnée</span>
+    <span>⏱️ 3–4h pour le top seul</span>
+    <span>🧵 Patron PDF Sewing Therapy requis</span>
+    <span>🇫🇷 Traduction non officielle</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <div class="source-box">
+    <div class="source-icon">ℹ️</div>
+    <div>
+      <strong>Source originale :</strong> tutoriel "DIY Hanbok Top and Jacket" par Sara SJ — <a href="https://www.youtube.com/watch?v=KOkfQ5FvCMw" target="_blank" rel="noopener">vidéo YouTube</a> et <a href="https://sewingtherapy.net" target="_blank" rel="noopener">sewingtherapy.net</a>. Patron PDF disponible sur <a href="https://twooninefabric.ca" target="_blank" rel="noopener">twooninefabric.ca</a>. Document de traduction non officiel pour couturières francophones.
+    </div>
+  </div>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/KOkfQ5FvCMw" title="Sewing Therapy — Hanbok Top and Jacket Tutorial" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <p class="video-caption">▲ Regardez en entier avant de commencer · Sous-titres FR : ⚙️ → Sous-titres → Traduire automatiquement → Français</p>
+
+  <!-- COMPARATIF DEUX VERSIONS -->
+  <div class="tuto-section">
+    <div class="section-eyebrow">Comprendre le patron</div>
+    <h2 class="section-h2">Top ou Jacket — quelle version choisir ?</h2>
+
+    <div class="diff-box">
+      <div class="diff-box-header">
+        <div class="diff-box-title">Même patron, deux silhouettes</div>
+        <div class="diff-box-sub">La différence principale est la longueur et la façon de le porter</div>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-col">
+          <div class="diff-label top">✅ Hanbok Top — votre projet</div>
+          <ul class="diff-list">
+            <li>Longueur courte (~42–45 cm), s'arrête à la taille</li>
+            <li>Col croisé, se porte fermé avec les goreum</li>
+            <li>Manches courtes ou 3/4 selon version</li>
+            <li>Se porte sur jupe Uniqlo, jean ou pantalon</li>
+            <li>Plus simple et plus rapide à coudre</li>
+            <li>Style Teterot / Leesle quotidien moderne</li>
+          </ul>
+        </div>
+        <div class="diff-col">
+          <div class="diff-label jacket">Hanbok Jacket — version longue</div>
+          <ul class="diff-list">
+            <li>Longueur mi-cuisses à mi-mollets</li>
+            <li>Se porte ouvert comme veste, goreum décoratifs</li>
+            <li>Manches longues évasées</li>
+            <li>Sur robe, combinaison ou top</li>
+            <li>Plus de tissu, même construction</li>
+            <li>Idéal pour une version automne/hiver future</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-title">🔑 Différence avec le Shirt &amp; Coat</div>
+      Le patron "Shirt &amp; Coat" (autre tutoriel) a un col croisé profond avec effet cache-cœur marqué — plus proche du hanbok traditionnel. Le "Top &amp; Jacket" a un col croisé plus discret, moins profond, et la veste se porte naturellement ouverte. Pour le concert avec goreum rouges visibles, le Shirt &amp; Coat est plus spectaculaire. Pour le quotidien porté ouvert sur un top, le Jacket est très élégant.
+    </div>
+  </div>
+
+  <!-- SOMMAIRE -->
+  <div class="sommaire">
+    <div class="sommaire-title">📋 Étapes du tutoriel</div>
+    <ul class="sommaire-list">
+      <li><a href="#preparation"><div class="som-num">0</div>Préparation — fournitures et thermocollant</a></li>
+      <li><a href="#etape1"><div class="som-num">1</div>Découper les pièces</a></li>
+      <li><a href="#etape2"><div class="som-num">2</div>Les goreum — préparer les liens</a></li>
+      <li><a href="#etape3"><div class="som-num">3</div>Assembler le corsage (dos + épaules + côtés)</a></li>
+      <li><a href="#etape4"><div class="som-num">4</div>Les manches — montage et pose</a></li>
+      <li><a href="#etape5"><div class="som-num">5</div>Parementure et col croisé</a></li>
+      <li><a href="#etape6"><div class="som-num">6</div>Goreum visibles et finitions</a></li>
+      <li><a href="#etape7"><div class="som-num">7</div>Ourlet et repassage final</a></li>
+      <li><a href="#conseils"><div class="som-num">★</div>Conseils spécifiques Top &amp; Jacket</a></li>
+    </ul>
+  </div>
+
+  <!-- ÉTAPE 0 -->
+  <div class="tuto-section section-anchor" id="preparation">
+    <div class="section-eyebrow">Étape 0</div>
+    <h2 class="section-h2">Préparation</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">0</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">Avant de coudre</div>
+            <div class="step-title">Fournitures, pré-lavage et thermocollant</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p><strong>Fournitures :</strong> tissu principal lilas (broderie anglaise ou crêpe georgette), thermocollant léger (H250), ruban satin rouge cerise pour les goreum, fil assorti, fer à repasser.</p>
+          <ul class="step-actions">
+            <li>Pré-laver et sécher le tissu avant toute découpe — évite le rétrécissement après confection</li>
+            <li>Repasser bien à plat avant de poser le patron</li>
+            <li>Coller le thermocollant (côté colle contre l'envers) sur les parementures et le col — fer chaud sans vapeur, 10–15 sec par zone, sans faire glisser</li>
+            <li>Tester sur une chute avant de thermocoller les vraies pièces</li>
+          </ul>
+          <div class="step-tip">💡 Pour la broderie anglaise : épinglez le tissu sur du papier de soie avant de couper pour éviter qu'il glisse. Ciseaux très aiguisés indispensables.</div>
+          <div class="step-fr-en">
+            <span class="fr-en-tag">Thermocollant = Fusible interfacing</span>
+            <span class="fr-en-tag">Envers = Wrong side (WS)</span>
+            <span class="fr-en-tag">Parementure = Facing</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-01.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-01.png" alt="Fiche étape 1 — Préparer" loading="lazy">
+        <div class="step-visual-caption">📋 Préparer · cliquer pour agrandir</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 1 -->
+  <div class="tuto-section section-anchor" id="etape1">
+    <div class="section-eyebrow">Étape 1</div>
+    <h2 class="section-h2">Découper les pièces</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">1</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">Découpe — respecter le droit-fil</div>
+            <div class="step-title">Couper toutes les pièces du patron</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Le Top &amp; Jacket a des pièces simples — moins de pièces que la Wrap Dress. Vérifiez deux fois avant de couper.</p>
+          <ul class="step-actions">
+            <li>Suivre le plan de coupe fourni avec le patron — tissu plié en deux, lisières alignées</li>
+            <li>Les flèches du patron indiquent le <strong>droit-fil</strong> (sens des fils) — parallèles à la lisière du tissu</li>
+            <li>Marquer les crans (petites encoches) avec un crayon effaçable ou une petite entaille de 3 mm</li>
+            <li>Pour le Top : couper aussi les goreum (2 bandes visibles + 2 liens intérieurs)</li>
+            <li>Vérifier que vous avez toutes les pièces avant de passer à l'étape suivante</li>
+          </ul>
+          <div class="step-tip">💡 Une pièce bien coupée = un assemblage facile. Prenez votre temps à cette étape — c'est la fondation de tout le reste.</div>
+          <div class="step-fr-en">
+            <span class="fr-en-tag">Droit-fil = Grain line</span>
+            <span class="fr-en-tag">Lisière = Selvage</span>
+            <span class="fr-en-tag">Cran = Notch</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-visuals-stack">
+        <div class="step-visual-small" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-02.png')">
+          <img src="Tuto SewingTherapy - shirt/tuto-02.png" alt="Fiche découpe pièces" loading="lazy">
+          <div class="step-visual-caption">📋 Découper les pièces</div>
+        </div>
+        <div class="step-visual-small" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-03.png')">
+          <img src="Tuto SewingTherapy - shirt/tuto-03.png" alt="Fiche thermocoller" loading="lazy">
+          <div class="step-visual-caption">📋 Thermocoller</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 2 -->
+  <div class="tuto-section section-anchor" id="etape2">
+    <div class="section-eyebrow">Étape 2</div>
+    <h2 class="section-h2">Préparer les goreum</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">2</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">Les rubans signature du hanbok</div>
+            <div class="step-title">Confectionner les goreum (고름)</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Pour votre projet : goreum en satin rouge cerise. Il en faut 4 au total — 2 visibles et 2 liens intérieurs cachés.</p>
+          <ul class="step-actions">
+            <li><strong>Goreum visibles (rouges) :</strong> 2 bandes de 5 cm × 65 cm — plier en deux dans la longueur, envers contre envers, repasser</li>
+            <li>Ouvrir, replier les bords vers le centre, refermer — piquer au bord sur toute la longueur</li>
+            <li>Plier et piquer une extrémité pour finir proprement</li>
+            <li><strong>Liens intérieurs :</strong> utiliser du ruban de coton lilas ou ivoire, 2,5 cm × 45 cm — même construction ou simplement du ruban commercial</li>
+            <li>Repasser tous les rubans pour qu'ils soient bien nets</li>
+          </ul>
+          <div class="step-tip">💡 Option simple : utilisez directement du ruban de satin rouge 2 cm pour les goreum visibles — identique visuellement, aucune couture nécessaire.</div>
+          <div class="step-fr-en">
+            <span class="fr-en-tag">Goreum = Tie</span>
+            <span class="fr-en-tag">Piquer au bord = Edgestitch</span>
+            <span class="fr-en-tag">Envers contre envers = WST</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-05.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-05.png" alt="Fiche préparer les goreum" loading="lazy">
+        <div class="step-visual-caption">📋 Préparer les goreum · cliquer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 3 -->
+  <div class="tuto-section section-anchor" id="etape3">
+    <div class="section-eyebrow">Étape 3</div>
+    <h2 class="section-h2">Assembler le corsage</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">3</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">Dos · Épaules · Côtés</div>
+            <div class="step-title">Construire le corps du top</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <ul class="step-actions">
+            <li>Assembler les 2 pièces dos (RST) le long de la couture centrale — surjeter, repasser d'un côté</li>
+            <li>Coudre les coutures d'épaule (dos + devants, RST) — surjeter, repasser vers le dos</li>
+            <li>Bâtir un lien intérieur sur le côté droit avant de coudre les côtés</li>
+            <li>Coudre les côtés (RST) — surjeter, repasser vers le dos</li>
+            <li>Repasser toutes les coutures soigneusement à chaque étape</li>
+          </ul>
+          <div class="step-tip">💡 Repasser après chaque couture — c'est la règle d'or. Ne pas attendre la fin pour tout repasser d'un coup.</div>
+          <div class="step-fr-en">
+            <span class="fr-en-tag">RST = Endroit contre endroit</span>
+            <span class="fr-en-tag">Surjeter = Serge</span>
+            <span class="fr-en-tag">Bâtir = Baste</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-06.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-06.png" alt="Fiche assembler le corsage" loading="lazy">
+        <div class="step-visual-caption">📋 Assembler le corsage · cliquer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 4 -->
+  <div class="tuto-section section-anchor" id="etape4">
+    <div class="section-eyebrow">Étape 4 — Clé du projet ⚡</div>
+    <h2 class="section-h2">Les manches</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col" style="background:linear-gradient(180deg,var(--rouge),#8b1a12);"><div class="step-num-label">Étape</div><div class="step-num-val">4</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">⚡ Regardez la vidéo sur cette partie avant de commencer</div>
+            <div class="step-title">Monter les manches avec fronces</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <ul class="step-actions">
+            <li>Coudre la couture de dessous de bras de chaque manche (RST) — surjeter</li>
+            <li>Coudre 2 rangées de grands points (longueur 4–5) sur la tête de manche entre les crans — sans point d'arrêt</li>
+            <li>Tirer les fils progressivement pour froncer jusqu'à la largeur de l'emmanchure</li>
+            <li>Répartir les fronces régulièrement depuis le centre vers les côtés</li>
+            <li>Introduire la manche dans l'emmanchure (RST) — aligner épaule + crans — épingler</li>
+            <li>Coudre tout le tour à 1 cm — surjeter — repasser vers le corps</li>
+            <li>Ajuster la longueur, puis double ourlet au bas de manche</li>
+          </ul>
+          <div class="step-warning">⚠️ Tirer les fils de fronces doucement et des deux côtés simultanément. Un fil qui casse = recommencer les points sur cette zone.</div>
+          <div class="step-fr-en">
+            <span class="fr-en-tag">Tête de manche = Sleeve cap</span>
+            <span class="fr-en-tag">Fronces = Gathers</span>
+            <span class="fr-en-tag">Emmanchure = Armhole</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-07.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-07.png" alt="Fiche monter les manches" loading="lazy">
+        <div class="step-visual-caption">📋 Monter les manches · cliquer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 5 -->
+  <div class="tuto-section section-anchor" id="etape5">
+    <div class="section-eyebrow">Étape 5 — La plus délicate</div>
+    <h2 class="section-h2">Parementure et col croisé</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col" style="background:linear-gradient(180deg,var(--or),#a07800);"><div class="step-num-label">Étape</div><div class="step-num-val">5</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">Prenez votre temps — c'est la signature du jeogori</div>
+            <div class="step-title">Poser la parementure et le col croisé</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>C'est l'étape qui donne au top son caractère hanbok. Le col croisé doit être net et bien centré.</p>
+          <ul class="step-actions">
+            <li>Bâtir les goreum (liens intérieur + visible) aux emplacements indiqués sur la parementure</li>
+            <li>Assembler parementure + devant du corsage (RST) — coudre tout le contour</li>
+            <li>Cranter les courbes de l'encolure sans couper le fil de couture</li>
+            <li>Retourner vers l'intérieur — repasser soigneusement</li>
+            <li>Sous-piquer (understitch) à 2 mm de la couture pour aplatir la parementure</li>
+            <li>Épingler et surpiquer le bord extérieur pour finir</li>
+            <li>Repasser généreusement avec vapeur — le col doit être parfaitement plat</li>
+          </ul>
+          <div class="step-tip">💡 Le Wonder Tape (ruban hydrosoluble) est très utile ici pour maintenir la parementure pendant la surpiqûre sans épingles.</div>
+          <div class="step-fr-en">
+            <span class="fr-en-tag">Parementure = Facing</span>
+            <span class="fr-en-tag">Cranter = Clip / Notch curves</span>
+            <span class="fr-en-tag">Sous-piquer = Understitch</span>
+            <span class="fr-en-tag">Surpiquer = Topstitch</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-08.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-08.png" alt="Fiche parementure et liens" loading="lazy">
+        <div class="step-visual-caption">📋 Parementure &amp; liens · cliquer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 6 -->
+  <div class="tuto-section section-anchor" id="etape6">
+    <div class="section-eyebrow">Étape 6</div>
+    <h2 class="section-h2">Goreum visibles et finitions</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">6</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">Les rubans rouges — le détail qui fait tout</div>
+            <div class="step-title">Fixer les goreum rouges et finir à la main</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <ul class="step-actions">
+            <li>Placer le goreum visible (rouge) sur l'endroit du devant gauche à l'emplacement indiqué</li>
+            <li>Fixer le centre du goreum par quelques points à la machine ou à la main</li>
+            <li>Fixer aussi l'extrémité du lien intérieur côté droit avec quelques points cachés</li>
+            <li>Vérifier que les deux liens permettent de fermer le top confortablement</li>
+            <li>Ajuster la longueur des rubans si nécessaire — couper et finir les extrémités en biais</li>
+          </ul>
+          <div class="step-tip">🎀 Pour un nœud parfait : le ruban gauche passe par-dessus le droit, forme une boucle, et le droit vient s'enrouler avant de former la deuxième boucle. Chercher "otgoreum knot" sur YouTube pour une démo de 2 minutes.</div>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-09.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-09.png" alt="Fiche finitions" loading="lazy">
+        <div class="step-visual-caption">📋 Finitions · cliquer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 7 -->
+  <div class="tuto-section section-anchor" id="etape7">
+    <div class="section-eyebrow">Étape 7 — Dernière étape 🎉</div>
+    <h2 class="section-h2">Ourlet et repassage final</h2>
+    <div class="step-with-visual">
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-num-col" style="background:linear-gradient(180deg,#2E7D32,#1B5E20);"><div class="step-num-label">Étape</div><div class="step-num-val">7</div></div>
+          <div class="step-header-content">
+            <div class="step-phase">C'est terminé !</div>
+            <div class="step-title">Ourlet du bas et repassage final</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <ul class="step-actions">
+            <li>Double ourlet au bas du top : replier 1 cm, repasser, replier encore 1 cm, repasser, piquer au bord</li>
+            <li>Couper tous les fils dépassants à l'intérieur</li>
+            <li>Repassage final complet — utiliser une pattemouille pour la broderie anglaise</li>
+            <li>Essayage ! Nouer les goreum rouges, ajuster si nécessaire</li>
+            <li>Vérifier la longueur finale — à 1,60 m, ~42–44 cm est la longueur idéale</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-10.png')">
+        <img src="Tuto SewingTherapy - shirt/tuto-10.png" alt="Fiche essayage final" loading="lazy">
+        <div class="step-visual-caption">📋 Essayage final 🎉 · cliquer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONSEILS -->
+  <div class="tuto-section section-anchor" id="conseils">
+    <div class="section-eyebrow">Spécifique Top &amp; Jacket</div>
+    <h2 class="section-h2">Conseils et différences clés</h2>
+    <div class="note-box">
+      <div class="note-title">🎯 Top vs Jacket — ajustements pratiques</div>
+      <strong>Pour le Top (version courte) :</strong> si vous cousez en S, la longueur du patron peut être légèrement longue pour 1,60 m. Raccourcissez de 2–3 cm sur le bas du corsage avant de coudre l'ourlet. Faites l'essayage avec la jupe Uniqlo pour juger le bon rapport de proportion avant de couper.<br><br>
+      <strong>Pour la Jacket (version longue) :</strong> prévoir 40–50 cm de tissu supplémentaire. La construction est identique, seule la longueur change. Le bas peut être droit ou légèrement évasé selon le patron.
+    </div>
+    <div class="note-box" style="border-left-color:var(--rouge);">
+      <div class="note-title" style="color:var(--rouge);">💜 Conseil pour votre projet concert</div>
+      Pour les goreum, vous avez le choix entre les coudre dans le tissu principal (lilas assorti) pour un look ton sur ton élégant, ou utiliser du satin rouge cerise pour l'accent ARIRANG. Sur une broderie anglaise lilas, le rouge ressort magnifiquement — il "chante" sans être criard. C'est le détail qui fait la différence sur les photos de concert.
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  Traduction française non officielle — tutoriel "DIY Hanbok Top and Jacket" de Sara SJ · <a href="https://sewingtherapy.net" target="_blank">sewingtherapy.net</a><br>
+  Projet couture mère &amp; fille · Concert BTS ARIRANG · Stade de France · 18 juillet 2026 💜<br>
+  <a href="hanbok_tuto_site.html">← Retour au guide principal</a>
+</div>
+
+<div class="page-lightbox" id="pageLightbox" onclick="this.classList.remove('open'); document.body.style.overflow='';">
+  <button class="page-lb-close" onclick="document.getElementById('pageLightbox').classList.remove('open'); document.body.style.overflow='';">✕</button>
+  <img src="" alt="" id="pageLbImg">
+</div>
+<script>
+function openPageLb(src) {
+  document.getElementById('pageLbImg').src = src;
+  document.getElementById('pageLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('pageLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>

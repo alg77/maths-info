@@ -159,6 +159,69 @@ nav {
   nav { flex-wrap: wrap; gap: 0.5rem; }
   .nav-src { display: none; }
 }
+
+/* ── Layout étape + visuel ── */
+.step-with-visual {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+.step-visual {
+  position: sticky; top: 90px;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(74,53,128,0.15);
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  transition: transform 0.22s, box-shadow 0.22s;
+}
+.step-visual:hover {
+  transform: scale(1.02);
+  box-shadow: 0 14px 44px rgba(74,53,128,0.22);
+}
+.step-visual img {
+  width: 100%; height: auto; display: block;
+}
+.step-visual-caption {
+  background: linear-gradient(135deg, var(--lilas-pale), white);
+  padding: 0.6rem 0.85rem;
+  font-size: 0.68rem; font-weight: 700;
+  color: var(--lilas-deep); text-align: center;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+}
+
+/* Lightbox visuel tuto page */
+.page-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(20,10,40,0.97);
+  backdrop-filter: blur(12px);
+  z-index: 9999; display: none;
+  align-items: center; justify-content: center;
+}
+.page-lightbox.open { display: flex; }
+.page-lightbox img {
+  max-width: 88vw; max-height: 92vh;
+  object-fit: contain; border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+}
+.page-lb-close {
+  position: fixed; top: 1.25rem; right: 1.5rem;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 1.1rem;
+  width: 40px; height: 40px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 10000; transition: background 0.2s;
+}
+.page-lb-close:hover { background: rgba(184,48,64,0.6); }
+
+@media (max-width: 700px) {
+  .step-with-visual { grid-template-columns: 1fr; }
+  .step-visual { position: static; max-width: 320px; margin: 0 auto; }
+}
+
 </style>
 </head>
 <body>
@@ -192,7 +255,7 @@ nav {
 
   <!-- VIDÉO PRINCIPALE -->
   <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/Kvtt6xD3VqA" title="Sewing Therapy — Hanbok Shirt and Coat Tutorial" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/HRYe_bFIpOw" title="Sewing Therapy — Hanbok Shirt and Coat Tutorial" allowfullscreen loading="lazy"></iframe>
   </div>
   <p class="video-caption">▲ Vidéo tuto complète — regardez en entier avant de commencer. Activez les sous-titres → ⚙️ → Sous-titres → Traduire automatiquement → Français</p>
 
@@ -257,7 +320,8 @@ nav {
     <div class="section-eyebrow">Étape 0</div>
     <h2 class="section-h2">Préparation</h2>
 
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">0</div></div>
         <div class="step-header-content">
@@ -290,13 +354,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-01.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-01.png" alt="Fiche étape 1 — Préparer le projet" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 1/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 1 -->
   <div class="tuto-section section-anchor" id="etape1">
     <div class="section-eyebrow">Étape 1</div>
     <h2 class="section-h2">Les pinces (si applicable)</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">1</div></div>
         <div class="step-header-content">
@@ -320,13 +391,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-04.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-04.png" alt="Fiche étape 4 — Coudre les pinces" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 4/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 2 -->
   <div class="tuto-section section-anchor" id="etape2">
     <div class="section-eyebrow">Étape 2</div>
     <h2 class="section-h2">Confection des goreum</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">2</div></div>
         <div class="step-header-content">
@@ -352,13 +430,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-05.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-05.png" alt="Fiche étape 5 — Préparer les goreum" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 5/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 3 -->
   <div class="tuto-section section-anchor" id="etape3">
     <div class="section-eyebrow">Étape 3</div>
     <h2 class="section-h2">Assembler le corsage</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">3</div></div>
         <div class="step-header-content">
@@ -386,13 +471,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-06.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-06.png" alt="Fiche étape 6 — Assembler le corsage" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 6/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 4 -->
   <div class="tuto-section section-anchor" id="etape4">
     <div class="section-eyebrow">Étape 4 — Clé du projet</div>
     <h2 class="section-h2">Les manches</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col" style="background:linear-gradient(180deg, var(--rouge), #8b1a12);"><div class="step-num-label">Étape</div><div class="step-num-val">4</div></div>
         <div class="step-header-content">
@@ -423,13 +515,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-07.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-07.png" alt="Fiche étape 7 — Monter les manches" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 7/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 5 -->
   <div class="tuto-section section-anchor" id="etape5">
     <div class="section-eyebrow">Étape 5</div>
     <h2 class="section-h2">Parementure et goreum latéraux</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col"><div class="step-num-label">Étape</div><div class="step-num-val">5</div></div>
         <div class="step-header-content">
@@ -454,13 +553,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-08.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-08.png" alt="Fiche étape 8 — Parementure et liens" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 8/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 6 -->
   <div class="tuto-section section-anchor" id="etape6">
     <div class="section-eyebrow">Étape 6 — La plus délicate</div>
     <h2 class="section-h2">Le col croisé hanbok</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col" style="background:linear-gradient(180deg, var(--or), #a07800);"><div class="step-num-label">Étape</div><div class="step-num-val">6</div></div>
         <div class="step-header-content">
@@ -491,13 +597,20 @@ nav {
         </div>
       </div>
     </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-08.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-08.png" alt="Fiche étape 8 — Le col croisé hanbok" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 8/10 — cliquer pour agrandir</div>
+    </div>
+    </div>
   </div>
 
   <!-- ÉTAPE 7 -->
   <div class="tuto-section section-anchor" id="etape7">
     <div class="section-eyebrow">Étape 7 — Finition</div>
     <h2 class="section-h2">Ourlet et finitions finales</h2>
-    <div class="step-block">
+    <div class="step-with-visual">
+      <div class="step-block">
       <div class="step-header">
         <div class="step-num-col" style="background:linear-gradient(180deg, #2E7D32, #1B5E20);"><div class="step-num-label">Étape</div><div class="step-num-val">7</div></div>
         <div class="step-header-content">
@@ -515,6 +628,12 @@ nav {
         </ul>
         <div class="step-tip">🎀 Pour nouer en otgoreum : le ruban gauche passe par-dessus le droit, forme une boucle vers le haut, le ruban droit vient s'enrouler et forme la deuxième boucle. Cherchez "otgoreum knot tutorial" sur YouTube pour une démonstration de 2 minutes.</div>
       </div>
+    </div>
+
+    <div class="step-visual" onclick="openPageLb('Tuto SewingTherapy - shirt/tuto-09.png')">
+      <img src="Tuto SewingTherapy - shirt/tuto-09.png" alt="Fiche étape 9 — Finitions finales" loading="lazy">
+      <div class="step-visual-caption">📋 Étape 9/10 — cliquer pour agrandir</div>
+    </div>
     </div>
   </div>
 
@@ -573,6 +692,26 @@ nav {
   Créée dans le cadre d'un projet couture mère &amp; fille · Concert BTS ARIRANG · Stade de France · 18 juillet 2026 💜<br>
   <a href="hanbok_tuto_site.html">← Retour au guide principal</a>
 </div>
+
+
+<!-- Lightbox visuels tuto -->
+<div class="page-lightbox" id="pageLightbox" onclick="document.getElementById('pageLightbox').classList.remove('open'); document.body.style.overflow='';">
+  <button class="page-lb-close" onclick="document.getElementById('pageLightbox').classList.remove('open'); document.body.style.overflow='';">✕</button>
+  <img src="" alt="" id="pageLbImg">
+</div>
+<script>
+function openPageLb(src) {
+  document.getElementById('pageLbImg').src = src;
+  document.getElementById('pageLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('pageLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
 
 </body>
 </html>

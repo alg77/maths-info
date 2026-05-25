@@ -1021,6 +1021,353 @@ footer::before {
   .patron-lang-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── TUTO EN IMAGES ─── */
+.tuto-images-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--ivoire) 0%, white 100%);
+}
+.tuto-img-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.tuto-img-item {
+  cursor: pointer;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: var(--ombre-sm);
+  transition: transform 0.22s, box-shadow 0.22s;
+  display: flex; flex-direction: column;
+}
+.tuto-img-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(74,53,128,0.16);
+  border-color: var(--lilas-light);
+}
+.tuto-img-item img {
+  width: 100%; aspect-ratio: 2/3;
+  object-fit: cover; display: block;
+  transition: transform 0.3s;
+}
+.tuto-img-item:hover img { transform: scale(1.03); }
+.tuto-img-label {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--texte-doux);
+  display: flex; align-items: center; gap: 0.5rem;
+  background: white;
+}
+.tuto-num {
+  background: linear-gradient(135deg, var(--lilas-deep), var(--violet));
+  color: white; font-size: 0.6rem; font-weight: 800;
+  padding: 0.15rem 0.45rem; border-radius: 6px;
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+.tuto-img-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  margin-top: 0.5rem;
+}
+.btn-tuto-full {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: linear-gradient(135deg, var(--lilas-deep), var(--violet));
+  color: white; font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  padding: 0.75rem 1.75rem; border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(91,75,170,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-tuto-full:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(91,75,170,0.45); }
+.btn-tuto-secondary {
+  background: white !important;
+  color: var(--lilas-deep) !important;
+  border: 2px solid var(--lilas-light);
+  box-shadow: var(--ombre-sm) !important;
+}
+.btn-tuto-secondary:hover { background: var(--lilas-pale) !important; }
+
+/* Lightbox tuto */
+.tuto-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(20,10,40,0.96);
+  backdrop-filter: blur(10px);
+  z-index: 9997; display: none;
+  align-items: center; justify-content: center;
+}
+.tuto-lightbox.open { display: flex; }
+.tuto-lb-inner {
+  max-width: 88vw; max-height: 92vh;
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+}
+.tuto-lb-inner img {
+  max-width: 80vw; max-height: 86vh;
+  object-fit: contain; border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+}
+.tuto-lb-caption {
+  font-size: 0.75rem; color: rgba(255,255,255,0.5);
+  text-align: center; font-style: italic;
+}
+.tuto-lb-close {
+  position: fixed; top: 1.25rem; right: 1.5rem;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 1.1rem;
+  width: 40px; height: 40px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 10001; transition: background 0.2s;
+}
+.tuto-lb-close:hover { background: rgba(184,48,64,0.6); }
+.tuto-lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 2rem;
+  width: 52px; height: 52px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 10001; transition: background 0.2s; line-height: 1;
+}
+.tuto-lb-nav:hover { background: rgba(139,125,200,0.5); }
+.tuto-lb-prev { left: 1rem; }
+.tuto-lb-next { right: 1rem; }
+
+/* ─── GALERIE RÉFÉRENCES ─── */
+.references-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--lilas-pale) 0%, white 100%);
+}
+.ref-panel { display: none; }
+.ref-panel.active { display: block; animation: fadeInPanel 0.3s ease; }
+.ref-note {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: white; border-radius: 14px;
+  padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+  font-size: 0.82rem; color: var(--texte-doux); line-height: 1.65;
+  box-shadow: var(--ombre-sm); border: 1px solid var(--border);
+}
+.ref-note-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+/* Grilles références */
+.ref-grid {
+  display: grid; gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.ref-grid--5 { grid-template-columns: repeat(5, 1fr); }
+.ref-grid--2 { grid-template-columns: 1fr 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+.ref-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.ref-item {
+  position: relative; border-radius: 12px; overflow: hidden;
+  cursor: pointer; background: white;
+  border: 1px solid var(--border);
+  box-shadow: var(--ombre-sm);
+  transition: transform 0.22s, box-shadow 0.22s;
+  aspect-ratio: 3/4;
+}
+.ref-item--tall { aspect-ratio: 2/3; }
+.ref-item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(74,53,128,0.18); }
+.ref-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.ref-item:hover img { transform: scale(1.04); }
+.ref-overlay {
+  position: absolute; inset: 0;
+  background: rgba(91,75,170,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; opacity: 0; transition: opacity 0.2s;
+}
+.ref-item:hover .ref-overlay { opacity: 1; }
+.ref-item-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(42,31,61,0.8));
+  color: white; font-size: 0.7rem; font-weight: 700;
+  padding: 1.5rem 0.75rem 0.6rem;
+  text-align: center;
+}
+
+/* Cards détails */
+.ref-details-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.ref-detail-card {
+  background: white; border-radius: 12px;
+  padding: 1rem; border: 1px solid var(--border);
+  box-shadow: var(--ombre-sm);
+}
+.ref-detail-icon { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.ref-detail-title {
+  font-size: 0.7rem; font-weight: 800;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--lilas-deep); margin-bottom: 0.3rem;
+}
+.ref-detail-text { font-size: 0.75rem; color: var(--texte-doux); line-height: 1.55; }
+
+/* Lightbox références */
+.ref-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(20,10,40,0.96);
+  backdrop-filter: blur(10px);
+  z-index: 9996; display: none;
+  align-items: center; justify-content: center;
+}
+.ref-lightbox.open { display: flex; }
+
+@media (max-width: 900px) {
+  .tuto-img-grid { grid-template-columns: repeat(2, 1fr); }
+  .ref-grid--5 { grid-template-columns: repeat(3, 1fr); }
+  .ref-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .ref-details-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .tuto-img-grid { grid-template-columns: repeat(2, 1fr); }
+  .ref-grid--5 { grid-template-columns: repeat(2, 1fr); }
+  .ref-grid--2 { grid-template-columns: 1fr; }
+  .ref-details-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── SECTION INSPIRATIONS ─── */
+.inspi-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, white 0%, var(--lilas-pale) 100%);
+}
+/* Tabs */
+.inspi-tabs {
+  display: flex; gap: 0.5rem; justify-content: center;
+  margin-bottom: 2.5rem; flex-wrap: wrap;
+}
+.inspi-tab {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.82rem; font-weight: 700;
+  padding: 0.6rem 1.4rem; border-radius: 30px;
+  border: 2px solid var(--lilas-light);
+  background: white; color: var(--texte-doux);
+  cursor: pointer; transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.inspi-tab:hover { border-color: var(--lilas); color: var(--lilas-deep); background: var(--lilas-pale); }
+.inspi-tab.active {
+  background: linear-gradient(135deg, var(--lilas-deep), var(--violet));
+  color: white; border-color: transparent;
+  box-shadow: 0 4px 16px rgba(91,75,170,0.35);
+}
+/* Panels */
+.inspi-panel { display: none; }
+.inspi-panel.active { display: block; animation: fadeInPanel 0.3s ease; }
+@keyframes fadeInPanel { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+/* Grilles */
+.inspi-big-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 1.25rem;
+}
+.inspi-big-grid--single { grid-template-columns: 1fr; }
+.inspi-big-item {
+  position: relative; border-radius: 18px; overflow: hidden;
+  cursor: pointer; box-shadow: var(--ombre);
+  transition: transform 0.25s, box-shadow 0.25s;
+  aspect-ratio: 16/9;
+}
+.inspi-big-item--wide { aspect-ratio: 21/9; }
+.inspi-big-item:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(74,53,128,0.2); }
+.inspi-big-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s;
+}
+.inspi-big-item:hover img { transform: scale(1.03); }
+.inspi-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(42,31,61,0.75) 100%);
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end;
+  padding: 1.25rem;
+  opacity: 0; transition: opacity 0.25s;
+}
+.inspi-big-item:hover .inspi-overlay { opacity: 1; }
+.inspi-overlay-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.inspi-overlay-label {
+  font-size: 0.85rem; font-weight: 700; color: white;
+  line-height: 1.4; font-family: 'Playfair Display', serif;
+}
+.inspi-overlay-label small { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 400; opacity: 0.8; display: block; }
+/* Note combo */
+.inspi-combo-note {
+  display: flex; align-items: center; gap: 1rem;
+  background: white; border-radius: 14px;
+  padding: 1rem 1.25rem;
+  font-size: 0.8rem; color: var(--texte-doux); line-height: 1.6;
+  box-shadow: var(--ombre-sm); border: 1px solid var(--border);
+}
+.inspi-combo-swatches { display: flex; gap: 6px; flex-shrink: 0; }
+.ics { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; }
+.inspi-combo-badge { font-size: 1.2rem; flex-shrink: 0; }
+/* Lightbox inspirations */
+.inspi-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(20,10,40,0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9998; display: none;
+  align-items: center; justify-content: center;
+}
+.inspi-lightbox.open { display: flex; }
+.inspi-lb-inner {
+  max-width: 92vw; max-height: 92vh;
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+}
+.inspi-lb-inner img {
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain; border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+}
+.inspi-lb-caption {
+  font-size: 0.78rem; color: rgba(255,255,255,0.55);
+  text-align: center; font-style: italic;
+}
+.inspi-lb-close {
+  position: fixed; top: 1.25rem; right: 1.5rem;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 1.1rem;
+  width: 40px; height: 40px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 10000; transition: background 0.2s;
+}
+.inspi-lb-close:hover { background: rgba(184,48,64,0.6); }
+@media (max-width: 640px) {
+  .inspi-big-grid { grid-template-columns: 1fr; }
+  .inspi-big-item { aspect-ratio: 4/3; }
+  .inspi-big-item--wide { aspect-ratio: 4/3; }
+}
+
+
+/* Moodboard toggle */
+.mb-toggle-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; padding: 0.85rem;
+  background: white; border: 1.5px solid var(--lilas-light);
+  border-radius: 12px; cursor: pointer;
+  font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 700;
+  color: var(--lilas-deep); margin-bottom: 1.25rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.mb-toggle-btn:hover { background: var(--lilas-pale); border-color: var(--lilas); }
+.moodboard-grid-wrap { animation: fadeInPanel 0.3s ease; }
+
+
+.ref-shop-link {
+  display: block;
+  text-align: center;
+  font-size: 0.68rem; font-weight: 700;
+  color: var(--lilas-deep);
+  text-decoration: none;
+  padding: 0.45rem 0.5rem;
+  background: var(--lilas-pale);
+  border-top: 1px solid var(--border);
+  transition: background 0.18s, color 0.18s;
+  letter-spacing: 0.04em;
+}
+.ref-shop-link:hover {
+  background: var(--lilas-light);
+  color: var(--violet);
+}
+.ref-item { overflow: hidden; display: flex; flex-direction: column; }
+
 /* ─── MOODBOARD ─── */
 .moodboard-section {
   padding: 6rem 0;
@@ -1214,14 +1561,14 @@ footer::before {
     <span class="nav-title">Hanbok Moderne</span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#moodboard">🎨 Moodboard</a></li>
-    <li><a href="#palette">🎨 Palette</a></li>
-    <li><a href="#videos">▶ Tutos</a></li>
+    <li><a href="#references">🌸 Références</a></li>
+    <li><a href="#videos">▶ Vidéos</a></li>
+    <li><a href="#tuto-images">📋 Tuto</a></li>
     <li><a href="#etapes">✂️ Étapes</a></li>
     <li><a href="#patrons">🧵 Patrons</a></li>
     <li><a href="#glossaire">📖 Glossaire</a></li>
     <li><a href="#planning">📅 Planning</a></li>
-    <li><a href="#etapes" class="nav-cta">Commencer →</a></li>
+    <li><a href="#tuto-images" class="nav-cta">Commencer →</a></li>
   </ul>
   <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1229,14 +1576,14 @@ footer::before {
 </nav>
 <!-- Drawer mobile -->
 <div class="nav-drawer" id="navDrawer">
-  <a href="#moodboard">🎨 Moodboard</a>
-  <a href="#palette">🎨 Palette</a>
+  <a href="#tuto-images">📋 Tuto en images</a>
+  <a href="#references">🌸 Références Leesle &amp; Teterot</a>
   <a href="#videos">▶ Tutos vidéo</a>
   <a href="#etapes">✂️ Étapes de couture</a>
   <a href="#patrons">🧵 Patrons</a>
   <a href="#glossaire">📖 Glossaire</a>
   <a href="#planning">📅 Planning</a>
-  <a href="#etapes" class="drawer-cta">Commencer le projet →</a>
+  <a href="#tuto-images" class="drawer-cta">Commencer le projet →</a>
 </div>
 
 <!-- ─── HERO ─── -->
@@ -1246,7 +1593,7 @@ footer::before {
     alt="Hanbok Moderne Mère et Fille — Concert BTS ARIRANG"
     class="hero-banner-img"
   >
-  <a href="#etapes" class="hero-banner-cta">Découvrir le tutoriel →</a>
+  <a href="#tuto-images" class="hero-banner-cta">Découvrir le tutoriel →</a>
 
   <div class="hero-content" style="display:none;">
     <div class="hero-left">
@@ -1330,134 +1677,208 @@ footer::before {
   </div>
 </header>
 
-<!-- ─── MOODBOARD ─── -->
-<section class="moodboard-section" id="moodboard">
+<!-- ─── GALERIE RÉFÉRENCES ─── -->
+<section class="references-section" id="references">
   <div class="section-wrap">
     <div class="section-header">
-      <div class="section-kicker">Moodboard &amp; inspiration</div>
-      <h2 class="section-title">Le projet en images</h2>
-      <p class="section-desc">16 planches de direction artistique pour visualiser la tenue, la palette et l'univers du projet.</p>
+      <div class="section-kicker">Nos références K-fashion</div>
+      <h2 class="section-title">Inspirations &amp; Références</h2>
+      <p class="section-desc">Les vraies marques coréennes qui définissent l'esthétique visée. Cliquez sur chaque modèle pour l'agrandir — les liens vers les fiches produit vous donnent les longueurs et dimensions exactes.</p>
     </div>
 
-    <div class="moodboard-grid" id="moodboardGrid">
-      <div class="mb-item" data-index="0"><img src="Canva/Couture-hanbok-01.png" alt="Moodboard 01" loading="lazy"><div class="mb-num">01</div></div>
-      <div class="mb-item" data-index="1"><img src="Canva/Couture-hanbok-01b.png" alt="Moodboard 01b" loading="lazy"><div class="mb-num">01b</div></div>
-      <div class="mb-item" data-index="2"><img src="Canva/Couture-hanbok-02a.png" alt="Moodboard 02a" loading="lazy"><div class="mb-num">02a</div></div>
-      <div class="mb-item" data-index="3"><img src="Canva/Couture-hanbok-02b.png" alt="Moodboard 02b" loading="lazy"><div class="mb-num">02b</div></div>
-      <div class="mb-item" data-index="4"><img src="Canva/Couture-hanbok-03a.png" alt="Moodboard 03a" loading="lazy"><div class="mb-num">03a</div></div>
-      <div class="mb-item" data-index="5"><img src="Canva/Couture-hanbok-03b.png" alt="Moodboard 03b" loading="lazy"><div class="mb-num">03b</div></div>
-      <div class="mb-item" data-index="6"><img src="Canva/Couture-hanbok-04.png" alt="Moodboard 04" loading="lazy"><div class="mb-num">04</div></div>
-      <div class="mb-item" data-index="7"><img src="Canva/Couture-hanbok-04b.png" alt="Moodboard 04b" loading="lazy"><div class="mb-num">04b</div></div>
-      <div class="mb-item" data-index="8"><img src="Canva/Couture-hanbok-04c.png" alt="Moodboard 04c" loading="lazy"><div class="mb-num">04c</div></div>
-      <div class="mb-item" data-index="9"><img src="Canva/Couture-hanbok-05.png" alt="Moodboard 05" loading="lazy"><div class="mb-num">05</div></div>
-      <div class="mb-item" data-index="10"><img src="Canva/Couture-hanbok-06.png" alt="Moodboard 06" loading="lazy"><div class="mb-num">06</div></div>
-      <div class="mb-item" data-index="11"><img src="Canva/Couture-hanbok-07.png" alt="Moodboard 07" loading="lazy"><div class="mb-num">07</div></div>
-      <div class="mb-item" data-index="12"><img src="Canva/Couture-hanbok-08a.png" alt="Moodboard 08a" loading="lazy"><div class="mb-num">08a</div></div>
-      <div class="mb-item" data-index="13"><img src="Canva/Couture-hanbok-08b.png" alt="Moodboard 08b" loading="lazy"><div class="mb-num">08b</div></div>
-      <div class="mb-item" data-index="14"><img src="Canva/Couture-hanbok-08c.png" alt="Moodboard 08c" loading="lazy"><div class="mb-num">08c</div></div>
-      <div class="mb-item" data-index="15"><img src="Canva/Couture-hanbok-09-choix-tissus.png" alt="Moodboard choix tissus" loading="lazy"><div class="mb-num">09</div></div>
-      <div class="mb-item" data-index="16"><img src="Canva/Couture-hanbok-10-comparatif.png" alt="Moodboard comparatif" loading="lazy"><div class="mb-num">10</div></div>
+    <!-- Tabs références -->
+    <div class="inspi-tabs" style="margin-bottom:2rem;">
+      <button class="inspi-tab active" data-reftab="leesle">🌸 Leesle — broderie anglaise</button>
+      <button class="inspi-tab" data-reftab="teterot">✨ Teterot Salon</button>
     </div>
+
+    <!-- Leesle -->
+    <div class="ref-panel active" id="reftab-leesle">
+      <div class="ref-note">
+        <div class="ref-note-icon">💡</div>
+        <div>
+          <strong>Leesle</strong> — jeogori moderne en broderie anglaise lilas parme, col croisé avec biais contrastant, goreum fin ton sur ton. C'est exactement le style visé pour votre projet. Longueur ~43 cm, parfaite à 1,60 m. <a href="https://leesle.com" target="_blank" rel="noopener" style="color:var(--lilas-deep); font-weight:700;">leesle.com →</a>
+        </div>
+      </div>
+      <div class="ref-grid ref-grid--5">
+        <div class="ref-item" onclick="openRefLightboxNav('leesle', 0)">
+          <img src="References/Leesle-haut-broderie-anglaise-parme-1.jpg" alt="Leesle jeogori broderie anglaise lilas face" loading="lazy">
+          <div class="ref-overlay">🔍</div>
+        </div>
+        <div class="ref-item" onclick="openRefLightboxNav('leesle', 1)">
+          <img src="References/Leesle-haut-broderie-anglaise-parme-3.jpg" alt="Leesle jeogori broderie anglaise lilas porté jean" loading="lazy">
+          <div class="ref-overlay">🔍</div>
+        </div>
+        <div class="ref-item" onclick="openRefLightboxNav('leesle', 2)">
+          <img src="References/Leesle-haut-broderie-anglaise-parme-4.jpg" alt="Leesle jeogori broderie anglaise à plat" loading="lazy">
+          <div class="ref-overlay">🔍</div>
+        </div>
+        <div class="ref-item" onclick="openRefLightboxNav('leesle', 3)">
+          <img src="References/Leesle-haut-broderie-anglaise-parme-5.jpg" alt="Leesle jeogori broderie anglaise détails" loading="lazy">
+          <div class="ref-overlay">🔍</div>
+        </div>
+      </div>
+      <div class="ref-details-grid">
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">👗</div>
+          <div class="ref-detail-title">Tissu</div>
+          <div class="ref-detail-text">Broderie anglaise coton lilas parme avec biais col en jersey lilas plus foncé</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">🎀</div>
+          <div class="ref-detail-title">Goreum</div>
+          <div class="ref-detail-text">Fin, ton sur ton lilas clair — très moderne, très quotidien</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">📏</div>
+          <div class="ref-detail-title">Longueur</div>
+          <div class="ref-detail-text">~43 cm — crop parfait pour 1,60 m sur jupe ou jean taille haute</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">💡</div>
+          <div class="ref-detail-title">Note projet</div>
+          <div class="ref-detail-text">Pour le concert : remplacer les goreum lilas par du rouge cerise pour l'accent Arirang</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teterot -->
+    <div class="ref-panel" id="reftab-teterot">
+      <div class="ref-note">
+        <div class="ref-note-icon">✨</div>
+        <div>
+          <strong>Teterot Salon</strong> — jeogori moderne haut de gamme, Made in Korea. Le Samdasoo (violet intense) et le modèle lilas montrent deux registres : concert vs quotidien. <a href="https://www.teterot.com/collections/jeogori/products/%EC%A0%80%EA%B3%A0%EB%A6%AC-samdasoo-purple-jeogori" target="_blank" rel="noopener" style="color:var(--lilas-deep); font-weight:700;">Samdasoo →</a> &nbsp;
+            <a href="https://www.teterot.com/collections/jeogori/products/jeogori-heart-fluttering-jeogori-2-colors" target="_blank" rel="noopener" style="color:var(--rouge); font-weight:700;">Heart Fluttering →</a> &nbsp;
+            <a href="https://www.teterot.com/collections/jeogori/products/korean-modern-hanbok-jeogori-womens-traditional-jeogori-teterot-salon-gyeokjamun-white" target="_blank" rel="noopener" style="color:var(--or); font-weight:700;">Gyeokjamun →</a>
+        </div>
+      </div>
+      <div class="ref-grid ref-grid--5">
+        <div class="ref-item ref-item--tall">
+          <div onclick="openRefLightboxNav('teterot', 0)"" style="cursor:zoom-in;">
+            <img src="References/Teterot-haut-lilas.png" alt="Teterot jeogori lilas Wi-Fi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+            <div class="ref-overlay">🔍</div>
+          </div>
+          <div class="ref-item-label" style="position:relative;background:var(--encre);">Wi-Fi — lilas</div>
+          <a class="ref-shop-link" href="https://www.teterot.com/collections/jeogori" target="_blank" rel="noopener">Voir chez Teterot →</a>
+        </div>
+        <div class="ref-item ref-item--tall">
+          <div onclick="openRefLightboxNav('teterot', 1)"" style="cursor:zoom-in;">
+            <img src="References/Teterot-haut-samdasoo-purple.png" alt="Teterot Samdasoo BTS Purple" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+            <div class="ref-overlay">🔍</div>
+          </div>
+          <div class="ref-item-label" style="position:relative;background:var(--encre);">Samdasoo — BTS Purple</div>
+          <a class="ref-shop-link" href="https://www.teterot.com/collections/jeogori/products/%EC%A0%80%EA%B3%A0%EB%A6%AC-samdasoo-purple-jeogori-%EC%82%BC%EB%8B%A4%EC%88%98-%ED%8D%BC%ED%94%8C-%EC%A0%80%EA%B3%A0%EB%A6%AC" target="_blank" rel="noopener">Voir la fiche produit →</a>
+        </div>
+        <div class="ref-item ref-item--tall">
+          <div onclick="openRefLightboxNav('teterot', 2)"" style="cursor:zoom-in;">
+            <img src="References/Teterot-haut-heart-fluttering.webp" alt="Teterot Heart Fluttering dentelle blanche" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+            <div class="ref-overlay">🔍</div>
+          </div>
+          <div class="ref-item-label" style="position:relative;background:var(--encre);">Heart Fluttering — dentelle</div>
+          <a class="ref-shop-link" href="https://www.teterot.com/collections/jeogori/products/jeogori-heart-fluttering-jeogori-2-colors-%EC%84%A4%EB%A0%88%EC%9E%84-%EC%A0%80%EA%B3%A0%EB%A6%AC" target="_blank" rel="noopener">Voir la fiche produit →</a>
+        </div>
+        <div class="ref-item ref-item--tall">
+          <div onclick="openRefLightboxNav('teterot', 3)"" style="cursor:zoom-in;">
+            <img src="References/Teterot-haut-gyeokjamun.webp" alt="Teterot Gyeokjamun organza blanc" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+            <div class="ref-overlay">🔍</div>
+          </div>
+          <div class="ref-item-label" style="position:relative;background:var(--encre);">Gyeokjamun — organza</div>
+          <a class="ref-shop-link" href="https://www.teterot.com/collections/jeogori/products/korean-modern-hanbok-jeogori-womens-traditional-jeogori-teterot-salon-gyeokjamun-white-%EA%B2%A9%EC%9E%90%EB%AC%B8-%ED%9D%B0-%EB%B0%B1%ED%95%A9%EC%83%89-t1j02b010" target="_blank" rel="noopener">Voir la fiche produit →</a>
+        </div>
+        <div class="ref-item ref-item--tall">
+          <div onclick="openRefLightboxNav('teterot', 4)"" style="cursor:zoom-in; background:var(--lilas-pale); height:200px; display:flex; align-items:center; justify-content:center;">
+            <img src="References/Teterot-haut-snowflake.webp" alt="Teterot Snowflake Bingsu jeogori" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.parentElement.innerHTML='<div style=&quot;padding:1rem;text-align:center;color:var(--lilas-deep);&quot;><div style=&quot;font-size:2rem;margin-bottom:0.5rem;&quot;>❄️</div><div style=&quot;font-size:0.75rem;font-weight:700;&quot;>Snowflake Bingsu</div><div style=&quot;font-size:0.65rem;&quot;>Voir sur le site →</div></div>'">
+            <div class="ref-overlay">🔍</div>
+          </div>
+          <div class="ref-item-label" style="position:relative;background:var(--encre);">Snowflake Bingsu ❄️</div>
+          <a class="ref-shop-link" href="https://www.teterot.com/collections/jeogori/products/s-xxl-size-jeogori-korean-modern-hanbok-top-womens-wrap-jeogori-jacket-teterot-salon-snowflake-bingsu-jeogori-%EB%88%88%EA%BD%83%EB%B9%99%EC%88%98-c1f02b009" target="_blank" rel="noopener">Voir la fiche produit →</a>
+        </div>
+      </div>
+      <div class="ref-details-grid" style="grid-template-columns:repeat(5,1fr);">
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">📐</div>
+          <div class="ref-detail-title">Samdasoo en S</div>
+          <div class="ref-detail-text">Épaule 35,5 cm<br>Longueur 40,5 cm<br>Poitrine 45,5 cm<br>Manche 25,5 cm</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">📐</div>
+          <div class="ref-detail-title">Heart Fluttering S</div>
+          <div class="ref-detail-text">Épaule 38 cm<br>Longueur 42 cm<br>Poitrine 45 cm<br>Manche 59 cm</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">📐</div>
+          <div class="ref-detail-title">Snowflake en S</div>
+          <div class="ref-detail-text">S à XXXL disponible<br>Voir fiche produit<br>pour dimensions<br>détaillées</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">💰</div>
+          <div class="ref-detail-title">Tarifs Teterot</div>
+          <div class="ref-detail-text">155–185 $ le modèle<br>vs ~25–35 € de tissu<br>pour coudre<br>le vôtre !</div>
+        </div>
+        <div class="ref-detail-card">
+          <div class="ref-detail-icon">🎯</div>
+          <div class="ref-detail-title">Votre taille</div>
+          <div class="ref-detail-text">S Teterot = S patron Sewing Therapy = 36 FR<br>Longueur ~40–43 cm<br>parfaite à 1,60 m</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- Lightbox -->
-<div class="mb-lightbox" id="mbLightbox" role="dialog" aria-modal="true" aria-label="Visionneuse moodboard">
-  <button class="mb-lb-close" id="mbClose" aria-label="Fermer">✕</button>
-  <button class="mb-lb-nav mb-lb-prev" id="mbPrev" aria-label="Image précédente">‹</button>
-  <div class="mb-lb-img-wrap">
-    <img src="" alt="" id="mbImg">
-    <div class="mb-lb-counter" id="mbCounter"></div>
-
-
-
+<!-- Lightbox références avec navigation -->
+<div class="ref-lightbox" id="refLightbox" onclick="closeRefLightbox()">
+  <button class="tuto-lb-close" onclick="closeRefLightbox()">✕</button>
+  <button class="tuto-lb-nav tuto-lb-prev" onclick="event.stopPropagation(); navigateRef(-1)">‹</button>
+  <div class="tuto-lb-inner" onclick="event.stopPropagation()">
+    <img src="" alt="" id="refLbImg" style="transition:opacity 0.11s ease;">
+    <div class="tuto-lb-caption" id="refLbCaption"></div>
   </div>
-  <button class="mb-lb-nav mb-lb-next" id="mbNext" aria-label="Image suivante">›</button>
+  <button class="tuto-lb-nav tuto-lb-next" onclick="event.stopPropagation(); navigateRef(1)">›</button>
 </div>
-
-
-
-<!-- ─── PALETTE ─── -->
-<section class="palette-section" id="palette">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div class="section-kicker">Couleurs &amp; palette</div>
-      <h2 class="section-title">La palette ARIRANG pour votre duo</h2>
-      <p class="section-desc">Rouge officiel de la tournée + violet ARMY + jupe blanche : une palette qui raconte les deux histoires à la fois.</p>
-    </div>
-    <div class="palette-cards">
-      <div class="palette-card featured">
-        <div class="palette-badge">⭐ Notre choix</div>
-        <div class="palette-name">Lilas + Jupe blanche + Goreum rouge</div>
-        <div class="palette-swatches">
-          <div class="ps" style="background:#EDE8F8;" title="Lilas très pâle — fille"></div>
-          <div class="ps" style="background:#C4B8E8;" title="Lilas pâle"></div>
-          <div class="ps" style="background:#8B7DC8;" title="Lilas — mère"></div>
-          <div class="ps" style="background:#B83040;" title="Rouge Arirang — goreum"></div>
-          <div class="ps" style="background:#FAFAFA; border:1px solid #E0D0E8;" title="Blanc — jupe Uniqlo"></div>
-        </div>
-        <p class="palette-note">Le lilas honore l'identité ARMY, le rouge ancre la tenue dans la tournée ARIRANG. La jupe blanche Uniqlo unifie le duo. Nuance différente entre mère (lilas plus soutenu) et fille (lilas très pâle) pour l'effet « mini-moi ».</p>
-      </div>
-      <div class="palette-card">
-        <div class="palette-badge" style="background:var(--rouge-pale);color:var(--rouge);">Alternative</div>
-        <div class="palette-name">Violet profond + Rouge + Blanc</div>
-        <div class="palette-swatches">
-          <div class="ps" style="background:#4A3580;"></div>
-          <div class="ps" style="background:#8B7DC8;"></div>
-          <div class="ps" style="background:#B83040;"></div>
-          <div class="ps" style="background:#E8A0A8;"></div>
-          <div class="ps" style="background:#FAFAFA; border:1px solid #ddd;"></div>
-        </div>
-        <p class="palette-note">Plus audacieux. Violet profond pour la mère, lilas pour la fille. Goreum rouge vif. S'inscrit directement dans les couleurs officielles de la tournée ARIRANG.</p>
-      </div>
-      <div class="palette-card">
-        <div class="palette-badge" style="background:var(--or-light);color:#7a5c00;">Classique</div>
-        <div class="palette-name">Ivoire + Lilas + Rouge cerise</div>
-        <div class="palette-swatches">
-          <div class="ps" style="background:#FDF8F0;border:1px solid #E8DCC8;"></div>
-          <div class="ps" style="background:#C4B8E8;"></div>
-          <div class="ps" style="background:#8B7DC8;"></div>
-          <div class="ps" style="background:#B83040;"></div>
-          <div class="ps" style="background:#FAFAFA; border:1px solid #ddd;"></div>
-        </div>
-        <p class="palette-note">Version la plus proche du hanbok traditionnel. Haut ivoire ou lilas très pâle avec goreum rouge bordeaux. Élégant pour les photos mais moins lisible de loin en concert.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ─── VIDÉOS ─── -->
 <section class="videos-section" id="videos">
   <div class="section-wrap">
     <div class="section-header">
-      <div class="section-kicker">Vidéos d'inspiration &amp; tutos</div>
+      <div class="section-kicker">Tutos vidéo</div>
       <h2 class="section-title">Apprendre en regardant</h2>
-      <p class="section-desc">Tutorials sélectionnés pour votre projet — du sewalong complet en anglais sous-titrable au guide culturel en français.</p>
+      <p class="section-desc">Tutorials sélectionnés — les deux premiers ont une page de traduction française complète sur ce site.</p>
     </div>
 
     <div class="videos-grid">
 
-      <!-- VEDETTE — Sewing Therapy Hanbok Pt1 -->
+      <!-- VEDETTE — Hanbok Shirt & Coat (page trad FR disponible) -->
       <div class="video-card featured">
         <div class="video-embed">
-          <div class="yt-facade" data-vid="-xpyUbsSibY" style="height:100%;">
-            <img src="https://i.ytimg.com/vi/-xpyUbsSibY/hqdefault.jpg" alt="Hanbok Sew Along Partie 1">
+          <div class="yt-facade" data-vid="HRYe_bFIpOw" style="height:100%;">
+            <img src="https://i.ytimg.com/vi/HRYe_bFIpOw/hqdefault.jpg" alt="Sewing Therapy — Hanbok Shirt and Coat">
             <button class="yt-play" aria-label="Lire la vidéo">▶</button>
           </div>
         </div>
         <div class="video-info">
-          <div class="video-tag en">🇬🇧 Anglais · sous-titres FR disponibles</div>
+          <div class="video-tag fr">🇫🇷 Traduction française disponible</div>
+          <div class="video-title">Hanbok Shirt &amp; Coat — le vrai jeogori ⭐</div>
+          <div class="video-meta">Sewing Therapy · Sara SJ · Janvier 2025</div>
+          <div class="video-desc">Le patron le plus récent de Sara — et le plus authentique. Version chemise (votre projet) ou manteau long. Col croisé profond, effet cache-cœur prononcé. <strong>C'est ce patron qui est recommandé pour votre projet.</strong></div>
+          <a class="video-tuto-link" href="tuto-jeogori-coat-fr.html">📖 Lire le tutoriel traduit en français →</a>
+        </div>
+      </div>
+
+      <!-- Hanbok Sew Along Pt1 (page trad FR disponible) -->
+      <div class="video-card">
+        <div class="video-embed">
+          <div class="yt-facade" data-vid="-xpyUbsSibY">
+            <img src="https://i.ytimg.com/vi/-xpyUbsSibY/hqdefault.jpg" alt="Sewing Therapy — Hanbok Sew Along Part 1">
+            <button class="yt-play" aria-label="Lire la vidéo">▶</button>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag fr">🇫🇷 Traduction française disponible</div>
           <div class="video-title">Hanbok Sew Along — Partie 1 : le corsage</div>
           <div class="video-meta">Sewing Therapy · Sara SJ</div>
-          <div class="video-desc">
-            Le sewalong de référence pour ce projet. Couvre toute la construction du corsage jeogori : pinces, assemblage, pose des manches et des goreum. Chaque étape est montrée en gros plan. Activez les sous-titres automatiques traduits en français via les paramètres YouTube.
-          </div>
-          <div class="video-note">
-            💡 <strong>Astuce :</strong> regardez d'abord la vidéo en entier avant de commencer à coudre — puis repassez les étapes une à une avec votre amie.
-          </div>
-          <a class="video-tuto-link" href="tuto-sewing-therapy-fr.html">
-            📖 Lire le tutoriel complet traduit en français →
-          </a>
+          <div class="video-desc">Sewalong complet — corsage, pinces, manches, goreum. Chaque étape montrée en gros plan. Sous-titres FR automatiques disponibles.</div>
+          <a class="video-tuto-link" href="tuto-sewing-therapy-fr.html">📖 Lire le tutoriel traduit →</a>
         </div>
       </div>
 
@@ -1465,7 +1886,7 @@ footer::before {
       <div class="video-card">
         <div class="video-embed">
           <div class="yt-facade" data-vid="IWKS-KTDIJo">
-            <img src="https://i.ytimg.com/vi/IWKS-KTDIJo/hqdefault.jpg" alt="Hanbok Sew Along Partie 2">
+            <img src="https://i.ytimg.com/vi/IWKS-KTDIJo/hqdefault.jpg" alt="Sewing Therapy — Hanbok Sew Along Part 2">
             <button class="yt-play" aria-label="Lire la vidéo">▶</button>
           </div>
         </div>
@@ -1473,15 +1894,15 @@ footer::before {
           <div class="video-tag en">🇬🇧 Anglais · sous-titres FR</div>
           <div class="video-title">Hanbok Sew Along — Partie 2 : jupe, col &amp; finitions</div>
           <div class="video-meta">Sewing Therapy · Sara SJ</div>
-          <div class="video-desc">Suite directe de la Partie 1. Couvre la confection de la jupe plissée, l'assemblage complet corsage + jupe, la pose du col (étape la plus délicate) et les goreum finaux.</div>
+          <div class="video-desc">Suite de la Partie 1 — jupe plissée, assemblage corsage + jupe, pose du col et goreum finaux.</div>
         </div>
       </div>
 
-      <!-- Hanbok Wrap Skirt -->
+      <!-- Wrap Skirt -->
       <div class="video-card">
         <div class="video-embed">
           <div class="yt-facade" data-vid="DJp8D_Jsl3U">
-            <img src="https://i.ytimg.com/vi/DJp8D_Jsl3U/hqdefault.jpg" alt="Hanbok Wrap Skirt">
+            <img src="https://i.ytimg.com/vi/DJp8D_Jsl3U/hqdefault.jpg" alt="Sewing Therapy — Hanbok Wrap Skirt">
             <button class="yt-play" aria-label="Lire la vidéo">▶</button>
           </div>
         </div>
@@ -1489,11 +1910,11 @@ footer::before {
           <div class="video-tag en">🇬🇧 Anglais · sous-titres FR</div>
           <div class="video-title">Hanbok Wrap Skirt — Jupe plissée réversible</div>
           <div class="video-meta">Sewing Therapy · Sara SJ</div>
-          <div class="video-desc">Tutoriel dédié à la jupe portefeuille plissée. Utile si vous souhaitez coudre la jupe plutôt qu'acheter l'Uniqlo — ou pour la version fille si besoin d'une jupe en lilas coordonnée.</div>
+          <div class="video-desc">Tutoriel jupe portefeuille plissée. Utile si vous souhaitez coudre une jupe coordonnée plutôt qu'utiliser la jupe Uniqlo.</div>
         </div>
       </div>
 
-      <!-- Chaîne complète Sewing Therapy -->
+      <!-- Chaîne Sewing Therapy -->
       <div class="video-card">
         <div class="video-embed" style="background: linear-gradient(135deg, var(--lilas-pale), var(--rouge-pale)); display:flex; align-items:center; justify-content:center; padding-bottom:0; height:180px;">
           <div style="text-align:center; padding:1rem;">
@@ -1504,10 +1925,27 @@ footer::before {
           </div>
         </div>
         <div class="video-info">
-          <div class="video-tag inspo">🌸 Ressource complète</div>
-          <div class="video-title">Toute la série Hanbok + autres modèles</div>
+          <div class="video-tag inspo">🌸 Toute la série</div>
+          <div class="video-title">Tous les tutos Hanbok + autres modèles</div>
           <div class="video-meta">@SewingTherapy · Sara SJ</div>
-          <div class="video-desc">La chaîne complète contient aussi les tutoriels pour la jupe wrap, le top jeogori seul, et d'autres modèles K-fashion. Sewalongs très détaillés, parfaits pour débutantes accompagnées.</div>
+          <div class="video-desc">La chaîne complète avec tous les sewalongs hanbok. Parfaite pour compléter les traductions françaises.</div>
+        </div>
+      </div>
+
+      <!-- Hanbok Top & Jacket -->
+      <div class="video-card">
+        <div class="video-embed">
+          <div class="yt-facade" data-vid="KOkfQ5FvCMw">
+            <img src="https://i.ytimg.com/vi/KOkfQ5FvCMw/hqdefault.jpg" alt="Sewing Therapy — Hanbok Top and Jacket">
+            <button class="yt-play" aria-label="Lire la vidéo">▶</button>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag fr">🇫🇷 Traduction française disponible</div>
+          <div class="video-title">Hanbok Top &amp; Jacket</div>
+          <div class="video-meta">Sewing Therapy · Sara SJ</div>
+          <div class="video-desc">Top court ou veste longue — même patron, deux silhouettes. Col croisé plus discret que le Shirt &amp; Coat, idéal porté ouvert comme veste sur un top ou une robe.</div>
+          <a class="video-tuto-link" href="tuto-top-jacket-fr.html">📖 Lire le tutoriel traduit →</a>
         </div>
       </div>
 
@@ -1523,15 +1961,14 @@ footer::before {
           <div class="video-tag en">🇬🇧 Anglais · sous-titres FR</div>
           <div class="video-title">DIY Reversible Hanbok Jeogori — HalfSoyBean</div>
           <div class="video-meta">HalfSoyBean · halfsoybean.com</div>
-          <div class="video-desc">Tuto de jeogori réversible très détaillé — une technique astucieuse pour avoir deux looks en un. Style moderne et accessible, montre bien la construction du col croisé et des goreum.</div>
-          <div class="video-note" style="display:flex; flex-direction:column; gap:0.4rem;">
-            <span>🛍️ HalfSoyBean vend aussi ses propres patrons :</span>
+          <div class="video-desc">Jeogori réversible très détaillé — construction du col croisé et goreum. Boutique patrons disponible.</div>
+          <div class="video-note" style="display:flex; flex-direction:column; gap:0.4rem; margin-top:0.75rem;">
             <a href="http://halfsoybean.com/shop" target="_blank" rel="noopener" style="color:var(--lilas-deep); font-weight:700; font-size:0.75rem;">→ halfsoybean.com/shop</a>
           </div>
         </div>
       </div>
 
-      <!-- Disclothed Paris — français -->
+      <!-- Disclothed Paris -->
       <div class="video-card">
         <div class="video-embed">
           <div class="yt-facade" data-vid="WnrwBr7xm1Q">
@@ -1541,37 +1978,94 @@ footer::before {
         </div>
         <div class="video-info">
           <div class="video-tag fr">🇫🇷 Français · niveau débutante</div>
-          <div class="video-title">Chemisier Hanbok — tutoriel vidéo complet</div>
+          <div class="video-title">Chemisier Hanbok — disclothed paris</div>
           <div class="video-meta">disclothed paris · Marque française</div>
-          <div class="video-desc">Le seul tutoriel vidéo 100% en français pour un jeogori moderne. Gamme de montage illustrée + vidéo pas à pas. Inclus avec l'achat du patron (dès 12,90€). Idéal en complément des vidéos anglaises.</div>
-          <a class="video-tuto-link" href="https://disclothed-paris.com/blogs/nos-gammes-de-montage/le-chemisier-hanbok" target="_blank" rel="noopener">
-            📖 Voir la gamme de montage en ligne (gratuite) →
-          </a>
-        </div>
-      </div>
-
-      <!-- Hanbok Shirt & Coat — Jeogori le plus authentique -->
-      <div class="video-card">
-        <div class="video-embed">
-          <div class="yt-facade" data-vid="Kvtt6xD3VqA">
-            <img src="https://i.ytimg.com/vi/Kvtt6xD3VqA/hqdefault.jpg" alt="Sewing Therapy — Hanbok Shirt and Coat">
-            <button class="yt-play" aria-label="Lire la vidéo">▶</button>
-          </div>
-        </div>
-        <div class="video-info">
-          <div class="video-tag en">🇬🇧 Anglais · sous-titres FR · 2025</div>
-          <div class="video-title">Hanbok Shirt &amp; Coat — le vrai jeogori</div>
-          <div class="video-meta">Sewing Therapy · Sara SJ · Janvier 2025</div>
-          <div class="video-desc">Le patron le plus récent et le plus authentique de Sara. Version chemise (votre projet !) ou manteau long. Col croisé profond avec effet cache-cœur très prononcé — plus fidèle au jeogori traditionnel que la Wrap Dress.</div>
-          <a class="video-tuto-link" href="tuto-jeogori-coat-fr.html">
-            📖 Lire le tutoriel traduit en français →
-          </a>
+          <div class="video-desc">Seul tutoriel vidéo 100% en français pour un jeogori. Style plus "chemise crop" que jeogori authentique, mais très accessible pour débuter.</div>
+          <a class="video-tuto-link" href="https://disclothed-paris.com/blogs/nos-gammes-de-montage/le-chemisier-hanbok" target="_blank" rel="noopener">📖 Gamme de montage gratuite →</a>
         </div>
       </div>
 
     </div>
   </div>
 </section>
+
+<!-- ─── TUTO EN IMAGES ─── -->
+<section class="tuto-images-section" id="tuto-images">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-kicker">Étapes illustrées en français</div>
+      <h2 class="section-title">Tuto jeogori en images</h2>
+      <p class="section-desc">8 fiches pas à pas pour suivre la couture visuelle­ment, sans jargon. Cliquez sur une fiche pour l'agrandir.</p>
+    </div>
+
+    <div class="tuto-img-grid">
+      <div class="tuto-img-item" onclick="openTutoLightbox(0)">
+        <img src="Tuto SewingTherapy - shirt/tuto-01.png" alt="Étape 1 — Préparer le projet" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">01</span>Préparer le projet</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(1)">
+        <img src="Tuto SewingTherapy - shirt/tuto-02.png" alt="Étape 2 — Découper les pièces" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">02</span>Découper les pièces</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(2)">
+        <img src="Tuto SewingTherapy - shirt/tuto-03.png" alt="Étape 3 — Thermocoller les pièces" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">03</span>Thermocoller</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(3)">
+        <img src="Tuto SewingTherapy - shirt/tuto-04.png" alt="Étape 4 — Coudre les pinces" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">04</span>Coudre les pinces</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(4)">
+        <img src="Tuto SewingTherapy - shirt/tuto-05.png" alt="Étape 5 — Préparer les goreum" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">05</span>Préparer les goreum</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(5)">
+        <img src="Tuto SewingTherapy - shirt/tuto-06.png" alt="Étape 6 — Assembler le corsage" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">06</span>Assembler le corsage</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(6)">
+        <img src="Tuto SewingTherapy - shirt/tuto-06b.png" alt="Étape 6b — Assembler le corsage (suite)" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">06b</span>Corsage — suite</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(7)">
+        <img src="Tuto SewingTherapy - shirt/tuto-07.png" alt="Étape 7 — Monter les manches" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">07</span>Monter les manches</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(8)">
+        <img src="Tuto SewingTherapy - shirt/tuto-08.png" alt="Étape 8 — Poser parementure et liens" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">08</span>Parementure &amp; liens</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(9)">
+        <img src="Tuto SewingTherapy - shirt/tuto-09.png" alt="Étape 9 — Finitions & points à la main" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">09</span>Finitions à la main</div>
+      </div>
+      <div class="tuto-img-item" onclick="openTutoLightbox(10)">
+        <img src="Tuto SewingTherapy - shirt/tuto-10.png" alt="Étape 10 — Essayage final & conseils" loading="lazy">
+        <div class="tuto-img-label"><span class="tuto-num">10</span>Essayage final 🎉</div>
+      </div>
+    </div>
+
+    <div class="tuto-img-cta">
+      <a href="tuto-jeogori-coat-fr.html" class="btn-tuto-full">
+        📖 Lire le tutoriel complet traduit en français →
+      </a>
+      <a href="tuto-sewing-therapy-fr.html" class="btn-tuto-full btn-tuto-secondary">
+        📖 Tuto Robe Sewing Therapy traduit →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox tuto images -->
+<div class="tuto-lightbox" id="tutoLightbox" onclick="closeTutoLightbox()">
+  <button class="tuto-lb-close" onclick="closeTutoLightbox()">✕</button>
+  <button class="tuto-lb-nav tuto-lb-prev" id="tutoPrev" onclick="event.stopPropagation(); navigateTuto(-1)">‹</button>
+  <div class="tuto-lb-inner" onclick="event.stopPropagation()">
+    <img src="" alt="" id="tutoLbImg">
+    <div class="tuto-lb-caption" id="tutoLbCaption"></div>
+  </div>
+  <button class="tuto-lb-nav tuto-lb-next" id="tutoNext" onclick="event.stopPropagation(); navigateTuto(1)">›</button>
+</div>
 
 <!-- ─── ÉTAPES ─── -->
 <section class="steps-section" id="etapes">
@@ -1727,21 +2221,74 @@ footer::before {
         <div class="patron-header lilas">
           <div class="patron-icon-wrap lilas">🇫🇷</div>
           <div>
+            <div class="patron-hname">Hanbok Top & Jacket PDF — Sewing Therapy</div>
+            <div class="patron-htag">⭐ Le plus proche d'un vrai hanbok · Sewalong vidéo</div>
+          </div>
+        </div>
+        <div class="patron-body">
+          <div class="patron-img-wrap">
+            <img src="References/il_1588xN.7593987961_p7xk.webp"
+              alt="Illustration jeogori hanbok moderne"
+              style="width:100%; height:400px; object-fit:cover; border-radius:10px; margin-bottom:0.85rem; display:block;"
+              onerror="this.style.display='none'">
+          </div>
+          <p class="patron-desc">Haut uniquement (parfait pour votre projet), manches longues ou 3/4 évasées, col croisé hanbok, goreum intégrés. Patron papier grand format, marges incluses, pièces non superposées. Sewalong vidéo complet sur YouTube avec chapitres. Les goreum sont parfaitement intégrés dans le patron. Plus authentique dans la construction hanbok que le disclothed. Niveau débutante accompagnée tout à fait accessible.</p>
+          <div class="patron-tags">
+            <span class="ptag accent">XS–3XL</span>
+            <span class="ptag accent">Sewalong YouTube</span>
+            <span class="ptag accent">Haut seulement</span>
+            <span class="ptag">Dès 12,49€</span>
+            <span class="ptag">Débutante ok</span>
+            <span class="ptag">3–4h</span>
+          </div>
+          <a class="patron-link" href="https://www.etsy.com/fr/listing/1564460106/pdf-haut-et-veste-hanbok-therapie-de" target="_blank" rel="noopener">Voir sur Etsy →</a>
+        </div>
+      </div>
+
+      <div class="patron-card star">
+        <div class="patron-header rouge">
+          <div class="patron-icon-wrap rouge">🇨🇦</div>
+          <div>
+            <div class="patron-hname">Hanbok Wrap Skirt PDF — Sewing Therapy</div>
+            <div class="patron-htag">⭐ Le plus proche d'un vrai hanbok · Sewalong vidéo</div>
+          </div>
+        </div>
+        <div class="patron-body">
+          <div class="patron-img-wrap">
+            <img src="References/il_1588xN.5468250190_k0s2.avif"
+              alt="Illustration chima hanbok moderne"
+              style="width:100%; height:400px; object-fit:cover; border-radius:10px; margin-bottom:0.85rem; display:block;"
+              onerror="this.style.display='none'">
+          </div>
+          <p class="patron-desc">Jupe type chima. XS à 3XL. Sewalong vidéo complet sur YouTube avec chapitres. Plus authentique dans la construction hanbok que le disclothed.</p>
+          <div class="patron-tags">
+            <span class="ptag accent">XS–3XL</span>
+            <span class="ptag accent">Sewalong YouTube</span>
+            <span class="ptag">~12,50€ PDF Etsy</span>
+            <span class="ptag">Intermédiaire</span>
+          </div>
+          <a class="patron-link" href="https://www.etsy.com/fr/listing/1588739110/pdf-jupe-portefeuille-hanbok-therapie-de" target="_blank" rel="noopener">Voir sur Etsy →</a>
+        </div>
+      </div>
+
+      <div class="patron-card star">
+        <div class="patron-header lilas">
+          <div class="patron-icon-wrap lilas">🇫🇷</div>
+          <div>
             <div class="patron-hname">Chemisier Hanbok — disclothed paris</div>
             <div class="patron-htag">🇫🇷 Tuto vidéo en français · Style crop moderne</div>
           </div>
         </div>
         <div class="patron-body">
           <div class="patron-img-wrap">
-            <img src="Canva/Visuel-site-image.png"
+            <img src="References/chemisier_hanbok_disclothed_paris_patron_chemise_femme-3.webp"
               alt="Illustration jeogori hanbok moderne"
-              style="width:100%; height:200px; object-fit:cover; border-radius:10px; margin-bottom:0.85rem; display:block;"
+              style="width:100%; height:400px; object-fit:cover; border-radius:10px; margin-bottom:0.85rem; display:block;"
               onerror="this.style.display='none'">
           </div>
           <div style="background:var(--lilas-pale); border-left:3px solid var(--lilas); border-radius:0 10px 10px 0; padding:0.75rem 1rem; margin-bottom:0.85rem; font-size:0.78rem; color:var(--lilas-deep); line-height:1.6;">
             💬 <strong>À noter :</strong> ce patron est davantage un <em>chemisier crop col croisé</em> inspiré du hanbok qu'un vrai jeogori — on perd l'effet cache-cœur et la profondeur du col. Excellent pour un look plus quotidien et accessible, moins authentique visuellement que Sewing Therapy. <strong>Avantage décisif : tuto vidéo 100% en français.</strong>
           </div>
-          <p class="patron-desc">Haut uniquement (parfait pour votre projet), manches longues ou 3/4 évasées, col croisé hanbok, goreum intégrés. Patron papier grand format, marges incluses, pièces non superposées. Niveau débutante accompagnée tout à fait accessible.</p>
           <div class="patron-tags">
             <span class="ptag accent">🇫🇷 Tutoriel FR</span>
             <span class="ptag accent">Haut seulement</span>
@@ -1762,6 +2309,12 @@ footer::before {
           </div>
         </div>
         <div class="patron-body">
+          <div class="patron-img-wrap">
+            <img src="References/il_1588xN.6316067116_lpek.avif"
+              alt="Illustration jeogori hanbok moderne"
+              style="width:100%; height:400px; object-fit:cover; border-radius:10px; margin-bottom:0.85rem; display:block;"
+              onerror="this.style.display='none'">
+          </div>
           <p class="patron-desc">Robe complète avec jupe intégrée — mais vous pouvez n'utiliser que la partie corsage jeogori. XS à 3XL. Sewalong vidéo complet sur YouTube avec chapitres. Les goreum sont parfaitement intégrés dans le patron. Plus authentique dans la construction hanbok que le disclothed.</p>
           <div class="patron-tags">
             <span class="ptag accent">XS–3XL</span>
@@ -1772,7 +2325,6 @@ footer::before {
           <a class="patron-link" href="https://www.etsy.com/listing/1554928000/pdf-hanbok-wrap-dress-sewing-therapy" target="_blank" rel="noopener">Voir sur Etsy →</a>
         </div>
       </div>
-
       <div class="patron-card">
         <div class="patron-header lilas">
           <div class="patron-icon-wrap lilas">👧</div>
@@ -2073,17 +2625,167 @@ footer::before {
     Tutoriels : Sewing Therapy (Sara SJ) · disclothed paris
   </div>
   <ul class="footer-links">
+    <li><a href="#references">Références</a></li>
     <li><a href="#videos">Vidéos</a></li>
+    <li><a href="#tuto-images">Tuto</a></li>
     <li><a href="#etapes">Étapes</a></li>
     <li><a href="#patrons">Patrons</a></li>
     <li><a href="#glossaire">Glossaire</a></li>
     <li><a href="#planning">Planning</a></li>
-    <li><a href="#moodboard">Moodboard</a></li>
   </ul>
   <div class="footer-copy">Guide couture mère &amp; fille · Hanbok Moderne inspiré BTS · 2026</div>
 </footer>
 
 <script>
+// ── Tuto images lightbox ──
+const tutoSrcs = [
+  ['Tuto SewingTherapy - shirt/tuto-01.png', 'Étape 1/10 — Préparer le projet'],
+  ['Tuto SewingTherapy - shirt/tuto-02.png', 'Étape 2/10 — Découper les pièces'],
+  ['Tuto SewingTherapy - shirt/tuto-03.png', 'Étape 3/10 — Thermocoller les pièces'],
+  ['Tuto SewingTherapy - shirt/tuto-04.png', 'Étape 4/10 — Coudre les pinces'],
+  ['Tuto SewingTherapy - shirt/tuto-05.png', 'Étape 5/10 — Préparer les goreum'],
+  ['Tuto SewingTherapy - shirt/tuto-06.png', 'Étape 6/10 — Assembler le corsage'],
+  ['Tuto SewingTherapy - shirt/tuto-06b.png', 'Étape 6b/10 — Assembler le corsage (suite)'],
+  ['Tuto SewingTherapy - shirt/tuto-07.png', 'Étape 7/10 — Monter les manches'],
+  ['Tuto SewingTherapy - shirt/tuto-08.png', 'Étape 8/10 — Poser parementure et liens'],
+  ['Tuto SewingTherapy - shirt/tuto-09.png', 'Étape 9/10 — Finitions &amp; points à la main'],
+  ['Tuto SewingTherapy - shirt/tuto-10.png', 'Étape 10/10 — Essayage final &amp; conseils 🎉'],
+];
+let tutoIndex = 0;
+const tutoLb = document.getElementById('tutoLightbox');
+const tutoLbImg = document.getElementById('tutoLbImg');
+const tutoLbCap = document.getElementById('tutoLbCaption');
+
+function openTutoLightbox(i) {
+  tutoIndex = i;
+  tutoLbImg.src = tutoSrcs[i][0];
+  tutoLbCap.textContent = tutoSrcs[i][1] + ' · ' + (i+1) + ' / ' + tutoSrcs.length;
+  tutoLb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTutoLightbox() {
+  tutoLb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navigateTuto(dir) {
+  tutoIndex = (tutoIndex + dir + tutoSrcs.length) % tutoSrcs.length;
+  tutoLbImg.style.opacity = '0';
+  setTimeout(() => {
+    tutoLbImg.src = tutoSrcs[tutoIndex][0];
+    tutoLbCap.textContent = tutoSrcs[tutoIndex][1] + ' · ' + (tutoIndex+1) + ' / ' + tutoSrcs.length;
+    tutoLbImg.style.opacity = '1';
+  }, 110);
+}
+tutoLbImg.style.transition = 'opacity 0.11s ease';
+document.addEventListener('keydown', e => {
+  if (!tutoLb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') navigateTuto(-1);
+  if (e.key === 'ArrowRight') navigateTuto(1);
+  if (e.key === 'Escape') closeTutoLightbox();
+});
+
+// ── Lightbox références avec navigation ──
+const refLb = document.getElementById('refLightbox');
+const refImgs = {
+  leesle: [
+    ['References/Leesle-haut-broderie-anglaise-parme-1.jpg', 'Leesle — broderie anglaise lilas · vue de face'],
+    ['References/Leesle-haut-broderie-anglaise-parme-3.jpg', 'Leesle — vue de face complète · porté avec jean'],
+    ['References/Leesle-haut-broderie-anglaise-parme-4.jpg', 'Leesle — à plat · construction et détails col'],
+    ['References/Leesle-haut-broderie-anglaise-parme-5.jpg', 'Leesle — détails gros plan · col, goreum, broderie'],
+  ],
+  teterot: [
+    ['References/Teterot-haut-lilas.png', 'Teterot Wi-Fi — jeogori lilas manches courtes'],
+    ['References/Teterot-haut-samdasoo-purple.png', 'Teterot Samdasoo — BTS Deep Purple'],
+    ['References/Teterot-haut-heart-fluttering.webp', 'Teterot Heart Fluttering — dentelle blanche'],
+    ['References/Teterot-haut-gyeokjamun.webp', 'Teterot Gyeokjamun — organza blanc carreaux'],
+    ['References/Teterot-haut-snowflake.webp', 'Teterot Snowflake Bingsu — jeogori fleurs de neige'],
+  ]
+};
+let refCurrentSet = 'leesle';
+let refCurrentIdx = 0;
+
+function openRefLightboxNav(set, idx) {
+  refCurrentSet = set;
+  refCurrentIdx = idx;
+  const [src, caption] = refImgs[set][idx];
+  document.getElementById('refLbImg').src = src;
+  document.getElementById('refLbCaption').textContent = caption + ' · ' + (idx+1) + ' / ' + refImgs[set].length;
+  refLb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function openRefLightbox(src, caption) {
+  document.getElementById('refLbImg').src = src;
+  document.getElementById('refLbCaption').textContent = caption;
+  refLb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeRefLightbox() {
+  refLb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navigateRef(dir) {
+  const imgs = refImgs[refCurrentSet];
+  refCurrentIdx = (refCurrentIdx + dir + imgs.length) % imgs.length;
+  const img = document.getElementById('refLbImg');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    const [src, caption] = imgs[refCurrentIdx];
+    img.src = src;
+    document.getElementById('refLbCaption').textContent = caption + ' · ' + (refCurrentIdx+1) + ' / ' + imgs.length;
+    img.style.opacity = '1';
+  }, 110);
+}
+document.addEventListener('keydown', e => {
+  if (!refLb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') navigateRef(-1);
+  if (e.key === 'ArrowRight') navigateRef(1);
+  if (e.key === 'Escape') closeRefLightbox();
+});
+
+// ── Tabs références ──
+document.querySelectorAll('[data-reftab]').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('[data-reftab]').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ref-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('reftab-' + tab.dataset.reftab).classList.add('active');
+  });
+});
+
+// ── Tabs inspirations ──
+document.querySelectorAll('.inspi-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.inspi-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.inspi-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Lightbox inspirations ──
+function openInspiLightbox(src, caption) {
+  document.getElementById('inspiLbImg').src = src;
+  document.getElementById('inspiLbCaption').textContent = caption;
+  document.getElementById('inspiLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeInspiLightbox() {
+  document.getElementById('inspiLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeInspiLightbox();
+});
+
+// ── Toggle moodboard accordéon ──
+function toggleMoodboard() {
+  const wrap = document.getElementById('mbWrap');
+  const label = document.getElementById('mbToggleLabel');
+  const open = wrap.style.display === 'none';
+  wrap.style.display = open ? 'block' : 'none';
+  label.textContent = open ? '▲ Masquer les planches' : '▼ Afficher les 16 planches';
+}
+
 // ── Lightbox moodboard ──
 const items = document.querySelectorAll('.mb-item');
 const lightbox = document.getElementById('mbLightbox');
