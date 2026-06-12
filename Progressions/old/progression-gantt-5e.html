@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Progression &amp; Gantt — Maths 4ᵉ</title>
+<title>Progression &amp; Gantt — Maths 5ᵉ</title>
 <link rel="stylesheet" href="progression-commun.css">
 <style>
   :root{ --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
@@ -14,65 +14,35 @@
 <div class="wrap">
   <div class="hero">
     <div class="hero-txt">
-      <h1>🌸 Progression &amp; Gantt — Mathématiques 4ᵉ</h1>
+      <h1>🌸 Progression &amp; Gantt — Mathématiques 5ᵉ</h1>
       <div class="sub" id="yearSub">Année 2026-2027 · Zone C (Créteil) · Gantt généré automatiquement</div>
     </div>
   </div>
 
-  <div class="school-dashboard no-print">
-    <section class="school-panel school-controls" aria-label="Vue calendrier scolaire">
-      <div class="field">
-        <span>Année scolaire</span>
-        <div class="school-year-pill" id="schoolYearLabel">2026-2027</div>
-      </div>
-      <label class="field"><span>Début de l'année</span><input type="date" id="cal-rentree"></label>
-      <label class="field"><span>Fin de l'année</span><input type="date" id="cal-fin"></label>
-      <div class="field">
-        <span>Semaines par période</span>
-        <div class="period-pills" id="periodWeeks"></div>
-      </div>
-      <div class="dash-actions">
-        <button class="btn" id="saveBtn" type="button">💾 Enregistrer</button>
-        <button class="btn ghost" id="resetBtn" type="button">↻ Réinitialiser</button>
-      </div>
-    </section>
-
-    <details class="school-panel holiday-overview" aria-label="Vacances et jours fériés" open>
-      <summary>Vue calendrier scolaire : vacances &amp; jours fériés</summary>
-      <div class="holiday-body">
-        <div class="holiday-top">
-          <div class="holiday-column">
-            <div class="panel-label">Vacances scolaires</div>
-            <div class="vac-cards" id="vacCards"></div>
-          </div>
-          <div class="holiday-column">
-            <div class="panel-label">Jours fériés en période scolaire</div>
-            <div class="ferie-chips" id="ferieChips"></div>
-          </div>
-        </div>
-        <details class="edit-calendar" id="calDetails">
-          <summary>Modifier les dates des vacances</summary>
-          <div class="body">
-            <div class="vacgrid" id="vacEditor"></div>
-            <div class="ferie-list" id="ferieList"></div>
-          </div>
-        </details>
-        <span id="saveMsg" style="font-size:12px;color:var(--muted);display:block;margin-top:8px"></span>
-      </div>
-    </details>
-  </div>
-
   <div class="toolbar no-print">
     <button class="btn" id="addSeq" type="button">+ Séquence</button>
-    <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
+    <label style="font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
     <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
-    <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
-    <button class="btn ghost" id="wordProgBtn" type="button">Word progression</button>
-    <button class="btn ghost" id="pdfGanttBtn" type="button">PDF Gantt</button>
+    <button class="btn ghost" id="pdfBtn" type="button">Exporter PDF</button>
     <button class="btn ghost" id="exportBtn" type="button">Exporter (JSON)</button>
     <button class="btn ghost" id="importBtn" type="button">Importer</button>
     <input type="file" id="importFile" accept="application/json" style="display:none">
+    <span class="spacer"></span>
+    <button class="btn ghost small" id="resetBtn" type="button">Réinitialiser</button>
+    <span id="saveMsg" style="font-size:12px;color:var(--muted)"></span>
   </div>
+
+  <details id="calDetails">
+    <summary>Vacances &amp; jours fériés — Zone C 2026-2027 (modifiable)</summary>
+    <div class="body">
+      <div class="dates" style="margin-bottom:10px">
+        <label style="color:var(--muted)">Rentrée</label><input type="date" id="cal-rentree">
+        <label style="color:var(--muted);margin-left:14px">Fin des cours</label><input type="date" id="cal-fin">
+      </div>
+      <div class="vacgrid" id="vacEditor"></div>
+      <div class="ferie-list" id="ferieList"></div>
+    </div>
+  </details>
 
   <h2>Séquences <span style="font-size:13px;color:var(--muted);font-weight:400" id="seqCount"></span></h2>
   <div id="seqList"></div>
@@ -96,14 +66,12 @@
 
   <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
   <div class="info no-print">
-    J'ai pré-rempli les compétences depuis ton tableau <b>« Compétences par séquence »</b> (le plus structuré). Quelques points où tes deux docs se contredisent ou où un code ne colle pas à sa description :
+    Point de départ : ta progression <b>5ᵉ 2024-2025</b> (séquences, compétences et objectifs repris de tes docs), calendrier <b>recalé en Zone C 2026-2027</b>.
     <ul>
-      <li><b>N1</b> : ton doc ALG note « Ch2 » mais avec la description de <b>Ch1</b> (« extraire et reformuler »). J'ai mis <b>Ch1</b> (le bon code).</li>
-      <li><b>Calcul littéral (N3, N6)</b> : « calculer en langage algébrique » = <b>Ca3</b>, pas Ca2 (Ca2 = contrôler la vraisemblance). N3 est bon (Ca3) ; N6 est à passer en Ca3 si tu évalues la même chose.</li>
-      <li><b>G1 Angles et triangles</b> : grille = Re4, doc ALG = <b>Re1</b>. Pour triangles égaux/semblables, Re1 (choisir un cadre géométrique) est sans doute plus juste.</li>
-      <li><b>N5 Fractions 1</b> : seule Co1 est cochée ; tu évalues sûrement aussi <b>Ca1</b> (calcul).</li>
+      <li>Le <b>nouveau BO 5ᵉ</b> entre en vigueur à la rentrée 2026 : c'est une base à faire évoluer (ajoute/retire des séquences, ajuste les compétences au fil de l'eau).</li>
+      <li><b>G2</b> et <b>G5</b> étaient coupées par des vacances chez toi (cylindre puis volumes ; angles particuliers puis droites parallèles). Laissées en blocs de 2 semaines, le Gantt les fait chevaucher la coupure — ajuste les durées si besoin.</li>
+      <li><b>D4 (probabilités)</b> et l'algorithmique n'étaient pas planifiées : j'ai mis un fil rouge « Algorithmique &amp; Tableur » ; ajoute D4 quand le programme le précisera.</li>
     </ul>
-    Les descriptions officielles BO dans l'outil sont, elles, déjà correctes — tu n'as donc plus à te soucier des Co1/Co2 inversés de ton ancien tableau.
   </div>
 </div>
 
@@ -143,7 +111,7 @@ var DESC={
 };
 function famOf(code){ return code.slice(0,2); }
 
-/* ---------- état par défaut (ta progression 4e) ---------- */
+/* ---------- état par défaut (ta progression 5e) ---------- */
 function defaultState(){
   return {
     cal:{
@@ -157,32 +125,32 @@ function defaultState(){
       feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
     },
     seq:[
-      {code:'N1',title:'Nombres relatifs : addition et soustraction',theme:'N',weeks:1.5,comps:['Ch1','Ca1','Co2'],details:'Utiliser les nombres relatifs pour calculer et résoudre des problèmes'},
-      {code:'G1',title:'Angles et triangles',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Triangles égaux\nTriangles semblables\nRéduction et agrandissement'},
-      {code:'D1',title:'Proportionnalité',theme:'D',weeks:2,comps:['Mo1','Ca1'],details:'Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios'},
-      {code:'N2',title:'Nombres relatifs : multiplication et division',theme:'N',weeks:2,comps:['Ch1','Ca1','Co2'],details:'Règle des signes\nCarré, cube\nDivision\nEnchaînement d\'opérations (priorités opératoires)\nRésolution de problèmes'},
-      {code:'N3',title:'Calcul littéral 1',theme:'N',weeks:2,comps:['Ca3','Co1'],details:'Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires'},
-      {code:'G2',title:'Égalité de Pythagore (sens direct)',theme:'G',weeks:2,comps:['Mo1','Ra3','Co2'],details:'Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l\'angle droit\nDémonstration possible'},
-      {code:'N4',title:'Équations',theme:'N',weeks:2.5,comps:['Mo1','Mo2','Ca2','Ca3','Co1'],details:'Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu\'un nombre est solution d\'une équation'},
-      {code:'D2',title:'Statistiques',theme:'D',weeks:2,comps:['Re3','Co1'],details:'Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur'},
-      {code:'N5',title:'Fractions 1 : addition, soustraction, comparaison',theme:'N',weeks:2,comps:['Co1'],details:'Somme et différence\nSimplifier des fractions\nComparer des quotients'},
-      {code:'G3',title:'Quadrilatères particuliers',theme:'G',weeks:1.5,comps:['Re4','Ra3','Co2'],details:'Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l\'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible'},
-      {code:'N6',title:'Calcul littéral 2',theme:'N',weeks:2,comps:['Ca2','Co1'],details:'Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie'},
-      {code:'G4',title:'Égalité de Pythagore (réciproque)',theme:'G',weeks:1,comps:['Mo1','Ra3','Co2'],details:'Notion de réciproque et contraposée\nRésolution de problèmes'},
-      {code:'N7',title:'Fractions 2 : multiplication et division',theme:'N',weeks:1,comps:['Ca1'],details:'Calculer un produit : simple, en simplifiant avant de calculer\nInverse d\'un nombre non nul'},
-      {code:'G5',title:'Transformations : translation',theme:'G',weeks:1,comps:['Re4'],details:'Définition\nConstruction : sur papier blanc, sur papier quadrillé'},
-      {code:'N8',title:'Puissances',theme:'N',weeks:2,comps:['Ca1'],details:'Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique'},
-      {code:'G6',title:'Transformations : rotation',theme:'G',weeks:1,comps:['Re4'],details:'Définition\nConstruction : sur papier blanc, sur papier quadrillé'},
-      {code:'G7',title:'Solides : pyramide et cône',theme:'G',weeks:1,comps:['Re4','Ca1'],details:'Patrons\nVolumes'},
-      {code:'D3',title:'Grandeurs produits et quotients',theme:'D',weeks:1,comps:['Ca1'],details:'Grandeurs produits\nGrandeurs quotients'},
-      {code:'A',title:'Algorithmique (fil rouge ½ groupes)',theme:'A',weeks:1.5,comps:['Ch2','Ch3'],details:'Scratch, tableur\n6 séances en demi-groupes réparties sur l\'année'}
+      {code:'N1',title:'Calculer avec les nombres décimaux',theme:'N',weeks:2,comps:['Ch1','Ca1','Co1'],details:'Vocabulaire : somme, différence, termes, produit, quotient, facteur\nCalculer avec et sans parenthèses (parenthèses emboîtées)\nCalculer des quotients écrits avec une barre de fraction\nProduire une expression numérique pour résoudre des problèmes\nCalcul astucieux : multiplier par 9, 11, 99… (distributivité)\nRéinvestir périmètre et aire'},
+      {code:'G1',title:'Reconnaître et utiliser les symétries axiale et centrale',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Construire avec la symétrie centrale (avec et sans quadrillage)\nConstruire avec la symétrie axiale (rappels)\nReconnaître les figures obtenues par symétrie (frises, pavages, rosaces)\nRechercher les éléments de symétrie d\'une figure (axes et centre)'},
+      {code:'N2',title:'Écrire et utiliser une expression littérale',theme:'N',weeks:2,comps:['Mo2','Ca3','Co1'],details:'Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d\'une expression (formules d\'aires/volumes, conversions)\nTester une égalité\nSimplifier l\'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire'},
+      {code:'G2',title:'Décrire, représenter le cylindre et le prisme droit ; calculer des volumes',theme:'G',weeks:2,comps:['Ch1','Ch2','Re4','Ca1'],details:'Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d\'un cylindre et d\'un prisme droit\nCalculer le volume d\'un pavé droit, d\'un cylindre\nCalculer l\'aire de la base d\'un prisme droit et son volume'},
+      {code:'N3',title:'Définir, utiliser et représenter des nombres rationnels',theme:'N',weeks:2,comps:['Re2'],details:'Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions'},
+      {code:'G3',title:'Construire un triangle et ses droites remarquables',theme:'G',weeks:2,comps:['Re4','Ra3','Ca1'],details:'Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d\'existence d\'un triangle ; cas d\'alignement de 3 points\nRéinvestir la médiatrice d\'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)'},
+      {code:'N4',title:'Utiliser les nombres entiers',theme:'N',weeks:2,comps:['Re2','Ra1'],details:'Diviseur, multiple, divisibilité (division euclidienne)\nDéterminer les diviseurs d\'un entier\nReconnaître un nombre premier (< 30)\nDécomposer en produit de facteurs premiers\nGrandeurs : systèmes centésimal et sexagésimal'},
+      {code:'D1',title:'Utiliser la proportionnalité pour résoudre des problèmes',theme:'D',weeks:2,comps:['Ch1','Mo2','Ca1'],details:'Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)'},
+      {code:'G4',title:'Symétrie centrale : construire et démontrer',theme:'G',weeks:1,comps:['Ch2','Ra3'],details:'Conjecturer les propriétés avec GeoGebra\nConstruire le symétrique d\'une figure\nS\'initier au raisonnement déductif (tri des données, propriété, « donc »)'},
+      {code:'N5',title:'Découvrir, repérer et comparer les nombres relatifs',theme:'N',weeks:2,comps:['Re2','Ca2'],details:'Définir les nombres relatifs (écriture, usages)\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible'},
+      {code:'G5',title:'Reconnaître des angles particuliers et des droites parallèles',theme:'G',weeks:2,comps:['Mo3','Ra3'],details:'Angles complémentaires, supplémentaires, adjacents, opposés par le sommet\nAngles alternes-internes et correspondants\nReconnaître des droites parallèles (raisonnement déductif)'},
+      {code:'N6',title:'Fractions égales ; comparer des fractions',theme:'N',weeks:2,comps:['Re2','Ca1'],details:'Reconnaître des fractions égales\nSimplifier une fraction (critères de divisibilité)\nDiviser par un nombre décimal\nComparer des fractions (même dénominateur, par rapport à 1)'},
+      {code:'G6',title:'Construire et démontrer avec les angles d\'un triangle',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Calculer un angle dans un triangle quelconque\nDémonstration possible : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)'},
+      {code:'N7',title:'Additionner et soustraire des nombres relatifs',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions'},
+      {code:'D2',title:'Utiliser les pourcentages et les échelles',theme:'D',weeks:2,comps:['Mo1','Re2','Ca1'],details:'Appliquer et calculer un pourcentage (augmentation/baisse)\nDéfinir et utiliser une échelle'},
+      {code:'G7',title:'Définir, construire et reconnaître un parallélogramme',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nReconnaître ; calculer l\'aire'},
+      {code:'N8',title:'Additionner et soustraire des fractions',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)'},
+      {code:'D3',title:'Traiter et représenter des données',theme:'D',weeks:2,comps:['Re3','Ca1'],details:'Calculer des effectifs et des fréquences\nReprésenter graphiquement des données\nCalculer et interpréter une moyenne\nTableur possible'},
+      {code:'A',title:'Algorithmique & Tableur (fil rouge)',theme:'A',weeks:1.5,comps:['Ch3','Re3'],details:'Scratch et tableur\nSéances réparties sur l\'année'}
     ]
   };
 }
 var THEMES={N:'Nombres & Calculs',G:'Géométrie',D:'Données',A:'Algo'};
 
 /* ---------- persistance ---------- */
-var KEY='prog4e_v1', S=load();
+var KEY='prog5e_v1', S=load();
 function load(){ try{ var r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return defaultState(); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
@@ -206,45 +174,24 @@ function buildWeeks(){
   return weeks;
 }
 function placeSequences(weeks){
+  // index des semaines de cours (hors vacances)
+  var teach=[]; weeks.forEach(function(w,i){ if(!w.vac) teach.push(i); });
   var cursor=0, out=[];
   S.seq.forEach(function(s){
     var wk=Math.max(0.5,Number(s.weeks)||1);
     var startT=cursor, endT=cursor+wk;
-    out.push({seq:s, startT:startT, endT:endT, overflow:false});
+    var fi=Math.floor(startT+1e-9), li=Math.ceil(endT-1e-9)-1;
+    fi=Math.min(fi,teach.length-1); li=Math.min(li,teach.length-1);
+    out.push({seq:s, first:teach[fi], last:teach[li], overflow:(cursor>=teach.length)});
     cursor=endT;
   });
   return out;
 }
 
 /* ---------- rendu : calendrier éditable ---------- */
-function fmtShort(dt){ var p=function(n){return(n<10?'0':'')+n;}; return p(dt.getDate())+'/'+p(dt.getMonth()+1); }
 function renderCal(){
   document.getElementById('cal-rentree').value=S.cal.rentree;
   document.getElementById('cal-fin').value=S.cal.fin;
-  var y1=d(S.cal.rentree).getFullYear(), y2=d(S.cal.fin).getFullYear();
-  document.getElementById('schoolYearLabel').textContent=y1+'-'+y2;
-
-  var pw=document.getElementById('periodWeeks'); pw.innerHTML='';
-  periodsInfo().forEach(function(p){
-    var pill=document.createElement('span'); pill.className='period-pill';
-    pill.innerHTML='<b>P'+p.p+'</b><span class="dash">-</span><small>'+p.weeks+'</small>';
-    pill.title=fmtD(p.start)+' → '+fmtD(p.end);
-    pw.appendChild(pill);
-  });
-
-  var cards=document.getElementById('vacCards'); cards.innerHTML='';
-  S.cal.vac.forEach(function(v){
-    var c=document.createElement('div'); c.className='vac-card';
-    c.innerHTML='<strong>'+esc(v.nom)+'</strong><span>'+fmtShort(d(v.sat))+' au '+fmtShort(addDays(d(v.resume),-1))+'</span>';
-    cards.appendChild(c);
-  });
-
-  var chips=document.getElementById('ferieChips'); chips.innerHTML='';
-  S.cal.feries.forEach(function(f){
-    var x=d(f), chip=document.createElement('span'); chip.className='ferie-chip';
-    chip.textContent=fmtShort(x); chip.title=fmtD(x); chips.appendChild(chip);
-  });
-
   var ed=document.getElementById('vacEditor'); ed.innerHTML='';
   S.cal.vac.forEach(function(v,i){
     var row=document.createElement('div'); row.className='vacrow';
@@ -259,7 +206,6 @@ function renderCal(){
 }
 document.getElementById('cal-rentree').addEventListener('change',function(){ S.cal.rentree=this.value; save(); renderAll(); });
 document.getElementById('cal-fin').addEventListener('change',function(){ S.cal.fin=this.value; save(); renderAll(); });
-document.getElementById('saveBtn').addEventListener('click',function(){ save(); });
 
 /* ---------- rendu : séquences ---------- */
 function periodBreaks(){
@@ -278,7 +224,6 @@ function fmtD(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]; }
 function vacArticle(nom){ return /toussaint/i.test(nom)?'la ':(/hiver|printemps/i.test(nom)?"l'":''); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 var dragIndex=null;
-var seqDetailsOpen=[];
 function renderSeq(){
   var root=document.getElementById('seqList'); root.innerHTML='';
   document.getElementById('seqCount').textContent='— '+S.seq.length+' séquences · '+totalWeeks().toFixed(1)+' semaines';
@@ -286,7 +231,7 @@ function renderSeq(){
   function screenPhead(p){ var info=periods[p-1]; if(!info) return; var h=document.createElement('div'); h.className='phead'; h.innerHTML='P'+p+'<span class="meta">'+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines</span>'; root.appendChild(h); }
   screenPhead(1);
   S.seq.forEach(function(s,i){
-    var el=document.createElement('div'); el.className='seq'; if(seqDetailsOpen[i]!==false) el.classList.add('details-open'); el.style.setProperty('--c','var(--'+s.theme+')'); el.draggable=true;
+    var el=document.createElement('div'); el.className='seq'; el.style.setProperty('--c','var(--'+s.theme+')'); el.draggable=true;
     el.addEventListener('dragstart',function(e){ if(/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)){ e.preventDefault(); return; } dragIndex=i; el.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; });
     el.addEventListener('dragend',function(){ dragIndex=null; el.classList.remove('dragging'); document.querySelectorAll('.seq').forEach(function(x){x.classList.remove('dropbefore');}); });
     el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('dropbefore'); });
@@ -302,24 +247,9 @@ function renderSeq(){
     l1.appendChild(ord);
     var num=document.createElement('span'); num.className='numbadge'; num.textContent=(i+1); num.title="N° de séquence dans l'année"; l1.appendChild(num);
     var codet=document.createElement('span'); codet.className='codetag'; codet.style.background='var(--'+s.theme+')'; codet.textContent=s.code; codet.title='Code automatique : thème + rang dans le thème'; l1.appendChild(codet);
-    var titleWrap=document.createElement('div'); titleWrap.className='seq-title-wrap';
-    var title=mkInput(s.title,'title seq-title-toggle',function(v){ s.title=v; save(); renderGantt(); });
-    title.title='Cliquer pour afficher/masquer les détails et objectifs';
-    title.addEventListener('click',function(){
-      var opened=el.classList.toggle('details-open');
-      seqDetailsOpen[i]=opened;
-      syncAllDetailsToggle();
-      if(opened){ autoSizeTextarea(dta); dta.focus(); }
-    });
-    titleWrap.appendChild(title);
-    var inlineComps=document.createElement('div'); inlineComps.className='comps comps-inline';
-    s.comps.forEach(function(c){ var t=document.createElement('span'); t.className='ctag'; t.style.background='var(--'+famOf(c)+')'; t.textContent=c; t.title=DESC[c]||c; inlineComps.appendChild(t); });
-    if(!s.comps.length){ var noneInline=document.createElement('span'); noneInline.className='no-comps'; noneInline.textContent='aucune compétence'; inlineComps.appendChild(noneInline); }
-    var edit=document.createElement('button'); edit.type='button'; edit.className='editc editc-inline'; edit.textContent='modifier les compétences ▾'; inlineComps.appendChild(edit);
-    titleWrap.appendChild(inlineComps);
-    l1.appendChild(titleWrap);
+    var title=mkInput(s.title,'title',function(v){ s.title=v; save(); renderGantt(); }); l1.appendChild(title);
     var th=document.createElement('select'); th.className='theme';
-    Object.keys(THEMES).forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(s.theme===t)o.selected=true; th.appendChild(o); });
+    ['N','G','D','A'].forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(s.theme===t)o.selected=true; th.appendChild(o); });
     th.addEventListener('change',function(){ s.theme=th.value; recode(); save(); renderAll(); }); l1.appendChild(th);
     var wk=document.createElement('div'); wk.className='wk';
     var wi=document.createElement('input'); wi.type='number'; wi.step='0.5'; wi.min='0.5'; wi.value=s.weeks;
@@ -329,6 +259,11 @@ function renderSeq(){
     del.addEventListener('click',function(){ if(confirm('Supprimer '+s.code+' ?')){ S.seq.splice(i,1); save(); renderAll(); } }); l1.appendChild(del);
     el.appendChild(l1);
 
+    var comps=document.createElement('div'); comps.className='comps';
+    s.comps.forEach(function(c){ var t=document.createElement('span'); t.className='ctag'; t.style.background='var(--'+famOf(c)+')'; t.textContent=c; t.title=DESC[c]||c; comps.appendChild(t); });
+    if(!s.comps.length){ var none=document.createElement('span'); none.style.cssText='font-size:12px;color:var(--muted)'; none.textContent='aucune compétence'; comps.appendChild(none); }
+    var edit=document.createElement('button'); edit.type='button'; edit.className='editc'; edit.textContent='compétences ▾'; comps.appendChild(edit);
+    el.appendChild(comps);
 
     var ch=document.createElement('div'); ch.className='chooser';
     REF.forEach(function(f){
@@ -342,13 +277,11 @@ function renderSeq(){
     el.appendChild(ch);
     edit.addEventListener('click',function(){ ch.classList.toggle('show'); edit.textContent=ch.classList.contains('show')?'compétences ▴':'compétences ▾'; });
 
-    var dta=document.createElement('textarea');
-    dta.className='seq-details-area';
-    dta.value=s.details||'';
-    dta.placeholder='Contenus, objectifs, savoir-faire…';
-    autoSizeTextarea(dta);
-    dta.addEventListener('input',function(){ s.details=dta.value; autoSizeTextarea(dta); save(); });
-    el.appendChild(dta);
+    var dt=document.createElement('details'); dt.className='details';
+    dt.innerHTML='<summary>détails / objectifs ▾</summary>';
+    var dta=document.createElement('textarea'); dta.value=s.details||''; dta.placeholder='Contenus, objectifs, savoir-faire…';
+    dta.addEventListener('input',function(){ s.details=dta.value; save(); });
+    dt.appendChild(dta); el.appendChild(dt);
 
     el.setAttribute('data-i',i);
     root.appendChild(el);
@@ -364,13 +297,6 @@ function renderSeq(){
 }
 function idxOf(s){ return S.seq.indexOf(s); }
 function mkInput(val,cls,on){ var i=document.createElement('input'); i.type='text'; i.className=cls; i.value=val; i.addEventListener('input',function(){ on(i.value); }); return i; }
-function autoSizeTextarea(t){
-  if(!t) return;
-  var lines=Math.max(4,(t.value||'').split('\n').length+1);
-  t.rows=lines;
-  t.style.height='auto';
-  t.style.height=Math.max(t.scrollHeight, lines*22+24)+'px';
-}
 function sortComps(s){ var ord={},k=0; REF.forEach(function(f){f.subs.forEach(function(c){ord[c]=k++;});}); s.comps.sort(function(a,b){return ord[a]-ord[b];}); }
 function recode(){ var cnt={}; S.seq.forEach(function(s){ cnt[s.theme]=(cnt[s.theme]||0)+1; s.code=s.theme+cnt[s.theme]; }); }
 function totalWeeks(){ return S.seq.reduce(function(a,s){return a+(Number(s.weeks)||0);},0); }
@@ -378,65 +304,25 @@ function totalWeeks(){ return S.seq.reduce(function(a,s){return a+(Number(s.week
 /* ---------- rendu : gantt ---------- */
 function renderGantt(){
   var weeks=buildWeeks(), placed=placeSequences(weeks), wrap=document.getElementById('ganttWrap');
-  var teachingIndexByWeek=[], tcur=0;
-  weeks.forEach(function(w,i){
-    if(w.vac){ teachingIndexByWeek[i]=null; }
-    else { teachingIndexByWeek[i]=tcur; tcur += 1; }
-  });
   var tbl=document.createElement('table'); tbl.className='gantt';
+  // entête mois
   var thead=document.createElement('thead');
-  var trM=document.createElement('tr'); var thL=document.createElement('th'); thL.className='glabel'; thL.rowSpan=2; thL.textContent='Séquences déplaçables'; trM.appendChild(thL);
+  var trM=document.createElement('tr'); var thL=document.createElement('th'); thL.className='glabel'; thL.rowSpan=2; thL.textContent='Séquence'; trM.appendChild(thL);
   var j=0; while(j<weeks.length){ var m=weeks[j].m, span=0; while(j+span<weeks.length && weeks[j+span].m===m) span++; var th=document.createElement('th'); th.className='moncell'; th.colSpan=span; th.textContent=MONTHS[m]; trM.appendChild(th); j+=span; }
   thead.appendChild(trM);
   var trW=document.createElement('tr'); weeks.forEach(function(w){ var th=document.createElement('th'); th.className='wkcell gcol'; th.textContent=w.label; trW.appendChild(th); }); thead.appendChild(trW);
   tbl.appendChild(thead);
   var tb=document.createElement('tbody');
   placed.forEach(function(p,gi){
-    var tr=document.createElement('tr'); tr.className='gantt-row'; tr.draggable=true; tr.dataset.i=gi;
-    tr.addEventListener('dragstart',function(e){
-      if(/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)){ e.preventDefault(); return; }
-      dragIndex=gi; tr.classList.add('dragging'); e.dataTransfer.effectAllowed='move';
-    });
-    tr.addEventListener('dragend',function(){ dragIndex=null; tr.classList.remove('dragging'); document.querySelectorAll('tr.gantt-row').forEach(function(x){x.classList.remove('dropbefore');}); });
-    tr.addEventListener('dragover',function(e){ e.preventDefault(); tr.classList.add('dropbefore'); });
-    tr.addEventListener('dragleave',function(){ tr.classList.remove('dropbefore'); });
-    tr.addEventListener('drop',function(e){
-      e.preventDefault(); tr.classList.remove('dropbefore');
-      if(dragIndex==null||dragIndex===gi) return;
-      var it=S.seq.splice(dragIndex,1)[0]; var to=gi; if(dragIndex<gi) to=gi-1;
-      S.seq.splice(to,0,it); save(); renderAll();
-    });
-
-    var lab=document.createElement('td'); lab.className='glabel'; lab.style.borderLeft='4px solid var(--'+p.seq.theme+')';
-    var gseq=document.createElement('div'); gseq.className='gseq';
-    var grip=document.createElement('span'); grip.className='grip'; grip.textContent='⠿'; grip.title='Glisser pour déplacer la séquence'; gseq.appendChild(grip);
-    var num=document.createElement('span'); num.className='num'; num.textContent=(gi+1); num.title='N° de séquence'; gseq.appendChild(num);
-    var titleBox=document.createElement('span'); titleBox.className='gtitlebox';
-    var title=document.createElement('span'); title.className='gtitle'; title.textContent=p.seq.title; title.title=p.seq.title; titleBox.appendChild(title);
-    var compPrint=document.createElement('span'); compPrint.className='gcompprint'; compPrint.textContent=(p.seq.comps||[]).join(' · '); titleBox.appendChild(compPrint);
-    gseq.appendChild(titleBox);
-    var thSel=document.createElement('select'); thSel.title='Thème';
-    Object.keys(THEMES).forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(p.seq.theme===t)o.selected=true; thSel.appendChild(o); });
-    thSel.addEventListener('change',function(){ p.seq.theme=thSel.value; recode(); save(); renderAll(); }); gseq.appendChild(thSel);
-    var wk=document.createElement('input'); wk.type='number'; wk.step='0.5'; wk.min='0.5'; wk.value=p.seq.weeks; wk.title='Durée en semaines';
-    wk.addEventListener('change',function(){ p.seq.weeks=Math.max(0.5,Number(wk.value)||1); save(); renderAll(); }); gseq.appendChild(wk);
-    lab.appendChild(gseq); tr.appendChild(lab);
-
+    var tr=document.createElement('tr');
+    var lab=document.createElement('td'); lab.className='glabel'; lab.style.borderLeft='4px solid var(--'+p.seq.theme+')'; lab.textContent=(gi+1)+' · '+p.seq.code+' · '+p.seq.title; lab.title=p.seq.comps.join(' · '); tr.appendChild(lab);
     weeks.forEach(function(w,ci){
       var td=document.createElement('td'); td.className='gcol'+(w.vac?' vac':'');
       if(w.ferie){ var fd=document.createElement('span'); fd.className='feridot'; td.appendChild(fd); }
-      var ti=teachingIndexByWeek[ci];
-      if(ti!==null){
-        var overlapStart=Math.max(p.startT, ti), overlapEnd=Math.min(p.endT, ti+1), frac=Math.max(0,overlapEnd-overlapStart);
-        if(frac>0){
-          var bar=document.createElement('div');
-          bar.className='bar fracbar'+(Math.abs(overlapStart-p.startT)<1e-9?' s':'')+(Math.abs(overlapEnd-p.endT)<1e-9?' e':'');
-          bar.style.setProperty('--c','var(--'+p.seq.theme+')');
-          bar.style.left=((overlapStart-ti)*100)+'%';
-          bar.style.width=(frac*100)+'%';
-          td.appendChild(bar);
-          if(Math.abs(overlapStart-p.startT)<1e-9){ var bl=document.createElement('span'); bl.className='barlabel'; bl.textContent=p.seq.code; td.appendChild(bl); }
-        }
+      if(p.first!=null && ci>=p.first && ci<=p.last){
+        var bar=document.createElement('div'); bar.className='bar'+(ci===p.first?' s':'')+(ci===p.last?' e':'')+(w.vac?' vacbar':''); bar.style.setProperty('--c','var(--'+p.seq.theme+')');
+        td.appendChild(bar);
+        if(ci===p.first){ var bl=document.createElement('span'); bl.className='barlabel'; bl.textContent=p.seq.code; td.appendChild(bl); }
       }
       tr.appendChild(td);
     });
@@ -444,6 +330,7 @@ function renderGantt(){
   });
   tbl.appendChild(tb); wrap.innerHTML=''; wrap.appendChild(tbl);
 }
+
 /* ---------- rendu : fréquence ---------- */
 function renderFreq(){
   var count={}; REF.forEach(function(f){f.subs.forEach(function(c){count[c]=0;});});
@@ -463,29 +350,12 @@ function renderFreq(){
 }
 
 /* ---------- divers ---------- */
-function syncAllDetailsToggle(){
-  var cb=document.getElementById('withDetails');
-  if(!cb) return;
-  var seqs=document.querySelectorAll('.seq');
-  var open=document.querySelectorAll('.seq.details-open');
-  cb.checked = seqs.length>0 && open.length===seqs.length;
-  cb.indeterminate = open.length>0 && open.length<seqs.length;
-}
-function setAllSeqDetails(open){
-  for(var i=0;i<S.seq.length;i++) seqDetailsOpen[i]=open;
-  document.querySelectorAll('.seq').forEach(function(el){
-    el.classList.toggle('details-open', open);
-    if(open){ var t=el.querySelector('.seq-details-area'); autoSizeTextarea(t); }
-  });
-  syncAllDetailsToggle();
-}
-function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); }
-document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
+function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); }
 document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'N',weeks:1,comps:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
-  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Maths 4ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
+  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Mathématiques 5ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
   root.appendChild(head);
   var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
   function phead(p){ var info=periods[p-1]; if(!info) return; var dv=document.createElement('div'); dv.className='pdoc-phead'; dv.textContent='P'+p+' · '+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines'; root.appendChild(dv); }
@@ -500,21 +370,8 @@ function renderPrintDoc(withDetails){
     while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='— Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom+' —'; root.appendChild(vd); period++; phead(period); bi++; }
   });
 }
-function currentDocTitle(){ return (document.querySelector('h1') ? document.querySelector('h1').textContent.replace(/[🌸💻]/g,'').trim() : 'progression'); }
-function slugify(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'progression'; }
-function printProgression(){ renderPrintDoc(true); document.body.classList.add('printing','print-progression'); setTimeout(function(){ window.print(); },30); }
-function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setTimeout(function(){ window.print(); },30); }
-function exportProgressionWord(){
-  renderPrintDoc(true);
-  var title=currentDocTitle();
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
-  var blob=new Blob(['\ufeff',html],{type:'application/msword'});
-  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
-}
-document.getElementById('pdfProgBtn').addEventListener('click',printProgression);
-document.getElementById('wordProgBtn').addEventListener('click',exportProgressionWord);
-document.getElementById('pdfGanttBtn').addEventListener('click',printGantt);
-window.addEventListener('afterprint',function(){ document.body.classList.remove('printing','print-progression','print-gantt'); });
+document.getElementById('pdfBtn').addEventListener('click',function(){ renderPrintDoc(document.getElementById('withDetails').checked); document.body.classList.add('printing'); setTimeout(function(){ window.print(); },30); });
+window.addEventListener('afterprint',function(){ document.body.classList.remove('printing'); });
 (function(){ var b=document.getElementById('carnetLink'); if(!b) return;
   function cu(){ try{ return localStorage.getItem('prog.carnetUrl')||''; }catch(e){ return ''; } }
   b.addEventListener('click',function(){ var u=cu(); if(!u){ u=prompt('Colle l’URL de ton carnet (appli web Apps Script, se terminant par /exec) :',''); if(u){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } } if(u) window.open(u,'_blank'); });

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Progression &amp; Gantt — Maths 4ᵉ</title>
-<link rel="stylesheet" href="progression-commun.css">
+<link rel="stylesheet" href="progression-commun-v3.css">
 <style>
   :root{ --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
          --Ch:#b6a6d6; --Mo:#e0b18a; --Re:#e3a09a; --Ra:#90c1cf; --Ca:#d79bbf; --Co:#9cc6a6; }
@@ -64,11 +64,10 @@
 
   <div class="toolbar no-print">
     <button class="btn" id="addSeq" type="button">+ Séquence</button>
-    <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
+    <label class="toggle-details-all"><input type="checkbox" id="toggleAllDetails" checked> toutes les séquences développées</label>
+    <label style="font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
     <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
-    <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
-    <button class="btn ghost" id="wordProgBtn" type="button">Word progression</button>
-    <button class="btn ghost" id="pdfGanttBtn" type="button">PDF Gantt</button>
+    <button class="btn ghost" id="pdfBtn" type="button">Exporter PDF</button>
     <button class="btn ghost" id="exportBtn" type="button">Exporter (JSON)</button>
     <button class="btn ghost" id="importBtn" type="button">Importer</button>
     <input type="file" id="importFile" accept="application/json" style="display:none">
@@ -206,11 +205,15 @@ function buildWeeks(){
   return weeks;
 }
 function placeSequences(weeks){
+  // index des semaines de cours (hors vacances)
+  var teach=[]; weeks.forEach(function(w,i){ if(!w.vac) teach.push(i); });
   var cursor=0, out=[];
   S.seq.forEach(function(s){
     var wk=Math.max(0.5,Number(s.weeks)||1);
     var startT=cursor, endT=cursor+wk;
-    out.push({seq:s, startT:startT, endT:endT, overflow:false});
+    var fi=Math.floor(startT+1e-9), li=Math.ceil(endT-1e-9)-1;
+    fi=Math.min(fi,teach.length-1); li=Math.min(li,teach.length-1);
+    out.push({seq:s, first:teach[fi], last:teach[li], overflow:(cursor>=teach.length)});
     cursor=endT;
   });
   return out;
@@ -378,12 +381,8 @@ function totalWeeks(){ return S.seq.reduce(function(a,s){return a+(Number(s.week
 /* ---------- rendu : gantt ---------- */
 function renderGantt(){
   var weeks=buildWeeks(), placed=placeSequences(weeks), wrap=document.getElementById('ganttWrap');
-  var teachingIndexByWeek=[], tcur=0;
-  weeks.forEach(function(w,i){
-    if(w.vac){ teachingIndexByWeek[i]=null; }
-    else { teachingIndexByWeek[i]=tcur; tcur += 1; }
-  });
   var tbl=document.createElement('table'); tbl.className='gantt';
+  // entête mois
   var thead=document.createElement('thead');
   var trM=document.createElement('tr'); var thL=document.createElement('th'); thL.className='glabel'; thL.rowSpan=2; thL.textContent='Séquences déplaçables'; trM.appendChild(thL);
   var j=0; while(j<weeks.length){ var m=weeks[j].m, span=0; while(j+span<weeks.length && weeks[j+span].m===m) span++; var th=document.createElement('th'); th.className='moncell'; th.colSpan=span; th.textContent=MONTHS[m]; trM.appendChild(th); j+=span; }
@@ -411,10 +410,7 @@ function renderGantt(){
     var gseq=document.createElement('div'); gseq.className='gseq';
     var grip=document.createElement('span'); grip.className='grip'; grip.textContent='⠿'; grip.title='Glisser pour déplacer la séquence'; gseq.appendChild(grip);
     var num=document.createElement('span'); num.className='num'; num.textContent=(gi+1); num.title='N° de séquence'; gseq.appendChild(num);
-    var titleBox=document.createElement('span'); titleBox.className='gtitlebox';
-    var title=document.createElement('span'); title.className='gtitle'; title.textContent=p.seq.title; title.title=p.seq.title; titleBox.appendChild(title);
-    var compPrint=document.createElement('span'); compPrint.className='gcompprint'; compPrint.textContent=(p.seq.comps||[]).join(' · '); titleBox.appendChild(compPrint);
-    gseq.appendChild(titleBox);
+    var title=document.createElement('span'); title.className='gtitle'; title.textContent=p.seq.title; title.title=p.seq.title; gseq.appendChild(title);
     var thSel=document.createElement('select'); thSel.title='Thème';
     Object.keys(THEMES).forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(p.seq.theme===t)o.selected=true; thSel.appendChild(o); });
     thSel.addEventListener('change',function(){ p.seq.theme=thSel.value; recode(); save(); renderAll(); }); gseq.appendChild(thSel);
@@ -425,18 +421,10 @@ function renderGantt(){
     weeks.forEach(function(w,ci){
       var td=document.createElement('td'); td.className='gcol'+(w.vac?' vac':'');
       if(w.ferie){ var fd=document.createElement('span'); fd.className='feridot'; td.appendChild(fd); }
-      var ti=teachingIndexByWeek[ci];
-      if(ti!==null){
-        var overlapStart=Math.max(p.startT, ti), overlapEnd=Math.min(p.endT, ti+1), frac=Math.max(0,overlapEnd-overlapStart);
-        if(frac>0){
-          var bar=document.createElement('div');
-          bar.className='bar fracbar'+(Math.abs(overlapStart-p.startT)<1e-9?' s':'')+(Math.abs(overlapEnd-p.endT)<1e-9?' e':'');
-          bar.style.setProperty('--c','var(--'+p.seq.theme+')');
-          bar.style.left=((overlapStart-ti)*100)+'%';
-          bar.style.width=(frac*100)+'%';
-          td.appendChild(bar);
-          if(Math.abs(overlapStart-p.startT)<1e-9){ var bl=document.createElement('span'); bl.className='barlabel'; bl.textContent=p.seq.code; td.appendChild(bl); }
-        }
+      if(p.first!=null && ci>=p.first && ci<=p.last){
+        var bar=document.createElement('div'); bar.className='bar'+(ci===p.first?' s':'')+(ci===p.last?' e':'')+(w.vac?' vacbar':''); bar.style.setProperty('--c','var(--'+p.seq.theme+')');
+        td.appendChild(bar);
+        if(ci===p.first){ var bl=document.createElement('span'); bl.className='barlabel'; bl.textContent=p.seq.code; td.appendChild(bl); }
       }
       tr.appendChild(td);
     });
@@ -464,7 +452,7 @@ function renderFreq(){
 
 /* ---------- divers ---------- */
 function syncAllDetailsToggle(){
-  var cb=document.getElementById('withDetails');
+  var cb=document.getElementById('toggleAllDetails');
   if(!cb) return;
   var seqs=document.querySelectorAll('.seq');
   var open=document.querySelectorAll('.seq.details-open');
@@ -480,7 +468,6 @@ function setAllSeqDetails(open){
   syncAllDetailsToggle();
 }
 function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); }
-document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
 document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'N',weeks:1,comps:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
@@ -500,21 +487,8 @@ function renderPrintDoc(withDetails){
     while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='— Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom+' —'; root.appendChild(vd); period++; phead(period); bi++; }
   });
 }
-function currentDocTitle(){ return (document.querySelector('h1') ? document.querySelector('h1').textContent.replace(/[🌸💻]/g,'').trim() : 'progression'); }
-function slugify(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'progression'; }
-function printProgression(){ renderPrintDoc(true); document.body.classList.add('printing','print-progression'); setTimeout(function(){ window.print(); },30); }
-function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setTimeout(function(){ window.print(); },30); }
-function exportProgressionWord(){
-  renderPrintDoc(true);
-  var title=currentDocTitle();
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
-  var blob=new Blob(['\ufeff',html],{type:'application/msword'});
-  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
-}
-document.getElementById('pdfProgBtn').addEventListener('click',printProgression);
-document.getElementById('wordProgBtn').addEventListener('click',exportProgressionWord);
-document.getElementById('pdfGanttBtn').addEventListener('click',printGantt);
-window.addEventListener('afterprint',function(){ document.body.classList.remove('printing','print-progression','print-gantt'); });
+document.getElementById('pdfBtn').addEventListener('click',function(){ renderPrintDoc(document.getElementById('withDetails').checked); document.body.classList.add('printing'); setTimeout(function(){ window.print(); },30); });
+window.addEventListener('afterprint',function(){ document.body.classList.remove('printing'); });
 (function(){ var b=document.getElementById('carnetLink'); if(!b) return;
   function cu(){ try{ return localStorage.getItem('prog.carnetUrl')||''; }catch(e){ return ''; } }
   b.addEventListener('click',function(){ var u=cu(); if(!u){ u=prompt('Colle l’URL de ton carnet (appli web Apps Script, se terminant par /exec) :',''); if(u){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } } if(u) window.open(u,'_blank'); });

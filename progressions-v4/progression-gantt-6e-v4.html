@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Progression &amp; Gantt — Maths 4ᵉ</title>
-<link rel="stylesheet" href="progression-commun.css">
+<title>Progression &amp; Gantt — Maths 6ᵉ</title>
+<link rel="stylesheet" href="progression-commun-v4.css">
 <style>
-  :root{ --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
+  :root{ --N:#8fb3d9; --C:#e6c27a; --G:#e6a18c; --M:#b9a3dd; --A:#9cc4a0;
          --Ch:#b6a6d6; --Mo:#e0b18a; --Re:#e3a09a; --Ra:#90c1cf; --Ca:#d79bbf; --Co:#9cc6a6; }
 </style>
 </head>
@@ -14,7 +14,7 @@
 <div class="wrap">
   <div class="hero">
     <div class="hero-txt">
-      <h1>🌸 Progression &amp; Gantt — Mathématiques 4ᵉ</h1>
+      <h1>🌸 Progression &amp; Gantt — Mathématiques 6ᵉ</h1>
       <div class="sub" id="yearSub">Année 2026-2027 · Zone C (Créteil) · Gantt généré automatiquement</div>
     </div>
   </div>
@@ -83,9 +83,10 @@
   <div class="gantt-wrap" id="ganttWrap"></div>
   <div class="glegend">
     <span class="k"><span class="d" style="background:var(--N)"></span>Nombres &amp; Calculs</span>
-    <span class="k"><span class="d" style="background:var(--G)"></span>Géométrie</span>
-    <span class="k"><span class="d" style="background:var(--D)"></span>Données</span>
-    <span class="k"><span class="d" style="background:var(--A)"></span>Algorithmique</span>
+    <span class="k"><span class="d" style="background:var(--C)"></span>Calcul mental</span>
+    <span class="k"><span class="d" style="background:var(--G)"></span>Géométrie &amp; Espace</span>
+    <span class="k"><span class="d" style="background:var(--M)"></span>Grandeurs &amp; Mesures</span>
+    <span class="k"><span class="d" style="background:var(--A)"></span>Algo &amp; Tableur</span>
     <span class="k"><span class="d" style="background:var(--vac)"></span>vacances</span>
     <span class="k"><span class="d" style="background:var(--ferie)"></span>jour férié</span>
   </div>
@@ -96,58 +97,56 @@
 
   <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
   <div class="info no-print">
-    J'ai pré-rempli les compétences depuis ton tableau <b>« Compétences par séquence »</b> (le plus structuré). Quelques points où tes deux docs se contredisent ou où un code ne colle pas à sa description :
+    Point de départ : ta progression <b>6ᵉ 2025-2026</b> (nouveau programme), calendrier <b>recalé en Zone C 2026-2027</b>.
     <ul>
-      <li><b>N1</b> : ton doc ALG note « Ch2 » mais avec la description de <b>Ch1</b> (« extraire et reformuler »). J'ai mis <b>Ch1</b> (le bon code).</li>
-      <li><b>Calcul littéral (N3, N6)</b> : « calculer en langage algébrique » = <b>Ca3</b>, pas Ca2 (Ca2 = contrôler la vraisemblance). N3 est bon (Ca3) ; N6 est à passer en Ca3 si tu évalues la même chose.</li>
-      <li><b>G1 Angles et triangles</b> : grille = Re4, doc ALG = <b>Re1</b>. Pour triangles égaux/semblables, Re1 (choisir un cadre géométrique) est sans doute plus juste.</li>
-      <li><b>N5 Fractions 1</b> : seule Co1 est cochée ; tu évalues sûrement aussi <b>Ca1</b> (calcul).</li>
+      <li><b>Référentiel cycle 3</b> : la 6ᵉ a ses propres compétences (Re1→Re5, etc.), différentes de la 4ᵉ/5ᵉ. J'ai pris les descriptions de ton doc officiel « Compétences 6ᵉ ».</li>
+      <li><b>Codes réalignés</b> : ton doc ALG utilisait une numérotation un peu différente (Mo3/Mo4, Re1/Re3/Re4, Co1/Co2 décalés). J'ai remis chaque compétence sur le bon code officiel — <b>vérifie quand même les pastilles</b> séquence par séquence.</li>
+      <li><b>Fin d'année</b> calée provisoirement au <b>ven. 18 juin 2027</b> (≈ semaine avant le brevet) : ajuste à la date officielle 2027.</li>
+      <li>Calcul mental <b>C3/C4</b> et algorithmique : ajoute/ajuste selon ton organisation en demi-groupes.</li>
     </ul>
-    Les descriptions officielles BO dans l'outil sont, elles, déjà correctes — tu n'as donc plus à te soucier des Co1/Co2 inversés de ton ancien tableau.
   </div>
 </div>
 
 <script>
 /* ---------- référentiel BO (descriptions correctes) ---------- */
 var REF=[
- {k:'Ch',name:'Chercher',subs:['Ch1','Ch2','Ch3','Ch4']},
+ {k:'Ch',name:'Chercher',subs:['Ch1','Ch2','Ch3']},
  {k:'Mo',name:'Modéliser',subs:['Mo1','Mo2','Mo3','Mo4']},
- {k:'Re',name:'Représenter',subs:['Re1','Re2','Re3','Re4']},
+ {k:'Re',name:'Représenter',subs:['Re1','Re2','Re3','Re4','Re5']},
  {k:'Ra',name:'Raisonner',subs:['Ra1','Ra2','Ra3','Ra4']},
  {k:'Ca',name:'Calculer',subs:['Ca1','Ca2','Ca3']},
- {k:'Co',name:'Communiquer',subs:['Co1','Co2','Co3']}
+ {k:'Co',name:'Communiquer',subs:['Co1','Co2']}
 ];
 var DESC={
- Ch1:"Extraire d'un document les informations utiles, les reformuler, les organiser.",
- Ch2:"S'engager dans une démarche scientifique : observer, expérimenter, conjecturer.",
+ Ch1:"Prélever et organiser les informations utiles à partir de supports variés (textes, tableaux, graphiques, schémas…).",
+ Ch2:"S'engager dans une démarche : observer, questionner, manipuler, expérimenter, émettre des hypothèses, raisonner.",
  Ch3:"Tester, essayer plusieurs pistes de résolution.",
- Ch4:"Décomposer un problème en sous-problèmes.",
- Mo1:"Reconnaître et utiliser un modèle mathématique (proportionnalité, équiprobabilité).",
- Mo2:"Traduire en langage mathématique une situation réelle (équations, fonctions…).",
- Mo3:"Comprendre et utiliser une simulation numérique ou géométrique.",
- Mo4:"Valider ou invalider un modèle, comparer à un modèle connu.",
- Re1:"Choisir et mettre en relation des cadres (numérique, algébrique, géométrique).",
- Re2:"Produire et utiliser plusieurs représentations des nombres.",
- Re3:"Représenter des données sous forme d'une série statistique.",
- Re4:"Représentations de solides et de situations spatiales (patrons, plans, schémas…).",
- Ra1:"Résoudre des problèmes impliquant des grandeurs variées ; exploiter ses erreurs.",
- Ra2:"Mener collectivement une investigation en tenant compte du point de vue d'autrui.",
- Ra3:"Démontrer : raisonnement logique et règles établies pour conclure.",
- Ra4:"Fonder et défendre ses jugements par l'argumentation.",
- Ca1:"Calculer avec des rationnels (mental, posé, instrumenté), exact ou approché.",
- Ca2:"Contrôler la vraisemblance : ordres de grandeur, encadrements.",
- Ca3:"Calculer en utilisant le langage algébrique (lettres, symboles).",
- Co1:"Faire le lien entre langage naturel et langage algébrique.",
- Co2:"Expliquer à l'oral/à l'écrit sa démarche ; comprendre et argumenter.",
- Co3:"Vérifier une information ; lire, produire tableaux, graphiques, diagrammes."
+ Mo1:"Reconnaître des situations modélisables par des relations géométriques (alignement, parallélisme, perpendicularité, symétrie).",
+ Mo2:"Reconnaître et distinguer des problèmes additifs, multiplicatifs, de proportionnalité.",
+ Mo3:"Utiliser des propriétés géométriques pour reconnaître des objets.",
+ Mo4:"Utiliser les mathématiques pour résoudre des problèmes de la vie quotidienne.",
+ Re1:"Analyser une figure plane sous différents aspects (surface, contour, lignes, points).",
+ Re2:"Produire et utiliser diverses représentations des fractions simples et des décimaux.",
+ Re3:"Reconnaître et utiliser les premiers éléments de codage d'une figure plane ou d'un solide.",
+ Re4:"Utiliser des outils pour représenter un problème (dessins, schémas, diagrammes, graphiques…).",
+ Re5:"Utiliser et produire des représentations de solides et de situations spatiales.",
+ Ra1:"En géométrie, passer de la perception au contrôle par les instruments pour amorcer des raisonnements.",
+ Ra2:"Justifier ses affirmations et rechercher la validité des informations dont on dispose.",
+ Ra3:"Progresser collectivement dans une investigation en tenant compte du point de vue d'autrui.",
+ Ra4:"Résoudre des problèmes combinant plusieurs étapes de raisonnement ou l'organisation de données.",
+ Ca1:"Calculer avec des décimaux (mentalement, en ligne, en posant), de manière exacte ou approchée.",
+ Ca2:"Contrôler la vraisemblance de ses résultats.",
+ Ca3:"Utiliser une calculatrice pour trouver ou vérifier un résultat.",
+ Co1:"Expliquer sa démarche, comprendre les explications d'un autre, argumenter.",
+ Co2:"Utiliser un vocabulaire et des notations adaptés pour décrire une situation."
 };
 function famOf(code){ return code.slice(0,2); }
 
-/* ---------- état par défaut (ta progression 4e) ---------- */
+/* ---------- état par défaut (ta progression 6e) ---------- */
 function defaultState(){
   return {
     cal:{
-      rentree:'2026-09-01', fin:'2027-07-02',
+      rentree:'2026-09-01', fin:'2027-06-18',
       vac:[
         {nom:'Toussaint', sat:'2026-10-17', resume:'2026-11-02'},
         {nom:'Noël',      sat:'2026-12-19', resume:'2027-01-04'},
@@ -157,32 +156,35 @@ function defaultState(){
       feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
     },
     seq:[
-      {code:'N1',title:'Nombres relatifs : addition et soustraction',theme:'N',weeks:1.5,comps:['Ch1','Ca1','Co2'],details:'Utiliser les nombres relatifs pour calculer et résoudre des problèmes'},
-      {code:'G1',title:'Angles et triangles',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Triangles égaux\nTriangles semblables\nRéduction et agrandissement'},
-      {code:'D1',title:'Proportionnalité',theme:'D',weeks:2,comps:['Mo1','Ca1'],details:'Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios'},
-      {code:'N2',title:'Nombres relatifs : multiplication et division',theme:'N',weeks:2,comps:['Ch1','Ca1','Co2'],details:'Règle des signes\nCarré, cube\nDivision\nEnchaînement d\'opérations (priorités opératoires)\nRésolution de problèmes'},
-      {code:'N3',title:'Calcul littéral 1',theme:'N',weeks:2,comps:['Ca3','Co1'],details:'Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires'},
-      {code:'G2',title:'Égalité de Pythagore (sens direct)',theme:'G',weeks:2,comps:['Mo1','Ra3','Co2'],details:'Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l\'angle droit\nDémonstration possible'},
-      {code:'N4',title:'Équations',theme:'N',weeks:2.5,comps:['Mo1','Mo2','Ca2','Ca3','Co1'],details:'Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu\'un nombre est solution d\'une équation'},
-      {code:'D2',title:'Statistiques',theme:'D',weeks:2,comps:['Re3','Co1'],details:'Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur'},
-      {code:'N5',title:'Fractions 1 : addition, soustraction, comparaison',theme:'N',weeks:2,comps:['Co1'],details:'Somme et différence\nSimplifier des fractions\nComparer des quotients'},
-      {code:'G3',title:'Quadrilatères particuliers',theme:'G',weeks:1.5,comps:['Re4','Ra3','Co2'],details:'Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l\'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible'},
-      {code:'N6',title:'Calcul littéral 2',theme:'N',weeks:2,comps:['Ca2','Co1'],details:'Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie'},
-      {code:'G4',title:'Égalité de Pythagore (réciproque)',theme:'G',weeks:1,comps:['Mo1','Ra3','Co2'],details:'Notion de réciproque et contraposée\nRésolution de problèmes'},
-      {code:'N7',title:'Fractions 2 : multiplication et division',theme:'N',weeks:1,comps:['Ca1'],details:'Calculer un produit : simple, en simplifiant avant de calculer\nInverse d\'un nombre non nul'},
-      {code:'G5',title:'Transformations : translation',theme:'G',weeks:1,comps:['Re4'],details:'Définition\nConstruction : sur papier blanc, sur papier quadrillé'},
-      {code:'N8',title:'Puissances',theme:'N',weeks:2,comps:['Ca1'],details:'Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique'},
-      {code:'G6',title:'Transformations : rotation',theme:'G',weeks:1,comps:['Re4'],details:'Définition\nConstruction : sur papier blanc, sur papier quadrillé'},
-      {code:'G7',title:'Solides : pyramide et cône',theme:'G',weeks:1,comps:['Re4','Ca1'],details:'Patrons\nVolumes'},
-      {code:'D3',title:'Grandeurs produits et quotients',theme:'D',weeks:1,comps:['Ca1'],details:'Grandeurs produits\nGrandeurs quotients'},
-      {code:'A',title:'Algorithmique (fil rouge ½ groupes)',theme:'A',weeks:1.5,comps:['Ch2','Ch3'],details:'Scratch, tableur\n6 séances en demi-groupes réparties sur l\'année'}
+      {code:'N1',title:'Nombres entiers et décimaux',theme:'N',weeks:3,comps:['Re2','Co2'],details:'Écrire des nombres entiers et décimaux\nNotion de fraction décimale\nParties entière et décimale ; rang d\'un chiffre\nDécomposer un nombre décimal de différentes manières'},
+      {code:'G1',title:'Éléments de géométrie',theme:'G',weeks:1.5,comps:['Re3','Co2'],details:'Segment, demi-droite, droite\nNotations et codages\nPoints alignés, symbole d\'appartenance\nSuivre un programme de construction'},
+      {code:'C1',title:'Multiplier et diviser par 10, 100, 1000…',theme:'C',weeks:1,comps:['Ca1'],details:'Lien avec le rang d\'un chiffre\nRevoir les tables ; multiplier par 0,1 ; 0,01…\nDouble, triple, multiplications particulières\nDiviser par 0,1 ; 0,01…'},
+      {code:'M1',title:'Angles (1)',theme:'M',weeks:1.5,comps:['Mo3','Ra1','Co2'],details:'Définir un angle ; angles particuliers\nMesurer un angle\nConstruire un angle de mesure donnée'},
+      {code:'G2',title:'Droites parallèles et perpendiculaires',theme:'G',weeks:2,comps:['Mo1','Ra1','Co2'],details:'Droites parallèles, sécantes, perpendiculaires (constructions)\nLes 3 propriétés ; initiation à la démonstration'},
+      {code:'M2',title:'Repérer et placer des décimaux sur une demi-droite graduée',theme:'M',weeks:2,comps:['Ch1','Re2','Co2'],details:'Vocabulaire : origine, unité, abscisse\nDifférentes graduations\nOrdonner, encadrer, intercaler des décimaux'},
+      {code:'G3',title:'Distances et cercle',theme:'G',weeks:2,comps:['Mo4','Mo3','Re4','Re1','Ra1'],details:'Reporter une longueur ; calculer des longueurs\nMilieu d\'un segment\nVocabulaire du cercle\nProgrammes de construction ; premières rédactions de raisonnement'},
+      {code:'N2',title:'Additionner et soustraire des nombres décimaux',theme:'N',weeks:1,comps:['Ra4','Ca1','Ca2','Ca3'],details:'Ordre de grandeur\nUtilisation des parenthèses\nRésolution de problèmes ; durées\nPremières utilisations de la calculatrice'},
+      {code:'N3',title:'Multiplier des nombres décimaux',theme:'N',weeks:2,comps:['Ra4','Ca1','Ca2','Ca3'],details:'Priorité de la multiplication sur l\'addition\nUtilisation de la calculatrice\nChoisir les bonnes opérations pour résoudre un problème'},
+      {code:'G4',title:'Polygones particuliers',theme:'G',weeks:2,comps:['Mo3','Re4','Re1','Ra1','Co2'],details:'Vocabulaire des polygones\nTriangles particuliers\nConstruction au compas ; médiatrice\nQuadrilatères particuliers'},
+      {code:'C2',title:'Ajouter ou retrancher 9, 99, 11…',theme:'C',weeks:1,comps:['Ca1'],details:'Découvrir des stratégies de calcul mental'},
+      {code:'G5',title:'Solides : pavé droit et cube',theme:'G',weeks:1,comps:['Mo3','Re3','Re5','Ra1','Co2'],details:'Vocabulaire des solides\nPavé droit et cube\nPatrons ; perspectives cavalières'},
+      {code:'M3',title:'Périmètres',theme:'M',weeks:1,comps:['Mo3','Re1','Ca1','Ca2'],details:'Unités de longueur (et masse, capacité)\nNotion de périmètre\nMesurer et calculer des périmètres'},
+      {code:'N4',title:'Division euclidienne',theme:'N',weeks:1.5,comps:['Mo4','Ra4','Ca1','Ca2','Co2'],details:'Division euclidienne\nRésolution de problèmes\nCritères de divisibilité'},
+      {code:'M4',title:'Angles (2)',theme:'M',weeks:2,comps:['Mo3','Ra1','Co2'],details:'Angles adjacents, opposés par le sommet, complémentaires, supplémentaires\nAngles des triangles particuliers (équilatéral, isocèle, rectangle)'},
+      {code:'N5',title:'Division décimale',theme:'N',weeks:1,comps:['Mo4','Ra4','Ca1','Ca2','Co2'],details:'Division décimale\nNotion de valeur approchée'},
+      {code:'N6',title:'Fractions',theme:'N',weeks:1.5,comps:['Mo4','Ra4','Ca1','Ca2','Co2'],details:'Notion de fraction ; effectuer un partage\nFractions égales ; simplifier\nPrendre une fraction d\'une quantité\nAdditionner des fractions de même dénominateur'},
+      {code:'N7',title:'Proportionnalité',theme:'N',weeks:1.5,comps:['Mo2','Ca2'],details:'Notion de proportionnalité\nPassage par l\'unité ; coefficient entier\nAppliquer un pourcentage'},
+      {code:'N8',title:'Probabilités',theme:'N',weeks:2,comps:['Ch1','Mo4','Ca2','Co2'],details:'Quantifier une probabilité (entre 0 et 1)\nArbre de probabilité\nTableau de probabilité'},
+      {code:'M5',title:'Aires et volumes',theme:'M',weeks:2,comps:['Mo3','Re1','Ca1','Ca2'],details:'Unités d\'aires ; mesurer et comparer des aires\nCalculer une aire avec une formule\nUnités de volume ; volume du pavé droit et du cube'},
+      {code:'G6',title:'Symétrie axiale et axes de symétrie',theme:'G',weeks:1.5,comps:['Mo1','Re1'],details:'Tracer le symétrique de figures simples\nPropriétés de conservation de la symétrie\nAxe de symétrie et médiatrice'},
+      {code:'A',title:'Algorithmique & Tableur (fil rouge ½ groupes)',theme:'A',weeks:1.5,comps:['Ch3','Re4'],details:'Scratch et tableur\n6 séances en demi-groupes réparties sur l\'année\nDM : lire et représenter un tableau, un graphique\nÀ caser : se repérer et se déplacer sur un plan / une carte'}
     ]
   };
 }
-var THEMES={N:'Nombres & Calculs',G:'Géométrie',D:'Données',A:'Algo'};
+var THEMES={N:'Nombres & Calculs',C:'Calcul mental',G:'Géométrie & Espace',M:'Grandeurs & Mesures',A:'Algo & Tableur'};
 
 /* ---------- persistance ---------- */
-var KEY='prog4e_v1', S=load();
+var KEY='prog6e_v1', S=load();
 function load(){ try{ var r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return defaultState(); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
@@ -485,7 +487,7 @@ document.getElementById('addSeq').addEventListener('click',function(){ S.seq.pus
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
-  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Maths 4ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
+  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Maths 6ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
   root.appendChild(head);
   var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
   function phead(p){ var info=periods[p-1]; if(!info) return; var dv=document.createElement('div'); dv.className='pdoc-phead'; dv.textContent='P'+p+' · '+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines'; root.appendChild(dv); }
@@ -521,7 +523,7 @@ window.addEventListener('afterprint',function(){ document.body.classList.remove(
   b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
 })();
 document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
-document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-4e.json'; a.click(); });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-6e.json'; a.click(); });
 document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
 document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=JSON.parse(rd.result); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord pédagogique</title>
+  <style>
+    :root{
+      --ink:#4a414a; --muted:#6d5d68; --accent:#d98ba4; --accent-ink:#a8607c;
+      --glass:rgba(255,253,252,.84); --line:rgba(255,255,255,.72);
+      --violet:#7c3aed; --blue:#315f99; --green:#6f9f82;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(rgba(255,248,246,.18), rgba(255,248,246,.38)), url('fond-sakura-maths.png') center top / cover fixed no-repeat;
+    }
+    body::before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(255,248,246,.06),rgba(255,248,246,.36));pointer-events:none;z-index:-1}
+    .container{max-width:1180px;margin:0 auto;padding:54px 22px 76px}
+    .hero{background:rgba(255,253,252,.76);border:1px solid var(--line);border-radius:30px;padding:34px 34px 30px;box-shadow:0 18px 45px rgba(130,92,112,.16);backdrop-filter:blur(12px);margin-bottom:26px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;background:#fdeef1;color:var(--accent-ink);font-weight:800;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px}
+    h1{font-family:Georgia,serif;font-size:clamp(2.2rem,5vw,4.1rem);line-height:1.05;color:#47304f;margin:0 0 12px;text-shadow:0 2px 14px rgba(255,255,255,.9)}
+    .intro{max-width:780px;color:var(--muted);font-size:1.08rem;line-height:1.75;margin:0}
+    .quick-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;margin-bottom:26px}
+    .card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 12px 35px rgba(130,92,112,.14);backdrop-filter:blur(10px);transition:transform .2s,box-shadow .2s}
+    .card:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(130,92,112,.20)}
+    .card h2{font-family:Georgia,serif;color:#5a3f54;font-size:1.55rem;margin:0 0 10px}
+    .card p{color:var(--muted);line-height:1.65;margin:0 0 18px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:14px;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;border:1px solid var(--accent);cursor:pointer;font:inherit;transition:background .18s,transform .18s}
+    .btn:hover{background:var(--accent-ink)}
+    .btn:active{transform:translateY(1px)}
+    .btn.ghost{background:rgba(255,255,255,.50);color:var(--accent-ink);border-color:rgba(216,139,164,.50)}
+    .btn.ghost:hover{background:#fdeef1}
+    .section-title{font-family:Georgia,serif;color:#5a3f54;font-size:1.25rem;margin:24px 0 14px;text-shadow:0 1px 10px rgba(255,255,255,.95)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}
+    .mini{padding:22px}
+    .badge{display:inline-block;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;margin-bottom:12px}
+    .badge.maths{color:var(--accent-ink);background:#fdeef1}.badge.nsi{color:var(--violet);background:#ede9fe}.badge.tools{color:var(--blue);background:#dbeafe}
+    .muted{font-size:.92rem;opacity:.82}
+    footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.95rem;text-shadow:0 1px 10px rgba(255,255,255,.95)}
+    @media(max-width:850px){.quick-grid{grid-template-columns:1fr}.container{padding-top:30px}.hero{padding:26px 22px}.card{padding:22px}}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">🌸 Espace prof</div>
+      <h1>Tableau de bord pédagogique</h1>
+      <p class="intro">Un accès centralisé à mes outils de suivi : progressions interactives, diagrammes de Gantt, organisation des séquences et carnet de suivi des élèves.</p>
+    </section>
+
+    <section class="quick-grid">
+      <article class="card">
+        <span class="badge maths">Progressions</span>
+        <h2>Progressions interactives</h2>
+        <p>Mathématiques collège et NSI lycée : séquences déplaçables, durées ajustables, compétences et diagrammes de Gantt générés automatiquement.</p>
+        <div class="actions">
+          <a class="btn" href="index-progressions.html">🌿 Ouvrir les progressions</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="badge tools">Carnet</span>
+        <h2>Carnet de suivi</h2>
+        <p>Accès à mon carnet de suivi élèves développé avec Apps Script et relié à Google Sheets.</p>
+        <div class="actions">
+          <button class="btn" id="carnetBtn" type="button">📓 Ouvrir mon carnet</button>
+          <button class="btn ghost" id="carnetUrlBtn" type="button">Modifier l’URL</button>
+        </div>
+      </article>
+    </section>
+
+    <h2 class="section-title">Accès rapides</h2>
+    <section class="grid">
+      <article class="card mini">
+        <span class="badge maths">Maths</span>
+        <h2>6ᵉ</h2>
+        <p class="muted">Progression annuelle, calendrier scolaire et Gantt.</p>
+        <a class="btn ghost" href="progression-gantt-6e.html">Ouvrir</a>
+      </article>
+      <article class="card mini">
+        <span class="badge maths">Maths</span>
+        <h2>5ᵉ</h2>
+        <p class="muted">Progression interactive de mathématiques.</p>
+        <a class="btn ghost" href="progression-gantt-5e.html">Ouvrir</a>
+      </article>
+      <article class="card mini">
+        <span class="badge maths">Maths</span>
+        <h2>4ᵉ</h2>
+        <p class="muted">Progression interactive de mathématiques.</p>
+        <a class="btn ghost" href="progression-gantt-4e.html">Ouvrir</a>
+      </article>
+      <article class="card mini">
+        <span class="badge nsi">NSI</span>
+        <h2>Première</h2>
+        <p class="muted">Progression interactive de spécialité NSI.</p>
+        <a class="btn ghost" href="progression-gantt-nsi-premiere.html">Ouvrir</a>
+      </article>
+      <article class="card mini">
+        <span class="badge nsi">NSI</span>
+        <h2>Terminale</h2>
+        <p class="muted">Progression interactive de spécialité NSI.</p>
+        <a class="btn ghost" href="progression-gantt-nsi-terminale.html">Ouvrir</a>
+      </article>
+    </section>
+
+    <footer>🌸 Avec passion et bienveillance ♡</footer>
+  </main>
+
+  <script>
+    const CARNET_KEY = 'prog.carnetUrl';
+    function getCarnetUrl(){
+      try { return localStorage.getItem(CARNET_KEY) || ''; } catch(e){ return ''; }
+    }
+    function setCarnetUrl(){
+      const current = getCarnetUrl();
+      const url = prompt("Colle l’URL de ton carnet Apps Script, idéalement l’URL /exec :", current);
+      if(url !== null){
+        try { localStorage.setItem(CARNET_KEY, url.trim()); } catch(e){}
+      }
+      return url;
+    }
+    document.getElementById('carnetBtn').addEventListener('click', function(){
+      let url = getCarnetUrl();
+      if(!url) url = setCarnetUrl();
+      if(url) window.open(url, '_blank');
+    });
+    document.getElementById('carnetUrlBtn').addEventListener('click', setCarnetUrl);
+  </script>
+</body>
+</html>
