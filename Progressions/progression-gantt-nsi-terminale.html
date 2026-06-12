@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progression &amp; Gantt — NSI Terminale</title>
+<link rel="stylesheet" href="progression-commun.css">
+<style>
+  :root{ --D:#8fb3d9; --B:#b9a3dd; --O:#e6a18c; --P:#9cc4a0; --R:#7fbfc9; --S:#cdb7a0; --L:#e6c27a;
+         --Ra:#90c1cf; --Ce:#b6a6d6; --Co:#e0b18a; --Cr:#9cc6a6; --De:#e3a09a; --En:#d79bbf; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-txt">
+      <h1>💻 Progression &amp; Gantt — NSI Terminale</h1>
+      <div class="sub" id="yearSub">Année 2026-2027 · Zone C (Créteil) · Gantt généré automatiquement</div>
+    </div>
+  </div>
+
+  <div class="toolbar no-print">
+    <button class="btn" id="addSeq" type="button">+ Séquence</button>
+    <label style="font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
+    <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
+    <button class="btn ghost" id="pdfBtn" type="button">Exporter PDF</button>
+    <button class="btn ghost" id="exportBtn" type="button">Exporter (JSON)</button>
+    <button class="btn ghost" id="importBtn" type="button">Importer</button>
+    <input type="file" id="importFile" accept="application/json" style="display:none">
+    <span class="spacer"></span>
+    <button class="btn ghost small" id="resetBtn" type="button">Réinitialiser</button>
+    <span id="saveMsg" style="font-size:12px;color:var(--muted)"></span>
+  </div>
+
+  <details id="calDetails">
+    <summary>Vacances &amp; jours fériés — Zone C 2026-2027 (modifiable)</summary>
+    <div class="body">
+      <div class="dates" style="margin-bottom:10px">
+        <label style="color:var(--muted)">Rentrée</label><input type="date" id="cal-rentree">
+        <label style="color:var(--muted);margin-left:14px">Fin des cours</label><input type="date" id="cal-fin">
+      </div>
+      <div class="vacgrid" id="vacEditor"></div>
+      <div class="ferie-list" id="ferieList"></div>
+    </div>
+  </details>
+
+  <h2>Séquences <span style="font-size:13px;color:var(--muted);font-weight:400" id="seqCount"></span></h2>
+  <div id="seqList"></div>
+  <div id="printDoc"></div>
+
+  <section id="ganttSection">
+  <h2 id="ganttTitle">Calendrier annuel (Gantt)</h2>
+  <div class="gantt-wrap" id="ganttWrap"></div>
+  <div class="glegend">
+    <span class="k"><span class="d" style="background:var(--D)"></span>Structures de données</span>
+    <span class="k"><span class="d" style="background:var(--B)"></span>Bases de données</span>
+    <span class="k"><span class="d" style="background:var(--O)"></span>POO</span>
+    <span class="k"><span class="d" style="background:var(--P)"></span>Langages &amp; prog.</span>
+    <span class="k"><span class="d" style="background:var(--R)"></span>Réseaux &amp; sécurité</span>
+    <span class="k"><span class="d" style="background:var(--S)"></span>Archi &amp; systèmes</span>
+    <span class="k"><span class="d" style="background:var(--L)"></span>Algorithmique</span>
+    <span class="k"><span class="d" style="background:var(--vac)"></span>vacances</span>
+    <span class="k"><span class="d" style="background:var(--ferie)"></span>jour férié</span>
+  </div>
+  </section>
+
+  <h2>Fréquence des compétences sur l'année</h2>
+  <div class="freq" id="freqPanel"></div>
+
+  <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
+  <div class="info no-print">
+    Progression <b>pré-remplie depuis le BO</b>, dans <b>ton ordre S1→S9</b>. Référentiel = les <b>6 compétences LSL</b> (celles que tu évalues), thèmes = les grands domaines du programme.
+    <ul>
+      <li><b>Sur la pertinence de l'ordre</b> : ton enchaînement tient. Un seul point — l'algorithmique en S9 fonctionne comme <b>synthèse</b> (diviser-pour-régner, prog. dynamique, glouton, kNN), à condition que les <b>parcours d'arbres/graphes</b> soient bien traités <i>dans</i> S5/S6 (c'est ce que j'ai mis). La récursivité (S4) arrive avant arbres/graphes ✓.</li>
+      <li><b>Variante possible</b> : remonter la récursivité juste avant S5, ou fusionner S9 dans S5/S6 si tu préfères ne pas finir l'année sur de l'algo pur. Glisse-dépose pour tester.</li>
+      <li><b>Durées estimées</b> (6 h/sem, ~26 sem. + évals/ECE) : à ajuster.</li>
+      <li><b>Fin</b> calée provisoirement avant les <b>épreuves de spécialité</b> (placeholder juin 2027) — mets la date officielle.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+/* ---------- référentiel BO (descriptions correctes) ---------- */
+var REF=[
+ {k:'Ra',name:'Raisonner / démontrer',subs:['Ra']},
+ {k:'Ce',name:"Communiquer à l'écrit",subs:['Ce']},
+ {k:'Co',name:"Communiquer à l'oral",subs:['Co']},
+ {k:'Cr',name:'Concevoir / réaliser',subs:['Cr']},
+ {k:'De',name:'Décrire / expliquer',subs:['De']},
+ {k:'En',name:'Enjeux sociétaux',subs:['En']}
+]
+var DESC={
+ Ra:"Raisonner, démontrer : analyser un problème, justifier une démarche, prouver la correction ou la terminaison d'un algorithme.",
+ Ce:"Communiquer à l'écrit : documenter, commenter, spécifier, rédiger un compte rendu clair.",
+ Co:"Communiquer à l'oral : présenter et justifier ses choix, expliquer son code, soutenir un projet (Grand oral).",
+ Cr:"Concevoir, réaliser : programmer, mettre au point, tester, construire une solution.",
+ De:"Décrire, expliquer : modéliser, schématiser, expliciter le fonctionnement d'un système ou d'un programme.",
+ En:"Enjeux sociétaux : situer l'informatique dans ses impacts éthiques, juridiques, sociaux, environnementaux."
+};
+function famOf(code){ return code.slice(0,2); }
+
+/* ---------- état par défaut (ta progression NSI Terminale) ---------- */
+function defaultState(){
+  return {
+    cal:{
+      rentree:'2026-09-01', fin:'2027-06-11',
+      vac:[
+        {nom:'Toussaint', sat:'2026-10-17', resume:'2026-11-02'},
+        {nom:'Noël',      sat:'2026-12-19', resume:'2027-01-04'},
+        {nom:'Hiver',     sat:'2027-02-06', resume:'2027-02-22'},
+        {nom:'Printemps', sat:'2027-04-03', resume:'2027-04-19'}
+      ],
+      feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
+    },
+    seq:[
+      {code:'D1',title:'S1 · Structures de données linéaires',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Rappels : listes, tuples, dictionnaires, p-uplets nommés\nType abstrait vs implémentation\nPiles (LIFO) : interface et implémentations\nFiles (FIFO) : interface et implémentations\nListes chaînées (notion)\nApplications (historique, file d\'attente, parcours)'},
+      {code:'B1',title:'S2 · Bases de données',theme:'B',weeks:3,comps:['Cr','De','Ra','Ce'],details:'Modèle relationnel : relations, attributs, domaines\nClés primaires et étrangères ; schéma relationnel\nCohérence et contraintes d\'intégrité\nSQL : SELECT, WHERE, ORDER BY, jointures\nSQL : INSERT, UPDATE, DELETE\nAgrégation (COUNT, GROUP BY)'},
+      {code:'O1',title:'S3 · Programmation orientée objet',theme:'O',weeks:3,comps:['Cr','De','Ra'],details:'Classes, objets, attributs, méthodes\nConstructeur, encapsulation\nInterface vs implémentation\nRéécrire piles / files en POO\nVocabulaire (instance, self)'},
+      {code:'P1',title:'S4 · Langages & programmation',theme:'P',weeks:3.5,comps:['Cr','Ra','De','Ce'],details:'Récursivité : principe, pile d\'appels, exemples\nModularité : fonctions, modules, import\nSpécification, jeux de tests, assertions\nMise au point : débogage, invariants\nNotion de complexité (coût d\'un algorithme)\nParadigmes (impératif, fonctionnel) — sensibilisation'},
+      {code:'D2',title:'S5 · Arbres',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Vocabulaire : racine, nœud, feuille, hauteur, taille\nArbres binaires ; arbres binaires de recherche (ABR)\nParcours (préfixe, infixe, suffixe, largeur) — récursifs\nInsertion et recherche dans un ABR\nImplémentations (classes / dictionnaires)'},
+      {code:'D3',title:'S6 · Graphes',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Vocabulaire : sommets, arêtes, orienté / non orienté, degré\nReprésentations : matrice et listes d\'adjacence\nParcours en profondeur (DFS) et en largeur (BFS)\nRecherche de chemin ; détection de cycle\nApplications (réseaux, itinéraires)'},
+      {code:'R1',title:'S7 · Réseaux & sécurité',theme:'R',weeks:2.5,comps:['De','En','Ra'],details:'Protocoles, encapsulation, modèle en couches\nRoutage (RIP, OSPF — principes)\nAdressage IP, bits / paquets\nSécurité : chiffrement symétrique / asymétrique (principes)\nEnjeux : confidentialité, intégrité, authentification'},
+      {code:'S1',title:'S8 · Architectures matérielles & systèmes',theme:'S',weeks:2.5,comps:['De','En'],details:'Architectures (von Neumann, multicœur)\nSystème d\'exploitation : rôle, ressources\nGestion des processus ; interblocage (notion)\nCommandes système ; gestion de la mémoire\nCalcul parallèle (sensibilisation)'},
+      {code:'L1',title:'S9 · Algorithmique (paradigmes de synthèse)',theme:'L',weeks:3,comps:['Ra','Cr','De'],details:'Diviser pour régner (tri fusion, dichotomie)\nProgrammation dynamique (rendu de monnaie, plus court chemin)\nAlgorithmes gloutons\nk plus proches voisins (kNN)\nSynthèse algorithmes sur arbres / graphes et coûts\nCorrection, terminaison, complexité'}
+    ]
+  };
+}
+var THEMES={D:'Structures de données',B:'Bases de données',O:'Programmation objet',P:'Langages & programmation',R:'Réseaux & sécurité',S:'Architectures & systèmes',L:'Algorithmique'};
+
+/* ---------- persistance ---------- */
+var KEY='progNSItle_v1', S=load();
+function load(){ try{ var r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return defaultState(); }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
+var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
+
+/* ---------- dates ---------- */
+function d(iso){ var p=iso.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+function iso(dt){ var p=function(n){return(n<10?'0':'')+n;}; return dt.getFullYear()+'-'+p(dt.getMonth()+1)+'-'+p(dt.getDate()); }
+function addDays(dt,n){ var x=new Date(dt.getTime()); x.setDate(x.getDate()+n); return x; }
+function mondayOf(dt){ var x=new Date(dt.getTime()); var day=(x.getDay()+6)%7; return addDays(x,-day); }
+var MONTHS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+
+function buildWeeks(){
+  var start=mondayOf(d(S.cal.rentree)), end=mondayOf(d(S.cal.fin)), weeks=[], cur=new Date(start.getTime());
+  while(cur<=end){
+    var mon=new Date(cur.getTime()), vac=false;
+    S.cal.vac.forEach(function(v){ if(mon>=d(v.sat) && mon<d(v.resume)) vac=true; });
+    var fr=false; for(var i=0;i<5;i++){ if(S.cal.feries.indexOf(iso(addDays(mon,i)))!==-1) fr=true; }
+    weeks.push({mon:mon, m:mon.getMonth(), label:(mon.getDate())+'/'+(mon.getMonth()+1), vac:vac, ferie:fr});
+    cur=addDays(cur,7);
+  }
+  return weeks;
+}
+function placeSequences(weeks){
+  // index des semaines de cours (hors vacances)
+  var teach=[]; weeks.forEach(function(w,i){ if(!w.vac) teach.push(i); });
+  var cursor=0, out=[];
+  S.seq.forEach(function(s){
+    var wk=Math.max(0.5,Number(s.weeks)||1);
+    var startT=cursor, endT=cursor+wk;
+    var fi=Math.floor(startT+1e-9), li=Math.ceil(endT-1e-9)-1;
+    fi=Math.min(fi,teach.length-1); li=Math.min(li,teach.length-1);
+    out.push({seq:s, first:teach[fi], last:teach[li], overflow:(cursor>=teach.length)});
+    cursor=endT;
+  });
+  return out;
+}
+
+/* ---------- rendu : calendrier éditable ---------- */
+function renderCal(){
+  document.getElementById('cal-rentree').value=S.cal.rentree;
+  document.getElementById('cal-fin').value=S.cal.fin;
+  var ed=document.getElementById('vacEditor'); ed.innerHTML='';
+  S.cal.vac.forEach(function(v,i){
+    var row=document.createElement('div'); row.className='vacrow';
+    row.innerHTML='<label>'+v.nom+'</label>';
+    var a=document.createElement('input'); a.type='date'; a.value=v.sat; a.title='Début (samedi)';
+    var b=document.createElement('input'); b.type='date'; b.value=v.resume; b.title='Reprise (lundi)';
+    a.addEventListener('change',function(){ S.cal.vac[i].sat=a.value; save(); renderAll(); });
+    b.addEventListener('change',function(){ S.cal.vac[i].resume=b.value; save(); renderAll(); });
+    row.appendChild(a); row.appendChild(document.createTextNode('→')); row.appendChild(b); ed.appendChild(row);
+  });
+  document.getElementById('ferieList').textContent='Jours fériés en période scolaire : '+S.cal.feries.map(function(f){ var x=d(f); return x.getDate()+' '+MONTHS[x.getMonth()]; }).join(' · ');
+}
+document.getElementById('cal-rentree').addEventListener('change',function(){ S.cal.rentree=this.value; save(); renderAll(); });
+document.getElementById('cal-fin').addEventListener('change',function(){ S.cal.fin=this.value; save(); renderAll(); });
+
+/* ---------- rendu : séquences ---------- */
+function periodBreaks(){
+  var weeks=buildWeeks(), teach=[]; weeks.forEach(function(w,i){ if(!w.vac) teach.push(i); });
+  return S.cal.vac.map(function(v){ var vs=d(v.sat), cnt=0; for(var i=0;i<teach.length;i++){ if(weeks[teach[i]].mon<vs) cnt++; else break; } return {tw:cnt, nom:v.nom}; });
+}
+function periodsInfo(){
+  var weeks=buildWeeks();
+  function tw(st,en){ var c=0,ms=mondayOf(st),me=mondayOf(en); weeks.forEach(function(w){ if(!w.vac && w.mon>=ms && w.mon<=me) c++; }); return c; }
+  var starts=[d(S.cal.rentree)], ends=[];
+  S.cal.vac.forEach(function(v){ ends.push(addDays(d(v.sat),-1)); starts.push(d(v.resume)); });
+  ends.push(d(S.cal.fin));
+  return starts.map(function(st,i){ return {p:i+1,start:st,end:ends[i],weeks:tw(st,ends[i])}; });
+}
+function fmtD(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]; }
+function vacArticle(nom){ return /toussaint/i.test(nom)?'la ':(/hiver|printemps/i.test(nom)?"l'":''); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+var dragIndex=null;
+function renderSeq(){
+  var root=document.getElementById('seqList'); root.innerHTML='';
+  document.getElementById('seqCount').textContent='— '+S.seq.length+' séquences · '+totalWeeks().toFixed(1)+' semaines';
+  var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
+  function screenPhead(p){ var info=periods[p-1]; if(!info) return; var h=document.createElement('div'); h.className='phead'; h.innerHTML='P'+p+'<span class="meta">'+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines</span>'; root.appendChild(h); }
+  screenPhead(1);
+  S.seq.forEach(function(s,i){
+    var el=document.createElement('div'); el.className='seq'; el.style.setProperty('--c','var(--'+s.theme+')'); el.draggable=true;
+    el.addEventListener('dragstart',function(e){ if(/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)){ e.preventDefault(); return; } dragIndex=i; el.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; });
+    el.addEventListener('dragend',function(){ dragIndex=null; el.classList.remove('dragging'); document.querySelectorAll('.seq').forEach(function(x){x.classList.remove('dropbefore');}); });
+    el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('dropbefore'); });
+    el.addEventListener('dragleave',function(){ el.classList.remove('dropbefore'); });
+    el.addEventListener('drop',function(e){ e.preventDefault(); el.classList.remove('dropbefore'); if(dragIndex==null||dragIndex===i) return; var it=S.seq.splice(dragIndex,1)[0]; var to=i; if(dragIndex<i) to=i-1; S.seq.splice(to,0,it); save(); renderAll(); });
+
+    var l1=document.createElement('div'); l1.className='line1';
+    var grip=document.createElement('span'); grip.className='grip'; grip.textContent='⠿'; grip.title='Glisser pour déplacer'; l1.appendChild(grip);
+    var ord=document.createElement('div'); ord.className='ord';
+    ord.innerHTML='<button type="button" title="monter">▲</button><button type="button" title="descendre">▼</button>';
+    ord.children[0].addEventListener('click',function(){ if(i>0){ S.seq.splice(i-1,0,S.seq.splice(i,1)[0]); save(); renderAll(); } });
+    ord.children[1].addEventListener('click',function(){ if(i<S.seq.length-1){ S.seq.splice(i+1,0,S.seq.splice(i,1)[0]); save(); renderAll(); } });
+    l1.appendChild(ord);
+    var num=document.createElement('span'); num.className='numbadge'; num.textContent=(i+1); num.title="N° de séquence dans l'année"; l1.appendChild(num);
+    var codet=document.createElement('span'); codet.className='codetag'; codet.style.background='var(--'+s.theme+')'; codet.textContent=s.code; codet.title='Code automatique : thème + rang dans le thème'; l1.appendChild(codet);
+    var title=mkInput(s.title,'title',function(v){ s.title=v; save(); renderGantt(); }); l1.appendChild(title);
+    var th=document.createElement('select'); th.className='theme';
+    ['D','B','O','P','R','S','L'].forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(s.theme===t)o.selected=true; th.appendChild(o); });
+    th.addEventListener('change',function(){ s.theme=th.value; recode(); save(); renderAll(); }); l1.appendChild(th);
+    var wk=document.createElement('div'); wk.className='wk';
+    var wi=document.createElement('input'); wi.type='number'; wi.step='0.5'; wi.min='0.5'; wi.value=s.weeks;
+    wi.addEventListener('change',function(){ s.weeks=Math.max(0.5,Number(wi.value)||1); save(); renderAll(); });
+    wk.appendChild(wi); wk.appendChild(document.createTextNode('sem.')); l1.appendChild(wk);
+    var del=document.createElement('button'); del.className='del'; del.type='button'; del.innerHTML='×'; del.title='Supprimer';
+    del.addEventListener('click',function(){ if(confirm('Supprimer '+s.code+' ?')){ S.seq.splice(i,1); save(); renderAll(); } }); l1.appendChild(del);
+    el.appendChild(l1);
+
+    var comps=document.createElement('div'); comps.className='comps';
+    s.comps.forEach(function(c){ var t=document.createElement('span'); t.className='ctag'; t.style.background='var(--'+famOf(c)+')'; t.textContent=c; t.title=DESC[c]||c; comps.appendChild(t); });
+    if(!s.comps.length){ var none=document.createElement('span'); none.style.cssText='font-size:12px;color:var(--muted)'; none.textContent='aucune compétence'; comps.appendChild(none); }
+    var edit=document.createElement('button'); edit.type='button'; edit.className='editc'; edit.textContent='compétences ▾'; comps.appendChild(edit);
+    el.appendChild(comps);
+
+    var ch=document.createElement('div'); ch.className='chooser';
+    REF.forEach(function(f){
+      var fam=document.createElement('div'); fam.className='fam';
+      fam.innerHTML='<div class="fam-h"><span class="dot" style="background:var(--'+f.k+')"></span>'+f.name+'</div>';
+      var cc=document.createElement('div'); cc.className='chips';
+      f.subs.forEach(function(code){ var b=document.createElement('button'); b.type='button'; b.className='chip'; b.style.setProperty('--cc','var(--'+f.k+')'); b.setAttribute('aria-pressed',s.comps.indexOf(code)!==-1?'true':'false'); b.textContent=code; b.title=DESC[code];
+        b.addEventListener('click',function(){ var k=s.comps.indexOf(code); if(k===-1) s.comps.push(code); else s.comps.splice(k,1); sortComps(s); save(); renderSeq(); renderFreq(); setTimeout(function(){ var nel=document.getElementById('seqList').querySelector('[data-i="'+i+'"] .chooser'); if(nel) nel.classList.add('show'); },0); }); cc.appendChild(b); });
+      fam.appendChild(cc); ch.appendChild(fam);
+    });
+    el.appendChild(ch);
+    edit.addEventListener('click',function(){ ch.classList.toggle('show'); edit.textContent=ch.classList.contains('show')?'compétences ▴':'compétences ▾'; });
+
+    var dt=document.createElement('details'); dt.className='details';
+    dt.innerHTML='<summary>détails / objectifs ▾</summary>';
+    var dta=document.createElement('textarea'); dta.value=s.details||''; dta.placeholder='Contenus, objectifs, savoir-faire…';
+    dta.addEventListener('input',function(){ s.details=dta.value; save(); });
+    dt.appendChild(dta); el.appendChild(dt);
+
+    el.setAttribute('data-i',i);
+    root.appendChild(el);
+
+    // diviseur de période (vacances) après cette séquence
+    cum += (Number(s.weeks)||0);
+    while(bi<breaks.length && cum >= breaks[bi].tw - 1e-9){
+      var dv=document.createElement('div'); dv.className='vacdiv';
+      dv.innerHTML='🌿 Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom;
+      root.appendChild(dv); period++; screenPhead(period); bi++;
+    }
+  });
+}
+function idxOf(s){ return S.seq.indexOf(s); }
+function mkInput(val,cls,on){ var i=document.createElement('input'); i.type='text'; i.className=cls; i.value=val; i.addEventListener('input',function(){ on(i.value); }); return i; }
+function sortComps(s){ var ord={},k=0; REF.forEach(function(f){f.subs.forEach(function(c){ord[c]=k++;});}); s.comps.sort(function(a,b){return ord[a]-ord[b];}); }
+function recode(){ var cnt={}; S.seq.forEach(function(s){ cnt[s.theme]=(cnt[s.theme]||0)+1; s.code=s.theme+cnt[s.theme]; }); }
+function totalWeeks(){ return S.seq.reduce(function(a,s){return a+(Number(s.weeks)||0);},0); }
+
+/* ---------- rendu : gantt ---------- */
+function renderGantt(){
+  var weeks=buildWeeks(), placed=placeSequences(weeks), wrap=document.getElementById('ganttWrap');
+  var tbl=document.createElement('table'); tbl.className='gantt';
+  // entête mois
+  var thead=document.createElement('thead');
+  var trM=document.createElement('tr'); var thL=document.createElement('th'); thL.className='glabel'; thL.rowSpan=2; thL.textContent='Séquence'; trM.appendChild(thL);
+  var j=0; while(j<weeks.length){ var m=weeks[j].m, span=0; while(j+span<weeks.length && weeks[j+span].m===m) span++; var th=document.createElement('th'); th.className='moncell'; th.colSpan=span; th.textContent=MONTHS[m]; trM.appendChild(th); j+=span; }
+  thead.appendChild(trM);
+  var trW=document.createElement('tr'); weeks.forEach(function(w){ var th=document.createElement('th'); th.className='wkcell gcol'; th.textContent=w.label; trW.appendChild(th); }); thead.appendChild(trW);
+  tbl.appendChild(thead);
+  var tb=document.createElement('tbody');
+  placed.forEach(function(p,gi){
+    var tr=document.createElement('tr');
+    var lab=document.createElement('td'); lab.className='glabel'; lab.style.borderLeft='4px solid var(--'+p.seq.theme+')'; lab.textContent=(gi+1)+' · '+p.seq.code+' · '+p.seq.title; lab.title=p.seq.comps.join(' · '); tr.appendChild(lab);
+    weeks.forEach(function(w,ci){
+      var td=document.createElement('td'); td.className='gcol'+(w.vac?' vac':'');
+      if(w.ferie){ var fd=document.createElement('span'); fd.className='feridot'; td.appendChild(fd); }
+      if(p.first!=null && ci>=p.first && ci<=p.last){
+        var bar=document.createElement('div'); bar.className='bar'+(ci===p.first?' s':'')+(ci===p.last?' e':'')+(w.vac?' vacbar':''); bar.style.setProperty('--c','var(--'+p.seq.theme+')');
+        td.appendChild(bar);
+        if(ci===p.first){ var bl=document.createElement('span'); bl.className='barlabel'; bl.textContent=p.seq.code; td.appendChild(bl); }
+      }
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  tbl.appendChild(tb); wrap.innerHTML=''; wrap.appendChild(tbl);
+}
+
+/* ---------- rendu : fréquence ---------- */
+function renderFreq(){
+  var count={}; REF.forEach(function(f){f.subs.forEach(function(c){count[c]=0;});});
+  S.seq.forEach(function(s){ s.comps.forEach(function(c){ if(count[c]!=null) count[c]++; }); });
+  var maxN=Math.max(1,Math.max.apply(null,Object.keys(count).map(function(c){return count[c];})));
+  var panel=document.getElementById('freqPanel'); panel.innerHTML='';
+  REF.forEach(function(f){
+    var box=document.createElement('div'); box.className='freqfam';
+    box.innerHTML='<h3 style="color:var(--'+f.k+')">'+f.name+'</h3>';
+    f.subs.forEach(function(c){
+      var n=count[c], row=document.createElement('div'); row.className='frow'+(n===0?' zero':'');
+      row.innerHTML='<span class="cd" title="'+(DESC[c]||'').replace(/"/g,'')+'">'+c+'</span><span class="track"><span class="fill" style="width:'+(n/maxN*100)+'%;--cc:var(--'+f.k+')"></span></span><span class="n">'+(n||'·')+'</span>';
+      box.appendChild(row);
+    });
+    panel.appendChild(box);
+  });
+}
+
+/* ---------- divers ---------- */
+function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); }
+document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'N',weeks:1,comps:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
+function renderPrintDoc(withDetails){
+  var root=document.getElementById('printDoc'); root.innerHTML='';
+  var head=document.createElement('div'); head.className='pdoc-head';
+  head.innerHTML='<h1 style="margin:0 0 2px">Progression — NSI Terminale</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
+  root.appendChild(head);
+  var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
+  function phead(p){ var info=periods[p-1]; if(!info) return; var dv=document.createElement('div'); dv.className='pdoc-phead'; dv.textContent='P'+p+' · '+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines'; root.appendChild(dv); }
+  phead(1);
+  S.seq.forEach(function(s,i){
+    var blk=document.createElement('div'); blk.className='pdoc-seq';
+    var codes=s.comps.length?('<span class="pdoc-codes">'+esc(s.comps.join(' · '))+'</span>'):'';
+    blk.innerHTML='<div><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b> &nbsp;'+codes+'</div>';
+    if(withDetails && s.details){ var ul=document.createElement('ul'); s.details.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.textContent=l; ul.appendChild(li); } }); blk.appendChild(ul); }
+    root.appendChild(blk);
+    cum+=(Number(s.weeks)||0);
+    while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='— Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom+' —'; root.appendChild(vd); period++; phead(period); bi++; }
+  });
+}
+document.getElementById('pdfBtn').addEventListener('click',function(){ renderPrintDoc(document.getElementById('withDetails').checked); document.body.classList.add('printing'); setTimeout(function(){ window.print(); },30); });
+window.addEventListener('afterprint',function(){ document.body.classList.remove('printing'); });
+(function(){ var b=document.getElementById('carnetLink'); if(!b) return;
+  function cu(){ try{ return localStorage.getItem('prog.carnetUrl')||''; }catch(e){ return ''; } }
+  b.addEventListener('click',function(){ var u=cu(); if(!u){ u=prompt('Colle l’URL de ton carnet (appli web Apps Script, se terminant par /exec) :',''); if(u){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } } if(u) window.open(u,'_blank'); });
+  b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
+})();
+document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-4e.json'; a.click(); });
+document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
+document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=JSON.parse(rd.result); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
+
+renderAll();
+</script>
+</body>
+</html>
