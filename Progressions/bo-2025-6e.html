@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BO 2025 — Maths 6e</title>
+  <style>
+    :root{
+      --ink:#4a414a; --muted:#6d5d68; --accent:#d98ba4; --accent-ink:#a8607c;
+      --glass:rgba(255,253,252,.86); --glass-strong:rgba(255,253,252,.94); --line:rgba(255,255,255,.72);
+      --blue:#8fb3d9; --green:#9cc4a0; --purple:#b9a3dd; --gold:#e6c27a; --coral:#e6a18c;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(rgba(255,248,246,.18),rgba(255,248,246,.42)),url('fond-sakura-maths.png') center top/cover fixed no-repeat}
+    body::before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(255,248,246,.12),rgba(255,248,246,.42));z-index:-1;pointer-events:none}
+    .container{max-width:1320px;margin:0 auto;padding:42px 20px 70px}
+    .back{display:inline-flex;align-items:center;gap:8px;color:var(--accent-ink);font-weight:800;text-decoration:none;margin-bottom:18px;background:rgba(255,255,255,.48);border:1px solid rgba(216,139,164,.35);border-radius:999px;padding:9px 14px;backdrop-filter:blur(8px)}
+    .hero{background:linear-gradient(135deg,rgba(253,238,241,.92),rgba(238,243,251,.84) 55%,rgba(238,247,240,.78));border:1px solid var(--line);border-radius:30px;padding:30px 34px;box-shadow:0 16px 44px rgba(130,92,112,.16);backdrop-filter:blur(12px);margin-bottom:22px}
+    h1{font-family:Georgia,serif;color:#47304f;font-size:clamp(2rem,4.6vw,3.7rem);line-height:1.05;margin:0 0 12px;text-shadow:0 2px 12px rgba(255,255,255,.9)}
+    .intro{max-width:980px;color:var(--muted);line-height:1.75;font-size:1.05rem;margin:0}
+    .quick{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:14px;border:1px solid var(--accent);background:var(--accent);color:#fff;font-weight:850;text-decoration:none;box-shadow:0 8px 18px rgba(216,139,164,.22)}
+    .btn:hover{background:var(--accent-ink)}
+    .btn.ghost{background:rgba(255,255,255,.55);color:var(--accent-ink);border-color:rgba(216,139,164,.45)}
+    .notice,.card,.table-card{background:var(--glass);border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 35px rgba(130,92,112,.13);backdrop-filter:blur(10px)}
+    .notice{padding:18px 22px;margin:0 0 22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+    .notice strong{color:#5a3f54}.notice p{margin:0;color:var(--muted);line-height:1.65}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}.card{padding:18px 18px 20px}.card h2{font-size:1.15rem;margin:0 0 8px}.card p{margin:0;color:var(--muted);line-height:1.55;font-size:.95rem}
+    .pill{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;margin-bottom:11px}.p-blue{color:#315f99;background:rgba(219,234,254,.85)}.p-green{color:#3d7a50;background:rgba(220,252,231,.85)}.p-purple{color:#6f42a6;background:rgba(237,233,254,.88)}.p-gold{color:#9b5b00;background:rgba(255,247,218,.9)}
+    h2.section{font-family:Georgia,serif;color:#5a3f54;font-size:1.6rem;margin:30px 0 12px;text-shadow:0 1px 10px rgba(255,255,255,.96)}
+    .table-card{padding:10px;overflow:auto;margin-bottom:24px}
+    table{width:100%;border-collapse:separate;border-spacing:0;min-width:980px;font-size:.94rem}
+    th,td{vertical-align:top;text-align:left;padding:13px 14px;border-bottom:1px solid rgba(240,228,226,.88)}
+    th{position:sticky;top:0;background:rgba(253,245,244,.96);color:#5a3f54;font-family:Georgia,serif;font-size:1rem;z-index:1}
+    tbody tr:nth-child(odd) td{background:rgba(255,253,252,.58)}
+    tbody tr:nth-child(even) td{background:rgba(238,243,251,.38)}
+    tbody tr:nth-child(even) td:nth-child(4){background:rgba(255,248,232,.52)}
+    tbody tr:nth-child(odd) td:nth-child(4){background:rgba(255,248,232,.42)}
+    tbody tr:hover td{background:rgba(253,238,241,.68)}
+    tr:last-child td{border-bottom:0}td:nth-child(1){font-weight:850;color:#5a3f54;width:180px}
+    ul{margin:0;padding-left:18px}li{margin:4px 0;line-height:1.45}.tag{display:inline-flex;border-radius:999px;padding:4px 8px;font-size:.75rem;font-weight:900;margin:0 5px 5px 0;background:rgba(255,255,255,.65);border:1px solid rgba(216,139,164,.25);white-space:nowrap}
+    .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:22px}.soft-list{padding:20px}.soft-list h3{font-family:Georgia,serif;margin:0 0 10px;color:#5a3f54}.soft-list p{margin:0 0 10px;color:var(--muted);line-height:1.65}.source-list a{display:block;color:var(--accent-ink);font-weight:800;text-decoration:none;margin:8px 0}.source-list a:hover{text-decoration:underline}
+    footer{text-align:center;color:rgba(74,65,74,.72);font-family:Georgia,serif;margin-top:28px}
+    @media(max-width:980px){.grid,.cols{grid-template-columns:1fr 1fr}.notice{grid-template-columns:1fr}.notice .btn{width:max-content}}
+    @media(max-width:650px){.grid,.cols{grid-template-columns:1fr}.hero{padding:24px 20px}.btn{width:100%}table{font-size:.86rem;min-width:900px}}
+    @media print{body{background:#fff}.back,.quick,.notice .btn{display:none}.container{max-width:none;padding:12mm}.hero,.notice,.card,.table-card,.soft-list{box-shadow:none;backdrop-filter:none;background:#fff;border:1px solid #ddd}.table-card{overflow:visible}table{min-width:0;font-size:9.5pt}th{position:static}.grid{grid-template-columns:repeat(4,1fr)}.cols{grid-template-columns:1fr}.section{break-after:avoid}.table-card{break-inside:avoid-page}}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="index-accueil-pedagogique.html">← Retour accueil</a>
+    <section class="hero">
+      <h1>🌸 BO 2025 — Mathématiques 6ᵉ</h1>
+      <p class="intro">Tableau de veille pédagogique pour ajuster la progression de 6ᵉ : liens directs vers le nouveau programme de cycle 3, synthèse des changements et comparaison avec l’ancien programme 2020.</p>
+      <div class="quick">
+        <a class="btn" href="https://www.education.gouv.fr/bo/2025/Hebdo16/MENE2504620A" target="_blank" rel="noopener">BO 2025 cycle 3</a>
+        <a class="btn ghost" href="https://www.education.gouv.fr/sites/default/files/programme-de-math-matiques-pour-le-cycle-3-439827.pdf" target="_blank" rel="noopener">Annexe maths cycle 3</a>
+        <a class="btn ghost" href="https://eduscol.education.fr/5712/ressources-d-accompagnement-du-programme-de-mathematiques-au-cycle-3" target="_blank" rel="noopener">Ressources éduscol</a>
+        <a class="btn ghost" href="progression-gantt-6e.html">Progression 6ᵉ</a>
+      </div>
+    </section>
+
+    <section class="notice">
+      <p><strong>À retenir.</strong> Le programme de mathématiques du cycle 3 publié au BO n°16 du 17 avril 2025 s’applique en 6ᵉ dès la rentrée 2025. Il est plus annualisé, plus explicite, avec des automatismes, des exemples de réussite et une place nettement identifiée pour la proportionnalité, les probabilités et l’initiation à la pensée informatique.</p>
+      <a class="btn ghost" href="#comparatif">Voir le comparatif</a>
+    </section>
+
+    <section class="grid" aria-label="Synthèse rapide">
+      <article class="card"><span class="pill p-blue">Structure</span><h2>6 domaines lisibles</h2><p>Le programme est structuré par domaines d’apprentissage, avec une entrée plus opérationnelle pour construire les séquences.</p></article>
+      <article class="card"><span class="pill p-green">Automatismes</span><h2>Plus assumés</h2><p>Calcul mental, procédures courtes, vocabulaire et figures de base sont à ritualiser sur toute l’année.</p></article>
+      <article class="card"><span class="pill p-purple">Nouveautés</span><h2>Probas & informatique</h2><p>Les probabilités et la pensée informatique sont clairement nommées, ce qui donne une vraie place aux activités type Scratch/tableur.</p></article>
+      <article class="card"><span class="pill p-gold">Progression</span><h2>À sécuriser</h2><p>Le contenu n’est pas totalement révolutionné, mais certains attendus doivent être davantage visibles dans la progression.</p></article>
+    </section>
+
+    <h2 class="section" id="comparatif">Comparatif détaillé : ancien programme 2020 ↔ BO 2025 en 6ᵉ</h2>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr><th>Domaine</th><th>Ancien programme 2020 / pratiques courantes</th><th>Nouveau BO 2025 en 6ᵉ</th><th>Impact concret pour ta progression</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Architecture générale</td><td><ul><li>Programme de cycle 3 plus global, couvrant CM1-CM2-6ᵉ.</li><li>Les progressions de 6ᵉ s’appuyaient beaucoup sur les repères et les choix d’équipe.</li></ul></td><td><ul><li>Attendus de 6ᵉ beaucoup plus identifiés dans le programme.</li><li>Organisation en domaines : nombres, grandeurs, espace, données/probabilités, proportionnalité, pensée informatique.</li><li>Automatismes et exemples de réussite plus visibles.</li></ul></td><td><ul><li>Ta progression peut devenir plus directement alignée niveau par niveau.</li><li>Ajouter dans chaque séquence des automatismes et des objectifs clairement évaluables.</li></ul></td></tr>
+          <tr><td>Nombres entiers et décimaux</td><td><ul><li>Numération décimale, comparaison, décomposition et demi-droite graduée déjà au cœur de la 6ᵉ.</li><li>Le niveau de précision dépendait fortement des supports.</li></ul></td><td><ul><li>Renforcement de la maîtrise des écritures, décompositions, ordres de grandeur et représentations.</li><li>Lecture/placement sur demi-droite graduée à articuler avec les fractions et les décimaux.</li></ul></td><td><ul><li>Ton N1 reste très adapté.</li><li>Faire apparaître plus explicitement : rang du chiffre, encadrements, intercalation, ordre de grandeur.</li></ul></td></tr>
+          <tr><td>Fractions</td><td><ul><li>Fractions vues comme partage, quotient, fraction décimale, repérage simple.</li><li>Les opérations restaient souvent limitées selon les progressions.</li></ul></td><td><ul><li>Fractions simples et fractions décimales davantage reliées aux représentations.</li><li>Égalité de fractions, simplification et fraction d’une quantité explicitement attendues.</li><li>Addition de fractions de même dénominateur visible dans les attendus de 6ᵉ.</li></ul></td><td><ul><li>Ton chapitre N6 est cohérent.</li><li>Prévoir plus de manipulations visuelles : bandes, droites graduées, aires partagées.</li><li>Ne pas traiter les fractions comme un chapitre isolé : lien fort avec décimaux et proportionnalité.</li></ul></td></tr>
+          <tr><td>Calcul numérique</td><td><ul><li>Automatisation des techniques écrites et calcul mental déjà attendues.</li><li>Priorités et parenthèses abordées progressivement.</li></ul></td><td><ul><li>Calcul exact ou approché, contrôle de vraisemblance et choix de l’opération sont plus explicitement articulés à la résolution de problèmes.</li><li>Calculatrice utilisée comme outil de vérification et de recherche.</li></ul></td><td><ul><li>Garder tes séquences opérations décimales.</li><li>Ajouter systématiquement : estimation avant calcul, phrase-réponse, choix de l’opération.</li></ul></td></tr>
+          <tr><td>Résolution de problèmes</td><td><ul><li>Transversale à tout le cycle, mais parfois noyée dans les domaines.</li></ul></td><td><ul><li>La résolution de problèmes est fortement mise en avant dans les objectifs majeurs.</li><li>Le raisonnement, l’essai, la validation et la communication sont attendus à travers tous les domaines.</li></ul></td><td><ul><li>Faire apparaître dans chaque séquence une tâche problème courte.</li><li>Très bon lien avec tes tampons / exigences de rédaction : justifier, détailler, répondre.</li></ul></td></tr>
+          <tr><td>Grandeurs : longueurs, masses, contenances</td><td><ul><li>Conversions et unités déjà travaillées, souvent en lien avec périmètres et problèmes.</li></ul></td><td><ul><li>Les grandeurs sont structurées par types : longueur, masse, contenance, aires, volumes, temps et durées.</li><li>Importance des unités adaptées et du sens des mesures.</li></ul></td><td><ul><li>Tu peux conserver une entrée par problèmes pratiques.</li><li>Ajouter davantage d’activités de choix d’unité et d’estimation.</li></ul></td></tr>
+          <tr><td>Périmètres, aires, volumes</td><td><ul><li>Périmètres et aires très présents en 6ᵉ ; volumes du pavé droit/cube selon les progressions.</li></ul></td><td><ul><li>Les aires et volumes sont davantage structurés en domaines spécifiques.</li><li>Volume du pavé droit et du cube, lien avec unités de volume et capacité.</li></ul></td><td><ul><li>Ton M3 et M5 restent pertinents.</li><li>Pour les solides, faire le lien patron ↔ représentation ↔ volume.</li></ul></td></tr>
+          <tr><td>Temps et durées</td><td><ul><li>Les durées étaient souvent traitées dans les problèmes ou les conversions.</li></ul></td><td><ul><li>Le repérage dans le temps et les durées sont nommés dans les grandeurs et mesures.</li><li>Calculer et convertir des durées devient plus visible.</li></ul></td><td><ul><li>Prévoir une mini-activité ou un fil rouge dans les problèmes d’addition/soustraction.</li><li>Ne pas laisser les durées uniquement dans les exercices de calcul.</li></ul></td></tr>
+          <tr><td>Configurations planes</td><td><ul><li>Droites, segments, cercles, polygones, parallélisme/perpendicularité déjà au cœur de la 6ᵉ.</li></ul></td><td><ul><li>Étude plus explicite des configurations planes, avec vocabulaire, codage et propriétés.</li><li>Passage de la perception au contrôle instrumenté.</li></ul></td><td><ul><li>Ton G1, G2, G3, G4 sont dans la cible.</li><li>Mettre plus d’accent sur codage, instruments et premiers raisonnements.</li></ul></td></tr>
+          <tr><td>Angles</td><td><ul><li>Mesurer et construire des angles était déjà classique en 6ᵉ.</li></ul></td><td><ul><li>Les angles apparaissent comme partie identifiable de l’étude de configurations planes.</li><li>Angles particuliers, mesure, construction, vocabulaire et contrôle par instruments.</li></ul></td><td><ul><li>Ta séparation Angles 1 / Angles 2 est pertinente.</li><li>Ajouter des automatismes de reconnaissance et de vocabulaire.</li></ul></td></tr>
+          <tr><td>Symétrie axiale</td><td><ul><li>Symétrie axiale travaillée en fin de cycle 3, souvent en 6ᵉ.</li></ul></td><td><ul><li>La symétrie axiale est clairement isolée dans les contenus d’espace et géométrie.</li><li>Construction, conservation et axes de symétrie restent essentiels.</li></ul></td><td><ul><li>Ton chapitre G6 est à garder.</li><li>Le relier à médiatrice, cercle et polygones particuliers.</li></ul></td></tr>
+          <tr><td>Solides et vision dans l’espace</td><td><ul><li>Cube, pavé droit, patrons et perspective cavalière déjà attendus.</li></ul></td><td><ul><li>La vision dans l’espace et les représentations de solides sont explicitées.</li><li>Produire, reconnaître et utiliser patrons et représentations.</li></ul></td><td><ul><li>Parfait pour tes paper toys et productions d’élèves.</li><li>Ajouter une galerie d’anciens travaux liée à cette séquence.</li></ul></td></tr>
+          <tr><td>Organisation de données</td><td><ul><li>Lire et produire tableaux, graphiques et diagrammes faisait partie du cycle 3.</li></ul></td><td><ul><li>Organisation et gestion de données devient un domaine identifié.</li><li>Lire, interpréter et organiser des données dans des tableaux ou représentations adaptées.</li></ul></td><td><ul><li>À renforcer en fil rouge, notamment avec tableur.</li><li>Bon lien avec statistiques simples, sondages de classe, météo, sport.</li></ul></td></tr>
+          <tr><td>Probabilités</td><td><ul><li>Les probabilités étaient moins visibles en 6ᵉ dans l’ancien cycle 3.</li></ul></td><td><ul><li>Les probabilités apparaissent explicitement dans le domaine données/probabilités.</li><li>On peut travailler le vocabulaire de base et l’idée de probabilité entre 0 et 1.</li></ul></td><td><ul><li>Ton N8 « Probabilités » est une vraie bonne anticipation du BO.</li><li>Prévoir des expériences simples et éventuellement tableur.</li></ul></td></tr>
+          <tr><td>Proportionnalité</td><td><ul><li>Présente en cycle 3 mais intégrée aux nombres/grandeurs.</li></ul></td><td><ul><li>Domaine séparé : la proportionnalité est explicitement mise en avant.</li><li>Passage par l’unité, coefficient simple, pourcentages simples selon les situations.</li></ul></td><td><ul><li>Ton N7 est indispensable.</li><li>Faire des liens avec fractions, échelles, recettes, prix et grandeurs.</li></ul></td></tr>
+          <tr><td>Pensée informatique</td><td><ul><li>Programmation et algorithmique présentes mais moins structurées en 6ᵉ selon les établissements.</li></ul></td><td><ul><li>Initiation à la pensée informatique devient un domaine à part entière.</li><li>Séquencer des instructions, comprendre un algorithme simple, utiliser des déplacements, tableaux ou outils numériques.</li></ul></td><td><ul><li>Ton fil rouge « Algorithmique & Tableur » devient clairement légitime.</li><li>À articuler avec repérage, données, solides ou Scratch.</li></ul></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="cols">
+      <article class="soft-list card">
+        <h3>Réorganisation conseillée de ta progression 6ᵉ</h3>
+        <p><span class="tag">À conserver</span> Ta progression actuelle colle déjà très bien à l’esprit du nouveau programme.</p>
+        <p><span class="tag">À rendre visible</span> Proportionnalité, probabilités et pensée informatique doivent apparaître comme de vrais blocs, pas seulement en activité bonus.</p>
+        <p><span class="tag">À renforcer</span> Automatismes : vocabulaire géométrique, calcul mental, estimation, conversions, reconnaissance de figures.</p>
+        <p><span class="tag">À valoriser</span> Paper toys, tableur, Scratch et productions d’élèves : c’est exactement le type d’activités qui donne du sens au BO.</p>
+      </article>
+      <article class="soft-list card source-list">
+        <h3>Liens directs utiles</h3>
+        <a href="https://www.education.gouv.fr/bo/2025/Hebdo16/MENE2504620A" target="_blank" rel="noopener">BO n°16 du 17 avril 2025 — cycle 3</a>
+        <a href="https://www.education.gouv.fr/sites/default/files/programme-de-math-matiques-pour-le-cycle-3-439827.pdf" target="_blank" rel="noopener">Annexe — Programme de mathématiques cycle 3</a>
+        <a href="https://eduscol.education.fr/5712/ressources-d-accompagnement-du-programme-de-mathematiques-au-cycle-3" target="_blank" rel="noopener">éduscol — ressources d’accompagnement cycle 3</a>
+        <a href="https://www.education.gouv.fr/bo/20/Hebdo31/MENE2018714A.htm" target="_blank" rel="noopener">BO 2020 — ancien programme cycles 2, 3, 4</a>
+        <a href="progression-gantt-6e.html">Ta progression interactive 6ᵉ</a>
+      </article>
+    </section>
+
+    <footer>🌸 Page de veille pédagogique — BO 2025, maths 6ᵉ</footer>
+  </main>
+</body>
+</html>
