@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progressions interactives</title>
+  <style>
+    :root{
+      --ink:#4a414a; --muted:#6d5d68; --accent:#d98ba4; --accent-ink:#a8607c;
+      --glass:rgba(255,253,252,.84); --line:rgba(255,255,255,.72);
+    }
+    *{box-sizing:border-box}
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(rgba(255,248,246,.18), rgba(255,248,246,.35)), url('fond-sakura-maths.png') center top / cover fixed no-repeat;
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 52px 20px 70px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent-ink);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero{
+      background: linear-gradient(135deg,rgba(253,238,241,.90),rgba(238,243,251,.82) 55%,rgba(238,247,240,.78));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 32px;
+      box-shadow: 0 16px 44px rgba(130,92,112,.16);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin: 0 0 10px;
+      color: #47304f;
+      text-shadow:0 2px 12px rgba(255,255,255,.9);
+    }
+    .intro {
+      color: var(--muted);
+      max-width: 820px;
+      line-height: 1.7;
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    .section-title{
+      font-family: Georgia, serif;
+      color:#5a3f54;
+      font-size:1.45rem;
+      margin: 30px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(240,228,226,.82);
+      text-shadow:0 1px 10px rgba(255,255,255,.96);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 12px 35px rgba(130,92,112,.14);
+      backdrop-filter: blur(10px);
+      transition: box-shadow .2s, transform .2s;
+      display:flex;
+      flex-direction:column;
+      min-height:230px;
+    }
+    .card:hover {
+      box-shadow: 0 16px 40px rgba(130,92,112,.20);
+      transform: translateY(-2px);
+    }
+    .badge {
+      display: inline-block;
+      width:max-content;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .badge.sixieme { color: #a8607c; background: #fdeef1; }
+    .badge.cinquieme { color: #315f99; background: #dbeafe; }
+    .badge.quatrieme { color: #6f42a6; background: #ede9fe; }
+    .badge.premiere { color:#3d7a50; background:#dcfce7; }
+    .badge.terminale { color:#9b5b00; background:#fff0c2; }
+    .badge.carnet { color:#a8607c; background:#fdeef1; }
+    h2 {
+      font-family: Georgia, serif;
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      color: #47304f;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin:0 0 16px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top: auto;
+      padding: 12px 18px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+      border:1px solid var(--accent);
+      border-radius: 12px;
+      transition: background .2s, transform .2s;
+      cursor:pointer;
+      width:max-content;
+    }
+    .btn:hover { background: var(--accent-ink); transform:translateY(-1px); }
+    .btn.ghost{background:rgba(255,255,255,.45);color:var(--accent-ink);border-color:rgba(216,139,164,.45)}
+    .muted { opacity: .85; font-size: .95rem; }
+    @media(max-width:650px){.hero{padding:24px}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="index.html">← Retour à l’accueil</a>
+
+    <section class="hero">
+      <h1>🌸 Progressions interactives</h1>
+      <p class="intro">Des progressions annuelles modifiables : on déplace les séquences, on ajuste les durées, et le diagramme de Gantt se met automatiquement à jour.</p>
+    </section>
+
+    <h2 class="section-title" id="maths">Mathématiques collège</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="badge sixieme">6e</div>
+        <h2>Mathématiques 6ᵉ</h2>
+        <p>Progression annuelle avec séquences déplaçables, vacances de la zone C, compétences et diagramme de Gantt automatique.</p>
+        <a class="btn" href="progression-gantt-6e.html">Ouvrir la progression</a>
+      </div>
+
+      <div class="card">
+        <div class="badge cinquieme">5e</div>
+        <h2>Mathématiques 5ᵉ</h2>
+        <p>Progression interactive pour organiser l’année, ajuster les périodes et visualiser la répartition des chapitres.</p>
+        <a class="btn" href="progression-gantt-5e.html">Ouvrir la progression</a>
+      </div>
+
+      <div class="card">
+        <div class="badge quatrieme">4e</div>
+        <h2>Mathématiques 4ᵉ</h2>
+        <p>Progression interactive pour suivre l’enchaînement des séquences, les compétences et le calendrier annuel.</p>
+        <a class="btn" href="progression-gantt-4e.html">Ouvrir la progression</a>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="nsi">NSI lycée</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="badge premiere">1ère NSI</div>
+        <h2>Progression NSI Première</h2>
+        <p>Planification annuelle interactive pour organiser les chapitres, projets, évaluations et temps de préparation aux compétences NSI.</p>
+        <a class="btn" href="progression-gantt-nsi-premiere.html">Ouvrir la progression</a>
+      </div>
+
+      <div class="card">
+        <div class="badge terminale">Terminale NSI</div>
+        <h2>Progression NSI Terminale</h2>
+        <p>Progression annuelle pour articuler les notions de Terminale, les entraînements bac, les projets et la préparation aux ECE.</p>
+        <a class="btn" href="progression-gantt-nsi-terminale.html">Ouvrir la progression</a>
+      </div>
+
+      <div class="card">
+        <div class="badge carnet">Suivi élèves</div>
+        <h2>Mon carnet de suivi</h2>
+        <p>Accès au carnet développé avec Apps Script et relié au Google Sheets de suivi des élèves.</p>
+        <button class="btn ghost" id="carnetLink" type="button">📓 Ouvrir mon carnet</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function carnetUrl(){
+      try { return localStorage.getItem('prog.carnetUrl') || ''; }
+      catch(e){ return ''; }
+    }
+    document.getElementById('carnetLink').addEventListener('click', function(){
+      var url = carnetUrl();
+      if(!url){
+        url = prompt("Colle l’URL de ton carnet Apps Script, celle qui se termine souvent par /exec :", "");
+        if(url){
+          try { localStorage.setItem('prog.carnetUrl', url); } catch(e){}
+        }
+      }
+      if(url) window.open(url, '_blank');
+    });
+    document.getElementById('carnetLink').addEventListener('contextmenu', function(e){
+      e.preventDefault();
+      var url = prompt("Modifier l’URL du carnet :", carnetUrl());
+      if(url !== null){
+        try { localStorage.setItem('prog.carnetUrl', url); } catch(e){}
+      }
+    });
+  </script>
+</body>
+</html>

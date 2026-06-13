@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="petal" cx="50%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#fff0f5"/>
+      <stop offset="45%" stop-color="#f7b9d0"/>
+      <stop offset="100%" stop-color="#e98fb0"/>
+    </radialGradient>
+    <radialGradient id="bg" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#fff8fb"/>
+      <stop offset="100%" stop-color="#fbe9f1"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bg)"/>
+
+  <g transform="translate(32 33)">
+    <g id="flower" fill="url(#petal)" stroke="#d98ba4" stroke-width="1.1" stroke-linejoin="round">
+      <g id="p">
+        <path d="M0 -21
+                 C -4 -25 -10 -24 -12 -18
+                 C -14 -12 -10 -4 0 -1
+                 C 10 -4 14 -12 12 -18
+                 C 10 -24 4 -25 0 -21 Z"/>
+      </g>
+      <use href="#p" transform="rotate(72)"/>
+      <use href="#p" transform="rotate(144)"/>
+      <use href="#p" transform="rotate(216)"/>
+      <use href="#p" transform="rotate(288)"/>
+    </g>
+    <circle r="5.4" fill="#fbe3b0" stroke="#e7b86a" stroke-width="1"/>
+    <g fill="#d98ba4">
+      <circle cx="0" cy="-3.1" r="1.15"/>
+      <circle cx="2.95" cy="-0.95" r="1.15"/>
+      <circle cx="1.82" cy="2.5" r="1.15"/>
+      <circle cx="-1.82" cy="2.5" r="1.15"/>
+      <circle cx="-2.95" cy="-0.95" r="1.15"/>
+      <circle cx="0" cy="0" r="1.05" fill="#c98aa6"/>
+    </g>
+  </g>
+</svg>
