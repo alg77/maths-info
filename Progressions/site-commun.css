@@ -48,8 +48,42 @@ h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.6rem);line-height:1.06;c
 .section-title{font-family:Georgia,serif;color:#5a3f54;font-size:1.32rem;margin:28px 0 14px;text-shadow:0 1px 10px rgba(255,255,255,.95)}
 
 /* ---------- hero (carte d'accueil) ---------- */
-.hero{background:linear-gradient(135deg,rgba(253,238,241,.90),rgba(238,243,251,.82) 55%,rgba(238,247,240,.78));border:1px solid var(--line);border-radius:30px;padding:34px 36px;box-shadow:0 16px 44px rgba(130,92,112,.16);backdrop-filter:blur(12px);margin-bottom:28px}
-.hero .intro{margin-bottom:0}
+.hero{
+  position:relative;
+  overflow:visible;
+}
+
+.hero-avatar{
+  position:absolute;
+  right:-20px;
+  top:-80px;
+  bottom:-30px;
+}
+
+.hero-avatar img{
+  width:240px;
+}.hero .intro{margin-bottom:0}
+@media (max-width: 900px){
+  .hero-avatar{
+    top: -45px;
+    right: 20px;
+  }
+
+  .hero-avatar img{
+    width: 190px;
+  }
+}
+@media (max-width: 650px){
+  .hero-avatar{
+    position: static;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .hero-avatar img{
+    width: 180px;
+  }
+}
 
 /* ---------- grilles & cartes ---------- */
 .quick-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;margin-bottom:26px}

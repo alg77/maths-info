@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carnet d'escapades | Kid & Dog Friendly</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar">
+      <div class="brand">Escapades Amara</div>
+      <div class="navlinks">
+        <a href="#idees">Idées</a>
+        <a href="#comparatif">Comparatif</a>
+        <a href="#carnet">Carnet</a>
+        <a href="#restos">Restos</a>
+      </div>
+    </nav>
+    <section class="hero-content">
+      <p class="eyebrow">kid friendly • dog friendly • kawaii mais organisé</p>
+      <h1>Un carnet pour choisir les prochaines escapades en famille</h1>
+      <p class="intro">Zoos, parcs, villages mignons, restos japonais, balades avec la chienne, sorties pluie ou canicule : tout comparer sans se perdre dans 47 onglets ouverts.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#comparatif">Comparer une sortie</a>
+        <a class="btn secondary" href="#fiche">Créer une fiche lieu</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="dashboard" id="idees">
+      <article class="stat-card">
+        <span>🐼</span>
+        <h2>Grande sortie waouh</h2>
+        <p>Pairi Daiza, Beauval, Disney, Thoiry… celles qu'on prépare comme une mini-expédition.</p>
+      </article>
+      <article class="stat-card">
+        <span>🐕</span>
+        <h2>Avec la chienne</h2>
+        <p>Villages, forêts, bords de Marne, pique-niques et balades compatibles Shiba.</p>
+      </article>
+      <article class="stat-card">
+        <span>🍣</span>
+        <h2>Restos & goûters</h2>
+        <p>Japonais, insolite, kids ok, vraie bonne adresse ou simple pause plaisir.</p>
+      </article>
+    </section>
+
+    <section class="section" id="comparatif">
+      <div class="section-title">
+        <p class="eyebrow">choisir sans culpabiliser</p>
+        <h2>Comparatif express</h2>
+      </div>
+      <div class="filters">
+        <button class="chip active" data-filter="all">Tout</button>
+        <button class="chip" data-filter="kid">Kid friendly</button>
+        <button class="chip" data-filter="dog">Dog friendly</button>
+        <button class="chip" data-filter="rain">Pluie/canicule</button>
+        <button class="chip" data-filter="wow">Waouh</button>
+      </div>
+      <div class="cards-grid" id="placeGrid">
+        <article class="place-card" data-tags="kid wow">
+          <div class="place-top"><span class="emoji">🏰</span><span class="score">9/10</span></div>
+          <h3>Disneyland Paris — 1 parc</h3>
+          <p>Idéal pour une journée parade, château, Fantasyland et magie sans courir entre deux parcs.</p>
+          <ul>
+            <li>Trajet : très facile</li><li>Budget : élevé mais optimisable</li><li>Chienne : non</li>
+          </ul>
+        </article>
+        <article class="place-card" data-tags="kid wow">
+          <div class="place-top"><span class="emoji">🐼</span><span class="score">10/10</span></div>
+          <h3>Pairi Daiza</h3>
+          <p>La grosse découverte immersive : animaux, jardins, décors, photos et effet voyage.</p>
+          <ul>
+            <li>Trajet : très long sur 1 jour</li><li>Budget : élevé</li><li>Papiers enfants : indispensables</li>
+          </ul>
+        </article>
+        <article class="place-card" data-tags="kid wow">
+          <div class="place-top"><span class="emoji">🦜</span><span class="score">8/10</span></div>
+          <h3>Parrot World</h3>
+          <p>Sortie proche, immersive, très pratique pour une journée animaux sans grosse route.</p>
+          <ul>
+            <li>Trajet : facile</li><li>Budget : moyen</li><li>Chienne : non</li>
+          </ul>
+        </article>
+        <article class="place-card" data-tags="kid rain">
+          <div class="place-top"><span class="emoji">🎠</span><span class="score">7/10</span></div>
+          <h3>Palomano</h3>
+          <p>Joker parfait quand il pleut ou qu'il fait trop chaud, surtout pour la petite.</p>
+          <ul>
+            <li>Trajet : très facile</li><li>Budget : raisonnable</li><li>Grande : bonus accompagnatrice</li>
+          </ul>
+        </article>
+        <article class="place-card" data-tags="dog kid">
+          <div class="place-top"><span class="emoji">🌿</span><span class="score">8/10</span></div>
+          <h3>Moret-sur-Loing</h3>
+          <p>Balade jolie, goûter, photos, bords de l'eau et ambiance carnet de voyage.</p>
+          <ul>
+            <li>Trajet : facile</li><li>Budget : doux</li><li>Chienne : oui</li>
+          </ul>
+        </article>
+        <article class="place-card" data-tags="dog kid">
+          <div class="place-top"><span class="emoji">🏰</span><span class="score">8/10</span></div>
+          <h3>Provins</h3>
+          <p>Cité médiévale, remparts, photos, glace et vraie sortie d'été sans partir loin.</p>
+          <ul>
+            <li>Trajet : raisonnable</li><li>Budget : modulable</li><li>Chienne : oui en balade</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split" id="fiche">
+      <div>
+        <p class="eyebrow">fiche modèle</p>
+        <h2>Critères de notation</h2>
+        <p>Une grille simple pour garder une trace objective après chaque sortie, sans perdre le côté souvenir.</p>
+        <div class="criteria">
+          <span>👧 Enfants</span><span>🐕 Chien</span><span>🚗 Trajet</span><span>💸 Budget</span><span>🍱 Repas</span><span>📸 Photos</span><span>🧘 Fatigue</span><span>✨ Waouh</span>
+        </div>
+      </div>
+      <form class="note-card" id="noteForm">
+        <h3>Ajouter une idée</h3>
+        <label>Lieu <input id="placeName" type="text" placeholder="Ex : Beauval" /></label>
+        <label>Type <select id="placeType"><option>Zoo / animaux</option><option>Parc d'attractions</option><option>Village / balade</option><option>Restaurant</option><option>Musée</option></select></label>
+        <label>Note envie <input id="placeRating" type="range" min="1" max="10" value="8" /></label>
+        <button class="btn primary" type="submit">Ajouter au carnet</button>
+      </form>
+    </section>
+
+    <section class="section" id="carnet">
+      <div class="section-title">
+        <p class="eyebrow">souvenirs</p>
+        <h2>Carnet de sorties</h2>
+      </div>
+      <div class="journal" id="journal">
+        <article><strong>À imprimer dans le carnet :</strong> date, ticket, photo, repas préféré, moment waouh, note d'Iris, note de la petite, et verdict “à refaire ?”.</article>
+      </div>
+    </section>
+
+    <section class="section" id="restos">
+      <div class="section-title">
+        <p class="eyebrow">miam</p>
+        <h2>Wishlist restos</h2>
+      </div>
+      <div class="restaurant-board">
+        <div><h3>🍣 Japonais ludique</h3><p>Sushi sur tapis roulant, ramen, okonomiyaki, dorayaki, bubble tea matcha.</p></div>
+        <div><h3>🌸 Ambiance kawaii</h3><p>Déco douce, dessert mignon, photogénique, enfants acceptés sans stress.</p></div>
+        <div><h3>🐕 Terrasse dog friendly</h3><p>Adresse où la chienne peut venir, avec coin calme et gamelle d'eau.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fait pour collectionner les idées, comparer sans se prendre la tête, puis remplir les carnets de souvenirs ✨</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
