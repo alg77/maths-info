@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes Escapades</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+body{
+margin:0;
+font-family:Quicksand,sans-serif;
+background:linear-gradient(rgba(255,255,255,.78),rgba(255,255,255,.78)),url('fond-escapades.png') center/cover fixed no-repeat;
+color:#5b4b52;
+}
+header{text-align:center;padding:50px 20px;}
+h1{font-size:clamp(2rem,5vw,3.6rem);margin:0}
+.subtitle{font-family:Caveat,cursive;font-size:2rem;color:#9a6f80}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.badge{background:#fff;padding:10px 15px;border-radius:999px}
+.container{max-width:1200px;margin:auto;padding:20px}
+.section{background:rgba(255,255,255,.88);padding:20px;border-radius:20px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px}
+.card{background:white;padding:15px;border-radius:15px}
+</style>
+</head>
+<body>
+<header>
+<h1>🌸 Mes Escapades</h1>
+<div class="subtitle">Les escapades de la famille panda roux</div>
+<div class="badges">
+<div class="badge">📍 Lagny-sur-Marne</div>
+<div class="badge">❤️ Wishlist</div>
+<div class="badge">✅ Visitées</div>
+<div class="badge">🐕 Dog Friendly</div>
+</div>
+</header>
+<div class="container">
+<div class="section"><h2>🐼 Zoos & Parcs animaliers</h2><div class="grid">
+<div class="card">✅ Beauval</div>
+<div class="card">✅ Parc des Félins</div>
+<div class="card">✅ Parrot World</div>
+<div class="card">❤️ Pairi Daiza</div>
+</div></div>
+<div class="section"><h2>🎢 Parcs & Loisirs</h2><div class="grid">
+<div class="card">Disneyland Paris</div>
+<div class="card">Futuroscope</div>
+<div class="card">✅ Jump City</div>
+<div class="card">Palomano</div>
+</div></div>
+<div class="section"><h2>🏰 Châteaux & Jardins</h2><div class="grid">
+<div class="card">✅ Provins</div>
+<div class="card">Vaux-le-Vicomte</div>
+<div class="card">Chantilly</div>
+<div class="card">Albert-Kahn</div>
+<div class="card">Parc Oriental de Maulévrier</div>
+</div></div>
+</div>
+</body>
+</html>

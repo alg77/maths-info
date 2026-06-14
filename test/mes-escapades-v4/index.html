@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌸 Mes Escapades</title>
+  <meta name="description" content="Mes Escapades : les sorties, voyages, restos, zoos et jardins de la famille panda roux depuis Lagny-sur-Marne." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' x='6' font-size='52'%3E🌸%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+  <header class="hero">
+    <nav class="topbar">
+      <div class="brand"><span class="logo">🌸</span><span>Mes Escapades</span></div>
+      <div class="nav-pills">
+        <a href="#map-section">Carte</a>
+        <a href="#cards">Carnet</a>
+        <a href="#stats">Stats</a>
+      </div>
+    </nav>
+    <section class="hero-content">
+      <p class="eyebrow">Family trips · restos · zoos · jardins japonais · dog friendly</p>
+      <h1>🌸 Mes Escapades</h1>
+      <p class="handwritten-subtitle">Les escapades de la famille panda roux</p>
+      <p class="subtitle">Une mini-app personnelle pour comparer les escapades depuis Lagny-sur-Marne, noter les lieux selon tes goûts, garder tes commentaires et préparer les prochaines journées avec les filles… ou avec la shiba.</p>
+      <div class="hero-actions">
+        <button class="primary" data-scroll="#cards">Voir les idées</button>
+        <button class="secondary" data-scroll="#planner">Ajouter un lieu</button>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="dashboard" id="stats">
+      <article class="stat"><span id="stat-total">0</span><small>lieux</small></article>
+      <article class="stat"><span id="stat-wishlist">0</span><small>wishlist</small></article>
+      <article class="stat"><span id="stat-visited">0</span><small>visités</small></article>
+      <article class="stat"><span id="stat-dog">0</span><small>avec chien</small></article>
+    </section>
+
+    <section class="panel filters-panel">
+      <div>
+        <p class="section-kicker">Filtres</p>
+        <h2>Choisir selon l'énergie du jour</h2>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="search-row">
+        <input id="search" type="search" placeholder="Rechercher : Beauval, japonais, château, pluie…" />
+        <select id="sort">
+          <option value="theme">Classer par thème</option>
+          <option value="score">Trier par note estimée</option>
+          <option value="time">Trier par trajet</option>
+          <option value="photo">Trier par potentiel photo</option>
+          <option value="kid4">Trier par intérêt 4 ans</option>
+          <option value="preteen">Trier par intérêt préado</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="map-layout" id="map-section">
+      <div class="panel map-copy">
+        <p class="section-kicker">Carte Google Maps</p>
+        <h2>Depuis Lagny-sur-Marne</h2>
+        <p>Choisis un lieu pour afficher la carte Google Maps, puis ouvre l’itinéraire voiture en un clic. Sans clé API, la carte affiche un lieu à la fois, mais tous les liens d’itinéraire sont prêts.</p>
+        <div class="map-place-list" id="map-place-list"></div>
+      </div>
+      <div class="google-map-card">
+        <iframe id="google-map" title="Carte Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-actions">
+          <strong id="map-current-title">Lagny-sur-Marne</strong>
+          <a id="map-directions" class="primary-link" target="_blank" rel="noreferrer">Ouvrir l’itinéraire</a>
+          <a id="map-search" class="secondary-link" target="_blank" rel="noreferrer">Voir dans Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards-header">
+      <div>
+        <p class="section-kicker">Carnet</p>
+        <h2>Sorties classées par thème</h2>
+      </div>
+      <p id="result-count"></p>
+    </section>
+
+    <section id="cards" class="theme-sections"></section>
+
+    <section class="panel planner" id="planner">
+      <div>
+        <p class="section-kicker">Ajout rapide</p>
+        <h2>Ajouter une idée d'escapade</h2>
+        <p>Les ajouts sont enregistrés dans ce navigateur. Tu peux exporter tes données pour les sauvegarder.</p>
+      </div>
+      <form id="add-form" class="add-form">
+        <input name="name" placeholder="Nom du lieu" required>
+        <input name="city" placeholder="Ville / région" required>
+        <input name="time" placeholder="Trajet ex : 45 min" required>
+        <input name="distance" placeholder="Distance ex : 38 km" required>
+        <select name="category">
+          <option value="balade">Balade / village</option>
+          <option value="zoo">Zoo / parc animalier</option>
+          <option value="attraction">Parc d'attraction</option>
+          <option value="indoor">Sortie indoor</option>
+          <option value="jardin">Château / jardin</option>
+          <option value="musee">Musée / culture</option>
+          <option value="resto">Resto / goûter</option>
+        </select>
+        <button class="primary" type="submit">Ajouter</button>
+      </form>
+      <div class="data-actions">
+        <button id="export-data" class="secondary">Exporter mes notes</button>
+        <label class="import-label">Importer<input id="import-data" type="file" accept="application/json"></label>
+        <button id="reset-data" class="ghost">Réinitialiser mes avis</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fait pour les journées “on ne part pas vraiment… mais on se crée des souvenirs”. 🌸</p>
+  </footer>
+
+  <template id="card-template">
+    <article class="card">
+      <div class="card-cover"><span class="emoji"></span><span class="badge"></span></div>
+      <div class="card-body">
+        <div class="card-title-row">
+          <div><h3></h3><p class="place"></p></div>
+          <button class="heart" title="Ajouter à la wishlist">♡</button>
+        </div>
+        <p class="desc"></p>
+        <div class="tags"></div>
+        <div class="meta-grid"></div>
+        <div class="ratings"></div>
+        <label class="visited-line"><input type="checkbox" class="visited"> Déjà visité</label>
+        <label class="comment-label">Mes commentaires / idées resto / souvenir
+          <textarea class="comment" placeholder="Ex : y retourner en automne, réserver le resto, prévoir poussette, spot photo…"></textarea>
+        </label>
+        <div class="card-actions">
+          <button class="show-map">Voir sur la carte</button>
+          <a class="maps" target="_blank" rel="noreferrer">Itinéraire</a>
+          <button class="save-comment">Sauvegarder</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <g fill="#ffdbe7" stroke="#e48aa7" stroke-width="4">
+    <path d="M50 15 C60 5,75 10,78 25 C90 25,95 40,85 50 C95 60,90 75,78 75 C75 90,60 95,50 85 C40 95,25 90,22 75 C10 75,5 60,15 50 C5 40,10 25,22 25 C25 10,40 5,50 15 Z"></path>
+  </g>
+  <circle cx="50" cy="50" r="8" fill="#ffd166"></circle>
+  <g stroke="#f4b942" stroke-width="2" stroke-linecap="round">
+    <line x1="50" y1="42" x2="50" y2="28"></line>
+    <line x1="58" y1="46" x2="68" y2="36"></line>
+    <line x1="58" y1="54" x2="72" y2="58"></line>
+    <line x1="50" y1="58" x2="50" y2="72"></line>
+    <line x1="42" y1="54" x2="28" y2="58"></line>
+    <line x1="42" y1="46" x2="32" y2="36"></line>
+    <circle cx="50" cy="28" r="2"></circle>
+    <circle cx="68" cy="36" r="2"></circle>
+    <circle cx="72" cy="58" r="2"></circle>
+    <circle cx="50" cy="72" r="2"></circle>
+    <circle cx="28" cy="58" r="2"></circle>
+    <circle cx="32" cy="36" r="2"></circle>
+  </g>
+</svg>
