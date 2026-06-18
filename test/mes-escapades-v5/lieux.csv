@@ -1,0 +1,29 @@
+id;nom;categorie;statut;ville;region;pays;temps_depuis_lagny;distance_km;chien;age_4_ans;preado;photo;japon;budget;fatigue;envie_retour;note_perso;site_officiel;commentaire
+beauval;ZooParc de Beauval;Zoo;Visité;Saint-Aignan;Centre-Val de Loire;France;150;205;1;5;5;5;2;2;5;5;9.5;https://www.zoobeauval.com;Valeur sûre déjà visitée de nombreuses fois. Plan B si Pairi Daiza impossible.
+pairidaiza;Pairi Daiza;Zoo;Wishlist;Brugelette;Wallonie;Belgique;195;260;0;5;5;5;4;1;5;5;9.8;https://www.pairidaiza.eu;Objectif numéro 1 dès que les filles ont leurs papiers.
+felins;Parc des Félins;Zoo;Visité;Lumigny-Nesles-Ormeaux;Île-de-France;France;35;32;0;4;4;5;0;3;2;4;8.8;https://www.parcdesfelins.fr;Déjà testé et validé.
+terresinges;Terre de Singes;Zoo;Wishlist;Lumigny-Nesles-Ormeaux;Île-de-France;France;35;32;0;4;3;3;0;3;2;3;8.1;https://www.parcdesfelins.fr;À coupler avec le Parc des Félins.
+parrotworld;Parrot World;Zoo;Visité;Crécy-la-Chapelle;Île-de-France;France;25;18;0;5;4;4;0;3;2;4;8.6;https://www.parrotworld.fr;Déjà visité.
+thoiry;ZooSafari de Thoiry;Zoo;Wishlist;Thoiry;Île-de-France;France;80;88;0;5;4;4;0;2;3;4;8.4;https://www.thoiry.net;Safari en voiture intéressant pour les enfants.
+bioparc;Bioparc de Doué-la-Fontaine;Zoo;Wishlist;Doué-en-Anjou;Pays de la Loire;France;210;310;0;4;5;5;0;2;5;4;9.1;https://www.bioparc-zoo.fr;Très beau souvenir mais plutôt mini séjour.
+disneyland;Disneyland Paris;Parc attraction;A refaire;Chessy;Île-de-France;France;15;10;0;5;5;5;1;2;4;5;9.4;https://www.disneylandparis.com;Parade avec la petite cet été.
+disneyadventure;Disney Adventure World;Parc attraction;Wishlist;Chessy;Île-de-France;France;15;10;0;5;4;5;1;2;4;5;9.0;https://www.disneylandparis.com;Objectif Reine des Neiges.
+futuroscope;Futuroscope;Parc attraction;A refaire;Chasseneuil-du-Poitou;Nouvelle-Aquitaine;France;200;330;0;5;5;5;1;4;4;5;9.5;https://www.futuroscope.com;Entrée gratuite pour moi. Petite gratuite jusqu'à 5 ans. -10% accompagnants.
+aquascope;Aquascope;Parc aquatique;A refaire;Chasseneuil-du-Poitou;Nouvelle-Aquitaine;France;200;330;0;5;5;5;0;3;2;5;9.7;https://www.futuroscope.com;Énorme coup de cœur familial.
+europapark;Europa-Park;Parc attraction;Wishlist;Rust;Bade-Wurtemberg;Allemagne;330;550;0;4;5;5;1;2;5;5;9.8;https://www.europapark.de;Projet 2027 après obtention des papiers d'identité.
+palomano;Palomano;Indoor;Wishlist;Chanteloup-en-Brie;Île-de-France;France;12;8;0;5;2;3;0;3;1;3;7.6;https://www.palomano.com;Sortie pluie ou canicule.
+jumpcity;Jump City;Indoor;Visité;Marne-la-Vallée;Île-de-France;France;18;15;0;4;4;2;0;3;2;4;7.8;;Déjà testé.
+citesciences;Cité des Sciences;Musée;Wishlist;Paris;Île-de-France;France;55;38;0;4;5;3;0;3;2;4;8.7;https://www.cite-sciences.fr;Parfait pluie et vacances.
+aquariumparis;Aquarium de Paris;Musée;Wishlist;Paris;Île-de-France;France;65;51;0;5;3;3;1;2;2;3;8.0;https://www.cineaqua.com;Bonne sortie petite.
+mnhn;MNHN Jardin des Plantes;Musée;Visité;Paris;Île-de-France;France;55;35;0;5;5;4;2;3;3;5;8.9;https://www.mnhn.fr;À refaire avec resto japonais.
+vaux;Château de Vaux-le-Vicomte;Château;Wishlist;Maincy;Île-de-France;France;45;43;3;4;4;5;1;3;3;5;9.0;https://vaux-le-vicomte.com;Très haut dans la wishlist.
+chantilly;Château de Chantilly;Château;Wishlist;Chantilly;Hauts-de-France;France;65;70;2;4;4;5;1;2;3;4;8.8;https://chateaudechantilly.fr;À découvrir.
+fontainebleau;Château de Fontainebleau;Château;Wishlist;Fontainebleau;Île-de-France;France;70;72;3;3;4;4;1;3;3;4;8.5;https://www.chateaudefontainebleau.fr;À coupler avec forêt.
+pierrefonds;Château de Pierrefonds;Château;Wishlist;Pierrefonds;Hauts-de-France;France;85;100;1;5;5;5;0;3;3;4;8.9;https://www.chateau-pierrefonds.fr;Château de conte de fées.
+albertkahn;Musée Albert-Kahn;Jardin japonais;Wishlist;Boulogne-Billancourt;Île-de-France;France;65;49;0;3;4;5;5;4;2;5;9.3;https://albert-kahn.hauts-de-seine.fr;Très compatible avec mes goûts.
+maulevrier;Parc Oriental de Maulévrier;Jardin japonais;Wishlist;Maulévrier;Pays de la Loire;France;225;350;1;3;5;5;5;3;5;5;9.8;https://www.parc-oriental.com;Rêve absolu jardin japonais.
+moret;Moret-sur-Loing;Balade;Wishlist;Moret-sur-Loing;Île-de-France;France;65;70;5;4;4;5;1;5;2;5;9.0;;Parfait avec la chienne.
+crecy;Crécy-la-Chapelle;Balade;Wishlist;Crécy-la-Chapelle;Île-de-France;France;20;16;5;4;3;4;0;5;1;4;8.4;;Venise briarde.
+barbizon;Barbizon;Balade;Wishlist;Barbizon;Île-de-France;France;60;63;5;3;4;5;0;4;2;4;8.3;;Village des peintres.
+provins;Provins;Balade;Visité;Provins;Île-de-France;France;65;75;4;4;4;5;0;3;3;4;8.7;https://provins.net;Déjà visité.
+fontainebleauforet;Forêt de Fontainebleau;Balade;Wishlist;Fontainebleau;Île-de-France;France;65;70;5;4;4;5;1;5;3;5;8.9;;Sortie idéale avec la shiba.

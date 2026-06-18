@@ -1,0 +1,6 @@
+id;lieu;nom;type;statut;note;prix_moyen;reservation;enfants;ambiance;rapport_qualite_prix;site_officiel;commentaire
+beauval_tegallalang;Beauval;Le Tegallalang;Buffet hotel;Teste;9.5;Inclus demi-pension;Oui;5;5;5;https://www.zoobeauval.com;Buffet à volonté des Jardins de Beauval. Testé et validé plusieurs fois. Petit-déjeuner excellent. Très pratique pour éviter de ressortir le soir. 
+beauval_sichuan;Beauval;Le Sichuan;Buffet hotel;Teste;9.5;Inclus demi-pension;Oui;5;5;5;https://www.zoobeauval.com;Restaurant des Pagodes de Beauval. Ambiance asiatique très agréable. Buffet à volonté. Testé et validé plusieurs fois. Petit-déjeuner excellent.
+space_loop;Futuroscope;Space Loop;Restaurant à thème;Teste;9.5;30;Oui;5;5;4;https://www.futuroscope.com;Testé en 2025. Les plats arrivent sur des rails comme des montagnes russes. Les filles ont adoré. Expérience à faire au moins une fois.
+matsuri;Paris;Matsuri;Japonais;Wishlist;9.0;30;Oui;5;5;4;;Sushis sur tapis roulant. À tester après le MNHN.
+goma;Paris;Goma;Japonais;Teste;10;50;Oui;5;5;5;;Déjà testé et adoré.

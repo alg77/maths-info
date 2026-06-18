@@ -1,0 +1,5 @@
+date_releve,date_sejour,lieu,prestation,nom_option,prix,nb_personnes,petit_dej,annulation,commentaire
+2026-06-16,2026-07-17,Futuroscope,Hôtel,Kyriad,154,4,Oui,Oui,testé élèves
+2026-06-16,2026-07-17,Futuroscope,Hôtel,Ecolodgee,252,4,Oui,Oui,testé famille
+2026-06-16,2026-07-17,Futuroscope,Hôtel,Novotel,202.5,4,Oui,Oui,
+2026-06-16,2026-07-17,Futuroscope,Hôtel,Station Cosmos,375,4,Oui,Oui,

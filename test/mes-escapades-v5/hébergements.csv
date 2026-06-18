@@ -1,0 +1,13 @@
+id,lieu,nom,type,statut,restaurant_associe,distance_parc_min,distance_parc_pied,note_qualite_prix,note_famille,note_immersion,note_petit_dej,note_globale,prix_reference,site_officiel,commentaire
+futu_kyriad,Futuroscope,Kyriad Futuroscope,Hotel,Teste,,2,15 min,5,4,2,4,8.5,154,https://www.futuroscope.com,Déjà testé avec les élèves. Excellent rapport qualité/prix. Très pratique à pied.
+futu_ecolodgee,Futuroscope,Ecolodgee,Hotel,Teste,,0,0 min,4,5,5,4,9.5,252,https://www.futuroscope.com,Testé en famille pour notre anniversaire. Très bon souvenir.
+futu_novotel,Futuroscope,Novotel Futuroscope,Hotel,Wishlist,,2,10 min,4,4,3,4,8.5,202.5,https://all.accor.com,À comparer avec le Kyriad.
+futu_cosmos,Futuroscope,Station Cosmos,Hotel,Wishlist,space_loop,0,0 min,2,5,5,5,9.8,375,https://www.futuroscope.com,Grosse envie de tester mais tarif élevé.
+beauval_pagodes,Beauval,Les Pagodes de Beauval,Hotel,Teste,beauval_sichuan,0,0 min,4,5,5,4,9.6,300,https://www.zoobeauval.com,Déjà testé plusieurs fois. Ambiance asiatique très appréciée.
+beauval_jardins,Beauval,Les Jardins de Beauval,Hotel,Teste,beauval_tegallalang,0,0 min,5,5,4,4,9.4,250,https://www.zoobeauval.com,Très bon rapport qualité/prix pour Beauval.
+beauval_hauts,Beauval,Les Hauts de Beauval,Residence,Wishlist,,3,15 min,5,5,3,3,8.8,220,https://www.zoobeauval.com,Intéressant pour famille avec cuisine.
+pairi_hotel,Pairi Daiza,Pairi Daiza Resort,Hotel,Wishlist,,0,0 min,3,5,5,5,9.8,500,https://www.pairidaiza.eu,Rêve absolu mais budget conséquent.
+europa_bellrock,Europa Park,Bell Rock,Hotel,Wishlist,,0,0 min,3,5,5,5,9.8,450,https://www.europapark.de,"Thème Nouvelle-Angleterre, très réputé."
+europa_colosseo,Europa Park,Colosseo,Hotel,Wishlist,,0,0 min,4,5,5,5,9.7,380,https://www.europapark.de,Souvent considéré comme le meilleur compromis.
+europa_castillo,Europa Park,Castillo Alcazar,Hotel,Wishlist,,0,0 min,4,5,5,4,9.4,320,https://www.europapark.de,Très apprécié des enfants.
+europa_camp,Europa Park,Camp Resort,Hotel,Wishlist,,2,10 min,5,4,4,3,8.8,180,https://www.europapark.de,Version plus économique.
