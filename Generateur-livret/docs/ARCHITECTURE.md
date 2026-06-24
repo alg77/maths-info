@@ -68,6 +68,13 @@ du format des chapitres.
 
 Fusionne des PDF A4 et produit les faces A3 dans l'ordre d'un cahier piqué.
 
+### `styles/tokens.css`
+
+La palette officielle de Mme Le Guern est définie une seule fois dans ce
+fichier. Elle est injectée dans les rendus web, PDF et dans le sélecteur.
+Les prochaines extractions déplaceront progressivement les règles de mise en
+page à côté de ces variables.
+
 ## Règles de dépendance
 
 - le cœur `livret/` ne doit pas importer WeasyPrint ;
@@ -79,7 +86,6 @@ Fusionne des PDF A4 et produit les faces A3 dans l'ordre d'un cahier piqué.
 
 ## Étapes suivantes
 
-1. Sortir le CSS et les modèles HTML des chaînes Python.
-2. Centraliser la charte graphique dans des variables CSS.
-3. Migrer progressivement `sources/*.txt` vers des chapitres `.md`.
-4. Ajouter des tests visuels de référence pour les PDF.
+1. Sortir le reste du CSS et les modèles HTML des chaînes Python.
+2. Migrer progressivement `sources/*.txt` vers des chapitres `.md`.
+3. Ajouter des tests visuels de référence pour les PDF.

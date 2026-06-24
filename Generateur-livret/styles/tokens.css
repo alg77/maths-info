@@ -1,0 +1,49 @@
+/*
+ * Variables officielles de la charte graphique Mme Le Guern.
+ * Ce fichier ne contient aucune règle de mise en page : uniquement des choix
+ * graphiques partagés entre l'impression et le web.
+ */
+:root {
+  --ink: #4a4458;
+  --ink-soft: #6f6780;
+  --title-ink: #5b4a63;
+  --page-background: #ffffff;
+  --line: #ece2f0;
+  --shadow-mauve: #c9a9e014;
+
+  --accent-rose: #c06a8e;
+  --page-number: #cdb4e0;
+  --fill-border: #d9c4e6;
+  --difficulty: #e3a93f;
+
+  --remember-background: #f3fbf6;
+  --remember-border: #c7ebd7;
+  --remember-text: #2f6f53;
+
+  --challenge-background: #fff5e0;
+  --challenge-background-end: #fdeede;
+  --challenge-border: #f3d79a;
+  --challenge-text: #c98a1e;
+
+  --theme-violet: #c9a9e0;
+  --theme-violet-dark: #7d54a3;
+  --theme-peach: #f3b59a;
+  --theme-peach-dark: #c2693f;
+  --theme-mint: #8fd3b3;
+  --theme-mint-dark: #3f8d6a;
+  --theme-blue: #9cc7e6;
+  --theme-blue-dark: #3f78a3;
+  --theme-pink: #f0a9bf;
+  --theme-pink-dark: #c0537a;
+  --theme-yellow: #f0cf8e;
+  --theme-yellow-dark: #bd8b27;
+  --theme-turquoise: #8fcfd3;
+  --theme-turquoise-dark: #2f8a8f;
+  --theme-lavender: #b3b0e0;
+  --theme-lavender-dark: #5d57a8;
+  --theme-coral: #ef9a8d;
+  --theme-coral-dark: #bf4b39;
+  --theme-caramel: #d9b08a;
+  --theme-caramel-dark: #9a6233;
+}
+

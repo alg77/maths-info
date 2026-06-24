@@ -17,6 +17,7 @@ from pathlib import Path
 from livret import (
     SourceError,
     blank_width,
+    design_tokens,
     inline,
     lines_html,
     load_source,
@@ -357,6 +358,7 @@ def cover_vacances_css():
 def build_print_css(police, taille, interligne, couleur):
     fam = FONT_STACK.get(police, FONT_STACK["atkinson"]); nb = (couleur == "nb")
     return f"""{font_faces_file()}
+{design_tokens()}
 @page {{ size:A4 portrait; margin:14mm 15mm; }}
 * {{ box-sizing:border-box; }}
 body {{ font-family:{fam}; font-size:{taille}pt; line-height:{interligne}; color:#1a1a1a; margin:0; }}
@@ -366,6 +368,7 @@ body {{ font-family:{fam}; font-size:{taille}pt; line-height:{interligne}; color
 def build_web_css(police):
     fam = FONT_STACK.get(police, FONT_STACK["atkinson"])
     return f"""{font_faces_file()}
+{design_tokens()}
 :root {{ --rose:#F6E9EE; --lilas:#ECE6F6; }}
 * {{ box-sizing:border-box; }}
 body {{ font-family:{fam}; font-size:16px; line-height:1.6; color:#2a2a33; margin:0; padding:24px 12px;
@@ -399,7 +402,14 @@ def build_builder(blocks, outdir, stem, cover_meta_master):
                 f'{render_body(ch["body"], "inter")}</div>')
         data.append({"code": code, "title": title, "niveau": niveau or cover.get("niveau", "4ᵉ"),
                      "theme": theme, "comps": comps, "html": frag})
-    css = (font_faces_b64() + bandeau_css(False) + cover_css(False) + cover_vacances_css() + blocks_css(False, '#c0392b'))
+    css = (
+        font_faces_b64()
+        + design_tokens()
+        + bandeau_css(False)
+        + cover_css(False)
+        + cover_vacances_css()
+        + blocks_css(False, '#c0392b')
+    )
     tmpl = BUILDER_TMPL
     repl = {
         "__CSS__": css,

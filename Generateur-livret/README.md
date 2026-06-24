@@ -127,6 +127,7 @@ inclusions et l'ordre d'imposition A3.
 - `sources/` : chapitres déjà convertis ;
 - `md/` : exports Markdown historiques à migrer ;
 - `assets/` et `fonts/` : ressources graphiques ;
+- `styles/tokens.css` : palette centrale de la charte Mme Le Guern ;
 - `tests/` : filet de sécurité avant refonte ;
 - `dist/` : livrables générés, non versionnés.
 
