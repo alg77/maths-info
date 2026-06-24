@@ -576,7 +576,7 @@ def build_builder(blocks, outdir, stem, cover_meta_master):
         tmpl = tmpl.replace(k, v)
     out = outdir / f"{stem}__selecteur.html"
     out.write_text(tmpl, encoding="utf-8")
-    print(f"  ✓ {out.name}")
+    print(f"  [OK] {out.name}")
     return out
 
 BUILDER_TMPL = r"""<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
@@ -801,11 +801,11 @@ def main():
         suffix = f"{m}_{args.police}_{int(args.taille)}pt_{args.couleur}"
         pdf = outdir / f"{stem}__{suffix}.pdf"
         HTML(string=html_doc(body, build_print_css(args.police, args.taille, args.interligne, args.couleur))).write_pdf(str(pdf))
-        print(f"  ✓ {pdf.name}")
+        print(f"  [OK] {pdf.name}")
         if args.html:
             webfile = outdir / f"{stem}__{m}_web.html"
             webfile.write_text(html_doc(body, build_web_css(args.police), web=True), encoding="utf-8")
-            print(f"  ✓ {webfile.name}")
+            print(f"  [OK] {webfile.name}")
 
 if __name__ == "__main__":
     main()
