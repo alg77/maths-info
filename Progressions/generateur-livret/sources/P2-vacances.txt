@@ -1,0 +1,18 @@
+:::couverture
+style: vacances
+illustration: panda
+titre: Cahier de cours
+matiere: Mathématiques
+niveau: 4ᵉ
+periode: Période 2
+annee: 2025 – 2026
+prof: Mme Le Guern
+chapitres:
+- N3 | Calcul littéral 1
+- G2 | Théorème de Pythagore
+- N4 | Résolution d'équations
+:::
+
+@include N3.txt
+@include G2.txt
+@include N4.txt

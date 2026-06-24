@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cahiers de vacances - Maths & logique</title>
+  <style>
+    :root{
+      --ink:#51445f; --muted:#8d8198; --cream:#fffaf4; --rose:#f7d7df; --pink:#e96c9b;
+      --lilac:#d8c4f0; --blue:#cde6f4; --mint:#d9f1e8; --gold:#f1c966; --card:#ffffffcc;
+      --shadow:0 16px 40px rgba(81,68,95,.14); --radius:28px;
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:
+      radial-gradient(circle at 10% 10%, #ffe0eb 0, transparent 28%),
+      radial-gradient(circle at 85% 0%, #e5d7ff 0, transparent 32%),
+      radial-gradient(circle at 30% 90%, #d9f1e8 0, transparent 34%), var(--cream);}
+    .wrap{max-width:1180px;margin:auto;padding:34px 20px 48px}.hero{position:relative;overflow:hidden;border-radius:36px;padding:42px;background:linear-gradient(135deg,#fff7fb 0%,#fffaf4 45%,#f1fbf7 100%);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.8)}
+    h1{font-size:clamp(2.1rem,5vw,4.6rem);line-height:.95;margin:.15em 0;color:var(--ink);letter-spacing:-.04em}.kicker{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#9b79c6}.sub{font-size:1.2rem;max-width:760px;color:#6b5b78}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.chip{background:white;border:1px solid #eadff5;padding:9px 14px;border-radius:999px;font-weight:700;color:#725d85}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:26px}@media(max-width:780px){.grid{grid-template-columns:1fr}.hero{padding:28px} h1{font-size:2.4rem}}
+    .card{background:var(--card);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px;min-height:340px}.card h2{font-size:2rem;margin:0}.tag{display:inline-flex;width:max-content;border-radius:999px;padding:6px 12px;font-weight:800;font-size:.9rem}.tag.a{background:#f5e7ff;color:#7d55a6}.tag.b{background:#ffe4ec;color:#bb4770}.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}.meta div{background:#fff;border:1px solid #f0e8f5;border-radius:18px;padding:12px}.meta b{display:block;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto}.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:16px;padding:12px 16px;font-weight:900;border:1px solid transparent}.btn.primary{background:var(--ink);color:#fff}.btn.soft{background:#fff;color:var(--ink);border-color:#eadff5}.modules{font-size:.98rem;line-height:1.7;color:#655670}.section{margin-top:24px;background:#ffffffb8;border:1px solid #f0e8f5;border-radius:28px;padding:24px;box-shadow:0 10px 24px rgba(81,68,95,.08)}.section h3{font-size:1.5rem;margin:0 0 12px}.toolgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}@media(max-width:900px){.toolgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.toolgrid{grid-template-columns:1fr}.meta{grid-template-columns:1fr}}
+    .tool{background:#fff;border:1px solid #eee4f5;border-radius:20px;padding:16px}.tool strong{display:block;margin-bottom:4px}.footer{margin-top:24px;text-align:center;color:var(--muted);font-size:.95rem}.sparkle{position:absolute;right:32px;top:26px;font-size:2.4rem}.note{border-left:6px solid var(--gold);background:#fff8df;border-radius:18px;padding:16px;margin-top:16px}.small{font-size:.92rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="sparkle">✦</div>
+      <div class="kicker">Ressources élèves</div>
+      <h1>Cahiers de vacances<br>Maths & logique</h1>
+      <p class="sub">Deux livrets courts, doux et imprimables pour entretenir les automatismes pendant l'été, avec QR codes vers MathALÉA et outils numériques.</p>
+      <div class="chips"><span class="chip">PDF imprimable</span><span class="chip">Format livret</span><span class="chip">QR codes</span><span class="chip">Corrigés inclus</span></div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <span class="tag a">Cycle 3 → Cycle 4</span>
+        <h2>6e → 5e</h2>
+        <p>10 modules pour consolider les bases : décimaux, opérations, fractions, proportionnalité, grandeurs, géométrie, symétrie, angles et Scratch.</p>
+        <div class="meta"><div><b>Pages</b>18 actuellement</div><div><b>Usage</b>Volontaires + Classroom</div></div>
+        <div class="modules">Notions : nombres entiers & décimaux · quatre opérations · fractions · proportionnalité & pourcentages · longueurs, masses & durées · périmètres & aires · droites · symétrie axiale · angles · Scratch.</div>
+        <div class="actions"><a class="btn primary" href="Cahier_vacances_6e-5e-1.pdf">Télécharger le PDF</a><a class="btn soft" href="cahier_vacances_6e_vers_5e_v2.tex">Source LaTeX</a></div>
+      </article>
+
+      <article class="card">
+        <span class="tag b">Cycle 4</span>
+        <h2>4e → 3e</h2>
+        <p>Un livret de réactivation pour arriver en 3e avec des bases solides, sans anticiper Thalès si celui-ci est introduit ensuite.</p>
+        <div class="meta"><div><b>Pages</b>17 à 20 selon version</div><div><b>Usage</b>10 exemplaires + Classroom</div></div>
+        <div class="modules">Notions : relatifs & fractions · puissances · calcul littéral · équations · Pythagore · proportionnalité & pourcentages · parallélogrammes · solides & volumes · statistiques · Scratch.</div>
+        <div class="actions"><a class="btn primary" href="Cahier_vacances_4e-3e-11.pdf">Télécharger le PDF</a></div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h3>Boîte à outils commune</h3>
+      <div class="toolgrid">
+        <div class="tool"><strong>MathALÉA</strong><span class="small">Exercices auto-corrigés et renouvelables.</span></div>
+        <div class="tool"><strong>Course aux nombres</strong><span class="small">Automatismes et calcul mental.</span></div>
+        <div class="tool"><strong>Multimaths</strong><span class="small">Applications gratuites de C. Auclair.</span></div>
+        <div class="tool"><strong>Scratch / Castor</strong><span class="small">Logique, algorithmique et création.</span></div>
+      </div>
+      <div class="note"><strong>À prévoir :</strong> ajouter Drôles de Maths dans le cahier 6e → 5e comme préparation douce au concours national de logique proposé en 5e.</div>
+    </section>
+
+    <section class="section">
+      <h3>Documents enseignants</h3>
+      <p>Une synthèse imprimable regroupe les objectifs, notions par module, modalités de diffusion et pistes d'amélioration.</p>
+      <div class="actions"><a class="btn soft" href="recap_enseignant_cahiers_vacances.pdf">Télécharger le récap enseignant</a></div>
+    </section>
+
+    <p class="footer">Mme Le Guern · Cahiers de vacances Maths & logique · 2026</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Étude de marché PC gamer/création — Iris</title>
+<style>
+:root {
+  --bg:#fff7fb;--card:#ffffff;--ink:#27222a;--muted:#716574;--line:#ead8e5;
+  --pink:#f6a9ca;--violet:#b99af4;--sage:#9ccdb9;--cream:#fff1c9;--bad:#ffd6d6;
+  --ok:#dff8ee;--warn:#fff1c9;--no:#ffe0e0;--blue:#e9f0ff;
+  --shadow:0 12px 30px rgba(82,45,78,.12);--radius:22px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at top left,#ffe3f2 0,#fff7fb 35%,#f5f0ff 100%);color:var(--ink)}
+header{padding:42px 22px 24px;text-align:center}
+h1{margin:0;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.04em}
+h2{letter-spacing:-.025em}
+a{color:#6b3ecb;font-weight:800;text-decoration:none}
+.subtitle{max-width:960px;margin:14px auto 0;color:var(--muted);font-size:1.05rem;line-height:1.6}
+.wrap{max-width:1280px;margin:auto;padding:0 18px 60px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin:16px 0 22px}
+.panel,.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+.panel{padding:22px;margin-top:20px}
+.winner{background:linear-gradient(135deg,#fff,#ffe5f2);border:2px solid #f7b3d0}
+.badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:white;border-radius:999px;padding:8px 12px;font-size:.9rem;margin:4px}
+.score{font-size:3.4rem;font-weight:850;letter-spacing:-.06em;line-height:1}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+button{border:0;border-radius:999px;padding:11px 15px;background:white;box-shadow:0 5px 14px rgba(82,45,78,.08);cursor:pointer;color:var(--ink);font-weight:700}
+button.active{background:linear-gradient(135deg,var(--pink),var(--violet));color:white}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{padding:18px;display:flex;flex-direction:column;gap:12px}
+.card h2{margin:0;font-size:1.16rem}
+.price{font-size:1.35rem;font-weight:850}
+.tag,.pill{width:max-content;border-radius:999px;padding:6px 10px;font-size:.82rem;font-weight:800;background:#f1eaff}
+.good{background:var(--ok)}.warn{background:var(--warn)}.no{background:var(--no)}.neutral{background:#f1eaff}.blue{background:var(--blue)}
+.specs{display:grid;gap:8px}
+.spec{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.spec span:first-child{color:var(--muted)}.spec b{text-align:right}
+.note{line-height:1.55;color:#514755}
+.bar{height:10px;background:#f2e7f1;border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--violet));border-radius:999px}
+.links{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.links a{background:#f4edff;border-radius:999px;padding:8px 10px}
+.compare{overflow:auto}
+table{width:100%;border-collapse:collapse;background:white;border-radius:var(--radius);overflow:hidden}
+th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;vertical-align:top}
+th{background:#fbecf5;position:sticky;top:0}
+.small{font-size:.86rem;color:var(--muted)}
+.kpi,.checklist{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.checklist{grid-template-columns:repeat(2,minmax(0,1fr))}
+.kpi div,.check{background:white;border:1px solid var(--line);border-radius:18px;padding:14px;line-height:1.45}
+.rank{font-size:1.1rem;font-weight:900}
+footer{font-size:.86rem;color:var(--muted);line-height:1.5;margin-top:18px}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.hero,.grid,.kpi,.checklist{grid-template-columns:1fr}.score{font-size:2.8rem}th,td{font-size:.88rem}}
+</style>
+</head>
+<body>
+<header>
+<h1>Étude de marché PC gamer/création ✨</h1>
+<p class="subtitle">Comparatif exploitable pour choisir une jolie tour pour Iris : Roblox Studio maintenant, Blender/Unreal demain, budget cible autour de 1000–1200 € pour la tour optimisée.</p>
+<div>
+<span class="badge">🎯 Budget cible : ~1000–1200 € tour</span>
+<span class="badge">🎮 RTX 5060 minimum idéal</span>
+<span class="badge">💾 SSD 1 To conseillé</span>
+<span class="badge">🧩 Tour standard préférable</span>
+</div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<div class="panel winner">
+<div class="tag good">Favori actuel</div>
+<h2>Infomax Vengeance optimisé</h2>
+<p class="note">Le meilleur équilibre technique actuel si on ajoute le SSD 1 To et la carte mère MSI B760-P WiFi : 1277 € hors Windows, composants propres, vraie tour évolutive, RTX 5060 ASUS, alimentation Corsair. Le Hasaki optimisé reste meilleur en prix pur.</p>
+<div class="score">92/100</div>
+</div>
+<div class="panel">
+<h2>Config minimum à viser</h2>
+<p class="note"><b>CPU :</b> Ryzen 5 5600 / i5-12400F minimum, idéal i5-14400F ou Ryzen 5 7600.<br>
+<b>GPU :</b> RTX 4060 minimum, RTX 5060 / 5060 Ti recommandé.<br>
+<b>RAM :</b> 16 Go suffisent, 32 Go plus tard.<br>
+<b>SSD :</b> 1 To NVMe.<br>
+<b>Carte mère :</b> éviter A520/H610 si possible ; viser B550/B650/B760/B860.<br>
+<b>Alim :</b> 650W de marque connue.</p>
+</div>
+</section>
+
+<section class="panel">
+<h2>Accès rapide aux fiches / configurateurs</h2>
+<div id="quicklinks" class="links"></div>
+</section>
+
+<section class="panel">
+<h2>Grille de lecture</h2>
+<div class="kpi">
+<div><b>DDR4</b><span class="small">Encore OK. Priorité au GPU et au SSD.</span></div>
+<div><b>DDR5</b><span class="small">Plus moderne, bonus mais pas obligatoire.</span></div>
+<div><b>Tour compacte</b><span class="small">Simple mais moins évolutive.</span></div>
+<div><b>Tour ATX/mATX</b><span class="small">Meilleur choix long terme.</span></div>
+</div>
+</section>
+
+<section class="controls">
+<button class="active" data-filter="all">Tout voir</button>
+<button data-filter="favori">Favoris</button>
+<button data-filter="budget">Budget</button>
+<button data-filter="premium">Premium</button>
+<button data-filter="simple">Simple</button>
+<button data-filter="surveillance">À surveiller</button>
+<button data-filter="avoid">À éviter</button>
+</section>
+
+<section class="grid" id="cards"></section>
+
+
+<section class="panel">
+<h2>💶 Synthèse des prix finaux</h2>
+<div class="compare">
+<table>
+<thead><tr><th>Configuration</th><th>Prix de base</th><th>Options conseillées</th><th>Total hors Windows</th><th>Total avec Windows Infomax (+149 €)</th><th>Lecture rapide</th></tr></thead>
+<tbody>
+<tr><td><b>Hasaki optimisé</b></td><td>829 €</td><td>+277 €</td><td><b>1106 €</b></td><td>1255 €</td><td>Meilleur prix optimisé</td></tr>
+<tr><td><b>Vengeance optimisé</b></td><td>1149 €</td><td>+128 €</td><td><b>1277 €</b></td><td>1426 €</td><td>Meilleur équilibre composants</td></tr>
+<tr><td><b>Aether</b></td><td>1199 €</td><td>0 € obligatoire</td><td><b>1199 €</b></td><td>1348 €</td><td>Très puissant, alim à surveiller</td></tr>
+<tr><td><b>MSI Trident</b></td><td>1099,99 €</td><td>0 €</td><td><b>1099,99 €</b></td><td>Windows inclus</td><td>Le plus simple</td></tr>
+<tr><td><b>CSL 5593</b></td><td>639 €</td><td>+119,90 € Windows</td><td><b>758,90 € avec Windows</b></td><td>758,90 €</td><td>Champion budget, composants à vérifier</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note"><b>Note :</b> pour Infomax, Windows 11 Home officiel est compté à +149 €. Si tu achètes une licence séparément, le total réel peut baisser.</p>
+</section>
+
+<section class="panel">
+<h2>Tableau comparatif détaillé</h2>
+<p class="note">Les notes servent à repérer rapidement les compromis : performances Blender/Unreal, confort Roblox, évolutivité, rapport qualité/prix et cohérence globale.</p>
+<div class="compare"><table id="table"></table></div>
+</section>
+
+<section class="panel">
+<h2>Variantes optimisées à retenir</h2>
+<div class="compare">
+<table>
+<thead><tr><th>Modèle</th><th>Options à prendre</th><th>Options à éviter</th><th>Conclusion</th></tr></thead>
+<tbody>
+<tr><td><b>Vengeance</b></td><td>SSD 1 To (+59 €), MSI B760-P WiFi (+69 €) → <b>1277 € hors Windows</b></td><td>i7-12700KF sauf très faible écart, 32 Go non urgent</td><td>Meilleur choix équilibré</td></tr>
+<tr><td><b>Hasaki</b></td><td>Ryzen 7 5700X (+109 €), B550 WiFi (+69 €), SSD 1 To (+99 €) → <b>1106 € hors Windows</b></td><td>SSD 2 To, HDD 4 To, Windows à 149 €, ventilos en plus</td><td>Excellent rapport prix/performance</td></tr>
+<tr><td><b>Aether</b></td><td>Garder SSD 1 To et B760 WiFi → <b>1199 € hors Windows</b></td><td>Surpayer accessoires / écran OLED</td><td>Puissant mais à vérifier côté alim</td></tr>
+<tr><td><b>MSI Trident</b></td><td>Rien</td><td>Upgrade impossible ou limité</td><td>Le plus simple, moins évolutif</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="panel">
+<h2>Accessoires recommandés</h2>
+<div class="checklist">
+<div class="check"><b>Écran conseillé</b>MSI G272QPF E2 27” QHD 180 Hz (+179 €) : meilleur choix raisonnable.</div>
+<div class="check"><b>Écran à éviter ici</b>4K ou OLED trop cher : pas prioritaire pour une RTX 5060 et une ado de 12 ans.</div>
+<div class="check"><b>Clavier conseillé</b>AULA F75 75% mécanique sans fil AZERTY rétroéclairé (+59 €).</div>
+<div class="check"><b>Windows</b>Ne pas prendre forcément la licence à 149 €. Acheter une licence séparément peut coûter moins cher.</div>
+</div>
+</section>
+
+<footer><b>Note :</b> les prix et stocks changent vite. Les prix “prix base + options” indiquent les options à ajouter dans le configurateur quand le prix de base exact n’a pas été recopié.</footer>
+</main>
+
+<script>
+const pcs = [{"name": "Infomax Vengeance — optimisé", "base": "Infomax Vengeance", "seller": "Infomax Paris", "category": "favori", "basePrice": 0, "optionsPrice": 128, "finalPrice": "prix base + 128 €", "cpu": "Intel Core i5-14400F", "gpu": "ASUS Dual RTX 5060 OC 8 Go", "ram": "16 Go DDR4", "ssd": "1 To conseillé (+59 €)", "motherboard": "MSI PRO B760-P WiFi DDR4 conseillé (+69 €)", "psu": "Corsair CX650 80+ Bronze", "case": "Corsair 3500X TG ARGB noir", "windows": "Windows 11 évaluation / licence à acheter à part", "wifi": "Oui avec B760-P WiFi", "screen": "MSI G272QPF E2 conseillé (+179 €)", "keyboard": "AULA F75 conseillé (+59 €)", "evolution": 9, "blender": 8, "unreal": 8, "roblox": 10, "value": 9, "score": 92, "verdict": "Meilleur équilibre", "notes": "À privilégier si le prix final reste autour de 1100–1200 €. Très bonne base évolutive, composants secondaires propres, seule modification indispensable : SSD 1 To.", "url": "https://infomaxparis.com/fr/pc-gamer/31910-395102-pc-gamer-vengeance.html"}, {"name": "Infomax Hasaki — optimisé", "base": "Infomax Hasaki", "seller": "Infomax Paris", "category": "favori", "basePrice": 0, "optionsPrice": 277, "finalPrice": "prix base + 277 €", "cpu": "Ryzen 7 5700X conseillé (+109 €)", "gpu": "ASUS Dual RTX 5060 OC 8 Go", "ram": "16 Go DDR4", "ssd": "WD Blue SN5100 1 To conseillé (+99 €)", "motherboard": "MSI B550M PRO-VDH WiFi conseillé (+69 €)", "psu": "MSI MAG A650BN 80+ Bronze", "case": "Xigmatek Lux M RGB noir", "windows": "Windows 11 évaluation / licence à acheter à part", "wifi": "Oui avec B550M WiFi", "screen": "MSI G272QPF E2 conseillé (+179 €)", "keyboard": "AULA F75 conseillé (+59 €)", "evolution": 8, "blender": 8, "unreal": 8, "roblox": 10, "value": 9, "score": 90, "verdict": "Excellent si moins cher que Vengeance", "notes": "Très bon rapport qualité/prix une fois corrigé. Devient vraiment intéressant si le total reste nettement sous le Vengeance optimisé.", "url": "https://infomaxparis.com/fr/pc-gamer/31982-394697-pc-gamer-hasaki.html"}, {"name": "Infomax Aether", "base": "Infomax Aether", "seller": "Infomax Paris", "category": "premium", "basePrice": 0, "optionsPrice": 0, "finalPrice": "prix à vérifier", "cpu": "Intel Core i7-12700KF", "gpu": "RTX 5060 Ti 8 Go", "ram": "16 Go DDR4", "ssd": "WD Blue SN5100 1 To", "motherboard": "MSI PRO B760-P WiFi DDR4", "psu": "Lytek 750W 80+ Bronze", "case": "Lytek Aquavision RGB blanc", "windows": "Windows 11 évaluation / licence à acheter à part", "wifi": "Oui", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 8, "blender": 9, "unreal": 9, "roblox": 10, "value": 7, "score": 86, "verdict": "Puissant mais alim à surveiller", "notes": "Très séduisant grâce à la RTX 5060 Ti, au SSD 1 To et au WiFi. Point faible : alimentation Lytek moins rassurante que Corsair/MSI/be quiet!.", "url": "https://infomaxparis.com/fr/pc-gamer/5023-394832-pc-gamer-aether.html"}, {"name": "MSI MPG Trident AS AI", "base": "MSI Trident", "seller": "Fnac / Darty", "category": "simple", "basePrice": 1099.99, "optionsPrice": 0, "finalPrice": "1099,99 €", "cpu": "Intel Core Ultra 5", "gpu": "RTX 5060 8 Go", "ram": "16 Go DDR5", "ssd": "1 To", "motherboard": "Format compact/propriétaire", "psu": "Format compact/propriétaire", "case": "MSI Trident compact", "windows": "Windows 11 inclus", "wifi": "Oui", "screen": "MSI G32CQ4 E2 possible", "keyboard": "Clavier à ajouter", "evolution": 6, "blender": 8, "unreal": 8, "roblox": 10, "value": 8, "score": 84, "verdict": "Le plus simple", "notes": "Très rassurant et prêt à l’emploi, mais moins évolutif qu’une vraie tour. À choisir si simplicité/SAV magasin prime sur l’évolutivité.", "url": "https://www.fnac.com/PC-Gaming-MSI-MPG-Trident-AS-AI-2NVL5-040FR-Intel-Core-Ultra-5-16-Go-RAM-1-To-SSD-Nvidia-GeForce-RTX-5060-Noir/a21801511/w-4"}, {"name": "CSL Sprint 5593 + Windows", "base": "CSL Sprint 5593", "seller": "CSL Computer", "category": "budget", "basePrice": 639, "optionsPrice": 119.9, "finalPrice": "758,90 €", "cpu": "Ryzen 5 5500", "gpu": "RTX 5060 8 Go", "ram": "16 Go DDR4", "ssd": "512 Go", "motherboard": "à vérifier", "psu": "à vérifier", "case": "Tour gamer", "windows": "Windows 11 Famille ajouté", "wifi": "à vérifier", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 7, "blender": 8, "unreal": 7, "roblox": 10, "value": 9, "score": 82, "verdict": "Champion du budget", "notes": "Très bon prix pour une RTX 5060, mais il faut vérifier SSD 1 To, alimentation, carte mère et WiFi.", "url": "https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5593-ryzen-5.html"}, {"name": "CSL Sprint 5539 + Windows", "base": "CSL Sprint 5539", "seller": "CSL Computer", "category": "budget", "basePrice": 649, "optionsPrice": 119.9, "finalPrice": "768,90 €", "cpu": "Ryzen 5", "gpu": "à vérifier", "ram": "16 Go", "ssd": "à vérifier", "motherboard": "à vérifier", "psu": "à vérifier", "case": "Tour gamer", "windows": "Windows 11 Famille ajouté", "wifi": "à vérifier", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 7, "blender": 7, "unreal": 7, "roblox": 10, "value": 8, "score": 78, "verdict": "À vérifier", "notes": "À garder dans l’étude seulement si la carte graphique et les composants secondaires sont bons.", "url": "https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5539-ryzen-5.html"}, {"name": "CSL Sprint 5522 + Windows", "base": "CSL Sprint 5522", "seller": "CSL Computer", "category": "budget", "basePrice": 679, "optionsPrice": 119.9, "finalPrice": "798,90 €", "cpu": "Ryzen 5", "gpu": "à vérifier", "ram": "16 Go", "ssd": "à vérifier", "motherboard": "à vérifier", "psu": "à vérifier", "case": "Tour gamer", "windows": "Windows 11 Famille ajouté", "wifi": "à vérifier", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 7, "blender": 7, "unreal": 7, "roblox": 10, "value": 8, "score": 77, "verdict": "À vérifier", "notes": "À comparer surtout si le GPU est RTX 5060 ou supérieur.", "url": "https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5522-ryzen-5.html"}, {"name": "CSL Sprint 5538 + Windows", "base": "CSL Sprint 5538", "seller": "CSL Computer", "category": "budget", "basePrice": 679, "optionsPrice": 119.9, "finalPrice": "798,90 €", "cpu": "Ryzen 5", "gpu": "à vérifier", "ram": "16 Go", "ssd": "à vérifier", "motherboard": "à vérifier", "psu": "à vérifier", "case": "Tour gamer", "windows": "Windows 11 Famille ajouté", "wifi": "à vérifier", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 7, "blender": 7, "unreal": 7, "roblox": 10, "value": 8, "score": 77, "verdict": "À vérifier", "notes": "À comparer avec 5522/5539 selon GPU, SSD et alimentation.", "url": "https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5538-ryzen-5.html"}, {"name": "Infomax Fighter", "base": "Infomax Fighter", "seller": "Infomax Paris", "category": "surveillance", "basePrice": 899, "optionsPrice": 59, "finalPrice": "958 € avec SSD 1 To estimé", "cpu": "Intel Core i5-14400F", "gpu": "RTX 5060 Ti 8 Go", "ram": "16 Go DDR4", "ssd": "480 Go → 1 To conseillé", "motherboard": "ASUS H610M-K D4", "psu": "MSI MAG A650BN 80+ Bronze", "case": "Lytek Aquavision M RGB", "windows": "Windows 11 évaluation", "wifi": "non / à ajouter", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 6, "blender": 9, "unreal": 8, "roblox": 10, "value": 7, "score": 74, "verdict": "Bien mais H610", "notes": "GPU très intéressant, mais carte mère H610 entrée de gamme. À choisir seulement si prix très bon.", "url": "https://infomaxparis.com/fr/pc-gamer/7442-394704-pc-gamer-fighter.html"}, {"name": "Infomax Storm", "base": "Infomax Storm", "seller": "Infomax Paris", "category": "avoid", "basePrice": 949, "optionsPrice": 59, "finalPrice": "1008 € avec SSD 1 To estimé", "cpu": "Ryzen 7 5700X", "gpu": "RTX 5060 Ti 8 Go", "ram": "16 Go DDR4", "ssd": "480 Go → 1 To conseillé", "motherboard": "A520M", "psu": "650W Bronze non précisée", "case": "MSI MAG Forge M100A", "windows": "Windows 11 évaluation", "wifi": "non / à ajouter", "screen": "Écran à ajouter", "keyboard": "Clavier à ajouter", "evolution": 4, "blender": 9, "unreal": 8, "roblox": 10, "value": 5, "score": 62, "verdict": "Déséquilibré", "notes": "CPU/GPU séduisants mais carte mère A520 et alimentation peu rassurante. Pas mon choix.", "url": "https://infomaxparis.com/fr/pc-gamer/35319-394703-pc-gamer-storm.html"}];
+
+function cls(pc){
+  if(pc.category==='avoid') return 'no';
+  if(pc.category==='favori') return 'good';
+  if(pc.category==='budget') return 'blue';
+  return 'warn';
+}
+function statusClass(text){
+  text = (text||'').toLowerCase();
+  if(text.includes('b760')||text.includes('b650')||text.includes('b550')||text.includes('wifi conseillé')||text.includes('msi pro')) return 'good';
+  if(text.includes('a520')||text.includes('h610')||text.includes('propriétaire')) return 'no';
+  if(text.includes('à vérifier')) return 'warn';
+  return 'neutral';
+}
+function ssdClass(text){
+  text = (text||'').toLowerCase();
+  if(text.includes('1 to') && !text.includes('480') && !text.includes('512')) return 'good';
+  if(text.includes('conseillé')) return 'warn';
+  return 'warn';
+}
+function card(pc){
+  return `<article class="card" data-cat="${pc.category}">
+    <div class="tag ${cls(pc)}">${pc.verdict}</div>
+    <h2><a href="${pc.url}" target="_blank" rel="noopener" style="color:inherit">${pc.name}</a></h2>
+    <div class="price">${pc.finalPrice}</div>
+    <div class="bar"><i style="width:${pc.score}%"></i></div>
+    <div class="specs">
+      <div class="spec"><span>CPU</span><b>${pc.cpu}</b></div>
+      <div class="spec"><span>GPU</span><b>${pc.gpu}</b></div>
+      <div class="spec"><span>RAM</span><b>${pc.ram}</b></div>
+      <div class="spec"><span>SSD</span><b>${pc.ssd}</b></div>
+      <div class="spec"><span>CM</span><b>${pc.motherboard}</b></div>
+      <div class="spec"><span>Alim</span><b>${pc.psu}</b></div>
+      <div class="spec"><span>Score</span><b>${pc.score}/100</b></div>
+    </div>
+    <p class="note">${pc.notes}</p>
+    <div class="links"><a href="${pc.url}" target="_blank" rel="noopener">Configurer / voir</a></div>
+  </article>`;
+}
+function render(filter='all'){
+  document.querySelectorAll('.controls button').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
+  const list = pcs.filter(pc=>filter==='all'||pc.category===filter);
+  document.getElementById('cards').innerHTML = list.map(card).join('');
+  document.getElementById('table').innerHTML = `<thead><tr>
+  <th>Score</th><th>Modèle</th><th>Prix final</th><th>CPU</th><th>GPU</th><th>RAM</th><th>SSD</th><th>Carte mère</th><th>Alim</th><th>Windows</th><th>Évol.</th><th>Blender</th><th>Unreal</th><th>Roblox</th><th>Q/P</th><th>Lien</th>
+  </tr></thead><tbody>` + list.map(pc=>`<tr>
+  <td><b>${pc.score}/100</b></td>
+  <td><b>${pc.name}</b><br><span class="small">${pc.seller}</span></td>
+  <td>${pc.finalPrice}</td>
+  <td>${pc.cpu}</td>
+  <td>${pc.gpu}</td>
+  <td>${pc.ram}</td>
+  <td><span class="pill ${ssdClass(pc.ssd)}">${pc.ssd}</span></td>
+  <td><span class="pill ${statusClass(pc.motherboard)}">${pc.motherboard}</span></td>
+  <td>${pc.psu}</td>
+  <td>${pc.windows}</td>
+  <td><b>${pc.evolution}/10</b></td>
+  <td><b>${pc.blender}/10</b></td>
+  <td><b>${pc.unreal}/10</b></td>
+  <td><b>${pc.roblox}/10</b></td>
+  <td><b>${pc.value}/10</b></td>
+  <td><a href="${pc.url}" target="_blank">Configurer</a></td>
+  </tr>`).join('') + '</tbody>';
+}
+function quicklinks(){
+  document.getElementById('quicklinks').innerHTML = pcs.map(pc=>`<a href="${pc.url}" target="_blank" rel="noopener">${pc.base}</a>`).join('');
+}
+document.querySelectorAll('.controls button').forEach(b=>b.addEventListener('click',()=>render(b.dataset.filter)));
+quicklinks(); render();
+</script>
+</body>
+</html>

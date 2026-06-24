@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Étude de marché — PC fixe gamer / création</title>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  OUTIL D'AIDE À LA DÉCISION — ACHAT PC FIXE GAMER / CRÉATION (ado 12 ans)
+  Usages visés : Roblox Studio · Blender · Unreal Engine · Minecraft ·
+                 Steam occasionnel · Python · scolaire général.
+  Budget : tour seule 800–1200 € · pack (tour+écran+clavier) 1200–1500 €.
+
+  ▸ TOUTES LES DONNÉES MODIFIABLES SONT DANS L'OBJET « DATA » (plus bas).
+  ▸ Les prix marqués priceVerified:false et certaines specs (alim, boîtier,
+    carte mère exacte) sont des ESTIMATIONS à confirmer sur le lien marchand.
+  ▸ Les scores sont INDICATIFS : ils suivent l'algorithme commenté dans
+    DATA.scoring et les fonctions score*(). Modifiez les pondérations et les
+    constantes pour ajuster l'outil à vos priorités.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<style>
+/* ===========================================================================
+   PALETTE & TOKENS  — rose poudré · lilas · beige rosé · crème · vert sauge
+   =========================================================================== */
+:root{
+  --cream:#FBF8F4;            /* fond crème / blanc cassé */
+  --paper:#FFFFFF;
+  --rose:#F3D9DD;            --rose-deep:#E29DAC;
+  --lilas:#E0D5F1;           --lilas-deep:#B49BDC;
+  --beige:#EFE3D7;           --beige-deep:#D7B79C;
+  --sauge:#CBDDC6;           --sauge-deep:#8FB08C;
+  --ink:#4A434E;            /* texte principal, prune-gris */
+  --muted:#8B8295;          /* texte secondaire */
+  --line:#EFE6EC;           /* filets */
+  --good:#6FA873;           --warn:#D89A52;     --bad:#D77E8C;
+  --shadow:0 10px 30px rgba(120,100,130,.10);
+  --shadow-sm:0 4px 14px rgba(120,100,130,.08);
+  --radius:22px; --radius-sm:14px;
+  --display:"SF Pro Rounded",ui-rounded,"Hiragino Maru Gothic ProN","Quicksand","Segoe UI",system-ui,sans-serif;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--body);color:var(--ink);line-height:1.55;
+  background:
+    radial-gradient(1200px 600px at 12% -8%, #FAEAEE 0%, transparent 60%),
+    radial-gradient(1100px 620px at 100% 0%, #ECE3F7 0%, transparent 55%),
+    radial-gradient(900px 700px at 50% 120%, #DFEFDB 0%, transparent 60%),
+    var(--cream);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.01em;margin:0}
+a{color:var(--lilas-deep);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--rose-deep)}
+.muted{color:var(--muted)}
+.center{text-align:center}
+
+/* ===========================================================================
+   NAV
+   =========================================================================== */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.3) blur(12px);
+  background:rgba(251,248,244,.78);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:60px;overflow-x:auto}
+.brand{font-family:var(--display);font-weight:700;white-space:nowrap;display:flex;gap:8px;align-items:center}
+.brand .dot{width:18px;height:18px;border-radius:7px;
+  background:linear-gradient(135deg,var(--rose-deep),var(--lilas-deep))}
+.nav a.link{font-size:.86rem;color:var(--muted);white-space:nowrap;font-weight:600}
+.nav a.link:hover{color:var(--ink);text-decoration:none}
+.nav .spacer{flex:1}
+
+/* ===========================================================================
+   HERO + GAGNANT
+   =========================================================================== */
+.hero{padding:46px 0 18px}
+.hero h1{font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.06}
+.hero p.lead{font-size:1.02rem;color:var(--muted);max-width:680px;margin:14px 0 0}
+.winner{margin:26px 0 8px;display:grid;grid-template-columns:1.15fr .85fr;gap:22px;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden}
+.winner .left{padding:30px 30px 26px;background:
+  linear-gradient(135deg,rgba(243,217,221,.5),rgba(224,213,241,.42))}
+.winner .ribbon{display:inline-flex;align-items:center;gap:8px;background:var(--paper);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;
+  font-family:var(--display);font-size:.8rem;box-shadow:var(--shadow-sm)}
+.winner h2{font-size:1.7rem;margin:16px 0 4px}
+.scorebadge{display:inline-flex;align-items:baseline;gap:6px;margin-top:6px}
+.scorebadge .num{font-family:var(--display);font-weight:700;font-size:2.6rem;
+  background:linear-gradient(135deg,var(--rose-deep),var(--lilas-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.scorebadge .den{color:var(--muted);font-weight:700}
+.winner .right{padding:26px 28px}
+.proscons{display:grid;gap:14px}
+.pc-list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
+.pc-list li{display:flex;gap:8px;align-items:flex-start;font-size:.92rem}
+.pc-list .ic{flex:none;width:18px;height:18px;border-radius:6px;display:grid;place-items:center;
+  font-size:.7rem;font-weight:800;margin-top:2px}
+.ic.up{background:rgba(111,168,115,.18);color:var(--good)}
+.ic.down{background:rgba(215,126,140,.16);color:var(--bad)}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* ===========================================================================
+   BOUTONS / CHIPS
+   =========================================================================== */
+.btn{font-family:var(--display);font-weight:700;font-size:.86rem;border-radius:12px;
+  padding:10px 16px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .12s ease,box-shadow .12s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn.primary{background:linear-gradient(135deg,var(--rose-deep),var(--lilas-deep));
+  color:#fff;border:none}
+.btn.ghost{background:transparent;box-shadow:none}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;
+  padding:4px 10px;border-radius:999px;background:var(--sauge);color:#3f5a42}
+.chip.lilas{background:var(--lilas);color:#5a4a78}
+.chip.rose{background:var(--rose);color:#8a4a58}
+.chip.beige{background:var(--beige);color:#7a5a40}
+.chip.warn{background:#FAE6CF;color:#8a5a22}
+
+/* ===========================================================================
+   SECTIONS / CARTES
+   =========================================================================== */
+section{padding:40px 0;scroll-margin-top:70px}
+.sec-head{margin-bottom:22px;max-width:760px}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2rem);margin-top:6px}
+.sec-head p{color:var(--muted);margin:8px 0 0}
+.cards{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:18px;box-shadow:var(--shadow-sm)}
+.card.soft{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.95))}
+.card h3{font-size:1.02rem}
+.card h4{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;padding:3px 0}
+.kv b{font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.crit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.crit{padding:16px;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--paper)}
+.crit .lbl{font-family:var(--display);font-weight:700;font-size:.95rem;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+.crit ul{margin:4px 0 0;padding-left:18px;font-size:.9rem}
+.crit ul li{margin:2px 0}
+.swatch{width:10px;height:10px;border-radius:4px;display:inline-block}
+
+/* ===========================================================================
+   TABLEAU COMPARATIF
+   =========================================================================== */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;background:var(--paper);
+  border:1px solid var(--line);border-radius:12px;padding:9px 13px;box-shadow:var(--shadow-sm)}
+.search input{border:none;outline:none;background:transparent;font-size:.92rem;width:100%;color:var(--ink);font-family:var(--body)}
+select,input[type=number]{font-family:var(--body);font-size:.88rem;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;outline:none}
+.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);box-shadow:var(--shadow-sm)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:1100px}
+thead th{position:sticky;top:0;background:#FBF4F6;text-align:left;padding:11px 12px;
+  font-family:var(--display);font-weight:700;font-size:.78rem;color:var(--ink);
+  border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+thead th .arr{color:var(--rose-deep);font-size:.7rem}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+tbody tr:hover{background:#FCF7F9}
+td.name{white-space:normal;min-width:190px}
+td.name b{font-family:var(--display)}
+.scorepill{display:inline-block;min-width:34px;text-align:center;font-weight:800;font-size:.78rem;
+  border-radius:8px;padding:3px 7px}
+.fav-btn{background:none;border:none;cursor:pointer;font-size:1.1rem;line-height:1;filter:grayscale(1);opacity:.5;transition:.15s}
+.fav-btn.on{filter:none;opacity:1;transform:scale(1.05)}
+.global-cell{font-family:var(--display);font-weight:800}
+.mini{font-size:.74rem;color:var(--muted)}
+
+/* ===========================================================================
+   SIMULATEUR
+   =========================================================================== */
+.sim{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}
+.sim .panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;box-shadow:var(--shadow-sm)}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.opt:last-child{border-bottom:none}
+.opt label{font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:9px}
+.opt .delta{font-size:.78rem;color:var(--muted);font-weight:700}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--rose-deep)}
+.bigprice{font-family:var(--display);font-weight:800;font-size:2.1rem;
+  background:linear-gradient(135deg,var(--sauge-deep),var(--lilas-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.bars{display:grid;gap:9px;margin-top:8px}
+.bar{display:grid;grid-template-columns:120px 1fr 38px;align-items:center;gap:10px;font-size:.82rem}
+.bar .track{height:9px;border-radius:6px;background:#F1E8EF;overflow:hidden}
+.bar .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--rose-deep),var(--lilas-deep))}
+
+/* ===========================================================================
+   RADAR + COMPARATEUR
+   =========================================================================== */
+.radar-wrap{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+.radar-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px;box-shadow:var(--shadow-sm)}
+#radar{width:100%;height:auto;display:block}
+.legend{display:grid;gap:8px;margin-top:6px}
+.legend .row{display:flex;align-items:center;gap:8px;font-size:.85rem}
+.legend .key{width:14px;height:14px;border-radius:5px;flex:none}
+.selbox{max-height:330px;overflow:auto;display:grid;gap:6px}
+.selbox label{display:flex;align-items:center;gap:9px;font-size:.86rem;padding:7px 9px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.selbox label:hover{background:#FCF7F9}
+.cmp-scroll{overflow:auto;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);box-shadow:var(--shadow-sm)}
+.cmp{border-collapse:collapse;width:100%;min-width:560px;font-size:.86rem}
+.cmp th,.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+.cmp th{font-family:var(--display);background:#FBF4F6;font-size:.78rem}
+.cmp td:first-child,.cmp th:first-child{position:sticky;left:0;background:#FBF4F6;font-weight:700;font-size:.8rem;z-index:1}
+.cmp tbody td:first-child{background:#FFF}
+
+/* ===========================================================================
+   ACCESSOIRES / EXPORT / NOTE
+   =========================================================================== */
+.note{background:linear-gradient(135deg,rgba(203,221,198,.4),rgba(255,255,255,.7));
+  border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px 18px;font-size:.92rem}
+.footer{padding:40px 0 60px;color:var(--muted);font-size:.84rem}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-size:.86rem;
+  font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===========================================================================
+   RESPONSIVE
+   =========================================================================== */
+@media(max-width:900px){
+  .winner,.sim,.radar-wrap{grid-template-columns:1fr}
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+  .nav .wrap{gap:12px}
+}
+@media(max-width:560px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .hero{padding:30px 0 8px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+/* ===========================================================================
+   IMPRESSION / EXPORT PDF
+   =========================================================================== */
+@media print{
+  .nav,.toolbar,.btnrow,.selbox,#export .btn,.fav-btn,.no-print{display:none!important}
+  body{background:#fff}
+  section{padding:14px 0;page-break-inside:avoid}
+  .winner,.card,.crit,.panel,.radar-card,.note{box-shadow:none;border:1px solid #ddd}
+  table{min-width:0;font-size:.7rem}
+  a{color:#000}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Étude PC · 12 ans</div>
+    <span class="spacer" style="flex:1"></span>
+    <a class="link" href="#criteres">Critères</a>
+    <a class="link" href="#tableau">Tableau</a>
+    <a class="link" href="#reco">Recommandations</a>
+    <a class="link" href="#simulateur">Simulateur</a>
+    <a class="link" href="#radar">Radar</a>
+    <a class="link" href="#comparateur">Comparateur</a>
+    <a class="link" href="#accessoires">Accessoires</a>
+    <a class="link" href="#export">Export</a>
+  </div>
+</nav>
+
+<!-- ============================ HERO + GAGNANT ============================ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Tableau de bord d'aide à la décision · maj manuelle</span>
+    <h1>Choisir le meilleur PC fixe<br>gamer & création, sans se tromper.</h1>
+    <p class="lead">Comparaison de 10 configurations pour Roblox Studio, Blender, Unreal Engine,
+      Minecraft, Steam, Python et le scolaire — pondérée pour durer jusqu'au bac et viser
+      le meilleur rapport qualité/prix.</p>
+    <div id="winner" class="winner"><!-- injecté par JS --></div>
+    <p class="mini muted" style="margin:10px 2px 0">
+      Gagnant calculé en direct à partir des scores pondérés. Prix « à vérifier » = estimation
+      sur la base des fiches marchandes (les configurateurs changent souvent).
+    </p>
+  </div>
+</header>
+
+<!-- ============================ CRITÈRES MINIMAUX ============================ -->
+<section id="criteres">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cahier des charges</span>
+      <h2>Critères minimaux recommandés</h2>
+      <p>Le seuil pour faire tourner confortablement Blender et Unreal débutant→intermédiaire,
+        avec une marge d'évolution.</p>
+    </div>
+    <div class="crit-grid" id="critGrid"></div>
+    <div class="cards grid-2" style="margin-top:16px">
+      <div class="crit">
+        <div class="lbl"><span class="swatch" style="background:var(--sauge-deep)"></span> Cartes mères — à privilégier</div>
+        <p class="mini">Bon VRAM, PCIe 4.0, évolutivité RAM/SSD.</p>
+        <div class="tags"><span class="chip">B550</span><span class="chip">B650</span><span class="chip">B760</span><span class="chip">B860</span></div>
+      </div>
+      <div class="crit">
+        <div class="lbl"><span class="swatch" style="background:var(--bad)"></span> Cartes mères — à éviter</div>
+        <p class="mini">Entrée de gamme bridée : peu évolutives, VRM faibles.</p>
+        <div class="tags"><span class="chip rose">A520</span><span class="chip rose">H610</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TABLEAU COMPARATIF ============================ -->
+<section id="tableau">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Base de données · 10 PC</span>
+      <h2>Tableau comparatif avancé</h2>
+      <p>Triez (clic sur l'en-tête), recherchez, filtrez. Les scores sont recalculés par
+        l'algorithme pondéré. Cliquez ⭐ pour ajouter aux favoris.</p>
+    </div>
+    <div class="toolbar">
+      <div class="search">🔍 <input id="q" placeholder="Rechercher (nom, CPU, GPU, marque…)"></div>
+      <select id="fGpu"><option value="">Tous les GPU</option></select>
+      <select id="fVendor"><option value="">Tous les vendeurs</option></select>
+      <select id="fBudget">
+        <option value="">Tous budgets</option>
+        <option value="900">≤ 900 € (utilisable)</option>
+        <option value="1100">≤ 1100 €</option>
+        <option value="1300">≤ 1300 €</option>
+      </select>
+      <label class="mini" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="fFav"> Favoris ⭐</label>
+    </div>
+    <div class="table-scroll">
+      <table id="tbl">
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="mini muted" style="margin-top:8px">
+      Prix affichés = tour seule prête à l'emploi (Windows compris pour comparer équitablement, voir colonne « Windows inclus »).
+    </p>
+  </div>
+</section>
+
+<!-- ============================ RECOMMANDATIONS ============================ -->
+<section id="reco">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Verdicts automatiques</span>
+      <h2>Recommandations par profil</h2>
+      <p>Calculées sur les configurations de base. Le prix « utilisable » inclut Windows.</p>
+    </div>
+    <div class="cards grid-4" id="recoGrid"></div>
+  </div>
+</section>
+
+<!-- ============================ SIMULATEUR ============================ -->
+<section id="simulateur">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Configurateur</span>
+      <h2>Simulateur de configuration</h2>
+      <p>Choisissez un PC, cochez les options : le prix et le score global se recalculent en direct.</p>
+    </div>
+    <div style="margin-bottom:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <label class="mini" style="font-weight:700">PC :</label>
+      <select id="simPc"></select>
+    </div>
+    <div class="sim">
+      <div class="panel" id="simOptions"></div>
+      <div class="panel" id="simResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RADAR ============================ -->
+<section id="radar">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Comparaison visuelle</span>
+      <h2>Radar — jusqu'à 4 configurations</h2>
+      <p>Roblox · Blender · Unreal · Évolutivité · Rapport qualité/prix. Sélectionnez à droite.</p>
+    </div>
+    <div class="radar-wrap">
+      <div class="radar-card">
+        <canvas id="radar" width="560" height="520"></canvas>
+        <div class="legend" id="radarLegend"></div>
+      </div>
+      <div class="radar-card">
+        <h4 style="margin-bottom:8px">Sélection (max 4)</h4>
+        <div class="selbox" id="radarSel"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COMPARATEUR CÔTE À CÔTE ============================ -->
+<section id="comparateur">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Bonus · favoris</span>
+      <h2>Comparateur côte à côte</h2>
+      <p>Reprend vos favoris ⭐ (max 4) pour un face-à-face détaillé.</p>
+    </div>
+    <div id="cmpEmpty" class="note">Aucun favori pour l'instant : cliquez ⭐ dans le tableau pour comparer jusqu'à 4 PC ici.</div>
+    <div class="cmp-scroll" id="cmpWrap" style="display:none"><table class="cmp" id="cmpTable"></table></div>
+  </div>
+</section>
+
+<!-- ============================ ACCESSOIRES ============================ -->
+<section id="accessoires">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Pack complet</span>
+      <h2>Accessoires conseillés</h2>
+      <p>Pour viser le budget pack 1200–1500 € (tour + écran + clavier).</p>
+    </div>
+    <div class="cards grid-3" id="accGrid"></div>
+    <div class="note" style="margin-top:16px">
+      <b>Licence Windows :</b> acheter une clé séparément (OEM ~15–30 € ou retail ~119,90 €)
+      plutôt que l'option à <b>149 €</b> proposée par certains configurateurs. Les PC CSL sont
+      livrés sans OS (+119,90 € pour Windows) ; vérifiez au panier pour chaque marchand.
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXPORT ============================ -->
+<section id="export">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Sauvegarde</span>
+      <h2>Exporter l'étude</h2>
+      <p>Emportez les données et les scores calculés.</p>
+    </div>
+    <div class="btnrow">
+      <button class="btn primary" onclick="exportPDF()">🖨️ Export PDF</button>
+      <button class="btn" onclick="exportCSV()">📄 Export CSV</button>
+      <button class="btn" onclick="exportJSON()">{ } Export JSON</button>
+    </div>
+  </div>
+</section>
+
+<div class="footer"><div class="wrap">
+  <b>Méthodologie.</b> Scores indicatifs calculés par l'algorithme pondéré
+  (30 % rapport qualité/prix · 25 % évolutivité · 20 % Blender · 15 % Unreal · 10 % Roblox).
+  Données et constantes éditables dans l'objet <code>DATA</code> du fichier.
+  Prix/specs marqués « à vérifier » : confirmez sur la fiche marchande avant achat.
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================================
+   ███  DATA — TOUT EST ÉDITABLE ICI  ███
+   ============================================================================ */
+const DATA = {
+
+  /* ----- Pondérations du score global (somme = 1.00) ----- */
+  weights:{ rqp:0.30, evol:0.25, blender:0.20, unreal:0.15, roblox:0.10 },
+
+  /* ----- Constantes de scoring (ajustables) ----- */
+  scoring:{
+    rqpValueLow:9.5, rqpValueHigh:14.5,   // bornes de normalisation du rapport qualité/prix
+    chipset:{ A520:2, H610:2, B450:4, B550:6.5, B650:7.5, B760:6.5, B860:7.5, "SFF/propriétaire":1 },
+    // prix des options communes (€)
+    wifiAdd:25, ssd:{512:0,1000:35,2000:80}, ramUpgrade:{DDR4:45,DDR5:75}
+  },
+
+  /* ----- Seuils « critères minimaux » (cartes) ----- */
+  criteria:[
+    {lbl:"CPU minimum", chip:"beige", items:["AMD Ryzen 5 5600","Intel Core i5-12400F"]},
+    {lbl:"CPU idéal", chip:"sauge", items:["AMD Ryzen 5 7600","Intel Core i5-14400F"]},
+    {lbl:"GPU minimum", chip:"rose", items:["NVIDIA RTX 4060 (8 Go)"]},
+    {lbl:"GPU recommandé", chip:"sauge", items:["RTX 5060","RTX 5060 Ti (idéal créa)"]},
+    {lbl:"Mémoire RAM", chip:"lilas", items:["16 Go minimum","32 Go optionnel (Blender/Unreal)"]},
+    {lbl:"Stockage SSD", chip:"beige", items:["1 To NVMe recommandé"]}
+  ],
+
+  /* ----- Accessoires ----- */
+  accessories:[
+    {name:"Écran — MSI G272QPF E2", price:179, note:"27\" QHD, idéal créa + jeu", chip:"lilas"},
+    {name:"Clavier — AULA F75", price:59, note:"Mécanique, compact, agréable", chip:"rose"},
+    {name:"Licence Windows", price:119.9, note:"Clé séparée (évitez l'option 149 €)", chip:"warn"}
+  ],
+
+  /* ----- BASE DE DONNÉES DES PC -----
+     perf : indice relatif 0–100 (édité à la main, plus fiable qu'un calcul brut).
+     priceVerified:false ⇒ prix estimé à confirmer sur le lien.
+     windowsIncluded:false ⇒ ajouter windowsOptionPrice pour une machine utilisable. */
+  pcs:[
+    {
+      id:"trident", name:"MSI MPG Trident AS AI", vendor:"MSI / Fnac", range:"SFF premium",
+      url:"https://www.fnac.com/PC-Gaming-MSI-MPG-Trident-AS-AI-2NVL5-040FR-Intel-Core-Ultra-5-16-Go-RAM-1-To-SSD-Nvidia-GeForce-RTX-5060-Noir/a21801511/w-4",
+      basePrice:1099, priceVerified:false,
+      cpu:{name:"Intel Core Ultra 5", cores:10, threads:14, perf:64, socket:"LGA1851", platform:"Intel Ultra"},
+      gpu:{name:"RTX 5060", vram:8, vendor:"nvidia", perf:70, rt:true},
+      ramGB:16, ramType:"DDR5", ssdGB:1000,
+      chipset:"SFF/propriétaire", psuW:330, formFactor:"sff", wifi:true, bt:true,
+      windowsIncluded:true, windowsOptionPrice:0,
+      summary:"Format compact, design soigné, Windows inclus — mais quasi non évolutif (alim et carte mère propriétaires).",
+      pros:["Compact & silencieux","Windows 11 inclus","WiFi 6 + Bluetooth"],
+      cons:["Très peu évolutif (SFF)","Alim ~330 W : pas de GPU plus gros","Prix élevé pour la fiche"],
+      cpuOptions:[{key:"base",label:"Core Ultra 5 (verrouillé SFF)",name:"Intel Core Ultra 5",perf:64,cores:10,threads:14,delta:0}],
+      mbOptions:[{key:"base",label:"Carte mère propriétaire",chipset:"SFF/propriétaire",delta:0}]
+    },
+    {
+      id:"vengeance", name:"Infomax Vengeance (optimisée)", vendor:"Infomax Paris", range:"Pro gamer",
+      url:"https://infomaxparis.com/fr/pc-gamer/31910-395102-pc-gamer-vengeance.html",
+      basePrice:1349, priceVerified:false,
+      cpu:{name:"Intel Core i7-12700KF", cores:12, threads:20, perf:74, socket:"LGA1700", platform:"Intel 12e"},
+      gpu:{name:"RTX 5060 Ti 16 Go", vram:16, vendor:"nvidia", perf:84, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:1000,
+      chipset:"B760", psuW:700, formFactor:"tour", wifi:true, bt:true,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"La plus puissante pour la création (16 Go de VRAM, i7 12 cœurs). Version optimisée : SSD 1 To + MSI B760-P WiFi. Chère, donc rapport qualité/prix moyen.",
+      pros:["16 Go VRAM : excellent Blender/Unreal","i7 12 cœurs : compilation, rendu","Carte mère B760 évolutive"],
+      cons:["Tour seule au-dessus du budget 1200 €","Windows non inclus","Socket Intel 12e en fin de vie"],
+      cpuOptions:[{key:"base",label:"i7-12700KF",name:"Intel Core i7-12700KF",perf:74,cores:12,threads:20,delta:0}],
+      mbOptions:[{key:"base",label:"MSI B760-P WiFi (optimisé)",chipset:"B760",delta:0}]
+    },
+    {
+      id:"hasaki", name:"Infomax Hasaki (optimisée)", vendor:"Infomax Paris", range:"Entry+",
+      url:"https://infomaxparis.com/fr/pc-gamer/31982-394697-pc-gamer-hasaki.html",
+      basePrice:799, priceVerified:false,
+      cpu:{name:"AMD Ryzen 7 5700X", cores:8, threads:16, perf:62, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"RTX 5060", vram:8, vendor:"nvidia", perf:70, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:1000,
+      chipset:"B550", psuW:600, formFactor:"tour", wifi:true, bt:true,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"Version optimisée demandée : Ryzen 7 5700X (8 cœurs) + MSI B550M PRO-VDH WiFi + SSD 1 To. Très bon équilibre prix/évolutivité.",
+      pros:["Ryzen 7 8 cœurs : bon en Blender","B550 WiFi évolutive","SSD 1 To inclus dans l'optimisation"],
+      cons:["RTX 5060 8 Go : VRAM juste pour gros projets Unreal","DDR4 (plateforme AM4)","Windows à ajouter"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:0},
+        {key:"5700x3d",label:"Ryzen 7 5700X3D (+jeu)",name:"AMD Ryzen 7 5700X3D",perf:68,cores:8,threads:16,delta:70}
+      ],
+      mbOptions:[
+        {key:"base",label:"MSI B550M PRO-VDH WiFi",chipset:"B550",delta:0},
+        {key:"b650",label:"Passer en B650 (AM5 — chgt plateforme)",chipset:"B650",delta:120}
+      ]
+    },
+    {
+      id:"fighter", name:"Infomax Fighter", vendor:"Infomax Paris", range:"Entry+",
+      url:"https://infomaxparis.com/fr/pc-gamer/7442-394704-pc-gamer-fighter.html",
+      basePrice:799, priceVerified:false,
+      cpu:{name:"AMD Ryzen 5 5500", cores:6, threads:12, perf:48, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"RTX 5060 Ti 8 Go", vram:8, vendor:"nvidia", perf:80, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:500,
+      chipset:"B550", psuW:600, formFactor:"tour", wifi:true, bt:false,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"GPU musclé (RTX 5060 Ti) sur un Ryzen 5 5500. Excellent en jeu/Unreal, le CPU 6 cœurs limite un peu Blender lourd.",
+      pros:["RTX 5060 Ti : très bon en 1080p élevé","Bon rapport perf GPU / prix","B550 évolutive"],
+      cons:["Ryzen 5 5500 (6 cœurs) : moins idéal Blender","SSD 500 Go : à passer en 1 To","Windows à ajouter"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 5 5500 (6c/12t)",name:"AMD Ryzen 5 5500",perf:48,cores:6,threads:12,delta:0},
+        {key:"5700x",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:60}
+      ],
+      mbOptions:[
+        {key:"base",label:"Carte mère B550",chipset:"B550",delta:0},
+        {key:"a520",label:"Économie A520 (déconseillé)",chipset:"A520",delta:-30}
+      ]
+    },
+    {
+      id:"storm", name:"Infomax Storm", vendor:"Infomax Paris", range:"Pro gamer",
+      url:"https://infomaxparis.com/fr/pc-gamer/35319-394703-pc-gamer-storm.html",
+      basePrice:939, priceVerified:false,
+      cpu:{name:"AMD Ryzen 7 5700X", cores:8, threads:16, perf:62, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"RTX 5060 Ti 8 Go", vram:8, vendor:"nvidia", perf:80, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:1000,
+      chipset:"B550", psuW:650, formFactor:"tour", wifi:true, bt:true,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"Ryzen 7 + RTX 5060 Ti + SSD 1 To : le combo le plus équilibré pour création + jeu + évolutivité dans le budget tour.",
+      pros:["Ryzen 7 + RTX 5060 Ti : polyvalent","SSD 1 To inclus","Bon équilibre Blender/Unreal/évolution"],
+      cons:["8 Go VRAM (vérifier 5060 vs 5060 Ti sur la fiche)","DDR4 (AM4)","Windows à ajouter"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:0},
+        {key:"5700x3d",label:"Ryzen 7 5700X3D",name:"AMD Ryzen 7 5700X3D",perf:68,cores:8,threads:16,delta:70}
+      ],
+      mbOptions:[{key:"base",label:"Carte mère B550",chipset:"B550",delta:0}]
+    },
+    {
+      id:"aether", name:"Infomax Aether", vendor:"Infomax Paris", range:"Pro gamer",
+      url:"https://infomaxparis.com/fr/pc-gamer/5023-394832-pc-gamer-aether.html",
+      basePrice:1049, priceVerified:false,
+      cpu:{name:"Intel Core i7-12700KF", cores:12, threads:20, perf:74, socket:"LGA1700", platform:"Intel 12e"},
+      gpu:{name:"RTX 5060 Ti 8 Go", vram:8, vendor:"nvidia", perf:80, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:1000,
+      chipset:"B760", psuW:650, formFactor:"tour", wifi:true, bt:true,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"i7 12 cœurs + RTX 5060 Ti + SSD 1 To : très bon pour Blender/Unreal grâce au CPU, carte mère B760 évolutive.",
+      pros:["i7 12 cœurs : excellent rendu/compilation","RTX 5060 Ti","B760 évolutive, SSD 1 To"],
+      cons:["8 Go VRAM seulement","Tour proche du haut du budget","Windows à ajouter"],
+      cpuOptions:[{key:"base",label:"i7-12700KF (12c/20t)",name:"Intel Core i7-12700KF",perf:74,cores:12,threads:20,delta:0}],
+      mbOptions:[{key:"base",label:"Carte mère B760",chipset:"B760",delta:0}]
+    },
+    {
+      id:"csl5593", name:"CSL Sprint 5593", vendor:"CSL Computer", range:"Budget",
+      url:"https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5593-ryzen-5.html",
+      basePrice:639, priceVerified:true,
+      cpu:{name:"AMD Ryzen 5 5500", cores:6, threads:12, perf:48, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"RTX 5060 8 Go", vram:8, vendor:"nvidia", perf:70, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:512,
+      chipset:"A520", psuW:600, formFactor:"tour", wifi:false, bt:false,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"Le meilleur prix pur pour une RTX 5060, mais carte mère A520 (peu évolutive), SSD 512 Go, sans WiFi ni Windows.",
+      pros:["Excellent prix RTX 5060","SSD NVMe rapide","Bon en jeu 1080p"],
+      cons:["Carte mère A520 : à éviter (peu évolutive)","Pas de WiFi","Windows +119,90 €"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 5 5500 (6c/12t)",name:"AMD Ryzen 5 5500",perf:48,cores:6,threads:12,delta:0},
+        {key:"5700x",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:70}
+      ],
+      mbOptions:[
+        {key:"base",label:"A520 (base, déconseillée)",chipset:"A520",delta:0},
+        {key:"b550",label:"Passer en B550 (recommandé)",chipset:"B550",delta:55}
+      ]
+    },
+    {
+      id:"csl5539", name:"CSL Sprint 5539", vendor:"CSL Computer", range:"Budget",
+      url:"https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5539-ryzen-5.html",
+      basePrice:649, priceVerified:true,
+      cpu:{name:"AMD Ryzen 5 5500", cores:6, threads:12, perf:48, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"RTX 5050 8 Go", vram:8, vendor:"nvidia", perf:58, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:512,
+      chipset:"A520", psuW:600, formFactor:"tour", wifi:false, bt:false,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"Le moins cher, mais RTX 5050 : suffisant pour Roblox/Minecraft/Python, juste pour Blender/Unreal. A520 + sans WiFi.",
+      pros:["Prix plancher","Parfait Roblox/Minecraft/scolaire","SSD NVMe"],
+      cons:["RTX 5050 : limite pour la 3D lourde","A520 peu évolutive, sans WiFi","Windows +119,90 €"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 5 5500 (6c/12t)",name:"AMD Ryzen 5 5500",perf:48,cores:6,threads:12,delta:0},
+        {key:"5700x",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:70}
+      ],
+      mbOptions:[
+        {key:"base",label:"A520 (base, déconseillée)",chipset:"A520",delta:0},
+        {key:"b550",label:"Passer en B550 (recommandé)",chipset:"B550",delta:55}
+      ]
+    },
+    {
+      id:"csl5522", name:"CSL Sprint 5522", vendor:"CSL Computer", range:"Budget",
+      url:"https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5522-ryzen-5.html",
+      basePrice:679, priceVerified:true,
+      cpu:{name:"AMD Ryzen 5 5500", cores:6, threads:12, perf:48, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"Intel Arc B570 10 Go", vram:10, vendor:"intel", perf:62, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:1000,
+      chipset:"A520", psuW:600, formFactor:"tour", wifi:false, bt:false,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"Arc B570 avec 10 Go de VRAM + SSD 1 To d'origine. Bonne VRAM, mais pilotes Intel moins bons pour Blender que NVIDIA.",
+      pros:["10 Go VRAM + SSD 1 To inclus","Bon en jeu 1080p/1440p","Bon prix global"],
+      cons:["Pilotes Intel Arc : moins idéaux Blender/Unreal","A520, pas de WiFi","Windows +119,90 €"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 5 5500 (6c/12t)",name:"AMD Ryzen 5 5500",perf:48,cores:6,threads:12,delta:0},
+        {key:"5700x",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:70}
+      ],
+      mbOptions:[
+        {key:"base",label:"A520 (base, déconseillée)",chipset:"A520",delta:0},
+        {key:"b550",label:"Passer en B550 (recommandé)",chipset:"B550",delta:55}
+      ]
+    },
+    {
+      id:"csl5538", name:"CSL Sprint 5538", vendor:"CSL Computer", range:"Budget",
+      url:"https://www.csl-computer.com/fr/pc-gamer/pc-csl-sprint-5538-ryzen-5.html",
+      basePrice:679, priceVerified:true,
+      cpu:{name:"AMD Ryzen 5 5500", cores:6, threads:12, perf:48, socket:"AM4", platform:"AMD AM4"},
+      gpu:{name:"Radeon RX 9060 8 Go", vram:8, vendor:"amd", perf:72, rt:true},
+      ramGB:16, ramType:"DDR4", ssdGB:512,
+      chipset:"A520", psuW:600, formFactor:"tour", wifi:false, bt:false,
+      windowsIncluded:false, windowsOptionPrice:119.9,
+      summary:"Powered by ASUS, Radeon RX 9060 performante en jeu — mais AMD/Radeon moins bon que NVIDIA pour Blender (rendu).",
+      pros:["RX 9060 : très bon raster en jeu","Bon prix","Powered by ASUS"],
+      cons:["Radeon moins idéal Blender/Unreal (OptiX)","A520, sans WiFi, SSD 512 Go","Windows +119,90 €"],
+      cpuOptions:[
+        {key:"base",label:"Ryzen 5 5500 (6c/12t)",name:"AMD Ryzen 5 5500",perf:48,cores:6,threads:12,delta:0},
+        {key:"5700x",label:"Ryzen 7 5700X (8c/16t)",name:"AMD Ryzen 7 5700X",perf:62,cores:8,threads:16,delta:70}
+      ],
+      mbOptions:[
+        {key:"base",label:"A520 (base, déconseillée)",chipset:"A520",delta:0},
+        {key:"b550",label:"Passer en B550 (recommandé)",chipset:"B550",delta:55}
+      ]
+    }
+  ]
+};
+
+/* ============================================================================
+   ███  ALGORITHME DE SCORING  ███
+   Chaque fonction renvoie une note /10 à partir d'un objet "spec" résolu.
+   spec = { cpuPerf, cores, gpuPerf, vram, gpuVendor, ramGB, ssdGB,
+            chipset, psuW, formFactor, price, ramType }
+   ============================================================================ */
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+function scoreRoblox(s){
+  // Roblox Studio est léger : tout le monde est confortable, léger bonus CPU/GPU.
+  return clamp(5 + s.gpuPerf*0.03 + s.cpuPerf*0.025, 0, 10);
+}
+function scoreBlender(s){
+  // Blender adore NVIDIA (OptiX/CUDA), la VRAM, les cœurs CPU et la RAM.
+  const vendorK = s.gpuVendor==='nvidia'?1.0 : s.gpuVendor==='amd'?0.78 : 0.70;
+  const gpu = s.gpuPerf*vendorK*0.07;
+  const vram = Math.min(s.vram,16)/16 * 1.5;
+  const cores = Math.min(s.cores,12)/12 * 2.0;
+  const ram = s.ramGB>=32?1.0 : s.ramGB>=16?0.5:0;
+  return clamp(gpu+vram+cores+ram, 0, 10);
+}
+function scoreUnreal(s){
+  // Unreal : puissance GPU brute + VRAM + cœurs + RAM (moins sensible au vendeur).
+  const vendorK = s.gpuVendor==='nvidia'?1.0:0.92;
+  const gpu = s.gpuPerf*vendorK*0.075;
+  const vram = Math.min(s.vram,16)/16 * 1.2;
+  const cores = Math.min(s.cores,12)/12 * 1.8;
+  const ram = s.ramGB>=32?1.2 : s.ramGB>=16?0.6:0;
+  return clamp(gpu+vram+cores+ram, 0, 10);
+}
+function scoreEvol(s){
+  // Évolutivité : carte mère, alim (marge GPU), DDR, socket, RAM. SFF plafonné.
+  const C = DATA.scoring;
+  let sc = C.chipset[s.chipset] ?? 5;
+  sc += s.psuW>=750?1.5 : s.psuW>=650?1.0 : s.psuW>=550?0.5 : 0;     // marge alim
+  sc += s.ramType==='DDR5'?1.0:0;                                     // bonus DDR5
+  sc += s.socket==='AM5'?1.5 : s.socket==='LGA1851'?1.0 : s.socket==='LGA1700'?0.5 : 0.3; // futur socket
+  sc += s.ramGB<32 ? (s.ramType==='DDR5'?0.8:0.4) : 0.4;              // marge d'upgrade RAM
+  if(s.formFactor==='sff') sc = Math.min(sc, 3);                      // SFF = cul-de-sac
+  return clamp(sc, 0, 10);
+}
+function scoreRQP(s){
+  // Rapport qualité/prix = indice de perf / prix utilisable, normalisé /10.
+  const raw = s.gpuPerf*1.0 + s.cpuPerf*0.6
+            + (s.vram>=16?8 : s.vram>=10?5 : s.vram>=8?3 : 0)
+            + (s.ramGB>=32?6 : s.ramGB>=16?4 : 2)
+            + (s.ssdGB>=1000?3 : s.ssdGB>=500?1.5 : 0);
+  const value = raw / (s.price/100);                 // perf pour 100 €
+  const {rqpValueLow:lo, rqpValueHigh:hi} = DATA.scoring;
+  return clamp((value-lo)/(hi-lo)*9 + 1, 1, 10);
+}
+function scoreGlobal(s){
+  const w = DATA.weights;
+  const parts = {
+    roblox:scoreRoblox(s), blender:scoreBlender(s), unreal:scoreUnreal(s),
+    evol:scoreEvol(s), rqp:scoreRQP(s)
+  };
+  const g10 = w.rqp*parts.rqp + w.evol*parts.evol + w.blender*parts.blender
+            + w.unreal*parts.unreal + w.roblox*parts.roblox;
+  return {parts, global:Math.round(g10*10*10)/10}; // /100 (1 décimale)
+}
+
+/* ----- Résolution d'un "spec" depuis une config -----
+   "Prix utilisable" = prix tour + Windows si non inclus (comparaison équitable). */
+function baseSpec(pc){
+  return {
+    cpuPerf:pc.cpu.perf, cores:pc.cpu.cores, socket:pc.cpu.socket,
+    gpuPerf:pc.gpu.perf, vram:pc.gpu.vram, gpuVendor:pc.gpu.vendor,
+    ramGB:pc.ramGB, ramType:pc.ramType, ssdGB:pc.ssdGB,
+    chipset:pc.chipset, psuW:pc.psuW, formFactor:pc.formFactor,
+    price: pc.basePrice + (pc.windowsIncluded?0:pc.windowsOptionPrice)
+  };
+}
+function baseGlobal(pc){ return scoreGlobal(baseSpec(pc)).global; }
+
+/* ============================================================================
+   ÉTAT & UTILITAIRES
+   ============================================================================ */
+const favorites = new Set(loadFav());
+const eur = n => (Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const eur0 = n => Math.round(n).toLocaleString('fr-FR')+' €';
+function loadFav(){ try{ return JSON.parse(localStorage.getItem('pcfav')||'[]'); }catch(e){ return []; } }
+function saveFav(){ try{ localStorage.setItem('pcfav', JSON.stringify([...favorites])); }catch(e){} }
+function pcById(id){ return DATA.pcs.find(p=>p.id===id); }
+function scoreColor(s){ // s sur /100 ou /10 → couleur pastel
+  const v = s>10? s/10 : s;
+  if(v>=7.5) return ['#E5F1E2','#3f7a44'];
+  if(v>=6)   return ['#F5EFD9','#8a6a22'];
+  if(v>=4.5) return ['#FBE9D6','#9a5a22'];
+  return ['#FBE0E5','#a14250'];
+}
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1700); }
+
+/* ============================================================================
+   RENDU — GAGNANT / HERO
+   ============================================================================ */
+function renderWinner(){
+  const ranked=[...DATA.pcs].map(p=>({p,g:baseGlobal(p)})).sort((a,b)=>b.g-a.g);
+  const {p,g}=ranked[0];
+  const pros=p.pros.map(x=>`<li><span class="ic up">✓</span>${x}</li>`).join('');
+  const cons=p.cons.map(x=>`<li><span class="ic down">✕</span>${x}</li>`).join('');
+  document.getElementById('winner').innerHTML=`
+    <div class="left">
+      <span class="ribbon">🏆 Gagnant actuel</span>
+      <h2>${p.name}</h2>
+      <div class="mini muted">${p.vendor} · ${p.range}</div>
+      <div class="scorebadge"><span class="num">${g}</span><span class="den">/ 100</span></div>
+      <p style="margin:10px 0 0;font-size:.95rem">${p.summary}</p>
+      <div class="tags" style="margin-top:12px">
+        <span class="chip">${p.cpu.name}</span>
+        <span class="chip lilas">${p.gpu.name}</span>
+        <span class="chip beige">${p.ramGB} Go · ${p.ssdGB>=1000?(p.ssdGB/1000)+' To':p.ssdGB+' Go'}</span>
+      </div>
+      <div class="btnrow">
+        <a class="btn primary" href="${p.url}" target="_blank" rel="noopener">Voir la fiche ↗</a>
+        <button class="btn" onclick="document.getElementById('simPc').value='${p.id}';renderSim();location.hash='#simulateur'">Configurer</button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="proscons">
+        <div><h4>Avantages</h4><ul class="pc-list">${pros}</ul></div>
+        <div><h4>Inconvénients</h4><ul class="pc-list">${cons}</ul></div>
+      </div>
+    </div>`;
+}
+
+/* ============================================================================
+   RENDU — CRITÈRES
+   ============================================================================ */
+function renderCriteria(){
+  document.getElementById('critGrid').innerHTML = DATA.criteria.map(c=>`
+    <div class="crit">
+      <div class="lbl"><span class="chip ${c.chip}">${c.lbl}</span></div>
+      <ul>${c.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+/* ============================================================================
+   RENDU — TABLEAU COMPARATIF (tri / recherche / filtres)
+   ============================================================================ */
+const COLS=[
+  {k:'fav',  t:'⭐', sort:false},
+  {k:'name', t:'Nom'},
+  {k:'price',t:'Prix'},
+  {k:'cpu',  t:'CPU'},
+  {k:'gpu',  t:'GPU'},
+  {k:'ram',  t:'RAM'},
+  {k:'ssd',  t:'SSD'},
+  {k:'mb',   t:'Carte mère'},
+  {k:'psu',  t:'Alim'},
+  {k:'case', t:'Boîtier'},
+  {k:'net',  t:'WiFi/BT'},
+  {k:'win',  t:'Windows'},
+  {k:'sRob', t:'Roblox'},
+  {k:'sBle', t:'Blender'},
+  {k:'sUnr', t:'Unreal'},
+  {k:'sEvo', t:'Évolutiv.'},
+  {k:'sRqp', t:'Rapport Q/P'},
+  {k:'sGlo', t:'Global'}
+];
+let sortKey='sGlo', sortDir=-1;
+
+function rowData(pc){
+  const sp=baseSpec(pc); const sc=scoreGlobal(sp);
+  return {
+    pc, sp,
+    fav:favorites.has(pc.id)?1:0,
+    name:pc.name, vendor:pc.vendor,
+    price:sp.price, priceVerified:pc.priceVerified,
+    cpu:pc.cpu.name, gpu:pc.gpu.name, vendorGpu:pc.gpu.vendor,
+    ram:pc.ramGB, ssd:pc.ssdGB, mb:pc.chipset, psu:pc.psuW,
+    casev:pc.formFactor==='sff'?'Compact (SFF)':'Tour ATX',
+    net:(pc.wifi?'WiFi':'—')+(pc.bt?' + BT':''),
+    win:pc.windowsIncluded?'Inclus':'+119,90 €',
+    sRob:sc.parts.roblox, sBle:sc.parts.blender, sUnr:sc.parts.unreal,
+    sEvo:sc.parts.evol, sRqp:sc.parts.rqp, sGlo:sc.global
+  };
+}
+function buildFilters(){
+  const gpus=[...new Set(DATA.pcs.map(p=>p.gpu.name))].sort();
+  const vendors=[...new Set(DATA.pcs.map(p=>p.vendor))].sort();
+  document.getElementById('fGpu').innerHTML='<option value="">Tous les GPU</option>'+gpus.map(g=>`<option>${g}</option>`).join('');
+  document.getElementById('fVendor').innerHTML='<option value="">Tous les vendeurs</option>'+vendors.map(v=>`<option>${v}</option>`).join('');
+}
+function renderTableHead(){
+  document.getElementById('thead').innerHTML=COLS.map(c=>{
+    const arr = (c.sort===false)?'' : (sortKey===c.k?(sortDir<0?' <span class="arr">▼</span>':' <span class="arr">▲</span>'):'');
+    return `<th data-k="${c.k}">${c.t}${arr}</th>`;
+  }).join('');
+  document.querySelectorAll('#thead th').forEach(th=>{
+    const k=th.dataset.k; const col=COLS.find(c=>c.k===k);
+    if(col.sort===false) return;
+    th.onclick=()=>{ if(sortKey===k) sortDir*=-1; else {sortKey=k;sortDir=(k==='name'||k==='cpu'||k==='gpu'||k==='mb'||k==='win')?1:-1;} renderTable(); };
+  });
+}
+function renderTable(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const fGpu=document.getElementById('fGpu').value;
+  const fVendor=document.getElementById('fVendor').value;
+  const fBudget=parseFloat(document.getElementById('fBudget').value)||Infinity;
+  const fFav=document.getElementById('fFav').checked;
+
+  let rows=DATA.pcs.map(rowData);
+  rows=rows.filter(r=>{
+    if(fFav && !r.fav) return false;
+    if(fGpu && r.gpu!==fGpu) return false;
+    if(fVendor && r.vendor!==fVendor) return false;
+    if(r.price>fBudget) return false;
+    if(q){ const hay=(r.name+' '+r.cpu+' '+r.gpu+' '+r.vendor+' '+r.mb).toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  });
+  rows.sort((a,b)=>{
+    let A=a[sortKey], B=b[sortKey];
+    if(typeof A==='string'){ return A.localeCompare(B)*sortDir; }
+    return (A-B)*sortDir;
+  });
+
+  renderTableHead();
+  const sCell=v=>{const[c,t]=scoreColor(v);return `<span class="scorepill" style="background:${c};color:${t}">${(Math.round(v*10)/10).toFixed(1)}</span>`;};
+  document.getElementById('tbody').innerHTML = rows.map(r=>{
+    const[gc,gt]=scoreColor(r.sGlo);
+    return `<tr>
+      <td><button class="fav-btn ${r.fav?'on':''}" data-id="${r.pc.id}" title="Favori">⭐</button></td>
+      <td class="name"><b>${r.name}</b><div class="mini">${r.vendor}${r.priceVerified?'':' · <span style="color:var(--warn)">prix à vérifier</span>'}</div></td>
+      <td><b>${eur0(r.price)}</b></td>
+      <td>${r.cpu}</td>
+      <td>${r.gpu}</td>
+      <td>${r.ram} Go</td>
+      <td>${r.ssd>=1000?(r.ssd/1000)+' To':r.ssd+' Go'}</td>
+      <td>${r.mb}</td>
+      <td>${r.psu} W</td>
+      <td>${r.casev}</td>
+      <td>${r.net}</td>
+      <td>${r.win}</td>
+      <td>${sCell(r.sRob)}</td>
+      <td>${sCell(r.sBle)}</td>
+      <td>${sCell(r.sUnr)}</td>
+      <td>${sCell(r.sEvo)}</td>
+      <td>${sCell(r.sRqp)}</td>
+      <td><span class="scorepill global-cell" style="background:${gc};color:${gt};font-size:.85rem">${r.sGlo}</span></td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="${COLS.length}" class="center muted" style="padding:24px">Aucun résultat.</td></tr>`;
+
+  document.querySelectorAll('.fav-btn').forEach(b=>b.onclick=()=>toggleFav(b.dataset.id));
+}
+function toggleFav(id){
+  if(favorites.has(id)) favorites.delete(id); else { if(favorites.size>=8){toast('Maximum atteint');return;} favorites.add(id); }
+  saveFav(); renderTable(); renderComparator(); renderRadarSelectors();
+  toast(favorites.has(id)?'Ajouté aux favoris ⭐':'Retiré des favoris');
+}
+
+/* ============================================================================
+   RENDU — RECOMMANDATIONS AUTOMATIQUES
+   ============================================================================ */
+function bestBy(fn, pool){ pool=pool||DATA.pcs; let best=null,bv=-1; pool.forEach(p=>{const v=fn(p);if(v>bv){bv=v;best=p;}}); return best?{p:best,v:bv}:null; }
+function usablePrice(pc){ return pc.basePrice + (pc.windowsIncluded?0:pc.windowsOptionPrice); }
+
+function renderReco(){
+  const within=lim=>DATA.pcs.filter(p=>usablePrice(p)<=lim);
+  const reco=[
+    {t:"Meilleur ≤ 900 €", chip:"sauge", r:bestBy(baseGlobal, within(900))},
+    {t:"Meilleur ≤ 1100 €", chip:"sauge", r:bestBy(baseGlobal, within(1100))},
+    {t:"Meilleur ≤ 1300 €", chip:"sauge", r:bestBy(baseGlobal, within(1300))},
+    {t:"Meilleur pour Blender", chip:"lilas", r:bestBy(p=>scoreBlender(baseSpec(p)))},
+    {t:"Meilleur pour Roblox Studio", chip:"rose", r:bestBy(p=>scoreRoblox(baseSpec(p)))},
+    {t:"Garder jusqu'au bac", chip:"beige", r:bestBy(p=>{const s=baseSpec(p);return scoreEvol(s)*2+scoreBlender(s)+scoreUnreal(s);})},
+    {t:"Meilleur rapport qualité/prix", chip:"sauge", r:bestBy(p=>scoreRQP(baseSpec(p)))},
+    {t:"Meilleur GPU créa (VRAM)", chip:"lilas", r:bestBy(p=>p.gpu.vram*100+p.gpu.perf)}
+  ];
+  document.getElementById('recoGrid').innerHTML = reco.map(x=>{
+    if(!x.r) return `<div class="card"><h4>${x.t}</h4><p class="muted">—</p></div>`;
+    const p=x.r.p; const g=baseGlobal(p);
+    return `<div class="card soft">
+      <span class="chip ${x.chip}">${x.t}</span>
+      <h3 style="margin:10px 0 2px">${p.name}</h3>
+      <div class="mini muted">${eur0(usablePrice(p))} · ${p.gpu.name}</div>
+      <div class="kv" style="margin-top:8px"><span class="muted">Score global</span><b>${g}/100</b></div>
+      <a class="mini" href="${p.url}" target="_blank" rel="noopener">Voir la fiche ↗</a>
+    </div>`;
+  }).join('');
+}
+
+/* ============================================================================
+   RENDU — SIMULATEUR
+   ============================================================================ */
+let simState={};
+function initSimSelect(){
+  document.getElementById('simPc').innerHTML=DATA.pcs.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('simPc').onchange=renderSim;
+}
+function defaultCfg(pc){
+  return { ssdGB:pc.ssdGB, win:pc.windowsIncluded, wifi:pc.wifi, ram32:pc.ramGB>=32,
+           cpuKey:pc.cpuOptions[0].key, mbKey:pc.mbOptions[0].key };
+}
+function ssdChoices(pc){ // options proposées selon la base
+  const base=pc.ssdGB; const list=[];
+  if(base<1000) list.push({v:base,l:(base>=1000?base/1000+' To':base+' Go')+' (base)'});
+  list.push({v:1000,l:'1 To'}); list.push({v:2000,l:'2 To'});
+  // dédoublonnage si base==1000
+  const seen=new Set(); return list.filter(o=>{if(seen.has(o.v))return false;seen.add(o.v);return true;});
+}
+function cfgSpec(pc,cfg){
+  const cpuOpt=pc.cpuOptions.find(o=>o.key===cfg.cpuKey)||pc.cpuOptions[0];
+  const mbOpt=pc.mbOptions.find(o=>o.key===cfg.mbKey)||pc.mbOptions[0];
+  return {
+    cpuPerf:cpuOpt.perf, cores:cpuOpt.cores, socket:pc.cpu.socket,
+    gpuPerf:pc.gpu.perf, vram:pc.gpu.vram, gpuVendor:pc.gpu.vendor,
+    ramGB:cfg.ram32?32:pc.ramGB, ramType:pc.ramType, ssdGB:cfg.ssdGB,
+    chipset:mbOpt.chipset, psuW:pc.psuW, formFactor:pc.formFactor,
+    price: cfgPrice(pc,cfg)
+  };
+}
+function cfgPrice(pc,cfg){
+  const C=DATA.scoring;
+  let price=pc.basePrice;
+  // Windows
+  if(cfg.win && !pc.windowsIncluded) price+=pc.windowsOptionPrice;
+  // SSD (delta par rapport à la base, barème 512/1000/2000)
+  const ref=v=>C.ssd[v] ?? (v>=2000?C.ssd[2000]:v>=1000?C.ssd[1000]:0);
+  price += ref(cfg.ssdGB) - ref(pc.ssdGB);
+  // WiFi (si ajouté)
+  if(cfg.wifi && !pc.wifi) price+=C.wifiAdd;
+  // 32 Go RAM
+  if(cfg.ram32 && pc.ramGB<32) price+=C.ramUpgrade[pc.ramType];
+  // CPU / carte mère
+  const cpuOpt=pc.cpuOptions.find(o=>o.key===cfg.cpuKey)||pc.cpuOptions[0];
+  const mbOpt=pc.mbOptions.find(o=>o.key===cfg.mbKey)||pc.mbOptions[0];
+  price+=cpuOpt.delta+mbOpt.delta;
+  return Math.max(0,price);
+}
+function renderSim(){
+  const pc=pcById(document.getElementById('simPc').value);
+  if(!simState[pc.id]) simState[pc.id]=defaultCfg(pc);
+  const cfg=simState[pc.id];
+  const C=DATA.scoring;
+  const ramDelta=C.ramUpgrade[pc.ramType];
+
+  // ---- Panneau options ----
+  const ssdOpts=ssdChoices(pc).map(o=>`<option value="${o.v}" ${cfg.ssdGB===o.v?'selected':''}>${o.l}</option>`).join('');
+  const cpuOpts=pc.cpuOptions.map(o=>`<option value="${o.key}" ${cfg.cpuKey===o.key?'selected':''}>${o.label}${o.delta?` (+${o.delta} €)`:''}</option>`).join('');
+  const mbOpts=pc.mbOptions.map(o=>`<option value="${o.key}" ${cfg.mbKey===o.key?'selected':''}>${o.label}${o.delta?` (${o.delta>0?'+':''}${o.delta} €)`:''}</option>`).join('');
+
+  document.getElementById('simOptions').innerHTML=`
+    <h3 style="margin-bottom:6px">${pc.name}</h3>
+    <div class="mini muted" style="margin-bottom:12px">${pc.vendor} · base ${eur0(pc.basePrice)}${pc.priceVerified?'':' · prix à vérifier'}</div>
+
+    <div class="opt"><label>Stockage SSD</label>
+      <select id="o_ssd">${ssdOpts}</select></div>
+
+    <div class="opt"><label><input type="checkbox" id="o_wifi" ${cfg.wifi?'checked':''} ${pc.wifi?'disabled':''}> WiFi / Bluetooth</label>
+      <span class="delta">${pc.wifi?'inclus':'+'+C.wifiAdd+' €'}</span></div>
+
+    <div class="opt"><label><input type="checkbox" id="o_win" ${cfg.win?'checked':''} ${pc.windowsIncluded?'disabled':''}> Windows 11</label>
+      <span class="delta">${pc.windowsIncluded?'inclus':'+'+eur(pc.windowsOptionPrice)}</span></div>
+
+    <div class="opt"><label><input type="checkbox" id="o_ram" ${cfg.ram32?'checked':''} ${pc.ramGB>=32?'disabled':''}> 32 Go RAM</label>
+      <span class="delta">${pc.ramGB>=32?'déjà 32 Go':'+'+ramDelta+' €'}</span></div>
+
+    <div class="opt"><label>Changement CPU</label>
+      <select id="o_cpu">${cpuOpts}</select></div>
+
+    <div class="opt"><label>Changement carte mère</label>
+      <select id="o_mb">${mbOpts}</select></div>
+  `;
+  // listeners
+  document.getElementById('o_ssd').onchange=e=>{cfg.ssdGB=parseInt(e.target.value);renderSim();};
+  document.getElementById('o_wifi').onchange=e=>{cfg.wifi=e.target.checked;renderSim();};
+  document.getElementById('o_win').onchange=e=>{cfg.win=e.target.checked;renderSim();};
+  document.getElementById('o_ram').onchange=e=>{cfg.ram32=e.target.checked;renderSim();};
+  document.getElementById('o_cpu').onchange=e=>{cfg.cpuKey=e.target.value;renderSim();};
+  document.getElementById('o_mb').onchange=e=>{cfg.mbKey=e.target.value;renderSim();};
+
+  // ---- Panneau résultat ----
+  const sp=cfgSpec(pc,cfg); const sc=scoreGlobal(sp);
+  const baseSc=scoreGlobal(baseSpec(pc)).global;
+  const diff=Math.round((sc.global-baseSc)*10)/10;
+  const bar=(lbl,v)=>`<div class="bar"><span>${lbl}</span><span class="track"><span class="fill" style="width:${v*10}%"></span></span><span><b>${v.toFixed(1)}</b></span></div>`;
+  document.getElementById('simResult').innerHTML=`
+    <div class="kv"><span class="muted">Prix configuré</span></div>
+    <div class="bigprice">${eur(sp.price)}</div>
+    <div class="kv" style="margin-top:10px"><span class="muted">Score global</span>
+      <b style="font-size:1.2rem">${sc.global}/100 <span class="mini" style="color:${diff>=0?'var(--good)':'var(--bad)'}">${diff>=0?'+':''}${diff} vs base</span></b></div>
+    <div class="bars" style="margin-top:14px">
+      ${bar('Roblox',sc.parts.roblox)}
+      ${bar('Blender',sc.parts.blender)}
+      ${bar('Unreal',sc.parts.unreal)}
+      ${bar('Évolutivité',sc.parts.evol)}
+      ${bar('Rapport Q/P',sc.parts.rqp)}
+    </div>
+    <div class="tags" style="margin-top:14px">
+      <span class="chip">${sp.chipset}</span>
+      <span class="chip lilas">${sp.ramGB} Go ${sp.ramType}</span>
+      <span class="chip beige">${sp.ssdGB>=1000?sp.ssdGB/1000+' To':sp.ssdGB+' Go'}</span>
+    </div>`;
+}
+
+/* ============================================================================
+   RENDU — RADAR (canvas vanilla, jusqu'à 4 PC)
+   ============================================================================ */
+const RADAR_COLORS=['#E29DAC','#B49BDC','#8FB08C','#D7B79C'];
+let radarSel=[];
+function renderRadarSelectors(){
+  const box=document.getElementById('radarSel');
+  box.innerHTML=DATA.pcs.map(p=>{
+    const checked=radarSel.includes(p.id)?'checked':'';
+    return `<label><input type="checkbox" value="${p.id}" ${checked}> ${p.name} <span class="mini muted">${baseGlobal(p)}</span></label>`;
+  }).join('');
+  box.querySelectorAll('input').forEach(i=>i.onchange=()=>{
+    if(i.checked){ if(radarSel.length>=4){i.checked=false;toast('Maximum 4 PC');return;} radarSel.push(i.value); }
+    else radarSel=radarSel.filter(x=>x!==i.value);
+    drawRadar();
+  });
+}
+function drawRadar(){
+  const cv=document.getElementById('radar'), ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height,cx=W/2,cy=H/2+6,R=Math.min(W,H)/2-58;
+  ctx.clearRect(0,0,W,H);
+  const axes=['Roblox','Blender','Unreal','Évolutivité','Rapport Q/P'];
+  const keys=['roblox','blender','unreal','evol','rqp'];
+  const N=axes.length, ang=i=>(-Math.PI/2)+i*2*Math.PI/N;
+
+  // grille
+  ctx.strokeStyle='#EBDFEA'; ctx.fillStyle='#9a8fa3'; ctx.lineWidth=1;
+  for(let g=1;g<=5;g++){
+    ctx.beginPath();
+    for(let i=0;i<=N;i++){ const a=ang(i%N), r=R*g/5; const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a); i?ctx.lineTo(x,y):ctx.moveTo(x,y); }
+    ctx.stroke();
+  }
+  // axes + labels
+  ctx.font='600 12px '+getComputedStyle(document.body).fontFamily;
+  for(let i=0;i<N;i++){
+    const a=ang(i); const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+    ctx.strokeStyle='#E6D9E6'; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(x,y); ctx.stroke();
+    const lx=cx+(R+24)*Math.cos(a), ly=cy+(R+24)*Math.sin(a);
+    ctx.fillStyle='#6f6678'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(axes[i],lx,ly);
+  }
+  // polygones
+  radarSel.forEach((id,idx)=>{
+    const pc=pcById(id); const parts=scoreGlobal(baseSpec(pc)).parts;
+    const col=RADAR_COLORS[idx%4];
+    ctx.beginPath();
+    keys.forEach((k,i)=>{ const v=parts[k]/10; const a=ang(i); const r=R*v; const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a); i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+    ctx.closePath();
+    ctx.fillStyle=col+'33'; ctx.fill();
+    ctx.strokeStyle=col; ctx.lineWidth=2.2; ctx.stroke();
+    keys.forEach((k,i)=>{ const v=parts[k]/10; const a=ang(i); const r=R*v; const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a); ctx.beginPath(); ctx.arc(x,y,3,0,7); ctx.fillStyle=col; ctx.fill(); });
+  });
+  // légende
+  document.getElementById('radarLegend').innerHTML = radarSel.length
+    ? radarSel.map((id,idx)=>`<div class="row"><span class="key" style="background:${RADAR_COLORS[idx%4]}"></span>${pcById(id).name} <span class="mini muted">· ${baseGlobal(pcById(id))}/100</span></div>`).join('')
+    : '<div class="mini muted">Sélectionnez 1 à 4 PC à droite.</div>';
+}
+
+/* ============================================================================
+   RENDU — COMPARATEUR CÔTE À CÔTE (favoris)
+   ============================================================================ */
+function renderComparator(){
+  const ids=[...favorites].slice(0,4);
+  const empty=document.getElementById('cmpEmpty'), wrap=document.getElementById('cmpWrap');
+  if(!ids.length){ empty.style.display='block'; wrap.style.display='none'; return; }
+  empty.style.display='none'; wrap.style.display='block';
+  const pcs=ids.map(pcById);
+  const rows=[
+    ['Vendeur', p=>p.vendor],
+    ['Prix utilisable', p=>eur0(usablePrice(p))],
+    ['CPU', p=>p.cpu.name],
+    ['GPU', p=>p.gpu.name],
+    ['VRAM', p=>p.gpu.vram+' Go'],
+    ['RAM', p=>p.ramGB+' Go '+p.ramType],
+    ['SSD', p=>p.ssdGB>=1000?p.ssdGB/1000+' To':p.ssdGB+' Go'],
+    ['Carte mère', p=>p.chipset],
+    ['Alim', p=>p.psuW+' W'],
+    ['Boîtier', p=>p.formFactor==='sff'?'Compact (SFF)':'Tour ATX'],
+    ['WiFi/BT', p=>(p.wifi?'WiFi':'—')+(p.bt?' + BT':'')],
+    ['Windows', p=>p.windowsIncluded?'Inclus':'+119,90 €'],
+    ['Roblox', p=>scoreRoblox(baseSpec(p)).toFixed(1)],
+    ['Blender', p=>scoreBlender(baseSpec(p)).toFixed(1)],
+    ['Unreal', p=>scoreUnreal(baseSpec(p)).toFixed(1)],
+    ['Évolutivité', p=>scoreEvol(baseSpec(p)).toFixed(1)],
+    ['Rapport Q/P', p=>scoreRQP(baseSpec(p)).toFixed(1)],
+    ['Score global', p=>`<b>${baseGlobal(p)}/100</b>`]
+  ];
+  let html=`<thead><tr><th>Critère</th>${pcs.map(p=>`<th>${p.name}</th>`).join('')}</tr></thead><tbody>`;
+  rows.forEach(([lbl,fn])=>{ html+=`<tr><td>${lbl}</td>${pcs.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`; });
+  html+='</tbody>';
+  document.getElementById('cmpTable').innerHTML=html;
+}
+
+/* ============================================================================
+   RENDU — ACCESSOIRES
+   ============================================================================ */
+function renderAccessories(){
+  document.getElementById('accGrid').innerHTML=DATA.accessories.map(a=>`
+    <div class="card soft">
+      <span class="chip ${a.chip}">+${eur0(a.price)}</span>
+      <h3 style="margin:10px 0 2px">${a.name}</h3>
+      <div class="mini muted">${a.note}</div>
+    </div>`).join('');
+}
+
+/* ============================================================================
+   EXPORTS — PDF (impression) / CSV / JSON
+   ============================================================================ */
+function exportPDF(){ window.print(); }
+function dl(name,content,type){
+  const blob=new Blob([content],{type}); const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1500); toast('Export '+name);
+}
+function exportCSV(){
+  const head=['Nom','Vendeur','Prix utilisable (€)','Prix vérifié','CPU','GPU','VRAM (Go)','RAM (Go)','RAM type','SSD (Go)','Carte mère','Alim (W)','Boîtier','WiFi','BT','Windows inclus','Roblox','Blender','Unreal','Évolutivité','Rapport Q/P','Global /100'];
+  const lines=DATA.pcs.map(p=>{const s=baseSpec(p),sc=scoreGlobal(s);return [
+    p.name,p.vendor,Math.round(usablePrice(p)),p.priceVerified?'oui':'à vérifier',
+    p.cpu.name,p.gpu.name,p.gpu.vram,p.ramGB,p.ramType,p.ssdGB,p.chipset,p.psuW,
+    p.formFactor==='sff'?'SFF':'Tour',p.wifi?'oui':'non',p.bt?'oui':'non',p.windowsIncluded?'oui':'non',
+    sc.parts.roblox.toFixed(1),sc.parts.blender.toFixed(1),sc.parts.unreal.toFixed(1),
+    sc.parts.evol.toFixed(1),sc.parts.rqp.toFixed(1),sc.global
+  ].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(';');});
+  dl('etude-pc.csv','\uFEFF'+[head.join(';'),...lines].join('\n'),'text/csv;charset=utf-8');
+}
+function exportJSON(){
+  const out={ genere:new Date().toISOString(), ponderation:DATA.weights,
+    pcs:DATA.pcs.map(p=>{const s=baseSpec(p),sc=scoreGlobal(s);return {
+      id:p.id,nom:p.name,vendeur:p.vendor,lien:p.url,
+      prixBase:p.basePrice,prixUtilisable:Math.round(usablePrice(p)),prixVerifie:p.priceVerified,
+      cpu:p.cpu,gpu:p.gpu,ramGB:p.ramGB,ramType:p.ramType,ssdGB:p.ssdGB,
+      carteMere:p.chipset,alimW:p.psuW,format:p.formFactor,wifi:p.wifi,bluetooth:p.bt,
+      windowsInclus:p.windowsIncluded,scores:sc.parts,scoreGlobal:sc.global
+    };})};
+  dl('etude-pc.json',JSON.stringify(out,null,2),'application/json');
+}
+
+/* ============================================================================
+   INIT
+   ============================================================================ */
+function init(){
+  renderWinner();
+  renderCriteria();
+  buildFilters();
+  renderTable();
+  renderReco();
+  initSimSelect(); renderSim();
+  // pré-sélection radar : top 3 par score global
+  radarSel=[...DATA.pcs].sort((a,b)=>baseGlobal(b)-baseGlobal(a)).slice(0,3).map(p=>p.id);
+  renderRadarSelectors(); drawRadar();
+  renderComparator();
+  renderAccessories();
+  // filtres live
+  ['q','fGpu','fVendor','fBudget','fFav'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.addEventListener(id==='q'?'input':'change',renderTable);
+  });
+}
+init();
+</script>
+</body>
+</html>

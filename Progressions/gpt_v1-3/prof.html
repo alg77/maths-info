@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace prof — Tableau de bord</title>
+  <link rel="stylesheet" href="site-commun.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="prof">
+  <main class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="eyebrow">🌸 Espace prof</div>
+          <h1>Tableau de bord pédagogique</h1>
+          <p class="intro">
+            Espace de travail personnel : progressions interactives, carnet de suivi,
+            comparatifs BO, outils d’organisation et ressources de préparation.
+          </p>
+          <p class="updated">
+            ⚠️ Ne pas y publier de données élèves nominatives : le suivi individuel reste dans le carnet Apps Script / Google Sheets.
+          </p>
+        </div>
+
+        <div class="hero-avatar">
+          <img src="avatar-maths.png" alt="Je prépare l'année">
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-grid">
+      <article class="card">
+        <span class="badge maths">Progressions</span>
+        <h2>Progressions interactives</h2>
+        <p>
+          Mathématiques collège et NSI lycée : séquences déplaçables, durées ajustables,
+          compétences, calendrier scolaire et diagrammes de Gantt automatiques.
+        </p>
+        <a class="btn" href="progressions.html">🌿 Ouvrir les progressions</a>
+      </article>
+
+      <article class="card">
+        <span class="badge carnet">Carnet</span>
+        <h2>Carnet de suivi</h2>
+        <p>
+          Carnet de suivi élèves développé avec Apps Script et relié à Google Sheets.
+        </p>
+        <div class="actions">
+          <button class="btn" id="carnetBtn" type="button">📓 Ouvrir mon carnet</button>
+          <button class="btn ghost" id="carnetUrlBtn" type="button">Modifier l’URL</button>
+        </div>
+      </article>
+    </section>
+
+    <h2 class="section-title">Accès rapides — progressions</h2>
+    <section class="grid">
+      <article class="card mini"><span class="badge maths">Maths</span><h2>6ᵉ</h2><p class="muted">Progression annuelle, calendrier et Gantt.</p><a class="btn ghost" href="progression-gantt-6e.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge maths">Maths</span><h2>5ᵉ</h2><p class="muted">Progression interactive de mathématiques.</p><a class="btn ghost" href="progression-gantt-5e.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge maths">Maths</span><h2>4ᵉ</h2><p class="muted">Progression interactive de mathématiques.</p><a class="btn ghost" href="progression-gantt-4e.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge nsi">NSI</span><h2>Première</h2><p class="muted">Progression interactive de spécialité NSI.</p><a class="btn ghost" href="progression-gantt-nsi-premiere.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge nsi">NSI</span><h2>Terminale</h2><p class="muted">Progression interactive de spécialité NSI.</p><a class="btn ghost" href="progression-gantt-nsi-terminale.html">Ouvrir</a></article>
+    </section>
+
+    <h2 class="section-title">Programmes & BO</h2>
+    <section class="grid">
+      <article class="card mini"><span class="badge maths">BO 2025</span><h2>Maths 6ᵉ</h2><p class="muted">Comparatif nouveau / ancien programme, par domaine.</p><a class="btn ghost" href="bo-2025-6e.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge maths">BO 2026</span><h2>Maths 5ᵉ</h2><p class="muted">Changements et points de vigilance pour 2026-2027.</p><a class="btn ghost" href="bo-2026-5e.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge maths">BO 2027</span><h2>Maths 4ᵉ</h2><p class="muted">Veille pour la transition cycle 4 en 4ᵉ.</p><a class="btn ghost" href="bo-2027-4e.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge nsi">BO NSI</span><h2>NSI Première</h2><p class="muted">Programme, ressources Éduscol et pistes pédagogiques.</p><a class="btn ghost" href="bo-nsi-premiere.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge nsi">BO NSI</span><h2>NSI Terminale</h2><p class="muted">Programme, bac, ECE et ressources.</p><a class="btn ghost" href="bo-nsi-terminale.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge officiel">Liens officiels</span><h2>Tous les liens Éduscol</h2><p class="muted">Programmes par cycle, ressources d’accompagnement, ECE, BNS.</p><a class="btn ghost" href="ressources.html">Ouvrir</a></article>
+    </section>
+
+    <h2 class="section-title">Pages publiques à administrer</h2>
+    <section class="grid">
+      <article class="card mini"><span class="badge green">Vacances</span><h2>Cahiers de vacances</h2><p class="muted">Page publique avec les cahiers et ressources d’entraînement.</p><a class="btn ghost" href="vacances.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge maths">Galerie</span><h2>Productions d’élèves</h2><p class="muted">Travaux et projets à publier après anonymisation.</p><a class="btn ghost" href="productions.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge nsi">Événements</span><h2>Projets & événements</h2><p class="muted">Nuit du Code, Algoréa, projets et valorisation.</p><a class="btn ghost" href="projets.html">Ouvrir</a></article>
+      <article class="card mini"><span class="badge nsi">NSI</span><h2>Mon site NSI</h2><p class="muted">Accès au site de spécialité NSI en cours de refonte.</p><a class="btn ghost" href="https://alg77.github.io/siteNSI/index.html" target="_blank" rel="noopener">🔗 Ouvrir</a></article>
+    </section>
+  </main>
+
+  <script src="site.js" defer></script>
+  <script>
+    const CARNET_KEY='prog.carnetUrl';
+    function getCarnetUrl(){ try{ return localStorage.getItem(CARNET_KEY)||''; }catch(e){ return ''; } }
+    function setCarnetUrl(){
+      const current=getCarnetUrl();
+      const url=prompt("Colle l’URL de ton carnet Apps Script, idéalement l’URL /exec :", current);
+      if(url!==null){ try{ localStorage.setItem(CARNET_KEY, url.trim()); }catch(e){} }
+      return url;
+    }
+    document.getElementById('carnetBtn').addEventListener('click', function(){
+      let url=getCarnetUrl(); if(!url) url=setCarnetUrl(); if(url) window.open(url,'_blank');
+    });
+    document.getElementById('carnetUrlBtn').addEventListener('click', setCarnetUrl);
+  </script>
+</body>
+</html>
