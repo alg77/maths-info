@@ -56,7 +56,12 @@ def impose(in_pdf, out):
         w.add_page(sheet)
     with open(out, "wb") as f:
         w.write(f)
-    print(f"  [OK] cahier A3 -> {out}  ({real} pages -> {total//4} feuilles A3)")
+    sheet_count = total // 4
+    sheet_label = "feuille" if sheet_count == 1 else "feuilles"
+    print(
+        f"  [OK] cahier A3 -> {out}  "
+        f"({real} pages -> {sheet_count} {sheet_label} A3)"
+    )
     print("    Imprimer recto-verso « bord court », plier au centre, agrafer à cheval.")
 
 def main():
