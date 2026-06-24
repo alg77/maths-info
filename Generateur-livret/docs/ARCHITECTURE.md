@@ -44,6 +44,12 @@ Ce module :
 Les erreurs contiennent le nom du fichier et, lorsque c'est possible, le
 numéro de ligne concerné.
 
+### `livret.components`
+
+Ce module constitue le registre unique des composants pédagogiques. Il
+centralise leurs noms, libellés et règles de rendu. Les noms historiques sont
+conservés comme alias afin de permettre une migration chapitre par chapitre.
+
 ### `build_livret.py`
 
 Ce fichier reste temporairement le point d'entrée compatible avec les
@@ -73,9 +79,7 @@ Fusionne des PDF A4 et produit les faces A3 dans l'ordre d'un cahier piqué.
 
 ## Étapes suivantes
 
-1. Extraire le registre et le rendu des composants.
-2. Sortir le CSS et les modèles HTML des chaînes Python.
-3. Centraliser la charte graphique dans des variables CSS.
-4. Migrer progressivement `sources/*.txt` vers des chapitres `.md`.
-5. Ajouter des tests visuels de référence pour les PDF.
-
+1. Sortir le CSS et les modèles HTML des chaînes Python.
+2. Centraliser la charte graphique dans des variables CSS.
+3. Migrer progressivement `sources/*.txt` vers des chapitres `.md`.
+4. Ajouter des tests visuels de référence pour les PDF.

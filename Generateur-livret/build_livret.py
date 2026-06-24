@@ -18,11 +18,14 @@ from livret import (
     SourceError,
     blank_width,
     inline,
+    lines_html,
     load_source,
     make_qr,
     mathify,
     parse,
     process,
+    render_body,
+    render_table,
     validate_source,
 )
 
@@ -45,48 +48,6 @@ COMP_MAP = {
 }
 
 # ============================================================ RENDU
-def render_table(rows, mode):
-    def cells(r): return [c.strip() for c in r.strip().strip('|').split('|')]
-    has_sep = len(rows) > 1 and set(rows[1].replace('|','').replace('-','').replace(':','').strip()) == set()
-    out, start = [], 0
-    if has_sep:
-        out.append("<tr>" + "".join(f"<th>{process(c, mode)}</th>" for c in cells(rows[0])) + "</tr>")
-        start = 2
-    for r in rows[start:]:
-        out.append("<tr>" + "".join(f"<td>{process(c, mode)}</td>" for c in cells(r)) + "</tr>")
-    return f'<table class="grid">{"".join(out)}</table>'
-
-def lines_html(body, mode):
-    out, i, n, in_ul = [], 0, len(body), False
-    while i < n:
-        ln = body[i]; t = ln.strip()
-        if t.startswith('<svg'):
-            if in_ul: out.append("</ul>"); in_ul = False
-            buf = [ln]
-            while '</svg>' not in ln and i + 1 < n:
-                i += 1; ln = body[i]; buf.append(ln)
-            out.append("\n".join(buf)); i += 1; continue
-        if t.startswith('|'):
-            if in_ul: out.append("</ul>"); in_ul = False
-            rows = []
-            while i < n and body[i].strip().startswith('|'):
-                rows.append(body[i].strip()); i += 1
-            out.append(render_table(rows, mode)); continue
-        if not t:
-            if in_ul: out.append("</ul>"); in_ul = False
-            i += 1; continue
-        if t.startswith("- "):
-            if not in_ul: out.append("<ul>"); in_ul = True
-            out.append(f"<li>{process(t[2:], mode)}</li>"); i += 1; continue
-        if in_ul: out.append("</ul>"); in_ul = False
-        out.append(f"<p>{process(t, mode)}</p>"); i += 1
-    if in_ul: out.append("</ul>")
-    return "\n".join(out)
-
-BOX_LABEL = {"def":"Définition","regle":"Règle","prop":"Propriété","methode":"Méthode",
-             "reussite":"Critères de réussite","rappel":"Je me souviens","retenu":"J'ai retenu",
-             "ressources":"Pour aller plus loin"}
-
 def fox_svg():
     return ('<svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" class="cover-animal">'
       '<polygon points="128,150 192,120 178,170 150,182" fill="#6BA3D6"/>'
@@ -204,39 +165,6 @@ def bandeau_html(code, title, niveau):
             f'<span class="titre">{html.escape(title.upper())}</span>'
             f'<span class="niveau">{html.escape(niveau)}</span></div>')
 
-def render_body(body, mode):
-    parts = []
-    for kind, data in body:
-        if kind == "section":
-            parts.append(f'<h2>{process(data, mode)}</h2>')
-        elif kind == "para":
-            parts.append(lines_html(data, mode))
-        elif kind == "box":
-            btype, btitle, bbody = data
-            if btype == "raw":
-                parts.append("\n".join(bbody)); continue
-            label = btitle or BOX_LABEL.get(btype, "")
-            if btype == "reussite":
-                items = "".join(f'<li><span class="case"></span>{process(l.strip(), mode)}</li>'
-                                for l in bbody if l.strip())
-                inner = f'<ul class="checklist">{items}</ul>'
-            elif btype == "ressources":
-                items = []
-                for l in bbody:
-                    ls = l.strip()
-                    if ls.startswith("- "):
-                        lab, _, url = ls[2:].partition("|")
-                        lab, url = lab.strip(), url.strip()
-                        qr = make_qr(url) if url else ""
-                        items.append(f'<li><span class="res-txt">{inline(lab)}<br>'
-                                     f'<span class="res-url">{html.escape(url)}</span></span>{qr}</li>')
-                inner = f'<ul class="ressources">{"".join(items)}</ul>'
-            else:
-                inner = lines_html(bbody, mode)
-            lab = f'<span class="box-label">{inline(label)}</span>' if label else ""
-            parts.append(f'<div class="box box-{btype}">{lab}{inner}</div>')
-    return "\n".join(parts)
-
 def split_chapters(blocks):
     cover, chaps, cur = None, [], None
     for kind, data in blocks:
@@ -327,16 +255,22 @@ svg.fig {{ display:block; float:right; width:200px; margin:0 0 6px 12px; }}
 .box {{ position:relative; border:1.5px solid #888; border-radius:8px; padding:9px 11px 8px; margin:9px 0;
   break-inside:avoid; page-break-inside:avoid; }}
 .box-label {{ display:inline-block; font-weight:bold; margin-bottom:3px; }}
-.box-def {{ border-color:{'#888' if nb else '#c0392b'}; {'' if nb else 'background:#fdf0f0;'} }}
-.box-def .box-label {{ color:{'#222' if nb else '#c0392b'}; }}
-.box-regle,.box-prop {{ border-color:{'#888' if nb else '#27ae60'}; {'' if nb else 'background:#eefbf2;'} }}
-.box-regle .box-label,.box-prop .box-label {{ color:{'#222' if nb else '#1e8a4c'}; }}
+.box-def,.box-definition {{ border-color:{'#888' if nb else '#c0392b'}; {'' if nb else 'background:#fdf0f0;'} }}
+.box-def .box-label,.box-definition .box-label {{ color:{'#222' if nb else '#c0392b'}; }}
+.box-regle,.box-prop,.box-propriete {{ border-color:{'#888' if nb else '#27ae60'}; {'' if nb else 'background:#eefbf2;'} }}
+.box-regle .box-label,.box-prop .box-label,.box-propriete .box-label {{ color:{'#222' if nb else '#1e8a4c'}; }}
 .box-methode {{ border-color:{'#888' if nb else '#3B82C4'}; {'' if nb else 'background:#eef5fc;'} }}
 .box-methode .box-label {{ color:{'#222' if nb else '#2b6cb0'}; }}
+.box-exemple {{ border-color:{'#888' if nb else '#f3b59a'}; {'' if nb else 'background:#fff8f3;'} }}
+.box-exemple .box-label {{ color:{'#222' if nb else '#c2693f'}; }}
+.box-exercice {{ border-style:dashed; border-color:{'#777' if nb else '#c9b6d8'}; {'' if nb else 'background:#fdfbff;'} }}
+.box-exercice .box-label {{ color:{'#222' if nb else '#7d54a3'}; }}
 .box-rappel {{ border-style:dashed; border-color:{'#888' if nb else '#8B6FB0'}; {'' if nb else 'background:#f5f0fb;'} }}
 .box-rappel .box-label {{ color:{'#222' if nb else '#7a5aa6'}; }}
-.box-retenu {{ border:2px solid {'#555' if nb else '#E0A23B'}; {'' if nb else 'background:#fff7e8;'} }}
-.box-retenu .box-label {{ color:{'#222' if nb else '#b9791a'}; font-size:1.05em; }}
+.box-retenu,.box-retenir,.box-a-retenir,.box-a_retenir {{ border:2px solid {'#555' if nb else '#c7ebd7'}; {'' if nb else 'background:#f3fbf6;'} }}
+.box-retenu .box-label,.box-retenir .box-label,.box-a-retenir .box-label,.box-a_retenir .box-label {{ color:{'#222' if nb else '#2f6f53'}; font-size:1.05em; }}
+.box-defi {{ border-color:{'#888' if nb else '#f3d79a'}; {'' if nb else 'background:#fff5e0;'} }}
+.box-defi .box-label {{ color:{'#222' if nb else '#c98a1e'}; }}
 .box-reussite {{ border-color:{'#888' if nb else '#c0392b'}; }}
 .box-reussite .box-label {{ color:{'#222' if nb else '#c0392b'}; text-decoration:underline; }}
 .rep {{ color:{rep_color}; font-weight:{'bold' if nb else '600'}; }}
@@ -351,6 +285,10 @@ table.grid th {{ background:{'#eee' if nb else '#eaf2fb'}; color:{'#222' if nb e
 table.grid .qr {{ height:2.4em; }}
 .box-ressources {{ border:2px dashed {'#666' if nb else '#2BA98E'}; {'' if nb else 'background:#eefbf6;'} }}
 .box-ressources .box-label {{ color:{'#222' if nb else '#1f8f76'}; }}
+.box-qr {{ border-color:{'#888' if nb else '#c9b6d8'}; {'' if nb else 'background:#faf7fc;'} }}
+.box-qr .box-label {{ color:{'#222' if nb else '#7d54a3'}; }}
+.qr-card {{ display:flex; align-items:center; justify-content:space-between; gap:12px; }}
+.qr-card .qr {{ height:5.5em; flex:0 0 auto; }}
 .ressources {{ list-style:none; margin:0; padding:0; }}
 .ressources li {{ display:flex; align-items:center; justify-content:space-between; gap:10px;
   padding:5px 0; border-bottom:1px dotted #ccc; }}

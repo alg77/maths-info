@@ -76,14 +76,18 @@ La somme vaut [[15]].
 - `[[réponse]]` affiche la réponse dans la version professeur et un blanc dans
   la version élève ;
 - `@include N1.txt` compose plusieurs chapitres sans copier leur contenu ;
-- les composants existants sont `def`, `regle`, `prop`, `methode`, `rappel`,
-  `retenu`, `reussite` et `ressources` ;
+- les composants recommandés sont `definition`, `propriete`, `exemple`,
+  `methode`, `exercice`, `retenir`, `defi`, `ressources` et `qr` ;
+- les noms historiques `def`, `prop` et `retenu` restent compatibles ;
 - `[qr:https://exemple.fr]` génère un QR code ;
 - les expressions entre `$...$` utilisent le convertisseur mathématique.
 
 Les fichiers de `sources/` constituent actuellement le format compris par le
 moteur. Les exports historiques placés dans `md/` seront migrés ensuite vers
 une source Markdown unique et validée.
+
+Un chapitre présentant tous les nouveaux composants est disponible dans
+`examples/chapitre-composants.md`.
 
 ## Assembler et imposer en A3
 

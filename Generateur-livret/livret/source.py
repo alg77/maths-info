@@ -3,19 +3,7 @@
 import re
 from pathlib import Path
 
-
-KNOWN_COMPONENTS = {
-    "couverture",
-    "def",
-    "methode",
-    "prop",
-    "rappel",
-    "raw",
-    "regle",
-    "ressources",
-    "retenu",
-    "reussite",
-}
+from .components import KNOWN_COMPONENTS
 
 
 class SourceError(ValueError):
@@ -181,4 +169,3 @@ def parse(source):
             index += 1
         blocks.append(("para", paragraph))
     return blocks
-
