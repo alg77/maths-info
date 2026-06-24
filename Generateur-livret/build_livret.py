@@ -611,7 +611,17 @@ def main():
     ap.add_argument("--taille", type=float, default=14)
     ap.add_argument("--interligne", type=float, default=1.5)
     ap.add_argument("--couleur", choices=["couleur","nb"], default="couleur")
-    ap.add_argument("--html", action="store_true")
+    ap.add_argument(
+        "--format",
+        choices=["pdf", "html", "both"],
+        default="pdf",
+        help="formats à produire (pdf par défaut)",
+    )
+    ap.add_argument(
+        "--html",
+        action="store_true",
+        help="compatibilité : équivaut à --format both",
+    )
     ap.add_argument("--builder", action="store_true", help="générer le sélecteur HTML interactif")
     ap.add_argument(
         "--validate",
@@ -639,22 +649,37 @@ def main():
         build_builder(blocks, outdir, stem, cover)
         return
 
+    output_format = "both" if args.html else args.format
+    generate_pdf = output_format in {"pdf", "both"}
+    generate_html = output_format in {"html", "both"}
     modes = ["prof","eleve"] if args.mode == "both" else [args.mode]
-    try:
-        from weasyprint import HTML
-    except ImportError as exc:
-        ap.error(
-            "WeasyPrint n'est pas installé. Lancez "
-            "'python -m pip install -e .' avant de générer un PDF."
-        )
-    print(f"[{stem}] {args.police} {args.taille}pt int={args.interligne} {args.couleur}" + (" +html" if args.html else ""))
+    if generate_pdf:
+        try:
+            from weasyprint import HTML
+        except ImportError:
+            ap.error(
+                "WeasyPrint n'est pas installé. Lancez "
+                "'python -m pip install -e .' ou utilisez '--format html'."
+            )
+    print(
+        f"[{stem}] {args.police} {args.taille}pt int={args.interligne} "
+        f"{args.couleur} format={output_format}"
+    )
     for m in modes:
         body = render(blocks, m)
         suffix = f"{m}_{args.police}_{int(args.taille)}pt_{args.couleur}"
-        pdf = outdir / f"{stem}__{suffix}.pdf"
-        HTML(string=html_doc(body, build_print_css(args.police, args.taille, args.interligne, args.couleur))).write_pdf(str(pdf))
-        print(f"  [OK] {pdf.name}")
-        if args.html:
+        if generate_pdf:
+            pdf = outdir / f"{stem}__{suffix}.pdf"
+            HTML(
+                string=html_doc(
+                    body,
+                    build_print_css(
+                        args.police, args.taille, args.interligne, args.couleur
+                    ),
+                )
+            ).write_pdf(str(pdf))
+            print(f"  [OK] {pdf.name}")
+        if generate_html:
             webfile = outdir / f"{stem}__{m}_web.html"
             webfile.write_text(html_doc(body, build_web_css(args.police), web=True), encoding="utf-8")
             print(f"  [OK] {webfile.name}")

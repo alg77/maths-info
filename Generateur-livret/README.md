@@ -34,7 +34,7 @@ Sous Linux ou macOS, la commande d'activation de l'environnement devient
 ## Générer un livret
 
 ```console
-python build_livret.py sources/P2-4e.txt --mode both --html
+python build_livret.py sources/P2-4e.txt --mode both --format both
 ```
 
 Les fichiers sont écrits par défaut dans `dist/`. Ce dossier est ignoré par
@@ -46,6 +46,8 @@ Options principales :
 - `--police atkinson` ou `--police opendyslexic` ;
 - `--taille 12` et `--interligne 1.5` ;
 - `--couleur couleur` ou `--couleur nb` ;
+- `--format pdf`, `--format html` ou `--format both` ;
+- `--html` reste accepté comme ancien raccourci pour `--format both` ;
 - `--builder` pour créer le sélecteur interactif ;
 - `--validate` pour vérifier les chapitres sans produire de document ;
 - `--out chemin` pour choisir un autre dossier de sortie.
