@@ -47,7 +47,19 @@ Options principales :
 - `--taille 12` et `--interligne 1.5` ;
 - `--couleur couleur` ou `--couleur nb` ;
 - `--builder` pour créer le sélecteur interactif ;
+- `--validate` pour vérifier les chapitres sans produire de document ;
 - `--out chemin` pour choisir un autre dossier de sortie.
+
+Avant une génération complète, il est possible de contrôler rapidement une
+période ou toute l'année :
+
+```console
+python build_livret.py sources/annee-4e.txt --validate
+```
+
+Les erreurs signalent le fichier et la ligne concernés, notamment pour un
+composant inconnu, un bloc non fermé, une inclusion manquante ou une boucle
+d'inclusions.
 
 ## Syntaxe actuelle des chapitres
 
@@ -102,6 +114,7 @@ inclusions et l'ordre d'imposition A3.
 
 ## Organisation actuelle
 
+- `livret/` : cœur indépendant du PDF, syntaxe et validation ;
 - `build_livret.py` : lecture des sources et rendus professeur/élève ;
 - `assemble.py` : fusion et imposition A3 ;
 - `build_apps.py` : génération du QCM et du tableau de bord ;
@@ -112,4 +125,5 @@ inclusions et l'ordre d'imposition A3.
 - `dist/` : livrables générés, non versionnés.
 
 Le détail fonctionnel historique reste disponible dans `GUIDE.md`.
-
+Les choix de découpage et la trajectoire de refonte sont décrits dans
+`docs/ARCHITECTURE.md`.

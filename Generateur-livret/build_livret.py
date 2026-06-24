@@ -11,13 +11,20 @@ v3 :
     cocher des chapitres, choisir la période, basculer prof/élève,
     exporter en HTML, imprimer en PDF, exporter un manifeste .txt.
 """
-import argparse, base64, html, io, json, re
+import argparse, base64, html, json, re
 from pathlib import Path
-try:
-    import qrcode
-    HAS_QR = True
-except ImportError:
-    HAS_QR = False
+
+from livret import (
+    SourceError,
+    blank_width,
+    inline,
+    load_source,
+    make_qr,
+    mathify,
+    parse,
+    process,
+    validate_source,
+)
 
 FONT_DIR = Path(__file__).resolve().parent / "fonts"   # portable
 THEME = {"N": "#3B82C4", "G": "#E05A6B", "D": "#2BA98E", "A": "#8B6FB0", "C": "#E0A23B"}
@@ -36,111 +43,6 @@ COMP_MAP = {
     "Co1": "Faire le lien entre langage naturel et langage algébrique",
     "Co2": "Expliquer à l'oral ou à l'écrit",
 }
-
-# ============================================================ INLINE
-def make_qr(url):
-    if not HAS_QR:
-        return f'<span class="qr-missing">[QR: {html.escape(url)}]</span>'
-    img = qrcode.make(url)
-    buf = io.BytesIO(); img.save(buf, format="PNG")
-    return f'<img class="qr" src="data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}" alt="QR"/>'
-
-def mathify(s):
-    """Mini-convertisseur LaTeX → HTML (sous-ensemble collège)."""
-    cmds = []
-    s = re.sub(r'\\[a-zA-Z]+', lambda m: cmds.append(m.group(0)) or f'\x00{len(cmds)-1}\x00', s)
-    s = re.sub(r'[A-Za-z]+', lambda m: f'<em>{m.group()}</em>', s)          # variables en italique
-    s = re.sub(r'\x00(\d+)\x00', lambda m: cmds[int(m.group(1))], s)        # restaure les commandes
-    for k, v in {'\\times':'×','\\div':'÷','\\cdot':'·','\\pm':'±','\\leq':'≤','\\le':'≤',
-                 '\\geq':'≥','\\ge':'≥','\\neq':'≠','\\ne':'≠','\\approx':'≈','\\pi':'π',
-                 '\\ldots':'…','\\dots':'…','\\%':'%','\\,':'\u2009'}.items():
-        s = s.replace(k, v)
-    s = re.sub(r'\\sqrt\{([^{}]*)\}', r'√<span class="sqrtarg">\1</span>', s)
-    for _ in range(4):
-        s2 = re.sub(r'\\frac\{([^{}]*)\}\{([^{}]*)\}',
-                    r'<span class="frac"><span class="fnum">\1</span><span class="fden">\2</span></span>', s)
-        if s2 == s: break
-        s = s2
-    s = re.sub(r'\^\{([^{}]*)\}', r'<sup>\1</sup>', s)
-    s = re.sub(r'\^(<em>\w</em>|\w)', r'<sup>\1</sup>', s)
-    s = re.sub(r'_\{([^{}]*)\}', r'<sub>\1</sub>', s)
-    s = re.sub(r'_(<em>\w</em>|\w)', r'<sub>\1</sub>', s)
-    return f'<span class="math">{s}</span>'
-
-def _inline_basic(text):
-    text = re.sub(r'\[qr:([^\]]+)\]', lambda m: make_qr(m.group(1).strip()), text)
-    text = re.sub(r'\^\{([^}]+)\}', r'<sup>\1</sup>', text)
-    text = re.sub(r'\^(\w)', r'<sup>\1</sup>', text)
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
-    return text
-
-def inline(text):
-    out, last = [], 0
-    for m in re.finditer(r'\$(.+?)\$', text):
-        out.append(_inline_basic(text[last:m.start()]))
-        out.append(mathify(m.group(1)))
-        last = m.end()
-    out.append(_inline_basic(text[last:]))
-    return "".join(out)
-
-def blank_width(ans):
-    n = len(re.sub(r'[*^{}]', '', ans))
-    return max(2.5, min(n * 0.55, 30))
-
-def process(text, mode):
-    out, last = [], 0
-    for m in re.finditer(r'\[\[(.+?)\]\]', text):
-        out.append(inline(text[last:m.start()]))
-        ans = m.group(1)
-        if mode == "prof":
-            out.append(f'<span class="rep">{inline(ans)}</span>')
-        elif mode == "inter":
-            out.append(f'<span class="ans">{inline(ans)}</span>')
-        else:
-            out.append(f'<span class="blank" style="min-width:{blank_width(ans):.1f}em"></span>')
-        last = m.end()
-    out.append(inline(text[last:]))
-    return "".join(out)
-
-# ============================================================ PARSER
-def load_source(path, _seen=None):
-    _seen = _seen or set()
-    p = Path(path).resolve()
-    if p in _seen: return ""
-    _seen.add(p)
-    out = []
-    for ln in p.read_text(encoding="utf-8").split("\n"):
-        m = re.match(r'\s*@include\s+(.+)\s*$', ln)
-        out.append(load_source(p.parent / m.group(1).strip(), _seen) if m else ln)
-    return "\n".join(out)
-
-def parse(src):
-    lines = src.split("\n"); blocks, i = [], 0
-    while i < len(lines):
-        s = lines[i].strip()
-        if not s: i += 1; continue
-        if s.startswith("# "):
-            parts = [p.strip() for p in s[2:].split("|")]
-            blocks.append(("header", (parts[0] if parts else "",
-                                      parts[1] if len(parts) > 1 else "",
-                                      parts[2] if len(parts) > 2 else "",
-                                      parts[3] if len(parts) > 3 else ""))); i += 1; continue
-        if s.startswith("## "):
-            blocks.append(("section", s[3:].strip())); i += 1; continue
-        if s.startswith(":::"):
-            head = s[3:].strip(); btype, _, btitle = head.partition("|")
-            btype, btitle = btype.strip(), btitle.strip()
-            body, i = [], i + 1
-            while i < len(lines) and lines[i].strip() != ":::":
-                body.append(lines[i]); i += 1
-            i += 1
-            blocks.append(("box", (btype, btitle, body))); continue
-        para = []
-        while i < len(lines) and lines[i].strip() and not lines[i].strip().startswith(("#", ":::")):
-            para.append(lines[i]); i += 1
-        blocks.append(("para", para))
-    return blocks
 
 # ============================================================ RENDU
 def render_table(rows, mode):
@@ -773,10 +675,22 @@ def main():
     ap.add_argument("--couleur", choices=["couleur","nb"], default="couleur")
     ap.add_argument("--html", action="store_true")
     ap.add_argument("--builder", action="store_true", help="générer le sélecteur HTML interactif")
+    ap.add_argument(
+        "--validate",
+        action="store_true",
+        help="vérifier la source et ses inclusions sans générer de document",
+    )
     ap.add_argument("--out", default="dist")
     args = ap.parse_args()
 
-    src = load_source(args.source)
+    try:
+        src = load_source(args.source)
+        chapters = validate_source(src, args.source)
+    except SourceError as exc:
+        ap.error(str(exc))
+    if args.validate:
+        print(f"[OK] source valide : {len(chapters)} chapitre(s)")
+        return
     blocks = parse(src)
     outdir = Path(args.out); outdir.mkdir(parents=True, exist_ok=True)
     stem = Path(args.source).stem
