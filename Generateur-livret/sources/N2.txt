@@ -1,0 +1,71 @@
+# N2 | Multiplier et diviser des nombres relatifs | 4e | Ca3, Co1
+
+:::rappel | Je me souviens
+Calcule : (− 3) + (− 8) = [[− 11]] et 7 − (− 2) = [[9]]
+:::
+
+## I. Multiplication de nombres relatifs
+
+:::prop | Propriété
+Pour calculer le **produit** de deux nombres relatifs :
+- on applique la **règle des signes** : deux nombres de **même signe** → produit [[positif]] ; de **signes contraires** → produit [[négatif]] ;
+- puis on [[multiplie les distances à zéro]].
+:::
+
+**Exemples :** [qr:https://youtu.be/q-vHvhiizqY]
+(− 4) × (− 6) = [[24]]   ·   (− 7) × 8 = [[− 56]]
+3,2 × 3 = [[9,6]]   ·   (+ 8) × (− 5) = [[− 40]]
+
+:::def | Cas particuliers — *a* désigne un nombre relatif
+- *a* × 0 = [[0]]  (le produit par 0 est égal à 0)
+- *a* × (− 1) = [[− *a*]]  (le produit par −1 est l'opposé)
+:::
+
+**Exemples :** (− 18) × 0 = [[0]]   ·   5 × (− 1) = [[− 5]]
+
+:::prop | Propriété — produit de plusieurs facteurs
+On détermine le signe en comptant le **nombre de facteurs négatifs** : s'il est **pair**, le produit est [[positif]] ; s'il est **impair**, le produit est [[négatif]]. Puis on [[multiplie les distances à zéro]].
+:::
+
+**Exemples :**
+*A* = 3 × (− 2) × (− 10) → *A* = [[+ (3 × 2 × 10) = 60]]
+*B* = (− 2) × 4 × (− 5) × (− 1) × 10 → *B* = [[− (2 × 4 × 5 × 1 × 10) = − 400]]
+
+## II. Division de nombres relatifs
+
+:::prop | Propriété
+Pour calculer le **quotient** de deux relatifs : on applique la **même règle des signes** que pour le produit, puis on [[divise les distances à zéro]].
+:::
+
+**Exemples :** (− 48) ÷ (− 6) = [[8]]   ·   48 ÷ (− 6) = [[− 8]] [qr:https://youtu.be/Bf11wk3SMTY]
+
+:::reussite | Critères de réussite
+J'ai trouvé le bon signe.
+Je n'ai pas fait d'erreurs de calculs.
+J'ai présenté correctement mon calcul (une ligne par étape).
+:::
+
+## III. Calculer avec des nombres relatifs
+
+:::prop | Propriété — priorités opératoires (PE-MD-AS)
+Dans une suite d'opérations, on effectue dans l'ordre : les calculs entre **parenthèses** ; les **exposants** (carrés, cubes) ; les **multiplications et divisions** ; les **additions et soustractions**.
+:::
+
+**Exemples :** [qr:https://youtu.be/p_-4EYjsOiA]
+*A* = 7 + 4 × (− 8) → *A* = [[7 + (− 32) = 7 − 32 = − 25]]
+*B* = 15 − (7 − 8 × 2) → *B* = [[15 − (7 − 16) = 15 − (− 9) = 15 + 9 = 24]]
+*C* = (− 7 − 5) ÷ (− 2) → *C* = [[(− 12) ÷ (− 2) = 6]]
+
+:::reussite | Critères de réussite
+J'ai appliqué les priorités opératoires (PE-MD-AS).
+J'ai appliqué les règles de calcul sur les relatifs.
+Je n'ai pas fait d'erreurs de calculs.
+J'ai présenté correctement mon calcul (une ligne par étape).
+:::
+
+:::retenu | J'ai retenu
+Sans regarder le cours :
+- Règle des signes : même signe → …… ; signes contraires → ……
+- Plusieurs facteurs : nombre **pair** de négatifs → …… ; **impair** → ……
+- Ordre des priorités : …………………………………………
+:::

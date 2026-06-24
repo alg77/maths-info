@@ -1,0 +1,92 @@
+# G2 | Théorème de Pythagore | 4e | Mo1, Ra3, Co2
+
+:::rappel | Je me souviens
+Calcule : 9² = [[81]] et 12² = [[144]].
+Range dans l'ordre croissant : 3 ; √4 ; 1. → [[1 ; √4 ; 3]]
+:::
+
+## I. Racine carrée d'un nombre positif
+
+:::def | Définition
+La **racine carrée** d'un nombre positif *a* est le nombre **positif**, noté **√*a*** (lire « racine carrée de *a* »), dont le carré est *a*.
+:::
+
+**Exemples :**
+- 5² = [[25]] donc √25 = [[5]]
+- 1² = [[1]] donc √1 = [[1]]
+
+:::prop | Propriété
+Quel que soit le nombre positif *a* : **√*a* ≥ 0**, **(√*a*)² = *a*** et **√(*a*²) = *a***.
+:::
+
+**Exemple :** (√3)² = √(3²) = [[3]]
+
+:::def | Définition
+Un **carré parfait** est le carré d'un nombre entier.
+:::
+
+**Exemples :**
+- 1² = [[1]] donc √1 = [[1]]   ·   6² = [[36]] donc √36 = [[6]]   ·   11² = [[121]] donc √121 = [[11]]
+- 2² = [[4]] donc √4 = [[2]]   ·   7² = [[49]] donc √49 = [[7]]   ·   12² = [[144]] donc √144 = [[12]]
+- 3² = [[9]] donc √9 = [[3]]   ·   8² = [[64]] donc √64 = [[8]]   ·   13² = [[169]] donc √169 = [[13]]
+- 4² = [[16]] donc √16 = [[4]]   ·   9² = [[81]] donc √81 = [[9]]   ·   14² = [[196]] donc √196 = [[14]]
+- 5² = [[25]] donc √25 = [[5]]   ·   10² = [[100]] donc √100 = [[10]]   ·   15² = [[225]] donc √225 = [[15]]
+
+Liste des 16 premiers carrés parfaits : [[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196 et 225]]
+
+**Encadrer √17 entre 2 entiers consécutifs** (on s'aide des carrés parfaits) :
+17 n'est pas un carré parfait mais [[16]] < 17 < [[25]]
+donc [[√16 < √17 < √25]]
+Ainsi : [[4 < √17 < 5]]
+
+## II. Le théorème de Pythagore
+
+:::prop | Théorème de Pythagore
+Dans un **triangle rectangle**, le carré de la longueur de l'**hypoténuse** est égal à la **somme des carrés** des longueurs des deux autres côtés.
+:::
+
+Le théorème de Pythagore permet, dans un triangle rectangle, de calculer :
+- soit la longueur de l'**hypoténuse** ;
+- soit la longueur de l'un des **côtés adjacents** à l'angle droit.
+
+:::methode | Cas 1 — Calcul de la longueur de l'hypoténuse
+<svg class="fig" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg"><polygon points="30,20 30,120 200,120" fill="none" stroke="#c0392b" stroke-width="2"/><rect x="30" y="105" width="15" height="15" fill="none" stroke="#444" stroke-width="1.2"/><text x="22" y="16" font-size="13" font-style="italic">A</text><text x="16" y="135" font-size="13" font-style="italic">C</text><text x="204" y="125" font-size="13" font-style="italic">B</text><text x="2" y="72" font-size="12">6 cm</text><text x="100" y="138" font-size="12">8 cm</text><text x="120" y="60" font-size="13" fill="#c0392b">?</text></svg>
+ABC est le triangle rectangle en C ci-contre. **Calculer AB.**
+On sait que : le triangle ABC est rectangle en C, avec AC = 6 cm et BC = 8 cm ; [AB] est l'hypoténuse.
+Or, d'après le théorème de Pythagore :
+AB² = AC² + CB²
+AB² = [[6² + 8²]]
+AB² = [[36 + 64]]
+AB² = [[100]]
+Donc : AB = [[√100]] = [[10 cm]]
+Donc : la longueur [[AB est de 10 cm]].
+:::
+
+:::methode | Cas 2 — Calcul d'un côté adjacent à l'angle droit
+<svg class="fig" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg"><polygon points="30,20 30,120 200,120" fill="none" stroke="#3B82C4" stroke-width="2"/><rect x="30" y="105" width="15" height="15" fill="none" stroke="#444" stroke-width="1.2"/><text x="20" y="16" font-size="13" font-style="italic">D</text><text x="16" y="135" font-size="13" font-style="italic">E</text><text x="204" y="125" font-size="13" font-style="italic">F</text><text x="2" y="72" font-size="13" fill="#3B82C4">?</text><text x="100" y="138" font-size="12">6 cm</text><text x="120" y="60" font-size="12">8 cm</text></svg>
+DEF est le triangle rectangle en E ci-contre. **Calculer DE** (valeur exacte, puis arrondie au dixième de cm).
+On sait que : le triangle DEF est rectangle en E, avec EF = 6 cm et DF = 8 cm ; [DF] est l'hypoténuse.
+Or, d'après le théorème de Pythagore :
+DF² = DE² + EF²
+Donc : DE² = [[DF² − EF²]]
+DE² = [[8² − 6²]]
+DE² = [[64 − 36]]
+DE² = [[28]]
+Donc : DE = [[√28 cm]]  (valeur exacte)
+À la calculatrice : DE ≈ [[5,3 cm]]  (valeur approchée)
+Donc : la longueur [[DE est d'environ 5,3 cm]].
+:::
+
+:::retenu | J'ai retenu
+Sans regarder le cours, réponds de mémoire :
+- √49 = …… et √144 = ……
+- Énonce le théorème de Pythagore : ………………………………………………
+- Dans un triangle rectangle, quel côté est le plus long ? ……………………
+- Pour trouver un côté de l'angle droit, j'**ajoute** ou je **soustrais** les carrés ? ……………
+:::
+
+:::reussite | Critères de réussite
+J'ai identifié l'hypoténuse (côté opposé à l'angle droit).
+J'ai écrit l'égalité de Pythagore avant de calculer.
+J'ai distingué valeur exacte (√) et valeur approchée (≈).
+:::

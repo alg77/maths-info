@@ -1,0 +1,16 @@
+# C1 | Calcul mental — Période 1 | 4e
+
+:::ressources | Entraînement au calcul mental
+- Tous les automatismes de la période sur mathsmentales | https://mathsmentales.net/?n=4
+:::
+
+On travaille **un automatisme par semaine**. La colonne « Éval. semaine » indique la semaine où l'automatisme est évalué : note-la et entraîne-toi avant !
+
+| N° | Automatisme | Éval. semaine | Entraînement |
+| :--: | :-- | :--: | :--: |
+| 1 | Tables de multiplication (1 à 12) | …… | [qr:http://bref.jeduque.net/3qwb1i] |
+| 2 | Addition de nombres relatifs | …… | [qr:http://bref.jeduque.net/fdax0a] |
+| 3 | Soustraction de nombres relatifs | …… | [qr:http://bref.jeduque.net/nu1pzz] |
+| 4 | Multiplier par 10 ; 100 ; 1 000 | …… | [qr:https://bref.jeduque.net/avi1mb] |
+| 5 | Multiplier par 0,1 ; 0,01 ; 0,001 | …… | [qr:https://bref.jeduque.net/nu4mkm] |
+| 6 | Pourcentage simple (5 · 10 · 25 · 50 %) | …… | [qr:https://bref.jeduque.net/70ldpu] |

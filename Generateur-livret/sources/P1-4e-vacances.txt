@@ -1,0 +1,16 @@
+:::couverture
+style: vacances
+illustration: panda
+titre: Cahier de cours
+matiere: Mathématiques
+niveau: 4ᵉ
+periode: Période 2
+annee: 2025 – 2026
+prof: Mme Le Guern
+chapitres:
+- N1 | Addition et soustraction de nombres relatifs
+- N2 | Multiplier et diviser des nombres relatifs
+:::
+
+@include N1.txt
+@include N2.txt

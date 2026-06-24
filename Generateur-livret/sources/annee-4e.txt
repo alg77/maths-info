@@ -1,0 +1,18 @@
+:::couverture
+titre: Cahier de cours
+matiere: Mathématiques
+niveau: 4ᵉ
+periode: Période
+annee: 2025 – 2026
+prof: Mme Le Guern
+chapitres:
+- N1 | Addition et soustraction de relatifs
+:::
+
+@include N1.txt
+@include N2.txt
+@include C1.txt
+@include N3.txt
+@include G2.txt
+@include N4.txt
+@include R1.txt

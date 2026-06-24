@@ -1,0 +1,103 @@
+# N4 | Résolution d'équations | 4e | Mo1, Mo2, Ca2, Ca3, Co1
+
+:::rappel | Je me souviens
+Réduis : 5*x* − 2 + 3*x* + 6 = [[8*x* + 4]]
+Calcule (− 7) × (− 2) = [[14]]
+:::
+
+## I. Notion d'équation
+
+:::def | Définition
+Une **équation** est une égalité qui comporte au moins un **nombre inconnu**, généralement désigné par une lettre.
+:::
+
+**Exemple :** L'égalité 3 + *x* = 11 est [[une équation à une inconnue *x*]].
+
+:::def | Définition
+Une **solution** de l'équation est une valeur de l'inconnue pour laquelle l'égalité est **vraie**. **Résoudre** une équation, c'est trouver toutes ses solutions.
+:::
+
+**Exemple :** On considère l'équation 3 + *x* = 11.
+- Si *x* = 8 : 3 + *x* = [[3 + 8 = 11]]. Les deux membres ont la **même valeur**, donc l'égalité est [[vraie]]. On dit que [[8 est une solution]] de l'équation.
+- Si *x* = 4 : 3 + *x* = [[3 + 4 = 7]] et 7 ≠ 11. Les deux membres n'ont **pas** la même valeur, donc l'égalité est [[fausse]]. On dit que [[4 n'est pas une solution]].
+
+## II. Égalités et opérations
+
+:::prop | Propriété (addition / soustraction)
+Une égalité reste vraie lorsque l'on **ajoute** (ou **soustrait**) le même nombre à chacun de ses membres.
+*a*, *b* et *k* désignent des nombres. Si *a* = *b*, alors *a* + *k* = *b* + *k* et *a* − *k* = *b* − *k*.
+:::
+
+**Exemple :** Résoudre *x* − 5 = 2.
+On ajoute [[5]] à chacun des membres : *x* − 5 + 5 = [[2 + 5]]
+[[*x* = 7]]
+Vérification : 7 − 5 = [[2]] ✓ . Donc [[7 est la solution]].
+
+:::prop | Propriété (multiplication / division)
+Une égalité reste vraie lorsque l'on **multiplie** (ou **divise**) chacun de ses membres par un même nombre **non nul**.
+Si *a* = *b* (et *k* ≠ 0), alors *a* × *k* = *b* × *k* et *a* ÷ *k* = *b* ÷ *k*.
+:::
+
+**Exemples :**
+Résoudre *x* ÷ 2 = 3 : on multiplie par 2 → [[*x* = 3 × 2 = 6]]
+Résoudre 6*x* = 21 : on divise par 6 → [[*x* = 21 ÷ 6 = 3,5]]
+
+## III. Résoudre une équation du premier degré
+
+:::def | Définition
+*a*, *b*, *c*, *d* désignent des nombres (avec *a* ≠ 0 ou *c* ≠ 0). Une équation de la forme **a*x* + b = c*x* + d** est dite **du premier degré** à une inconnue.
+:::
+
+:::methode | Méthode
+1. Regrouper les termes « en *x* » dans un membre ;
+2. Regrouper les termes « sans *x* » dans l'autre membre ;
+3. Calculer la valeur de *x* ;
+4. Vérifier, puis conclure.
+:::
+
+**Exemple 1 :** Résoudre − 7*x* + 5 = 19
+− 7*x* + 5 − 5 = [[19 − 5]]   *(on retire 5)*
+− 7*x* = [[14]]
+− 7*x* ÷ (− 7) = [[14 ÷ (− 7)]]
+*x* = [[− 2]]
+Vérification : (− 7) × (− 2) + 5 = [[14 + 5 = 19]] ✓
+**Conclusion :** [[− 2 est la solution]].
+
+**Exemple 2 :** Résoudre 3*x* + 2 = 18 − *x*
+3*x* + 2 + *x* = [[18]]   *(on ajoute x)*
+4*x* + 2 = 18
+4*x* = [[16]]
+*x* = [[4]]
+Vérification : d'une part 3 × 4 + 2 = [[14]] ; d'autre part 18 − 4 = [[14]] ✓
+**Conclusion :** [[4 est la solution]].
+
+## IV. Modéliser une situation
+
+:::methode | Méthode
+1. Choisir l'inconnue selon ce que l'on cherche ;
+2. Traduire l'énoncé par une équation ;
+3. Résoudre l'équation ;
+4. Interpréter le résultat.
+:::
+
+**Exemple :** Anna a acheté 19 bonbons de trois parfums : fraise, réglisse, menthe. Elle a 4 bonbons à la menthe et 2 fois plus de bonbons à la réglisse qu'à la fraise. Combien a-t-elle de bonbons à la fraise ?
+
+- On appelle [[*f* le nombre de bonbons à la fraise]].
+- Réglisse = 2 fois la fraise, donc réglisse = [[2*f*]]. Total : *f* + 2*f* + 4 = 19.
+- On résout : [[3*f* + 4 = 19]] ; [[3*f* = 15]] ; [[*f* = 5]]
+- Vérification : 3 × 5 + 4 = [[19]] ✓
+- **Conclusion :** [[Anna a acheté 5 bonbons à la fraise]].
+
+:::retenu | J'ai retenu
+Sans regarder :
+- Que veut dire **résoudre** une équation ? ……………………………………
+- Pour isoler *x*, je fais la **même opération** sur ……………………………
+- Donne les 4 étapes d'une équation du 1ᵉʳ degré : ……………………………
+- Pourquoi vérifie-t-on à la fin ? ……………………………………………
+:::
+
+:::reussite | Critères de réussite
+J'effectue la même opération sur les deux membres.
+Je regroupe les *x* d'un côté, les nombres de l'autre.
+Je vérifie ma solution dans l'équation de départ.
+:::

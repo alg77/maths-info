@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "generateur-livret"
+version = "0.1.0"
+description = "Générateur de livrets de cours professeur et élève à partir d'une source unique."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "Pillow>=10",
+    "pypdf>=4",
+    "qrcode>=7.4",
+    "WeasyPrint>=61",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+

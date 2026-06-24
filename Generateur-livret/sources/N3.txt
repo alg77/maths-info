@@ -1,0 +1,98 @@
+# N3 | Calcul littéral 1 | 4e | Ca3, Co1
+
+:::rappel | Je me souviens
+Calcule sans calculatrice : (−3) + (−5) = [[−8]] et (−4) × 6 = [[−24]].
+Que vaut 7² ? [[49]]
+:::
+
+## I. Simplifier l'écriture d'une expression littérale (rappels)
+
+:::def | Définition
+Une **expression littérale** est une expression contenant une ou plusieurs **lettres**. Ces lettres désignent des nombres.
+:::
+
+:::regle | Règle
+Dans une expression littérale, on peut supprimer le symbole « × » lorsqu'il est :
+- Devant ou derrière une [[lettre]] ;
+- Devant ou derrière une [[parenthèse]].
+
+Par convention, on place **le nombre** [[avant]] la lettre, et on place **les parenthèses** [[après]] les nombres et les lettres. [qr:https://video.exemple.fr/N3-simplification]
+:::
+
+**Exemples :** Simplifier les écritures le plus possible :
+- 4 × *a* = [[4*a*]]
+- *a* × *b* = [[*ab*]]
+- 6 × (3 − *a*) = [[6(3 − *a*)]]
+- 10 + 5 × *a* = [[10 + 5*a*]]
+- *x* × 7 = [[7*x*]]
+- (3 − *x*) × 4 = [[4(3 − *x*)]]
+- 2 × *a* × 5 = [[2 × 5 × *a* = 10*a*]]
+- 4 × 5 − 2 × *a* = [[20 − 2*a*]]
+
+:::def | Notations — *a* désigne un nombre
+- *a* × *a* = [[*a*^2]]  (lire « *a* au carré »)
+- *a* × *a* × *a* = [[*a*^3]]  (lire « *a* au cube »)
+- *a* × 1 = 1 × *a* = [[1*a* = *a*]]
+- *a* × 0 = 0 × *a* = [[0]]
+:::
+
+**Exemples :** Simplifier les écritures le plus possible :
+- 5 × 5 = [[5^2]]
+- *b* × *b* × *b* = [[*b*^3]]
+- 3 × *a* × *a* = [[3*a*^2]]
+- *a* × *b* × *a* = [[*a*^2*b*]]
+- *a* × *a* + *a* × *b* = [[*a*^2 + *ab*]]
+- 4 × 4 − *x* × *x* = [[4^2 − *x*^2]]
+
+:::regle | Règle algébrique des signes — *x* et *y* sont des nombres relatifs
+- (− *x*) × *y* = *x* × (− *y*) = − *xy*
+- (− *x*) × (− *y*) = *x* × *y* = *xy*
+:::
+
+**Exemples :**
+- (− 1) × *x* = [[− 1*x* = − *x*]]
+- (− 3) × (− *x*) = [[3*x*]]
+- (− 56) × *x* = [[− 56*x*]]
+
+## II. Réduire une expression
+
+:::def | Définition
+**Réduire** une expression littérale revient à [[l'écrire avec le moins de termes possible]].
+:::
+
+:::regle | Règle
+Pour réduire une expression littérale :
+- on regroupe les termes [["semblables"]],
+- puis on effectue [[les calculs]].
+
+En général, on regroupe les termes [[par puissances décroissantes]].
+:::
+
+**Exemples :** Réduire les expressions suivantes :
+
+*A* = 4*x* + 3*x*
+*A* = [[7*x*]]
+
+*B* = 2*a* + 4 − 3*a* + 6 − 2*a* + 8*a* − 8
+*B* = [[2*a* − 3*a* − 2*a* + 8*a* + 4 + 6 − 8]]
+*B* = [[5*a* + 2]]
+
+## III. Appliquer une formule
+
+:::regle | Règle
+Pour utiliser une expression littérale sur certaines valeurs, on **remplace** dans l'expression littérale toutes les **lettres** par leurs **valeurs**.
+:::
+
+:::retenu | J'ai retenu
+Sans regarder le cours :
+- Pour simplifier, on supprime le « × » devant une …………… ou une ……………
+- *a* × *a* s'écrit …… et se lit « ………………… »
+- **Réduire**, c'est ………………………………………………………………
+- (− 1) × *x* = …… et (− 3) × (− *x*) = ……
+:::
+
+:::reussite | Critères de réussite
+J'ai bien remplacé chaque lettre par sa valeur.
+J'ai pensé au signe « × » sous-entendu.
+J'ai effectué correctement les calculs avec les étapes.
+:::

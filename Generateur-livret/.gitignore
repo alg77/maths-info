@@ -1,0 +1,22 @@
+# Environnements et caches Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Fichiers de construction
+build/
+dist/
+output/
+outputs/
+*.egg-info/
+
+# Outils et système
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
