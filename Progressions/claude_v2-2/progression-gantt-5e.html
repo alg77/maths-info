@@ -3,45 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Progression &amp; Gantt — Maths 4ᵉ</title>
+<title>Progression &amp; Gantt — Maths 5ᵉ</title>
 <link rel="stylesheet" href="progression-commun.css">
 <style>
   :root{ --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
          --Ch:#b6a6d6; --Mo:#e0b18a; --Re:#e3a09a; --Ra:#90c1cf; --Ca:#d79bbf; --Co:#9cc6a6; }
+  /* --- Objectifs du BO (v2) --- */
   .seq-obj-box{margin-top:8px}
   .oz-wrap{margin:6px 0}
   .oz-label{font-size:11.5px;font-weight:800;color:var(--muted,#8b7d87);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px}
-  .obj-zone,.auto-zone{min-height:38px;display:flex;flex-wrap:wrap;gap:5px;align-items:flex-start;padding:7px;border:1.5px dashed #e3d3d8;border-radius:11px;background:rgba(255,255,255,.45);transition:background .12s,border-color .12s}
+  .obj-zone,.auto-zone{min-height:38px;display:flex;flex-wrap:wrap;gap:5px;align-items:flex-start;
+    padding:7px;border:1.5px dashed #e3d3d8;border-radius:11px;background:rgba(255,255,255,.45);transition:background .12s,border-color .12s}
   .obj-zone.dragover,.auto-zone.dragover{border-color:var(--accent,#d98ba4);background:rgba(217,139,164,.12)}
   .oz-empty{color:#b6a6ad;font-size:12px;font-style:italic;padding:3px 2px}
-  .objchip{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #efe2e0;border-radius:999px;padding:2px 4px 2px 2px;font-size:12px;max-width:360px;cursor:grab}
+  .objchip{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #efe2e0;border-radius:999px;
+    padding:2px 4px 2px 2px;font-size:12px;max-width:340px;cursor:grab}
   .objchip:active{cursor:grabbing}
-  .oc-niv,.bo-niv{flex:none;font-weight:800;font-size:9.5px;color:#fff;border-radius:4px;padding:1px 5px}
-  .niv-5e{background:#d98ba4}.niv-4e{background:#6f9bd6}.niv-3e{background:#5aa98a}
   .oc-code{flex:none;font-weight:800;font-size:10.5px;color:#fff;border-radius:999px;padding:2px 7px}
-  .oc-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:210px}
+  .oc-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:230px}
   .oc-rm{flex:none;border:none;background:#f3e7ea;color:#a8607c;border-radius:50%;width:18px;height:18px;line-height:1;cursor:pointer;font-weight:800}
   .oc-rm:hover{background:#e9c9d2}
   .ded-fams{margin-top:5px;font-size:11.5px;color:var(--muted,#8b7d87)}
   .dfam{display:inline-block;color:#fff;border-radius:5px;padding:1px 6px;margin-left:4px;font-weight:800;font-size:10.5px}
   .dfam.add{box-shadow:0 0 0 1.5px #fff,0 0 0 3px currentColor}
-  .obj-bank{position:fixed;top:0;right:0;width:380px;max-width:94vw;height:100vh;z-index:60;display:flex;flex-direction:column;background:#fffdfc;border-left:1px solid #efe2e0;box-shadow:-10px 0 30px rgba(150,110,125,.16);padding:12px}
+  /* --- banque latérale --- */
+  .obj-bank{position:fixed;top:0;right:0;width:360px;max-width:92vw;height:100vh;z-index:60;display:flex;flex-direction:column;
+    background:#fffdfc;border-left:1px solid #efe2e0;box-shadow:-10px 0 30px rgba(150,110,125,.16);padding:12px}
   .obj-bank[hidden]{display:none}
   .bank-head{display:flex;align-items:center;gap:8px;font-family:Georgia,serif;font-size:15px}
-  .bank-cov{margin-left:auto;font-size:11px;font-weight:800;color:var(--accent-ink,#a8607c)}
+  .bank-cov{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--accent-ink,#a8607c)}
   .bank-x{border:none;background:#f3e7ea;color:#a8607c;border-radius:8px;width:26px;height:26px;cursor:pointer;font-size:16px;font-weight:800}
   .bank-filters{margin:8px 0}
   .bank-filters input[type=search]{width:100%;padding:6px 9px;border:1px solid #efe2e0;border-radius:9px;font:inherit;margin-bottom:6px}
-  .bank-niveaux,.bank-themes{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-  .bnv{border:1px solid #efe2e0;background:#fff;border-radius:999px;padding:3px 11px;font-size:11.5px;font-weight:800;color:var(--muted,#8b7d87);cursor:pointer}
-  .bnv.on{color:#fff}
-  .bnv.on[data-n="all"]{background:#a8607c;border-color:#a8607c}
-  .bnv.on[data-n="5e"]{background:#d98ba4;border-color:#d98ba4}
-  .bnv.on[data-n="4e"]{background:#6f9bd6;border-color:#6f9bd6}
-  .bnv.on[data-n="3e"]{background:#5aa98a;border-color:#5aa98a}
+  .bank-hide{font-size:12px;color:var(--muted,#8b7d87);display:inline-flex;align-items:center;gap:5px}
+  .bank-themes{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
   .bth{border:1px solid #efe2e0;background:#fff;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:700;color:var(--muted,#8b7d87);cursor:pointer}
   .bth.on{background:var(--accent,#d98ba4);color:#fff;border-color:var(--accent,#d98ba4)}
-  .bank-hide{font-size:12px;color:var(--muted,#8b7d87);display:inline-flex;align-items:center;gap:5px;margin-top:6px}
   .bank-list{flex:1;overflow:auto;margin-top:6px;display:flex;flex-direction:column;gap:4px}
   .bankobj{display:flex;align-items:center;gap:6px;padding:5px 7px;border:1px solid #efe2e0;border-radius:10px;background:#fff;cursor:grab;font-size:12px}
   .bankobj.placed{opacity:.5}
@@ -53,30 +50,26 @@
   .bank-empty{color:#b6a6ad;font-style:italic;padding:10px}
   .armed-hint{background:#fdf3e6;border:1px solid #f0dcc0;color:#a8782c;border-radius:9px;padding:7px 9px;font-size:12px;margin-top:6px}
   .armed-hint[hidden]{display:none}
+  /* --- panneau couverture --- */
   .cov-panel{margin:10px 0;border:1px solid #efe2e0;border-radius:14px;background:rgba(255,255,255,.55);padding:6px 14px}
   .cov-panel>summary{cursor:pointer;font-family:Georgia,serif;font-weight:700;padding:6px 0;color:var(--accent-ink,#a8607c)}
-  .cov-niv{margin:8px 0;padding-bottom:6px;border-bottom:1px dashed #eedfe3}
-  .cov-niv h4{margin:0 0 4px;font-size:13px;display:flex;align-items:center;gap:7px}
-  .cov-nivbadge{color:#fff;border-radius:5px;padding:1px 7px;font-size:10.5px;font-weight:800}
-  .cov-big{font-weight:800;color:var(--accent-ink,#a8607c);font-size:12.5px}
-  .cov-themes{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}
-  .cov-th{font-size:11.5px;font-weight:700;color:#fff;background:var(--c,#999);border-radius:999px;padding:2px 8px}
-  .cov-fams{font-size:12.5px;margin:8px 0 4px}
+  .cov-row{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0}
+  .cov-big{font-weight:800;color:var(--accent-ink,#a8607c)}
+  .cov-themes{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+  .cov-th{font-size:12px;font-weight:700;color:#fff;background:var(--c,#999);border-radius:999px;padding:2px 9px}
+  .cov-fams{font-size:12.5px;margin:6px 0}
   .cov-fam{display:inline-block;color:#fff;border-radius:5px;padding:1px 7px;margin-left:5px;font-weight:800;font-size:11px}
   .cov-holes{margin-top:6px}.cov-holes>summary{cursor:pointer;font-size:12.5px;color:#c0392b}
   .cov-hole{font-size:12px;color:#8a7f70;padding:1px 0}
-  .empty{color:#b6a6ad;font-style:italic;font-size:12px}
   @media print{ .obj-bank,.cov-panel,#bankBtn{display:none!important} }
 </style>
 <script src="referentiel-5e-data.js"></script>
-<script src="referentiel-4e-data.js"></script>
-<script src="referentiel-3e-data.js"></script>
 </head>
 <body data-page="progressions">
 <div class="wrap">
   <div class="hero">
     <div class="hero-txt">
-      <h1>🌸 Progression &amp; Gantt — Mathématiques 4ᵉ</h1>
+      <h1>🌸 Progression &amp; Gantt — Mathématiques 5ᵉ</h1>
       <div class="sub" id="yearSub">Année 2026-2027 · Zone C (Créteil) · Gantt généré automatiquement</div>
     </div>
   </div>
@@ -127,7 +120,6 @@
   <div class="toolbar no-print">
     <button class="btn" id="addSeq" type="button">+ Séquence</button>
     <button class="btn" id="bankBtn" type="button">🎯 Banque d'objectifs</button>
-    <button class="btn ghost" id="suggestBtn" type="button">✨ Suggérer</button>
     <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
     <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
     <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
@@ -140,7 +132,7 @@
   </div>
 
   <h2>Séquences <span style="font-size:13px;color:var(--muted);font-weight:400" id="seqCount"></span></h2>
-  <details id="coveragePanel" class="cov-panel"><summary>📊 Couverture des programmes (5ᵉ · 4ᵉ · 3ᵉ)</summary><div id="covBody"></div></details>
+  <details id="coveragePanel" class="cov-panel"><summary>📊 Couverture du programme officiel</summary><div id="covBody"></div></details>
   <div id="seqList"></div>
   <div id="printDoc"></div>
 
@@ -162,14 +154,12 @@
 
   <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
   <div class="info no-print">
-    J'ai pré-rempli les compétences depuis ton tableau <b>« Compétences par séquence »</b> (le plus structuré). Quelques points où tes deux docs se contredisent ou où un code ne colle pas à sa description :
+    Point de départ : ta progression <b>5ᵉ 2024-2025</b> (séquences, compétences et objectifs repris de tes docs), calendrier <b>recalé en Zone C 2026-2027</b>.
     <ul>
-      <li><b>N1</b> : ton doc ALG note « Ch2 » mais avec la description de <b>Ch1</b> (« extraire et reformuler »). J'ai mis <b>Ch1</b> (le bon code).</li>
-      <li><b>Calcul littéral (N3, N6)</b> : « calculer en langage algébrique » = <b>Ca3</b>, pas Ca2 (Ca2 = contrôler la vraisemblance). N3 est bon (Ca3) ; N6 est à passer en Ca3 si tu évalues la même chose.</li>
-      <li><b>G1 Angles et triangles</b> : grille = Re4, doc ALG = <b>Re1</b>. Pour triangles égaux/semblables, Re1 (choisir un cadre géométrique) est sans doute plus juste.</li>
-      <li><b>N5 Fractions 1</b> : seule Co1 est cochée ; tu évalues sûrement aussi <b>Ca1</b> (calcul).</li>
+      <li>Le <b>nouveau BO 5ᵉ</b> entre en vigueur à la rentrée 2026 : c'est une base à faire évoluer (ajoute/retire des séquences, ajuste les compétences au fil de l'eau).</li>
+      <li><b>G2</b> et <b>G5</b> étaient coupées par des vacances chez toi (cylindre puis volumes ; angles particuliers puis droites parallèles). Laissées en blocs de 2 semaines, le Gantt les fait chevaucher la coupure — ajuste les durées si besoin.</li>
+      <li><b>D4 (probabilités)</b> et l'algorithmique n'étaient pas planifiées : j'ai mis un fil rouge « Algorithmique &amp; Tableur » ; ajoute D4 quand le programme le précisera.</li>
     </ul>
-    Les descriptions officielles BO dans l'outil sont, elles, déjà correctes — tu n'as donc plus à te soucier des Co1/Co2 inversés de ton ancien tableau.
   </div>
 </div>
 
@@ -209,7 +199,7 @@ var DESC={
 };
 function famOf(code){ return code.slice(0,2); }
 
-/* ---------- état par défaut (ta progression 4e) ---------- */
+/* ---------- état par défaut (ta progression 5e) ---------- */
 function defaultState(){
   return {
     cal:{
@@ -223,32 +213,32 @@ function defaultState(){
       feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
     },
     seq:[
-      {code:'N1',title:'Nombres relatifs : addition et soustraction',theme:'N',weeks:1.5,comps:['Ch1','Ca1','Co2'],details:'Utiliser les nombres relatifs pour calculer et résoudre des problèmes'},
-      {code:'G1',title:'Angles et triangles',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Triangles égaux\nTriangles semblables\nRéduction et agrandissement'},
-      {code:'D1',title:'Proportionnalité',theme:'D',weeks:2,comps:['Mo1','Ca1'],details:'Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios'},
-      {code:'N2',title:'Nombres relatifs : multiplication et division',theme:'N',weeks:2,comps:['Ch1','Ca1','Co2'],details:'Règle des signes\nCarré, cube\nDivision\nEnchaînement d\'opérations (priorités opératoires)\nRésolution de problèmes'},
-      {code:'N3',title:'Calcul littéral 1',theme:'N',weeks:2,comps:['Ca3','Co1'],details:'Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires'},
-      {code:'G2',title:'Égalité de Pythagore (sens direct)',theme:'G',weeks:2,comps:['Mo1','Ra3','Co2'],details:'Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l\'angle droit\nDémonstration possible'},
-      {code:'N4',title:'Équations',theme:'N',weeks:2.5,comps:['Mo1','Mo2','Ca2','Ca3','Co1'],details:'Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu\'un nombre est solution d\'une équation'},
-      {code:'D2',title:'Statistiques',theme:'D',weeks:2,comps:['Re3','Co1'],details:'Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur'},
-      {code:'N5',title:'Fractions 1 : addition, soustraction, comparaison',theme:'N',weeks:2,comps:['Co1'],details:'Somme et différence\nSimplifier des fractions\nComparer des quotients'},
-      {code:'G3',title:'Quadrilatères particuliers',theme:'G',weeks:1.5,comps:['Re4','Ra3','Co2'],details:'Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l\'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible'},
-      {code:'N6',title:'Calcul littéral 2',theme:'N',weeks:2,comps:['Ca2','Co1'],details:'Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie'},
-      {code:'G4',title:'Égalité de Pythagore (réciproque)',theme:'G',weeks:1,comps:['Mo1','Ra3','Co2'],details:'Notion de réciproque et contraposée\nRésolution de problèmes'},
-      {code:'N7',title:'Fractions 2 : multiplication et division',theme:'N',weeks:1,comps:['Ca1'],details:'Calculer un produit : simple, en simplifiant avant de calculer\nInverse d\'un nombre non nul'},
-      {code:'G5',title:'Transformations : translation',theme:'G',weeks:1,comps:['Re4'],details:'Définition\nConstruction : sur papier blanc, sur papier quadrillé'},
-      {code:'N8',title:'Puissances',theme:'N',weeks:2,comps:['Ca1'],details:'Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique'},
-      {code:'G6',title:'Transformations : rotation',theme:'G',weeks:1,comps:['Re4'],details:'Définition\nConstruction : sur papier blanc, sur papier quadrillé'},
-      {code:'G7',title:'Solides : pyramide et cône',theme:'G',weeks:1,comps:['Re4','Ca1'],details:'Patrons\nVolumes'},
-      {code:'D3',title:'Grandeurs produits et quotients',theme:'D',weeks:1,comps:['Ca1'],details:'Grandeurs produits\nGrandeurs quotients'},
-      {code:'A',title:'Algorithmique (fil rouge ½ groupes)',theme:'A',weeks:1.5,comps:['Ch2','Ch3'],details:'Scratch, tableur\n6 séances en demi-groupes réparties sur l\'année'}
+      {code:'N1',title:'Calculer avec les nombres décimaux',theme:'N',weeks:2,comps:['Ch1','Ca1','Co1'],details:'Vocabulaire : somme, différence, termes, produit, quotient, facteur\nCalculer avec et sans parenthèses (parenthèses emboîtées)\nCalculer des quotients écrits avec une barre de fraction\nProduire une expression numérique pour résoudre des problèmes\nCalcul astucieux : multiplier par 9, 11, 99… (distributivité)\nRéinvestir périmètre et aire'},
+      {code:'G1',title:'Reconnaître et utiliser les symétries axiale et centrale',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Construire avec la symétrie centrale (avec et sans quadrillage)\nConstruire avec la symétrie axiale (rappels)\nReconnaître les figures obtenues par symétrie (frises, pavages, rosaces)\nRechercher les éléments de symétrie d\'une figure (axes et centre)'},
+      {code:'N2',title:'Écrire et utiliser une expression littérale',theme:'N',weeks:2,comps:['Mo2','Ca3','Co1'],details:'Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d\'une expression (formules d\'aires/volumes, conversions)\nTester une égalité\nSimplifier l\'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire'},
+      {code:'G2',title:'Décrire, représenter le cylindre et le prisme droit ; calculer des volumes',theme:'G',weeks:2,comps:['Ch1','Ch2','Re4','Ca1'],details:'Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d\'un cylindre et d\'un prisme droit\nCalculer le volume d\'un pavé droit, d\'un cylindre\nCalculer l\'aire de la base d\'un prisme droit et son volume'},
+      {code:'N3',title:'Définir, utiliser et représenter des nombres rationnels',theme:'N',weeks:2,comps:['Re2'],details:'Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions'},
+      {code:'G3',title:'Construire un triangle et ses droites remarquables',theme:'G',weeks:2,comps:['Re4','Ra3','Ca1'],details:'Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d\'existence d\'un triangle ; cas d\'alignement de 3 points\nRéinvestir la médiatrice d\'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)'},
+      {code:'N4',title:'Utiliser les nombres entiers',theme:'N',weeks:2,comps:['Re2','Ra1'],details:'Diviseur, multiple, divisibilité (division euclidienne)\nDéterminer les diviseurs d\'un entier\nReconnaître un nombre premier (< 30)\nDécomposer en produit de facteurs premiers\nGrandeurs : systèmes centésimal et sexagésimal'},
+      {code:'D1',title:'Utiliser la proportionnalité pour résoudre des problèmes',theme:'D',weeks:2,comps:['Ch1','Mo2','Ca1'],details:'Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)'},
+      {code:'G4',title:'Symétrie centrale : construire et démontrer',theme:'G',weeks:1,comps:['Ch2','Ra3'],details:'Conjecturer les propriétés avec GeoGebra\nConstruire le symétrique d\'une figure\nS\'initier au raisonnement déductif (tri des données, propriété, « donc »)'},
+      {code:'N5',title:'Découvrir, repérer et comparer les nombres relatifs',theme:'N',weeks:2,comps:['Re2','Ca2'],details:'Définir les nombres relatifs (écriture, usages)\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible'},
+      {code:'G5',title:'Reconnaître des angles particuliers et des droites parallèles',theme:'G',weeks:2,comps:['Mo3','Ra3'],details:'Angles complémentaires, supplémentaires, adjacents, opposés par le sommet\nAngles alternes-internes et correspondants\nReconnaître des droites parallèles (raisonnement déductif)'},
+      {code:'N6',title:'Fractions égales ; comparer des fractions',theme:'N',weeks:2,comps:['Re2','Ca1'],details:'Reconnaître des fractions égales\nSimplifier une fraction (critères de divisibilité)\nDiviser par un nombre décimal\nComparer des fractions (même dénominateur, par rapport à 1)'},
+      {code:'G6',title:'Construire et démontrer avec les angles d\'un triangle',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Calculer un angle dans un triangle quelconque\nDémonstration possible : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)'},
+      {code:'N7',title:'Additionner et soustraire des nombres relatifs',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions'},
+      {code:'D2',title:'Utiliser les pourcentages et les échelles',theme:'D',weeks:2,comps:['Mo1','Re2','Ca1'],details:'Appliquer et calculer un pourcentage (augmentation/baisse)\nDéfinir et utiliser une échelle'},
+      {code:'G7',title:'Définir, construire et reconnaître un parallélogramme',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nReconnaître ; calculer l\'aire'},
+      {code:'N8',title:'Additionner et soustraire des fractions',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)'},
+      {code:'D3',title:'Traiter et représenter des données',theme:'D',weeks:2,comps:['Re3','Ca1'],details:'Calculer des effectifs et des fréquences\nReprésenter graphiquement des données\nCalculer et interpréter une moyenne\nTableur possible'},
+      {code:'A',title:'Algorithmique & Tableur (fil rouge)',theme:'A',weeks:1.5,comps:['Ch3','Re3'],details:'Scratch et tableur\nSéances réparties sur l\'année'}
     ]
   };
 }
 var THEMES={N:'Nombres & Calculs',G:'Géométrie',D:'Données',A:'Algo'};
 
 /* ---------- persistance ---------- */
-var KEY='prog4e_v1', S=load();
+var KEY='prog5e_v1', S=load();
 function load(){ try{ var r=localStorage.getItem(KEY); if(r) return migrate(JSON.parse(r)); }catch(e){} return migrate(defaultState()); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
@@ -412,7 +402,7 @@ function renderSeq(){
     var dedHTML=Object.keys(ded).length? Object.keys(ded).sort().map(function(f){ return '<span class="dfam'+(manualFams[f]?'':' add')+'" style="background:'+(FAMCOL2[f]||'#999')+';color:'+(FAMCOL2[f]||'#999')+'" title="'+esc(famNameOf(f))+(manualFams[f]?'':' — pas encore dans les compétences saisies')+'"><span style="color:#fff">'+f+'</span></span>'; }).join('') : '<span style="color:#b6a6ad">—</span>';
     var box=document.createElement('div'); box.className='seq-obj-box';
     box.innerHTML=''
-      +'<div class="oz-wrap"><div class="oz-label">🎯 Objectifs du BO</div><div class="obj-zone" data-i="'+i+'">'+(s.objectifs.length? s.objectifs.map(function(c){return objChipHTML(c,i);}).join('') : '<span class="oz-empty">Glisse des objectifs ici (5ᵉ · 4ᵉ · 3ᵉ)</span>')+'</div></div>'
+      +'<div class="oz-wrap"><div class="oz-label">🎯 Objectifs du BO</div><div class="obj-zone" data-i="'+i+'">'+(s.objectifs.length? s.objectifs.map(function(c){return objChipHTML(c,i);}).join('') : '<span class="oz-empty">Glisse des objectifs ici</span>')+'</div></div>'
       +'<div class="oz-wrap"><div class="oz-label">🛠 Automatismes</div><div class="auto-zone" data-i="'+i+'">'+(s.automatismes.length? s.automatismes.map(function(c){return objChipHTML(c,i);}).join('') : '<span class="oz-empty">Glisse des automatismes ici</span>')+'</div></div>'
       +'<div class="ded-fams">Compétences déduites des objectifs : '+dedHTML+'</div>';
     el.appendChild(box);
@@ -559,7 +549,7 @@ document.getElementById('addSeq').addEventListener('click',function(){ S.seq.pus
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
-  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Maths 4ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
+  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Maths 5ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
   root.appendChild(head);
   var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
   function phead(p){ var info=periods[p-1]; if(!info) return; var dv=document.createElement('div'); dv.className='pdoc-phead'; dv.textContent='P'+p+' · '+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines'; root.appendChild(dv); }
@@ -569,8 +559,8 @@ function renderPrintDoc(withDetails){
     var codes=s.comps.length?('<span class="pdoc-codes">'+esc(s.comps.join(' · '))+'</span>'):'';
     blk.innerHTML='<div><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b> &nbsp;'+codes+'</div>';
     if(withDetails){
-      if(s.objectifs && s.objectifs.length){ var d1=document.createElement('div'); d1.className='pdoc-sub'; d1.textContent='Objectifs du BO'; blk.appendChild(d1); var u1=document.createElement('ul'); s.objectifs.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objNiv(c)+' '+objCode(c))+'</b> '+esc(objText(c)); u1.appendChild(li); }); blk.appendChild(u1); }
-      if(s.automatismes && s.automatismes.length){ var d2=document.createElement('div'); d2.className='pdoc-sub'; d2.textContent='Automatismes'; blk.appendChild(d2); var u2=document.createElement('ul'); s.automatismes.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objNiv(c)+' '+objCode(c))+'</b> '+esc(objText(c)); u2.appendChild(li); }); blk.appendChild(u2); }
+      if(s.objectifs && s.objectifs.length){ var d1=document.createElement('div'); d1.className='pdoc-sub'; d1.textContent='Objectifs du BO'; blk.appendChild(d1); var u1=document.createElement('ul'); s.objectifs.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(c)+'</b> '+esc(objText(c)); u1.appendChild(li); }); blk.appendChild(u1); }
+      if(s.automatismes && s.automatismes.length){ var d2=document.createElement('div'); d2.className='pdoc-sub'; d2.textContent='Automatismes'; blk.appendChild(d2); var u2=document.createElement('ul'); s.automatismes.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(c)+'</b> '+esc(objText(c)); u2.appendChild(li); }); blk.appendChild(u2); }
       if(s.notes){ var u3=document.createElement('ul'); s.notes.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.textContent=l; u3.appendChild(li); } }); if(u3.children.length) blk.appendChild(u3); }
     }
     root.appendChild(blk);
@@ -599,102 +589,84 @@ window.addEventListener('afterprint',function(){ document.body.classList.remove(
   b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
 })();
 document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
-document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-4e.json'; a.click(); });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-5e.json'; a.click(); });
 document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
 document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=migrate(JSON.parse(rd.result)); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
 
-/* ============ Référentiels 5e + 4e + 3e (transition) — banque multi-niveaux ============ */
-var PRIMARY_NIV='4e';
-var RALL=[]; [['5e',window.REF5E],['4e',window.REF4E],['3e',window.REF3E]].forEach(function(p){ var niv=p[0], R=p[1]; if(!R||!R.objectifs)return; R.objectifs.forEach(function(o){ RALL.push({id:niv.charAt(0)+':'+o.code, code:o.code, niveau:niv, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type, famille:o.famille}); }); });
-var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
-var NIVS=['5e','4e','3e'];
-var TOT={}; NIVS.forEach(function(n){ TOT[n]={obj:0,auto:0}; }); RALL.forEach(function(o){ if(o.type==='automatisme')TOT[o.niveau].auto++; else TOT[o.niveau].obj++; });
+/* ===================== Référentiel & banque d'objectifs (v2) ===================== */
+var R5=(window.REF5E&&window.REF5E.objectifs)?window.REF5E.objectifs:[];
+var R5BY={}; R5.forEach(function(o){R5BY[o.code]=o;});
+var OBJTOT=R5.filter(function(o){return o.type==='objectif';}).length;
+var AUTOTOT=R5.filter(function(o){return o.type==='automatisme';}).length;
 var THEMECOL={nombres:'#3f6fb0',geometrie:'#3f9e86',donnees:'#e0922f',proportionnalite:'#a8607c',algorithmique:'#7a5bc7',automatismes:'#b08948'};
-var THEMELAB={nombres:'Nombres',geometrie:'Géométrie',donnees:'Données',proportionnalite:'Proportionnalité',algorithmique:'Algo'};
-var NIVCOL={'5e':'#d98ba4','4e':'#6f9bd6','3e':'#5aa98a'};
+var THEMELAB={nombres:'Nombres',geometrie:'Géométrie',donnees:'Données',proportionnalite:'Proportionnalité',algorithmique:'Algo',automatismes:'Automatismes'};
 var FAMCOL2={Ch:'#4f86c6',Mo:'#e0922f',Re:'#3f9e86',Ra:'#a8607c',Ca:'#7a5bc7',Co:'#c0567e'};
 function normTxt(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
-function objText(id){var o=RBY[id];return o?o.texte:id;}
-function objShort(id){var t=objText(id);return t.length>48?t.slice(0,48)+'…':t;}
-function objFam(id){var o=RBY[id];return o?o.famille:null;}
-function objTheme(id){var o=RBY[id];return o?o.theme:'nombres';}
-function objType(id){var o=RBY[id];return o?o.type:'objectif';}
-function objNiv(id){var o=RBY[id];return o?o.niveau:'';}
-function objCode(id){var o=RBY[id];return o?o.code:id;}
-function objSlug(id){var o=RBY[id];return o?('OBJ-'+(slugify(o.texte).slice(0,48)||o.code)):('OBJ-'+id);}
+function objText(c){var o=R5BY[c];return o?o.texte:c;}
+function objShort(c){var t=objText(c);return t.length>52?t.slice(0,52)+'…':t;}
+function objFam(c){var o=R5BY[c];return o?o.famille:null;}
+function objTheme(c){var o=R5BY[c];return o?o.theme:'nombres';}
+function objType(c){var o=R5BY[c];return o?o.type:'objectif';}
+function objSlug(c){var o=R5BY[c];return o?('OBJ-'+(slugify(o.texte).slice(0,48)||c)):('OBJ-'+c);}
 function famNameOf(k){for(var x=0;x<REF.length;x++){if(REF[x].k===k)return REF[x].name;}return k;}
 function migrate(st){ if(!st||!st.seq) return st; st.seq.forEach(function(s){ if(!Array.isArray(s.objectifs))s.objectifs=[]; if(!Array.isArray(s.automatismes))s.automatismes=[]; if(s.notes==null)s.notes=(s.details!=null?s.details:''); if('details' in s)delete s.details; if(!Array.isArray(s.comps))s.comps=[]; }); return st; }
-function placedIn(id){var r=[];S.seq.forEach(function(s,i){if(s.objectifs.indexOf(id)!==-1||s.automatismes.indexOf(id)!==-1)r.push(i);});return r;}
+function placedIn(c){var r=[];S.seq.forEach(function(s,i){if(s.objectifs.indexOf(c)!==-1||s.automatismes.indexOf(c)!==-1)r.push(i);});return r;}
 function allPlaced(){var set={};S.seq.forEach(function(s){s.objectifs.forEach(function(c){set[c]=1;});s.automatismes.forEach(function(c){set[c]=1;});});return set;}
-function zoneArr(s,id){return objType(id)==='automatisme'?s.automatismes:s.objectifs;}
+function zoneArr(s,c){return objType(c)==='automatisme'?s.automatismes:s.objectifs;}
 function deducedFams(s){var set={};s.objectifs.concat(s.automatismes).forEach(function(c){var f=objFam(c);if(f)set[f]=1;});return set;}
-function objChipHTML(id,i){var col=THEMECOL[objTheme(id)]||'#999',niv=objNiv(id);return '<span class="objchip" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+esc(objText(id))+'"><span class="oc-niv niv-'+niv+'">'+niv+'</span><span class="oc-code" style="background:'+col+'">'+esc(objCode(id))+'</span><span class="oc-txt">'+esc(objShort(id))+'</span><button type="button" class="oc-rm" data-id="'+id+'" data-i="'+i+'" title="Retirer">×</button></span>';}
-function addObjToSeq(i,id){ var s=S.seq[i]; if(!s||!RBY[id])return; var arr=zoneArr(s,id); if(arr.indexOf(id)!==-1)return; var where=placedIn(id); if(where.length){ var names=where.map(function(x){return S.seq[x].code;}).join(', '); if(!confirm('« '+objNiv(id)+' '+objCode(id)+' » est déjà placé dans : '+names+'.\nL’ajouter aussi à '+s.code+' ?'))return; } arr.push(id); var fam=objFam(id); if(fam){ var has=s.comps.some(function(x){return famOf(x)===fam;}); if(!has){ if(confirm('Ajouter la compétence '+fam+' ('+famNameOf(fam)+') à '+s.code+' ?')){ s.comps.push(fam+'1'); sortComps(s); } } } save(); renderAll(); }
-function removeObjFromSeq(i,id){ var s=S.seq[i]; if(!s)return; var arr=zoneArr(s,id); var k=arr.indexOf(id); if(k!==-1){ arr.splice(k,1); save(); renderAll(); } }
-function moveObj(from,to,id){ if(from===to)return; var s=S.seq[from]; if(s){ var arr=zoneArr(s,id); var k=arr.indexOf(id); if(k!==-1)arr.splice(k,1); } addObjToSeq(to,id); }
-function suggestAssoc(){ if(!confirm('Pré-associer automatiquement les objectifs '+PRIMARY_NIV+' à tes chapitres (par mots-clés) ?\nC’est une suggestion à relire ; rien de ce que tu as déjà placé n’est modifié.'))return;
-  var STOP={};'avec des une les que pour sur dans son ses leur entre sous est sont plus deux par aux quelques cette ceux dont etc forme type donnees diverses simple simples nombre nombres situation situations probleme problemes utiliser connaitre savoir resoudre representer calculer construire reconnaitre definir produire mettre faire'.split(' ').forEach(function(w){STOP[w]=1;});
-  function words(s){return normTxt(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>3&&!STOP[w];});}
-  var L2T={nombres:'N',geometrie:'G',donnees:'D',proportionnalite:'D',algorithmique:'A'}, placedSet=allPlaced(), n=0;
-  RALL.forEach(function(o){ if(o.niveau!==PRIMARY_NIV||placedSet[o.id])return; var letter=L2T[o.theme], cands=[]; S.seq.forEach(function(s,i){ if(!letter||s.theme===letter)cands.push(i); }); if(!cands.length)S.seq.forEach(function(s,i){cands.push(i);});
-    var ow=words(o.texte), best=-1, bs=0; cands.forEach(function(i){ var set={}; words((S.seq[i].title||'')+' '+(S.seq[i].notes||'')).forEach(function(w){set[w]=1;}); var sc=0; ow.forEach(function(w){if(set[w])sc++;}); if(sc>bs){bs=sc;best=i;} });
-    if(best>=0&&bs>=2){ var arr=zoneArr(S.seq[best],o.id); if(arr.indexOf(o.id)===-1){ arr.push(o.id); n++; } } });
-  save(); renderAll(); alert(n+' objectif(s) '+PRIMARY_NIV+' pré-associé(s) — à relire et ajuster.'); }
-var bankFilter='all', bankNiv='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
-function updateArmedHint(){ var h=document.getElementById('armedHint'); if(!h)return; if(armedObj){ h.hidden=false; h.textContent='👉 '+objNiv(armedObj)+' '+objCode(armedObj)+' sélectionné — touche une zone d’une séquence pour le déposer (ou touche-le à nouveau pour annuler).'; } else h.hidden=true; }
-function renderBankNiveaux(){ var box=document.getElementById('bankNiveaux'); if(!box)return; var arr=['all'].concat(NIVS);
-  box.innerHTML=arr.map(function(n){return '<button type="button" class="bnv'+(n===bankNiv?' on':'')+'" data-n="'+n+'">'+(n==='all'?'Tous niveaux':n)+'</button>';}).join('');
-  box.querySelectorAll('.bnv').forEach(function(b){ b.addEventListener('click',function(){ bankNiv=b.getAttribute('data-n'); renderBank(); }); }); }
+function objChipHTML(c,i){var col=THEMECOL[objTheme(c)]||'#999';return '<span class="objchip" draggable="true" data-code="'+c+'" data-from="'+i+'" title="'+esc(objText(c))+'"><span class="oc-code" style="background:'+col+'">'+esc(c)+'</span><span class="oc-txt">'+esc(objShort(c))+'</span><button type="button" class="oc-rm" data-code="'+c+'" data-i="'+i+'" title="Retirer">×</button></span>';}
+function addObjToSeq(i,c){ var s=S.seq[i]; if(!s||!R5BY[c])return; var arr=zoneArr(s,c); if(arr.indexOf(c)!==-1)return; var where=placedIn(c); if(where.length){ var names=where.map(function(x){return S.seq[x].code;}).join(', '); if(!confirm('« '+c+' » est déjà placé dans : '+names+'.\nL’ajouter aussi à '+s.code+' ?'))return; } arr.push(c); var fam=objFam(c); if(fam){ var has=s.comps.some(function(x){return famOf(x)===fam;}); if(!has){ if(confirm('Ajouter la compétence '+fam+' ('+famNameOf(fam)+') à '+s.code+' ?')){ s.comps.push(fam+'1'); sortComps(s); } } } save(); renderAll(); }
+function removeObjFromSeq(i,c){ var s=S.seq[i]; if(!s)return; var arr=zoneArr(s,c); var k=arr.indexOf(c); if(k!==-1){ arr.splice(k,1); save(); renderAll(); } }
+function moveObj(from,to,c){ if(from===to)return; var s=S.seq[from]; if(s){ var arr=zoneArr(s,c); var k=arr.indexOf(c); if(k!==-1)arr.splice(k,1); } addObjToSeq(to,c); }
+var bankFilter='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
+function updateArmedHint(){ var h=document.getElementById('armedHint'); if(!h)return; if(armedObj){ h.hidden=false; h.textContent='👉 '+armedObj+' sélectionné — touche une zone d’une séquence pour le déposer (ou touche-le à nouveau pour annuler).'; } else h.hidden=true; }
 function renderBankThemes(){ var box=document.getElementById('bankThemes'); if(!box)return; var cats=['all','nombres','geometrie','donnees','proportionnalite','algorithmique','automatismes'];
-  box.innerHTML=cats.map(function(c){return '<button type="button" class="bth'+(c===bankFilter?' on':'')+'" data-f="'+c+'">'+(c==='all'?'Tous thèmes':(c==='automatismes'?'Automat.':THEMELAB[c]))+'</button>';}).join('');
+  box.innerHTML=cats.map(function(c){return '<button type="button" class="bth'+(c===bankFilter?' on':'')+'" data-f="'+c+'">'+(c==='all'?'Tous':THEMELAB[c])+'</button>';}).join('');
   box.querySelectorAll('.bth').forEach(function(b){ b.addEventListener('click',function(){ bankFilter=b.getAttribute('data-f'); renderBank(); }); }); }
-function renderBank(){ var list=document.getElementById('bankList'); if(!list)return; renderBankNiveaux(); renderBankThemes();
+function renderBank(){ var list=document.getElementById('bankList'); if(!list)return; renderBankThemes();
   var placed=allPlaced(), hideEl=document.getElementById('bankHidePlaced'), hide=hideEl&&hideEl.checked, q=normTxt(bankQuery);
-  var items=RALL.filter(function(o){ if(bankNiv!=='all'&&o.niveau!==bankNiv)return false; if(bankFilter==='automatismes'){ if(o.type!=='automatisme')return false; } else if(bankFilter!=='all'){ if(o.theme!==bankFilter||o.type!=='objectif')return false; } if(hide&&placed[o.id])return false; if(q&&normTxt(o.code+' '+o.texte).indexOf(q)===-1)return false; return true; });
-  list.innerHTML=items.length?items.map(function(o){ var where=placedIn(o.id), col=THEMECOL[o.theme]||'#999';
-    return '<div class="bankobj'+(where.length?' placed':'')+(armedObj===o.id?' armed':'')+'" draggable="true" data-id="'+o.id+'" title="'+esc(o.texte)+'"><span class="bo-niv niv-'+o.niveau+'">'+o.niveau+'</span><span class="bo-code" style="background:'+col+'">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+'</span><span class="bo-fam" style="background:'+(FAMCOL2[o.famille]||'#999')+'">'+esc(o.famille||'')+'</span>'+(where.length?'<span class="bo-in">'+where.map(function(x){return S.seq[x].code;}).join(',')+'</span>':'')+'</div>';
+  var items=R5.filter(function(o){ if(bankFilter==='automatismes'){ if(o.type!=='automatisme')return false; } else if(bankFilter!=='all'){ if(o.theme!==bankFilter||o.type!=='objectif')return false; } if(hide&&placed[o.code])return false; if(q&&normTxt(o.code+' '+o.texte).indexOf(q)===-1)return false; return true; });
+  list.innerHTML=items.length?items.map(function(o){ var where=placedIn(o.code), col=THEMECOL[o.theme]||'#999';
+    return '<div class="bankobj'+(where.length?' placed':'')+(armedObj===o.code?' armed':'')+'" draggable="true" data-code="'+o.code+'" title="'+esc(o.texte)+'"><span class="bo-code" style="background:'+col+'">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+'</span><span class="bo-fam" style="background:'+(FAMCOL2[o.famille]||'#999')+'">'+esc(o.famille||'')+'</span>'+(where.length?'<span class="bo-in">'+where.map(function(x){return S.seq[x].code;}).join(',')+'</span>':'')+'</div>';
   }).join(''):'<div class="bank-empty">Aucun objectif pour ce filtre.</div>';
   var po=0,pa=0; Object.keys(placed).forEach(function(c){ if(objType(c)==='automatisme')pa++; else po++; });
-  var cov=document.getElementById('bankCov'); if(cov)cov.textContent='✅ '+po+' · 🛠 '+pa+' placés'; }
-function renderCoverage(){ var body=document.getElementById('covBody'); if(!body)return; var placed=allPlaced();
-  var h=''; NIVS.forEach(function(n){ var po=0,pa=0,byTheme={},fams={};
-    RALL.filter(function(o){return o.niveau===n;}).forEach(function(o){ var on=!!placed[o.id]; if(o.type==='automatisme'){ if(on)pa++; } else { if(on)po++; } byTheme[o.theme]=byTheme[o.theme]||{t:0,d:0}; byTheme[o.theme].t++; if(on)byTheme[o.theme].d++; if(on){var f=o.famille;if(f)fams[f]=(fams[f]||0)+1;} });
-    h+='<div class="cov-niv"><h4><span class="cov-nivbadge" style="background:'+NIVCOL[n]+'">'+n+'</span> <span class="cov-big">✅ '+po+' / '+TOT[n].obj+' objectifs · 🛠 '+pa+' / '+TOT[n].auto+' automatismes</span></h4>';
-    h+='<div class="cov-themes">';['nombres','geometrie','donnees','proportionnalite','algorithmique'].forEach(function(c){ var x=byTheme[c]; if(!x)return; h+='<span class="cov-th" style="--c:'+THEMECOL[c]+'">'+THEMELAB[c]+' '+x.d+'/'+x.t+'</span>'; }); h+='</div></div>'; });
-  var fy={}; Object.keys(placed).forEach(function(c){ var f=objFam(c); if(f)fy[f]=(fy[f]||0)+1; });
-  h+='<div class="cov-fams">Compétences déduites (tous niveaux) : '+(Object.keys(fy).length?Object.keys(fy).sort().map(function(f){return '<span class="cov-fam" style="background:'+(FAMCOL2[f]||'#999')+'">'+f+' ('+fy[f]+')</span>';}).join(''):'—')+'</div>';
-  var notP=RALL.filter(function(o){return o.type==='objectif'&&!placed[o.id];});
-  h+='<details class="cov-holes"><summary>'+notP.length+' objectif(s) non placé(s)</summary><div>'+notP.map(function(o){return '<div class="cov-hole"><b>'+o.niveau+' '+esc(o.code)+'</b> '+esc(o.texte)+'</div>';}).join('')+'</div></details>';
+  var cov=document.getElementById('bankCov'); if(cov)cov.textContent='✅ '+po+'/'+OBJTOT+' · 🛠 '+pa+'/'+AUTOTOT; }
+function renderCoverage(){ var body=document.getElementById('covBody'); if(!body)return; var placed=allPlaced(), po=0,pa=0, byTheme={}, fams={};
+  R5.forEach(function(o){ var on=!!placed[o.code]; if(o.type==='automatisme'){ if(on)pa++; } else { if(on)po++; } byTheme[o.theme]=byTheme[o.theme]||{t:0,d:0}; byTheme[o.theme].t++; if(on)byTheme[o.theme].d++; if(on){ var f=o.famille; if(f)fams[f]=(fams[f]||0)+1; } });
+  var notP=R5.filter(function(o){return o.type==='objectif'&&!placed[o.code];});
+  var h='<div class="cov-row"><span class="cov-big">✅ '+po+' / '+OBJTOT+' objectifs</span><span class="cov-big">🛠 '+pa+' / '+AUTOTOT+' automatismes</span></div>';
+  h+='<div class="cov-themes">';['nombres','geometrie','donnees','proportionnalite','algorithmique'].forEach(function(c){ var x=byTheme[c]||{t:0,d:0}; h+='<span class="cov-th" style="--c:'+THEMECOL[c]+'">'+THEMELAB[c]+' '+x.d+'/'+x.t+'</span>'; }); h+='</div>';
+  h+='<div class="cov-fams">Compétences déduites : '+(Object.keys(fams).length?Object.keys(fams).sort().map(function(f){return '<span class="cov-fam" style="background:'+(FAMCOL2[f]||'#999')+'">'+f+' ('+fams[f]+')</span>';}).join(''):'—')+'</div>';
+  h+='<details class="cov-holes"><summary>'+notP.length+' objectif(s) non placé(s)</summary><div>'+notP.map(function(o){return '<div class="cov-hole"><b>'+esc(o.code)+'</b> '+esc(o.texte)+'</div>';}).join('')+'</div></details>';
   body.innerHTML=h; }
-function exportPontLivret(){ var data={niveau:'4e',contexte:'progression 4e (programme actuel) — objectifs piochés dans les nouveaux référentiels 5e/4e/3e',genere:new Date().toISOString(),
+function exportPontLivret(){ var data={niveau:'5e',genere:new Date().toISOString(),
   periodes:periodsInfo().map(function(p,i){return {periode:i+1,debut:iso(p.start),fin:iso(p.end),semaines:p.weeks};}),
   sequences:S.seq.map(function(s){return {code:s.code,titre:s.title,theme:s.theme,semaines:s.weeks,competences:s.comps.slice(),
-    objectifs:s.objectifs.map(function(id){return {code:objCode(id),niveau:objNiv(id),texte:objText(id),famille:objFam(id),fichier:'cours/'+objNiv(id)+'/objectifs/'+objSlug(id)+'.md'};}),
-    automatismes:s.automatismes.map(function(id){return {code:objCode(id),niveau:objNiv(id),texte:objText(id),famille:objFam(id)};}),
+    objectifs:s.objectifs.map(function(c){return {code:c,texte:objText(c),famille:objFam(c),fichier:'cours/5e/objectifs/'+objSlug(c)+'.md'};}),
+    automatismes:s.automatismes.map(function(c){return {code:c,texte:objText(c),famille:objFam(c)};}),
     notes:s.notes||''};})};
-  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pont-livret-4e.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000); }
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pont-livret-5e.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000); }
 function initObjUI(){
   var seqList=document.getElementById('seqList');
   if(seqList){
-    seqList.addEventListener('dragstart',function(e){ var ch=e.target.closest('.objchip'); if(!ch)return; dragObjCode=ch.getAttribute('data-id'); dragFromSeq=+ch.getAttribute('data-from'); dragIndex=null; e.dataTransfer.effectAllowed='move'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });
+    seqList.addEventListener('dragstart',function(e){ var ch=e.target.closest('.objchip'); if(!ch)return; dragObjCode=ch.getAttribute('data-code'); dragFromSeq=+ch.getAttribute('data-from'); dragIndex=null; e.dataTransfer.effectAllowed='move'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });
     seqList.addEventListener('dragend',function(){ dragObjCode=null; dragFromSeq=null; document.querySelectorAll('.obj-zone.dragover,.auto-zone.dragover').forEach(function(z){z.classList.remove('dragover');}); });
     seqList.addEventListener('dragover',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&dragObjCode){ e.preventDefault(); e.stopPropagation(); z.classList.add('dragover'); } });
     seqList.addEventListener('dragleave',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z)z.classList.remove('dragover'); });
-    seqList.addEventListener('drop',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&dragObjCode){ e.preventDefault(); e.stopPropagation(); z.classList.remove('dragover'); var i=+z.getAttribute('data-i'), id=dragObjCode, from=dragFromSeq; dragObjCode=null; dragFromSeq=null; if(from!=null&&from!==i) moveObj(from,i,id); else if(from==null) addObjToSeq(i,id); } });
-    seqList.addEventListener('click',function(e){ var rm=e.target.closest('.oc-rm'); if(rm){ e.stopPropagation(); removeObjFromSeq(+rm.getAttribute('data-i'),rm.getAttribute('data-id')); return; } var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&armedObj){ addObjToSeq(+z.getAttribute('data-i'),armedObj); armedObj=null; updateArmedHint(); } });
+    seqList.addEventListener('drop',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&dragObjCode){ e.preventDefault(); e.stopPropagation(); z.classList.remove('dragover'); var i=+z.getAttribute('data-i'), code=dragObjCode, from=dragFromSeq; dragObjCode=null; dragFromSeq=null; if(from!=null&&from!==i) moveObj(from,i,code); else if(from==null) addObjToSeq(i,code); } });
+    seqList.addEventListener('click',function(e){ var rm=e.target.closest('.oc-rm'); if(rm){ e.stopPropagation(); removeObjFromSeq(+rm.getAttribute('data-i'),rm.getAttribute('data-code')); return; } var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&armedObj){ addObjToSeq(+z.getAttribute('data-i'),armedObj); armedObj=null; updateArmedHint(); } });
   }
   var bankList=document.getElementById('bankList');
   if(bankList){
-    bankList.addEventListener('dragstart',function(e){ var it=e.target.closest('.bankobj'); if(!it)return; dragObjCode=it.getAttribute('data-id'); dragFromSeq=null; dragIndex=null; e.dataTransfer.effectAllowed='copy'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });
+    bankList.addEventListener('dragstart',function(e){ var it=e.target.closest('.bankobj'); if(!it)return; dragObjCode=it.getAttribute('data-code'); dragFromSeq=null; dragIndex=null; e.dataTransfer.effectAllowed='copy'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });
     bankList.addEventListener('dragend',function(){ dragObjCode=null; dragFromSeq=null; });
-    bankList.addEventListener('click',function(e){ var it=e.target.closest('.bankobj'); if(!it)return; var id=it.getAttribute('data-id'); armedObj=(armedObj===id?null:id); renderBank(); updateArmedHint(); });
+    bankList.addEventListener('click',function(e){ var it=e.target.closest('.bankobj'); if(!it)return; var c=it.getAttribute('data-code'); armedObj=(armedObj===c?null:c); renderBank(); updateArmedHint(); });
   }
   var bs=document.getElementById('bankSearch'); if(bs)bs.addEventListener('input',function(){ bankQuery=this.value; renderBank(); });
   var bh=document.getElementById('bankHidePlaced'); if(bh)bh.addEventListener('change',renderBank);
   var bb=document.getElementById('bankBtn'); if(bb)bb.addEventListener('click',function(){ var b=document.getElementById('objBank'); b.hidden=!b.hidden; if(!b.hidden)renderBank(); });
   var bc=document.getElementById('bankClose'); if(bc)bc.addEventListener('click',function(){ document.getElementById('objBank').hidden=true; });
   var pb=document.getElementById('pontBtn'); if(pb)pb.addEventListener('click',exportPontLivret);
-  var sg=document.getElementById('suggestBtn'); if(sg)sg.addEventListener('click',suggestAssoc);
   renderBank(); renderCoverage();
 }
 if(document.readyState!=='loading') initObjUI(); else document.addEventListener('DOMContentLoaded',initObjUI);
@@ -705,7 +677,6 @@ renderAll();
   <div class="bank-head"><b>🎯 Banque d'objectifs</b><span id="bankCov" class="bank-cov"></span><button type="button" id="bankClose" class="bank-x" title="Fermer">×</button></div>
   <div class="bank-filters">
     <input type="search" id="bankSearch" placeholder="Rechercher un objectif…">
-    <div class="bank-niveaux" id="bankNiveaux"></div>
     <div class="bank-themes" id="bankThemes"></div>
     <label class="bank-hide"><input type="checkbox" id="bankHidePlaced"> masquer les objectifs déjà placés</label>
   </div>

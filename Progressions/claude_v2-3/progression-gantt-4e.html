@@ -127,7 +127,6 @@
   <div class="toolbar no-print">
     <button class="btn" id="addSeq" type="button">+ Séquence</button>
     <button class="btn" id="bankBtn" type="button">🎯 Banque d'objectifs</button>
-    <button class="btn ghost" id="suggestBtn" type="button">✨ Suggérer</button>
     <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
     <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
     <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
@@ -604,7 +603,6 @@ document.getElementById('importBtn').addEventListener('click',function(){ docume
 document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=migrate(JSON.parse(rd.result)); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
 
 /* ============ Référentiels 5e + 4e + 3e (transition) — banque multi-niveaux ============ */
-var PRIMARY_NIV='4e';
 var RALL=[]; [['5e',window.REF5E],['4e',window.REF4E],['3e',window.REF3E]].forEach(function(p){ var niv=p[0], R=p[1]; if(!R||!R.objectifs)return; R.objectifs.forEach(function(o){ RALL.push({id:niv.charAt(0)+':'+o.code, code:o.code, niveau:niv, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type, famille:o.famille}); }); });
 var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
 var NIVS=['5e','4e','3e'];
@@ -632,14 +630,6 @@ function objChipHTML(id,i){var col=THEMECOL[objTheme(id)]||'#999',niv=objNiv(id)
 function addObjToSeq(i,id){ var s=S.seq[i]; if(!s||!RBY[id])return; var arr=zoneArr(s,id); if(arr.indexOf(id)!==-1)return; var where=placedIn(id); if(where.length){ var names=where.map(function(x){return S.seq[x].code;}).join(', '); if(!confirm('« '+objNiv(id)+' '+objCode(id)+' » est déjà placé dans : '+names+'.\nL’ajouter aussi à '+s.code+' ?'))return; } arr.push(id); var fam=objFam(id); if(fam){ var has=s.comps.some(function(x){return famOf(x)===fam;}); if(!has){ if(confirm('Ajouter la compétence '+fam+' ('+famNameOf(fam)+') à '+s.code+' ?')){ s.comps.push(fam+'1'); sortComps(s); } } } save(); renderAll(); }
 function removeObjFromSeq(i,id){ var s=S.seq[i]; if(!s)return; var arr=zoneArr(s,id); var k=arr.indexOf(id); if(k!==-1){ arr.splice(k,1); save(); renderAll(); } }
 function moveObj(from,to,id){ if(from===to)return; var s=S.seq[from]; if(s){ var arr=zoneArr(s,id); var k=arr.indexOf(id); if(k!==-1)arr.splice(k,1); } addObjToSeq(to,id); }
-function suggestAssoc(){ if(!confirm('Pré-associer automatiquement les objectifs '+PRIMARY_NIV+' à tes chapitres (par mots-clés) ?\nC’est une suggestion à relire ; rien de ce que tu as déjà placé n’est modifié.'))return;
-  var STOP={};'avec des une les que pour sur dans son ses leur entre sous est sont plus deux par aux quelques cette ceux dont etc forme type donnees diverses simple simples nombre nombres situation situations probleme problemes utiliser connaitre savoir resoudre representer calculer construire reconnaitre definir produire mettre faire'.split(' ').forEach(function(w){STOP[w]=1;});
-  function words(s){return normTxt(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>3&&!STOP[w];});}
-  var L2T={nombres:'N',geometrie:'G',donnees:'D',proportionnalite:'D',algorithmique:'A'}, placedSet=allPlaced(), n=0;
-  RALL.forEach(function(o){ if(o.niveau!==PRIMARY_NIV||placedSet[o.id])return; var letter=L2T[o.theme], cands=[]; S.seq.forEach(function(s,i){ if(!letter||s.theme===letter)cands.push(i); }); if(!cands.length)S.seq.forEach(function(s,i){cands.push(i);});
-    var ow=words(o.texte), best=-1, bs=0; cands.forEach(function(i){ var set={}; words((S.seq[i].title||'')+' '+(S.seq[i].notes||'')).forEach(function(w){set[w]=1;}); var sc=0; ow.forEach(function(w){if(set[w])sc++;}); if(sc>bs){bs=sc;best=i;} });
-    if(best>=0&&bs>=2){ var arr=zoneArr(S.seq[best],o.id); if(arr.indexOf(o.id)===-1){ arr.push(o.id); n++; } } });
-  save(); renderAll(); alert(n+' objectif(s) '+PRIMARY_NIV+' pré-associé(s) — à relire et ajuster.'); }
 var bankFilter='all', bankNiv='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
 function updateArmedHint(){ var h=document.getElementById('armedHint'); if(!h)return; if(armedObj){ h.hidden=false; h.textContent='👉 '+objNiv(armedObj)+' '+objCode(armedObj)+' sélectionné — touche une zone d’une séquence pour le déposer (ou touche-le à nouveau pour annuler).'; } else h.hidden=true; }
 function renderBankNiveaux(){ var box=document.getElementById('bankNiveaux'); if(!box)return; var arr=['all'].concat(NIVS);
@@ -694,7 +684,6 @@ function initObjUI(){
   var bb=document.getElementById('bankBtn'); if(bb)bb.addEventListener('click',function(){ var b=document.getElementById('objBank'); b.hidden=!b.hidden; if(!b.hidden)renderBank(); });
   var bc=document.getElementById('bankClose'); if(bc)bc.addEventListener('click',function(){ document.getElementById('objBank').hidden=true; });
   var pb=document.getElementById('pontBtn'); if(pb)pb.addEventListener('click',exportPontLivret);
-  var sg=document.getElementById('suggestBtn'); if(sg)sg.addEventListener('click',suggestAssoc);
   renderBank(); renderCoverage();
 }
 if(document.readyState!=='loading') initObjUI(); else document.addEventListener('DOMContentLoaded',initObjUI);
