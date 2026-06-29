@@ -8,6 +8,10 @@
    Pour ajouter un onglet : ajoute une ligne dans LINKS ci-dessous.
    ============================================================ */
 (function(){
+  var script=document.currentScript;
+  var siteRoot=script && script.src ? new URL('../',script.src) : new URL('../',document.baseURI);
+  function siteUrl(path){ return new URL(path,siteRoot).href; }
+
   /* Deux espaces. Une page « verrouillée » porte data-zone sur son <body>
      (ex : data-zone="prof") : elle force cet espace et le mémorise.
      Les pages partagées (entrainement, productions) n'ont pas de data-zone
@@ -16,16 +20,16 @@
   var ZONES={
     prof:{ brand:'🌸 Espace prof', home:'accueil.html', carnet:true, links:[
       ['accueil','accueil.html','Accueil'],
-      ['progressions','progressions.html','Progressions'],
-      ['ressources','ressources.html','Ressources'],
-      ['entrainement','entrainement.html','Entraînement'],
-      ['productions','productions.html','Productions'],
-      ['projets','projets.html','Projets']
+      ['progressions','Progressions/progressions.html','Progressions'],
+      ['ressources','Progressions/ressources.html','Ressources'],
+      ['entrainement','Progressions/entrainement.html','Entraînement'],
+      ['productions','Productions/productions.html','Productions'],
+      ['projets','Productions/projets.html','Projets']
     ]},
     eleves:{ brand:'🎒 Espace élèves & familles', home:'eleves.html', carnet:false, links:[
       ['eleves-accueil','eleves.html','Accueil'],
-      ['entrainement','entrainement.html','S’entraîner'],
-      ['productions','productions.html','Productions']
+      ['entrainement','Progressions/entrainement.html','S’entraîner'],
+      ['productions','Productions/productions.html','Productions']
     ]}
   };
   var page=(document.body.getAttribute('data-page')||'').trim();
@@ -38,8 +42,8 @@
   // favicon 🌸 (commun à toutes les pages)
   var head=document.head||document.getElementsByTagName('head')[0];
   function addIcon(rel,href,type){ var l=document.createElement('link'); l.rel=rel; l.href=href; if(type) l.type=type; head.appendChild(l); }
-  addIcon('icon','favicon.svg','image/svg+xml');
-  addIcon('apple-touch-icon','apple-touch-icon.png');
+  addIcon('icon',siteUrl('favicon.svg'),'image/svg+xml');
+  addIcon('apple-touch-icon',siteUrl('assets/apple-touch-icon.png'));
 
   // Style du menu : injecté UNIQUEMENT si la charte du site (site-commun.css)
   // n'est pas déjà chargée — ainsi les pages qui ont une autre charte
@@ -67,14 +71,14 @@
   nav.setAttribute('aria-label','Navigation principale');
 
   var brand=document.createElement('a');
-  brand.className='brand'; brand.href=Z.home; brand.textContent=Z.brand;
+  brand.className='brand'; brand.href=siteUrl(Z.home); brand.textContent=Z.brand;
   nav.appendChild(brand);
 
   var links=document.createElement('div'); links.className='navlinks';
   Z.links.forEach(function(l){
     var a=document.createElement('a');
     a.className='navlink'+(l[0]===page?' active':'');
-    a.href=l[1]; a.textContent=l[2];
+    a.href=siteUrl(l[1]); a.textContent=l[2];
     if(l[0]===page) a.setAttribute('aria-current','page');
     links.appendChild(a);
   });
@@ -100,7 +104,7 @@
   }
 
   var swap=document.createElement('a');
-  swap.className='navbtn'; swap.href='index.html'; swap.textContent='↩ Espace';
+  swap.className='navbtn'; swap.href=siteUrl('index.html'); swap.textContent='↩ Espace';
   swap.title='Changer d’espace (prof / élèves & familles)';
   swap.style.textDecoration='none';
   nav.appendChild(swap);
