@@ -1,0 +1,19 @@
+Arborescence Progressions
+ton-depot/
+├── index.html            (accueil 2 portes)
+├── accueil.html
+├── eleves.html
+├── entrainement.html
+├── ressources.html
+├── progressions.html
+├── projets.html
+├── productions.html
+├── site.js
+├── site-commun.css
+├── progression-commun.css
+├── progression-gantt-5e.html
+├── couverture-5e.html     ← compagnon, ICI
+├── referentiel-5e.html
+├── favicon.svg
+├── avatar-vacances.png
+└── fond-sakura-maths.png

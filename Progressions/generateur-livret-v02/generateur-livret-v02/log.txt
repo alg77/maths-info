@@ -1,0 +1,19 @@
+﻿  À pont-livret : 19 chapitre(s) avec objectifs
+[4N1] atkinson 11pt int=1.45 couleur
+python : Traceback (most recent call last):
+Au caractère Ligne:1 : 1
++ python build_livret.py 4N1.md --pont pont-livret-4e.json --mode prof  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\dyama\Documents\GitHub\alg77\maths-info\Progressions\generateur-livret-v02\generateur-livret-v02\build_livret.py", line 961, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\dyama\Documents\GitHub\alg77\maths-info\Progressions\generateur-livret-v02\generateur-livret-v02\build_livret.py", line 954, in main
+    print(f"  \u2713 {pdf.name}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dyama\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>

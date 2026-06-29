@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mémo — qui va où & quoi redéployer</title>
+<style>
+  :root{--ink:#4a414a;--muted:#8b7d87;--accent:#d98ba4;--accent-ink:#a8607c;--line:#efe2e0;
+    --surface:#fffdfc;--surface2:#fdf5f4;--site:#3f6fb0;--carnet:#7a5bc7;--paper:#fbf4f2}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;padding:24px 14px 60px}
+  .wrap{max-width:880px;margin:0 auto}
+  h1{font-family:Georgia,serif;text-align:center;margin:0 0 4px}
+  .lead{text-align:center;color:var(--muted);margin:0 0 26px}
+  h2{font-family:Georgia,serif;font-size:1.18rem;margin:30px 0 10px;display:flex;align-items:center;gap:8px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0;
+    box-shadow:0 8px 22px rgba(150,110,125,.08)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:620px){.two{grid-template-columns:1fr}}
+  .univ{border-radius:16px;padding:16px 18px;border:1px solid var(--line)}
+  .univ.site{background:#eef4fb;border-color:#d3e2f3}
+  .univ.carnet{background:#f3eefb;border-color:#e0d4f5}
+  .univ h3{margin:.1em 0 .4em;font-family:Georgia,serif}
+  .univ.site h3{color:var(--site)} .univ.carnet h3{color:var(--carnet)}
+  .univ .tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+    padding:2px 9px;border-radius:999px;color:#fff;margin-bottom:8px}
+  .univ.site .tag{background:var(--site)} .univ.carnet .tag{background:var(--carnet)}
+  .univ p{margin:.3em 0;font-size:.94rem}
+  pre.tree{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.65;margin:0}
+  pre.tree .c{color:var(--accent-ink);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  td code,p code,li code{background:var(--surface2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.85em}
+  .pill{display:inline-block;font-size:.74rem;font-weight:800;padding:2px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+  .pill.site{background:var(--site)} .pill.carnet{background:var(--carnet)} .pill.none{background:#9aa0a6}
+  .flow{counter-reset:s;margin:0;padding:0;list-style:none}
+  .flow li{position:relative;padding:6px 0 6px 34px;margin:2px 0}
+  .flow li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:5px;width:23px;height:23px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem}
+  .warn{background:#fdf3e6;border:1px solid #f0dcc0;border-radius:12px;padding:12px 15px;margin:12px 0}
+  .warn b{color:#a8782c}
+  .foot{text-align:center;color:var(--muted);font-family:Georgia,serif;margin-top:34px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🌸 Mémo — qui va où & quoi redéployer</h1>
+  <p class="lead">Deux univers séparés. Une fois que c'est clair, plus d'emmêlage.</p>
+
+  <h2>① Les deux univers</h2>
+  <div class="two">
+    <div class="univ site">
+      <span class="tag">🌐 Le site</span>
+      <h3>GitHub Pages</h3>
+      <p>Des fichiers <code>.html</code>, <code>.css</code>, <code>.js</code>, images.</p>
+      <p><b>Tous dans le même dossier</b> de ton dépôt GitHub.</p>
+      <p>Public, partageable par URL.</p>
+      <p>Mise à jour = <b>téléverser</b> les fichiers modifiés sur GitHub.</p>
+    </div>
+    <div class="univ carnet">
+      <span class="tag">📓 Le Carnet</span>
+      <h3>Google Apps Script</h3>
+      <p>Deux fichiers : <code>Index.html</code> + <code>Code.gs</code>.</p>
+      <p>On les <b>colle dans l'éditeur Apps Script</b> (script lié à ton Google Sheet). Ce n'est <b>pas</b> dans GitHub.</p>
+      <p>Privé.</p>
+      <p>Mise à jour = coller + <b>Déployer → nouvelle version</b>.</p>
+    </div>
+  </div>
+
+  <h2>② L'arborescence du site (un seul dossier GitHub)</h2>
+  <div class="card">
+  <pre class="tree">ton-depot/
+├── index.html              <span class="c">accueil 2 portes</span>
+├── accueil.html            <span class="c">accueil prof (ancien tableau de bord)</span>
+├── eleves.html             <span class="c">accueil élèves & familles</span>
+├── entrainement.html       <span class="c">cahiers de vacances + avatar</span>
+├── ressources.html
+├── progressions.html       <span class="c">+ bouton « Couverture du programme »</span>
+├── projets.html
+├── productions.html
+├── site.js                 <span class="c">menu (2 espaces)</span>
+├── site-commun.css
+├── progression-commun.css
+├── progression-gantt-5e.html
+├── couverture-5e.html      <span class="c">⟵ la page compagnon vit ICI</span>
+├── referentiel-5e.html
+├── favicon.svg
+├── avatar-vacances.png
+└── fond-sakura-maths.png</pre>
+  </div>
+  <div class="warn"><b>Piège classique :</b> le <code>Index.html</code> du <b>Carnet</b> (majuscule, chez Google) n'a <b>rien à voir</b> avec le <code>index.html</code> du <b>site</b> (minuscule, sur GitHub). Deux fichiers différents, deux endroits.</div>
+
+  <h2>③ Qui va où</h2>
+  <div class="card" style="padding:6px 10px">
+  <table>
+    <tr><th>Fichier</th><th>Destination</th></tr>
+    <tr><td>Toutes les pages du site (<code>.html</code>, <code>site.js</code>, <code>.css</code>, images)</td><td><span class="pill site">Dossier GitHub</span></td></tr>
+    <tr><td><code>couverture-5e.html</code>, <code>referentiel-5e.html</code></td><td><span class="pill site">Dossier GitHub</span> (à côté des progressions)</td></tr>
+    <tr><td><code>Index.html</code> + <code>Code.gs</code> (le Carnet)</td><td><span class="pill carnet">Apps Script</span></td></tr>
+    <tr><td><code>pont-carnet-5e.json</code></td><td><span class="pill none">Fichier de passage</span> — téléchargé puis téléversé</td></tr>
+  </table>
+  </div>
+
+  <h2>④ Quoi redéployer, quand</h2>
+  <div class="card" style="padding:6px 10px">
+  <table>
+    <tr><th>Si tu modifies…</th><th>Tu redéploies…</th></tr>
+    <tr><td>Une page du site, le menu, le CSS</td><td><span class="pill site">GitHub</span> — téléverse le(s) fichier(s) modifié(s)</td></tr>
+    <tr><td>Le menu (<code>site.js</code>)</td><td><span class="pill site">GitHub</span> — un seul fichier, il s'applique à toutes les pages</td></tr>
+    <tr><td>La page Couverture</td><td><span class="pill site">GitHub</span> — <code>couverture-5e.html</code> seul</td></tr>
+    <tr><td>Le Carnet (<code>Index.html</code> ou <code>Code.gs</code>)</td><td><span class="pill carnet">Apps Script</span> — colle + Déployer → nouvelle version</td></tr>
+    <tr><td>Tes objectifs / associations (page Couverture)</td><td><span class="pill none">Rien à déployer</span> — c'est mémorisé dans le navigateur ; pour le carnet, ré-exporte le JSON</td></tr>
+  </table>
+  </div>
+
+  <h2>⑤ Le pont entre les deux (le JSON)</h2>
+  <div class="card">
+  <ol class="flow">
+    <li>Sur le site, j'associe mes objectifs dans <code>couverture-5e.html</code>.</li>
+    <li>Je clique <b>⬇️ Pont carnet</b> → ça télécharge <code>pont-carnet-5e.json</code>.</li>
+    <li>Dans le Carnet, bouton <b>📚 Programme</b> → <b>Importer ce JSON</b> → je choisis le fichier.</li>
+    <li>Pour mettre à jour plus tard : je ré-exporte et je réimporte — <b>le même niveau est remplacé</b>.</li>
+  </ol>
+  </div>
+
+  <h2>⑥ Bon à savoir</h2>
+  <div class="card">
+    <p>🔹 <b>Aperçu « nu » :</b> dans l'éditeur ou un aperçu isolé, une page s'affiche sans le CSS/JS voisins. C'est <b>normal</b> — il faut la voir déployée (sur GitHub, ou via le Carnet déployé).</p>
+    <p>🔹 <b>Carnet :</b> l'onglet <code>Referentiel</code> se crée tout seul au 1ᵉʳ import (sinon, lancer <code>migrate()</code> une fois).</p>
+    <p>🔹 <b>Couverture :</b> la 1ʳᵉ fois sur un appareil, ouvre ta progression 5ᵉ une fois (elle s'enregistre seule) pour que les chapitres apparaissent.</p>
+  </div>
+
+  <p class="foot">🌸 Avec passion et bienveillance ♡</p>
+</div>
+</body>
+</html>

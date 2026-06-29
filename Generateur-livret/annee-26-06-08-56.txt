@@ -1,0 +1,24 @@
+:::couverture
+titre: Cahier de cours
+matiere: Mathématiques
+niveau: 4ᵉ
+periode: Année test 26-06 08-56
+annee: 2025 – 2026
+prof: Mme Le Guern
+chapitres:
+- N1 | Addition et soustraction de nombres relatifs
+- N2 | Multiplier et diviser des nombres relatifs
+- C1 | Calcul mental — Période 1
+- N3 | Calcul littéral 1
+- G2 | Théorème de Pythagore
+- N4 | Résolution d'équations
+- R1 | Pour aller plus loin
+:::
+
+@include N1.txt
+@include N2.txt
+@include C1.txt
+@include N3.txt
+@include G2.txt
+@include N4.txt
+@include R1.txt

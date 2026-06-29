@@ -1,0 +1,433 @@
+{
+  "cal": {
+    "rentree": "2026-09-01",
+    "fin": "2027-06-18",
+    "vac": [
+      {
+        "nom": "Toussaint",
+        "sat": "2026-10-17",
+        "resume": "2026-11-02"
+      },
+      {
+        "nom": "Noël",
+        "sat": "2026-12-19",
+        "resume": "2027-01-04"
+      },
+      {
+        "nom": "Hiver",
+        "sat": "2027-02-06",
+        "resume": "2027-02-22"
+      },
+      {
+        "nom": "Printemps",
+        "sat": "2027-04-03",
+        "resume": "2027-04-19"
+      }
+    ],
+    "feries": [
+      "2026-11-11",
+      "2027-03-29",
+      "2027-05-06",
+      "2027-05-07",
+      "2027-05-17"
+    ]
+  },
+  "seq": [
+    {
+      "code": "N1",
+      "title": "Calculer avec les nombres décimaux",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Mo1",
+        "Ra1",
+        "Ca1",
+        "Co1"
+      ],
+      "objectifs": [
+        "5:✖1",
+        "5:✖2",
+        "5:✖3",
+        "5:✖4",
+        "5:✖5",
+        "5:✖6",
+        "5:✖7",
+        "5:✖8",
+        "5:✖11",
+        "5:➖10",
+        "5:➖11",
+        "5:🔤4"
+      ],
+      "automatismes": [
+        "5:0✖🅰4",
+        "5:0✖🅰5",
+        "5:0✖🅰6",
+        "5:0➖🅰7",
+        "5:0➖🅰8",
+        "5:0➗🅰9",
+        "5:0⬆🅰20",
+        "5:0➗🅰15"
+      ],
+      "notes": "Vocabulaire : somme, différence, termes, produit, quotient, facteur\nCalculer avec et sans parenthèses (parenthèses emboîtées)\nCalculer des quotients écrits avec une barre de fraction\nProduire une expression numérique pour résoudre des problèmes\nCalcul astucieux : multiplier par 9, 11, 99… (distributivité)\nRéinvestir périmètre et aire"
+    },
+    {
+      "code": "G1",
+      "title": "Reconnaître et utiliser les symétries axiale et centrale",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Mo4",
+        "Re4",
+        "Co2"
+      ],
+      "objectifs": [
+        "5:🔄1"
+      ],
+      "automatismes": [
+        "5:0🔄🅰32"
+      ],
+      "notes": "Construire avec la symétrie centrale (avec et sans quadrillage)\nConstruire avec la symétrie axiale (rappels)\nReconnaître les figures obtenues par symétrie (frises, pavages, rosaces)\nRechercher les éléments de symétrie d'une figure (axes et centre)"
+    },
+    {
+      "code": "N2",
+      "title": "Écrire et utiliser une expression littérale",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Mo2",
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [
+        "5:⬆5",
+        "5:⬆6",
+        "5:🔤1",
+        "5:🔤2",
+        "5:🔤3",
+        "5:🔤5",
+        "5:🔤6",
+        "5:🔤10",
+        "5:🔤11",
+        "5:🔤12",
+        "5:📈1"
+      ],
+      "automatismes": [],
+      "notes": "Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d'une expression (formules d'aires/volumes, conversions)\nTester une égalité\nSimplifier l'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire"
+    },
+    {
+      "code": "G2",
+      "title": "Décrire, représenter le cylindre et le prisme droit ; calculer des volumes",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Ch2",
+        "Re4",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:🧊1",
+        "5:🧊2",
+        "5:🧊3",
+        "5:🧊5",
+        "5:🧊4"
+      ],
+      "automatismes": [
+        "5:0🧭🅰30"
+      ],
+      "notes": "Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d'un cylindre et d'un prisme droit\nCalculer le volume d'un pavé droit, d'un cylindre\nCalculer l'aire de la base d'un prisme droit et son volume"
+    },
+    {
+      "code": "N3",
+      "title": "Définir, utiliser et représenter des nombres rationnels",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Re2"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions"
+    },
+    {
+      "code": "G3",
+      "title": "Construire un triangle et ses droites remarquables",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Re4",
+        "Ra3",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:🔺3",
+        "5:🔺5",
+        "5:🔺6",
+        "5:🔺2",
+        "5:🔺7"
+      ],
+      "automatismes": [
+        "5:0🔺🅰40"
+      ],
+      "notes": "Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d'existence d'un triangle ; cas d'alignement de 3 points\nRéinvestir la médiatrice d'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)"
+    },
+    {
+      "code": "N4",
+      "title": "Utiliser les nombres entiers",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Re2",
+        "Ra1",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:✖9",
+        "5:✖10"
+      ],
+      "automatismes": [
+        "5:0✖🅰2",
+        "5:0✖🅰3"
+      ],
+      "notes": "Diviseur, multiple, divisibilité (division euclidienne)\nDéterminer les diviseurs d'un entier\nReconnaître un nombre premier (< 30)\nDécomposer en produit de facteurs premiers\nGrandeurs : systèmes centésimal et sexagésimal"
+    },
+    {
+      "code": "D1",
+      "title": "Utiliser la proportionnalité pour résoudre des problèmes",
+      "theme": "D",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Mo2",
+        "Re1",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:∝1",
+        "5:∝3",
+        "5:∝4",
+        "5:∝5",
+        "5:∝6",
+        "5:∝7",
+        "5:📈8"
+      ],
+      "automatismes": [
+        "5:0∝🅰47"
+      ],
+      "notes": "Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)"
+    },
+    {
+      "code": "G4",
+      "title": "Symétrie centrale : construire et démontrer",
+      "theme": "G",
+      "weeks": 1,
+      "comps": [
+        "Ch2",
+        "Ra3"
+      ],
+      "objectifs": [
+        "5:🔄2"
+      ],
+      "automatismes": [
+        "5:0🔄🅰33"
+      ],
+      "notes": "Conjecturer les propriétés avec GeoGebra\nConstruire le symétrique d'une figure\nS'initier au raisonnement déductif (tri des données, propriété, « donc »)"
+    },
+    {
+      "code": "N5",
+      "title": "Découvrir, repérer et comparer les nombres relatifs",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Re2",
+        "Ca2"
+      ],
+      "objectifs": [
+        "5:➖1",
+        "5:➖2",
+        "5:➖3",
+        "5:➖4",
+        "5:➖5",
+        "5:➖6",
+        "5:➖12",
+        "5:➖13",
+        "5:🧭1",
+        "5:🧭2",
+        "5:🧭3",
+        "5:🧭4"
+      ],
+      "automatismes": [
+        "5:0➗🅰12"
+      ],
+      "notes": "Définir les nombres relatifs (écriture, usages)\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible"
+    },
+    {
+      "code": "G5",
+      "title": "Reconnaître des angles particuliers et des droites parallèles",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Mo3",
+        "Ra3"
+      ],
+      "objectifs": [
+        "5:📐1"
+      ],
+      "automatismes": [
+        "5:0📐🅰34"
+      ],
+      "notes": "Angles complémentaires, supplémentaires, adjacents, opposés par le sommet\nAngles alternes-internes et correspondants\nReconnaître des droites parallèles (raisonnement déductif)"
+    },
+    {
+      "code": "N6",
+      "title": "Fractions égales ; comparer des fractions",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Re2",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:➗1"
+      ],
+      "automatismes": [
+        "5:0✖🅰1",
+        "5:0➗🅰13",
+        "5:0➗🅰14"
+      ],
+      "notes": "Reconnaître des fractions égales\nSimplifier une fraction (critères de divisibilité)\nDiviser par un nombre décimal\nComparer des fractions (même dénominateur, par rapport à 1)"
+    },
+    {
+      "code": "G6",
+      "title": "Construire et démontrer avec les angles d'un triangle",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Mo4",
+        "Re4",
+        "Co2"
+      ],
+      "objectifs": [
+        "5:🔺1",
+        "5:🔺8",
+        "5:🔺9",
+        "5:🔷5"
+      ],
+      "automatismes": [
+        "5:0📐🅰35",
+        "5:0🔺🅰38",
+        "5:0🔺🅰39"
+      ],
+      "notes": "Calculer un angle dans un triangle quelconque\nDémonstration possible : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)"
+    },
+    {
+      "code": "N7",
+      "title": "Additionner et soustraire des nombres relatifs",
+      "theme": "N",
+      "weeks": 1,
+      "comps": [
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:➖7",
+        "5:➖8",
+        "5:➖9",
+        "5:➗3"
+      ],
+      "automatismes": [],
+      "notes": "Additionner des nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions"
+    },
+    {
+      "code": "D2",
+      "title": "Utiliser les pourcentages et les échelles",
+      "theme": "D",
+      "weeks": 2,
+      "comps": [
+        "Mo1",
+        "Re2",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:∝2"
+      ],
+      "automatismes": [],
+      "notes": "Appliquer et calculer un pourcentage (augmentation/baisse)\nDéfinir et utiliser une échelle"
+    },
+    {
+      "code": "G7",
+      "title": "Définir, construire et reconnaître un parallélogramme",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Re4",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [
+        "5:🔷3",
+        "5:🔷4",
+        "5:🔷7",
+        "5:🔷1",
+        "5:🔷2",
+        "5:🔷6"
+      ],
+      "automatismes": [],
+      "notes": "Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nReconnaître ; calculer l'aire"
+    },
+    {
+      "code": "N8",
+      "title": "Additionner et soustraire des fractions",
+      "theme": "N",
+      "weeks": 1,
+      "comps": [
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:➗2"
+      ],
+      "automatismes": [
+        "5:0➗🅰19"
+      ],
+      "notes": "Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)"
+    },
+    {
+      "code": "D3",
+      "title": "Traiter et représenter des données",
+      "theme": "D",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Re3",
+        "Ca1"
+      ],
+      "objectifs": [
+        "5:📊2",
+        "5:📊6",
+        "5:🎲4",
+        "5:📊1",
+        "5:📊3",
+        "5:📊4",
+        "5:📊5"
+      ],
+      "automatismes": [],
+      "notes": "Calculer des effectifs et des fréquences\nReprésenter graphiquement des données\nCalculer et interpréter une moyenne\nTableur possible"
+    },
+    {
+      "code": "A1",
+      "title": "Algorithmique & Tableur (fil rouge)",
+      "theme": "A",
+      "weeks": 1.5,
+      "comps": [
+        "Ch3",
+        "Re3"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Scratch et tableur\nSéances réparties sur l'année"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="face" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="#e88a4a"/>
+      <stop offset="100%" stop-color="#cf6a30"/>
+    </radialGradient>
+  </defs>
+  <g stroke="#7a3d1d" stroke-width="1.5" stroke-linejoin="round">
+    <!-- oreilles -->
+    <path d="M12 22 C 9 9 20 8 23 17 Z" fill="#d2702f"/>
+    <path d="M52 22 C 55 9 44 8 41 17 Z" fill="#d2702f"/>
+    <path d="M14 20 C 12.5 13 18 12.5 20.5 17 Z" fill="#fbe7d2" stroke="none"/>
+    <path d="M50 20 C 51.5 13 46 12.5 43.5 17 Z" fill="#fbe7d2" stroke="none"/>
+    <!-- tête -->
+    <path d="M32 12 C 49 12 53 26 53 34 C 53 47 43 54 32 54 C 21 54 11 47 11 34 C 11 26 15 12 32 12 Z" fill="url(#face)"/>
+  </g>
+  <!-- masque blanc joues / sourcils -->
+  <g fill="#fff5ec" stroke="#e7c9ad" stroke-width="1">
+    <path d="M20 24 C 14 26 13 38 19 44 C 24 48 26 40 25 33 C 24.5 28 24 24 20 24 Z"/>
+    <path d="M44 24 C 50 26 51 38 45 44 C 40 48 38 40 39 33 C 39.5 28 40 24 44 24 Z"/>
+    <path d="M26 38 C 26 33 38 33 38 38 C 38 45 32 49 32 49 C 32 49 26 45 26 38 Z"/>
+  </g>
+  <!-- larmes rousses sous les yeux -->
+  <g fill="#b9542b">
+    <path d="M22 33 C 20 38 20.5 43 23 45 C 24.5 41 24.5 37 24 33 Z"/>
+    <path d="M42 33 C 44 38 43.5 43 41 45 C 39.5 41 39.5 37 40 33 Z"/>
+  </g>
+  <!-- yeux + truffe -->
+  <g fill="#3a2418">
+    <ellipse cx="23" cy="31" rx="2.5" ry="3"/>
+    <ellipse cx="41" cy="31" rx="2.5" ry="3"/>
+    <path d="M32 40 C 29.5 40 29.5 43 32 44 C 34.5 43 34.5 40 32 40 Z"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="23.8" cy="30" r=".8"/>
+    <circle cx="41.8" cy="30" r=".8"/>
+  </g>
+</svg>

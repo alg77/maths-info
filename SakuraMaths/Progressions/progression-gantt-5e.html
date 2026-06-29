@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progression &amp; Gantt — Maths 5ᵉ</title>
+<link rel="stylesheet" href="progression-commun.css">
+<style>
+  :root{ --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
+         --Ch:#b6a6d6; --Mo:#e0b18a; --Re:#e3a09a; --Ra:#90c1cf; --Ca:#d79bbf; --Co:#9cc6a6; }
+  /* --- Objectifs du BO (v2) --- */
+  .seq-obj-box{margin-top:8px}
+  .oz-wrap{margin:6px 0}
+  .oz-label{font-size:11.5px;font-weight:800;color:var(--muted,#8b7d87);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px}
+  .obj-zone,.auto-zone{min-height:38px;display:flex;flex-wrap:wrap;gap:5px;align-items:flex-start;
+    padding:7px;border:1.5px dashed #e3d3d8;border-radius:11px;background:rgba(255,255,255,.45);transition:background .12s,border-color .12s}
+  .obj-zone.dragover,.auto-zone.dragover{border-color:var(--accent,#d98ba4);background:rgba(217,139,164,.12)}
+  .oz-empty{color:#b6a6ad;font-size:12px;font-style:italic;padding:3px 2px}
+  .objchip{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #efe2e0;border-radius:999px;
+    padding:2px 4px 2px 2px;font-size:12px;max-width:340px;cursor:grab}
+  .objchip:active{cursor:grabbing}
+  .oc-code{flex:none;font-weight:800;font-size:10.5px;color:#fff;border-radius:999px;padding:2px 7px}
+  .oc-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:230px}
+  .oc-rm{flex:none;border:none;background:#f3e7ea;color:#a8607c;border-radius:50%;width:18px;height:18px;line-height:1;cursor:pointer;font-weight:800}
+  .oc-rm:hover{background:#e9c9d2}
+  .ded-fams{margin-top:5px;font-size:11.5px;color:var(--muted,#8b7d87)}
+  .dfam{display:inline-block;color:#fff;border-radius:5px;padding:1px 6px;margin-left:4px;font-weight:800;font-size:10.5px}
+  .dfam.add{box-shadow:0 0 0 1.5px #fff,0 0 0 3px currentColor}
+  /* --- banque latérale --- */
+  .obj-bank{position:fixed;top:0;right:0;width:360px;max-width:92vw;height:100vh;z-index:60;display:flex;flex-direction:column;
+    background:#fffdfc;border-left:1px solid #efe2e0;box-shadow:-10px 0 30px rgba(150,110,125,.16);padding:12px}
+  .obj-bank[hidden]{display:none}
+  .bank-head{display:flex;align-items:center;gap:8px;font-family:Georgia,serif;font-size:15px}
+  .bank-cov{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--accent-ink,#a8607c)}
+  .bank-x{border:none;background:#f3e7ea;color:#a8607c;border-radius:8px;width:26px;height:26px;cursor:pointer;font-size:16px;font-weight:800}
+  .bank-filters{margin:8px 0}
+  .bank-filters input[type=search]{width:100%;padding:6px 9px;border:1px solid #efe2e0;border-radius:9px;font:inherit;margin-bottom:6px}
+  .bank-hide{font-size:12px;color:var(--muted,#8b7d87);display:inline-flex;align-items:center;gap:5px}
+  .bank-themes{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .bth{border:1px solid #efe2e0;background:#fff;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:700;color:var(--muted,#8b7d87);cursor:pointer}
+  .bth.on{background:var(--accent,#d98ba4);color:#fff;border-color:var(--accent,#d98ba4)}
+  .bank-list{flex:1;overflow:auto;margin-top:6px;display:flex;flex-direction:column;gap:4px}
+  .bankobj{display:flex;align-items:center;gap:6px;padding:5px 7px;border:1px solid #efe2e0;border-radius:10px;background:#fff;cursor:grab;font-size:12px}
+  .bankobj.placed{opacity:.5}
+  .bankobj.armed{outline:2px solid var(--accent,#d98ba4)}
+  .bo-code{flex:none;font-weight:800;font-size:10.5px;color:#fff;border-radius:999px;padding:2px 7px}
+  .bo-txt{flex:1;line-height:1.3}
+  .bo-fam{flex:none;font-weight:800;font-size:9.5px;color:#fff;border-radius:4px;padding:1px 5px}
+  .bo-in{flex:none;font-size:10px;color:#a8607c;font-weight:700}
+  .bank-empty{color:#b6a6ad;font-style:italic;padding:10px}
+  .armed-hint{background:#fdf3e6;border:1px solid #f0dcc0;color:#a8782c;border-radius:9px;padding:7px 9px;font-size:12px;margin-top:6px}
+  .armed-hint[hidden]{display:none}
+  /* --- panneau couverture --- */
+  .cov-panel{margin:10px 0;border:1px solid #efe2e0;border-radius:14px;background:rgba(255,255,255,.55);padding:6px 14px}
+  .cov-panel>summary{cursor:pointer;font-family:Georgia,serif;font-weight:700;padding:6px 0;color:var(--accent-ink,#a8607c)}
+  .cov-row{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0}
+  .cov-big{font-weight:800;color:var(--accent-ink,#a8607c)}
+  .cov-themes{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+  .cov-th{font-size:12px;font-weight:700;color:#fff;background:var(--c,#999);border-radius:999px;padding:2px 9px}
+  .cov-fams{font-size:12.5px;margin:6px 0}
+  .cov-fam{display:inline-block;color:#fff;border-radius:5px;padding:1px 7px;margin-left:5px;font-weight:800;font-size:11px}
+  .cov-holes{margin-top:6px}.cov-holes>summary{cursor:pointer;font-size:12.5px;color:#c0392b}
+  .cov-hole{font-size:12px;color:#8a7f70;padding:1px 0}
+  @media print{ .obj-bank,.cov-panel,#bankBtn{display:none!important} }
+</style>
+<script src="referentiel-5e-data.js"></script>
+<script src="referentiel-6e-data.js"></script>
+<script src="referentiel-4e-data.js"></script>
+<style>
+  .oc-niv,.bo-niv{flex:none;font-weight:800;font-size:9.5px;color:#fff;border-radius:4px;padding:1px 5px}
+  .niv-6e{background:#e0922f}.niv-5e{background:#d98ba4}.niv-4e{background:#6f9bd6}.niv-3e{background:#5aa98a}
+  .oc-txt{max-width:200px}
+  .bank-niveaux{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .bnv{border:1px solid #efe2e0;background:#fff;border-radius:999px;padding:3px 11px;font-size:11.5px;font-weight:800;color:#8b7d87;cursor:pointer}
+  .bnv.on{color:#fff}
+  .bnv.on[data-n="all"]{background:#a8607c;border-color:#a8607c}
+  .bnv.on[data-n="6e"]{background:#e0922f;border-color:#e0922f}
+  .bnv.on[data-n="5e"]{background:#d98ba4;border-color:#d98ba4}
+  .bnv.on[data-n="4e"]{background:#6f9bd6;border-color:#6f9bd6}
+  .cov-niv{margin:8px 0;padding-bottom:6px;border-bottom:1px dashed #eedfe3}
+  .cov-niv h4{margin:0 0 4px;font-size:13px;display:flex;align-items:center;gap:7px}
+  .cov-nivbadge{color:#fff;border-radius:5px;padding:1px 7px;font-size:10.5px;font-weight:800}
+</style>
+</head>
+<body data-page="progressions">
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-txt">
+      <h1>🌸 Progression &amp; Gantt — Mathématiques 5ᵉ</h1>
+      <div class="sub" id="yearSub">Année 2026-2027 · Zone C (Créteil) · Gantt généré automatiquement</div>
+    </div>
+  </div>
+
+  <div class="school-dashboard no-print">
+    <section class="school-panel school-controls" aria-label="Vue calendrier scolaire">
+      <div class="field">
+        <span>Année scolaire</span>
+        <div class="school-year-pill" id="schoolYearLabel">2026-2027</div>
+      </div>
+      <label class="field"><span>Début de l'année</span><input type="date" id="cal-rentree"></label>
+      <label class="field"><span>Fin de l'année</span><input type="date" id="cal-fin"></label>
+      <div class="field">
+        <span>Semaines par période</span>
+        <div class="period-pills" id="periodWeeks"></div>
+      </div>
+      <div class="dash-actions">
+        <button class="btn" id="saveBtn" type="button">💾 Enregistrer</button>
+        <button class="btn ghost" id="resetBtn" type="button">↻ Réinitialiser</button>
+      </div>
+    </section>
+
+    <details class="school-panel holiday-overview" aria-label="Vacances et jours fériés" open>
+      <summary>Vue calendrier scolaire : vacances &amp; jours fériés</summary>
+      <div class="holiday-body">
+        <div class="holiday-top">
+          <div class="holiday-column">
+            <div class="panel-label">Vacances scolaires</div>
+            <div class="vac-cards" id="vacCards"></div>
+          </div>
+          <div class="holiday-column">
+            <div class="panel-label">Jours fériés en période scolaire</div>
+            <div class="ferie-chips" id="ferieChips"></div>
+          </div>
+        </div>
+        <details class="edit-calendar" id="calDetails">
+          <summary>Modifier les dates des vacances</summary>
+          <div class="body">
+            <div class="vacgrid" id="vacEditor"></div>
+            <div class="ferie-list" id="ferieList"></div>
+          </div>
+        </details>
+        <span id="saveMsg" style="font-size:12px;color:var(--muted);display:block;margin-top:8px"></span>
+      </div>
+    </details>
+  </div>
+
+  <div class="toolbar no-print">
+    <button class="btn" id="addSeq" type="button">+ Séquence</button>
+    <button class="btn" id="bankBtn" type="button">🎯 Banque d'objectifs</button>
+    <button class="btn ghost" id="suggestBtn" type="button">✨ Suggérer</button>
+    <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
+    <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
+    <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
+    <button class="btn ghost" id="wordProgBtn" type="button">Word progression</button>
+    <button class="btn ghost" id="pdfGanttBtn" type="button">PDF Gantt</button>
+    <button class="btn ghost" id="exportBtn" type="button">Exporter (JSON)</button>
+    <button class="btn ghost" id="pontBtn" type="button">Pont livret (JSON)</button>
+    <button class="btn ghost" id="importBtn" type="button">Importer</button>
+    <input type="file" id="importFile" accept="application/json" style="display:none">
+  </div>
+
+  <h2>Séquences <span style="font-size:13px;color:var(--muted);font-weight:400" id="seqCount"></span></h2>
+  <details id="coveragePanel" class="cov-panel"><summary>📊 Couverture des programmes (6ᵉ · 5ᵉ · 4ᵉ)</summary><div id="covBody"></div></details>
+  <div id="seqList"></div>
+  <div id="printDoc"></div>
+
+  <section id="ganttSection">
+  <h2 id="ganttTitle">Calendrier annuel (Gantt)</h2>
+  <div class="gantt-wrap" id="ganttWrap"></div>
+  <div class="glegend">
+    <span class="k"><span class="d" style="background:var(--N)"></span>Nombres &amp; Calculs</span>
+    <span class="k"><span class="d" style="background:var(--G)"></span>Géométrie</span>
+    <span class="k"><span class="d" style="background:var(--D)"></span>Données</span>
+    <span class="k"><span class="d" style="background:var(--A)"></span>Algorithmique</span>
+    <span class="k"><span class="d" style="background:var(--vac)"></span>vacances</span>
+    <span class="k"><span class="d" style="background:var(--ferie)"></span>jour férié</span>
+  </div>
+  </section>
+
+  <h2>Fréquence des compétences sur l'année</h2>
+  <div class="freq" id="freqPanel"></div>
+
+  <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
+  <div class="info no-print">
+    Point de départ : ta progression <b>5ᵉ 2024-2025</b> (séquences, compétences et objectifs repris de tes docs), calendrier <b>recalé en Zone C 2026-2027</b>.
+    <ul>
+      <li>Le <b>nouveau BO 5ᵉ</b> entre en vigueur à la rentrée 2026 : c'est une base à faire évoluer (ajoute/retire des séquences, ajuste les compétences au fil de l'eau).</li>
+      <li><b>G2</b> et <b>G5</b> étaient coupées par des vacances chez toi (cylindre puis volumes ; angles particuliers puis droites parallèles). Laissées en blocs de 2 semaines, le Gantt les fait chevaucher la coupure — ajuste les durées si besoin.</li>
+      <li><b>D4 (probabilités)</b> et l'algorithmique n'étaient pas planifiées : j'ai mis un fil rouge « Algorithmique &amp; Tableur » ; ajoute D4 quand le programme le précisera.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+/* ---------- référentiel BO (descriptions correctes) ---------- */
+var REF=[
+ {k:'Ch',name:'Chercher',subs:['Ch1','Ch2','Ch3','Ch4']},
+ {k:'Mo',name:'Modéliser',subs:['Mo1','Mo2','Mo3','Mo4']},
+ {k:'Re',name:'Représenter',subs:['Re1','Re2','Re3','Re4']},
+ {k:'Ra',name:'Raisonner',subs:['Ra1','Ra2','Ra3','Ra4']},
+ {k:'Ca',name:'Calculer',subs:['Ca1','Ca2','Ca3']},
+ {k:'Co',name:'Communiquer',subs:['Co1','Co2','Co3']}
+];
+var DESC={
+ Ch1:"Extraire d'un document les informations utiles, les reformuler, les organiser.",
+ Ch2:"S'engager dans une démarche scientifique : observer, expérimenter, conjecturer.",
+ Ch3:"Tester, essayer plusieurs pistes de résolution.",
+ Ch4:"Décomposer un problème en sous-problèmes.",
+ Mo1:"Reconnaître et utiliser un modèle mathématique (proportionnalité, équiprobabilité).",
+ Mo2:"Traduire en langage mathématique une situation réelle (équations, fonctions…).",
+ Mo3:"Comprendre et utiliser une simulation numérique ou géométrique.",
+ Mo4:"Valider ou invalider un modèle, comparer à un modèle connu.",
+ Re1:"Choisir et mettre en relation des cadres (numérique, algébrique, géométrique).",
+ Re2:"Produire et utiliser plusieurs représentations des nombres.",
+ Re3:"Représenter des données sous forme d'une série statistique.",
+ Re4:"Représentations de solides et de situations spatiales (patrons, plans, schémas…).",
+ Ra1:"Résoudre des problèmes impliquant des grandeurs variées ; exploiter ses erreurs.",
+ Ra2:"Mener collectivement une investigation en tenant compte du point de vue d'autrui.",
+ Ra3:"Démontrer : raisonnement logique et règles établies pour conclure.",
+ Ra4:"Fonder et défendre ses jugements par l'argumentation.",
+ Ca1:"Calculer avec des rationnels (mental, posé, instrumenté), exact ou approché.",
+ Ca2:"Contrôler la vraisemblance : ordres de grandeur, encadrements.",
+ Ca3:"Calculer en utilisant le langage algébrique (lettres, symboles).",
+ Co1:"Faire le lien entre langage naturel et langage algébrique.",
+ Co2:"Expliquer à l'oral/à l'écrit sa démarche ; comprendre et argumenter.",
+ Co3:"Vérifier une information ; lire, produire tableaux, graphiques, diagrammes."
+};
+function famOf(code){ return code.slice(0,2); }
+
+/* ---------- état par défaut (ta progression 5e) ---------- */
+function defaultState(){
+  return {
+    cal:{
+      rentree:'2026-09-01', fin:'2027-07-02',
+      vac:[
+        {nom:'Toussaint', sat:'2026-10-17', resume:'2026-11-02'},
+        {nom:'Noël',      sat:'2026-12-19', resume:'2027-01-04'},
+        {nom:'Hiver',     sat:'2027-02-06', resume:'2027-02-22'},
+        {nom:'Printemps', sat:'2027-04-03', resume:'2027-04-19'}
+      ],
+      feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
+    },
+    seq:[
+      {code:'N1',title:'Calculer avec les nombres décimaux',theme:'N',weeks:2,comps:['Ch1','Ca1','Co1'],details:'Vocabulaire : somme, différence, termes, produit, quotient, facteur\nCalculer avec et sans parenthèses (parenthèses emboîtées)\nCalculer des quotients écrits avec une barre de fraction\nProduire une expression numérique pour résoudre des problèmes\nCalcul astucieux : multiplier par 9, 11, 99… (distributivité)\nRéinvestir périmètre et aire'},
+      {code:'G1',title:'Reconnaître et utiliser les symétries axiale et centrale',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Construire avec la symétrie centrale (avec et sans quadrillage)\nConstruire avec la symétrie axiale (rappels)\nReconnaître les figures obtenues par symétrie (frises, pavages, rosaces)\nRechercher les éléments de symétrie d\'une figure (axes et centre)'},
+      {code:'N2',title:'Écrire et utiliser une expression littérale',theme:'N',weeks:2,comps:['Mo2','Ca3','Co1'],details:'Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d\'une expression (formules d\'aires/volumes, conversions)\nTester une égalité\nSimplifier l\'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire'},
+      {code:'G2',title:'Décrire, représenter le cylindre et le prisme droit ; calculer des volumes',theme:'G',weeks:2,comps:['Ch1','Ch2','Re4','Ca1'],details:'Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d\'un cylindre et d\'un prisme droit\nCalculer le volume d\'un pavé droit, d\'un cylindre\nCalculer l\'aire de la base d\'un prisme droit et son volume'},
+      {code:'N3',title:'Définir, utiliser et représenter des nombres rationnels',theme:'N',weeks:2,comps:['Re2'],details:'Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions'},
+      {code:'G3',title:'Construire un triangle et ses droites remarquables',theme:'G',weeks:2,comps:['Re4','Ra3','Ca1'],details:'Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d\'existence d\'un triangle ; cas d\'alignement de 3 points\nRéinvestir la médiatrice d\'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)'},
+      {code:'N4',title:'Utiliser les nombres entiers',theme:'N',weeks:2,comps:['Re2','Ra1'],details:'Diviseur, multiple, divisibilité (division euclidienne)\nDéterminer les diviseurs d\'un entier\nReconnaître un nombre premier (< 30)\nDécomposer en produit de facteurs premiers\nGrandeurs : systèmes centésimal et sexagésimal'},
+      {code:'D1',title:'Utiliser la proportionnalité pour résoudre des problèmes',theme:'D',weeks:2,comps:['Ch1','Mo2','Ca1'],details:'Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)'},
+      {code:'G4',title:'Symétrie centrale : construire et démontrer',theme:'G',weeks:1,comps:['Ch2','Ra3'],details:'Conjecturer les propriétés avec GeoGebra\nConstruire le symétrique d\'une figure\nS\'initier au raisonnement déductif (tri des données, propriété, « donc »)'},
+      {code:'N5',title:'Découvrir, repérer et comparer les nombres relatifs',theme:'N',weeks:2,comps:['Re2','Ca2'],details:'Définir les nombres relatifs (écriture, usages)\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible'},
+      {code:'G5',title:'Reconnaître des angles particuliers et des droites parallèles',theme:'G',weeks:2,comps:['Mo3','Ra3'],details:'Angles complémentaires, supplémentaires, adjacents, opposés par le sommet\nAngles alternes-internes et correspondants\nReconnaître des droites parallèles (raisonnement déductif)'},
+      {code:'N6',title:'Fractions égales ; comparer des fractions',theme:'N',weeks:2,comps:['Re2','Ca1'],details:'Reconnaître des fractions égales\nSimplifier une fraction (critères de divisibilité)\nDiviser par un nombre décimal\nComparer des fractions (même dénominateur, par rapport à 1)'},
+      {code:'G6',title:'Construire et démontrer avec les angles d\'un triangle',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Calculer un angle dans un triangle quelconque\nDémonstration possible : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)'},
+      {code:'N7',title:'Additionner et soustraire des nombres relatifs',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions'},
+      {code:'D2',title:'Utiliser les pourcentages et les échelles',theme:'D',weeks:2,comps:['Mo1','Re2','Ca1'],details:'Appliquer et calculer un pourcentage (augmentation/baisse)\nDéfinir et utiliser une échelle'},
+      {code:'G7',title:'Définir, construire et reconnaître un parallélogramme',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nReconnaître ; calculer l\'aire'},
+      {code:'N8',title:'Additionner et soustraire des fractions',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)'},
+      {code:'D3',title:'Traiter et représenter des données',theme:'D',weeks:2,comps:['Re3','Ca1'],details:'Calculer des effectifs et des fréquences\nReprésenter graphiquement des données\nCalculer et interpréter une moyenne\nTableur possible'},
+      {code:'A',title:'Algorithmique & Tableur (fil rouge)',theme:'A',weeks:1.5,comps:['Ch3','Re3'],details:'Scratch et tableur\nSéances réparties sur l\'année'}
+    ]
+  };
+}
+var THEMES={N:'Nombres & Calculs',G:'Géométrie',D:'Données',A:'Algo'};
+
+/* ---------- persistance ---------- */
+var KEY='prog5e_v1', S=load();
+function load(){ try{ var r=localStorage.getItem(KEY); if(r) return migrate(JSON.parse(r)); }catch(e){} return migrate(defaultState()); }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
+var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
+
+/* ---------- dates ---------- */
+function d(iso){ var p=iso.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+function iso(dt){ var p=function(n){return(n<10?'0':'')+n;}; return dt.getFullYear()+'-'+p(dt.getMonth()+1)+'-'+p(dt.getDate()); }
+function addDays(dt,n){ var x=new Date(dt.getTime()); x.setDate(x.getDate()+n); return x; }
+function mondayOf(dt){ var x=new Date(dt.getTime()); var day=(x.getDay()+6)%7; return addDays(x,-day); }
+var MONTHS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+
+function buildWeeks(){
+  var start=mondayOf(d(S.cal.rentree)), end=mondayOf(d(S.cal.fin)), weeks=[], cur=new Date(start.getTime());
+  while(cur<=end){
+    var mon=new Date(cur.getTime()), vac=false;
+    S.cal.vac.forEach(function(v){ if(mon>=d(v.sat) && mon<d(v.resume)) vac=true; });
+    var fr=false; for(var i=0;i<5;i++){ if(S.cal.feries.indexOf(iso(addDays(mon,i)))!==-1) fr=true; }
+    weeks.push({mon:mon, m:mon.getMonth(), label:(mon.getDate())+'/'+(mon.getMonth()+1), vac:vac, ferie:fr});
+    cur=addDays(cur,7);
+  }
+  return weeks;
+}
+function placeSequences(weeks){
+  var cursor=0, out=[];
+  S.seq.forEach(function(s){
+    var wk=Math.max(0.5,Number(s.weeks)||1);
+    var startT=cursor, endT=cursor+wk;
+    out.push({seq:s, startT:startT, endT:endT, overflow:false});
+    cursor=endT;
+  });
+  return out;
+}
+
+/* ---------- rendu : calendrier éditable ---------- */
+function fmtShort(dt){ var p=function(n){return(n<10?'0':'')+n;}; return p(dt.getDate())+'/'+p(dt.getMonth()+1); }
+function renderCal(){
+  document.getElementById('cal-rentree').value=S.cal.rentree;
+  document.getElementById('cal-fin').value=S.cal.fin;
+  var y1=d(S.cal.rentree).getFullYear(), y2=d(S.cal.fin).getFullYear();
+  document.getElementById('schoolYearLabel').textContent=y1+'-'+y2;
+
+  var pw=document.getElementById('periodWeeks'); pw.innerHTML='';
+  periodsInfo().forEach(function(p){
+    var pill=document.createElement('span'); pill.className='period-pill';
+    pill.innerHTML='<b>P'+p.p+'</b><span class="dash">-</span><small>'+p.weeks+'</small>';
+    pill.title=fmtD(p.start)+' → '+fmtD(p.end);
+    pw.appendChild(pill);
+  });
+
+  var cards=document.getElementById('vacCards'); cards.innerHTML='';
+  S.cal.vac.forEach(function(v){
+    var c=document.createElement('div'); c.className='vac-card';
+    c.innerHTML='<strong>'+esc(v.nom)+'</strong><span>'+fmtShort(d(v.sat))+' au '+fmtShort(addDays(d(v.resume),-1))+'</span>';
+    cards.appendChild(c);
+  });
+
+  var chips=document.getElementById('ferieChips'); chips.innerHTML='';
+  S.cal.feries.forEach(function(f){
+    var x=d(f), chip=document.createElement('span'); chip.className='ferie-chip';
+    chip.textContent=fmtShort(x); chip.title=fmtD(x); chips.appendChild(chip);
+  });
+
+  var ed=document.getElementById('vacEditor'); ed.innerHTML='';
+  S.cal.vac.forEach(function(v,i){
+    var row=document.createElement('div'); row.className='vacrow';
+    row.innerHTML='<label>'+v.nom+'</label>';
+    var a=document.createElement('input'); a.type='date'; a.value=v.sat; a.title='Début (samedi)';
+    var b=document.createElement('input'); b.type='date'; b.value=v.resume; b.title='Reprise (lundi)';
+    a.addEventListener('change',function(){ S.cal.vac[i].sat=a.value; save(); renderAll(); });
+    b.addEventListener('change',function(){ S.cal.vac[i].resume=b.value; save(); renderAll(); });
+    row.appendChild(a); row.appendChild(document.createTextNode('→')); row.appendChild(b); ed.appendChild(row);
+  });
+  document.getElementById('ferieList').textContent='Jours fériés en période scolaire : '+S.cal.feries.map(function(f){ var x=d(f); return x.getDate()+' '+MONTHS[x.getMonth()]; }).join(' · ');
+}
+document.getElementById('cal-rentree').addEventListener('change',function(){ S.cal.rentree=this.value; save(); renderAll(); });
+document.getElementById('cal-fin').addEventListener('change',function(){ S.cal.fin=this.value; save(); renderAll(); });
+document.getElementById('saveBtn').addEventListener('click',function(){ save(); });
+
+/* ---------- rendu : séquences ---------- */
+function periodBreaks(){
+  var weeks=buildWeeks(), teach=[]; weeks.forEach(function(w,i){ if(!w.vac) teach.push(i); });
+  return S.cal.vac.map(function(v){ var vs=d(v.sat), cnt=0; for(var i=0;i<teach.length;i++){ if(weeks[teach[i]].mon<vs) cnt++; else break; } return {tw:cnt, nom:v.nom}; });
+}
+function periodsInfo(){
+  var weeks=buildWeeks();
+  function tw(st,en){ var c=0,ms=mondayOf(st),me=mondayOf(en); weeks.forEach(function(w){ if(!w.vac && w.mon>=ms && w.mon<=me) c++; }); return c; }
+  var starts=[d(S.cal.rentree)], ends=[];
+  S.cal.vac.forEach(function(v){ ends.push(addDays(d(v.sat),-1)); starts.push(d(v.resume)); });
+  ends.push(d(S.cal.fin));
+  return starts.map(function(st,i){ return {p:i+1,start:st,end:ends[i],weeks:tw(st,ends[i])}; });
+}
+function fmtD(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]; }
+function vacArticle(nom){ return /toussaint/i.test(nom)?'la ':(/hiver|printemps/i.test(nom)?"l'":''); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+var dragIndex=null;
+var seqDetailsOpen=[];
+function renderSeq(){
+  var root=document.getElementById('seqList'); root.innerHTML='';
+  document.getElementById('seqCount').textContent='— '+S.seq.length+' séquences · '+totalWeeks().toFixed(1)+' semaines';
+  var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
+  function screenPhead(p){ var info=periods[p-1]; if(!info) return; var h=document.createElement('div'); h.className='phead'; h.innerHTML='P'+p+'<span class="meta">'+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines</span>'; root.appendChild(h); }
+  screenPhead(1);
+  S.seq.forEach(function(s,i){
+    var el=document.createElement('div'); el.className='seq'; if(seqDetailsOpen[i]!==false) el.classList.add('details-open'); el.style.setProperty('--c','var(--'+s.theme+')'); el.draggable=true;
+    el.addEventListener('dragstart',function(e){ if(e.target.closest('.objchip')) return; if(/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)||e.target.closest('.obj-zone,.auto-zone,.seq-notes,.chooser,.seq-obj-box')){ e.preventDefault(); return; } dragIndex=i; el.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; });
+    el.addEventListener('dragend',function(){ dragIndex=null; el.classList.remove('dragging'); document.querySelectorAll('.seq').forEach(function(x){x.classList.remove('dropbefore');}); });
+    el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('dropbefore'); });
+    el.addEventListener('dragleave',function(){ el.classList.remove('dropbefore'); });
+    el.addEventListener('drop',function(e){ e.preventDefault(); el.classList.remove('dropbefore'); if(dragIndex==null||dragIndex===i) return; var it=S.seq.splice(dragIndex,1)[0]; var to=i; if(dragIndex<i) to=i-1; S.seq.splice(to,0,it); save(); renderAll(); });
+
+    var l1=document.createElement('div'); l1.className='line1';
+    var grip=document.createElement('span'); grip.className='grip'; grip.textContent='⠿'; grip.title='Glisser pour déplacer'; l1.appendChild(grip);
+    var ord=document.createElement('div'); ord.className='ord';
+    ord.innerHTML='<button type="button" title="monter">▲</button><button type="button" title="descendre">▼</button>';
+    ord.children[0].addEventListener('click',function(){ if(i>0){ S.seq.splice(i-1,0,S.seq.splice(i,1)[0]); save(); renderAll(); } });
+    ord.children[1].addEventListener('click',function(){ if(i<S.seq.length-1){ S.seq.splice(i+1,0,S.seq.splice(i,1)[0]); save(); renderAll(); } });
+    l1.appendChild(ord);
+    var num=document.createElement('span'); num.className='numbadge'; num.textContent=(i+1); num.title="N° de séquence dans l'année"; l1.appendChild(num);
+    var codet=document.createElement('span'); codet.className='codetag'; codet.style.background='var(--'+s.theme+')'; codet.textContent=s.code; codet.title='Code automatique : thème + rang dans le thème'; l1.appendChild(codet);
+    var titleWrap=document.createElement('div'); titleWrap.className='seq-title-wrap';
+    var title=mkInput(s.title,'title seq-title-toggle',function(v){ s.title=v; save(); renderGantt(); });
+    title.title='Cliquer pour afficher/masquer les détails et objectifs';
+    title.addEventListener('click',function(){
+      var opened=el.classList.toggle('details-open');
+      seqDetailsOpen[i]=opened;
+      syncAllDetailsToggle();
+      if(opened){ autoSizeTextarea(dta); dta.focus(); }
+    });
+    titleWrap.appendChild(title);
+    var inlineComps=document.createElement('div'); inlineComps.className='comps comps-inline';
+    s.comps.forEach(function(c){ var t=document.createElement('span'); t.className='ctag'; t.style.background='var(--'+famOf(c)+')'; t.textContent=c; t.title=DESC[c]||c; inlineComps.appendChild(t); });
+    if(!s.comps.length){ var noneInline=document.createElement('span'); noneInline.className='no-comps'; noneInline.textContent='aucune compétence'; inlineComps.appendChild(noneInline); }
+    var edit=document.createElement('button'); edit.type='button'; edit.className='editc editc-inline'; edit.textContent='modifier les compétences ▾'; inlineComps.appendChild(edit);
+    titleWrap.appendChild(inlineComps);
+    l1.appendChild(titleWrap);
+    var th=document.createElement('select'); th.className='theme';
+    Object.keys(THEMES).forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(s.theme===t)o.selected=true; th.appendChild(o); });
+    th.addEventListener('change',function(){ s.theme=th.value; recode(); save(); renderAll(); }); l1.appendChild(th);
+    var wk=document.createElement('div'); wk.className='wk';
+    var wi=document.createElement('input'); wi.type='number'; wi.step='0.5'; wi.min='0.5'; wi.value=s.weeks;
+    wi.addEventListener('change',function(){ s.weeks=Math.max(0.5,Number(wi.value)||1); save(); renderAll(); });
+    wk.appendChild(wi); wk.appendChild(document.createTextNode('sem.')); l1.appendChild(wk);
+    var del=document.createElement('button'); del.className='del'; del.type='button'; del.innerHTML='×'; del.title='Supprimer';
+    del.addEventListener('click',function(){ if(confirm('Supprimer '+s.code+' ?')){ S.seq.splice(i,1); save(); renderAll(); } }); l1.appendChild(del);
+    el.appendChild(l1);
+
+
+    var ch=document.createElement('div'); ch.className='chooser';
+    REF.forEach(function(f){
+      var fam=document.createElement('div'); fam.className='fam';
+      fam.innerHTML='<div class="fam-h"><span class="dot" style="background:var(--'+f.k+')"></span>'+f.name+'</div>';
+      var cc=document.createElement('div'); cc.className='chips';
+      f.subs.forEach(function(code){ var b=document.createElement('button'); b.type='button'; b.className='chip'; b.style.setProperty('--cc','var(--'+f.k+')'); b.setAttribute('aria-pressed',s.comps.indexOf(code)!==-1?'true':'false'); b.textContent=code; b.title=DESC[code];
+        b.addEventListener('click',function(){ var k=s.comps.indexOf(code); if(k===-1) s.comps.push(code); else s.comps.splice(k,1); sortComps(s); save(); renderSeq(); renderFreq(); setTimeout(function(){ var nel=document.getElementById('seqList').querySelector('[data-i="'+i+'"] .chooser'); if(nel) nel.classList.add('show'); },0); }); cc.appendChild(b); });
+      fam.appendChild(cc); ch.appendChild(fam);
+    });
+    el.appendChild(ch);
+    edit.addEventListener('click',function(){ ch.classList.toggle('show'); edit.textContent=ch.classList.contains('show')?'compétences ▴':'compétences ▾'; });
+
+    var ded=deducedFams(s); var manualFams={}; s.comps.forEach(function(c){manualFams[famOf(c)]=1;});
+    var dedHTML=Object.keys(ded).length? Object.keys(ded).sort().map(function(f){ return '<span class="dfam'+(manualFams[f]?'':' add')+'" style="background:'+(FAMCOL2[f]||'#999')+';color:'+(FAMCOL2[f]||'#999')+'" title="'+esc(famNameOf(f))+(manualFams[f]?'':' — pas encore dans les compétences saisies')+'"><span style="color:#fff">'+f+'</span></span>'; }).join('') : '<span style="color:#b6a6ad">—</span>';
+    var box=document.createElement('div'); box.className='seq-obj-box';
+    box.innerHTML=''
+      +'<div class="oz-wrap"><div class="oz-label">🎯 Objectifs du BO</div><div class="obj-zone" data-i="'+i+'">'+(s.objectifs.length? s.objectifs.map(function(c){return objChipHTML(c,i);}).join('') : '<span class="oz-empty">Glisse des objectifs ici</span>')+'</div></div>'
+      +'<div class="oz-wrap"><div class="oz-label">🛠 Automatismes</div><div class="auto-zone" data-i="'+i+'">'+(s.automatismes.length? s.automatismes.map(function(c){return objChipHTML(c,i);}).join('') : '<span class="oz-empty">Glisse des automatismes ici</span>')+'</div></div>'
+      +'<div class="ded-fams">Compétences déduites des objectifs : '+dedHTML+'</div>';
+    el.appendChild(box);
+    var dta=document.createElement('textarea');
+    dta.className='seq-details-area seq-notes';
+    dta.value=s.notes||'';
+    dta.placeholder='Notes libres (facultatif)…';
+    autoSizeTextarea(dta);
+    dta.addEventListener('input',function(){ s.notes=dta.value; autoSizeTextarea(dta); save(); });
+    el.appendChild(dta);
+
+    el.setAttribute('data-i',i);
+    root.appendChild(el);
+
+    // diviseur de période (vacances) après cette séquence
+    cum += (Number(s.weeks)||0);
+    while(bi<breaks.length && cum >= breaks[bi].tw - 1e-9){
+      var dv=document.createElement('div'); dv.className='vacdiv';
+      dv.innerHTML='🌿 Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom;
+      root.appendChild(dv); period++; screenPhead(period); bi++;
+    }
+  });
+}
+function idxOf(s){ return S.seq.indexOf(s); }
+function mkInput(val,cls,on){ var i=document.createElement('input'); i.type='text'; i.className=cls; i.value=val; i.addEventListener('input',function(){ on(i.value); }); return i; }
+function autoSizeTextarea(t){
+  if(!t) return;
+  var lines=Math.max(4,(t.value||'').split('\n').length+1);
+  t.rows=lines;
+  t.style.height='auto';
+  t.style.height=Math.max(t.scrollHeight, lines*22+24)+'px';
+}
+function sortComps(s){ var ord={},k=0; REF.forEach(function(f){f.subs.forEach(function(c){ord[c]=k++;});}); s.comps.sort(function(a,b){return ord[a]-ord[b];}); }
+function recode(){ var cnt={}; S.seq.forEach(function(s){ cnt[s.theme]=(cnt[s.theme]||0)+1; s.code=s.theme+cnt[s.theme]; }); }
+function totalWeeks(){ return S.seq.reduce(function(a,s){return a+(Number(s.weeks)||0);},0); }
+
+/* ---------- rendu : gantt ---------- */
+function renderGantt(){
+  var weeks=buildWeeks(), placed=placeSequences(weeks), wrap=document.getElementById('ganttWrap');
+  var teachingIndexByWeek=[], tcur=0;
+  weeks.forEach(function(w,i){
+    if(w.vac){ teachingIndexByWeek[i]=null; }
+    else { teachingIndexByWeek[i]=tcur; tcur += 1; }
+  });
+  var tbl=document.createElement('table'); tbl.className='gantt';
+  var thead=document.createElement('thead');
+  var trM=document.createElement('tr'); var thL=document.createElement('th'); thL.className='glabel'; thL.rowSpan=2; thL.textContent='Séquences déplaçables'; trM.appendChild(thL);
+  var j=0; while(j<weeks.length){ var m=weeks[j].m, span=0; while(j+span<weeks.length && weeks[j+span].m===m) span++; var th=document.createElement('th'); th.className='moncell'; th.colSpan=span; th.textContent=MONTHS[m]; trM.appendChild(th); j+=span; }
+  thead.appendChild(trM);
+  var trW=document.createElement('tr'); weeks.forEach(function(w){ var th=document.createElement('th'); th.className='wkcell gcol'; th.textContent=w.label; trW.appendChild(th); }); thead.appendChild(trW);
+  tbl.appendChild(thead);
+  var tb=document.createElement('tbody');
+  placed.forEach(function(p,gi){
+    var tr=document.createElement('tr'); tr.className='gantt-row'; tr.draggable=true; tr.dataset.i=gi;
+    tr.addEventListener('dragstart',function(e){
+      if(/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)){ e.preventDefault(); return; }
+      dragIndex=gi; tr.classList.add('dragging'); e.dataTransfer.effectAllowed='move';
+    });
+    tr.addEventListener('dragend',function(){ dragIndex=null; tr.classList.remove('dragging'); document.querySelectorAll('tr.gantt-row').forEach(function(x){x.classList.remove('dropbefore');}); });
+    tr.addEventListener('dragover',function(e){ e.preventDefault(); tr.classList.add('dropbefore'); });
+    tr.addEventListener('dragleave',function(){ tr.classList.remove('dropbefore'); });
+    tr.addEventListener('drop',function(e){
+      e.preventDefault(); tr.classList.remove('dropbefore');
+      if(dragIndex==null||dragIndex===gi) return;
+      var it=S.seq.splice(dragIndex,1)[0]; var to=gi; if(dragIndex<gi) to=gi-1;
+      S.seq.splice(to,0,it); save(); renderAll();
+    });
+
+    var lab=document.createElement('td'); lab.className='glabel'; lab.style.borderLeft='4px solid var(--'+p.seq.theme+')';
+    var gseq=document.createElement('div'); gseq.className='gseq';
+    var grip=document.createElement('span'); grip.className='grip'; grip.textContent='⠿'; grip.title='Glisser pour déplacer la séquence'; gseq.appendChild(grip);
+    var num=document.createElement('span'); num.className='num'; num.textContent=(gi+1); num.title='N° de séquence'; gseq.appendChild(num);
+    var titleBox=document.createElement('span'); titleBox.className='gtitlebox';
+    var title=document.createElement('span'); title.className='gtitle'; title.textContent=p.seq.title; title.title=p.seq.title; titleBox.appendChild(title);
+    var compPrint=document.createElement('span'); compPrint.className='gcompprint'; compPrint.textContent=(p.seq.comps||[]).join(' · '); titleBox.appendChild(compPrint);
+    gseq.appendChild(titleBox);
+    var thSel=document.createElement('select'); thSel.title='Thème';
+    Object.keys(THEMES).forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(p.seq.theme===t)o.selected=true; thSel.appendChild(o); });
+    thSel.addEventListener('change',function(){ p.seq.theme=thSel.value; recode(); save(); renderAll(); }); gseq.appendChild(thSel);
+    var wk=document.createElement('input'); wk.type='number'; wk.step='0.5'; wk.min='0.5'; wk.value=p.seq.weeks; wk.title='Durée en semaines';
+    wk.addEventListener('change',function(){ p.seq.weeks=Math.max(0.5,Number(wk.value)||1); save(); renderAll(); }); gseq.appendChild(wk);
+    lab.appendChild(gseq); tr.appendChild(lab);
+
+    weeks.forEach(function(w,ci){
+      var td=document.createElement('td'); td.className='gcol'+(w.vac?' vac':'');
+      if(w.ferie){ var fd=document.createElement('span'); fd.className='feridot'; td.appendChild(fd); }
+      var ti=teachingIndexByWeek[ci];
+      if(ti!==null){
+        var overlapStart=Math.max(p.startT, ti), overlapEnd=Math.min(p.endT, ti+1), frac=Math.max(0,overlapEnd-overlapStart);
+        if(frac>0){
+          var bar=document.createElement('div');
+          bar.className='bar fracbar'+(Math.abs(overlapStart-p.startT)<1e-9?' s':'')+(Math.abs(overlapEnd-p.endT)<1e-9?' e':'');
+          bar.style.setProperty('--c','var(--'+p.seq.theme+')');
+          bar.style.left=((overlapStart-ti)*100)+'%';
+          bar.style.width=(frac*100)+'%';
+          td.appendChild(bar);
+          if(Math.abs(overlapStart-p.startT)<1e-9){ var bl=document.createElement('span'); bl.className='barlabel'; bl.textContent=p.seq.code; td.appendChild(bl); }
+        }
+      }
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  tbl.appendChild(tb); wrap.innerHTML=''; wrap.appendChild(tbl);
+}
+/* ---------- rendu : fréquence ---------- */
+function renderFreq(){
+  var count={}; REF.forEach(function(f){f.subs.forEach(function(c){count[c]=0;});});
+  S.seq.forEach(function(s){ s.comps.forEach(function(c){ if(count[c]!=null) count[c]++; }); });
+  var maxN=Math.max(1,Math.max.apply(null,Object.keys(count).map(function(c){return count[c];})));
+  var panel=document.getElementById('freqPanel'); panel.innerHTML='';
+  REF.forEach(function(f){
+    var box=document.createElement('div'); box.className='freqfam';
+    box.innerHTML='<h3 style="color:var(--'+f.k+')">'+f.name+'</h3>';
+    f.subs.forEach(function(c){
+      var n=count[c], row=document.createElement('div'); row.className='frow'+(n===0?' zero':'');
+      row.innerHTML='<span class="cd" title="'+(DESC[c]||'').replace(/"/g,'')+'">'+c+'</span><span class="track"><span class="fill" style="width:'+(n/maxN*100)+'%;--cc:var(--'+f.k+')"></span></span><span class="n">'+(n||'·')+'</span>';
+      box.appendChild(row);
+    });
+    panel.appendChild(box);
+  });
+}
+
+/* ---------- divers ---------- */
+function syncAllDetailsToggle(){
+  var cb=document.getElementById('withDetails');
+  if(!cb) return;
+  var seqs=document.querySelectorAll('.seq');
+  var open=document.querySelectorAll('.seq.details-open');
+  cb.checked = seqs.length>0 && open.length===seqs.length;
+  cb.indeterminate = open.length>0 && open.length<seqs.length;
+}
+function setAllSeqDetails(open){
+  for(var i=0;i<S.seq.length;i++) seqDetailsOpen[i]=open;
+  document.querySelectorAll('.seq').forEach(function(el){
+    el.classList.toggle('details-open', open);
+    if(open){ var t=el.querySelector('.seq-details-area'); autoSizeTextarea(t); }
+  });
+  syncAllDetailsToggle();
+}
+function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); renderCoverage(); renderBank(); }
+document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
+document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'N',weeks:1,comps:[],objectifs:[],automatismes:[],notes:''}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
+function renderPrintDoc(withDetails){
+  var root=document.getElementById('printDoc'); root.innerHTML='';
+  var head=document.createElement('div'); head.className='pdoc-head';
+  head.innerHTML='<h1 style="margin:0 0 2px">Progression — Maths 5ᵉ</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
+  root.appendChild(head);
+  var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
+  function phead(p){ var info=periods[p-1]; if(!info) return; var dv=document.createElement('div'); dv.className='pdoc-phead'; dv.textContent='P'+p+' · '+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines'; root.appendChild(dv); }
+  phead(1);
+  S.seq.forEach(function(s,i){
+    var blk=document.createElement('div'); blk.className='pdoc-seq';
+    var codes=s.comps.length?('<span class="pdoc-codes">'+esc(s.comps.join(' · '))+'</span>'):'';
+    blk.innerHTML='<div><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b> &nbsp;'+codes+'</div>';
+    if(withDetails){
+      if(s.objectifs && s.objectifs.length){ var d1=document.createElement('div'); d1.className='pdoc-sub'; d1.textContent='Objectifs du BO'; blk.appendChild(d1); var u1=document.createElement('ul'); s.objectifs.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objNiv(c)+' '+objCode(c))+'</b> '+esc(objText(c)); u1.appendChild(li); }); blk.appendChild(u1); }
+      if(s.automatismes && s.automatismes.length){ var d2=document.createElement('div'); d2.className='pdoc-sub'; d2.textContent='Automatismes'; blk.appendChild(d2); var u2=document.createElement('ul'); s.automatismes.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objNiv(c)+' '+objCode(c))+'</b> '+esc(objText(c)); u2.appendChild(li); }); blk.appendChild(u2); }
+      if(s.notes){ var u3=document.createElement('ul'); s.notes.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.textContent=l; u3.appendChild(li); } }); if(u3.children.length) blk.appendChild(u3); }
+    }
+    root.appendChild(blk);
+    cum+=(Number(s.weeks)||0);
+    while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='— Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom+' —'; root.appendChild(vd); period++; phead(period); bi++; }
+  });
+}
+function currentDocTitle(){ return (document.querySelector('h1') ? document.querySelector('h1').textContent.replace(/[🌸💻]/g,'').trim() : 'progression'); }
+function slugify(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'progression'; }
+function printProgression(){ renderPrintDoc(true); document.body.classList.add('printing','print-progression'); setTimeout(function(){ window.print(); },30); }
+function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setTimeout(function(){ window.print(); },30); }
+function exportProgressionWord(){
+  renderPrintDoc(true);
+  var title=currentDocTitle();
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-sub{font-weight:bold;font-size:12px;margin:5px 0 1px;color:#7d4563}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
+  var blob=new Blob(['\ufeff',html],{type:'application/msword'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+}
+document.getElementById('pdfProgBtn').addEventListener('click',printProgression);
+document.getElementById('wordProgBtn').addEventListener('click',exportProgressionWord);
+document.getElementById('pdfGanttBtn').addEventListener('click',printGantt);
+window.addEventListener('afterprint',function(){ document.body.classList.remove('printing','print-progression','print-gantt'); });
+(function(){ var b=document.getElementById('carnetLink'); if(!b) return;
+  function cu(){ try{ return localStorage.getItem('prog.carnetUrl')||''; }catch(e){ return ''; } }
+  b.addEventListener('click',function(){ var u=cu(); if(!u){ u=prompt('Colle l’URL de ton carnet (appli web Apps Script, se terminant par /exec) :',''); if(u){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } } if(u) window.open(u,'_blank'); });
+  b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
+})();
+document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-5e.json'; a.click(); });
+document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
+document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=migrate(JSON.parse(rd.result)); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
+
+/* ============ Référentiels 6e + 5e + 4e (la 5e peut piocher au-dessus/en dessous) ============ */
+var PRIMARY_NIV='5e';
+var RALL=[]; [['6e',window.REF6E],['5e',window.REF5E],['4e',window.REF4E]].forEach(function(p){ var niv=p[0], R=p[1]; if(!R||!R.objectifs)return; R.objectifs.forEach(function(o){ RALL.push({id:niv.charAt(0)+':'+o.code, code:o.code, niveau:niv, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type, famille:o.famille}); }); });
+var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
+var NIVS=['6e','5e','4e'];
+var TOT={}; NIVS.forEach(function(n){ TOT[n]={obj:0,auto:0}; }); RALL.forEach(function(o){ if(o.type==='automatisme')TOT[o.niveau].auto++; else TOT[o.niveau].obj++; });
+var THEMECOL={nombres:'#3f6fb0',geometrie:'#3f9e86',donnees:'#e0922f',proportionnalite:'#a8607c',algorithmique:'#7a5bc7',automatismes:'#b08948'};
+var THEMELAB={nombres:'Nombres',geometrie:'Géométrie',donnees:'Données',proportionnalite:'Proportionnalité',algorithmique:'Algo'};
+var NIVCOL={'6e':'#e0922f','5e':'#d98ba4','4e':'#6f9bd6','3e':'#5aa98a'};
+var FAMCOL2={Ch:'#4f86c6',Mo:'#e0922f',Re:'#3f9e86',Ra:'#a8607c',Ca:'#7a5bc7',Co:'#c0567e'};
+function normTxt(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function objText(id){var o=RBY[id];return o?o.texte:id;}
+function objShort(id){var t=objText(id);return t.length>48?t.slice(0,48)+'…':t;}
+function objFam(id){var o=RBY[id];return o?o.famille:null;}
+function objTheme(id){var o=RBY[id];return o?o.theme:'nombres';}
+function objType(id){var o=RBY[id];return o?o.type:'objectif';}
+function objNiv(id){var o=RBY[id];return o?o.niveau:'';}
+function objCode(id){var o=RBY[id];return o?o.code:id;}
+function objSlug(id){var o=RBY[id];return o?('OBJ-'+(slugify(o.texte).slice(0,48)||o.code)):('OBJ-'+id);}
+function famNameOf(k){for(var x=0;x<REF.length;x++){if(REF[x].k===k)return REF[x].name;}return k;}
+function migrate(st){ if(!st||!st.seq) return st; st.seq.forEach(function(s){ if(!Array.isArray(s.objectifs))s.objectifs=[]; if(!Array.isArray(s.automatismes))s.automatismes=[]; if(s.notes==null)s.notes=(s.details!=null?s.details:''); if('details' in s)delete s.details; if(!Array.isArray(s.comps))s.comps=[]; s.objectifs=s.objectifs.map(function(c){return (typeof c==='string'&&c.indexOf(':')===-1)?('5:'+c):c;}); s.automatismes=s.automatismes.map(function(c){return (typeof c==='string'&&c.indexOf(':')===-1)?('5:'+c):c;}); }); return st; }
+function placedIn(id){var r=[];S.seq.forEach(function(s,i){if(s.objectifs.indexOf(id)!==-1||s.automatismes.indexOf(id)!==-1)r.push(i);});return r;}
+function allPlaced(){var set={};S.seq.forEach(function(s){s.objectifs.forEach(function(c){set[c]=1;});s.automatismes.forEach(function(c){set[c]=1;});});return set;}
+function zoneArr(s,id){return objType(id)==='automatisme'?s.automatismes:s.objectifs;}
+function deducedFams(s){var set={};s.objectifs.concat(s.automatismes).forEach(function(c){var f=objFam(c);if(f)set[f]=1;});return set;}
+function objChipHTML(id,i){var col=THEMECOL[objTheme(id)]||'#999',niv=objNiv(id);return '<span class="objchip" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+esc(objText(id))+'"><span class="oc-niv niv-'+niv+'">'+niv+'</span><span class="oc-code" style="background:'+col+'">'+esc(objCode(id))+'</span><span class="oc-txt">'+esc(objShort(id))+'</span><button type="button" class="oc-rm" data-id="'+id+'" data-i="'+i+'" title="Retirer">×</button></span>';}
+function addObjToSeq(i,id){ var s=S.seq[i]; if(!s||!RBY[id])return; var arr=zoneArr(s,id); if(arr.indexOf(id)!==-1)return; var where=placedIn(id); if(where.length){ var names=where.map(function(x){return S.seq[x].code;}).join(', '); if(!confirm('« '+objNiv(id)+' '+objCode(id)+' » est déjà placé dans : '+names+'.\nL’ajouter aussi à '+s.code+' ?'))return; } arr.push(id); var fam=objFam(id); if(fam){ var has=s.comps.some(function(x){return famOf(x)===fam;}); if(!has){ if(confirm('Ajouter la compétence '+fam+' ('+famNameOf(fam)+') à '+s.code+' ?')){ s.comps.push(fam+'1'); sortComps(s); } } } save(); renderAll(); }
+function removeObjFromSeq(i,id){ var s=S.seq[i]; if(!s)return; var arr=zoneArr(s,id); var k=arr.indexOf(id); if(k!==-1){ arr.splice(k,1); save(); renderAll(); } }
+function moveObj(from,to,id){ if(from===to)return; var s=S.seq[from]; if(s){ var arr=zoneArr(s,id); var k=arr.indexOf(id); if(k!==-1)arr.splice(k,1); } addObjToSeq(to,id); }
+function suggestAssoc(){ if(!confirm('Pré-associer automatiquement les objectifs '+PRIMARY_NIV+' à tes chapitres (par mots-clés) ?\nC’est une suggestion à relire ; rien de ce que tu as déjà placé n’est modifié.'))return;
+  var STOP={};'avec des une les que pour sur dans son ses leur entre sous est sont plus deux par aux quelques cette ceux dont etc forme type donnees diverses simple simples nombre nombres situation situations probleme problemes utiliser connaitre savoir resoudre representer calculer construire reconnaitre definir produire mettre faire'.split(' ').forEach(function(w){STOP[w]=1;});
+  function words(s){return normTxt(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>3&&!STOP[w];});}
+  var L2T={nombres:'N',geometrie:'G',donnees:'D',proportionnalite:'D',algorithmique:'A'}, placedSet=allPlaced(), n=0;
+  RALL.forEach(function(o){ if(o.niveau!==PRIMARY_NIV||placedSet[o.id])return; var letter=L2T[o.theme], cands=[]; S.seq.forEach(function(s,i){ if(!letter||s.theme===letter)cands.push(i); }); if(!cands.length)S.seq.forEach(function(s,i){cands.push(i);});
+    var ow=words(o.texte), best=-1, bs=0; cands.forEach(function(i){ var set={}; words((S.seq[i].title||'')+' '+(S.seq[i].notes||'')).forEach(function(w){set[w]=1;}); var sc=0; ow.forEach(function(w){if(set[w])sc++;}); if(sc>bs){bs=sc;best=i;} });
+    if(best>=0&&bs>=2){ var arr=zoneArr(S.seq[best],o.id); if(arr.indexOf(o.id)===-1){ arr.push(o.id); n++; } } });
+  save(); renderAll(); alert(n+' objectif(s) '+PRIMARY_NIV+' pré-associé(s) — à relire et ajuster.'); }
+var bankFilter='all', bankNiv='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
+function updateArmedHint(){ var h=document.getElementById('armedHint'); if(!h)return; if(armedObj){ h.hidden=false; h.textContent='👉 '+objNiv(armedObj)+' '+objCode(armedObj)+' sélectionné — touche une zone d’une séquence pour le déposer (ou touche-le à nouveau pour annuler).'; } else h.hidden=true; }
+function renderBankNiveaux(){ var box=document.getElementById('bankNiveaux'); if(!box)return; var arr=['all'].concat(NIVS); box.innerHTML=arr.map(function(n){return '<button type="button" class="bnv'+(n===bankNiv?' on':'')+'" data-n="'+n+'">'+(n==='all'?'Tous niveaux':n)+'</button>';}).join(''); box.querySelectorAll('.bnv').forEach(function(b){ b.addEventListener('click',function(){ bankNiv=b.getAttribute('data-n'); renderBank(); }); }); }
+function renderBankThemes(){ var box=document.getElementById('bankThemes'); if(!box)return; var cats=['all','nombres','geometrie','donnees','proportionnalite','algorithmique','automatismes']; box.innerHTML=cats.map(function(c){return '<button type="button" class="bth'+(c===bankFilter?' on':'')+'" data-f="'+c+'">'+(c==='all'?'Tous thèmes':(c==='automatismes'?'Automat.':THEMELAB[c]))+'</button>';}).join(''); box.querySelectorAll('.bth').forEach(function(b){ b.addEventListener('click',function(){ bankFilter=b.getAttribute('data-f'); renderBank(); }); }); }
+function renderBank(){ var list=document.getElementById('bankList'); if(!list)return; renderBankNiveaux(); renderBankThemes();
+  var placed=allPlaced(), hideEl=document.getElementById('bankHidePlaced'), hide=hideEl&&hideEl.checked, q=normTxt(bankQuery);
+  var items=RALL.filter(function(o){ if(bankNiv!=='all'&&o.niveau!==bankNiv)return false; if(bankFilter==='automatismes'){ if(o.type!=='automatisme')return false; } else if(bankFilter!=='all'){ if(o.theme!==bankFilter||o.type!=='objectif')return false; } if(hide&&placed[o.id])return false; if(q&&normTxt(o.code+' '+o.texte).indexOf(q)===-1)return false; return true; });
+  list.innerHTML=items.length?items.map(function(o){ var where=placedIn(o.id), col=THEMECOL[o.theme]||'#999'; return '<div class="bankobj'+(where.length?' placed':'')+(armedObj===o.id?' armed':'')+'" draggable="true" data-id="'+o.id+'" title="'+esc(o.texte)+'"><span class="bo-niv niv-'+o.niveau+'">'+o.niveau+'</span><span class="bo-code" style="background:'+col+'">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+'</span><span class="bo-fam" style="background:'+(FAMCOL2[o.famille]||'#999')+'">'+esc(o.famille||'')+'</span>'+(where.length?'<span class="bo-in">'+where.map(function(x){return S.seq[x].code;}).join(',')+'</span>':'')+'</div>'; }).join(''):'<div class="bank-empty">Aucun objectif pour ce filtre.</div>';
+  var po=0,pa=0; Object.keys(placed).forEach(function(c){ if(objType(c)==='automatisme')pa++; else po++; }); var cov=document.getElementById('bankCov'); if(cov)cov.textContent='✅ '+po+' · 🛠 '+pa+' placés'; }
+function renderCoverage(){ var body=document.getElementById('covBody'); if(!body)return; var placed=allPlaced(); var h='';
+  NIVS.forEach(function(n){ var po=0,pa=0,byTheme={}; RALL.filter(function(o){return o.niveau===n;}).forEach(function(o){ var on=!!placed[o.id]; if(o.type==='automatisme'){ if(on)pa++; } else { if(on)po++; } byTheme[o.theme]=byTheme[o.theme]||{t:0,d:0}; byTheme[o.theme].t++; if(on)byTheme[o.theme].d++; });
+    h+='<div class="cov-niv"><h4><span class="cov-nivbadge" style="background:'+NIVCOL[n]+'">'+n+'</span> <span class="cov-big">✅ '+po+' / '+TOT[n].obj+' objectifs · 🛠 '+pa+' / '+TOT[n].auto+' automatismes</span></h4><div class="cov-themes">';['nombres','geometrie','donnees','proportionnalite','algorithmique'].forEach(function(c){ var x=byTheme[c]; if(!x)return; h+='<span class="cov-th" style="--c:'+THEMECOL[c]+'">'+THEMELAB[c]+' '+x.d+'/'+x.t+'</span>'; }); h+='</div></div>'; });
+  var fy={}; Object.keys(placed).forEach(function(c){ var f=objFam(c); if(f)fy[f]=(fy[f]||0)+1; });
+  h+='<div class="cov-fams">Compétences déduites (tous niveaux) : '+(Object.keys(fy).length?Object.keys(fy).sort().map(function(f){return '<span class="cov-fam" style="background:'+(FAMCOL2[f]||'#999')+'">'+f+' ('+fy[f]+')</span>';}).join(''):'—')+'</div>';
+  var notP=RALL.filter(function(o){return o.type==='objectif'&&o.niveau===PRIMARY_NIV&&!placed[o.id];});
+  h+='<details class="cov-holes"><summary>'+notP.length+' objectif(s) '+PRIMARY_NIV+' non placé(s)</summary><div>'+notP.map(function(o){return '<div class="cov-hole"><b>'+o.niveau+' '+esc(o.code)+'</b> '+esc(o.texte)+'</div>';}).join('')+'</div></details>';
+  body.innerHTML=h; }
+function exportPontLivret(){ var data={niveau:PRIMARY_NIV,genere:new Date().toISOString(), periodes:periodsInfo().map(function(p,i){return {periode:i+1,debut:iso(p.start),fin:iso(p.end),semaines:p.weeks};}), sequences:S.seq.map(function(s){return {code:s.code,titre:s.title,theme:s.theme,semaines:s.weeks,competences:s.comps.slice(), objectifs:s.objectifs.map(function(id){return {code:objCode(id),niveau:objNiv(id),texte:objText(id),famille:objFam(id),fichier:'cours/'+objNiv(id)+'/objectifs/'+objSlug(id)+'.md'};}), automatismes:s.automatismes.map(function(id){return {code:objCode(id),niveau:objNiv(id),texte:objText(id),famille:objFam(id)};}), notes:s.notes||''};})};
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pont-livret-'+PRIMARY_NIV+'.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000); }
+function initObjUI(){ var seqList=document.getElementById('seqList');
+  if(seqList){
+    seqList.addEventListener('dragstart',function(e){ var ch=e.target.closest('.objchip'); if(!ch)return; dragObjCode=ch.getAttribute('data-id'); dragFromSeq=+ch.getAttribute('data-from'); dragIndex=null; e.dataTransfer.effectAllowed='move'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });
+    seqList.addEventListener('dragend',function(){ dragObjCode=null; dragFromSeq=null; document.querySelectorAll('.obj-zone.dragover,.auto-zone.dragover').forEach(function(z){z.classList.remove('dragover');}); });
+    seqList.addEventListener('dragover',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&dragObjCode){ e.preventDefault(); e.stopPropagation(); z.classList.add('dragover'); } });
+    seqList.addEventListener('dragleave',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z)z.classList.remove('dragover'); });
+    seqList.addEventListener('drop',function(e){ var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&dragObjCode){ e.preventDefault(); e.stopPropagation(); z.classList.remove('dragover'); var i=+z.getAttribute('data-i'), id=dragObjCode, from=dragFromSeq; dragObjCode=null; dragFromSeq=null; if(from!=null&&from!==i) moveObj(from,i,id); else if(from==null) addObjToSeq(i,id); } });
+    seqList.addEventListener('click',function(e){ var rm=e.target.closest('.oc-rm'); if(rm){ e.stopPropagation(); removeObjFromSeq(+rm.getAttribute('data-i'),rm.getAttribute('data-id')); return; } var z=e.target.closest('.obj-zone,.auto-zone'); if(z&&armedObj){ addObjToSeq(+z.getAttribute('data-i'),armedObj); armedObj=null; updateArmedHint(); } });
+  }
+  var bankList=document.getElementById('bankList');
+  if(bankList){
+    bankList.addEventListener('dragstart',function(e){ var it=e.target.closest('.bankobj'); if(!it)return; dragObjCode=it.getAttribute('data-id'); dragFromSeq=null; dragIndex=null; e.dataTransfer.effectAllowed='copy'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });
+    bankList.addEventListener('dragend',function(){ dragObjCode=null; dragFromSeq=null; });
+    bankList.addEventListener('click',function(e){ var it=e.target.closest('.bankobj'); if(!it)return; var id=it.getAttribute('data-id'); armedObj=(armedObj===id?null:id); renderBank(); updateArmedHint(); });
+  }
+  var bs=document.getElementById('bankSearch'); if(bs)bs.addEventListener('input',function(){ bankQuery=this.value; renderBank(); });
+  var bh=document.getElementById('bankHidePlaced'); if(bh)bh.addEventListener('change',renderBank);
+  var bb=document.getElementById('bankBtn'); if(bb)bb.addEventListener('click',function(){ var b=document.getElementById('objBank'); b.hidden=!b.hidden; if(!b.hidden)renderBank(); });
+  var bc=document.getElementById('bankClose'); if(bc)bc.addEventListener('click',function(){ document.getElementById('objBank').hidden=true; });
+  var pb=document.getElementById('pontBtn'); if(pb)pb.addEventListener('click',exportPontLivret);
+  var sg=document.getElementById('suggestBtn'); if(sg)sg.addEventListener('click',suggestAssoc);
+  renderBank(); renderCoverage();
+}
+if(document.readyState!=='loading') initObjUI(); else document.addEventListener('DOMContentLoaded',initObjUI);
+
+renderAll();
+</script>
+<aside id="objBank" class="obj-bank" hidden>
+  <div class="bank-head"><b>🎯 Banque d'objectifs</b><span id="bankCov" class="bank-cov"></span><button type="button" id="bankClose" class="bank-x" title="Fermer">×</button></div>
+  <div class="bank-filters">
+    <input type="search" id="bankSearch" placeholder="Rechercher un objectif…">
+    <div class="bank-niveaux" id="bankNiveaux"></div>
+    <div class="bank-themes" id="bankThemes"></div>
+    <label class="bank-hide"><input type="checkbox" id="bankHidePlaced"> masquer les objectifs déjà placés</label>
+  </div>
+  <div id="bankList" class="bank-list"></div>
+  <div id="armedHint" class="armed-hint" hidden></div>
+</aside>
+<script src="site.js" defer></script>
+</body>
+</html>

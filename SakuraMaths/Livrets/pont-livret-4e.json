@@ -1,0 +1,506 @@
+{
+  "niveau": "4e",
+  "contexte": "progression 4e (programme actuel) — objectifs piochés dans les nouveaux référentiels 5e/4e/3e",
+  "genere": "2026-06-25T21:22:06.915Z",
+  "periodes": [
+    {
+      "periode": 1,
+      "debut": "2026-09-01",
+      "fin": "2026-10-16",
+      "semaines": 7
+    },
+    {
+      "periode": 2,
+      "debut": "2026-11-02",
+      "fin": "2026-12-18",
+      "semaines": 7
+    },
+    {
+      "periode": 3,
+      "debut": "2027-01-04",
+      "fin": "2027-02-05",
+      "semaines": 5
+    },
+    {
+      "periode": 4,
+      "debut": "2027-02-22",
+      "fin": "2027-04-02",
+      "semaines": 6
+    },
+    {
+      "periode": 5,
+      "debut": "2027-04-19",
+      "fin": "2027-06-18",
+      "semaines": 9
+    }
+  ],
+  "sequences": [
+    {
+      "code": "N1",
+      "titre": "Nombres relatifs : addition et soustraction",
+      "theme": "N",
+      "semaines": 1.5,
+      "competences": [
+        "Ch1",
+        "Ca1",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "➖7",
+          "niveau": "5e",
+          "texte": "Additionner deux nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-additionner-deux-nombres-decimaux-relatifs.md"
+        },
+        {
+          "code": "➖8",
+          "niveau": "5e",
+          "texte": "Additionner plusieurs nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-additionner-plusieurs-nombres-decimaux-relatifs.md"
+        },
+        {
+          "code": "➖9",
+          "niveau": "5e",
+          "texte": "Soustraire deux nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-soustraire-deux-nombres-decimaux-relatifs.md"
+        },
+        {
+          "code": "➖11",
+          "niveau": "5e",
+          "texte": "Simplifier l’écriture de sommes comportant des parenthèses.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-simplifier-l-ecriture-de-sommes-comportant-des-p.md"
+        },
+        {
+          "code": "➖12",
+          "niveau": "5e",
+          "texte": "Enchainer additions et soustractions de décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-enchainer-additions-et-soustractions-de-decimaux.md"
+        },
+        {
+          "code": "➖13",
+          "niveau": "5e",
+          "texte": "Résoudre des problèmes mobilisant addition et soustraction de nombres décimaux relatifs.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-resoudre-des-problemes-mobilisant-addition-et-so.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "aOPR1",
+          "niveau": "4e",
+          "texte": "Manipulation de sommes et différences de nombres relatifs.",
+          "famille": "Ch"
+        },
+        {
+          "code": "aOPR2",
+          "niveau": "4e",
+          "texte": "Opposé d'un nombre, somme des opposés.",
+          "famille": "Ca"
+        }
+      ],
+      "notes": "Utiliser les nombres relatifs pour calculer et résoudre des problèmes"
+    },
+    {
+      "code": "G1",
+      "titre": "Angles et triangles",
+      "theme": "G",
+      "semaines": 2,
+      "competences": [
+        "Re4",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Triangles égaux\nTriangles semblables\nRéduction et agrandissement"
+    },
+    {
+      "code": "D1",
+      "titre": "Proportionnalité",
+      "theme": "D",
+      "semaines": 2,
+      "competences": [
+        "Mo1",
+        "Ca1"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios"
+    },
+    {
+      "code": "N2",
+      "titre": "Nombres relatifs : multiplication et division",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ch1",
+        "Ca1",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "OPR3",
+          "niveau": "4e",
+          "texte": "Savoir calculer un enchainement d'opérations avec des nombres relatifs.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-savoir-calculer-un-enchainement-d-operations-ave.md"
+        },
+        {
+          "code": "OPR4",
+          "niveau": "4e",
+          "texte": "Utiliser le vocabulaire (somme, quotient, etc.) à partir d'un enchainement d'opérations dans un programme de calcul et inversement.",
+          "famille": "Co",
+          "fichier": "cours/4e/objectifs/OBJ-utiliser-le-vocabulaire-somme-quotient-etc-a-par.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "aOPR5",
+          "niveau": "4e",
+          "texte": "Compléter des multiplications à trou : 5 × … = 3 ; faire le lien entre multiplication et division.",
+          "famille": "Ca"
+        }
+      ],
+      "notes": "Règle des signes\nCarré, cube\nDivision\nEnchaînement d'opérations (priorités opératoires)\nRésolution de problèmes"
+    },
+    {
+      "code": "N3",
+      "titre": "Calcul littéral 1",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires"
+    },
+    {
+      "code": "G2",
+      "titre": "Égalité de Pythagore (sens direct)",
+      "theme": "G",
+      "semaines": 2,
+      "competences": [
+        "Mo1",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "ESP2",
+          "niveau": "4e",
+          "texte": "Construire et mettre en relation différentes représentations des solides (pavé droit, cube, cylindre de révolution, prisme droit, pyramides et cônes de révolution).",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-construire-et-mettre-en-relation-differentes-rep.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l'angle droit\nDémonstration possible"
+    },
+    {
+      "code": "N4",
+      "titre": "Équations",
+      "theme": "N",
+      "semaines": 2.5,
+      "competences": [
+        "Mo1",
+        "Mo2",
+        "Ca2",
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "LIT4",
+          "niveau": "4e",
+          "texte": "Résoudre une équation du premier degré du type ax + b = c.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-resoudre-une-equation-du-premier-degre-du-type-a.md"
+        },
+        {
+          "code": "LIT5",
+          "niveau": "4e",
+          "texte": "Mettre en équation un problème et le résoudre à l'aide d'une équation du premier degré du type ax + b = cx + d.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-mettre-en-equation-un-probleme-et-le-resoudre-a-.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu'un nombre est solution d'une équation"
+    },
+    {
+      "code": "D2",
+      "titre": "Statistiques",
+      "theme": "D",
+      "semaines": 2,
+      "competences": [
+        "Re3",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "STA1",
+          "niveau": "4e",
+          "texte": "Calculer une moyenne pondérée dans le cas d'une série discrète de petits effectifs présentée sous forme de données brutes, d'un tableau ou d'un diagramme en barres.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-une-moyenne-ponderee-dans-le-cas-d-une-.md"
+        },
+        {
+          "code": "STA4",
+          "niveau": "4e",
+          "texte": "Comprendre l'évolution de la médiane et de la moyenne quand on ajoute une valeur extrême.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-comprendre-l-evolution-de-la-mediane-et-de-la-mo.md"
+        },
+        {
+          "code": "STA7",
+          "niveau": "4e",
+          "texte": "Utiliser le tableur pour calculer une moyenne, une médiane et l'étendue d'une série statistique.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-utiliser-le-tableur-pour-calculer-une-moyenne-un.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur"
+    },
+    {
+      "code": "N5",
+      "titre": "Fractions 1 : addition, soustraction, comparaison",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Co1"
+      ],
+      "objectifs": [],
+      "automatismes": [
+        {
+          "code": "aRAT1",
+          "niveau": "4e",
+          "texte": "Addition et soustraction de fractions de dénominateurs quelconques mais simples.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aRAT2",
+          "niveau": "4e",
+          "texte": "Comparaison de fractions.",
+          "famille": "Ca"
+        }
+      ],
+      "notes": "Somme et différence\nSimplifier des fractions\nComparer des quotients"
+    },
+    {
+      "code": "G3",
+      "titre": "Quadrilatères particuliers",
+      "theme": "G",
+      "semaines": 1.5,
+      "competences": [
+        "Re4",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [],
+      "automatismes": [
+        {
+          "code": "aPAR3",
+          "niveau": "4e",
+          "texte": "Reconnaitre un parallélogramme à l'aide de sa définition ou d'une propriété caractéristique grâce aux codages.",
+          "famille": "Ra"
+        },
+        {
+          "code": "aPAR4",
+          "niveau": "4e",
+          "texte": "Reconnaitre un parallélogramme particulier à partir de ses propriétés caractéristiques, notamment à partir des propriétés de ses diagonales.",
+          "famille": "Ra"
+        }
+      ],
+      "notes": "Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible"
+    },
+    {
+      "code": "N6",
+      "titre": "Calcul littéral 2",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ca2",
+        "Co1"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie"
+    },
+    {
+      "code": "G4",
+      "titre": "Égalité de Pythagore (réciproque)",
+      "theme": "G",
+      "semaines": 1,
+      "competences": [
+        "Mo1",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "TRI2",
+          "niveau": "4e",
+          "texte": "Connaitre le théorème de Pythagore, sa réciproque, sa contraposée.",
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/OBJ-connaitre-le-theoreme-de-pythagore-sa-reciproque.md"
+        },
+        {
+          "code": "TRI3",
+          "niveau": "4e",
+          "texte": "Mener un travail de logique sur la réciproque et la contraposée.",
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/OBJ-mener-un-travail-de-logique-sur-la-reciproque-et.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Notion de réciproque et contraposée\nRésolution de problèmes"
+    },
+    {
+      "code": "N7",
+      "titre": "Fractions 2 : multiplication et division",
+      "theme": "N",
+      "semaines": 1,
+      "competences": [
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "RAT10",
+          "niveau": "4e",
+          "texte": "Résoudre des problèmes mobilisant les opérations sur les fractions : addition, soustraction, multiplication, division, inverse.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-resoudre-des-problemes-mobilisant-les-operations.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Calculer un produit : simple, en simplifiant avant de calculer\nInverse d'un nombre non nul"
+    },
+    {
+      "code": "G5",
+      "titre": "Transformations : translation",
+      "theme": "G",
+      "semaines": 1,
+      "competences": [
+        "Re4"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
+    },
+    {
+      "code": "N8",
+      "titre": "Puissances",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "PUI1",
+          "niveau": "4e",
+          "texte": "Définir les puissances d'exposant positif d'un nombre a.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-definir-les-puissances-d-exposant-positif-d-un-n.md"
+        },
+        {
+          "code": "PUI2",
+          "niveau": "4e",
+          "texte": "Multiplier des puissances d'exposant entier naturel d'un même nombre entre elles.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-multiplier-des-puissances-d-exposant-entier-natu.md"
+        },
+        {
+          "code": "PUI3",
+          "niveau": "4e",
+          "texte": "Multiplier des puissances d'un même exposant entier naturel de deux nombres entre elles.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-multiplier-des-puissances-d-un-meme-exposant-ent.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique"
+    },
+    {
+      "code": "G6",
+      "titre": "Transformations : rotation",
+      "theme": "G",
+      "semaines": 1,
+      "competences": [
+        "Re4"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
+    },
+    {
+      "code": "G7",
+      "titre": "Solides : pyramide et cône",
+      "theme": "G",
+      "semaines": 1,
+      "competences": [
+        "Re4",
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "ESP1",
+          "niveau": "4e",
+          "texte": "Reconnaitre des solides (pyramide, cône de révolution).",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-reconnaitre-des-solides-pyramide-cone-de-revolut.md"
+        },
+        {
+          "code": "ESP3",
+          "niveau": "4e",
+          "texte": "Connaitre le volume de la pyramide et du cône de révolution.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-connaitre-le-volume-de-la-pyramide-et-du-cone-de.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Patrons\nVolumes"
+    },
+    {
+      "code": "D3",
+      "titre": "Grandeurs produits et quotients",
+      "theme": "D",
+      "semaines": 1,
+      "competences": [
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "PRP1",
+          "niveau": "4e",
+          "texte": "Utiliser des grandeurs quotients, avec ou sans unités.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-utiliser-des-grandeurs-quotients-avec-ou-sans-un.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Grandeurs produits\nGrandeurs quotients"
+    },
+    {
+      "code": "A1",
+      "titre": "Algorithmique (fil rouge ½ groupes)",
+      "theme": "A",
+      "semaines": 1.5,
+      "competences": [
+        "Ch2",
+        "Ch3"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Scratch, tableur\n6 séances en demi-groupes réparties sur l'année"
+    }
+  ]
+}

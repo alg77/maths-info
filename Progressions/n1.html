@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N1 · Additionner et soustraire des nombres relatifs</title>
+  <style>
+    :root{
+      --bleu:#9cc7e6;
+      --bleu-fonce:#3f78a3;
+      --violet:#c9a9e0;
+      --violet-fonce:#7d54a3;
+      --rose:#f4a9c4;
+      --rose-fonce:#c0698e;
+      --vert:#8fd3b3;
+      --vert-fonce:#3f8d6a;
+      --jaune:#f4d06f;
+      --orange:#df8a4e;
+      --fond:#fffdfc;
+      --encre:#4a4458;
+      --encre-douce:#746a83;
+      --ligne:#eadff2;
+      --carte:#ffffff;
+      --ombre:0 14px 35px rgba(126,84,163,.13);
+      --rayon:24px;
+      --font: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+      --round: "Baloo 2", "Nunito", "Segoe UI", system-ui, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--encre);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(244,169,196,.35), transparent 28%),
+        radial-gradient(circle at 88% 14%, rgba(156,199,230,.38), transparent 32%),
+        linear-gradient(180deg,#fff8fb 0%,#f7fbff 48%,#fffdf8 100%);
+      min-height:100vh;
+      line-height:1.55;
+    }
+
+    a{color:var(--bleu-fonce); text-decoration:none; font-weight:700}
+    a:hover{text-decoration:underline}
+    .page{width:min(1120px, calc(100% - 28px)); margin:0 auto; padding:24px 0 56px}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:32px;
+      padding:28px;
+      background:
+        linear-gradient(135deg, rgba(201,169,224,.55), rgba(244,169,196,.22) 55%, rgba(156,199,230,.28)),
+        #fff;
+      box-shadow:var(--ombre);
+      border:1px solid rgba(201,169,224,.55);
+    }
+    .hero::before,.hero::after{
+      content:"";
+      position:absolute;
+      width:150px;height:150px;
+      border-radius:45% 55% 60% 40%;
+      background:rgba(255,255,255,.45);
+      filter:blur(.2px);
+      transform:rotate(18deg);
+    }
+    .hero::before{right:-45px;top:-45px}
+    .hero::after{left:-60px;bottom:-70px}
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:22px;
+      align-items:center;
+    }
+    .badge-row{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:10px}
+    .code{
+      display:inline-grid;
+      place-items:center;
+      min-width:68px;
+      height:68px;
+      padding:0 14px;
+      border-radius:22px;
+      background:var(--bleu);
+      color:#fff;
+      font-family:var(--round);
+      font-size:2rem;
+      font-weight:900;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.7), 0 8px 20px rgba(63,120,163,.22);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      color:var(--violet-fonce);
+      font-weight:800;
+      font-size:.92rem;
+      border:1px solid rgba(201,169,224,.45);
+    }
+    h1{
+      margin:0;
+      font-family:var(--round);
+      line-height:1.05;
+      font-size:clamp(2rem, 5vw, 4.5rem);
+      color:#5b4a63;
+      letter-spacing:-.03em;
+    }
+    .subtitle{
+      margin:12px 0 0;
+      font-size:1.1rem;
+      color:var(--encre-douce);
+      max-width:720px;
+    }
+    .mascot{
+      width:min(230px, 28vw);
+      min-width:140px;
+      filter:drop-shadow(0 15px 18px rgba(126,84,163,.18));
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:20px 0 0;
+      position:relative;
+      z-index:1;
+    }
+    .nav a{
+      padding:9px 13px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--bleu-fonce);
+      border:1px solid rgba(156,199,230,.7);
+      box-shadow:0 5px 12px rgba(63,120,163,.07);
+      font-size:.95rem;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin-top:18px;
+    }
+    .card{
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(201,169,224,.45);
+      border-radius:var(--rayon);
+      box-shadow:var(--ombre);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card.soft-blue{border-color:rgba(156,199,230,.65)}
+    .card.soft-green{border-color:rgba(143,211,179,.72)}
+    .card.soft-peach{border-color:rgba(223,138,78,.38)}
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-family:var(--round);
+      font-weight:900;
+      color:#fff;
+      border-radius:999px;
+      padding:6px 14px;
+      background:var(--bleu);
+      margin:0 0 12px;
+      letter-spacing:.01em;
+    }
+    .label.green{background:var(--vert-fonce)}
+    .label.purple{background:var(--violet-fonce)}
+    .label.orange{background:var(--orange)}
+    .label.pink{background:var(--rose-fonce)}
+    h2{
+      margin:0 0 14px;
+      font-family:var(--round);
+      color:var(--bleu-fonce);
+      font-size:1.65rem;
+      line-height:1.1;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-family:var(--round);
+      color:var(--violet-fonce);
+      font-size:1.25rem;
+    }
+    ul{margin:.4em 0 .2em; padding-left:1.2em}
+    li{margin:.35em 0}
+    .objectifs{
+      list-style:none;
+      padding:0;
+      display:grid;
+      gap:8px;
+    }
+    .objectifs li{
+      margin:0;
+      padding:10px 12px;
+      border-radius:14px;
+      background:#fbf7ff;
+      border:1px solid #eadff2;
+    }
+    .objectifs li::before{content:"🌱 ";}
+
+    .actions{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:56px;
+      padding:12px 14px;
+      border-radius:18px;
+      font-weight:900;
+      color:#fff;
+      text-align:center;
+      background:linear-gradient(135deg,var(--bleu-fonce),#6aa7d6);
+      box-shadow:0 12px 22px rgba(63,120,163,.18);
+      border:0;
+    }
+    .btn:hover{text-decoration:none; transform:translateY(-1px)}
+    .btn.mathalea{background:linear-gradient(135deg,var(--vert-fonce),#6cc49a)}
+    .btn.qcm{background:linear-gradient(135deg,var(--violet-fonce),#af8fd1)}
+    .btn.kahoot{background:linear-gradient(135deg,var(--rose-fonce),#ef8cab)}
+
+    .steps{
+      display:grid;
+      gap:12px;
+    }
+    .step{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:12px;
+      align-items:start;
+      padding:13px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid var(--ligne);
+    }
+    .num{
+      width:32px;height:32px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-family:var(--round);
+      font-weight:900;
+      color:#fff;
+      background:var(--bleu);
+    }
+    .step strong{color:var(--bleu-fonce)}
+
+    .resource-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+    .resource{
+      padding:16px;
+      border-radius:22px;
+      background:#fff;
+      border:1px solid var(--ligne);
+      box-shadow:0 8px 18px rgba(126,84,163,.08);
+      min-height:170px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .resource .emoji{font-size:2rem}
+    .resource h3{margin:8px 0 6px}
+    .resource p{margin:0 0 12px; color:var(--encre-douce); font-size:.94rem}
+
+    .capable{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid #d9c6e8;
+      border-radius:20px;
+      background:#fff;
+    }
+    .capable th,.capable td{
+      padding:10px;
+      border-bottom:1px solid #eadff2;
+      text-align:center;
+    }
+    .capable th{
+      color:var(--violet-fonce);
+      background:#faf4ff;
+      font-family:var(--round);
+      font-weight:900;
+    }
+    .capable td:first-child,.capable th:first-child{text-align:left}
+    .capable tr:last-child td{border-bottom:0}
+    .sprout{
+      display:inline-grid;
+      place-items:center;
+      width:34px;height:34px;
+      border-radius:50%;
+      background:#f3e8fb;
+      font-size:1.28rem;
+      border:1px solid #e4d2ef;
+    }
+
+    .challenge{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:center;
+      background:linear-gradient(135deg,#fff8ed,#fffef8);
+      border:1.5px solid rgba(223,138,78,.45);
+    }
+    .challenge .stars{color:#e68134; letter-spacing:.16em; font-size:1.2rem; font-weight:900}
+    .formula{
+      display:inline-block;
+      margin:8px 0;
+      padding:10px 14px;
+      border-radius:14px;
+      background:#fff;
+      border:1px dashed rgba(223,138,78,.45);
+      font-size:1.3rem;
+      font-family:"Cambria Math","Times New Roman",serif;
+    }
+
+    .footer{
+      margin-top:20px;
+      padding:20px;
+      border-radius:28px;
+      background:
+        linear-gradient(135deg,rgba(248,231,246,.95),rgba(255,247,252,.9)),
+        #fff;
+      border:1px solid rgba(201,169,224,.5);
+      box-shadow:var(--ombre);
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:18px;
+      align-items:center;
+      color:var(--encre-douce);
+    }
+    .footer .plant{font-size:3.5rem; text-align:right}
+    .footer small{display:block; margin-top:6px}
+    .divider{height:54px; width:1px; background:#d7c6e5}
+
+    .mini{
+      font-size:.92rem;
+      color:var(--encre-douce);
+    }
+    .note{
+      padding:12px 14px;
+      border-radius:18px;
+      background:#f3fbf6;
+      border:1px solid #cde9dd;
+      color:#486a5a;
+    }
+
+    @media (max-width:850px){
+      .hero-content,.grid,.challenge,.footer{grid-template-columns:1fr}
+      .mascot{width:180px; justify-self:center}
+      .resource-grid{grid-template-columns:1fr}
+      .actions{grid-template-columns:1fr}
+      .divider{display:none}
+      .footer .plant{text-align:left}
+      .capable{font-size:.9rem}
+      .capable th,.capable td{padding:7px 5px}
+    }
+
+    @media print{
+      body{background:#fff}
+      .page{width:auto; padding:0}
+      .hero,.card,.footer{box-shadow:none}
+      .nav{display:none}
+      a{text-decoration:none}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+          <div class="badge-row">
+            <span class="code">N1</span>
+            <span class="pill">4ᵉ</span>
+            <span class="pill">Nombres & calculs</span>
+            <span class="pill">Ca3 · Co1</span>
+          </div>
+          <h1>Additionner et soustraire des nombres relatifs</h1>
+          <p class="subtitle">
+            Le hub du chapitre : cours, vidéo, exercices interactifs, QCM et défi pour réviser au bon endroit.
+          </p>
+        </div>
+        <img class="mascot" src="sticker_20.png" alt="Panda roux qui écrit dans un cahier" onerror="this.style.display='none'">
+      </div>
+
+      <nav class="nav" aria-label="Navigation du chapitre">
+        <a href="#cours">Cours</a>
+        <a href="#entrainement">Entraînement</a>
+        <a href="#qcm">QCM</a>
+        <a href="#bilan">Je suis capable</a>
+        <a href="#defi">Défi</a>
+      </nav>
+    </section>
+
+    <section class="grid" id="cours">
+      <article class="card soft-blue">
+        <span class="label">📘 Objectifs visés</span>
+        <ul class="objectifs">
+          <li>Additionner deux nombres décimaux relatifs.</li>
+          <li>Additionner plusieurs nombres décimaux relatifs.</li>
+          <li>Soustraire deux nombres décimaux relatifs.</li>
+          <li>Simplifier l’écriture de sommes comportant des parenthèses.</li>
+          <li>Enchaîner additions et soustractions de décimaux relatifs.</li>
+          <li>Résoudre des problèmes avec addition et soustraction de nombres relatifs.</li>
+        </ul>
+      </article>
+
+      <aside class="card soft-green">
+        <span class="label green">🌿 Je retiens</span>
+        <p><strong>Mêmes signes :</strong> on garde le signe commun et on additionne les distances à zéro.</p>
+        <p><strong>Signes contraires :</strong> on garde le signe du nombre le plus éloigné de zéro et on soustrait les distances.</p>
+        <p><strong>Soustraire un nombre</strong>, c’est ajouter son opposé.</p>
+        <div class="note">Astuce : transforme d’abord les soustractions, puis regroupe les positifs et les négatifs.</div>
+      </aside>
+    </section>
+
+    <section class="card" id="entrainement" style="margin-top:18px">
+      <span class="label purple">🚀 Ressources du chapitre</span>
+      <div class="resource-grid">
+        <article class="resource">
+          <div>
+            <div class="emoji">🎥</div>
+            <h3>Revoir la méthode</h3>
+            <p>Vidéo d’explication sur l’enchaînement d’additions et de soustractions.</p>
+          </div>
+          <a class="btn" href="https://youtu.be/u-bqCheDpHc" target="_blank" rel="noopener">Ouvrir la vidéo</a>
+        </article>
+
+        <article class="resource">
+          <div>
+            <div class="emoji">🎯</div>
+            <h3>MathALÉA</h3>
+            <p>Exercices interactifs qui se corrigent et se régénèrent à volonté.</p>
+          </div>
+          <a class="btn mathalea" href="https://coopmaths.fr/alea/?uuid=cbc26&id=5R20&alea=oT1k" target="_blank" rel="noopener">M’entraîner</a>
+        </article>
+
+        <article class="resource" id="qcm">
+          <div>
+            <div class="emoji">📝</div>
+            <h3>QCM du chapitre</h3>
+            <p>Questions rapides pour vérifier si les règles sont bien comprises.</p>
+          </div>
+          <a class="btn qcm" href="qcm-4eme.html#N1">Lancer le QCM</a>
+        </article>
+      </div>
+
+      <h3>Plan d’entraînement conseillé</h3>
+      <div class="steps">
+        <div class="step"><span class="num">1</span><div><strong>Je relis la règle</strong><br>Je vérifie que je sais décider du signe du résultat.</div></div>
+        <div class="step"><span class="num">2</span><div><strong>Je fais quelques exercices MathALÉA</strong><br>Je recommence jusqu’à avoir plusieurs réussites d’affilée.</div></div>
+        <iframe src="https://coopmaths.fr/alea/?uuid=cbc26&id=5R20&n=6&d=10&s=20&s2=1&s3=false&s4=false&cd=1&tip=0&alea=YOWL&uuid=61b4a&id=5R20-1&n=6&d=10&s=1&s2=20&cd=1&tip=0&alea=sAeN&uuid=ce849&id=5R20-2&n=6&d=10&s=10&s2=2&s3=false&cd=1&tip=0&alea=pA4d&uuid=36e2a&id=5R20-3&alea=OiTD&uuid=6667e&id=5R20-4&alea=6YbJ&uuid=4125e&id=5R20-5&alea=CR8v&uuid=598c3&id=5R20-6&alea=L2I9&uuid=b6982&id=5R21&n=6&d=10&s=20&s2=false&s3=false&cd=1&tip=0&alea=EYqT&uuid=f2db1&id=5R21-1&alea=5Jnq&uuid=cea42&id=5R21-2&alea=OvAw&uuid=f6ea7&id=5R22&alea=uytq&uuid=070b4&id=5R22-2&n=6&d=10&s=20&s2=3&s3=false&cd=1&tip=0&alea=lUAI&v=eleve&es=21110111&title=Exercices%2520Relatifs" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+        <div class="step"><span class="num">3</span><div><strong>Je termine par le QCM</strong><br>Si je bloque, je retourne voir la vidéo ou le livret.</div></div>
+      </div>
+    </section>
+
+    <section class="card" id="bilan" style="margin-top:18px">
+      <span class="label purple">🌱 Je suis capable de...</span>
+      <table class="capable">
+        <thead>
+          <tr>
+            <th>Objectif</th>
+            <th>Pas encore<br><span class="sprout">🌰</span></th>
+            <th>En cours<br><span class="sprout">🌱</span></th>
+            <th>Acquis<br><span class="sprout">🌿</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Additionner deux nombres relatifs.</td><td>□</td><td>□</td><td>□</td></tr>
+          <tr><td>Soustraire deux nombres relatifs.</td><td>□</td><td>□</td><td>□</td></tr>
+          <tr><td>Transformer une soustraction en addition.</td><td>□</td><td>□</td><td>□</td></tr>
+          <tr><td>Enchaîner additions et soustractions.</td><td>□</td><td>□</td><td>□</td></tr>
+          <tr><td>Résoudre un problème avec des nombres relatifs.</td><td>□</td><td>□</td><td>□</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card challenge" id="defi" style="margin-top:18px">
+      <div>
+        <div class="stars">★★★</div>
+        <h2>Défi du chapitre</h2>
+        <p>Calcule en respectant les priorités et en transformant les soustractions :</p>
+        <div class="formula">D = (−4) + 3 − (−7) + (−2) − 5 + 8</div>
+        <p class="mini"><strong>Astuce :</strong> commence par remplacer chaque soustraction par une addition de l’opposé.</p>
+      </div>
+      <img class="mascot" src="sticker_26.png" alt="Panda roux motivant" onerror="this.style.display='none'">
+    </section>
+
+    <footer class="footer">
+      <div>
+        <strong>Mathématiques · N1 · Mme Le Guern · 4ᵉ</strong>
+        <small>Hub de chapitre : vidéo, exercices, QCM et défi.</small>
+      </div>
+      <div class="divider"></div>
+      <div>
+        <strong>Besoin d’aide ?</strong>
+        <small>Reviens au livret, regarde la vidéo, puis réessaie avec MathALÉA.</small>
+      </div>
+      <div class="plant" aria-hidden="true">🪴</div>
+    </footer>
+  </main>
+</body>
+</html>

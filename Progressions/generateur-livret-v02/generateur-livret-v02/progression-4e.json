@@ -1,0 +1,331 @@
+{
+  "cal": {
+    "rentree": "2026-09-01",
+    "fin": "2027-06-18",
+    "vac": [
+      {
+        "nom": "Toussaint",
+        "sat": "2026-10-17",
+        "resume": "2026-11-02"
+      },
+      {
+        "nom": "Noël",
+        "sat": "2026-12-19",
+        "resume": "2027-01-04"
+      },
+      {
+        "nom": "Hiver",
+        "sat": "2027-02-06",
+        "resume": "2027-02-22"
+      },
+      {
+        "nom": "Printemps",
+        "sat": "2027-04-03",
+        "resume": "2027-04-19"
+      }
+    ],
+    "feries": [
+      "2026-11-11",
+      "2027-03-29",
+      "2027-05-06",
+      "2027-05-07",
+      "2027-05-17"
+    ]
+  },
+  "seq": [
+    {
+      "code": "N1",
+      "title": "Nombres relatifs : addition et soustraction",
+      "theme": "N",
+      "weeks": 1.5,
+      "comps": [
+        "Ch1",
+        "Ca1",
+        "Co2"
+      ],
+      "objectifs": [
+        "5:➖7",
+        "5:➖8",
+        "5:➖9",
+        "5:➖11",
+        "5:➖12",
+        "5:➖13"
+      ],
+      "automatismes": [
+        "4:aOPR1",
+        "4:aOPR2"
+      ],
+      "notes": "Utiliser les nombres relatifs pour calculer et résoudre des problèmes"
+    },
+    {
+      "code": "G1",
+      "title": "Angles et triangles",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Re4",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Triangles égaux\nTriangles semblables\nRéduction et agrandissement"
+    },
+    {
+      "code": "D1",
+      "title": "Proportionnalité",
+      "theme": "D",
+      "weeks": 2,
+      "comps": [
+        "Mo1",
+        "Ca1"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios"
+    },
+    {
+      "code": "N2",
+      "title": "Nombres relatifs : multiplication et division",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ch1",
+        "Ca1",
+        "Co2"
+      ],
+      "objectifs": [
+        "4:OPR3",
+        "4:OPR4"
+      ],
+      "automatismes": [
+        "4:aOPR5"
+      ],
+      "notes": "Règle des signes\nCarré, cube\nDivision\nEnchaînement d'opérations (priorités opératoires)\nRésolution de problèmes"
+    },
+    {
+      "code": "N3",
+      "title": "Calcul littéral 1",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires"
+    },
+    {
+      "code": "G2",
+      "title": "Égalité de Pythagore (sens direct)",
+      "theme": "G",
+      "weeks": 2,
+      "comps": [
+        "Mo1",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [
+        "4:ESP2"
+      ],
+      "automatismes": [],
+      "notes": "Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l'angle droit\nDémonstration possible"
+    },
+    {
+      "code": "N4",
+      "title": "Équations",
+      "theme": "N",
+      "weeks": 2.5,
+      "comps": [
+        "Mo1",
+        "Mo2",
+        "Ca2",
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [
+        "4:LIT4",
+        "4:LIT5"
+      ],
+      "automatismes": [],
+      "notes": "Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu'un nombre est solution d'une équation"
+    },
+    {
+      "code": "D2",
+      "title": "Statistiques",
+      "theme": "D",
+      "weeks": 2,
+      "comps": [
+        "Re3",
+        "Co1"
+      ],
+      "objectifs": [
+        "4:STA1",
+        "4:STA4",
+        "4:STA7"
+      ],
+      "automatismes": [],
+      "notes": "Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur"
+    },
+    {
+      "code": "N5",
+      "title": "Fractions 1 : addition, soustraction, comparaison",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Co1"
+      ],
+      "objectifs": [],
+      "automatismes": [
+        "4:aRAT1",
+        "4:aRAT2"
+      ],
+      "notes": "Somme et différence\nSimplifier des fractions\nComparer des quotients"
+    },
+    {
+      "code": "G3",
+      "title": "Quadrilatères particuliers",
+      "theme": "G",
+      "weeks": 1.5,
+      "comps": [
+        "Re4",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [],
+      "automatismes": [
+        "4:aPAR3",
+        "4:aPAR4"
+      ],
+      "notes": "Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible"
+    },
+    {
+      "code": "N6",
+      "title": "Calcul littéral 2",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ca2",
+        "Co1"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie"
+    },
+    {
+      "code": "G4",
+      "title": "Égalité de Pythagore (réciproque)",
+      "theme": "G",
+      "weeks": 1,
+      "comps": [
+        "Mo1",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [
+        "4:TRI2",
+        "4:TRI3"
+      ],
+      "automatismes": [],
+      "notes": "Notion de réciproque et contraposée\nRésolution de problèmes"
+    },
+    {
+      "code": "N7",
+      "title": "Fractions 2 : multiplication et division",
+      "theme": "N",
+      "weeks": 1,
+      "comps": [
+        "Ca1"
+      ],
+      "objectifs": [
+        "4:RAT10"
+      ],
+      "automatismes": [],
+      "notes": "Calculer un produit : simple, en simplifiant avant de calculer\nInverse d'un nombre non nul"
+    },
+    {
+      "code": "G5",
+      "title": "Transformations : translation",
+      "theme": "G",
+      "weeks": 1,
+      "comps": [
+        "Re4"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
+    },
+    {
+      "code": "N8",
+      "title": "Puissances",
+      "theme": "N",
+      "weeks": 2,
+      "comps": [
+        "Ca1"
+      ],
+      "objectifs": [
+        "4:PUI1",
+        "4:PUI2",
+        "4:PUI3"
+      ],
+      "automatismes": [],
+      "notes": "Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique"
+    },
+    {
+      "code": "G6",
+      "title": "Transformations : rotation",
+      "theme": "G",
+      "weeks": 1,
+      "comps": [
+        "Re4"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
+    },
+    {
+      "code": "G7",
+      "title": "Solides : pyramide et cône",
+      "theme": "G",
+      "weeks": 1,
+      "comps": [
+        "Re4",
+        "Ca1"
+      ],
+      "objectifs": [
+        "4:ESP1",
+        "4:ESP3"
+      ],
+      "automatismes": [],
+      "notes": "Patrons\nVolumes"
+    },
+    {
+      "code": "D3",
+      "title": "Grandeurs produits et quotients",
+      "theme": "D",
+      "weeks": 1,
+      "comps": [
+        "Ca1"
+      ],
+      "objectifs": [
+        "4:PRP1"
+      ],
+      "automatismes": [],
+      "notes": "Grandeurs produits\nGrandeurs quotients"
+    },
+    {
+      "code": "A1",
+      "title": "Algorithmique (fil rouge ½ groupes)",
+      "theme": "A",
+      "weeks": 1.5,
+      "comps": [
+        "Ch2",
+        "Ch3"
+      ],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Scratch, tableur\n6 séances en demi-groupes réparties sur l'année"
+    }
+  ]
+}
