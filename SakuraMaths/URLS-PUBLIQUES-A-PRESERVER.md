@@ -42,17 +42,19 @@ place, son ancienne URL doit rester disponible ou rediriger vers sa nouvelle URL
 - `Cahiers vacances/2026-Cahier_vacances_4e-3e.pdf`
 - `Progressions/memo-deploiement.pdf`
 
-## URL à classer avant suppression ou déplacement
+## Anciennes URL conservées par redirection
 
-Ces pages existent mais semblent être des variantes, archives ou outils internes.
-Elles doivent être examinées avant de décider de les conserver ou de les rediriger.
+- `Progressions/progressions-avatar.html` → `Progressions/progressions.html`
+- `Progressions/progressions-old.html` → `Progressions/progressions.html`
+- `Progressions/vacances_v1.html` → `Progressions/vacances.html`
 
-- `Progressions/progressions-avatar.html`
-- `Progressions/progressions-old.html`
-- `Progressions/vacances_v1.html`
-- `Progressions/dashboard_cahiers_vacances.html`
-- `Progressions/couverture-5e.html`
-- `Progressions/memo-deploiement.html`
+Les contenus historiques complets sont conservés dans `Progressions/archives/`.
+
+## Outils et documentation conservés
+
+- `Progressions/dashboard_cahiers_vacances.html` : tableau de bord des cahiers ;
+- `Progressions/couverture-5e.html` : couverture et référentiel 5e ;
+- `Progressions/memo-deploiement.html` : mémo de publication.
 
 ## Contrôle avant réorganisation
 
@@ -63,4 +65,3 @@ python SakuraMaths/scripts/check_links.py
 ```
 
 Le contrôle doit être vert avant et après chaque lot de déplacements.
-

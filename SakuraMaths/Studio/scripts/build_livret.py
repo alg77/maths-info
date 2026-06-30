@@ -35,7 +35,9 @@ try:
 except ImportError:
     HAS_QR = False
 
-FONT_DIR = Path(__file__).resolve().parent / "fonts"   # portable
+STUDIO_DIR = Path(__file__).resolve().parent.parent
+ASSET_DIR = STUDIO_DIR / "assets"
+FONT_DIR = ASSET_DIR / "fonts"
 THEME = {"N": "#3B82C4", "G": "#E05A6B", "D": "#2BA98E", "A": "#8B6FB0", "C": "#E0A23B"}
 PONT, EXOMAP = {}, {}
 HUB_URL = ""
@@ -253,15 +255,13 @@ def parse_cover(box_body):
     meta["chapitres"] = chaps
     return meta
 
-ASSET_DIR = Path(__file__).resolve().parent / "assets"
-
 def _img_b64(name):
     """Retourne une image PNG en data-uri.
 
     Cherche dans :
-      - ./assets/<nom>.png
-      - ./assets/stickers/<nom>.png
-      - dossier du script
+      - Studio/assets/images/<nom>.png
+      - Studio/assets/stickers/<nom>.png
+      - dossier Studio
       - /home/claude/assets et /home/claude/assets/stickers
 
     Cela permet de déposer les stickers panda roux sans toucher au Markdown.
@@ -273,7 +273,7 @@ def _img_b64(name):
     raw = Path(name)
     if raw.suffix:
         candidates.append(raw)
-    for base in (ASSET_DIR, ASSET_DIR / "stickers", Path(__file__).resolve().parent,
+    for base in (ASSET_DIR / "images", ASSET_DIR / "stickers", STUDIO_DIR,
                  Path("/home/claude/assets"), Path("/home/claude/assets/stickers")):
         candidates.append(base / name)
         candidates.append(base / f"{name}.png")

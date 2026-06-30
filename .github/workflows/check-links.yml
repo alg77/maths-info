@@ -1,0 +1,32 @@
+name: Vérification des liens SakuraMaths
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "SakuraMaths/**"
+      - ".github/workflows/check-links.yml"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "SakuraMaths/**"
+      - ".github/workflows/check-links.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Contrôler les liens locaux
+        run: python SakuraMaths/scripts/check_links.py

@@ -1,4 +1,4 @@
-# Générateur de livrets — v02 (charte kawaii) · Mme Le Guern
+# Générateur de livrets — v9 (charte kawaii) · Mme Le Guern
 
 Génère un chapitre **prof** + **élève** (PDF) à partir d'un seul fichier Markdown,
 à ta charte (en-tête à badge, sections à pastille, encadrés label-pilule,
@@ -13,20 +13,21 @@ pip install weasyprint qrcode pillow
 > WeasyPrint a besoin des libs système Pango/Cairo (déjà présentes sur la plupart des Linux/Mac ;
 > sous Windows, voir la doc WeasyPrint). `fonttools` est optionnel.
 
-Garde le dossier tel quel : `build_livret.py` doit rester **à côté** des dossiers `fonts/` et `assets/`.
+Le générateur se trouve dans `Studio/scripts/`. Ses polices, images et stickers sont
+chargés automatiquement depuis `Studio/assets/`.
 
 ## 2. Lancer
 ```bash
-python3 build_livret.py 4N1.md --pont pont-livret-4e.json --mode both --out ./out
+python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/config/pont-livret-4e.json --mode both --out Studio/out/pdf
 ```
-→ produit `out/4N1__prof_….pdf` et `out/4N1__eleve_….pdf`.
+→ produit les PDF professeur et élève dans `Studio/out/pdf/`.
 
 ### Options utiles
 | Option | Valeurs | Défaut | Effet |
 |---|---|---|---|
 | `--mode` | `prof` `eleve` `both` | `both` | version(s) générée(s) |
 | `--pont` | fichier JSON | — | objectifs visés + grille auto (clé = code chapitre) |
-| `--exomap` | fichier JSON | — | colonne QR MathALÉA dans la grille (voir `exos-4e.exemple.json`) |
+| `--exomap` | fichier JSON | — | colonne QR MathALÉA dans la grille (voir `Studio/config/exos-4e.exemple.json`) |
 | `--police` | `opensans` `atkinson` `opendyslexic` | `opensans` | police du **corps** (accessibilité) |
 | `--taille` | nombre (pt) | `11` | taille du corps |
 | `--interligne` | nombre | `1.45` | interligne |
@@ -36,10 +37,10 @@ python3 build_livret.py 4N1.md --pont pont-livret-4e.json --mode both --out ./ou
 Exemples :
 ```bash
 # Élève seul, version dyslexie, plus grand
-python3 build_livret.py 4N1.md --pont pont-livret-4e.json --mode eleve --police opendyslexic --taille 12 --out ./out
+python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/config/pont-livret-4e.json --mode eleve --police opendyslexic --taille 12 --out Studio/out/pdf
 
 # Avec la colonne QR d'entraînement
-python3 build_livret.py 4N1.md --pont pont-livret-4e.json --exomap exos-4e.json --out ./out
+python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/config/pont-livret-4e.json --exomap Studio/config/exos-4e.exemple.json --out Studio/out/pdf
 ```
 
 ## 3. Écrire un chapitre (gabarit = `4N1.md`)

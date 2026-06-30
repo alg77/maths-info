@@ -497,7 +497,7 @@ window.addEventListener('afterprint',function(){ document.body.classList.remove(
   b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
 })();
 document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
-document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-4e.json'; a.click(); });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-nsi-terminale.json'; a.click(); });
 document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
 document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=JSON.parse(rd.result); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
 

@@ -7,12 +7,12 @@ Générateur **Python + WeasyPrint** : à partir d'**un seul fichier Markdown** 
 il produit les versions **prof** et **élève** en PDF, à ma **charte kawaii/pastel** (soft academia).
 Philosophie : source unique → multi-sorties, gagner du temps, pas d'usine à gaz.
 
-## État actuel — `build_livret.py` v02 (fonctionne)
+## État actuel — `Studio/scripts/build_livret.py` v9 (fonctionne)
 Rendu fidèle à la charte (réf. `Exemple_chapitre_N1.pdf`) :
 - **En-tête** à badge de code + eyebrow (domaine) + titre rond (Baloo2) + niveau.
 - **Compétences** en pilules (fond plein).
 - **Objectifs visés** (début) + **« Je suis maintenant capable de… »** (grille 3 frimousses + cases)
-  — remplis **automatiquement** depuis `pont-livret-4e.json` (clé = code chapitre).
+  — remplis **automatiquement** depuis `Studio/config/pont-livret-4e.json` (clé = code chapitre).
 - **Sections** numérotées en chiffres (1, 2, 3), à pastille colorée.
 - **Encadrés** à bordure-gauche + label-pilule : `prop` (vert) / `def` (rose) / `meth` (bleu) /
   `rem` (lavande) / `rappel` « Je me souviens » / `retenu` « J'ai retenu » (crème) /
@@ -28,10 +28,10 @@ Rendu fidèle à la charte (réf. `Exemple_chapitre_N1.pdf`) :
 
 ## Commande
 ```
-python build_livret.py 4N1.md --pont pont-livret-4e.json --mode both --out .\out
+python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/config/pont-livret-4e.json --mode both --out Studio/out/pdf
 ```
 Options : `--mode prof|eleve|both`, `--police atkinson|opensans|opendyslexic`, `--taille`,
-`--interligne`, `--couleur couleur|nb`, `--html`, `--exomap exos-4e.json`.
+`--interligne`, `--couleur couleur|nb`, `--html`, `--exomap Studio/config/exos-4e.exemple.json`.
 
 ## Environnement Windows (réglé)
 - `pip install weasyprint qrcode pillow`
@@ -51,5 +51,5 @@ Vérifier que le **titre s'affiche enfin en Baloo2 (arrondi)** après le passage
 - Variante **allégé/standard** (pas encore dans le générateur).
 
 ## Fichiers à rattacher
-`generateur-livret-v02.zip` (ou `maj-charte-v02.zip`), `4N1.md`, `pont-livret-4e.json`,
-`progression-4e.json`, `Charte_graphique_Mme_Le_Guern.md`, `Prompt_livrets_de_cours.md`.
+Le dossier `Studio/`, notamment `sources/4e/4N1.md`, `config/pont-livret-4e.json`
+et `config/progression-4e.json`.

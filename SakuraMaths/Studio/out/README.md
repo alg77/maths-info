@@ -1,11 +1,15 @@
 # Sorties générées
 
-Ce dossier contient les documents produits par les scripts de `Studio/`.
+Ce dossier contient les documents produits par `Studio/scripts/build_livret.py`.
+
+- `pdf/` : livrets imprimables ;
+- `web/` : versions HTML des chapitres ;
+- `qcm/` : page QCM, banque JavaScript et exports Kahoot.
 
 ## Convention de nommage
 
-- La sortie courante porte un nom sans suffixe automatique :
-  `4N1__eleve_atkinson_11pt_couleur.pdf`.
+- La sortie courante porte un nom sans suffixe automatique, par exemple
+  `pdf/4N1__eleve_atkinson_11pt_couleur.pdf`.
 - Une version conservée volontairement utilise `_v01`, `_v02`, etc.
 - Les suffixes ajoutés par le navigateur, comme ` (1)`, ` (2)` ou ` (3)`, ne
   constituent pas des versions et doivent être évités.

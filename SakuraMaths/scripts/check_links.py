@@ -13,6 +13,10 @@ HTML_REF = re.compile(
     r"(?:href|src|action|poster)\s*=\s*([\"'])(.*?)\1",
     re.IGNORECASE,
 )
+HTML_BASE = re.compile(
+    r"<base\b[^>]*?href\s*=\s*([\"'])(.*?)\1",
+    re.IGNORECASE,
+)
 CSS_REF = re.compile(r"url\(\s*([\"']?)(.*?)\1\s*\)", re.IGNORECASE)
 IGNORED_SCHEMES = {
     "http", "https", "mailto", "tel", "data", "javascript", "blob", "about"
@@ -24,7 +28,12 @@ def is_excluded(relative_path: Path, exclusions: set[Path]) -> bool:
     return any(relative_path == item or item in relative_path.parents for item in exclusions)
 
 
-def local_target(root: Path, source: Path, reference: str) -> Path | None:
+def local_target(
+    root: Path,
+    source: Path,
+    reference: str,
+    base_directory: Path | None = None,
+) -> Path | None:
     reference = reference.strip()
     if not reference or reference.startswith(("#", "//", "{")):
         return None
@@ -41,7 +50,22 @@ def local_target(root: Path, source: Path, reference: str) -> Path | None:
 
     if path.startswith("/"):
         return root / path.lstrip("/")
-    return source.parent / Path(path)
+    return (base_directory or source.parent) / Path(path)
+
+
+def html_base_directory(root: Path, path: Path) -> tuple[str, Path] | None:
+    """Retourne la référence <base> et le dossier qu'elle définit."""
+    text = path.read_text(encoding="utf-8-sig", errors="replace")
+    match = HTML_BASE.search(text)
+    if not match:
+        return None
+    reference = match.group(2).strip()
+    target = local_target(root, path, reference)
+    if target is None:
+        return None
+    parsed_path = unquote(urlsplit(reference).path)
+    directory = target if parsed_path.endswith(("/", "\\")) else target.parent
+    return reference, directory
 
 
 def references(path: Path) -> list[tuple[int, str]]:
@@ -65,8 +89,17 @@ def check(root: Path, exclusions: set[Path]) -> tuple[int, list[tuple[Path, int,
         if is_excluded(relative, exclusions):
             continue
 
+        base = html_base_directory(root, path) if path.suffix.lower() == ".html" else None
+        base_reference, base_directory = base if base else (None, None)
+
         for line, reference in references(path):
-            target = local_target(root, path, reference)
+            # La balise <base> elle-même se résout depuis le dossier du document.
+            target = local_target(
+                root,
+                path,
+                reference,
+                None if reference == base_reference else base_directory,
+            )
             if target is None:
                 continue
             checked += 1
