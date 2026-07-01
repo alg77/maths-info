@@ -107,17 +107,33 @@
     },
     {
       "code": "G1",
-      "titre": "Angles et triangles",
+      "titre": "Triangles : droites remarquables et droite des milieux",
       "theme": "G",
       "semaines": 2,
       "competences": [
-        "Re4",
+        "Re1",
         "Ra3",
         "Co2"
       ],
-      "objectifs": [],
-      "automatismes": [],
-      "notes": "Triangles égaux\nTriangles semblables\nRéduction et agrandissement"
+      "objectifs": [
+        {
+          "ref": "4:TRI1",
+          "niveau": "4",
+          "code": "TRI1",
+          "texte": "Connaitre les trois théorèmes relatifs à la droite des milieux dans un triangle.",
+          "famille": "Ra"
+        }
+      ],
+      "automatismes": [
+        {
+          "ref": "4:aTRI1",
+          "niveau": "4",
+          "code": "aTRI1",
+          "texte": "Reconnaitre des droites remarquables, y compris dans les triangles particuliers (médiatrices, médianes, hauteurs, bissectrices).",
+          "famille": "Re"
+        }
+      ],
+      "notes": "Réactivation des droites remarquables\nTrois théorèmes de la droite des milieux\nDémonstrations et calculs de longueurs"
     },
     {
       "code": "D1",
@@ -126,11 +142,24 @@
       "semaines": 2,
       "competences": [
         "Mo1",
-        "Ca1"
+        "Ca1",
+        "Co2"
       ],
-      "objectifs": [],
-      "automatismes": [],
-      "notes": "Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios"
+      "objectifs": [
+        {"code":"PRP2","niveau":"4e","texte":"Comparer deux nombres ou deux grandeurs à l'aide de leur rapport ou ratio.","famille":"Mo"},
+        {"code":"PRP3","niveau":"4e","texte":"Exprimer la proportionnalité entre deux suites de nombres par des égalités de rapports ou sous forme de ratio.","famille":"Mo"},
+        {"code":"PRP4","niveau":"4e","texte":"Déterminer une quatrième proportionnelle.","famille":"Ca"},
+        {"code":"PRP5","niveau":"4e","texte":"Calculer avec des pourcentages.","famille":"Ca"},
+        {"code":"PRP6","niveau":"4e","texte":"Rendre compte d'une augmentation ou une diminution exprimée en pourcentages au moyen d'un coefficient multiplicateur.","famille":"Mo"},
+        {"code":"PRP7","niveau":"4e","texte":"Définir le coefficient multiplicateur.","famille":"Mo"},
+        {"code":"PRP8","niveau":"4e","texte":"Résoudre des problèmes de partage proportionnel.","famille":"Ca"},
+        {"code":"FON4","niveau":"4e","texte":"Représenter l'expression d'une grandeur en fonction d'une autre par un graphique.","famille":"Re"}
+      ],
+      "automatismes": [
+        {"code":"aPRP1","niveau":"4e","texte":"Déterminer a % de c quand a vaut 100, 50, 25, 10, 1.","famille":"Ch"},
+        {"code":"aPRP2","niveau":"4e","texte":"Compléter : 20 % de 120 = … ; 30 = …/100 × 1 000.","famille":"Ch"}
+      ],
+      "notes": "Reconnaître et exprimer une proportionnalité\nÉgalité des produits en croix et quatrième proportionnelle\nRapports, ratios et partages proportionnels\nPourcentages et coefficients multiplicateurs\nLecture d'une représentation graphique"
     },
     {
       "code": "N2",
@@ -143,6 +172,18 @@
         "Co2"
       ],
       "objectifs": [
+        {
+          "code": "OPR1",
+          "niveau": "4e",
+          "texte": "Multiplier deux nombres relatifs : d'abord dans le cas où un seul des facteurs est négatif, puis, grâce à la distributivité, dans le cas où les deux facteurs sont négatifs.",
+          "famille": "Ca"
+        },
+        {
+          "code": "OPR2",
+          "niveau": "4e",
+          "texte": "Diviser deux nombres relatifs.",
+          "famille": "Ca"
+        },
         {
           "code": "OPR3",
           "niveau": "4e",
@@ -160,13 +201,25 @@
       ],
       "automatismes": [
         {
+          "code": "aOPR3",
+          "niveau": "4e",
+          "texte": "Entretien des tables de multiplication.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aOPR4",
+          "niveau": "4e",
+          "texte": "Multiplier et diviser par 10, 100, 1 000.",
+          "famille": "Ca"
+        },
+        {
           "code": "aOPR5",
           "niveau": "4e",
           "texte": "Compléter des multiplications à trou : 5 × … = 3 ; faire le lien entre multiplication et division.",
           "famille": "Ca"
         }
       ],
-      "notes": "Règle des signes\nCarré, cube\nDivision\nEnchaînement d'opérations (priorités opératoires)\nRésolution de problèmes"
+      "notes": "Multiplier et diviser des nombres relatifs\nJustifier le produit de deux nombres négatifs par distributivité\nCalculs enchaînés et priorités opératoires\nVocabulaire des opérations et programmes de calcul"
     },
     {
       "code": "N3",

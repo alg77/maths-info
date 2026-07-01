@@ -1,0 +1,27 @@
+{
+  "schema": "sakuramaths.livret-periode.v1",
+  "niveau": "4e",
+  "periode": "Période 2",
+  "periode_id": "P2",
+  "annee": "2026-2027",
+  "prof": "Mme Le Guern",
+  "mode": "eleve",
+  "cover": "assets/covers/cover-4e.png",
+  "chapitres": [
+    {
+      "code": "N3",
+      "titre": "Calcul littéral 1",
+      "source": "Studio/sources/4e/4N3.md"
+    },
+    {
+      "code": "G2",
+      "titre": "Égalité de Pythagore (sens direct)",
+      "source": "Studio/sources/4e/4G2.md"
+    },
+    {
+      "code": "N4",
+      "titre": "Équations",
+      "source": "Studio/sources/4e/4N4.md"
+    }
+  ]
+}

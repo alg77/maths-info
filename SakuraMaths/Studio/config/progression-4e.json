@@ -35,6 +35,7 @@
   "seq": [
     {
       "code": "N1",
+      "periode": 1,
       "title": "Nombres relatifs : addition et soustraction",
       "theme": "N",
       "weeks": 1.5,
@@ -59,33 +60,45 @@
     },
     {
       "code": "G1",
-      "title": "Angles et triangles",
+      "periode": 1,
+      "title": "Triangles : droites remarquables et droite des milieux",
       "theme": "G",
       "weeks": 2,
       "comps": [
-        "Re4",
+        "Re1",
         "Ra3",
         "Co2"
       ],
-      "objectifs": [],
-      "automatismes": [],
-      "notes": "Triangles égaux\nTriangles semblables\nRéduction et agrandissement"
+      "objectifs": [
+        "4:TRI1"
+      ],
+      "automatismes": [
+        "4:aTRI1"
+      ],
+      "notes": "Réactivation des droites remarquables\nTrois théorèmes de la droite des milieux\nDémonstrations et calculs de longueurs"
     },
     {
       "code": "D1",
+      "periode": 1,
       "title": "Proportionnalité",
       "theme": "D",
       "weeks": 2,
       "comps": [
         "Mo1",
-        "Ca1"
+        "Ca1",
+        "Co2"
       ],
-      "objectifs": [],
-      "automatismes": [],
-      "notes": "Égalité des produits en croix\nCalcul de la 4ᵉ proportionnelle\nReprésentation graphique\nPourcentage et réunion de deux groupes\nRatios"
+      "objectifs": [
+        "4:PRP2", "4:PRP3", "4:PRP4", "4:PRP5", "4:PRP6", "4:PRP7", "4:PRP8", "4:FON4"
+      ],
+      "automatismes": [
+        "4:aPRP1", "4:aPRP2"
+      ],
+      "notes": "Reconnaître et exprimer une proportionnalité\nÉgalité des produits en croix et quatrième proportionnelle\nRapports, ratios et partages proportionnels\nPourcentages et coefficients multiplicateurs\nLecture d'une représentation graphique"
     },
     {
       "code": "N2",
+      "periode": 1,
       "title": "Nombres relatifs : multiplication et division",
       "theme": "N",
       "weeks": 2,
@@ -95,16 +108,21 @@
         "Co2"
       ],
       "objectifs": [
+        "4:OPR1",
+        "4:OPR2",
         "4:OPR3",
         "4:OPR4"
       ],
       "automatismes": [
+        "4:aOPR3",
+        "4:aOPR4",
         "4:aOPR5"
       ],
-      "notes": "Règle des signes\nCarré, cube\nDivision\nEnchaînement d'opérations (priorités opératoires)\nRésolution de problèmes"
+      "notes": "Multiplier et diviser des nombres relatifs\nJustifier le produit de deux nombres négatifs par distributivité\nCalculs enchaînés et priorités opératoires\nVocabulaire des opérations et programmes de calcul"
     },
     {
       "code": "N3",
+      "periode": 2,
       "title": "Calcul littéral 1",
       "theme": "N",
       "weeks": 2,
@@ -118,6 +136,7 @@
     },
     {
       "code": "G2",
+      "periode": 2,
       "title": "Égalité de Pythagore (sens direct)",
       "theme": "G",
       "weeks": 2,
@@ -134,6 +153,7 @@
     },
     {
       "code": "N4",
+      "periode": 2,
       "title": "Équations",
       "theme": "N",
       "weeks": 2.5,
@@ -153,6 +173,7 @@
     },
     {
       "code": "D2",
+      "periode": 3,
       "title": "Statistiques",
       "theme": "D",
       "weeks": 2,
@@ -170,6 +191,7 @@
     },
     {
       "code": "N5",
+      "periode": 3,
       "title": "Fractions 1 : addition, soustraction, comparaison",
       "theme": "N",
       "weeks": 2,
@@ -185,6 +207,7 @@
     },
     {
       "code": "G3",
+      "periode": 3,
       "title": "Quadrilatères particuliers",
       "theme": "G",
       "weeks": 1.5,
@@ -202,6 +225,7 @@
     },
     {
       "code": "N6",
+      "periode": 3,
       "title": "Calcul littéral 2",
       "theme": "N",
       "weeks": 2,
@@ -215,6 +239,7 @@
     },
     {
       "code": "G4",
+      "periode": 4,
       "title": "Égalité de Pythagore (réciproque)",
       "theme": "G",
       "weeks": 1,
@@ -232,6 +257,7 @@
     },
     {
       "code": "N7",
+      "periode": 4,
       "title": "Fractions 2 : multiplication et division",
       "theme": "N",
       "weeks": 1,
@@ -246,6 +272,7 @@
     },
     {
       "code": "G5",
+      "periode": 4,
       "title": "Transformations : translation",
       "theme": "G",
       "weeks": 1,
@@ -258,6 +285,7 @@
     },
     {
       "code": "N8",
+      "periode": 4,
       "title": "Puissances",
       "theme": "N",
       "weeks": 2,
@@ -274,6 +302,7 @@
     },
     {
       "code": "G6",
+      "periode": 5,
       "title": "Transformations : rotation",
       "theme": "G",
       "weeks": 1,
@@ -286,6 +315,7 @@
     },
     {
       "code": "G7",
+      "periode": 5,
       "title": "Solides : pyramide et cône",
       "theme": "G",
       "weeks": 1,
@@ -302,6 +332,7 @@
     },
     {
       "code": "D3",
+      "periode": 5,
       "title": "Grandeurs produits et quotients",
       "theme": "D",
       "weeks": 1,
@@ -316,6 +347,7 @@
     },
     {
       "code": "A1",
+      "periode": 5,
       "title": "Algorithmique (fil rouge ½ groupes)",
       "theme": "A",
       "weeks": 1.5,

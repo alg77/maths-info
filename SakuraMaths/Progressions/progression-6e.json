@@ -1,0 +1,37 @@
+{
+  "cal": {
+    "rentree": "2026-09-01",
+    "fin": "2027-06-18",
+    "vac": [
+      {"nom": "Toussaint", "sat": "2026-10-17", "resume": "2026-11-02"},
+      {"nom": "Noël", "sat": "2026-12-19", "resume": "2027-01-04"},
+      {"nom": "Hiver", "sat": "2027-02-06", "resume": "2027-02-22"},
+      {"nom": "Printemps", "sat": "2027-04-03", "resume": "2027-04-19"}
+    ],
+    "feries": ["2026-11-11", "2027-03-29", "2027-05-06", "2027-05-07", "2027-05-17"]
+  },
+  "seq": [
+    {"code":"N1","title":"Nombres entiers et décimaux","theme":"N","weeks":3,"periode":1,"comps":["Re2","Co2"]},
+    {"code":"G1","title":"Éléments de géométrie","theme":"G","weeks":1.5,"periode":1,"comps":["Re3","Co2"]},
+    {"code":"C1","title":"Multiplier et diviser par 10, 100, 1000…","theme":"C","weeks":1,"periode":1,"comps":["Ca1"]},
+    {"code":"M1","title":"Angles (1)","theme":"M","weeks":1.5,"periode":1,"comps":["Mo3","Ra1","Co2"]},
+    {"code":"G2","title":"Droites parallèles et perpendiculaires","theme":"G","weeks":2,"periode":2,"comps":["Mo1","Ra1","Co2"]},
+    {"code":"M2","title":"Repérer et placer des décimaux sur une demi-droite graduée","theme":"M","weeks":2,"periode":2,"comps":["Ch1","Re2","Co2"]},
+    {"code":"G3","title":"Distances et cercle","theme":"G","weeks":2,"periode":2,"comps":["Mo4","Mo3","Re4","Re1","Ra1"]},
+    {"code":"N2","title":"Additionner et soustraire des nombres décimaux","theme":"N","weeks":1,"periode":2,"comps":["Ra4","Ca1","Ca2","Ca3"]},
+    {"code":"N3","title":"Multiplier des nombres décimaux","theme":"N","weeks":2,"periode":3,"comps":["Ra4","Ca1","Ca2","Ca3"]},
+    {"code":"G4","title":"Polygones particuliers","theme":"G","weeks":2,"periode":3,"comps":["Mo3","Re4","Re1","Ra1","Co2"]},
+    {"code":"C2","title":"Ajouter ou retrancher 9, 99, 11…","theme":"C","weeks":1,"periode":3,"comps":["Ca1"]},
+    {"code":"G5","title":"Solides : pavé droit et cube","theme":"G","weeks":1,"periode":3,"comps":["Mo3","Re3","Re5","Ra1","Co2"]},
+    {"code":"M3","title":"Périmètres","theme":"M","weeks":1,"periode":3,"comps":["Mo3","Re1","Ca1","Ca2"]},
+    {"code":"N4","title":"Division euclidienne","theme":"N","weeks":1.5,"periode":4,"comps":["Mo4","Ra4","Ca1","Ca2","Co2"]},
+    {"code":"M4","title":"Angles (2)","theme":"M","weeks":2,"periode":4,"comps":["Mo3","Ra1","Co2"]},
+    {"code":"N5","title":"Division décimale","theme":"N","weeks":1,"periode":4,"comps":["Mo4","Ra4","Ca1","Ca2","Co2"]},
+    {"code":"N6","title":"Fractions","theme":"N","weeks":1.5,"periode":4,"comps":["Mo4","Ra4","Ca1","Ca2","Co2"]},
+    {"code":"N7","title":"Proportionnalité","theme":"N","weeks":1.5,"periode":5,"comps":["Mo2","Ca2"]},
+    {"code":"N8","title":"Probabilités","theme":"N","weeks":2,"periode":5,"comps":["Ch1","Mo4","Ca2","Co2"]},
+    {"code":"M5","title":"Aires et volumes","theme":"M","weeks":2,"periode":5,"comps":["Mo3","Re1","Ca1","Ca2"]},
+    {"code":"G6","title":"Symétrie axiale et axes de symétrie","theme":"G","weeks":1.5,"periode":5,"comps":["Mo1","Re1"]},
+    {"code":"A","title":"Algorithmique & Tableur (fil rouge)","theme":"A","weeks":1.5,"periode":5,"comps":["Ch3","Re4"]}
+  ]
+}

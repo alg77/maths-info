@@ -25,15 +25,26 @@ v3 :
     cocher des chapitres, choisir la période, basculer prof/élève,
     exporter en HTML, imprimer en PDF, exporter un manifeste .txt.
 """
-import argparse, base64, html, io, json, re, sys
+import argparse, base64, html, io, json, re, shutil, subprocess, sys, tempfile
+from datetime import date, timedelta
 from pathlib import Path
-from weasyprint import HTML
+
+try:
+    from weasyprint import HTML
+except ImportError:
+    HTML = None
 
 try:
     import qrcode
+    if not hasattr(qrcode, "make"):
+        raise ImportError("module qrcode incomplet")
     HAS_QR = True
 except ImportError:
     HAS_QR = False
+
+VENDOR_DIR = Path(__file__).resolve().parent.parent / "vendor"
+if VENDOR_DIR.exists() and str(VENDOR_DIR) not in sys.path:
+    sys.path.insert(0, str(VENDOR_DIR))
 
 STUDIO_DIR = Path(__file__).resolve().parent.parent
 ASSET_DIR = STUDIO_DIR / "assets"
@@ -53,6 +64,7 @@ COMP_MAP = {
     "Re3": "Représenter des données (tableaux, graphiques)",
     "Re4": "Représenter des solides et des situations spatiales",
     "Ra3": "Démontrer : raisonner logiquement pour conclure",
+    "Ca1": "Effectuer des calculs exacts ou approchés",
     "Ca2": "Contrôler la vraisemblance (ordres de grandeur, encadrements)",
     "Ca3": "Calculer en utilisant le langage algébrique",
     "Co1": "Faire le lien entre langage naturel et langage algébrique",
@@ -80,11 +92,13 @@ def make_qr(url):
 
 def mathify(s):
     """Mini-convertisseur LaTeX → HTML (sous-ensemble collège)."""
+    s = s.replace('\\dfrac', '\\frac')
     cmds = []
     s = re.sub(r'\\[a-zA-Z]+', lambda m: cmds.append(m.group(0)) or f'\x00{len(cmds)-1}\x00', s)
     s = re.sub(r'[A-Za-z]+', lambda m: f'<em>{m.group()}</em>', s)          # variables en italique
     s = re.sub(r'\x00(\d+)\x00', lambda m: cmds[int(m.group(1))], s)        # restaure les commandes
-    for k, v in {'\\times':'×','\\div':'÷','\\cdot':'·','\\pm':'±','\\leq':'≤','\\le':'≤',
+    for k, v in {'\\times':'×','\\div':'÷','\\cdot':'·','\\parallel':'∥','\\perp':'⊥','\\Rightarrow':'⇒',
+                 '\\pm':'±','\\leq':'≤','\\le':'≤',
                  '\\geq':'≥','\\ge':'≥','\\neq':'≠','\\ne':'≠','\\approx':'≈','\\pi':'π',
                  '\\ldots':'…','\\dots':'…','\\%':'%','\\,':'\u2009'}.items():
         s = s.replace(k, v)
@@ -122,19 +136,20 @@ def blank_width(ans):
     return max(2.5, min(n * 0.55, 30))
 
 def process(text, mode):
-    out, last = [], 0
-    for m in re.finditer(r'\[\[(.+?)\]\]', text):
-        out.append(inline(text[last:m.start()]))
-        ans = m.group(1)
+    answers = []
+    def hold(m):
+        answers.append(m.group(1))
+        return f'\x01{len(answers)-1}\x02'
+    rendered = inline(re.sub(r'\[\[(.+?)\]\]', hold, text))
+    def restore(m):
+        ans = answers[int(m.group(1))]
+        answer_html = mathify(ans) if (re.search(r'\\[A-Za-z]+', ans) and '$' not in ans) else inline(ans)
         if mode == "prof":
-            out.append(f'<span class="rep">{inline(ans)}</span>')
-        elif mode == "inter":
-            out.append(f'<span class="ans">{inline(ans)}</span>')
-        else:
-            out.append(f'<span class="blank" style="min-width:{blank_width(ans):.1f}em"></span>')
-        last = m.end()
-    out.append(inline(text[last:]))
-    return "".join(out)
+            return f'<span class="rep">{answer_html}</span>'
+        if mode == "inter":
+            return f'<span class="ans">{answer_html}</span>'
+        return f'<span class="blank" style="min-width:{blank_width(ans):.1f}em"></span>'
+    return re.sub(r'\x01(\d+)\x02', restore, rendered)
 
 # ============================================================ PARSER
 def load_source(path, _seen=None):
@@ -147,6 +162,42 @@ def load_source(path, _seen=None):
         m = re.match(r'\s*@include\s+(.+)\s*$', ln)
         out.append(load_source(p.parent / m.group(1).strip(), _seen) if m else ln)
     return "\n".join(out)
+
+def resolve_chapter_sources(codes, niveau="4e"):
+    """Résout une liste de codes (4N1, 4G1...) vers leurs sources Markdown."""
+    src_dir = STUDIO_DIR / "sources" / niveau
+    found = []
+    for code in codes:
+        code = code.strip().upper()
+        if not code:
+            continue
+        exact = src_dir / f"{code}.md"
+        candidates = [exact] if exact.exists() else sorted(src_dir.glob(f"{code}-*.md"))
+        if not candidates:
+            raise FileNotFoundError(f"Source introuvable pour {code} dans {src_dir}")
+        found.append(candidates[0])
+    return found
+
+def school_periods(progression_path):
+    """Construit les périodes scolaires, chacune comprise entre deux vacances."""
+    if not progression_path or not Path(progression_path).exists():
+        return []
+    data = json.loads(Path(progression_path).read_text(encoding="utf-8"))
+    cal = data.get("cal", {})
+    vacations = cal.get("vac", [])
+    starts = [cal.get("rentree")] + [v.get("resume") for v in vacations]
+    ends = [v.get("sat") for v in vacations] + [cal.get("fin")]
+    out = []
+    for i, (start, end) in enumerate(zip(starts, ends), 1):
+        if not start or not end:
+            continue
+        d0 = date.fromisoformat(start)
+        d1 = date.fromisoformat(end)
+        if i <= len(vacations):
+            d1 -= timedelta(days=1)
+        label = f"Période {i}"
+        out.append({"value": label, "label": label, "start": d0.isoformat(), "end": d1.isoformat()})
+    return out
 
 def parse(src):
     lines = src.split("\n"); blocks, i = [], 0
@@ -390,7 +441,11 @@ def render_example(btitle, bbody, mode):
         else:
             cur.append(l)
     if cur: calcs.append(cur)
-    cells = "".join(f'<div class="calc">{_calc_lines(c, mode)}</div>' for c in calcs)
+    def example_cell(c):
+        if c and all(line.strip().startswith('|') for line in c if line.strip()):
+            return f'<div class="calc table-card">{render_table(c, mode)}</div>'
+        return f'<div class="calc">{_calc_lines(c, mode)}</div>'
+    cells = "".join(example_cell(c) for c in calcs)
     return (f'<div class="ex"><span class="exlab">{inline(btitle or "Exemples")}&nbsp;:</span>'
             f'<div class="calcs">{cells}</div></div>')
 
@@ -411,6 +466,52 @@ MATHALEA_TITLES = {
 
 AUTO_DEFIS = {
     "N1": "Calcule astucieusement : $D = (− 8) − (− 13) + (− 5) − (+ 7) + 2$. Explique en une phrase ta méthode.",
+    "N2": "Je pense à deux nombres relatifs. Leur produit vaut $−36$ et leur somme vaut $5$. Quels sont ces deux nombres ? Justifie que ta réponse vérifie les deux indices.",
+    "G1": ("Construction GeoGebra", [
+        "- Construis un triangle $ABC$.",
+        "- Place le milieu $I$ de $[AB]$, puis le milieu $J$ de $[AC]$.",
+        "- Trace la droite $(IJ)$.",
+        "- Mesure les longueurs $IJ$ et $BC$.",
+        "- Déplace les sommets du triangle et observe ce qui reste vrai.",
+        "- Écris tes deux conjectures avec les symboles adaptés.",
+    ]),
+    "G2": ("Énigme de Pythagore", "Un écran rectangulaire mesure $28$ cm de large et $21$ cm de haut. Sans mesurer sa diagonale, détermine sa longueur. Explique pourquoi ton calcul permet de répondre exactement."),
+    "G3": ("Belle construction GeoGebra", [
+        "- Construis deux segments qui ont le même milieu.",
+        "- Relie leurs quatre extrémités pour former un quadrilatère.",
+        "- Déplace les sommets tout en conservant la contrainte sur les milieux.",
+        "- Nomme la famille de quadrilatères obtenue.",
+        "- Ajoute une contrainte pour obtenir un rectangle, puis un losange, puis un carré.",
+    ]),
+    "G4": ("Enquête géométrique", "Trois points $A$, $B$ et $C$ vérifient $AB=6$ cm, $AC=8$ cm et $BC=10$ cm. Sans construire le triangle, prouve qu'il est rectangle, indique son hypoténuse puis précise où se trouve le centre de son cercle circonscrit."),
+    "G5": ("Scratch à compléter", [
+        "- Place le lutin au point $A(−3;2)$.",
+        "- La translation doit envoyer $A$ sur $B(4;−1)$.",
+        "- Complète le programme avec les deux blocs de déplacement nécessaires.",
+        "- Recommence en plaçant le lutin au point $C(2;5)$.",
+        "- Donne les coordonnées du point obtenu.",
+    ]),
+    "G6": ("Scratch à compléter", [
+        "- Répète 12 fois : avancer de 70 pas, revenir au point de départ, puis tourner.",
+        "- Calcule l'angle de rotation à placer dans le bloc « tourner de … degrés ».",
+        "- Exécute le programme pour obtenir une rosace à 12 branches.",
+        "- Modifie ensuite le programme pour obtenir une rosace à 8 branches.",
+    ]),
+    "G7": ("Construction GeoGebra 3D", [
+        "- Construis une pyramide à base carrée dans GeoGebra 3D.",
+        "- Affiche son patron.",
+        "- Repère la base et les quatre faces latérales.",
+        "- Modifie la hauteur de la pyramide.",
+        "- Indique les longueurs qui changent et celles qui restent inchangées.",
+        "- Fais une capture annotée de ta construction.",
+    ]),
+    "D1": ("Le tableau mystère", [
+        "- Une recette pour 6 personnes utilise 450 g de farine, 3 œufs et 75 cL de lait.",
+        "- Construis un tableau de proportionnalité pour 4, 10 et 15 personnes.",
+        "- Complète toutes les quantités sans oublier les unités.",
+        "- Explique la méthode utilisée pour la colonne « 10 personnes ».",
+        "- Bonus : propose un partage de 84 fraises selon le ratio $3:4$.",
+    ]),
 }
 
 
@@ -506,10 +607,16 @@ def render_defi(btitle, bbody, mode):
             f'<div class="scratch-title">✎ RÉPONSE / TRACES DE RECHERCHE</div><div class="scratch-zone"></div></div>')
 
 def render_auto_defi(code, title, mode):
-    txt = AUTO_DEFIS.get(code) or AUTO_DEFIS.get(code.upper())
-    if not txt:
+    data = AUTO_DEFIS.get(code) or AUTO_DEFIS.get(code.upper())
+    if not data:
         return ""
-    return render_defi("★★★ Défi du chapitre", [txt], mode)
+    if isinstance(data, tuple):
+        defi_title, txt = data
+    else:
+        defi_title, txt = "★★★ Défi du chapitre", data
+    body = txt if isinstance(txt, list) else [txt]
+    return (f'<section class="defi-page"><div class="defi-kicker">DÉFI DE FIN DE CHAPITRE</div>'
+            f'{render_defi(defi_title, body, mode)}</section>')
 
 
 def body_has_box(body, *names):
@@ -642,7 +749,8 @@ def render(blocks, mode):
         code, title, niveau, comp = ch["header"]
         th, thd = DOMAIN_TH.get(code[:1].upper(), DOMAIN_TH["N"])
         brk = "chap-break" if i > 0 else ""
-        parts.append(f'<div class="chapitre {brk}" style="--th:{th};--thd:{thd}">')
+        dom = code[:1].upper()
+        parts.append(f'<div class="chapitre dom-{dom} mode-{mode} {brk}" style="--th:{th};--thd:{thd}">')
         parts.append(chap_header(code, title, niveau))
         parts.append(render_comp(comp))
         seqp = PONT.get(code) or PONT.get(code.upper())
@@ -734,6 +842,24 @@ p{ margin:.34em 0; } ul{ margin:.3em 0 .3em 1.1em; padding:0 0 0 .4em; } li{ mar
 .deco-sakura{ position:absolute; top:-8mm; right:-6mm; width:30mm; height:30mm; opacity:.5;
   background:radial-gradient(circle at 50% 50%, color-mix(in srgb,var(--th) 40%,white) 0 18%, transparent 19%); }
 
+/* identité visuelle des chapitres N */
+.dom-N .chap{ background:linear-gradient(122deg,#d9edf9 0%,#edf4fc 54%,#eee7f8 100%);
+  border:1px solid #c7def0; box-shadow:0 6px 18px #6d9fc522; }
+.dom-N .chap .code{ border-radius:16px; background:linear-gradient(145deg,#73b6dc,#6e88cb); }
+.dom-N .chap .lvl{ background:linear-gradient(145deg,#73b6dc,#777fc5); }
+.dom-N .chap h1{ color:#465b78; }
+.dom-N .deco-sakura{ width:34mm; height:34mm; top:-10mm; right:-7mm; opacity:.62;
+  background:radial-gradient(circle at center,#b9d9ee 0 17%,transparent 18% 29%,#d9cdec 30% 34%,transparent 35%); }
+.dom-N .sec .n{ background:linear-gradient(145deg,#73b6dc,#777fc5); border-radius:8px; }
+.dom-N .sec h2{ color:#557fa8; }
+.dom-N .chip{ background:#eef4fb; color:#587292; }
+.dom-G .chap{ background:linear-gradient(122deg,#fde0da 0%,#fbf0ef 54%,#f1eafa 100%);
+  border:1px solid #f4c6bd; box-shadow:0 6px 18px #c96f5e22; }
+.dom-G .chap .code,.dom-G .chap .lvl{ background:linear-gradient(145deg,#f39b8e,#ee887b); }
+.dom-G .chap h1{ color:#5b4a63; }
+.dom-G .deco-sakura{ width:34mm; height:34mm; top:-10mm; right:-7mm; opacity:.6;
+  background:radial-gradient(circle at center,#f7c0b7 0 17%,transparent 18% 29%,#e7d2ef 30% 34%,transparent 35%); }
+
 /* competences */
 .comps{ display:flex; flex-wrap:wrap; gap:5px; margin:0 0 4mm; }
 .chip{ font-family:var(--body); font-size:8.4pt; background:#f4ecfa; border-radius:999px; padding:2.5px 11px; color:#7a5c86; }
@@ -780,11 +906,14 @@ p{ margin:.34em 0; } ul{ margin:.3em 0 .3em 1.1em; padding:0 0 0 .4em; } li{ mar
 .exlab{ font-family:var(--title); font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--thd); font-size:10.5pt; }
 .calcs{ display:flex; gap:4mm; flex-wrap:wrap; margin-top:1.4mm; }
 .calc{ background:#faf7fc; border:1px solid #efe7f5; border-radius:11px; padding:2.4mm 4.5mm; line-height:1.65; min-width:38mm; }
+.calc.table-card{ flex-basis:100%; padding:0; border:0; background:transparent; }
+.calc.table-card table.grid{ margin:0; }
 .id{ font-family:'MathVar','KaTeX_Math',serif; font-style:italic; color:var(--thd); font-weight:700; }
 .math em,.mit{ font-family:'MathVar','KaTeX_Math',serif; font-style:italic; }
 .res{ color:#c0698e; font-weight:700; }
 .rep{ color:@@REP@@; font-weight:700; }
 .blank{ display:inline-block; border-bottom:1.5px dotted #b9a6c9; min-width:3.2em; height:1.1em; vertical-align:bottom; margin:0 2px; }
+.mode-eleve .blank{ height:1.8em; vertical-align:bottom; }
 
 /* criteres de reussite */
 .crit{ border:1.8px solid #f3cdb4; border-radius:16px; padding:3.1mm 5mm; margin:3mm 0 1.5mm; background:#fffaf6; }
@@ -817,6 +946,11 @@ p{ margin:.34em 0; } ul{ margin:.3em 0 .3em 1.1em; padding:0 0 0 .4em; } li{ mar
 .defi-sticker{ position:absolute; right:5mm; top:5mm; width:24mm; max-height:24mm; object-fit:contain; }
 .scratch-title{ font-family:var(--title); font-weight:700; letter-spacing:1.3px; color:#b69b62; font-size:8.4pt; margin-top:2.2mm; }
 .scratch-zone{ height:26mm; border:1.4px dashed #ead6a0; border-radius:10px; margin-top:1mm; background-image:radial-gradient(#ead6a0 0.55px, transparent 0.65px); background-size:5mm 5mm; background-color:#fffdf8; }
+.defi-page{ break-before:auto; page-break-before:auto; padding-top:5mm; background:#fff; clear:both; }
+.defi-kicker{ font-family:var(--title); font-weight:700; letter-spacing:2.2px; color:var(--thd); font-size:10pt; margin:0 0 3mm 2mm; }
+.defi-page .box.defi{ background:#fff !important; border:2px solid #f0c98f; box-shadow:none; padding:6mm 34mm 6mm 7mm; }
+.defi-page .box.defi li{ margin:1.8mm 0; line-height:1.55; }
+.defi-page .scratch-zone{ height:34mm; background-color:#fff; }
 
 /* ressources + qr */
 .ressources{ list-style:none; margin:0; padding:0; }
@@ -845,8 +979,14 @@ a:hover{ text-decoration:underline; }
 .compact-train .qr-note{ margin:0; }
 .compact-train .qr-side .qr{ height:16mm; width:16mm; }
 .ma-qr .res-url{ display:none; }
-table.grid{ border-collapse:collapse; margin:8px 0; } table.grid th,table.grid td{ border:1px solid #cdbad8; padding:4px 9px; text-align:center; }
+table.grid{ width:100%; border-collapse:separate; border-spacing:0; margin:2.5mm 0; border:2px solid var(--th); border-radius:12px; overflow:hidden; }
+table.grid th,table.grid td{ border:0; border-right:1px solid color-mix(in srgb,var(--th) 45%,white); border-bottom:1px solid color-mix(in srgb,var(--th) 45%,white); padding:2.4mm 3.2mm; text-align:center; }
+table.grid tr:last-child>*{ border-bottom:0; } table.grid tr>*:last-child{ border-right:0; }
+table.grid th{ background:linear-gradient(135deg,color-mix(in srgb,var(--th) 28%,white),color-mix(in srgb,var(--th) 12%,white)); color:var(--thd); font-family:var(--round); font-weight:700; }
+table.grid td:first-child{ background:color-mix(in srgb,var(--th) 8%,white); color:var(--thd); font-weight:700; text-align:left; }
+.mode-eleve table.grid td{ min-height:11mm; }
 svg.fig{ display:block; float:right; width:200px; margin:0 0 6px 12px; }
+.mode-eleve .prof-only,.mode-prof .eleve-only{ display:none !important; }
 """
 
 def build_print_css(police, taille, interligne, couleur, foot=""):
@@ -870,7 +1010,10 @@ def build_web_css(police):
     return (font_faces_b64(police) + "\nbody{ background:linear-gradient(135deg,#ECE6F6,#F6E9EE); padding:24px 12px; }\n"
             ".wrap{ max-width:820px; margin:0 auto; background:#fff; border-radius:22px; padding:26px 30px; box-shadow:0 10px 40px rgba(120,100,160,.18); }\n"
             + css + cover_css(False) + cover_vacances_css() +
-            ".chapitre.chap-break{ break-before:auto; } .blank{ min-width:3.4em !important; }")
+            ".chapitre.chap-break{ break-before:auto; } .blank{ min-width:3.4em !important; }"
+            "@media print{body{background:#fff !important;padding:0 !important;}"
+            ".wrap{max-width:none !important;margin:0 !important;padding:0 !important;background:#fff !important;"
+            "border-radius:0 !important;box-shadow:none !important;}}")
 
 def cover_css(nb):
     accent = "#9DB9DE" if nb else "#c9a9e0"; accent2 = "#E7D27A" if nb else "#F4D06F"
@@ -924,32 +1067,66 @@ def html_doc(body, css, web=False):
             f"<meta name='viewport' content='width=device-width, initial-scale=1'>"
             f"<style>{css}</style></head><body>{wo}{body}{wc}</body></html>")
 
+def write_pdf_document(document, pdf):
+    """Écrit un PDF avec WeasyPrint, ou Chrome/Edge si WeasyPrint est absent."""
+    pdf = Path(pdf).resolve()
+    if pdf.exists():
+        pdf.unlink()
+    if HTML is not None:
+        HTML(string=document, base_url=str(STUDIO_DIR.parent)).write_pdf(str(pdf))
+        return
+    browsers = [shutil.which("chrome"), shutil.which("msedge"),
+                Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe"),
+                Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")]
+    browser = next((Path(p) for p in browsers if p and Path(p).exists()), None)
+    if browser is None:
+        raise SystemExit("Installe WeasyPrint ou Chrome pour générer les PDF.")
+    temp_root = STUDIO_DIR.parent / "tmp" / "pdfs"; temp_root.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="chapitre-", dir=temp_root) as folder:
+        folder_path = Path(folder); html_file = folder_path / "chapitre.html"
+        html_file.write_text(document, encoding="utf-8")
+        command = [str(browser), "--headless", "--no-sandbox", "--disable-gpu",
+                   "--disable-crash-reporter", "--disable-breakpad", "--no-pdf-header-footer",
+                   "--allow-file-access-from-files", f"--user-data-dir={folder_path / 'profile'}",
+                   f"--print-to-pdf={pdf}", html_file.as_uri()]
+        result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode:
+            raise RuntimeError((result.stderr or result.stdout or "Erreur Chrome").strip())
+
 # ============================================================ SÉLECTEUR (builder)
-def build_builder(blocks, outdir, stem, cover_meta_master):
+def build_builder(blocks, outdir, stem, cover_meta_master, periods=None):
     cover, chaps = split_chapters(blocks)
     cover = cover or cover_meta_master or {}
     data = []
     for ch in chaps:
         code, title, niveau, comp = ch["header"]
-        theme = THEME.get(code[:1].upper(), THEME["N"])
+        dom = code[:1].upper()
+        theme = THEME.get(dom, THEME["N"])
         comps = [{"c": c.strip(), "l": COMP_MAP.get(c.strip(), "")} for c in comp.split(",") if c.strip()]
-        frag = (f'<div class="chapitre" style="--c:{theme}">'
-                f'{bandeau_html(code, title, niveau)}{render_comp(comp)}'
-                f'{render_body(ch["body"], "inter")}</div>')
+        level_digit = (niveau or cover.get("niveau", "4e"))[:1]
+        file_code = f"{level_digit}{code}" if level_digit.isdigit() and not code[:1].isdigit() else code
         data.append({"code": code, "title": title, "niveau": niveau or cover.get("niveau", "4ᵉ"),
-                     "theme": theme, "comps": comps, "html": frag})
-    css = (font_faces_file() + CHARTER_CSS.replace("@@SIZE@@","12").replace("@@LH@@","1.5").replace("@@REP@@","#c0698e") + cover_css(False) + cover_vacances_css())
+                     "fileCode": file_code, "theme": theme, "comps": comps})
+    css = (font_faces_file() + CHARTER_CSS.replace("@@SIZE@@","12").replace("@@LH@@","1.5")
+           .replace("@@REP@@","#c0698e").replace("@@BODY@@", "'Atkinson','Atkinson Hyperlegible'")
+           + cover_css(False) + cover_vacances_css())
+    panda_src = _img_b64("panda-roux-4e.png")
+    cover_animal = (f'<img class="cv-animal panda-cover" src="{panda_src}" alt="Panda roux origami"/>'
+                    if panda_src else fox_svg())
     tmpl = BUILDER_TMPL
     repl = {
         "__CSS__": css,
         "__CHAPTERS__": json.dumps(data, ensure_ascii=False),
-        "__FOX__": json.dumps(fox_svg()),
-        "__TITRE__": json.dumps(cover.get("titre", "Cahier de cours")),
+        "__FOX__": json.dumps(cover_animal),
+        "__PANDA_SRC__": json.dumps(panda_src),
+        "__PETALS__": json.dumps(_petals()),
+        "__TITRE__": json.dumps(cover.get("titre", "Livret de cours")),
         "__MATIERE__": json.dumps(cover.get("matiere", "Mathématiques")),
         "__NIVEAU__": json.dumps(cover.get("niveau", "4ᵉ")),
         "__PERIODE__": json.dumps(cover.get("periode", "Période ")),
         "__ANNEE__": json.dumps(cover.get("annee", "2025 – 2026")),
         "__PROF__": json.dumps(cover.get("prof", "Mme Le Guern")),
+        "__PERIODES__": json.dumps(periods or [], ensure_ascii=False),
     }
     for k, v in repl.items():
         tmpl = tmpl.replace(k, v)
@@ -985,8 +1162,16 @@ body{margin:0;font-family:"Atkinson",sans-serif;background:#eef0f6;color:#222;}
 .stagewrap{padding:24px;overflow:auto;}
 .stage{max-width:820px;margin:0 auto;background:#fff;box-shadow:0 6px 30px rgba(80,80,140,.12);border-radius:10px;padding:26px 30px;font-family:var(--ff);font-size:var(--fs);line-height:1.5;}
 .stage.mode-prof .ans{color:#c0392b;font-weight:600;}
-.stage.mode-prof .cover-id{display:none;}
+.stage.mode-prof .cover-id,.stage.mode-prof .cv-appartient{display:none;}
 .stage.mode-eleve .ans{color:transparent;border-bottom:1.4px dotted #555;}
+.cover-livret{background:#fff;}
+.cover-livret .cv-banner{padding-top:13mm;padding-bottom:9mm;}
+.cover-livret .cv-title{font-size:43pt;}
+.cover-livret .cv-sub{font-size:15pt;max-width:92%;margin:2mm auto 0;line-height:1.25;}
+.cover-livret .panda-cover{width:68%;max-width:345px;margin:4mm auto 2mm;filter:drop-shadow(0 8px 10px #765a8030);}
+.cover-livret .cv-appartient{width:82%;background:#fff;border-color:#b9d8eb;}
+.cover-livret .cv-somm-box{width:84%;background:#fffafd;border-color:#efb8cc;}
+.cover-livret .cv-somm-title{color:#6a4c9c;}
 .hint{font-size:12px;color:#889;margin-top:4px;}
 @media print{
   .panel{display:none;} .app{display:block;} .stagewrap{padding:0;}
@@ -995,12 +1180,12 @@ body{margin:0;font-family:"Atkinson",sans-serif;background:#eef0f6;color:#222;}
   .cover{break-after:page;} @page{size:A4 portrait;margin:14mm 15mm;}
   body{background:#fff;}
 }
-</style></head>
+</style><script src="../../assets/vendor/pdf-lib.min.js"></script></head>
 <body>
 <div class="app">
   <div class="panel">
     <h1>🦊 Sélecteur de livret</h1>
-    <div class="field"><label>Période (titre)</label><input id="periode"></div>
+    <div class="field"><label>Période scolaire</label><select id="periode"></select></div>
     <div class="field"><label>Niveau</label><input id="niveau"></div>
     <div class="field"><label>Année</label><input id="annee"></div>
 
@@ -1011,17 +1196,15 @@ body{margin:0;font-family:"Atkinson",sans-serif;background:#eef0f6;color:#222;}
     <div class="field"><label>Version</label>
       <div class="seg" id="seg-mode">
         <button data-v="eleve" class="on">Élève</button><button data-v="prof">Prof</button></div></div>
-    <div class="field"><label>Police</label>
-      <select id="police"><option value="atkinson">Atkinson Hyperlegible</option>
-      <option value="opendyslexic">OpenDyslexic</option></select></div>
-    <div class="field"><label>Taille</label>
-      <select id="taille"><option>11</option><option selected>12</option><option>13</option><option>14</option></select></div>
+    <h2>PDF des cours</h2>
+    <div class="field"><label>Sélectionner les PDF déjà générés</label>
+      <input id="pdfs" type="file" accept="application/pdf" multiple></div>
+    <p class="hint">Sélectionne un PDF par chapitre, dans la version choisie. Les noms doivent commencer par 4N1__, 4G1__, etc.</p>
 
-    <h2>Exporter</h2>
-    <button class="btn" onclick="printPDF()">🖨️ Imprimer / PDF</button>
-    <button class="btn alt" onclick="downloadHTML()">⬇️ Télécharger HTML</button>
-    <button class="btn ghost" onclick="exportManifest()">📄 Manifeste .txt (pour le script)</button>
-    <p class="hint">Pour le PDF : « Enregistrer en PDF », marges « par défaut », cocher les graphiques d'arrière-plan.</p>
+    <h2>Générer</h2>
+    <button class="btn" onclick="assemblePDF(false)">📚 Assembler le livret PDF</button>
+    <button class="btn alt" onclick="assemblePDF(true)">🖼️ Couverture PDF seule</button>
+    <p class="hint" id="status">La couverture sera placée avant les PDF, dans l'ordre choisi.</p>
   </div>
 
   <div class="stagewrap"><div class="stage mode-eleve" id="stage"></div></div>
@@ -1029,7 +1212,10 @@ body{margin:0;font-family:"Atkinson",sans-serif;background:#eef0f6;color:#222;}
 
 <script>
 const CHAPTERS = __CHAPTERS__;
+const PERIODS = __PERIODES__;
 const FOX = __FOX__;
+const PANDA_SRC = __PANDA_SRC__;
+const PETALS = __PETALS__;
 const META = {titre:__TITRE__, matiere:__MATIERE__, niveau:__NIVEAU__,
               periode:__PERIODE__, annee:__ANNEE__, prof:__PROF__};
 const FONTSTACK = {atkinson:'"Atkinson", sans-serif', opendyslexic:'"OpenDyslexic", sans-serif'};
@@ -1045,25 +1231,28 @@ function coverHTML(){
     const c=CHAPTERS[i];
     return `<li><span class="case-somm"></span><span class="c-code">${esc(c.code)}</span><span class="c-titre">${esc(c.title)}</span></li>`;
   }).join("");
-  return `<section class="cover"><div class="cover-corner tl"></div><div class="cover-corner br"></div>
-    <div class="cover-id"><div class="idbox"><b>NOM :</b> ………………………<br><b>PRÉNOM :</b> ………………………</div>
-    <div class="idbox"><b>CLASSE :</b> …………………</div></div>
-    <h1 class="cover-title">${esc(META.titre)}</h1>
-    <div class="cover-sub">${esc(META.matiere)} <span class="lvl">${esc(document.getElementById('niveau').value||META.niveau)}</span></div>
+  const niveau=esc(document.getElementById('niveau').value||META.niveau);
+  const periode=esc(document.getElementById('periode').value||META.periode);
+  return `<section class="cover cover-vac cover-livret">${PETALS}
+    <div class="cv-banner"><div class="cv-eyebrow">LIVRET DE COURS</div>
+      <h1 class="cv-title">${esc(META.matiere)}</h1>
+      <div class="cv-sub">${niveau} · ${periode}</div>
+      <div class="cv-by">${esc(META.prof)} · ${esc(document.getElementById('annee').value||META.annee)}</div>
+    </div>
     ${FOX}
-    <div class="cover-periode"><div class="periode-label">${esc(document.getElementById('periode').value||META.periode)}</div>
-    <ul class="sommaire">${somm}</ul></div>
-    <div class="cover-foot"><span class="prof">${esc(META.prof)}</span><span class="annee">${esc(document.getElementById('annee').value||META.annee)}</span></div></section>`;
+    <div class="cv-appartient"><b>NOM :</b> ………………………………………… &nbsp; <b>PRÉNOM :</b> …………………………………………<br>
+      <b>CLASSE :</b> …………………………………………</div>
+    <div class="cv-somm-box"><div class="cv-somm-title">Sommaire du livret</div>
+      <ul class="sommaire">${somm}</ul></div>
+    <div class="cv-foot">MATHÉMATIQUES · ${niveau}</div>
+  </section>`;
 }
 
 function renderPreview(){
   const stage = document.getElementById('stage');
-  const chosen = order.filter(i=>selected.has(i));
-  stage.innerHTML = coverHTML() + chosen.map(i=>CHAPTERS[i].html).join("");
+  stage.innerHTML = coverHTML();
   const mode = document.querySelector('#seg-mode .on').dataset.v;
   stage.className = "stage mode-"+mode;
-  stage.style.setProperty('--ff', FONTSTACK[document.getElementById('police').value]);
-  stage.style.setProperty('--fs', document.getElementById('taille').value+'pt');
 }
 
 function renderList(){
@@ -1088,8 +1277,88 @@ document.querySelectorAll('#seg-mode button').forEach(b=> b.onclick=()=>{
   document.querySelectorAll('#seg-mode button').forEach(x=>x.classList.remove('on'));
   b.classList.add('on'); renderPreview();
 });
-['periode','niveau','annee','police','taille'].forEach(id=>
+['periode','niveau','annee'].forEach(id=>
   document.getElementById(id).addEventListener('input', renderPreview));
+
+function wrapPdfText(text,font,size,maxWidth){
+  const words=(text||'').split(/\s+/), lines=[]; let line='';
+  words.forEach(word=>{const test=line?line+' '+word:word;
+    if(font.widthOfTextAtSize(test,size)<=maxWidth) line=test;
+    else{if(line)lines.push(line);line=word;}});
+  if(line)lines.push(line); return lines;
+}
+
+async function createCoverPdf(){
+  if(!window.PDFLib) throw new Error('La bibliothèque PDF locale ne s’est pas chargée.');
+  const {PDFDocument,StandardFonts,rgb}=PDFLib;
+  const pdf=await PDFDocument.create(); const page=pdf.addPage([595.28,841.89]);
+  const regular=await pdf.embedFont(StandardFonts.Helvetica);
+  const bold=await pdf.embedFont(StandardFonts.HelveticaBold);
+  const purple=rgb(.42,.30,.61), rose=rgb(.78,.48,.62), ink=rgb(.29,.27,.35);
+  page.drawRectangle({x:0,y:650,width:310,height:192,color:rgb(.93,.88,.97)});
+  page.drawRectangle({x:285,y:650,width:310,height:192,color:rgb(.99,.91,.90),opacity:.78});
+  page.drawCircle({x:55,y:790,size:24,color:rgb(.96,.66,.77),opacity:.58});
+  page.drawCircle({x:545,y:690,size:34,color:rgb(.79,.70,.89),opacity:.48});
+  page.drawText('LIVRET DE COURS',{x:205,y:802,size:11,font:bold,color:purple,characterSpacing:2.2});
+  page.drawText('MATHEMATIQUES',{x:105,y:744,size:34,font:bold,color:purple});
+  const niveau=document.getElementById('niveau').value||META.niveau;
+  const periode=document.getElementById('periode').value||META.periode;
+  const sub=niveau+'  ·  '+periode;
+  page.drawText(sub,{x:(595-regular.widthOfTextAtSize(sub,16))/2,y:704,size:16,font:bold,color:rose});
+  if(PANDA_SRC){
+    const raw=atob(PANDA_SRC.split(',')[1]); const bytes=new Uint8Array(raw.length);
+    for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+    const panda=await pdf.embedPng(bytes); const scale=Math.min(330/panda.width,300/panda.height);
+    const w=panda.width*scale,h=panda.height*scale;
+    page.drawImage(panda,{x:(595-w)/2,y:370+(300-h)/2,width:w,height:h});
+  }
+  const mode=document.querySelector('#seg-mode .on').dataset.v;
+  if(mode==='eleve'){
+    page.drawRectangle({x:72,y:330,width:451,height:50,borderColor:rgb(.72,.84,.92),borderWidth:1.5,color:rgb(1,1,1)});
+    page.drawText('NOM : ....................................    PRENOM : ....................................',{x:90,y:356,size:10,font:bold,color:ink});
+    page.drawText('CLASSE : ....................................',{x:90,y:338,size:10,font:bold,color:ink});
+  }
+  const chosen=order.filter(i=>selected.has(i));
+  const boxTop=mode==='eleve'?310:350, boxBottom=78;
+  page.drawRectangle({x:60,y:boxBottom,width:475,height:boxTop-boxBottom,borderColor:rgb(.89,.70,.81),borderWidth:1.5,color:rgb(1,.98,.99)});
+  page.drawText('SOMMAIRE DU LIVRET',{x:188,y:boxTop-28,size:15,font:bold,color:purple});
+  let y=boxTop-55;
+  chosen.forEach(i=>{const c=CHAPTERS[i];
+    page.drawRectangle({x:82,y:y-2,width:12,height:12,borderColor:rose,borderWidth:1});
+    page.drawText(c.code,{x:106,y,size:11,font:bold,color:purple});
+    const lines=wrapPdfText(c.title,regular,10,365);
+    lines.forEach((line,j)=>page.drawText(line,{x:145,y:y-j*13,size:10,font:regular,color:ink}));
+    y-=Math.max(30,lines.length*13+9);
+  });
+  page.drawText((META.prof||'')+'  ·  '+(document.getElementById('annee').value||META.annee),{x:180,y:42,size:9,font:regular,color:rgb(.55,.51,.63)});
+  return pdf;
+}
+
+async function assemblePDF(coverOnly){
+  const status=document.getElementById('status'); status.textContent='Génération en cours…';
+  try{
+    const cover=await createCoverPdf();
+    if(!coverOnly){
+      const mode=document.querySelector('#seg-mode .on').dataset.v;
+      const files=[...document.getElementById('pdfs').files];
+      const chosen=order.filter(i=>selected.has(i));
+      if(!files.length) throw new Error('Sélectionne d’abord les PDF des cours.');
+      for(const i of chosen){
+        const c=CHAPTERS[i], prefix=(c.fileCode+'__'+mode).toLowerCase();
+        const matches=files.filter(f=>f.name.toLowerCase().startsWith(prefix));
+        if(matches.length!==1) throw new Error(`Il faut sélectionner exactement un PDF ${mode} pour ${c.fileCode}.`);
+        const src=await PDFLib.PDFDocument.load(await matches[0].arrayBuffer());
+        const pages=await cover.copyPages(src,src.getPageIndices()); pages.forEach(p=>cover.addPage(p));
+      }
+    }
+    const bytes=await cover.save(); const blob=new Blob([bytes],{type:'application/pdf'});
+    const mode=document.querySelector('#seg-mode .on').dataset.v;
+    const period=(document.getElementById('periode').value||'periode').replace(/\s+/g,'-');
+    const name=(coverOnly?'Couverture':'Livret')+'-'+period+'-'+mode+'.pdf';
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),2000); status.textContent='✓ '+name+' généré.';
+  }catch(err){status.textContent='⚠ '+err.message;}
+}
 
 function fullCSS(){ return document.querySelector('style').textContent; }
 
@@ -1104,7 +1373,7 @@ function downloadHTML(){
 body{margin:0;background:#fff;}
 .stage{max-width:820px;margin:0 auto;padding:22px;font-family:${ff};font-size:${fs};line-height:1.5;}
 .stage.mode-prof .ans{color:#c0392b;font-weight:600;}
-.stage.mode-prof .cover-id{display:none;}
+.stage.mode-prof .cover-id,.stage.mode-prof .cv-appartient{display:none;}
 .stage.mode-eleve .ans{color:transparent;border-bottom:1.4px dotted #555;}
 .tgl{position:fixed;top:10px;right:10px;z-index:9;}
 .tgl button{border:1px solid #ccd;background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;}
@@ -1134,7 +1403,10 @@ function exportManifest(){
 function printPDF(){ window.print(); }
 
 // init
-document.getElementById('periode').value = META.periode;
+const periodSelect=document.getElementById('periode');
+(PERIODS.length?PERIODS:[{value:META.periode,label:META.periode}]).forEach(p=>{
+  const o=document.createElement('option'); o.value=p.value; o.textContent=p.label; periodSelect.appendChild(o);
+});
 document.getElementById('niveau').value = META.niveau;
 document.getElementById('annee').value = META.annee;
 renderList(); renderPreview();
@@ -1325,7 +1597,10 @@ def main():
         try: _s.reconfigure(encoding="utf-8", errors="replace")
         except Exception: pass
     ap = argparse.ArgumentParser()
-    ap.add_argument("source")
+    ap.add_argument("source", nargs="?", help="source Markdown unique")
+    ap.add_argument("--chapitres", help="codes séparés par des virgules, ex. 4N1,4G1,4N2")
+    ap.add_argument("--niveau", default="4e", help="dossier de sources, ex. 4e ou 5e")
+    ap.add_argument("--progression", default=None, help="progression JSON utilisée pour calculer les périodes")
     ap.add_argument("--mode", choices=["prof","eleve","both"], default="both")
     ap.add_argument("--police", choices=["atkinson","opensans","opendyslexic"], default="atkinson")
     ap.add_argument("--taille", type=float, default=11)
@@ -1343,6 +1618,24 @@ def main():
     ap.add_argument("--hub-url", default="", help="URL unique de la page du chapitre (remplace les QR MathALÉA multiples dans le livret)")
     args = ap.parse_args()
 
+    chapter_codes = [x.strip().upper() for x in (args.chapitres or "").split(",") if x.strip()]
+    chapter_sources = resolve_chapter_sources(chapter_codes, args.niveau) if chapter_codes else []
+    if chapter_sources and not args.builder:
+        print(f"[lot] {len(chapter_sources)} chapitre(s) : {', '.join(chapter_codes)}")
+        for chapter_source in chapter_sources:
+            cmd = [sys.executable, str(Path(__file__).resolve()), str(chapter_source),
+                   "--mode", args.mode, "--police", args.police, "--taille", str(args.taille),
+                   "--interligne", str(args.interligne), "--couleur", args.couleur,
+                   "--out", args.out]
+            if args.html: cmd.append("--html")
+            if args.pont: cmd += ["--pont", args.pont]
+            if args.exomap: cmd += ["--exomap", args.exomap]
+            if args.hub_url: cmd += ["--hub-url", args.hub_url]
+            subprocess.run(cmd, check=True)
+        return
+    if not args.source and not chapter_sources:
+        ap.error("indique une source Markdown ou utilise --chapitres")
+
     global PONT, EXOMAP, HUB_URL
     HUB_URL = args.hub_url.strip()
     if args.pont:
@@ -1351,7 +1644,10 @@ def main():
         print(f"  · pont-livret : {len(PONT)} chapitre(s) avec objectifs")
     if args.exomap:
         EXOMAP = json.loads(Path(args.exomap).read_text(encoding="utf-8"))
-    src = load_source(args.source)
+    if chapter_sources:
+        src = "\n\n".join(load_source(p) for p in chapter_sources)
+    else:
+        src = load_source(args.source)
     blocks = parse(src)
     _cov0, _chaps0 = split_chapters(blocks)
     foot_left = "Mathématiques · Mme Le Guern"
@@ -1359,7 +1655,7 @@ def main():
         _h = _chaps0[0]["header"]
         foot_left = f"Mathématiques · {_h[0]} · Mme Le Guern · {_h[2]}"
     outdir = Path(args.out); outdir.mkdir(parents=True, exist_ok=True)
-    stem = Path(args.source).stem
+    stem = ("livret_" + "_".join(chapter_codes)) if chapter_sources else Path(args.source).stem
 
     if args.export_qcm or args.export_kahoot or args.qcm_html:
         qcm = generate_qcm_from_mathalea(blocks, per_link=args.qcm_par_lien)
@@ -1376,7 +1672,8 @@ def main():
     if args.builder:
         cover, _ = split_chapters(blocks)
         print(f"[{stem}] sélecteur HTML")
-        build_builder(blocks, outdir, stem, cover)
+        progression_path = args.progression or (STUDIO_DIR / "config" / f"progression-{args.niveau}.json")
+        build_builder(blocks, outdir, stem, cover, school_periods(progression_path))
         return
 
     modes = ["prof","eleve"] if args.mode == "both" else [args.mode]
@@ -1392,8 +1689,17 @@ def main():
         body = render(blocks, m)
         suffix = f"{m}_{args.police}_{int(args.taille)}pt_{args.couleur}"
         pdf = _uniq(outdir / f"{stem}__{suffix}.pdf")
-        HTML(string=html_doc(body, build_print_css(args.police, args.taille, args.interligne, args.couleur, foot_left))).write_pdf(str(pdf))
+        write_pdf_document(html_doc(body, build_print_css(args.police, args.taille, args.interligne, args.couleur, foot_left)), pdf)
         print(f"  ✓ {pdf.name}")
+        if _chaps0:
+            _code, _title, _niveau, _comp = _chaps0[0]["header"]
+            _full_code = _code if (_code and _code[0].isdigit()) else f"{_niveau[:1]}{_code}"
+            _canonical_dir = STUDIO_DIR / "out" / "web"
+            _canonical_dir.mkdir(parents=True, exist_ok=True)
+            _canonical_name = f"{_full_code}.html" if m == "eleve" else f"{_full_code}-prof.html"
+            _canonical = _canonical_dir / _canonical_name
+            _canonical.write_text(html_doc(body, build_web_css(args.police), web=True), encoding="utf-8")
+            print(f"  ✓ page web : {_canonical.name}")
         if args.html:
             webfile = _uniq(outdir / f"{stem}__{m}_web.html")
             webfile.write_text(html_doc(body, build_web_css(args.police), web=True), encoding="utf-8")

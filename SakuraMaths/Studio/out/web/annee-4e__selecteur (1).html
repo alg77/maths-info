@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Générateur de livret de période - SakuraMaths</title>
+  <style>
+    :root{--ink:#263f84;--violet:#6656ba;--lilac:#eeeafd;--pink:#f8e9f1;--line:#d9d3f4}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#eeeafd,#f9edf3);color:#303550;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+    .app{display:grid;grid-template-columns:minmax(310px,390px) 1fr;gap:24px;min-height:100vh;padding:24px}
+    .panel{align-self:start;position:sticky;top:20px;background:#fff;border-radius:24px;padding:22px;box-shadow:0 14px 45px #5a4c8e24}
+    h1{margin:0 0 5px;color:var(--ink);font-size:1.55rem} .intro{margin:0 0 20px;color:#676a80;font-size:.9rem;line-height:1.4}
+    h2{font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);margin:22px 0 10px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:9px 0}.field label{display:block;font-size:.78rem;font-weight:700;color:#60647b;margin-bottom:5px}
+    input,select,button{font:inherit} input,select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:9px 11px;background:#fff;color:#303550}
+    input:focus,select:focus{outline:3px solid #9d8ee42b;border-color:#8f83cf}.upload{border:1.5px dashed #9b8bdc;border-radius:15px;padding:12px;background:#faf9ff}
+    .upload input{border:0;padding:4px 0;background:transparent}.status{font-size:.78rem;color:#777a8d;margin-top:5px}.status.ok{color:#2c8063}.status.bad{color:#b74958}
+    .seg{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:12px;padding:3px}.seg button{border:0;border-radius:9px;padding:7px;background:transparent;color:#65677a;cursor:pointer}.seg button.on{background:#7c70c5;color:#fff;font-weight:700}
+    .chapters{list-style:none;margin:0;padding:0;max-height:300px;overflow:auto}.chapter{display:grid;grid-template-columns:22px 42px 1fr 56px;gap:7px;align-items:center;padding:7px 4px;border-bottom:1px solid #eeeaf8;font-size:.82rem}.chapter input{width:auto}.code{font-weight:800;color:var(--violet)}
+    .moves{display:flex;gap:3px}.moves button{border:0;background:#f0edfa;color:#6558a8;border-radius:7px;width:25px;height:25px;cursor:pointer}.empty{padding:14px;color:#7a7d90;text-align:center;font-size:.85rem}
+    .actions{display:grid;gap:8px}.btn{border:0;border-radius:13px;padding:11px 13px;background:linear-gradient(135deg,#6656ba,#8a7bd0);color:#fff;font-weight:750;cursor:pointer}.btn.alt{background:#eef0ff;color:#51459b}.btn.ghost{background:#fff;border:1.5px solid var(--line);color:#51459b}.btn:disabled{opacity:.45;cursor:not-allowed}
+    .command{white-space:pre-wrap;overflow-wrap:anywhere;background:#24233a;color:#f4f2ff;border-radius:13px;padding:12px;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;margin:9px 0 0}
+    .stagewrap{display:flex;justify-content:center;align-items:flex-start}.cover{position:relative;width:min(100%,745px);aspect-ratio:1055/1491;background:center/cover no-repeat;box-shadow:0 20px 60px #40366d35}
+    .period{position:absolute;top:66.8%;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fffffff0;color:#594da7;border-radius:999px;padding:7px 28px;font-size:clamp(15px,2vw,23px);font-weight:800;box-shadow:0 5px 16px #55498f24}
+    .summary{position:absolute;left:12.5%;right:12.5%;top:72.8%;margin:0;padding:0;list-style:none;color:#263f84;font-size:clamp(9px,1.25vw,14px);font-weight:650}
+    .summary li{display:grid;grid-template-columns:12% 1fr;gap:8px;text-align:left;padding:clamp(3px,.48vw,7px) 8px;border-bottom:1px dotted #7b6bc566}.summary b{color:#6555b6}.meta{position:absolute;bottom:1.8%;left:25%;right:14%;display:flex;justify-content:center;gap:28px;background:#fffffff2;border-radius:999px;padding:6px 14px;color:#594da7;font-size:clamp(8px,1.1vw,13px);font-weight:750}
+    .notice{margin:12px 0 0;padding:9px 11px;border-radius:11px;background:#fff8e8;color:#775c24;font-size:.78rem;line-height:1.4}
+    @media(max-width:900px){.app{grid-template-columns:1fr}.panel{position:static}.cover{width:min(100%,650px)}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <aside class="panel">
+    <h1>Générateur de livret</h1>
+    <p class="intro">La couverture et le manifeste sont préparés ici. Le PDF final est ensuite régénéré depuis les Markdown avec une pagination unique.</p>
+
+    <div class="grid2">
+      <div class="field"><label for="niveau">Niveau</label><select id="niveau"><option>6e</option><option>5e</option><option selected>4e</option><option>3e</option></select></div>
+      <div class="field"><label for="periode">Période</label><select id="periode"><option value="1">Période 1</option><option value="2">Période 2</option><option value="3">Période 3</option><option value="4">Période 4</option><option value="5">Période 5</option></select></div>
+      <div class="field"><label for="annee">Année scolaire</label><input id="annee"></div>
+      <div class="field"><label for="prof">Professeur</label><input id="prof" value="Mme Le Guern"></div>
+    </div>
+
+    <div class="field"><label>Version</label><div class="seg" id="mode"><button class="on" data-mode="eleve">Élève</button><button data-mode="prof">Prof</button></div></div>
+
+    <h2>Progression</h2>
+    <div class="upload"><label for="progression"><b>Charger la progression JSON</b></label><input id="progression" type="file" accept="application/json,.json"><div id="status" class="status">Choisir par exemple progression-4e.json</div></div>
+
+    <h2>Chapitres de la période</h2>
+    <ul id="chapters" class="chapters"><li class="empty">Charge la progression JSON pour remplir la liste.</li></ul>
+
+    <h2>Génération</h2>
+    <div class="actions">
+      <button id="download" class="btn" disabled>Télécharger le manifeste JSON</button>
+      <button id="copy" class="btn alt" disabled>Copier la commande Python</button>
+      <button id="saveCover" class="btn ghost">Ouvrir la couverture à imprimer</button>
+    </div>
+    <pre id="command" class="command">La commande apparaîtra après le chargement de la progression.</pre>
+    <p class="notice">GitHub Pages ne lance pas Python : télécharge le manifeste, place-le dans <b>livrets/manifests</b>, puis exécute la commande affichée.</p>
+  </aside>
+
+  <section class="stagewrap"><div id="cover" class="cover"><div id="coverPeriod" class="period">Période 1</div><ol id="summary" class="summary"></ol><div class="meta"><span id="coverYear"></span><span id="coverProf"></span></div></div></section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const state={progression:null,chapters:[],mode:'eleve'};
+const DEFAULT_4E={seq:[
+  ['N1','Nombres relatifs : addition et soustraction',1],['G1','Triangles : droites remarquables et droite des milieux',1],
+  ['D1','Proportionnalité',1],['N2','Nombres relatifs : multiplication et division',1],
+  ['N3','Calcul littéral 1',2],['G2','Égalité de Pythagore (sens direct)',2],['N4','Équations',2],
+  ['D2','Statistiques',3],['N5','Fractions 1 : addition, soustraction, comparaison',3],['G3','Quadrilatères particuliers',3],['N6','Calcul littéral 2',3],
+  ['G4','Égalité de Pythagore (réciproque)',4],['N7','Fractions 2 : multiplication et division',4],['G5','Transformations : translation',4],['N8','Puissances',4],
+  ['G6','Transformations : rotation',5],['G7','Solides : pyramide et cône',5],['D3','Grandeurs produits et quotients',5],['A1','Algorithmique',5]
+].map(([code,title,periode])=>({code,title,periode}))};
+const DEFAULT_5E={seq:[
+  ['N1','Calculer avec les nombres décimaux',1],['G1','Reconnaître et utiliser les symétries axiale et centrale',1],['N2','Écrire et utiliser une expression littérale',1],
+  ['G2','Cylindre et prisme droit ; calculer des volumes',2],['N3','Définir et représenter des nombres rationnels',2],['G3','Triangle et droites remarquables',2],['N4','Utiliser les nombres entiers',2],
+  ['D1','Utiliser la proportionnalité',3],['G4','Symétrie centrale : construire et démontrer',3],['N5','Découvrir les nombres relatifs',3],['G5','Angles particuliers et droites parallèles',3],
+  ['N6','Fractions égales ; comparer des fractions',4],['G6','Angles d’un triangle',4],['N7','Additionner et soustraire des relatifs',4],['D2','Pourcentages et échelles',4],
+  ['G7','Parallélogrammes',5],['N8','Additionner et soustraire des fractions',5],['D3','Traiter et représenter des données',5],['A1','Algorithmique & Tableur',5]
+].map(([code,title,periode])=>({code,title,periode}))};
+const DEFAULT_6E={seq:[
+  ['N1','Nombres entiers et décimaux',1],['G1','Éléments de géométrie',1],['C1','Multiplier et diviser par 10, 100, 1000…',1],['M1','Angles (1)',1],
+  ['G2','Droites parallèles et perpendiculaires',2],['M2','Repérer et placer des décimaux',2],['G3','Distances et cercle',2],['N2','Additionner et soustraire des décimaux',2],
+  ['N3','Multiplier des nombres décimaux',3],['G4','Polygones particuliers',3],['C2','Ajouter ou retrancher 9, 99, 11…',3],['G5','Pavé droit et cube',3],['M3','Périmètres',3],
+  ['N4','Division euclidienne',4],['M4','Angles (2)',4],['N5','Division décimale',4],['N6','Fractions',4],
+  ['N7','Proportionnalité',5],['N8','Probabilités',5],['M5','Aires et volumes',5],['G6','Symétrie axiale',5],['A','Algorithmique & Tableur',5]
+].map(([code,title,periode])=>({code,title,periode}))};
+const DEFAULT_PROGRESSIONS={'4e':DEFAULT_4E,'5e':DEFAULT_5E,'6e':DEFAULT_6E};
+
+function schoolYear(){const d=new Date(),y=d.getFullYear(),start=d.getMonth()>=6?y:y-1;return `${start}-${start+1}`}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function coverUrl(){return `../../../assets/covers/cover-${$('niveau').value}.png`}
+function selected(){return state.chapters.filter(c=>c.selected)}
+function periodNumber(item){const raw=item.periode??item.period??item.p;const m=String(raw??'').match(/\d+/);return m?Number(m[0]):null}
+function sourceFor(code){const level=$('niveau').value,digit=level[0],full=String(code).startsWith(digit)?String(code):digit+code;return `Studio/sources/${level}/${full}.md`}
+
+function assignFallback(seq){
+  const total=seq.reduce((n,c)=>n+(Number(c.weeks)||1),0),target=total/5;let acc=0,p=1;
+  return seq.map(c=>{const value=Number(c.weeks)||1;if(p<5&&acc>0&&acc+value>target*p)p++;acc+=value;return {...c,periode:p}})
+}
+
+function loadChapters(){
+  if(!state.progression)return;
+  let seq=Array.isArray(state.progression.seq)?state.progression.seq:(state.progression.chapitres||state.progression.sequences||[]);
+  if(!seq.some(c=>periodNumber(c)))seq=assignFallback(seq);
+  const p=Number($('periode').value);
+  state.chapters=seq.map((c,i)=>({code:c.code||`C${i+1}`,title:c.title||c.titre||c.code||`Chapitre ${i+1}`,comps:c.comps||[],periode:periodNumber(c),selected:periodNumber(c)===p}));
+  renderList();renderAll();
+}
+
+async function loadDefaultProgression(){
+  const level=$('niveau').value,url=`../../../Progressions/progression-${level}.json`;
+  try{
+    const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw new Error(String(response.status));
+    state.progression=await response.json();$('status').textContent=`progression-${level}.json chargée automatiquement`;$('status').className='status ok';loadChapters();
+  }catch{
+    if(DEFAULT_PROGRESSIONS[level]){state.progression=DEFAULT_PROGRESSIONS[level];$('status').textContent=`progression-${level}.json chargée par défaut`;$('status').className='status ok';loadChapters()}
+    else{$('status').textContent=`Charge progression-${level}.json`;$('status').className='status';renderList();renderAll()}
+  }
+}
+
+function renderList(){
+  const ul=$('chapters');ul.innerHTML='';
+  if(!state.chapters.length){ul.innerHTML='<li class="empty">Aucun chapitre trouvé.</li>';return}
+  state.chapters.forEach((c,i)=>{
+    const li=document.createElement('li');li.className='chapter';
+    li.innerHTML=`<input type="checkbox" ${c.selected?'checked':''}><span class="code">${esc(c.code)}</span><span>${esc(c.title)}</span><span class="moves"><button title="Monter">↑</button><button title="Descendre">↓</button></span>`;
+    li.querySelector('input').onchange=e=>{c.selected=e.target.checked;renderAll()};
+    const buttons=li.querySelectorAll('button');buttons[0].onclick=()=>move(i,-1);buttons[1].onclick=()=>move(i,1);ul.appendChild(li);
+  });
+}
+
+function move(i,d){const j=i+d;if(j<0||j>=state.chapters.length)return;[state.chapters[i],state.chapters[j]]=[state.chapters[j],state.chapters[i]];renderList();renderAll()}
+function manifest(){
+  const niveau=$('niveau').value,p=$('periode').value;
+  const id=`P${p}`,root=`livrets/dist/${niveau}/${id}`;
+  return {schema:'sakuramaths.livret-periode.v2',niveau,periode:`Période ${p}`,periode_id:id,annee:$('annee').value.trim(),prof:$('prof').value.trim(),mode:'both',progression:`Progressions/progression-${niveau}.json`,cover:`assets/covers/cover-${niveau}.png`,livret:`${root}/livret-${niveau}-${id}-eleve.pdf`,livret_prof:`${root}/livret-${niveau}-${id}-prof.pdf`,chapitres:selected().map(c=>({code:c.code,titre:c.title,comps:c.comps||[],source:sourceFor(c.code),html:{eleve:`Studio/out/web/${niveau[0]}${c.code}.html`,prof:`Studio/out/web/${niveau[0]}${c.code}-prof.html`}}))}
+}
+function command(){const m=manifest(),base=`SakuraMaths`,id=m.periode_id;return `python ${base}/builders/build_livret_periode.py --niveau ${m.niveau} --periode "${m.periode}" --annee "${m.annee}" --prof "${m.prof}" --mode both --manifest ${base}/livrets/manifests/${m.niveau}-${id}.json --cover ${base}/assets/covers/cover-${m.niveau}.png --out ${base}/${m.livret}`}
+
+function renderAll(){
+  $('cover').style.backgroundImage=`url('${coverUrl()}')`;$('coverPeriod').textContent=`Période ${$('periode').value}`;$('coverYear').textContent=$('annee').value;$('coverProf').textContent=$('prof').value;
+  $('summary').innerHTML=selected().map(c=>`<li><b>${esc(c.code)}</b><span>${esc(c.title)}</span></li>`).join('');
+  const ready=!!state.progression&&selected().length>0;$('download').disabled=!ready;$('copy').disabled=!ready;$('command').textContent=ready?command():'Sélectionne au moins un chapitre.';
+}
+
+$('progression').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{state.progression=JSON.parse(await file.text());$('status').textContent=`${file.name} chargé`;$('status').className='status ok';loadChapters()}catch(err){$('status').textContent='JSON invalide : '+err.message;$('status').className='status bad'}};
+$('periode').onchange=loadChapters;$('niveau').onchange=()=>{state.progression=null;state.chapters=[];$('progression').value='';loadDefaultProgression()};
+['annee','prof'].forEach(id=>$(id).oninput=renderAll);
+document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#mode button').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.mode=b.dataset.mode;renderAll()});
+$('download').onclick=()=>{const m=manifest(),blob=new Blob([JSON.stringify(m,null,2)+'\n'],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${m.niveau}-${m.periode_id}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('copy').onclick=async()=>{const text=command();try{await navigator.clipboard.writeText(text);$('copy').textContent='Commande copiée ✓'}catch{const area=document.createElement('textarea');area.value=text;document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();$('copy').textContent='Commande copiée ✓'}setTimeout(()=>$('copy').textContent='Copier la commande Python',1400)};
+$('saveCover').onclick=()=>{const w=window.open('','_blank'),node=$('cover').cloneNode(true);w.document.write(`<!doctype html><meta charset="utf-8"><title>Couverture</title><style>html,body{margin:0}.cover{position:relative;width:210mm;height:297mm;background:center/cover no-repeat}.period{position:absolute;top:66.8%;left:50%;transform:translateX(-50%);background:#fffffff0;color:#594da7;border-radius:999px;padding:2mm 8mm;font:800 15pt sans-serif}.summary{position:absolute;left:12.5%;right:12.5%;top:72.8%;list-style:none;margin:0;padding:0;color:#263f84;font:650 10.5pt sans-serif}.summary li{display:grid;grid-template-columns:13mm 1fr;gap:2mm;padding:1.25mm 2mm;border-bottom:.3mm dotted #7b6bc566}.summary b{color:#6555b6}.meta{position:absolute;bottom:5.5mm;left:25%;right:14%;display:flex;justify-content:center;gap:12mm;background:#fffffff2;border-radius:999px;padding:1.5mm;color:#594da7;font:700 9pt sans-serif}@page{size:A4;margin:0}</style>`);w.document.body.appendChild(node);w.document.close();w.focus();setTimeout(()=>w.print(),300)};
+
+$('annee').value=schoolYear();renderAll();loadDefaultProgression();
+</script>
+</body>
+</html>

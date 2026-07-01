@@ -35,6 +35,7 @@
   "seq": [
     {
       "code": "N1",
+      "periode": 1,
       "title": "Calculer avec les nombres décimaux",
       "theme": "N",
       "weeks": 2,
@@ -73,6 +74,7 @@
     },
     {
       "code": "G1",
+      "periode": 1,
       "title": "Reconnaître et utiliser les symétries axiale et centrale",
       "theme": "G",
       "weeks": 2,
@@ -91,6 +93,7 @@
     },
     {
       "code": "N2",
+      "periode": 1,
       "title": "Écrire et utiliser une expression littérale",
       "theme": "N",
       "weeks": 2,
@@ -118,6 +121,7 @@
     },
     {
       "code": "G2",
+      "periode": 2,
       "title": "Décrire, représenter le cylindre et le prisme droit ; calculer des volumes",
       "theme": "G",
       "weeks": 2,
@@ -141,6 +145,7 @@
     },
     {
       "code": "N3",
+      "periode": 2,
       "title": "Définir, utiliser et représenter des nombres rationnels",
       "theme": "N",
       "weeks": 2,
@@ -153,6 +158,7 @@
     },
     {
       "code": "G3",
+      "periode": 2,
       "title": "Construire un triangle et ses droites remarquables",
       "theme": "G",
       "weeks": 2,
@@ -175,6 +181,7 @@
     },
     {
       "code": "N4",
+      "periode": 2,
       "title": "Utiliser les nombres entiers",
       "theme": "N",
       "weeks": 2,
@@ -195,6 +202,7 @@
     },
     {
       "code": "D1",
+      "periode": 3,
       "title": "Utiliser la proportionnalité pour résoudre des problèmes",
       "theme": "D",
       "weeks": 2,
@@ -220,6 +228,7 @@
     },
     {
       "code": "G4",
+      "periode": 3,
       "title": "Symétrie centrale : construire et démontrer",
       "theme": "G",
       "weeks": 1,
@@ -237,6 +246,7 @@
     },
     {
       "code": "N5",
+      "periode": 3,
       "title": "Découvrir, repérer et comparer les nombres relatifs",
       "theme": "N",
       "weeks": 2,
@@ -266,6 +276,7 @@
     },
     {
       "code": "G5",
+      "periode": 3,
       "title": "Reconnaître des angles particuliers et des droites parallèles",
       "theme": "G",
       "weeks": 2,
@@ -283,6 +294,7 @@
     },
     {
       "code": "N6",
+      "periode": 4,
       "title": "Fractions égales ; comparer des fractions",
       "theme": "N",
       "weeks": 2,
@@ -302,6 +314,7 @@
     },
     {
       "code": "G6",
+      "periode": 4,
       "title": "Construire et démontrer avec les angles d'un triangle",
       "theme": "G",
       "weeks": 2,
@@ -325,6 +338,7 @@
     },
     {
       "code": "N7",
+      "periode": 4,
       "title": "Additionner et soustraire des nombres relatifs",
       "theme": "N",
       "weeks": 1,
@@ -342,6 +356,7 @@
     },
     {
       "code": "D2",
+      "periode": 4,
       "title": "Utiliser les pourcentages et les échelles",
       "theme": "D",
       "weeks": 2,
@@ -358,6 +373,7 @@
     },
     {
       "code": "G7",
+      "periode": 5,
       "title": "Définir, construire et reconnaître un parallélogramme",
       "theme": "G",
       "weeks": 2,
@@ -380,6 +396,7 @@
     },
     {
       "code": "N8",
+      "periode": 5,
       "title": "Additionner et soustraire des fractions",
       "theme": "N",
       "weeks": 1,
@@ -396,6 +413,7 @@
     },
     {
       "code": "D3",
+      "periode": 5,
       "title": "Traiter et représenter des données",
       "theme": "D",
       "weeks": 2,
@@ -418,6 +436,7 @@
     },
     {
       "code": "A1",
+      "periode": 5,
       "title": "Algorithmique & Tableur (fil rouge)",
       "theme": "A",
       "weeks": 1.5,
