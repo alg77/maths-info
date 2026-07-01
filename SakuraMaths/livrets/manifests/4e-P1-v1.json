@@ -1,0 +1,32 @@
+{
+  "schema": "sakuramaths.livret-periode.v1",
+  "niveau": "4e",
+  "periode": "Période 1",
+  "periode_id": "P1",
+  "annee": "2026-2027",
+  "prof": "Mme Le Guern",
+  "mode": "eleve",
+  "cover": "assets/covers/cover-4e.png",
+  "chapitres": [
+    {
+      "code": "N1",
+      "titre": "Nombres relatifs : addition et soustraction",
+      "source": "Studio/sources/4e/4N1.md"
+    },
+    {
+      "code": "G1",
+      "titre": "Triangles : droites remarquables et droite des milieux",
+      "source": "Studio/sources/4e/4G1.md"
+    },
+    {
+      "code": "D1",
+      "titre": "Proportionnalité, ratios et pourcentages",
+      "source": "Studio/sources/4e/4D1.md"
+    },
+    {
+      "code": "N2",
+      "titre": "Nombres relatifs : multiplication et division",
+      "source": "Studio/sources/4e/4N2.md"
+    }
+  ]
+}

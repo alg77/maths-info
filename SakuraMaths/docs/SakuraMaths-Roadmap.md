@@ -35,6 +35,8 @@ Objectif : distinguer automatiquement les espaces Élève et Professeur.
 
 Intégrer Firebase Authentication (Google).
 
+**État : implémenté et relié au projet Firebase `sakuramaths-44708`.**
+
 Créer un fichier :
 
 ```

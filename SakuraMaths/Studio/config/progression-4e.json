@@ -35,12 +35,12 @@
   "seq": [
     {
       "code": "N1",
-      "periode": 1,
       "title": "Nombres relatifs : addition et soustraction",
       "theme": "N",
       "weeks": 1.5,
       "comps": [
         "Ch1",
+        "Re1",
         "Ca1",
         "Co2"
       ],
@@ -54,23 +54,31 @@
       ],
       "automatismes": [
         "4:aOPR1",
-        "4:aOPR2"
+        "4:aOPR2",
+        "4:aOPR6",
+        "4:aLIT5",
+        "4:aREP1",
+        "4:aREP2",
+        "4:aREP3"
       ],
       "notes": "Utiliser les nombres relatifs pour calculer et résoudre des problèmes"
     },
     {
       "code": "G1",
-      "periode": 1,
       "title": "Triangles : droites remarquables et droite des milieux",
       "theme": "G",
       "weeks": 2,
       "comps": [
+        "Ch1",
         "Re1",
         "Ra3",
         "Co2"
       ],
       "objectifs": [
-        "4:TRI1"
+        "4:TRI1",
+        "4:TRI4",
+        "4:TRI5",
+        "4:TRI6"
       ],
       "automatismes": [
         "4:aTRI1"
@@ -79,7 +87,6 @@
     },
     {
       "code": "D1",
-      "periode": 1,
       "title": "Proportionnalité",
       "theme": "D",
       "weeks": 2,
@@ -89,16 +96,23 @@
         "Co2"
       ],
       "objectifs": [
-        "4:PRP2", "4:PRP3", "4:PRP4", "4:PRP5", "4:PRP6", "4:PRP7", "4:PRP8", "4:FON4"
+        "4:PRP2",
+        "4:PRP3",
+        "4:PRP4",
+        "4:PRP5",
+        "4:PRP6",
+        "4:PRP7",
+        "4:PRP8",
+        "4:FON4"
       ],
       "automatismes": [
-        "4:aPRP1", "4:aPRP2"
+        "4:aPRP1",
+        "4:aPRP2"
       ],
       "notes": "Reconnaître et exprimer une proportionnalité\nÉgalité des produits en croix et quatrième proportionnelle\nRapports, ratios et partages proportionnels\nPourcentages et coefficients multiplicateurs\nLecture d'une représentation graphique"
     },
     {
       "code": "N2",
-      "periode": 1,
       "title": "Nombres relatifs : multiplication et division",
       "theme": "N",
       "weeks": 2,
@@ -111,121 +125,167 @@
         "4:OPR1",
         "4:OPR2",
         "4:OPR3",
-        "4:OPR4"
+        "4:OPR4",
+        "4:RAT6",
+        "4:RAT7"
       ],
       "automatismes": [
         "4:aOPR3",
         "4:aOPR4",
-        "4:aOPR5"
+        "4:aOPR5",
+        "4:aPUI2"
       ],
       "notes": "Multiplier et diviser des nombres relatifs\nJustifier le produit de deux nombres négatifs par distributivité\nCalculs enchaînés et priorités opératoires\nVocabulaire des opérations et programmes de calcul"
     },
     {
       "code": "N3",
-      "periode": 2,
       "title": "Calcul littéral 1",
       "theme": "N",
       "weeks": 2,
       "comps": [
+        "Ch1",
+        "Mo1",
+        "Re1",
         "Ca3",
         "Co1"
       ],
-      "objectifs": [],
-      "automatismes": [],
+      "objectifs": [
+        "4:LIT1",
+        "4:FON1",
+        "4:FON2",
+        "4:FON3",
+        "4:FON5"
+      ],
+      "automatismes": [
+        "4:aLIT1",
+        "4:aLIT3",
+        "4:aLIT4"
+      ],
       "notes": "Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires"
     },
     {
       "code": "G2",
-      "periode": 2,
       "title": "Égalité de Pythagore (sens direct)",
       "theme": "G",
       "weeks": 2,
       "comps": [
         "Mo1",
         "Ra3",
+        "Ca1",
         "Co2"
       ],
       "objectifs": [
-        "4:ESP2"
+        "4:ESP2",
+        "4:RAC1",
+        "4:RAC2"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "4:aPUI1",
+        "4:aRAC1"
+      ],
       "notes": "Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l'angle droit\nDémonstration possible"
     },
     {
       "code": "N4",
-      "periode": 2,
       "title": "Équations",
       "theme": "N",
       "weeks": 2.5,
       "comps": [
         "Mo1",
         "Mo2",
+        "Ra1",
         "Ca2",
         "Ca3",
         "Co1"
       ],
       "objectifs": [
         "4:LIT4",
-        "4:LIT5"
+        "4:LIT5",
+        "4:LIT3",
+        "4:LIT6"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "4:aLIT2",
+        "4:aLIT6"
+      ],
       "notes": "Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu'un nombre est solution d'une équation"
     },
     {
       "code": "D2",
-      "periode": 3,
       "title": "Statistiques",
       "theme": "D",
       "weeks": 2,
       "comps": [
+        "Ch1",
         "Re3",
+        "Ca1",
         "Co1"
       ],
       "objectifs": [
         "4:STA1",
         "4:STA4",
-        "4:STA7"
+        "4:STA7",
+        "4:STA2",
+        "4:STA3",
+        "4:STA5",
+        "4:STA6"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "4:aSTA1",
+        "4:aSTA2",
+        "4:aSTA3"
+      ],
       "notes": "Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur"
     },
     {
       "code": "N5",
-      "periode": 3,
       "title": "Fractions 1 : addition, soustraction, comparaison",
       "theme": "N",
       "weeks": 2,
       "comps": [
+        "Mo1",
+        "Re1",
+        "Ca1",
         "Co1"
       ],
-      "objectifs": [],
+      "objectifs": [
+        "4:RAT1",
+        "4:RAT2",
+        "4:RAT3",
+        "4:RAT5"
+      ],
       "automatismes": [
         "4:aRAT1",
-        "4:aRAT2"
+        "4:aRAT2",
+        "4:aRAT3",
+        "4:aRAT4"
       ],
       "notes": "Somme et différence\nSimplifier des fractions\nComparer des quotients"
     },
     {
       "code": "G3",
-      "periode": 3,
       "title": "Quadrilatères particuliers",
       "theme": "G",
       "weeks": 1.5,
       "comps": [
+        "Ch1",
         "Re4",
         "Ra3",
+        "Ca1",
         "Co2"
       ],
-      "objectifs": [],
+      "objectifs": [
+        "4:PAR2"
+      ],
       "automatismes": [
         "4:aPAR3",
-        "4:aPAR4"
+        "4:aPAR4",
+        "4:aESP4"
       ],
       "notes": "Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible"
     },
     {
       "code": "N6",
-      "periode": 3,
       "title": "Calcul littéral 2",
       "theme": "N",
       "weeks": 2,
@@ -233,13 +293,14 @@
         "Ca2",
         "Co1"
       ],
-      "objectifs": [],
+      "objectifs": [
+        "4:LIT2"
+      ],
       "automatismes": [],
       "notes": "Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie"
     },
     {
       "code": "G4",
-      "periode": 4,
       "title": "Égalité de Pythagore (réciproque)",
       "theme": "G",
       "weeks": 1,
@@ -257,52 +318,66 @@
     },
     {
       "code": "N7",
-      "periode": 4,
       "title": "Fractions 2 : multiplication et division",
       "theme": "N",
       "weeks": 1,
       "comps": [
+        "Mo1",
         "Ca1"
       ],
       "objectifs": [
-        "4:RAT10"
+        "4:RAT10",
+        "4:RAT4",
+        "4:RAT8",
+        "4:RAT9"
       ],
       "automatismes": [],
       "notes": "Calculer un produit : simple, en simplifiant avant de calculer\nInverse d'un nombre non nul"
     },
     {
       "code": "G5",
-      "periode": 4,
       "title": "Transformations : translation",
       "theme": "G",
       "weeks": 1,
       "comps": [
-        "Re4"
+        "Ch1",
+        "Mo1",
+        "Re4",
+        "Ra1"
       ],
-      "objectifs": [],
-      "automatismes": [],
+      "objectifs": [
+        "4:PAR1",
+        "4:PAR3"
+      ],
+      "automatismes": [
+        "4:aPAR1",
+        "4:aPAR2"
+      ],
       "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
     },
     {
       "code": "N8",
-      "periode": 4,
       "title": "Puissances",
       "theme": "N",
       "weeks": 2,
       "comps": [
+        "Ch1",
         "Ca1"
       ],
       "objectifs": [
         "4:PUI1",
         "4:PUI2",
-        "4:PUI3"
+        "4:PUI3",
+        "4:PUI4"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "4:aPUI3",
+        "4:aPUI4"
+      ],
       "notes": "Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique"
     },
     {
       "code": "G6",
-      "periode": 5,
       "title": "Transformations : rotation",
       "theme": "G",
       "weeks": 1,
@@ -310,16 +385,18 @@
         "Re4"
       ],
       "objectifs": [],
-      "automatismes": [],
+      "automatismes": [
+        "4:aTRF1"
+      ],
       "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
     },
     {
       "code": "G7",
-      "periode": 5,
       "title": "Solides : pyramide et cône",
       "theme": "G",
       "weeks": 1,
       "comps": [
+        "Mo1",
         "Re4",
         "Ca1"
       ],
@@ -327,16 +404,20 @@
         "4:ESP1",
         "4:ESP3"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "4:aESP1",
+        "4:aESP2",
+        "4:aESP3"
+      ],
       "notes": "Patrons\nVolumes"
     },
     {
       "code": "D3",
-      "periode": 5,
       "title": "Grandeurs produits et quotients",
       "theme": "D",
       "weeks": 1,
       "comps": [
+        "Mo1",
         "Ca1"
       ],
       "objectifs": [
@@ -347,17 +428,45 @@
     },
     {
       "code": "A1",
-      "periode": 5,
       "title": "Algorithmique (fil rouge ½ groupes)",
       "theme": "A",
       "weeks": 1.5,
       "comps": [
         "Ch2",
-        "Ch3"
+        "Ch3",
+        "Re1"
       ],
-      "objectifs": [],
+      "objectifs": [
+        "4:ALG1",
+        "4:ALG2",
+        "4:ALG3",
+        "4:ALG4",
+        "4:ALG5"
+      ],
       "automatismes": [],
       "notes": "Scratch, tableur\n6 séances en demi-groupes réparties sur l'année"
+    },
+    {
+      "code": "N9",
+      "title": "Probabilités (new)",
+      "theme": "N",
+      "weeks": 1,
+      "comps": [
+        "Ch1",
+        "Re1",
+        "Ca1",
+        "Co1"
+      ],
+      "objectifs": [
+        "4:PRB1",
+        "4:PRB2",
+        "4:PRB3",
+        "4:PRB4",
+        "4:PRB5",
+        "4:PRB6"
+      ],
+      "automatismes": [],
+      "notes": ""
     }
   ]
 }

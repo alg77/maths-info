@@ -6,11 +6,12 @@
   <title>Tableau de bord pédagogique</title>
   <link rel="stylesheet" href="site-commun.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script type="module">import { guardProf } from "./auth/auth.js"; guardProf();</script>
 </head>
 <body data-page="accueil" data-zone="prof">
   <main class="container">
     <section class="hero">
-      <div class="eyebrow">🌸 Espace prof</div>
+      <div class="eyebrow">🌸 Espace prof <span id="authIdentity"></span> <button class="auth-logout" id="authLogout" type="button">Déconnexion</button></div>
       <h1>Tableau de bord pédagogique</h1>
       <p class="intro">Un accès centralisé à mes outils : progressions interactives, carnet de suivi, programmes officiels (BO) et vitrine des projets et productions d’élèves.</p>
     </section>
@@ -131,6 +132,15 @@
   </main>
 
   <script src="assets/site.js" defer></script>
+  <script type="module">
+    import { logoutGoogle } from "./auth/auth.js";
+    document.addEventListener("sakura-auth", event => {
+      document.getElementById("authIdentity").textContent = `· ${event.detail.user.email}`;
+    });
+    document.getElementById("authLogout").addEventListener("click", async () => {
+      await logoutGoogle(); location.replace("index.html");
+    });
+  </script>
   <script>
     const CARNET_KEY='prog.carnetUrl';
     function getCarnetUrl(){ try{ return localStorage.getItem(CARNET_KEY)||''; }catch(e){ return ''; } }

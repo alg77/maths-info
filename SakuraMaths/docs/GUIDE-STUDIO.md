@@ -18,7 +18,16 @@ chargés automatiquement depuis `Studio/assets/`.
 
 ## 2. Lancer
 ```bash
-python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/config/pont-livret-4e.json --mode both --out Studio/out/pdf
+python Studio/scripts/build_livret.py Studio/sources/5e/5N1.md
+
+Le niveau est déduit du dossier `Studio/sources/<niveau>/`. Le build recherche ensuite automatiquement, par convention :
+
+- `Progressions/progression-<niveau>.json` ;
+- `Progressions/pont-livret-<niveau>.json` ;
+- `assets/covers/cover-<niveau>.png` ;
+- la palette calculée pour `<niveau>`.
+
+Ajouter un niveau ne demande donc aucune modification du code : il suffit d'ajouter le dossier de sources et ces ressources portant le même suffixe.
 ```
 → produit les PDF professeur et élève dans `Studio/out/pdf/`.
 
@@ -34,7 +43,7 @@ python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/con
 | `--couleur` | `couleur` `nb` | `couleur` | `nb` = noir & blanc (économie d'encre) |
 | `--html` | — | — | exporte aussi un aperçu HTML |
 | `--chapitres` | codes séparés par des virgules | — | génère plusieurs chapitres en une commande |
-| `--niveau` | `4e`, `5e`… | `4e` | dossier dans `Studio/sources/` |
+| `--niveau` | un niveau quelconque | déduit de la source | remplacement manuel exceptionnel |
 | `--builder` | — | — | crée le sélecteur HTML pour composer un livret |
 | `--progression` | fichier JSON | progression du niveau | données servant à proposer les périodes et les chapitres |
 

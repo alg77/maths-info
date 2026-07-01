@@ -47,15 +47,17 @@ if VENDOR_DIR.exists() and str(VENDOR_DIR) not in sys.path:
     sys.path.insert(0, str(VENDOR_DIR))
 
 STUDIO_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = STUDIO_DIR.parent
 ASSET_DIR = STUDIO_DIR / "assets"
 FONT_DIR = ASSET_DIR / "fonts"
 THEME = {"N": "#3B82C4", "G": "#E05A6B", "D": "#2BA98E", "A": "#8B6FB0", "C": "#E0A23B"}
 PONT, EXOMAP = {}, {}
 HUB_URL = ""
+CURRENT_LEVEL = ""
 THEME2 = {"N":("#9cc7e6","#3f78a3"),"G":("#ef9a8d","#bf4b39"),"D":("#8fd3b3","#3f8d6a"),"M":("#f0cf8e","#bd8b27"),"A":("#c9a9e0","#7d54a3"),"C":("#8fcfd3","#2f8a8f")}
 DOMAIN = {"N":"Nombres & calculs","G":"Géométrie","D":"Organisation & gestion de données","M":"Grandeurs & mesures","A":"Algorithmique & programmation","C":"Calcul mental"}
 
-# Référentiel (extrait du Gantt 4e — libellés à ajuster librement)
+# Référentiel commun — libellés à ajuster librement
 COMP_MAP = {
     "Ch1": "Extraire des informations et les reformuler",
     "Mo1": "Reconnaître et utiliser un modèle mathématique",
@@ -163,20 +165,69 @@ def load_source(path, _seen=None):
         out.append(load_source(p.parent / m.group(1).strip(), _seen) if m else ln)
     return "\n".join(out)
 
-def resolve_chapter_sources(codes, niveau="4e"):
-    """Résout une liste de codes (4N1, 4G1...) vers leurs sources Markdown."""
+def infer_level(source=None, codes=None, explicit=None):
+    """Déduit le niveau du dossier sources/<niveau> ou du préfixe d'un code."""
+    if explicit:
+        return explicit
+    if source:
+        path = Path(source)
+        parts = list(path.parts)
+        for index, part in enumerate(parts[:-1]):
+            if part.lower() == "sources":
+                return parts[index + 1]
+        match = re.match(r"(\d+)\s*e", path.stem, re.I)
+        if match:
+            return f"{match.group(1)}e"
+    for code in codes or []:
+        match = re.match(r"(\d+)", code)
+        if match:
+            return f"{match.group(1)}e"
+    return None
+
+def level_prefix(niveau):
+    match = re.match(r"(\d+)", niveau or "")
+    return match.group(1) if match else ""
+
+def level_resource(kind, niveau, explicit=None):
+    if explicit:
+        return Path(explicit)
+    filename = f"{kind}-{niveau}.json"
+    candidates = [STUDIO_DIR / "config" / filename, ROOT_DIR / "Progressions" / filename]
+    return next((path for path in candidates if path.exists()), candidates[0])
+
+def resolve_chapter_sources(codes, niveau):
+    """Résout une liste de codes vers sources/<niveau>, sans liste de niveaux figée."""
     src_dir = STUDIO_DIR / "sources" / niveau
+    prefix = level_prefix(niveau)
     found = []
     for code in codes:
         code = code.strip().upper()
         if not code:
             continue
-        exact = src_dir / f"{code}.md"
-        candidates = [exact] if exact.exists() else sorted(src_dir.glob(f"{code}-*.md"))
+        full_code = code if code.startswith(prefix) else f"{prefix}{code}"
+        exact = src_dir / f"{full_code}.md"
+        candidates = [exact] if exact.exists() else sorted(src_dir.glob(f"{full_code}*.md"))
         if not candidates:
             raise FileNotFoundError(f"Source introuvable pour {code} dans {src_dir}")
         found.append(candidates[0])
     return found
+
+def prepare_legacy_source(path, niveau, progression_data):
+    """Rend directement constructible un ancien Markdown dépourvu d'en-tête SakuraMaths."""
+    source = load_source(path)
+    if re.search(r"(?m)^#\s+[^|\n]+\|[^\n]+\|", source):
+        return source
+    prefix = level_prefix(niveau)
+    raw_code = re.match(r"([0-9]+[A-Z]+[0-9]+)", Path(path).stem.upper())
+    full_code = raw_code.group(1) if raw_code else Path(path).stem.upper()
+    code = full_code[len(prefix):] if prefix and full_code.startswith(prefix) else full_code
+    entries = {str(item.get("code", "")).upper(): item for item in progression_data.get("seq", [])}
+    item = entries.get(code, entries.get(full_code, {}))
+    title = item.get("title") or item.get("titre") or code
+    comps = item.get("comps") or []
+    if isinstance(comps, str):
+        comps = [part.strip() for part in comps.split(",") if part.strip()]
+    return f"# {code} | {title} | {niveau} | {','.join(comps)}\n\n{source}"
 
 def school_periods(progression_path):
     """Construit les périodes scolaires, chacune comprise entre deux vacances."""
@@ -465,9 +516,9 @@ MATHALEA_TITLES = {
 }
 
 AUTO_DEFIS = {
-    "N1": "Calcule astucieusement : $D = (− 8) − (− 13) + (− 5) − (+ 7) + 2$. Explique en une phrase ta méthode.",
-    "N2": "Je pense à deux nombres relatifs. Leur produit vaut $−36$ et leur somme vaut $5$. Quels sont ces deux nombres ? Justifie que ta réponse vérifie les deux indices.",
-    "G1": ("Construction GeoGebra", [
+    "4N1": "Calcule astucieusement : $D = (− 8) − (− 13) + (− 5) − (+ 7) + 2$. Explique en une phrase ta méthode.",
+    "4N2": "Je pense à deux nombres relatifs. Leur produit vaut $−36$ et leur somme vaut $5$. Quels sont ces deux nombres ? Justifie que ta réponse vérifie les deux indices.",
+    "4G1": ("Construction GeoGebra", [
         "- Construis un triangle $ABC$.",
         "- Place le milieu $I$ de $[AB]$, puis le milieu $J$ de $[AC]$.",
         "- Trace la droite $(IJ)$.",
@@ -475,29 +526,29 @@ AUTO_DEFIS = {
         "- Déplace les sommets du triangle et observe ce qui reste vrai.",
         "- Écris tes deux conjectures avec les symboles adaptés.",
     ]),
-    "G2": ("Énigme de Pythagore", "Un écran rectangulaire mesure $28$ cm de large et $21$ cm de haut. Sans mesurer sa diagonale, détermine sa longueur. Explique pourquoi ton calcul permet de répondre exactement."),
-    "G3": ("Belle construction GeoGebra", [
+    "4G2": ("Énigme de Pythagore", "Un écran rectangulaire mesure $28$ cm de large et $21$ cm de haut. Sans mesurer sa diagonale, détermine sa longueur. Explique pourquoi ton calcul permet de répondre exactement."),
+    "4G3": ("Belle construction GeoGebra", [
         "- Construis deux segments qui ont le même milieu.",
         "- Relie leurs quatre extrémités pour former un quadrilatère.",
         "- Déplace les sommets tout en conservant la contrainte sur les milieux.",
         "- Nomme la famille de quadrilatères obtenue.",
         "- Ajoute une contrainte pour obtenir un rectangle, puis un losange, puis un carré.",
     ]),
-    "G4": ("Enquête géométrique", "Trois points $A$, $B$ et $C$ vérifient $AB=6$ cm, $AC=8$ cm et $BC=10$ cm. Sans construire le triangle, prouve qu'il est rectangle, indique son hypoténuse puis précise où se trouve le centre de son cercle circonscrit."),
-    "G5": ("Scratch à compléter", [
+    "4G4": ("Enquête géométrique", "Trois points $A$, $B$ et $C$ vérifient $AB=6$ cm, $AC=8$ cm et $BC=10$ cm. Sans construire le triangle, prouve qu'il est rectangle, indique son hypoténuse puis précise où se trouve le centre de son cercle circonscrit."),
+    "4G5": ("Scratch à compléter", [
         "- Place le lutin au point $A(−3;2)$.",
         "- La translation doit envoyer $A$ sur $B(4;−1)$.",
         "- Complète le programme avec les deux blocs de déplacement nécessaires.",
         "- Recommence en plaçant le lutin au point $C(2;5)$.",
         "- Donne les coordonnées du point obtenu.",
     ]),
-    "G6": ("Scratch à compléter", [
+    "4G6": ("Scratch à compléter", [
         "- Répète 12 fois : avancer de 70 pas, revenir au point de départ, puis tourner.",
         "- Calcule l'angle de rotation à placer dans le bloc « tourner de … degrés ».",
         "- Exécute le programme pour obtenir une rosace à 12 branches.",
         "- Modifie ensuite le programme pour obtenir une rosace à 8 branches.",
     ]),
-    "G7": ("Construction GeoGebra 3D", [
+    "4G7": ("Construction GeoGebra 3D", [
         "- Construis une pyramide à base carrée dans GeoGebra 3D.",
         "- Affiche son patron.",
         "- Repère la base et les quatre faces latérales.",
@@ -505,7 +556,7 @@ AUTO_DEFIS = {
         "- Indique les longueurs qui changent et celles qui restent inchangées.",
         "- Fais une capture annotée de ta construction.",
     ]),
-    "D1": ("Le tableau mystère", [
+    "4D1": ("Le tableau mystère", [
         "- Une recette pour 6 personnes utilise 450 g de farine, 3 œufs et 75 cL de lait.",
         "- Construis un tableau de proportionnalité pour 4, 10 et 15 personnes.",
         "- Complète toutes les quantités sans oublier les unités.",
@@ -708,9 +759,11 @@ def split_chapters(blocks):
     return cover, chaps
 
 # ===================== CHAPITRE MODÈLE : objectifs auto (pont-livret) =====================
-NIV_COL = {"6e":"#e0922f","5e":"#c0698e","4e":"#6f9bd6","3e":"#3f8d6a"}
 def _niv_badge(niv):
-    return f'<span class="niv-badge" style="background:{NIV_COL.get(niv,"#999")}">{html.escape(niv)}</span>' if niv else ""
+    if not niv:
+        return ""
+    hue = sum((index + 1) * ord(char) for index, char in enumerate(niv)) % 360
+    return f'<span class="niv-badge" style="background:hsl({hue} 48% 58%)">{html.escape(niv)}</span>'
 FACE = {
  "no": '<svg viewBox="0 0 42 42" class="plantface plant-seed" aria-label="pousse"><circle cx="21" cy="21" r="19" fill="#fff8ed" stroke="#f2d1ac" stroke-width="2"/><ellipse cx="21" cy="28" rx="8" ry="3.6" fill="#8a5a3b"/><path d="M21 28 C21 22 21 19 21 16" stroke="#4ea66a" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="18.2" cy="17" rx="3.8" ry="2.4" fill="#72bf68" transform="rotate(-34 18.2 17)"/><ellipse cx="23.8" cy="16" rx="4.1" ry="2.5" fill="#8ed37d" transform="rotate(34 23.8 16)"/></svg>',
  "mid": '<svg viewBox="0 0 42 42" class="plantface plant-sprout" aria-label="jeune pousse"><circle cx="21" cy="21" r="19" fill="#f3fbf6" stroke="#bfe8c8" stroke-width="2"/><ellipse cx="21" cy="30" rx="8" ry="3.4" fill="#8a5a3b"/><path d="M21 30 C21 23 21 18 21 12" stroke="#3f8d6a" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="16.5" cy="17" rx="7" ry="3.8" fill="#72bf68" transform="rotate(-38 16.5 17)"/><ellipse cx="26" cy="15" rx="7.6" ry="4.1" fill="#8ed37d" transform="rotate(34 26 15)"/></svg>',
@@ -753,12 +806,15 @@ def render(blocks, mode):
         parts.append(f'<div class="chapitre dom-{dom} mode-{mode} {brk}" style="--th:{th};--thd:{thd}">')
         parts.append(chap_header(code, title, niveau))
         parts.append(render_comp(comp))
-        seqp = PONT.get(code) or PONT.get(code.upper())
+        code_up = code.upper()
+        base_code = re.split(r"[.\-]", code_up, maxsplit=1)[0]
+        seqp = PONT.get(code) or PONT.get(code_up) or PONT.get(base_code)
         if seqp: parts.append(render_objectifs_vises(seqp, mode))
         parts.append(render_body(ch["body"], mode))
         if seqp: parts.append(render_capable(seqp, mode))
         if not body_has_box(ch["body"], "defi"):
-            parts.append(render_auto_defi(code, title, mode))
+            full_code = code if (code and code[0].isdigit()) else f"{niveau[:1]}{code}"
+            parts.append(render_auto_defi(full_code, title, mode))
         parts.append("</div>")
     return "\n".join(parts)
 
@@ -995,7 +1051,7 @@ def build_print_css(police, taille, interligne, couleur, foot=""):
     # texte discret, et compteur de pages en capsule violette à droite.
     foot_safe = (foot or "").replace("'", "’")
     page = ("@page{ size:A4; margin:17mm 15mm 16mm;"
-            "@bottom-left{ content:'✦  " + foot_safe + "';"
+            "@bottom-left{ content:'🌸  " + foot_safe + "';"
             "font-family:'TitleC','DejaVu Sans',sans-serif; font-weight:600; font-size:7.8pt; letter-spacing:.15px; color:#bfa7c9; }"
             "@bottom-right{ content:counter(page) ' / ' counter(pages);"
             "font-family:'Round','DejaVu Sans',sans-serif; font-weight:700; font-size:7.5pt; color:#fff;"
@@ -1061,10 +1117,11 @@ def cover_vacances_css():
 """
 
 # ============================================================ DOC
-def html_doc(body, css, web=False):
+def html_doc(body, css, web=False, title="Livret SakuraMaths"):
     wo, wc = ('<div class="wrap">', '</div>') if web else ('', '')
     return (f"<!DOCTYPE html><html lang='fr'><head><meta charset='utf-8'>"
             f"<meta name='viewport' content='width=device-width, initial-scale=1'>"
+            f"<title>{html.escape(str(title))}</title>"
             f"<style>{css}</style></head><body>{wo}{body}{wc}</body></html>")
 
 def write_pdf_document(document, pdf):
@@ -1103,14 +1160,15 @@ def build_builder(blocks, outdir, stem, cover_meta_master, periods=None):
         dom = code[:1].upper()
         theme = THEME.get(dom, THEME["N"])
         comps = [{"c": c.strip(), "l": COMP_MAP.get(c.strip(), "")} for c in comp.split(",") if c.strip()]
-        level_digit = (niveau or cover.get("niveau", "4e"))[:1]
-        file_code = f"{level_digit}{code}" if level_digit.isdigit() and not code[:1].isdigit() else code
-        data.append({"code": code, "title": title, "niveau": niveau or cover.get("niveau", "4ᵉ"),
+        actual_level = niveau or cover.get("niveau", "")
+        level_digit = level_prefix(actual_level)
+        file_code = f"{level_digit}{code}" if level_digit and not code[:1].isdigit() else code
+        data.append({"code": code, "title": title, "niveau": actual_level,
                      "fileCode": file_code, "theme": theme, "comps": comps})
     css = (font_faces_file() + CHARTER_CSS.replace("@@SIZE@@","12").replace("@@LH@@","1.5")
            .replace("@@REP@@","#c0698e").replace("@@BODY@@", "'Atkinson','Atkinson Hyperlegible'")
            + cover_css(False) + cover_vacances_css())
-    panda_src = _img_b64("panda-roux-4e.png")
+    panda_src = _img_b64(f"panda-roux-{cover.get('niveau', CURRENT_LEVEL)}.png")
     cover_animal = (f'<img class="cv-animal panda-cover" src="{panda_src}" alt="Panda roux origami"/>'
                     if panda_src else fox_svg())
     tmpl = BUILDER_TMPL
@@ -1122,7 +1180,7 @@ def build_builder(blocks, outdir, stem, cover_meta_master, periods=None):
         "__PETALS__": json.dumps(_petals()),
         "__TITRE__": json.dumps(cover.get("titre", "Livret de cours")),
         "__MATIERE__": json.dumps(cover.get("matiere", "Mathématiques")),
-        "__NIVEAU__": json.dumps(cover.get("niveau", "4ᵉ")),
+        "__NIVEAU__": json.dumps(cover.get("niveau", CURRENT_LEVEL)),
         "__PERIODE__": json.dumps(cover.get("periode", "Période ")),
         "__ANNEE__": json.dumps(cover.get("annee", "2025 – 2026")),
         "__PROF__": json.dumps(cover.get("prof", "Mme Le Guern")),
@@ -1470,7 +1528,7 @@ def _mk_question(qid, chapitre, source, question, correct, distractors, explicat
     good = nums.index(correct)
     return {
         'id': qid,
-        'niveau': '4e',
+        'niveau': CURRENT_LEVEL,
         'chapitre': chapitre,
         'source': 'mathalea',
         'lien': source.get('url', ''),
@@ -1599,7 +1657,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("source", nargs="?", help="source Markdown unique")
     ap.add_argument("--chapitres", help="codes séparés par des virgules, ex. 4N1,4G1,4N2")
-    ap.add_argument("--niveau", default="4e", help="dossier de sources, ex. 4e ou 5e")
+    ap.add_argument("--niveau", default=None, help="niveau (déduit automatiquement de la source si omis)")
     ap.add_argument("--progression", default=None, help="progression JSON utilisée pour calculer les périodes")
     ap.add_argument("--mode", choices=["prof","eleve","both"], default="both")
     ap.add_argument("--police", choices=["atkinson","opensans","opendyslexic"], default="atkinson")
@@ -1610,7 +1668,7 @@ def main():
     ap.add_argument("--builder", action="store_true", help="générer le sélecteur HTML interactif")
     ap.add_argument("--pont", default=None, help="pont-livret JSON : objectifs visés + grille auto")
     ap.add_argument("--exomap", default=None, help="JSON {code: url} : colonne QR MathALÉA")
-    ap.add_argument("--out", default="/home/claude/out")
+    ap.add_argument("--out", default=str(STUDIO_DIR / "out" / "pdf"))
     ap.add_argument("--export-qcm", default=None, help="écrire/mettre à jour questions.js avec les QCM générés depuis :::mathalea")
     ap.add_argument("--export-kahoot", default=None, help="exporter un .xlsx importable dans Kahoot")
     ap.add_argument("--qcm-html", default=None, help="générer une page qcm-4eme.html qui lit questions.js")
@@ -1619,6 +1677,16 @@ def main():
     args = ap.parse_args()
 
     chapter_codes = [x.strip().upper() for x in (args.chapitres or "").split(",") if x.strip()]
+    args.niveau = infer_level(args.source, chapter_codes, args.niveau)
+    if not args.niveau:
+        ap.error("niveau impossible à déduire : place la source dans Studio/sources/<niveau> ou précise --niveau")
+    progression_path = level_resource("progression", args.niveau, args.progression)
+    pont_path = level_resource("pont-livret", args.niveau, args.pont)
+    cover_path = ROOT_DIR / "assets" / "covers" / f"cover-{args.niveau}.png"
+    print(f"[niveau] {args.niveau}")
+    print(f"  · progression : {progression_path}")
+    print(f"  · pont-livret : {pont_path}")
+    print(f"  · couverture : {cover_path}")
     chapter_sources = resolve_chapter_sources(chapter_codes, args.niveau) if chapter_codes else []
     if chapter_sources and not args.builder:
         print(f"[lot] {len(chapter_sources)} chapitre(s) : {', '.join(chapter_codes)}")
@@ -1628,7 +1696,8 @@ def main():
                    "--interligne", str(args.interligne), "--couleur", args.couleur,
                    "--out", args.out]
             if args.html: cmd.append("--html")
-            if args.pont: cmd += ["--pont", args.pont]
+            if pont_path.exists(): cmd += ["--pont", str(pont_path)]
+            if progression_path.exists(): cmd += ["--progression", str(progression_path)]
             if args.exomap: cmd += ["--exomap", args.exomap]
             if args.hub_url: cmd += ["--hub-url", args.hub_url]
             subprocess.run(cmd, check=True)
@@ -1636,18 +1705,20 @@ def main():
     if not args.source and not chapter_sources:
         ap.error("indique une source Markdown ou utilise --chapitres")
 
-    global PONT, EXOMAP, HUB_URL
+    global PONT, EXOMAP, HUB_URL, CURRENT_LEVEL
+    CURRENT_LEVEL = args.niveau
     HUB_URL = args.hub_url.strip()
-    if args.pont:
-        pj = json.loads(Path(args.pont).read_text(encoding="utf-8"))
+    if pont_path.exists():
+        pj = json.loads(pont_path.read_text(encoding="utf-8"))
         PONT = {s["code"]: s for s in pj.get("sequences", [])}
         print(f"  · pont-livret : {len(PONT)} chapitre(s) avec objectifs")
     if args.exomap:
         EXOMAP = json.loads(Path(args.exomap).read_text(encoding="utf-8"))
+    progression_data = json.loads(progression_path.read_text(encoding="utf-8")) if progression_path.exists() else {}
     if chapter_sources:
         src = "\n\n".join(load_source(p) for p in chapter_sources)
     else:
-        src = load_source(args.source)
+        src = prepare_legacy_source(args.source, args.niveau, progression_data)
     blocks = parse(src)
     _cov0, _chaps0 = split_chapters(blocks)
     foot_left = "Mathématiques · Mme Le Guern"
@@ -1672,7 +1743,6 @@ def main():
     if args.builder:
         cover, _ = split_chapters(blocks)
         print(f"[{stem}] sélecteur HTML")
-        progression_path = args.progression or (STUDIO_DIR / "config" / f"progression-{args.niveau}.json")
         build_builder(blocks, outdir, stem, cover, school_periods(progression_path))
         return
 

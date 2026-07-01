@@ -136,9 +136,17 @@ function move(i,d){const j=i+d;if(j<0||j>=state.chapters.length)return;[state.ch
 function manifest(){
   const niveau=$('niveau').value,p=$('periode').value;
   const id=`P${p}`,root=`livrets/dist/${niveau}/${id}`;
-  return {schema:'sakuramaths.livret-periode.v2',niveau,periode:`Période ${p}`,periode_id:id,annee:$('annee').value.trim(),prof:$('prof').value.trim(),mode:'both',progression:`Progressions/progression-${niveau}.json`,cover:`assets/covers/cover-${niveau}.png`,livret:`${root}/livret-${niveau}-${id}-eleve.pdf`,livret_prof:`${root}/livret-${niveau}-${id}-prof.pdf`,chapitres:selected().map(c=>({code:c.code,titre:c.title,comps:c.comps||[],source:sourceFor(c.code),html:{eleve:`Studio/out/web/${niveau[0]}${c.code}.html`,prof:`Studio/out/web/${niveau[0]}${c.code}-prof.html`}}))}
+  const stem=`${root}/livret-${niveau}-${id}`;
+  const outputs=state.mode==='both'
+    ? {livret:`${stem}-eleve-v2.pdf`,livret_prof:`${stem}-prof-v2.pdf`}
+    : state.mode==='prof' ? {livret_prof:`${stem}-prof-v2.pdf`} : {livret:`${stem}-eleve-v2.pdf`};
+  return {schema:'sakuramaths.livret-periode.v2',niveau,periode:`Période ${p}`,periode_id:id,annee:$('annee').value.trim(),prof:$('prof').value.trim(),mode:state.mode,progression:`Studio/config/progression-${niveau}.json`,cover:`assets/covers/cover-${niveau}.png`,...outputs,chapitres:selected().map(c=>({code:c.code,titre:c.title,comps:c.comps||[],source:sourceFor(c.code),html:{eleve:`Studio/out/web/${niveau[0]}${c.code}.html`,prof:`Studio/out/web/${niveau[0]}${c.code}-prof.html`}}))}
 }
-function command(){const m=manifest(),base=`SakuraMaths`,id=m.periode_id;return `python ${base}/builders/build_livret_periode.py --niveau ${m.niveau} --periode "${m.periode}" --annee "${m.annee}" --prof "${m.prof}" --mode both --manifest ${base}/livrets/manifests/${m.niveau}-${id}.json --cover ${base}/assets/covers/cover-${m.niveau}.png --out ${base}/${m.livret}`}
+function command(){
+  const m=manifest(),base='SakuraMaths',id=m.periode_id;
+  const out=m.mode==='prof' ? m.livret_prof : m.livret;
+  return `python ${base}/builders/build_livret_periode.py --manifest ${base}/livrets/manifests/${m.niveau}-${id}.json --out ${base}/${out}`
+}
 
 function renderAll(){
   $('cover').style.backgroundImage=`url('${coverUrl()}')`;$('coverPeriod').textContent=`Période ${$('periode').value}`;$('coverYear').textContent=$('annee').value;$('coverProf').textContent=$('prof').value;

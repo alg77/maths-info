@@ -17,12 +17,13 @@ numéro dans un petit encadrement décoratif. Les QR codes sont générés local
 Exemple depuis le dossier qui contient `SakuraMaths` :
 
 ```powershell
-python SakuraMaths/builders/build_livret_periode.py --niveau 4e --periode "Période 1" --annee "2026-2027" --prof "Mme Le Guern" --mode both --manifest SakuraMaths/livrets/manifests/4e-P1.json --cover SakuraMaths/assets/covers/cover-4e.png --out SakuraMaths/livrets/dist/4e/P1/livret-4e-P1-eleve.pdf
+python SakuraMaths/builders/build_livret_periode.py --manifest SakuraMaths/livrets/manifests/4e-P1.json --out SakuraMaths/livrets/dist/4e/P1/livret-4e-P1-eleve-v2.pdf
 ```
 
 Le même script accepte aussi `--police`, `--taille`, `--interligne` et `--couleur`.
 
-`--mode both` génère automatiquement les versions élève et professeur. Le sommaire
+Le mode enregistré dans le manifeste est utilisé automatiquement. Avec `both`, les
+versions élève et professeur sont générées ensemble. Le sommaire
 est construit en deux passes afin d'afficher les pages réelles de début des chapitres.
 Le manifeste est ensuite enrichi avec ces pages et les chemins des sorties. Les pages
 HTML de chaque chapitre et le dashboard de production sont également actualisés.

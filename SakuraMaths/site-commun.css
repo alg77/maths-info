@@ -129,3 +129,7 @@ h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.6rem);line-height:1.06;c
 
 /* ---------- impression : masquer le menu et le pied de page ---------- */
 @media print{ .site-nav,.site-footer{display:none!important} }
+
+/* Authentification : aucune fuite visuelle de l'espace prof pendant la vérification. */
+html.auth-checking body{visibility:hidden}
+.auth-logout{margin-left:8px;border:1px solid rgba(168,96,124,.35);border-radius:999px;padding:4px 9px;background:rgba(255,255,255,.65);color:var(--accent-ink);font:inherit;font-size:.75rem;cursor:pointer}

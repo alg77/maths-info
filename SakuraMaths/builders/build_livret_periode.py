@@ -49,13 +49,36 @@ def period_id(label: str) -> str:
     return f"P{digits or '1'}"
 
 
+def infer_level(data: dict, manifest_path: Path, explicit: str | None = None) -> str:
+    if explicit or data.get("niveau"):
+        return str(explicit or data["niveau"])
+    values = [data.get("progression"), data.get("cover"), manifest_path.name]
+    values += [item.get("source") for item in data.get("chapitres", [])]
+    for value in values:
+        if not value:
+            continue
+        match = re.search(r"(?:progression-|cover-|sources[/\\])([0-9]+e)", str(value), re.I)
+        if match:
+            return match.group(1).lower()
+        match = re.match(r"([0-9]+)e?", Path(str(value)).stem, re.I)
+        if match:
+            return f"{match.group(1)}e"
+    raise SystemExit("Niveau impossible à déduire du manifeste ou des sources.")
+
+
+def level_prefix(niveau: str) -> str:
+    match = re.match(r"([0-9]+)", niveau)
+    return match.group(1) if match else ""
+
+
 def chapter_source(item: dict, niveau: str) -> Path:
     if item.get("source"):
         path = resolve_path(item["source"])
         if path.exists():
             return path
     code = str(item.get("code", "")).upper()
-    full_code = code if code.startswith(niveau[0]) else f"{niveau[0]}{code}"
+    prefix = level_prefix(niveau)
+    full_code = code if code.startswith(prefix) else f"{prefix}{code}"
     exact = STUDIO / "sources" / niveau / f"{full_code}.md"
     if exact.exists():
         return exact
@@ -80,7 +103,7 @@ def cover_html(cover: Path, chapters: list[dict], niveau: str, periode: str,
 <section class="period-cover{student_class}" style="background-image:url('{cover.as_uri()}')">
   <div class="cover-period">{html.escape(periode)}</div>
   <ol class="cover-summary">{''.join(entries)}</ol>
-  <div class="cover-meta"><b>{html.escape(annee)}</b><span>{html.escape(prof)}</span></div>
+  <div class="cover-meta"><b>ANNÉE SCOLAIRE : {html.escape(annee)}</b><span>{html.escape(prof)}</span><i class="cover-blossom" aria-hidden="true">✿</i></div>
 </section>
 """
 
@@ -115,10 +138,13 @@ def period_css(footer: str) -> str:
 .cover-summary span {{ text-align:left; }}
 .cover-summary i {{ border-bottom:.35mm dotted rgba(89,77,167,.45); min-width:8mm; }}
 .cover-summary em {{ color:#594da7; font-style:normal; font-weight:800; text-align:right; }}
-.cover-meta {{ position:absolute; left:25%; right:15%; bottom:6.2mm; display:flex;
-  justify-content:center; gap:12mm; align-items:center; padding:1.5mm 4mm;
-  color:#594da7; background:rgba(255,255,255,.96); border-radius:999px;
-  font:600 9.5pt 'Atkinson','DejaVu Sans',sans-serif; }}
+.cover-meta {{ position:absolute; left:15%; right:13%; bottom:4.2mm; display:flex;
+  justify-content:center; gap:8mm; align-items:center; padding:3mm 5mm;
+  color:#594da7; background:#fff; border-radius:999px;
+  font:600 9.2pt 'Atkinson','DejaVu Sans',sans-serif; }}
+.cover-meta b {{ font-weight:700; }}
+.cover-blossom {{ color:#ea8db7; font-style:normal; font-size:14pt; line-height:1;
+  text-shadow:0 .35mm .5mm rgba(179,81,127,.16); }}
 .period-cover + .chapitre {{ break-before:page; }}
 .chapter-page-marker {{ display:block; height:1pt; color:white; font-size:1pt; line-height:1pt; }}
 """
@@ -146,7 +172,7 @@ def write_pdf(renderer, document: str, output: Path) -> None:
     temp_root.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="livret-", dir=temp_root) as folder:
         folder_path = Path(folder)
-        html_file = folder_path / "livret.html"
+        html_file = folder_path / f"{output.stem}.html"
         profile = folder_path / "chrome-profile"
         html_file.write_text(document, encoding="utf-8")
         command = [
@@ -228,7 +254,8 @@ def main() -> None:
     parser.add_argument("--periode")
     parser.add_argument("--annee")
     parser.add_argument("--prof")
-    parser.add_argument("--mode", choices=["eleve", "prof", "both"], default="both")
+    parser.add_argument("--mode", choices=["eleve", "prof", "both"], default=None,
+                        help="remplace le mode du manifeste (both par défaut)")
     parser.add_argument("--cover")
     parser.add_argument("--out", required=True)
     parser.add_argument("--police", choices=["atkinson", "opensans", "opendyslexic"], default="atkinson")
@@ -239,11 +266,11 @@ def main() -> None:
 
     manifest_path = resolve_path(args.manifest)
     data = json.loads(manifest_path.read_text(encoding="utf-8"))
-    niveau = args.niveau or data.get("niveau", "4e")
+    niveau = infer_level(data, manifest_path, args.niveau)
     periode = args.periode or data.get("periode", "Période 1")
     annee = args.annee or data.get("annee", "2026-2027")
     prof = args.prof or data.get("prof", "Mme Le Guern")
-    mode = args.mode or data.get("mode", "both")
+    mode = args.mode or data.get("mode") or "both"
     chapters = data.get("chapitres", [])
     if not chapters:
         raise SystemExit("Le manifeste ne contient aucun chapitre.")
@@ -261,7 +288,9 @@ def main() -> None:
         raw_pont = json.loads(pont.read_text(encoding="utf-8"))
         renderer.PONT = {item["code"]: item for item in raw_pont.get("sequences", [])}
 
-    progression_path = ROOT / "Progressions" / f"progression-{niveau}.json"
+    progression_path = STUDIO / "config" / f"progression-{niveau}.json"
+    if not progression_path.exists():
+        progression_path = ROOT / "Progressions" / f"progression-{niveau}.json"
     progression_data = json.loads(progression_path.read_text(encoding="utf-8")) if progression_path.exists() else {}
     progression = {str(item.get("code", "")).upper(): item for item in progression_data.get("seq", [])}
     sources = [chapter_source(item, niveau) for item in chapters]
@@ -282,14 +311,16 @@ def main() -> None:
         css = renderer.build_print_css(args.police, args.taille, args.interligne, args.couleur, "") + period_css(footer)
         first_cover = cover_html(cover, chapters, niveau, periode, annee, prof, current_mode, footer)
         first_pdf = current_output.with_name(f".{current_output.stem}-pass1.pdf")
-        write_pdf(renderer, renderer.html_doc(first_cover + chapter_body, css), first_pdf)
+        write_pdf(renderer, renderer.html_doc(first_cover + chapter_body, css,
+                                               title=current_output.stem), first_pdf)
         pages = chapter_pages(first_pdf, chapters)
         try:
             first_pdf.unlink()
         except OSError:
             pass
         final_cover = cover_html(cover, chapters, niveau, periode, annee, prof, current_mode, footer, pages)
-        write_pdf(renderer, renderer.html_doc(final_cover + chapter_body, css), current_output)
+        write_pdf(renderer, renderer.html_doc(final_cover + chapter_body, css,
+                                               title=current_output.stem), current_output)
         generated[current_mode] = {"pdf": current_output, "pages": pages}
         print(f"Livret {current_mode} généré : {current_output}")
 
@@ -297,7 +328,8 @@ def main() -> None:
     web_dir.mkdir(parents=True, exist_ok=True)
     for item, source in zip(chapters, sources):
         code = str(item.get("code", "")).upper()
-        full_code = code if code.startswith(niveau[0]) else f"{niveau[0]}{code}"
+        prefix = level_prefix(niveau)
+        full_code = code if code.startswith(prefix) else f"{prefix}{code}"
         single_blocks = renderer.parse(prepare_source(renderer, source, item, niveau, progression))
         for current_mode in ("eleve", "prof"):
             web_name = f"{full_code}.html" if current_mode == "eleve" else f"{full_code}-prof.html"
@@ -312,7 +344,8 @@ def main() -> None:
     data.update({"schema": "sakuramaths.livret-periode.v2", "niveau": niveau,
                  "periode": periode, "periode_id": period_id(periode), "annee": annee,
                  "prof": prof, "mode": "both" if mode == "both" else mode,
-                 "progression": f"Progressions/progression-{niveau}.json",
+                 "progression": str(progression_path.relative_to(ROOT)).replace("\\", "/")
+                 if progression_path.exists() else f"Studio/config/progression-{niveau}.json",
                  "cover": str(cover.relative_to(ROOT)).replace("\\", "/"), "chapitres": chapters})
     if "eleve" in generated:
         data["livret"] = str(generated["eleve"]["pdf"].relative_to(ROOT)).replace("\\", "/")

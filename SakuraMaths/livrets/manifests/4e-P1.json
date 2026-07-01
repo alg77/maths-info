@@ -1,32 +1,89 @@
 {
-  "schema": "sakuramaths.livret-periode.v1",
+  "schema": "sakuramaths.livret-periode.v2",
   "niveau": "4e",
   "periode": "Période 1",
   "periode_id": "P1",
   "annee": "2026-2027",
   "prof": "Mme Le Guern",
-  "mode": "eleve",
+  "mode": "both",
+  "progression": "Studio/config/progression-4e.json",
   "cover": "assets/covers/cover-4e.png",
+  "livret": "livrets/dist/4e/P1/livret-4e-P1-eleve-v2.pdf",
+  "livret_prof": "livrets/dist/4e/P1/livret-4e-P1-prof-v2.pdf",
   "chapitres": [
     {
       "code": "N1",
       "titre": "Nombres relatifs : addition et soustraction",
-      "source": "Studio/sources/4e/4N1.md"
+      "comps": [
+        "Ch1",
+        "Re1",
+        "Ca1",
+        "Co2"
+      ],
+      "source": "Studio/sources/4e/4N1.md",
+      "html": {
+        "eleve": "Studio/out/web/4N1.html",
+        "prof": "Studio/out/web/4N1-prof.html"
+      },
+      "pages": {
+        "eleve": 2,
+        "prof": 2
+      }
     },
     {
       "code": "G1",
       "titre": "Triangles : droites remarquables et droite des milieux",
-      "source": "Studio/sources/4e/4G1.md"
+      "comps": [
+        "Ch1",
+        "Re1",
+        "Ra3",
+        "Co2"
+      ],
+      "source": "Studio/sources/4e/4G1.md",
+      "html": {
+        "eleve": "Studio/out/web/4G1.html",
+        "prof": "Studio/out/web/4G1-prof.html"
+      },
+      "pages": {
+        "eleve": 7,
+        "prof": 7
+      }
     },
     {
       "code": "D1",
-      "titre": "Proportionnalité, ratios et pourcentages",
-      "source": "Studio/sources/4e/4D1.md"
+      "titre": "Proportionnalité",
+      "comps": [
+        "Mo1",
+        "Ca1",
+        "Co2"
+      ],
+      "source": "Studio/sources/4e/4D1.md",
+      "html": {
+        "eleve": "Studio/out/web/4D1.html",
+        "prof": "Studio/out/web/4D1-prof.html"
+      },
+      "pages": {
+        "eleve": 11,
+        "prof": 11
+      }
     },
     {
       "code": "N2",
       "titre": "Nombres relatifs : multiplication et division",
-      "source": "Studio/sources/4e/4N2.md"
+      "comps": [
+        "Ch1",
+        "Ca1",
+        "Co2"
+      ],
+      "source": "Studio/sources/4e/4N2.md",
+      "html": {
+        "eleve": "Studio/out/web/4N2.html",
+        "prof": "Studio/out/web/4N2-prof.html"
+      },
+      "pages": {
+        "eleve": 18,
+        "prof": 18
+      }
     }
   ]
 }

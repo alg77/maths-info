@@ -1,7 +1,7 @@
 {
   "niveau": "4e",
   "contexte": "progression 4e (programme actuel) — objectifs piochés dans les nouveaux référentiels 5e/4e/3e",
-  "genere": "2026-06-25T21:22:06.915Z",
+  "genere": "2026-07-01T15:13:38.715Z",
   "periodes": [
     {
       "periode": 1,
@@ -42,6 +42,7 @@
       "semaines": 1.5,
       "competences": [
         "Ch1",
+        "Re1",
         "Ca1",
         "Co2"
       ],
@@ -101,6 +102,36 @@
           "niveau": "4e",
           "texte": "Opposé d'un nombre, somme des opposés.",
           "famille": "Ca"
+        },
+        {
+          "code": "aOPR6",
+          "niveau": "4e",
+          "texte": "Multiplication comme addition itérée : 3 + 3 + 3 + 3 = 4 × 3.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aLIT5",
+          "niveau": "4e",
+          "texte": "Donner le double, le triple, la moitié, le prédécesseur, le successeur, le carré d'un nombre.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aREP1",
+          "niveau": "4e",
+          "texte": "Placer sur une droite graduée un point dont l'abscisse est un nombre relatif.",
+          "famille": "Re"
+        },
+        {
+          "code": "aREP2",
+          "niveau": "4e",
+          "texte": "Repérer un nombre relatif sur une droite graduée.",
+          "famille": "Re"
+        },
+        {
+          "code": "aREP3",
+          "niveau": "4e",
+          "texte": "Dans le plan muni d'un repère orthogonal : lire les coordonnées d'un point donné ; placer un point de coordonnées données.",
+          "famille": "Re"
         }
       ],
       "notes": "Utiliser les nombres relatifs pour calculer et résoudre des problèmes"
@@ -111,26 +142,47 @@
       "theme": "G",
       "semaines": 2,
       "competences": [
+        "Ch1",
         "Re1",
         "Ra3",
         "Co2"
       ],
       "objectifs": [
         {
-          "ref": "4:TRI1",
-          "niveau": "4",
           "code": "TRI1",
+          "niveau": "4e",
           "texte": "Connaitre les trois théorèmes relatifs à la droite des milieux dans un triangle.",
-          "famille": "Ra"
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/OBJ-connaitre-les-trois-theoremes-relatifs-a-la-droi.md"
+        },
+        {
+          "code": "TRI4",
+          "niveau": "4e",
+          "texte": "Caractériser un triangle rectangle à l'aide de son cercle circonscrit, par son inscription dans un demi-cercle dont le diamètre est un côté du triangle.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-caracteriser-un-triangle-rectangle-a-l-aide-de-s.md"
+        },
+        {
+          "code": "TRI5",
+          "niveau": "4e",
+          "texte": "Déterminer le centre du cercle circonscrit d'un triangle rectangle.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-determiner-le-centre-du-cercle-circonscrit-d-un-.md"
+        },
+        {
+          "code": "TRI6",
+          "niveau": "4e",
+          "texte": "Construire des rectangles sans équerre.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-construire-des-rectangles-sans-equerre.md"
         }
       ],
       "automatismes": [
         {
-          "ref": "4:aTRI1",
-          "niveau": "4",
           "code": "aTRI1",
+          "niveau": "4e",
           "texte": "Reconnaitre des droites remarquables, y compris dans les triangles particuliers (médiatrices, médianes, hauteurs, bissectrices).",
-          "famille": "Re"
+          "famille": "Ca"
         }
       ],
       "notes": "Réactivation des droites remarquables\nTrois théorèmes de la droite des milieux\nDémonstrations et calculs de longueurs"
@@ -146,18 +198,76 @@
         "Co2"
       ],
       "objectifs": [
-        {"code":"PRP2","niveau":"4e","texte":"Comparer deux nombres ou deux grandeurs à l'aide de leur rapport ou ratio.","famille":"Mo"},
-        {"code":"PRP3","niveau":"4e","texte":"Exprimer la proportionnalité entre deux suites de nombres par des égalités de rapports ou sous forme de ratio.","famille":"Mo"},
-        {"code":"PRP4","niveau":"4e","texte":"Déterminer une quatrième proportionnelle.","famille":"Ca"},
-        {"code":"PRP5","niveau":"4e","texte":"Calculer avec des pourcentages.","famille":"Ca"},
-        {"code":"PRP6","niveau":"4e","texte":"Rendre compte d'une augmentation ou une diminution exprimée en pourcentages au moyen d'un coefficient multiplicateur.","famille":"Mo"},
-        {"code":"PRP7","niveau":"4e","texte":"Définir le coefficient multiplicateur.","famille":"Mo"},
-        {"code":"PRP8","niveau":"4e","texte":"Résoudre des problèmes de partage proportionnel.","famille":"Ca"},
-        {"code":"FON4","niveau":"4e","texte":"Représenter l'expression d'une grandeur en fonction d'une autre par un graphique.","famille":"Re"}
+        {
+          "code": "PRP2",
+          "niveau": "4e",
+          "texte": "Comparer deux nombres ou deux grandeurs à l'aide de leur rapport ou ratio.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-comparer-deux-nombres-ou-deux-grandeurs-a-l-aide.md"
+        },
+        {
+          "code": "PRP3",
+          "niveau": "4e",
+          "texte": "Exprimer la proportionnalité entre deux suites de nombres par des égalités de rapports ou sous forme de ratio.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-exprimer-la-proportionnalite-entre-deux-suites-d.md"
+        },
+        {
+          "code": "PRP4",
+          "niveau": "4e",
+          "texte": "Déterminer une quatrième proportionnelle.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-determiner-une-quatrieme-proportionnelle.md"
+        },
+        {
+          "code": "PRP5",
+          "niveau": "4e",
+          "texte": "Calculer avec des pourcentages.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-avec-des-pourcentages.md"
+        },
+        {
+          "code": "PRP6",
+          "niveau": "4e",
+          "texte": "Rendre compte d'une augmentation ou une diminution exprimée en pourcentages au moyen d'un coefficient multiplicateur.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-rendre-compte-d-une-augmentation-ou-une-diminuti.md"
+        },
+        {
+          "code": "PRP7",
+          "niveau": "4e",
+          "texte": "Définir le coefficient multiplicateur.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-definir-le-coefficient-multiplicateur.md"
+        },
+        {
+          "code": "PRP8",
+          "niveau": "4e",
+          "texte": "Résoudre des problèmes de partage proportionnel.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-resoudre-des-problemes-de-partage-proportionnel.md"
+        },
+        {
+          "code": "FON4",
+          "niveau": "4e",
+          "texte": "Représenter l'expression d'une grandeur en fonction d'une autre par un graphique.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-representer-l-expression-d-une-grandeur-en-fonct.md"
+        }
       ],
       "automatismes": [
-        {"code":"aPRP1","niveau":"4e","texte":"Déterminer a % de c quand a vaut 100, 50, 25, 10, 1.","famille":"Ch"},
-        {"code":"aPRP2","niveau":"4e","texte":"Compléter : 20 % de 120 = … ; 30 = …/100 × 1 000.","famille":"Ch"}
+        {
+          "code": "aPRP1",
+          "niveau": "4e",
+          "texte": "Déterminer a % de c quand a vaut 100, 50, 25, 10, 1.",
+          "famille": "Ch"
+        },
+        {
+          "code": "aPRP2",
+          "niveau": "4e",
+          "texte": "Compléter : 20 % de 120 = … ; 30 = …/100 × 1 000.",
+          "famille": "Ch"
+        }
       ],
       "notes": "Reconnaître et exprimer une proportionnalité\nÉgalité des produits en croix et quatrième proportionnelle\nRapports, ratios et partages proportionnels\nPourcentages et coefficients multiplicateurs\nLecture d'une représentation graphique"
     },
@@ -176,13 +286,15 @@
           "code": "OPR1",
           "niveau": "4e",
           "texte": "Multiplier deux nombres relatifs : d'abord dans le cas où un seul des facteurs est négatif, puis, grâce à la distributivité, dans le cas où les deux facteurs sont négatifs.",
-          "famille": "Ca"
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-multiplier-deux-nombres-relatifs-d-abord-dans-le.md"
         },
         {
           "code": "OPR2",
           "niveau": "4e",
           "texte": "Diviser deux nombres relatifs.",
-          "famille": "Ca"
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-diviser-deux-nombres-relatifs.md"
         },
         {
           "code": "OPR3",
@@ -197,6 +309,20 @@
           "texte": "Utiliser le vocabulaire (somme, quotient, etc.) à partir d'un enchainement d'opérations dans un programme de calcul et inversement.",
           "famille": "Co",
           "fichier": "cours/4e/objectifs/OBJ-utiliser-le-vocabulaire-somme-quotient-etc-a-par.md"
+        },
+        {
+          "code": "RAT6",
+          "niveau": "4e",
+          "texte": "Définir l'inverse d'un nombre et connaitre sa notation.",
+          "famille": "Co",
+          "fichier": "cours/4e/objectifs/OBJ-definir-l-inverse-d-un-nombre-et-connaitre-sa-no.md"
+        },
+        {
+          "code": "RAT7",
+          "niveau": "4e",
+          "texte": "Déterminer l'inverse d'une fraction.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-determiner-l-inverse-d-une-fraction.md"
         }
       ],
       "automatismes": [
@@ -217,6 +343,12 @@
           "niveau": "4e",
           "texte": "Compléter des multiplications à trou : 5 × … = 3 ; faire le lien entre multiplication et division.",
           "famille": "Ca"
+        },
+        {
+          "code": "aPUI2",
+          "niveau": "4e",
+          "texte": "Multiplier et diviser par 10, 100, 1 000 ; savoir compléter 1 200 = 1,2 × …",
+          "famille": "Ca"
         }
       ],
       "notes": "Multiplier et diviser des nombres relatifs\nJustifier le produit de deux nombres négatifs par distributivité\nCalculs enchaînés et priorités opératoires\nVocabulaire des opérations et programmes de calcul"
@@ -227,11 +359,69 @@
       "theme": "N",
       "semaines": 2,
       "competences": [
+        "Ch1",
+        "Mo1",
+        "Re1",
         "Ca3",
         "Co1"
       ],
-      "objectifs": [],
-      "automatismes": [],
+      "objectifs": [
+        {
+          "code": "LIT1",
+          "niveau": "4e",
+          "texte": "Produire des formules et tester leur vraisemblance : aires de formes géométriques simples, nombres pairs/impairs, etc.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-produire-des-formules-et-tester-leur-vraisemblan.md"
+        },
+        {
+          "code": "FON1",
+          "niveau": "4e",
+          "texte": "Savoir appliquer un programme de calcul à deux (plusieurs) étapes à un nombre simple puis à une variable.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-savoir-appliquer-un-programme-de-calcul-a-deux-p.md"
+        },
+        {
+          "code": "FON2",
+          "niveau": "4e",
+          "texte": "Savoir retrouver le nombre de départ après avoir remonté un programme de calcul simple.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-savoir-retrouver-le-nombre-de-depart-apres-avoir.md"
+        },
+        {
+          "code": "FON3",
+          "niveau": "4e",
+          "texte": "Produire une formule littérale représentant la dépendance d'une grandeur en fonction d'une autre.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-produire-une-formule-litterale-representant-la-d.md"
+        },
+        {
+          "code": "FON5",
+          "niveau": "4e",
+          "texte": "Comprendre la dépendance d'une grandeur en fonction d'une autre.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-comprendre-la-dependance-d-une-grandeur-en-fonct.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "aLIT1",
+          "niveau": "4e",
+          "texte": "Donner la valeur d'expressions numériques simples.",
+          "famille": "Ch"
+        },
+        {
+          "code": "aLIT3",
+          "niveau": "4e",
+          "texte": "Écrire 3 × x sous la forme 3x et savoir que 3x c'est 3 × x.",
+          "famille": "Ch"
+        },
+        {
+          "code": "aLIT4",
+          "niveau": "4e",
+          "texte": "Connaitre et utiliser : 1×x = x ; x + x = 2x ; x × x = x² ; 3x + 2x = 5x ; 3x × 2x = 6x².",
+          "famille": "Ch"
+        }
+      ],
       "notes": "Rappels 5ᵉ (simplifier une expression)\nRéduire une expression\nApplication aux périmètres et aux aires"
     },
     {
@@ -242,6 +432,7 @@
       "competences": [
         "Mo1",
         "Ra3",
+        "Ca1",
         "Co2"
       ],
       "objectifs": [
@@ -251,9 +442,36 @@
           "texte": "Construire et mettre en relation différentes représentations des solides (pavé droit, cube, cylindre de révolution, prisme droit, pyramides et cônes de révolution).",
           "famille": "Re",
           "fichier": "cours/4e/objectifs/OBJ-construire-et-mettre-en-relation-differentes-rep.md"
+        },
+        {
+          "code": "RAC1",
+          "niveau": "4e",
+          "texte": "Comprendre et connaitre la définition de la racine carrée d'un nombre positif.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-comprendre-et-connaitre-la-definition-de-la-raci.md"
+        },
+        {
+          "code": "RAC2",
+          "niveau": "4e",
+          "texte": "Encadrer la racine carrée d'un entier par deux nombres entiers consécutifs.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-encadrer-la-racine-carree-d-un-entier-par-deux-n.md"
         }
       ],
-      "automatismes": [],
+      "automatismes": [
+        {
+          "code": "aPUI1",
+          "niveau": "4e",
+          "texte": "Connaitre et reconnaitre les carrés parfaits des entiers de 0 à 12.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aRAC1",
+          "niveau": "4e",
+          "texte": "Donner les carrés des nombres entiers compris entre 0 et 12.",
+          "famille": "Ca"
+        }
+      ],
       "notes": "Vocabulaire\nRacine carrée\nCalculer une longueur : hypoténuse ou côté adjacent à l'angle droit\nDémonstration possible"
     },
     {
@@ -264,6 +482,7 @@
       "competences": [
         "Mo1",
         "Mo2",
+        "Ra1",
         "Ca2",
         "Ca3",
         "Co1"
@@ -282,9 +501,36 @@
           "texte": "Mettre en équation un problème et le résoudre à l'aide d'une équation du premier degré du type ax + b = cx + d.",
           "famille": "Mo",
           "fichier": "cours/4e/objectifs/OBJ-mettre-en-equation-un-probleme-et-le-resoudre-a-.md"
+        },
+        {
+          "code": "LIT3",
+          "niveau": "4e",
+          "texte": "Utiliser le calcul algébrique pour produire des démonstrations.",
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/OBJ-utiliser-le-calcul-algebrique-pour-produire-des-.md"
+        },
+        {
+          "code": "LIT6",
+          "niveau": "4e",
+          "texte": "Formuler des conjectures à l'aide d'un algorithme ou d'un tableur pour résoudre de manière exacte ou approchée une équation.",
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/OBJ-formuler-des-conjectures-a-l-aide-d-un-algorithm.md"
         }
       ],
-      "automatismes": [],
+      "automatismes": [
+        {
+          "code": "aLIT2",
+          "niveau": "4e",
+          "texte": "Résoudre des équations du type ax = c et x + b = c, où a, b et c sont des nombres.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aLIT6",
+          "niveau": "4e",
+          "texte": "Tester si un nombre vérifie une égalité.",
+          "famille": "Ra"
+        }
+      ],
       "notes": "Résoudre une équation du 1er degré\nMettre en équation un problème\nVérifier qu'un nombre est solution d'une équation"
     },
     {
@@ -293,7 +539,9 @@
       "theme": "D",
       "semaines": 2,
       "competences": [
+        "Ch1",
         "Re3",
+        "Ca1",
         "Co1"
       ],
       "objectifs": [
@@ -317,9 +565,56 @@
           "texte": "Utiliser le tableur pour calculer une moyenne, une médiane et l'étendue d'une série statistique.",
           "famille": "Ca",
           "fichier": "cours/4e/objectifs/OBJ-utiliser-le-tableur-pour-calculer-une-moyenne-un.md"
+        },
+        {
+          "code": "STA2",
+          "niveau": "4e",
+          "texte": "Déterminer une médiane et l'interpréter dans le cas d'une série de petit effectif présentée sous forme de données brutes.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-determiner-une-mediane-et-l-interpreter-dans-le-.md"
+        },
+        {
+          "code": "STA3",
+          "niveau": "4e",
+          "texte": "Calculer et interpréter l'étendue d'une série présentée sous forme de données brutes, d'un tableau, d'un diagramme en barres, d'un diagramme circulaire.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-et-interpreter-l-etendue-d-une-serie-pr.md"
+        },
+        {
+          "code": "STA5",
+          "niveau": "4e",
+          "texte": "Résoudre des problèmes faisant intervenir les différents indicateurs.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-resoudre-des-problemes-faisant-intervenir-les-di.md"
+        },
+        {
+          "code": "STA6",
+          "niveau": "4e",
+          "texte": "Résoudre des problèmes de comparaison de séries statistiques.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-resoudre-des-problemes-de-comparaison-de-series-.md"
         }
       ],
-      "automatismes": [],
+      "automatismes": [
+        {
+          "code": "aSTA1",
+          "niveau": "4e",
+          "texte": "Calculer une moyenne pour un très petit nombre de valeurs.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aSTA2",
+          "niveau": "4e",
+          "texte": "Calculer un effectif manquant dans un tableau pour un petit nombre de valeurs.",
+          "famille": "Re"
+        },
+        {
+          "code": "aSTA3",
+          "niveau": "4e",
+          "texte": "Calculer une fréquence simple.",
+          "famille": "Ca"
+        }
+      ],
       "notes": "Vocabulaire\nCaractéristiques de position : moyenne (arithmétique et pondérée), médiane et étendue\nUtilisation du tableur"
     },
     {
@@ -328,9 +623,41 @@
       "theme": "N",
       "semaines": 2,
       "competences": [
+        "Mo1",
+        "Re1",
+        "Ca1",
         "Co1"
       ],
-      "objectifs": [],
+      "objectifs": [
+        {
+          "code": "RAT1",
+          "niveau": "4e",
+          "texte": "Simplifier une fraction.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-simplifier-une-fraction.md"
+        },
+        {
+          "code": "RAT2",
+          "niveau": "4e",
+          "texte": "Définir la notion de nombre rationnel : le quotient de deux nombres entiers relatifs.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-definir-la-notion-de-nombre-rationnel-le-quotien.md"
+        },
+        {
+          "code": "RAT3",
+          "niveau": "4e",
+          "texte": "Exprimer l'opposé d'un nombre rationnel.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-exprimer-l-oppose-d-un-nombre-rationnel.md"
+        },
+        {
+          "code": "RAT5",
+          "niveau": "4e",
+          "texte": "Calculer et représenter la fraction d'une fraction, d'un nombre, d'une quantité.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-et-representer-la-fraction-d-une-fracti.md"
+        }
+      ],
       "automatismes": [
         {
           "code": "aRAT1",
@@ -343,6 +670,18 @@
           "niveau": "4e",
           "texte": "Comparaison de fractions.",
           "famille": "Ca"
+        },
+        {
+          "code": "aRAT3",
+          "niveau": "4e",
+          "texte": "Savoir qu'une fraction est aussi le quotient.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aRAT4",
+          "niveau": "4e",
+          "texte": "Savoir que prendre la fraction d'un nombre revient à multiplier la fraction par ce nombre.",
+          "famille": "Ca"
         }
       ],
       "notes": "Somme et différence\nSimplifier des fractions\nComparer des quotients"
@@ -353,11 +692,21 @@
       "theme": "G",
       "semaines": 1.5,
       "competences": [
+        "Ch1",
         "Re4",
         "Ra3",
+        "Ca1",
         "Co2"
       ],
-      "objectifs": [],
+      "objectifs": [
+        {
+          "code": "PAR2",
+          "niveau": "4e",
+          "texte": "Faire le lien avec les parallélogrammes, les angles.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-faire-le-lien-avec-les-parallelogrammes-les-angl.md"
+        }
+      ],
       "automatismes": [
         {
           "code": "aPAR3",
@@ -370,6 +719,12 @@
           "niveau": "4e",
           "texte": "Reconnaitre un parallélogramme particulier à partir de ses propriétés caractéristiques, notamment à partir des propriétés de ses diagonales.",
           "famille": "Ra"
+        },
+        {
+          "code": "aESP4",
+          "niveau": "4e",
+          "texte": "Savoir calculer l'aire des figures planes usuelles : triangle, rectangle, disque.",
+          "famille": "Ca"
         }
       ],
       "notes": "Reconnaître un parallélogramme (révision)\nReconnaître un parallélogramme particulier à l'aide de propriétés (beaucoup de démonstrations)\nConstruire un quadrilatère particulier\nAlgorithmique possible"
@@ -383,7 +738,15 @@
         "Ca2",
         "Co1"
       ],
-      "objectifs": [],
+      "objectifs": [
+        {
+          "code": "LIT2",
+          "niveau": "4e",
+          "texte": "Connaitre et utiliser la distributivité simple pour développer et factoriser une expression algébrique.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-connaitre-et-utiliser-la-distributivite-simple-p.md"
+        }
+      ],
       "automatismes": [],
       "notes": "Développement : simple et double distributivité, suppression des parenthèses\nFactorisation : facteur commun simple\nApplication : tours de magie"
     },
@@ -422,6 +785,7 @@
       "theme": "N",
       "semaines": 1,
       "competences": [
+        "Mo1",
         "Ca1"
       ],
       "objectifs": [
@@ -431,6 +795,27 @@
           "texte": "Résoudre des problèmes mobilisant les opérations sur les fractions : addition, soustraction, multiplication, division, inverse.",
           "famille": "Mo",
           "fichier": "cours/4e/objectifs/OBJ-resoudre-des-problemes-mobilisant-les-operations.md"
+        },
+        {
+          "code": "RAT4",
+          "niveau": "4e",
+          "texte": "Calculer le produit de nombres rationnels.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-le-produit-de-nombres-rationnels.md"
+        },
+        {
+          "code": "RAT8",
+          "niveau": "4e",
+          "texte": "Diviser des fractions.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-diviser-des-fractions.md"
+        },
+        {
+          "code": "RAT9",
+          "niveau": "4e",
+          "texte": "Calculer la valeur d'expressions comportant plusieurs opérations avec des fractions.",
+          "famille": "Mo",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-la-valeur-d-expressions-comportant-plus.md"
         }
       ],
       "automatismes": [],
@@ -442,10 +827,41 @@
       "theme": "G",
       "semaines": 1,
       "competences": [
-        "Re4"
+        "Ch1",
+        "Mo1",
+        "Re4",
+        "Ra1"
       ],
-      "objectifs": [],
-      "automatismes": [],
+      "objectifs": [
+        {
+          "code": "PAR1",
+          "niveau": "4e",
+          "texte": "Comprendre l'effet d'une translation.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-comprendre-l-effet-d-une-translation.md"
+        },
+        {
+          "code": "PAR3",
+          "niveau": "4e",
+          "texte": "Connaitre et utiliser les propriétés de conservations des translations.",
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/OBJ-connaitre-et-utiliser-les-proprietes-de-conserva.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "aPAR1",
+          "niveau": "4e",
+          "texte": "Dire si des figures planes sont images l'une de l'autre par une symétrie axiale (dont on identifie l'axe) ou par un demi-tour (dont on identifie le centre).",
+          "famille": "Ch"
+        },
+        {
+          "code": "aPAR2",
+          "niveau": "4e",
+          "texte": "Dans une configuration donnée, déterminer les images de figures, de droites, de segments, de points par une symétrie axiale ou un demi-tour.",
+          "famille": "Mo"
+        }
+      ],
       "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
     },
     {
@@ -454,6 +870,7 @@
       "theme": "N",
       "semaines": 2,
       "competences": [
+        "Ch1",
         "Ca1"
       ],
       "objectifs": [
@@ -477,9 +894,29 @@
           "texte": "Multiplier des puissances d'un même exposant entier naturel de deux nombres entre elles.",
           "famille": "Ca",
           "fichier": "cours/4e/objectifs/OBJ-multiplier-des-puissances-d-un-meme-exposant-ent.md"
+        },
+        {
+          "code": "PUI4",
+          "niveau": "4e",
+          "texte": "Résoudre des problèmes faisant intervenir des puissances.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-resoudre-des-problemes-faisant-intervenir-des-pu.md"
         }
       ],
-      "automatismes": [],
+      "automatismes": [
+        {
+          "code": "aPUI3",
+          "niveau": "4e",
+          "texte": "Puissances simples : 2² = 4 ; 2³ = 8 ; 3³ = 27.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aPUI4",
+          "niveau": "4e",
+          "texte": "10² = 100 ; 10³ = 1 000.",
+          "famille": "Ch"
+        }
+      ],
       "notes": "Puissance de 10 seulement\nPréfixes\nExposant positif (négatif facultatif)\nFormules (produit, quotient, puissance) — facultatif\nÉcriture scientifique"
     },
     {
@@ -491,7 +928,14 @@
         "Re4"
       ],
       "objectifs": [],
-      "automatismes": [],
+      "automatismes": [
+        {
+          "code": "aTRF1",
+          "niveau": "4e",
+          "texte": "Construire le symétrique d'un point par demi-tour.",
+          "famille": "Re"
+        }
+      ],
       "notes": "Définition\nConstruction : sur papier blanc, sur papier quadrillé"
     },
     {
@@ -500,6 +944,7 @@
       "theme": "G",
       "semaines": 1,
       "competences": [
+        "Mo1",
         "Re4",
         "Ca1"
       ],
@@ -519,7 +964,26 @@
           "fichier": "cours/4e/objectifs/OBJ-connaitre-le-volume-de-la-pyramide-et-du-cone-de.md"
         }
       ],
-      "automatismes": [],
+      "automatismes": [
+        {
+          "code": "aESP1",
+          "niveau": "4e",
+          "texte": "Reconnaitre les solides : cube, pavé, cylindre, prisme droit.",
+          "famille": "Ca"
+        },
+        {
+          "code": "aESP2",
+          "niveau": "4e",
+          "texte": "Connaitre et utiliser les formules du volume d'un cube, d'un pavé, d'un prisme, d'un cylindre.",
+          "famille": "Mo"
+        },
+        {
+          "code": "aESP3",
+          "niveau": "4e",
+          "texte": "Reconnaitre la base d'un prisme donné en perspective cavalière.",
+          "famille": "Re"
+        }
+      ],
       "notes": "Patrons\nVolumes"
     },
     {
@@ -528,6 +992,7 @@
       "theme": "D",
       "semaines": 1,
       "competences": [
+        "Mo1",
         "Ca1"
       ],
       "objectifs": [
@@ -549,11 +1014,106 @@
       "semaines": 1.5,
       "competences": [
         "Ch2",
-        "Ch3"
+        "Ch3",
+        "Re1"
       ],
-      "objectifs": [],
+      "objectifs": [
+        {
+          "code": "ALG1",
+          "niveau": "4e",
+          "texte": "Représenter des conditions simples.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-representer-des-conditions-simples.md"
+        },
+        {
+          "code": "ALG2",
+          "niveau": "4e",
+          "texte": "Écrire des instructions conditionnelles.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-ecrire-des-instructions-conditionnelles.md"
+        },
+        {
+          "code": "ALG3",
+          "niveau": "4e",
+          "texte": "Manipuler une variable.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-manipuler-une-variable.md"
+        },
+        {
+          "code": "ALG4",
+          "niveau": "4e",
+          "texte": "Écrire un programme simple donné pour réaliser un objectif ou résoudre un problème.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-ecrire-un-programme-simple-donne-pour-realiser-u.md"
+        },
+        {
+          "code": "ALG5",
+          "niveau": "4e",
+          "texte": "Modifier un programme donné pour changer son comportement.",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-modifier-un-programme-donne-pour-changer-son-com.md"
+        }
+      ],
       "automatismes": [],
       "notes": "Scratch, tableur\n6 séances en demi-groupes réparties sur l'année"
+    },
+    {
+      "code": "N9",
+      "titre": "Probabilités (new)",
+      "theme": "N",
+      "semaines": 1,
+      "competences": [
+        "Ch1",
+        "Re1",
+        "Ca1",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "PRB1",
+          "niveau": "4e",
+          "texte": "Utiliser le vocabulaire et les notations ensemblistes pour décrire une expérience aléatoire dans des cas simples et définir la notion d'évènement.",
+          "famille": "Co",
+          "fichier": "cours/4e/objectifs/OBJ-utiliser-le-vocabulaire-et-les-notations-ensembl.md"
+        },
+        {
+          "code": "PRB2",
+          "niveau": "4e",
+          "texte": "Définir : complémentaire, réunion, intersection, ensemble vide (évènement impossible).",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-definir-complementaire-reunion-intersection-ense.md"
+        },
+        {
+          "code": "PRB3",
+          "niveau": "4e",
+          "texte": "Calculer la probabilité d'un évènement et de l'évènement contraire.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-calculer-la-probabilite-d-un-evenement-et-de-l-e.md"
+        },
+        {
+          "code": "PRB4",
+          "niveau": "4e",
+          "texte": "Exemples simples d'expériences aléatoires à deux épreuves (lancer de deux pièces, d'une pièce et d'un dé, de deux dés, etc.).",
+          "famille": "Ch",
+          "fichier": "cours/4e/objectifs/OBJ-exemples-simples-d-experiences-aleatoires-a-deux.md"
+        },
+        {
+          "code": "PRB5",
+          "niveau": "4e",
+          "texte": "À partir de la répétition d'une expérience aléatoire, réalisée matériellement ou simulée, comparer des graphiques de distributions (fréquentielle et probabiliste).",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/OBJ-a-partir-de-la-repetition-d-une-experience-aleat.md"
+        },
+        {
+          "code": "PRB6",
+          "niveau": "4e",
+          "texte": "Observer la fluctuation des fréquences pour un nombre de répétitions fixé de l'expérience aléatoire.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/OBJ-observer-la-fluctuation-des-frequences-pour-un-n.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": ""
     }
   ]
 }
