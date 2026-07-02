@@ -90,6 +90,17 @@
   swap.className='navbtn'; swap.href=siteUrl('index.html'); swap.textContent='↩ Espace';
   swap.title='Changer d’espace'; swap.style.textDecoration='none'; nav.appendChild(swap);
 
+  var logout=document.createElement('button');
+  logout.type='button'; logout.className='navbtn'; logout.textContent='Déconnexion';
+  logout.title='Se déconnecter pour utiliser un autre compte Google'; logout.hidden=true;
+  nav.appendChild(logout);
+  import(siteUrl('auth/auth.js')).then(function(module){
+    module.observe(function(user){ logout.hidden=!user; });
+    logout.addEventListener('click',async function(){
+      logout.disabled=true; await module.logoutGoogle(); location.replace(siteUrl('index.html'));
+    });
+  });
+
   document.body.insertBefore(nav, document.body.firstChild);
 
   var footer=document.createElement('footer');

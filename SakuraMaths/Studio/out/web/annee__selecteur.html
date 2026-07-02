@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Générateur de livret de période - SakuraMaths</title>
+  <script type="module">import { guardProf } from "../../../auth/auth.js"; guardProf();</script>
   <style>
     :root{--ink:#263f84;--violet:#6656ba;--lilac:#eeeafd;--pink:#f8e9f1;--line:#d9d3f4}
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#eeeafd,#f9edf3);color:#303550;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box} html.auth-checking body{visibility:hidden} body{margin:0;background:linear-gradient(135deg,#eeeafd,#f9edf3);color:#303550;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
     .app{display:grid;grid-template-columns:minmax(310px,390px) 1fr;gap:24px;min-height:100vh;padding:24px}
     .panel{align-self:start;position:sticky;top:20px;background:#fff;border-radius:24px;padding:22px;box-shadow:0 14px 45px #5a4c8e24}
     h1{margin:0 0 5px;color:var(--ink);font-size:1.55rem} .intro{margin:0 0 20px;color:#676a80;font-size:.9rem;line-height:1.4}

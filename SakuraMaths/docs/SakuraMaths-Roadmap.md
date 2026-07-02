@@ -35,7 +35,9 @@ Objectif : distinguer automatiquement les espaces Élève et Professeur.
 
 Intégrer Firebase Authentication (Google).
 
-**État : implémenté et relié au projet Firebase `sakuramaths-44708`.**
+**État : terminé et testé — projet Firebase `sakuramaths-44708`, connexion Google,
+orientation automatique élève/professeur, menus séparés, déconnexion/changement de
+compte et garde des pages professeur.**
 
 Créer un fichier :
 
@@ -108,6 +110,26 @@ Le lien sera construit automatiquement :
 ```
 https://drive.google.com/file/d/ID/view
 ```
+
+**État : structure définie — en attente des dossiers et fichiers Drive partagés par l'administratrice.**
+
+---
+
+# ✅ Priorité 3 — Cockpit de production
+
+Le générateur `builders/build_dashboard.py` analyse automatiquement :
+
+- les progressions disponibles ;
+- les sources Markdown ;
+- les PDF élève et professeur ;
+- les pages HTML, QCM, Kahoot, flashcards, évaluations et corrigés ;
+- l'avancement global, par niveau et par période.
+
+Chaque chapitre dispose d'une fiche dépliable et d'un statut de validation, lu depuis
+un éventuel fichier `metadata.json` ou déduit des ressources présentes.
+
+**État : première version complète générée dans `Studio/out/web/dashboard-production.html`,
+accessible depuis l'espace professeur avec le générateur de livrets.**
 ---
 
 # ✅ Priorité 6 — Nettoyage des PDF
