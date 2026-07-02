@@ -66,6 +66,24 @@
         "eleve": 11,
         "prof": 11
       }
+    },
+    {
+      "code": "N2",
+      "titre": "Nombres relatifs : multiplication et division",
+      "comps": [
+        "Ch1",
+        "Ca1",
+        "Co2"
+      ],
+      "source": "Studio/sources/4e/4N2.md",
+      "html": {
+        "eleve": "Studio/out/web/4N2.html",
+        "prof": "Studio/out/web/4N2-prof.html"
+      },
+      "pages": {
+        "eleve": 18,
+        "prof": 18
+      }
     }
   ]
 }

@@ -16,7 +16,7 @@
     input,select,button{font:inherit} input,select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:9px 11px;background:#fff;color:#303550}
     input:focus,select:focus{outline:3px solid #9d8ee42b;border-color:#8f83cf}.upload{border:1.5px dashed #9b8bdc;border-radius:15px;padding:12px;background:#faf9ff}
     .upload input{border:0;padding:4px 0;background:transparent}.status{font-size:.78rem;color:#777a8d;margin-top:5px}.status.ok{color:#2c8063}.status.bad{color:#b74958}
-    .seg{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:12px;padding:3px}.seg button{border:0;border-radius:9px;padding:7px;background:transparent;color:#65677a;cursor:pointer}.seg button.on{background:#7c70c5;color:#fff;font-weight:700}
+    .seg{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--line);border-radius:12px;padding:3px}.seg button{border:0;border-radius:9px;padding:7px;background:transparent;color:#65677a;cursor:pointer}.seg button.on{background:#7c70c5;color:#fff;font-weight:700}
     .chapters{list-style:none;margin:0;padding:0;max-height:300px;overflow:auto}.chapter{display:grid;grid-template-columns:22px 42px 1fr 56px;gap:7px;align-items:center;padding:7px 4px;border-bottom:1px solid #eeeaf8;font-size:.82rem}.chapter input{width:auto}.code{font-weight:800;color:var(--violet)}
     .moves{display:flex;gap:3px}.moves button{border:0;background:#f0edfa;color:#6558a8;border-radius:7px;width:25px;height:25px;cursor:pointer}.empty{padding:14px;color:#7a7d90;text-align:center;font-size:.85rem}
     .actions{display:grid;gap:8px}.btn{border:0;border-radius:13px;padding:11px 13px;background:linear-gradient(135deg,#6656ba,#8a7bd0);color:#fff;font-weight:750;cursor:pointer}.btn.alt{background:#eef0ff;color:#51459b}.btn.ghost{background:#fff;border:1.5px solid var(--line);color:#51459b}.btn:disabled{opacity:.45;cursor:not-allowed}
@@ -42,7 +42,7 @@
       <div class="field"><label for="prof">Professeur</label><input id="prof" value="Mme Le Guern"></div>
     </div>
 
-    <div class="field"><label>Version</label><div class="seg" id="mode"><button class="on" data-mode="eleve">Élève</button><button data-mode="prof">Prof</button></div></div>
+    <div class="field"><label>Version</label><div class="seg" id="mode"><button data-mode="eleve">Élève</button><button data-mode="prof">Professeur</button><button class="on" data-mode="both">Les deux</button></div></div>
 
     <h2>Progression</h2>
     <div class="upload"><label for="progression"><b>Charger la progression JSON</b></label><input id="progression" type="file" accept="application/json,.json"><div id="status" class="status">Choisir par exemple progression-4e.json</div></div>
@@ -65,7 +65,7 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const state={progression:null,chapters:[],mode:'eleve'};
+const state={progression:null,chapters:[],mode:'both'};
 const DEFAULT_4E={seq:[
   ['N1','Nombres relatifs : addition et soustraction',1],['G1','Triangles : droites remarquables et droite des milieux',1],
   ['D1','Proportionnalité',1],['N2','Nombres relatifs : multiplication et division',1],
