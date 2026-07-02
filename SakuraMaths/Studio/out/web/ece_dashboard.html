@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Traitement des sujets ECE (BNS 2026 / 2024)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+body{background:#faf9fc}
+.dash-hero{text-align:center;padding:3rem 2rem 1.5rem}
+.dash-hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.4rem}
+.dash-hero p{color:var(--text2);max-width:680px;margin:0 auto}
+.stats-row{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin:2rem auto;max-width:900px;padding:0 1.5rem}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.3rem 1.8rem;min-width:220px;text-align:center}
+.stat-card .big{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--accent)}
+.stat-card .lbl{font-size:.85rem;color:var(--text2);margin-top:.2rem}
+.progress-bar{height:8px;border-radius:99px;background:#ede9fe;overflow:hidden;margin-top:.7rem}
+.progress-bar > div{height:100%;background:var(--accent);border-radius:99px}
+.section-title{max-width:1000px;margin:2.5rem auto 1rem;padding:0 1.5rem;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;display:flex;align-items:center;gap:.6rem}
+.section-sub{max-width:1000px;margin:0 auto 1rem;padding:0 1.5rem;color:var(--text2);font-size:.88rem}
+table.dash-table{width:100%;border-collapse:collapse;background:#fff}
+.table-wrap{max-width:1000px;margin:0 auto 3rem;padding:0 1.5rem}
+.table-inner{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+table.dash-table th{text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;color:var(--text2);background:var(--bg2);padding:.7rem 1rem;border-bottom:1px solid var(--border)}
+table.dash-table td{padding:.6rem 1rem;font-size:.86rem;border-bottom:1px solid #f0eef5}
+table.dash-table tr:last-child td{border-bottom:none}
+tr.row-done{background:#f0fdf4}
+.cell-num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--accent);white-space:nowrap}
+.badge{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;white-space:nowrap}
+.badge-done{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.badge-todo{background:#f0eef5;color:#6b6478;border:1px solid var(--border)}
+.legend-note{max-width:1000px;margin:0 auto;padding:0 1.5rem;font-size:.82rem;color:var(--text2)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">NSI<span>.bac</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a><a href="quiz.html">QCM</a>
+    <a href="methodes.html">Méthodes</a><a href="chapitres/index.html">Chapitres</a>
+    <a href="complexite.html">Complexité</a>
+    <a href="ece.html" style="color:var(--accent)">EP Pratique</a>
+  </div>
+  <span class="nav-badge">Terminale — 2026</span><button class="burger">☰</button>
+</nav>
+
+<div class="dash-hero">
+  <h1>📊 Dashboard — Traitement des sujets ECE</h1>
+  <p>Suivi de l'avancement de la conversion des sujets officiels (BNS) en fiches interactives sur <a href="ece.html">EP Pratique</a>. Un sujet « traité » a sa fiche complète (code, questions, corrections) sur les 3 pages du site.</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="big">5/23</div>
+    <div class="lbl">BNS 2026 traités (22%)</div>
+    <div class="progress-bar"><div style="width:22%"></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="big">0/48</div>
+    <div class="lbl">BNS 2024 traités (0%)</div>
+    <div class="progress-bar"><div style="width:0%"></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="big">5/71</div>
+    <div class="lbl">Total tous millésimes</div>
+    <div class="progress-bar"><div style="width:7%"></div></div>
+  </div>
+</div>
+
+<div class="section-title">🆕 BNS 2026 <span class="badge badge-done" style="margin-left:.4rem">format 4 questions</span></div>
+<div class="section-sub">23 sujets, publiés le 26/03/2026 (mis à jour 30/04/2026). 5 déjà transformés en fiches interactives — un par point d'évaluation de la progression Terminale.</div>
+<div class="table-wrap"><div class="table-inner">
+<table class="dash-table">
+<thead><tr><th>Réf.</th><th>Titre</th><th>Statut</th><th>Source</th></tr></thead>
+<tbody>
+
+        <tr class="row-done">
+          <td class="cell-num">26-01</td>
+          <td>Compression RLE d'une image en niveaux de gris</td>
+          <td><span class="badge badge-done">🟢 Interactif</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_3/EP-BAC-NSI-Sujet3.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-02</td>
+          <td>Analyse d'écarts de salaires en entreprise</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_2/EP-BAC-NSI-Sujet2.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-03</td>
+          <td>Cycle et dates (calendrier, iCalendar)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_1/EP-BAC-NSI-Sujet1.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-04</td>
+          <td>Croissance de plantes (mesures, dictionnaire)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_4/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-done">
+          <td class="cell-num">26-05</td>
+          <td>Empreinte carbone (dictionnaires imbriqués)</td>
+          <td><span class="badge badge-done">🟢 Interactif</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_5/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-done">
+          <td class="cell-num">26-06</td>
+          <td>Boutique de smoothies (POO)</td>
+          <td><span class="badge badge-done">🟢 Interactif</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_6/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-done">
+          <td class="cell-num">26-07</td>
+          <td>Coccinelles contre pucerons (simulation)</td>
+          <td><span class="badge badge-done">🟢 Interactif</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_7/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-08</td>
+          <td>Addition en BCD (représentation binaire)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_8/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-09</td>
+          <td>Objets 3D (classes Sommet/Face/Objet3D)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_9/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-10</td>
+          <td>Qualité de l'eau (lissage, moyenne glissante)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_10/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-11</td>
+          <td>Prédiction d'habitat (k plus proches voisins)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_11/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-12</td>
+          <td>Refuge de renards (POO, import CSV)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_12/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-13</td>
+          <td>Ballon-sonde (CSV, génération KML)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_13/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-14</td>
+          <td>Évacuation d'une pièce (grille, POO)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_14/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-done">
+          <td class="cell-num">26-15</td>
+          <td>Cabinet vétérinaire (SQL, sqlite3)</td>
+          <td><span class="badge badge-done">🟢 Interactif</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_15/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-16</td>
+          <td>Warming stripes climatiques (dico, matplotlib)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_16/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-17</td>
+          <td>Budget associatif (dictionnaire, agrégation)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_17/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-18</td>
+          <td>Températures en Polynésie (dico, décennies)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_18/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-19</td>
+          <td>Gestion de réservoirs d'eau (dico, vulnérabilité)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_19/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-20</td>
+          <td>Empreinte carbone comparée (dico, pourcentages)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_20/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-21</td>
+          <td>Cartes de mémorisation façon flashcards (POO)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_21/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-22</td>
+          <td>QR code / ASCII (binaire, encodage)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_22/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">26-23</td>
+          <td>Trame & bits de parité (POO, contrôle d'erreur)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_23/sujet.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+</tbody>
+</table>
+</div></div>
+
+<div class="section-title">🗄️ BNS 2024 <span class="badge badge-todo" style="margin-left:.4rem">format 2 exercices, Basthon</span></div>
+<div class="section-sub">48 sujets (96 exercices), publiés le 21/03/2024 — format différent des sujets 2026 (deux exercices par sujet, correction dépliable, lien direct vers l'éditeur en ligne Basthon). Utile pour un diagnostic rapide en tout début d'année en 1ʳᵉ comme en terminale. Titres 1 à 12 catalogués en détail ; 13 à 48 identifiés mais pas encore résumés individuellement.</div>
+<div class="table-wrap"><div class="table-inner">
+<table class="dash-table">
+<thead><tr><th>Réf.</th><th>Titre</th><th>Statut</th><th>Source</th></tr></thead>
+<tbody>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-01</td>
+          <td>Arbre binaire (taille récursive) + tri par sélection</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-01.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-02</td>
+          <td>Mots à trous (correspondance) + plans d'envoi cycliques</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-02.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-03</td>
+          <td>Maximum de tableau + bon parenthésage (classe Pile)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-03.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-04</td>
+          <td>Recherche dernière occurrence + point le plus proche (distance)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-04.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-05</td>
+          <td>Max et indice (sans max()) + points de rupture (génome)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-05.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-06</td>
+          <td>Tableau trié ? + dépouillement/vainqueurs d'une élection</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-06.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-07</td>
+          <td>Binaire grand-boutiste → entier + tri par insertion</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-07.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-08</td>
+          <td>Delta encoding (compression) + arbre d'expression (POO)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-08.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-09</td>
+          <td>Effectifs de notes + conversion binaire récursive</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-09.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-10</td>
+          <td>Moyenne pondérée + zoom d'un dessin (grille de pixels)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-10.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-11</td>
+          <td>Nombre de mots dans une phrase + insertion dans un ABR</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-11.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-12</td>
+          <td>Tri par sélection + jeu du plus ou moins (random)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-12.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-13</td>
+          <td>Recherche d'occurrence (sans .index()) — reste non catalogué en détail</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-13.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-14</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-14.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-15</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-15.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-16</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-16.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-17</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-17.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-18</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-18.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-19</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-19.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-20</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-20.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-21</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-21.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-22</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-22.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-23</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-23.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-24</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-24.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-25</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-25.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-26</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-26.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-27</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-27.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-28</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-28.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-29</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-29.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-30</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-30.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-31</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-31.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-32</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-32.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-33</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-33.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-34</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-34.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-35</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-35.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-36</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-36.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-37</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-37.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-38</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-38.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-39</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-39.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-40</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-40.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-41</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-41.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-42</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-42.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-43</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-43.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-44</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-44.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-45</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-45.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-46</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-46.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-47</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-47.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+
+        <tr class="row-todo">
+          <td class="cell-num">24-48</td>
+          <td>— (non catalogué en détail dans ce dashboard)</td>
+          <td><span class="badge badge-todo">⚪ Non traité</span></td>
+          <td><a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/pdf2024/24-NSI-48.pdf" target="_blank" rel="noopener">PDF ↗</a></td>
+        </tr>
+</tbody>
+</table>
+</div></div>
+
+<div class="legend-note">
+  🟢 Interactif = fiche complète disponible sur <a href="ece.html">ece.html</a> / <a href="ece_prof.html">ece_prof.html</a> / <a href="ece_eleves.html">ece_eleves.html</a>.
+  ⚪ Non traité = sujet répertorié (numéro, titre, lien PDF officiel) mais pas encore transformé en fiche interactive.
+  <br><br>
+  Sources : <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/BNS_2026/" target="_blank" rel="noopener">BNS 2026</a> ·
+  <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/BNS_2024/" target="_blank" rel="noopener">BNS 2024</a>
+  (Lycée François Mauriac — Bordeaux, CC BY-SA).
+</div>
+
+<footer style="text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--text2);margin-top:2rem">
+  <p>NSI Terminale — 2026 · <a href="index.html">Accueil</a> · <a href="ece.html">EP Pratique</a></p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

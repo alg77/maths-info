@@ -5,9 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Progression &amp; Gantt — NSI Première</title>
 <link rel="stylesheet" href="progression-commun.css">
+<script src="referentiel-nsi-premiere-data.js"></script>
+<script src="referentiel-nsi-bac-ece-data.js"></script>
+<script src="referentiel-nsi-pyxel-data.js"></script>
 <style>
   :root{ --H:#cdb7a0; --D:#8fb3d9; --P:#9cc4a0; --L:#e6c27a; --T:#b9a3dd; --W:#e6a18c; --S:#7fbfc9;
          --Ra:#90c1cf; --Ce:#b6a6d6; --Co:#e0b18a; --Cr:#9cc6a6; --De:#e3a09a; --En:#d79bbf; }
+  /* ---- banque d'objectifs BO (drag&drop) ---- */
+  .oz-wrap{ margin-top:10px; border-left:3px solid var(--P); padding-left:10px; }
+  .oz-label{ font-size:12px; font-weight:700; color:#655; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+  .obj-zone{ min-height:34px; border:1.5px dashed #d8d2de; border-radius:10px; padding:6px; display:flex; flex-wrap:wrap; gap:6px; background:#fbfaf9; }
+  .obj-zone.dragover{ border-color:#a88; background:rgba(150,120,140,.10); }
+  .oz-empty{ font-size:12px; color:#aaa; font-style:italic; padding:4px; }
+  .objchip{ display:inline-flex; align-items:center; gap:5px; background:#fff; border:1px solid #e2dce6; border-radius:8px; padding:3px 4px 3px 4px; font-size:12px; cursor:grab; max-width:280px; }
+  .objchip .oc-code{ color:#fff; border-radius:5px; padding:1px 6px; font-weight:700; font-size:11px; }
+  .objchip .oc-txt{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:190px; }
+  .objchip .oc-rm{ border:none; background:none; cursor:pointer; color:#b88; font-size:14px; line-height:1; padding:0 2px; }
+  #bankPanel{ position:fixed; top:0; right:0; width:360px; max-width:92vw; height:100vh; background:#fff; box-shadow:-8px 0 30px rgba(0,0,0,.15); z-index:80; display:none; flex-direction:column; }
+  #bankPanel.open{ display:flex; }
+  .bank-head{ padding:12px 14px; border-bottom:1px solid #eee; display:flex; align-items:center; gap:8px; }
+  .bank-head input[type=text]{ flex:1; border:1px solid #ddd; border-radius:8px; padding:6px 9px; font-size:13px; }
+  .bank-close{ border:none; background:#f2eef4; border-radius:8px; padding:4px 9px; cursor:pointer; font-size:15px; }
+  .bank-filters{ display:flex; flex-wrap:wrap; gap:5px; padding:8px 14px; border-bottom:1px solid #eee; }
+  .bank-filters button{ border:1px solid #ddd; background:#fff; border-radius:999px; padding:3px 10px; font-size:11px; cursor:pointer; }
+  .bank-filters button.active{ background:#5b4a63; color:#fff; border-color:#5b4a63; }
+  .bank-list{ flex:1; overflow:auto; padding:8px 10px; }
+  .bankobj{ display:flex; align-items:center; gap:6px; padding:6px 7px; border-radius:8px; cursor:grab; font-size:12.5px; margin-bottom:4px; border:1px solid transparent; }
+  .bankobj:hover{ background:#f7f4f8; }
+  .bankobj.armed{ background:#efe6f2; border-color:#c9a9d6; }
+  .bankobj.placed{ opacity:.55; }
+  .bankobj .bo-code{ color:#fff; border-radius:5px; padding:1px 6px; font-weight:700; font-size:11px; flex-shrink:0; }
+  .bankobj .bo-txt{ flex:1; }
+  .bankobj .bo-in{ font-size:10px; color:#888; flex-shrink:0; }
+  #bankBackdrop{ position:fixed; inset:0; background:rgba(20,10,25,.25); z-index:79; display:none; }
+  #bankBackdrop.open{ display:block; }
 </style>
 </head>
 <body data-page="progressions">
@@ -64,6 +95,7 @@
 
   <div class="toolbar no-print">
     <button class="btn" id="addSeq" type="button">+ Séquence</button>
+    <button class="btn" id="bankBtn" type="button">🎯 Banque d'objectifs</button>
     <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
     <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
     <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
@@ -101,12 +133,24 @@
   <div class="info no-print">
     Progression <b>pré-remplie depuis le BO Première NSI</b>. Référentiel = les <b>6 compétences LSL</b>, thèmes = les grands domaines du programme.
     <ul>
-      <li><b>Ordre proposé</b> : types de base → programmation → types construits → algorithmique → données en tables → Web → architecture/systèmes/réseaux, avec l'<b>histoire de l'informatique en fil rouge</b>. Tu n'avais pas de doc perso, donc c'est un point de départ à t'approprier.</li>
-      <li><b>Logique des prérequis</b> : les types construits (tableaux, dictionnaires) précèdent l'algorithmique et le traitement de données en tables, qui en dépendent.</li>
-      <li><b>Durées estimées</b> (4 h/sem, ~26 sem.) volontairement prudentes : il te reste de la marge pour les projets, les TP et les évals — ajuste librement.</li>
-      <li><b>Fin</b> calée provisoirement avant la 1ʳᵉ épreuve écrite du bac (placeholder juin 2027).</li>
+      <li><b>Ordre proposé</b> : types de base → programmation → types construits → <b>bibliothèques/Pyxel (lancement du fil rouge)</b> → algorithmique → données en tables → Web → architecture/systèmes/réseaux → <b>finalisation du jeu & Nuit du Code</b>, avec l'<b>histoire de l'informatique en fil rouge</b>. Tu n'avais pas de doc perso, donc c'est un point de départ à t'approprier.</li>
+      <li><b>Théorie et pratique mêlées</b> dans chaque séance : problème ou notion, travail papier, pratique sur PC puis bilan. Trois zones distinguent les objectifs BO, Bac/ECE et Pyxel.</li>
+      <li><b>Projet fil rouge Pyxel</b> : amorcé dès P1 avec la boucle <code>update/draw</code> et le déplacement, enrichi par les types construits, l'algorithmique, les CSV et le Web, puis finalisé en vue de la Nuit du Code.</li>
+      <li><b>Logique des prérequis</b> : chaque notion du BO est d'abord explicitée et travaillée sur papier, puis incarnée dans un mini-défi Python/Pyxel adapté.</li>
+      <li><b>Durées estimées</b> (4 h/sem, ~30,5 sem. avec le projet Pyxel) volontairement prudentes : il te reste de la marge pour les évals — ajuste librement.</li>
+      <li><b>Fin d'année calée sur le réel</b> : cours jusqu'au <b>1ᵉʳ vendredi de juin</b> (4 juin 2027 ici), avec les <b>ECE de NSI la semaine précédente</b> (1ʳᵉ semaine de juin, laissée volontairement libre de toute séquence). Avec ce calendrier, P3 (finalisation Pyxel + présentation) tombe naturellement sur <b>mi → fin mai</b>, la fenêtre habituelle de la Nuit du Code — cale la date exacte de présentation dans cet intervalle une fois connue.</li>
     </ul>
   </div>
+</div>
+
+<div id="bankBackdrop"></div>
+<div id="bankPanel">
+  <div class="bank-head">
+    <input type="text" id="bankSearch" placeholder="Rechercher un objectif (code, mot-clé)…">
+    <button class="bank-close" id="bankClose" type="button" title="Fermer">×</button>
+  </div>
+  <div class="bank-filters" id="bankFilters"></div>
+  <div class="bank-list" id="bankList"></div>
 </div>
 
 <script>
@@ -129,11 +173,112 @@ var DESC={
 };
 function famOf(code){ return code.slice(0,2); }
 
+/* ---------- banque d'objectifs BO (référentiel officiel NSI Première) ---------- */
+var RALL=[]; (function(){ var R=window.REFNSIP; if(!R||!R.objectifs) return; R.objectifs.forEach(function(o){ RALL.push({id:o.code, code:o.code, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type||'objectif'}); }); })();
+var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
+function objTheme(id){ var o=RBY[id]; return o?o.theme:'D'; }
+function objText(id){ var o=RBY[id]; return o?o.texte:id; }
+function objShort(id){ var t=objText(id); return t.length>70?t.slice(0,68)+'…':t; }
+function migrateObjectifs(st){
+  if(!st||!st.seq) return st;
+  st.seq.forEach(function(s){
+    if(!Array.isArray(s.objectifs)) s.objectifs=[];
+    if(Array.isArray(s.objTheorie) || Array.isArray(s.objPratique)){
+      var merged=s.objectifs.concat(s.objTheorie||[],s.objPratique||[]);
+      var seen={}; s.objectifs=merged.filter(function(c){ if(seen[c])return false; seen[c]=1; return true; });
+      delete s.objTheorie; delete s.objPratique;
+    }
+  });
+  return st;
+}
+function placedInZone(id){
+  var r=[]; S.seq.forEach(function(s,i){ if(s.objectifs.indexOf(id)!==-1) r.push(i); });
+  return r;
+}
+function allPlacedObj(){
+  var set={}; S.seq.forEach(function(s){ s.objectifs.forEach(function(c){ set[c]=1; }); });
+  return set;
+}
+function objChipHTML(id,i){
+  var col='var(--'+objTheme(id)+')';
+  return '<span class="objchip" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+esc(objText(id))+'">'
+    +'<span class="oc-code" style="background:'+col+'">'+esc(id)+'</span>'
+    +'<span class="oc-txt">'+esc(objShort(id))+'</span>'
+    +'<button type="button" class="oc-rm" data-id="'+id+'" data-i="'+i+'" title="Retirer">×</button></span>';
+}
+function ozoneHTML(s,i){
+  var arr=s.objectifs;
+  var body = arr.length ? arr.map(function(id){ return objChipHTML(id,i); }).join('') : '<span class="oz-empty">Glisse un objectif du BO ici</span>';
+  return '<div class="oz-wrap"><div class="oz-label">🎯 Objectifs du BO</div><div class="obj-zone" data-i="'+i+'">'+body+'</div></div>';
+}
+function wireObjZone(el,i){
+  el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('dragover'); });
+  el.addEventListener('dragleave',function(){ el.classList.remove('dragover'); });
+  el.addEventListener('drop',function(e){
+    e.preventDefault(); el.classList.remove('dragover');
+    var id = dragObjCode || e.dataTransfer.getData('text/plain');
+    if(!id || !RBY[id]) return;
+    if(dragFromSeq!=null){ var src=S.seq[dragFromSeq].objectifs; var k=src.indexOf(id); if(k!==-1) src.splice(k,1); }
+    if(S.seq[i].objectifs.indexOf(id)===-1) S.seq[i].objectifs.push(id);
+    dragObjCode=null; dragFromSeq=null; armedObj=null;
+    save(); renderAll();
+  });
+  el.addEventListener('click',function(e){
+    if(e.target.closest('.oc-rm')) return;
+    if(!armedObj) return;
+    if(S.seq[i].objectifs.indexOf(armedObj)===-1) S.seq[i].objectifs.push(armedObj);
+    armedObj=null; save(); renderAll(); renderBank();
+  });
+}
+var bankOpen=false, bankFilter='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
+function toggleBank(open){
+  bankOpen = open!=null ? open : !bankOpen;
+  document.getElementById('bankPanel').classList.toggle('open',bankOpen);
+  document.getElementById('bankBackdrop').classList.toggle('open',bankOpen);
+  if(bankOpen) renderBank();
+}
+document.getElementById('bankBtn').addEventListener('click',function(){ toggleBank(true); });
+document.getElementById('bankClose').addEventListener('click',function(){ toggleBank(false); });
+document.getElementById('bankBackdrop').addEventListener('click',function(){ toggleBank(false); });
+document.getElementById('bankSearch').addEventListener('input',function(){ bankQuery=this.value.toLowerCase(); renderBank(); });
+function normTxt(s){ return String(s||'').toLowerCase(); }
+function renderBankFilters(){
+  var wrap=document.getElementById('bankFilters'); wrap.innerHTML='';
+  var themes=[['all','Tout']].concat(Object.keys(THEMES).map(function(k){return [k,THEMES[k]];}));
+  themes.forEach(function(t){
+    var b=document.createElement('button'); b.type='button'; b.textContent=t[1]; if(bankFilter===t[0]) b.classList.add('active');
+    b.addEventListener('click',function(){ bankFilter=t[0]; renderBank(); });
+    wrap.appendChild(b);
+  });
+}
+function renderBank(){
+  renderBankFilters();
+  var placed=allPlacedObj(), q=bankQuery;
+  var items=RALL.filter(function(o){
+    if(bankFilter!=='all' && o.theme!==bankFilter) return false;
+    if(q && normTxt(o.code+' '+o.texte+' '+o.sousTheme).indexOf(q)===-1) return false;
+    return true;
+  });
+  var list=document.getElementById('bankList'); list.innerHTML='';
+  if(!items.length){ list.innerHTML='<div class="oz-empty">Aucun objectif ne correspond.</div>'; return; }
+  items.forEach(function(o){
+    var where=placedInZone(o.id);
+    var div=document.createElement('div'); div.className='bankobj'+(where.length?' placed':'')+(armedObj===o.id?' armed':'');
+    div.draggable=true;
+    div.innerHTML='<span class="bo-code" style="background:var(--'+o.theme+')">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+'</span>'+(where.length?'<span class="bo-in">placé</span>':'');
+    div.title=o.sousTheme||'';
+    div.addEventListener('dragstart',function(e){ dragObjCode=o.id; dragFromSeq=null; dragFromZone=null; e.dataTransfer.setData('text/plain',o.id); e.dataTransfer.effectAllowed='copy'; });
+    div.addEventListener('click',function(){ armedObj = armedObj===o.id ? null : o.id; renderBank(); });
+    list.appendChild(div);
+  });
+}
+
+
 /* ---------- état par défaut (ta progression NSI Première) ---------- */
 function defaultState(){
   return {
     cal:{
-      rentree:'2026-09-01', fin:'2027-06-11',
+      rentree:'2026-09-01', fin:'2027-06-04',
       vac:[
         {nom:'Toussaint', sat:'2026-10-17', resume:'2026-11-02'},
         {nom:'Noël',      sat:'2026-12-19', resume:'2027-01-04'},
@@ -147,11 +292,13 @@ function defaultState(){
       {code:'D1',title:'Représentation des données : types de base',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Binaire, hexadécimal ; conversions\nEntiers (signés, non signés), dépassement\nBooléens, opérateurs logiques, tables de vérité\nNombres flottants (principe, imprécisions)\nReprésentation des caractères (ASCII, Unicode)'},
       {code:'P1',title:'Langages & programmation',theme:'P',weeks:3.5,comps:['Cr','Ra','Ce'],details:'Constructions élémentaires (séquences, conditions, boucles)\nVariables, types, affectation\nFonctions : paramètres, retour, portée\nSpécification, documentation, jeux de tests\nMise au point : erreurs, débogage'},
       {code:'D2',title:'Représentation des données : types construits',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Tuples, p-uplets\nTableaux (listes), parcours, compréhension\nTableaux de tableaux\nDictionnaires (clés / valeurs), parcours\nChoix d\'une structure adaptée'},
-      {code:'L1',title:'Algorithmique',theme:'L',weeks:4,comps:['Ra','Cr','De'],details:'Parcours séquentiel d\'un tableau\nRecherche dichotomique (et coût)\nTri par insertion, tri par sélection\nAlgorithmes gloutons (rendu de monnaie)\nk plus proches voisins (kNN)\nCorrection et coût (sensibilisation à la complexité)'},
+      {code:'P2',title:'Bibliothèques : découverte de Pyxel — lancement du jeu vidéo (fil rouge)',theme:'P',weeks:2.5,comps:['Cr','Ce','Co'],details:'Notion de bibliothèque : installer, importer, consulter la documentation\nDécouverte de Pyxel : fenêtre, boucle de jeu (update / draw), sprites, entrées clavier\nLancement du projet fil rouge, par binômes : jeu vidéo en Pyxel\nCahier des charges minimal : menu, un niveau jouable, score\nPremiers sprites et détection de collisions simples\nObjectif final : présentation à la Nuit du Code'},
+      {code:'L1',title:'Algorithmique',theme:'L',weeks:4,comps:['Ra','Cr','De'],details:'Parcours séquentiel d\'un tableau\nRecherche dichotomique (et coût)\nTri par insertion, tri par sélection\nAlgorithmes gloutons (rendu de monnaie)\nk plus proches voisins (kNN)\nCorrection et coût (sensibilisation à la complexité)\nRéinvestissement direct dans le jeu Pyxel : collisions, score, IA simple des ennemis'},
       {code:'T1',title:'Traitement de données en tables',theme:'T',weeks:3,comps:['Cr','De','Ra','En'],details:'Importer des données (CSV)\nDonnées en tables : descripteurs, enregistrements\nRecherche, filtres\nTri selon un critère\nFusion de tables ; enjeux (données personnelles)'},
       {code:'W1',title:'Interactions homme-machine sur le Web',theme:'W',weeks:3.5,comps:['Cr','De','En'],details:'HTML & CSS : structure et style d\'une page\nFormulaires ; requêtes GET et POST\nÉvénements (JavaScript) et interactions\nClient / serveur (notion)\nEnjeux : sécurité, données transmises'},
       {code:'S1',title:"Architectures matérielles & systèmes d'exploitation",theme:'S',weeks:3,comps:['De','En','Ra'],details:'Modèle de von Neumann\nPortes logiques, circuits (notions)\nSystème d\'exploitation : rôle\nCommandes de base ; gestion des fichiers\nProcessus (notion)'},
-      {code:'S2',title:'Réseaux',theme:'S',weeks:2,comps:['De','En'],details:'Transmission : bits, paquets, protocoles\nAdressage, commutation\nRoutage (principe)\nInternet : architecture\nEnjeux : neutralité, sécurité'}
+      {code:'S2',title:'Réseaux',theme:'S',weeks:2,comps:['De','En'],details:'Transmission : bits, paquets, protocoles\nAdressage, commutation\nRoutage (principe)\nInternet : architecture\nEnjeux : neutralité, sécurité'},
+      {code:'P3',title:'Finalisation du jeu vidéo Pyxel & Nuit du Code',theme:'P',weeks:2,comps:['Cr','Co','Ce'],details:'Finalisation du projet : menu complet, sons, plusieurs niveaux ou vagues d\'ennemis\nRefactorisation du code, correction des bugs, jeux de tests manuels\nDocumentation du projet (README, captures d\'écran, notice de jeu)\nPréparation de la présentation orale par binôme\nPrésentation des jeux lors de la Nuit du Code'}
     ]
   };
 }
@@ -159,7 +306,7 @@ var THEMES={H:'Histoire & enjeux',D:'Données',P:'Programmation',L:'Algorithmiqu
 
 /* ---------- persistance ---------- */
 var KEY='progNSI1ere_v1', S=load();
-function load(){ try{ var r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return defaultState(); }
+function load(){ try{ var r=localStorage.getItem(KEY); if(r) return migrateObjectifs(JSON.parse(r)); }catch(e){} return migrateObjectifs(defaultState()); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
 
@@ -326,6 +473,24 @@ function renderSeq(){
     dta.addEventListener('input',function(){ s.details=dta.value; autoSizeTextarea(dta); save(); });
     el.appendChild(dta);
 
+    var objWrap=document.createElement('div');
+    objWrap.innerHTML = ozoneHTML(s,i);
+    el.appendChild(objWrap);
+    var zEl=objWrap.querySelector('.obj-zone'); wireObjZone(zEl, i);
+    objWrap.querySelectorAll('.objchip').forEach(function(chip){
+      chip.addEventListener('dragstart',function(e){
+        dragObjCode=chip.dataset.id; dragFromSeq=+chip.dataset.from;
+        e.dataTransfer.setData('text/plain',chip.dataset.id); e.dataTransfer.effectAllowed='move';
+      });
+    });
+    objWrap.querySelectorAll('.oc-rm').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.stopPropagation();
+        var arr=s[btn.dataset.field||'objectifsBO']||[], k=arr.indexOf(btn.dataset.id); if(k!==-1) arr.splice(k,1);
+        save(); renderAll();
+      });
+    });
+
     el.setAttribute('data-i',i);
     root.appendChild(el);
 
@@ -455,9 +620,9 @@ function setAllSeqDetails(open){
   });
   syncAllDetailsToggle();
 }
-function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); }
+function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); if(bankOpen) renderBank(); }
 document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
-document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'N',weeks:1,comps:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
+document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'D',weeks:1,comps:[],objectifs:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
@@ -483,7 +648,7 @@ function printGantt(){ renderGantt(); document.body.classList.add('printing','pr
 function exportProgressionWord(){
   renderPrintDoc(true);
   var title=currentDocTitle();
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-objectives{font-size:11px;margin:6px 0;padding-left:10px;border-left:3px solid #d9b5ca}.pdoc-objectives div{margin:3px 0}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
   var blob=new Blob(['\ufeff',html],{type:'application/msword'});
   var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
 }
@@ -503,6 +668,7 @@ document.getElementById('importFile').addEventListener('change',function(e){ var
 
 renderAll();
 </script>
+<script src="progression-nsi-mixte.js"></script>
 <script src="site.js" defer></script>
 </body>
 </html>

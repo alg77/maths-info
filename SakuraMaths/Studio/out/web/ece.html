@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujets EP NSI — Entraînement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.ece-hero{text-align:center;padding:3.5rem 2rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2)}
+.ece-hero h1{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:.5rem}
+.ece-hero p{color:var(--text2);max-width:700px;margin:.5rem auto 0;line-height:1.7}
+.ece-note{max-width:820px;margin:1.5rem auto;padding:1rem 1.5rem;background:#fefce8;border:1px solid #fbbf24;border-radius:10px;font-size:.88rem;line-height:1.65}
+.ece-note strong{color:#92400e}
+.ece-info-band{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin:1.5rem auto;max-width:900px;padding:0 1.5rem}
+.ece-info-chip{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.6rem 1.1rem;font-size:.85rem;display:flex;align-items:center;gap:.5rem}
+.ece-info-chip strong{color:var(--accent)}
+.ece-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;max-width:1100px;margin:2rem auto;padding:0 1.5rem 4rem}
+.ece-card.card-expanded{grid-column:1/-1}
+.ece-card.card-expanded .ece-sujet pre.sc{font-size:.82rem}
+.ece-card.card-expanded .qblock{max-width:860px}
+.ece-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .15s;display:flex;flex-direction:column}
+.ece-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.1)}
+.ece-card-header{padding:1.25rem 1.5rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:1rem}
+.ece-num{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.75rem;background:var(--accent);color:#fff;border-radius:6px;padding:.25rem .6rem;white-space:nowrap;margin-top:.15rem;flex-shrink:0}
+.ece-card-title{font-family:"Syne",sans-serif;font-size:1.05rem;font-weight:800;margin:0 0 .3rem}
+.ece-card-theme{font-size:.8rem;color:var(--text2)}
+.ece-inspired{font-size:.75rem;color:var(--accent);font-style:italic;margin-top:.2rem}
+.ece-card-body{padding:1.25rem 1.5rem;flex:1;font-size:.88rem}
+.ece-card-body p{margin:.4rem 0;line-height:1.6;color:var(--text2)}
+.ece-card-body strong{color:var(--text)}
+.ece-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0}
+.tag-type{font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:4px;font-family:"JetBrains Mono",monospace}
+.tag-complete{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd}
+.tag-ecrire{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.tag-corriger{background:#fef9c3;color:#854d0e;border:1px solid #fde047}
+.tag-tester{background:#fae8ff;color:#7e22ce;border:1px solid #d8b4fe}
+.tag-expliquer{background:#ffedd5;color:#9a3412;border:1px solid #fdba74}
+.ece-card-footer{border-top:1px solid var(--border);background:var(--bg2)}
+.ece-toggle{width:100%;background:none;border:none;cursor:pointer;padding:.9rem 1.5rem;text-align:left;font-family:"Inter",sans-serif;font-size:.85rem;font-weight:600;color:var(--accent);display:flex;align-items:center;justify-content:space-between}
+.ece-toggle:hover{background:var(--bg3)}
+.ece-toggle .arrow{transition:transform .2s}
+.ece-toggle.open .arrow{transform:rotate(180deg)}
+.ece-sujet{display:none;padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.ece-sujet.visible{display:block}
+.sujet-intro{background:var(--bg2);border-left:3px solid var(--accent);padding:.8rem 1.1rem;border-radius:0 8px 8px 0;font-size:.86rem;line-height:1.7;margin:1rem 0}
+.sujet-section{margin:1.5rem 0}
+.sujet-section h4{font-family:"Syne",sans-serif;font-size:.95rem;font-weight:800;margin:0 0 .6rem;padding:.4rem .7rem;background:var(--bg2);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;color:var(--accent)}
+.code-label{font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:700;color:#fff;background:var(--text2);border-radius:4px 4px 0 0;padding:.2rem .6rem;display:inline-block;margin-top:.5rem}
+pre.sc{background:#1e1e2e;border-radius:0 6px 6px 6px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 .75rem;font-family:"JetBrains Mono",monospace;font-size:.79rem;line-height:1.65;border:1px solid #30363d;color:#cdd6f4}
+pre.sc .cm{color:#636e8a;font-style:italic}
+pre.sc .kw{color:#ff79c6;font-weight:600}
+pre.sc .fn{color:#8be9fd}
+pre.sc .st{color:#f1fa8c}
+pre.sc .nb{color:#bd93f9}
+pre.sc .bug{background:#ff000033;border-radius:3px}
+.qblock{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;margin:.75rem 0}
+.qh{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.4rem}
+.qn{font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:700;color:#fff;border-radius:4px;padding:.15rem .45rem;white-space:nowrap}
+.qn.c0{background:#1d4ed8}.qn.c1{background:#166534}.qn.c2{background:#854d0e}.qn.c3{background:#7e22ce}.qn.c4{background:#9a3412}
+.qt{font-size:.88rem;font-weight:600;line-height:1.55}
+.qhint{font-size:.8rem;color:var(--text2);margin-top:.35rem;font-style:italic}
+.cb{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid var(--green);color:var(--green);border-radius:6px;padding:.35rem .8rem;font-size:.78rem;font-weight:600;cursor:pointer;margin:.6rem 0 .3rem;font-family:"Inter",sans-serif;transition:background .15s,color .15s}
+.cb:hover{background:var(--green);color:#fff}
+.cbox{display:none;margin-top:.4rem}
+.cbox.visible{display:block}
+.cexpl{background:#f0fdf4;border:1px solid #86efac;border-radius:8px 8px 0 0;padding:.75rem 1rem;font-size:.83rem;line-height:1.65}
+.cexpl strong{color:#166534}
+.cexpl .attn{background:#fef9c3;border-left:3px solid #f59e0b;padding:.4rem .7rem;border-radius:0 4px 4px 0;margin:.4rem 0;font-style:italic}
+pre.cc{background:#0f1117;border-radius:0 0 8px 8px;margin:0;padding:.9rem 1rem;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:.79rem;line-height:1.65;border:1px solid #86efac;border-top:none;color:#cdd6f4}
+pre.cc .cm{color:#636e8a;font-style:italic}
+pre.cc .kw{color:#ff79c6;font-weight:600}
+pre.cc .fn{color:#8be9fd}
+pre.cc .st{color:#f1fa8c}
+pre.cc .nb{color:#bd93f9}
+pre.cc .ok{background:#00ff0022;border-radius:3px}
+@media(max-width:600px){.ece-grid{grid-template-columns:1fr;padding:0 1rem 3rem}}
+  
+.dl-btn {
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:var(--accent); color:#fff; border:none; border-radius:7px;
+  padding:.55rem 1.1rem; font-size:.82rem; font-weight:600;
+  cursor:pointer; text-decoration:none; font-family:'Inter',sans-serif;
+  transition:background .15s;
+}
+.dl-btn:hover { background:#0040a0; color:#fff; }
+.dl-btn svg { flex-shrink:0; }
+
+
+.edit-btn {
+  display:inline-flex; align-items:center; gap:.35rem;
+  background:none; border:1px solid var(--accent); color:var(--accent);
+  border-radius:5px; padding:.28rem .65rem; font-size:.75rem; font-weight:600;
+  cursor:pointer; text-decoration:none; font-family:'JetBrains Mono',monospace;
+  transition:background .15s, color .15s; white-space:nowrap; flex-shrink:0;
+}
+.edit-btn:hover { background:var(--accent); color:#fff; }
+.tag-theme{font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:4px;font-family:"JetBrains Mono",monospace;background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd}
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">NSI<span>.bac</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a><a href="quiz.html">QCM</a>
+    <a href="methodes.html">Méthodes</a><a href="chapitres/index.html">Chapitres</a>
+    <a href="complexite.html">Complexité</a>
+    <a href="ece.html" style="color:var(--accent)">EP Pratique</a>
+  </div>
+  <span class="nav-badge">Terminale — 2026</span><button class="burger">☰</button>
+</nav>
+
+
+<div class="ece-hero">
+  <h1>🎯 Épreuve Pratique — Sujets officiels BNS 2026</h1>
+  <p>5 sujets <strong>réels</strong> de la Banque Nationale de Sujets 2026 (publiés le 26/03/2026, mis à jour le 30/04/2026,
+  Lycée François Mauriac — Bordeaux, CC BY-SA), un par point d'évaluation ECE de la progression. Chaque sujet garde son
+  format d'origine : mise en situation, code fourni, 4 questions chronométrées (1h), avec appel professeur suggéré.</p>
+
+</div>
+
+<div style="max-width:820px;margin:1.5rem auto;padding:0 1.5rem">
+  <div class="ece-note">
+    <strong>⚠️ Sujets authentiques :</strong> ce ne sont pas des variantes inspirées mais les <strong>vrais énoncés</strong>
+    du bac 2026, retranscrits fidèlement (mise en situation reformulée pour la lisibilité, code et questions conformes à
+    l'original). Le lien vers le PDF officiel est indiqué sur chaque carte.
+    <br><br>
+    <strong>Format de l'épreuve :</strong> 4 compétences évaluées — Programmation (35%), Autonomie (20%),
+    Compréhension (25%), Oral (20%).
+  </div>
+</div>
+
+<div class="ece-info-band">
+  <div class="ece-info-chip">🕐 <span><strong>Durée :</strong> 1h par sujet</span></div>
+  <div class="ece-info-chip">💻 <span><strong>Support :</strong> Python (Thonny…)</span></div>
+  <div class="ece-info-chip">📋 <span><strong>Source :</strong> BNS 2026 officielle</span></div>
+</div>
+
+<div class="ece-grid">
+
+<!-- SUJET 15 -->
+<div class="ece-card">
+  <div class="ece-card-header">
+    <div class="ece-num">N°15</div>
+    <div>
+      <div class="ece-card-title">Rappels de vaccination — cabinet vétérinaire</div>
+      <div class="ece-card-theme">Bases de données · SQL · sqlite3</div>
+      <div class="ece-inspired">📌 Sujet officiel <strong>n°15</strong> de la <strong>BNS 2026</strong> — <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_15/sujet.pdf" target="_blank" rel="noopener">énoncé PDF original ↗</a></div>
+    </div>
+  </div>
+  <div class="ece-card-body">
+    <p>Un cabinet vétérinaire gère ses clients et animaux dans une base SQLite à 3 tables (<code>proprietaire</code>, <code>animal</code>, <code>consultation</code>). Objectif : repérer automatiquement les chats à vacciner (rap…</p>
+    <div class="ece-tags">
+      <span class="tag-theme">SQL</span>
+      <span class="tag-theme">Bases de données</span>
+      <span class="tag-theme">Chaînes de caractères</span>
+    </div>
+    <div class="ece-tags">
+      <span class="tag-type tag-ecrire">Q1 </span>
+      <span class="tag-type tag-tester">Q2 </span>
+      <span class="tag-type tag-ecrire">Q3 </span>
+      <span class="tag-type tag-corriger">Q4 </span>
+    </div>
+  </div>
+  <div class="ece-card-footer" style="display:flex;align-items:stretch;border-top:1px solid var(--border)">
+    <button class="ece-toggle" style="flex:1;border-right:1px solid var(--border);border-radius:0" onclick="toggleSujet(this)">📄 Voir le sujet complet <span class="arrow">▼</span></button>
+  </div>
+  
+<div class="ece-sujet">
+  <div class="sujet-intro">Un cabinet vétérinaire gère ses clients et animaux dans une base SQLite à 3 tables (<code>proprietaire</code>, <code>animal</code>, <code>consultation</code>). Objectif : repérer automatiquement les chats à vacciner (rappel tous les 10 à 13 mois) pour envoyer un SMS aux propriétaires. Les téléphones sont enregistrés dans des styles hétérogènes (« (0)6 12 34 56 78 », « 01.23.45.67.89 »...) et doivent d'abord être nettoyés.</div>
+  <div class="sujet-section">
+    <h4>📄 Code / éléments fournis</h4>
+    <div class="code-label">rappel — connexion et requête paramétrée</div>
+<pre class="sc">DB_PATH = <span class="st">"cabinet.sqlite"</span>
+conn = sqlite3.<span class="fn">connect</span>(DB_PATH)
+cursor = conn.<span class="fn">cursor</span>()
+
+<span class="cm"># Un paramètre dans une requête SQL se note ? et se passe en tuple</span>
+resultat = cursor.<span class="fn">execute</span>(
+    <span class="st">""</span><span class="st">"SELECT nom FROM animal</span>
+    WHERE espece = <span class="st">'chat'</span> AND id_proprietaire = ?<span class="st">""</span><span class="st">",</span>
+    (<span class="nb">2</span>,)
+)</pre>
+
+  </div>
+  
+      <div class="sujet-section">
+        <h4>Q1 : Écrire — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c0">Q1</span><div class="qt">Écrire <code>normalisation_tel(tel)</code> qui reçoit un numéro au format libre et renvoie uniquement les chiffres qu'il contient.<br>Exemples : <code>normalisation_tel("(0)2 12 99 90 12")</code> → <code>"0212999012"</code></div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=A1" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On parcourt chaque caractère et on ne garde que les chiffres, grâce à <code>str.isdigit()</code>.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">normalisation_tel</span>(num):
+    clean_num = <span class="st">''</span>
+    <span class="kw">for</span> c <span class="kw">in</span> num:
+        <span class="kw">if</span> c.<span class="fn">isdigit</span>():
+            clean_num += c
+    <span class="kw">return</span> clean_num</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q2 : Tester — <span class="tag-type tag-tester">Tester</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c1">Q2</span><div class="qt">La fonction <code>validation_tel(tel)</code> (fournie) doit reconnaître un numéro de mobile valide (10 chiffres, commençant par 06 ou 07). Écrire un jeu de tests <code>assert</code> pertinent pour la vérifier.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=A2" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Il faut tester les cas positifs (06/07, 10 chiffres) et les cas négatifs : fixe (01...), trop court, trop long.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">test_validation_tel</span>():
+    <span class="kw">assert</span> <span class="fn">validation_tel</span>(<span class="st">'0612999012'</span>) == <span class="kw">True</span>
+    <span class="kw">assert</span> <span class="fn">validation_tel</span>(<span class="st">'0712999012'</span>) == <span class="kw">True</span>
+    <span class="kw">assert</span> <span class="fn">validation_tel</span>(<span class="st">'1612999012'</span>) == <span class="kw">False</span>   <span class="cm"># ne commence pas par 06/07</span>
+    <span class="kw">assert</span> <span class="fn">validation_tel</span>(<span class="st">'12999012'</span>)   == <span class="kw">False</span>   <span class="cm"># trop court</span>
+    <span class="kw">assert</span> <span class="fn">validation_tel</span>(<span class="st">'0512999012'</span>) == <span class="kw">False</span>   <span class="cm"># fixe, pas mobile</span>
+    <span class="fn">print</span>(<span class="st">"Les tests de la fonction validation_tel sont passés"</span>)</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q3 : Écrire (SQL) — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c2">Q3</span><div class="qt">En s'inspirant d'une fonction similaire déjà fournie, écrire <code>consultation_vaccination_chat(date)</code> qui renvoie, pour tous les chats, les consultations de motif « vaccination » postérieures à <code>date</code> (format AAAAMMJJ) : id animal, nom, téléphone du propriétaire, date — triées par id puis date.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=A3" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Trois tables à joindre : <code>proprietaire</code> → <code>animal</code> → <code>consultation</code>, avec un filtre sur l'espèce et le motif, et un paramètre <code>?</code> pour la date.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">consultation_vaccination_chat</span>(date):
+    conn = sqlite3.<span class="fn">connect</span>(DB_PATH)
+    cursor = conn.<span class="fn">cursor</span>()
+    resultat = cursor.<span class="fn">execute</span>(
+        <span class="st">""</span><span class="st">"</span>
+        SELECT a.id, a.nom, telephone, c.date
+        FROM proprietaire AS p
+        JOIN animal AS a ON p.id = a.id_proprietaire
+        JOIN consultation AS c ON c.id_animal = a.id
+        WHERE c.date &gt; ? AND a.espece = <span class="st">'chat'</span> AND c.motif = <span class="st">'vaccination'</span>
+        ORDER BY a.id, c.date;
+        <span class="st">""</span><span class="st">",</span>
+        (date,),
+    )
+    <span class="kw">return</span> <span class="fn">list</span>(resultat)</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q4 : Corriger — <span class="tag-type tag-corriger">Corriger</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c3">Q4</span><div class="qt"><code>derniere_vaccination(consultations)</code> doit renvoyer, pour chaque chat, sa consultation la plus récente. Les tests fournis échouent : identifier puis corriger le problème.</div></div>
+          <div class="code-label">code fourni — bugué</div>
+<pre class="sc"><span class="cm"># extrait fautif</span>
+<span class="kw">elif</span> date &lt; derniere[id_animal][<span class="nb">3</span>]:
+    derniere[id_animal] = consult</pre>
+          <a class="edit-btn" href="editeur.html?exo=A4" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Le test de comparaison est inversé : on doit garder la consultation quand sa date est <strong>supérieure</strong> à celle déjà enregistrée, pas inférieure.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">derniere_vaccination</span>(consultations):
+    derniere = {}
+    <span class="kw">for</span> consult <span class="kw">in</span> consultations:
+        id_animal = consult[<span class="nb">0</span>]
+        date = consult[<span class="nb">3</span>]
+        <span class="kw">if</span> id_animal <span class="kw">not</span> <span class="kw">in</span> derniere:
+            derniere[id_animal] = consult
+        <span class="kw">elif</span> date &gt; derniere[id_animal][<span class="nb">3</span>]:
+            derniere[id_animal] = consult
+    <span class="kw">return</span> derniere</pre>
+</div>
+
+        </div>
+      </div>
+
+</div>
+
+</div>
+
+
+<!-- SUJET 6 -->
+<div class="ece-card">
+  <div class="ece-card-header">
+    <div class="ece-num">N°6</div>
+    <div>
+      <div class="ece-card-title">Boutique de smoothies</div>
+      <div class="ece-card-theme">Programmation orientée objet · Dictionnaires</div>
+      <div class="ece-inspired">📌 Sujet officiel <strong>n°6</strong> de la <strong>BNS 2026</strong> — <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_6/sujet.pdf" target="_blank" rel="noopener">énoncé PDF original ↗</a></div>
+    </div>
+  </div>
+  <div class="ece-card-body">
+    <p>La maison des lycéens veut proposer des recettes de smoothies (3 fruits chacune), mais tous les fruits ne sont pas toujours disponibles. La classe <code>Boutique_smoothie</code> reçoit la liste des fruits du jour et doit…</p>
+    <div class="ece-tags">
+      <span class="tag-theme">POO</span>
+      <span class="tag-theme">Dictionnaires</span>
+      <span class="tag-theme">Listes</span>
+    </div>
+    <div class="ece-tags">
+      <span class="tag-type tag-ecrire">Q1 </span>
+      <span class="tag-type tag-ecrire">Q2 </span>
+      <span class="tag-type tag-tester">Q3 </span>
+      <span class="tag-type tag-corriger">Q4 </span>
+    </div>
+  </div>
+  <div class="ece-card-footer" style="display:flex;align-items:stretch;border-top:1px solid var(--border)">
+    <button class="ece-toggle" style="flex:1;border-right:1px solid var(--border);border-radius:0" onclick="toggleSujet(this)">📄 Voir le sujet complet <span class="arrow">▼</span></button>
+  </div>
+  
+<div class="ece-sujet">
+  <div class="sujet-intro">La maison des lycéens veut proposer des recettes de smoothies (3 fruits chacune), mais tous les fruits ne sont pas toujours disponibles. La classe <code>Boutique_smoothie</code> reçoit la liste des fruits du jour et doit déterminer quelles recettes sont réalisables, et proposer une <em>alternative</em> (le smoothie réalisable qui partage le plus de fruits en commun) quand une recette est impossible.</div>
+  <div class="sujet-section">
+    <h4>📄 Code / éléments fournis</h4>
+    <div class="code-label">rappel — recettes (dictionnaire fourni)</div>
+<pre class="sc">RECETTES = {
+    <span class="st">"Tropical"</span>: [<span class="st">"Mangue"</span>, <span class="st">"Ananas"</span>, <span class="st">"Banane"</span>],
+    <span class="st">"Rouge"</span>: [<span class="st">"Fraise"</span>, <span class="st">"Framboise"</span>, <span class="st">"Cerise"</span>],
+    <span class="st">"Vert"</span>: [<span class="st">"Kiwi"</span>, <span class="st">"Pomme verte"</span>, <span class="st">"Menthe"</span>],
+    <span class="st">"Agrume"</span>: [<span class="st">"Orange"</span>, <span class="st">"Citron"</span>, <span class="st">"Pamplemousse"</span>],
+    <span class="st">"Tropical citron"</span>: [<span class="st">"Mangue"</span>, <span class="st">"Ananas"</span>, <span class="st">"Citron"</span>],
+    <span class="cm"># ...</span>
+}</pre>
+
+  </div>
+  
+      <div class="sujet-section">
+        <h4>Q1 : Écrire — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c0">Q1</span><div class="qt">Écrire la méthode <code>smoothie_possible(self, nom_smoothie)</code> qui renvoie <code>True</code> si tous les fruits de la recette sont dans <code>self.liste_fruits_disponibles</code>.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=B1" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On parcourt les fruits de la recette ; dès qu'un fruit manque, la réponse est <code>False</code>.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">smoothie_possible</span>(self, nom_smoothie):
+    <span class="kw">for</span> fruit <span class="kw">in</span> self.db_smoothies[nom_smoothie]:
+        <span class="kw">if</span> fruit <span class="kw">not</span> <span class="kw">in</span> self.liste_fruits_disponibles:
+            <span class="kw">return</span> <span class="kw">False</span>
+    <span class="kw">return</span> <span class="kw">True</span></pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q2 : Écrire — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c1">Q2</span><div class="qt">Écrire <code>liste_smoothies_possibles(self)</code>, sans paramètre, qui renvoie la liste des recettes réalisables avec les fruits du jour.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=B2" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On réutilise directement <code>smoothie_possible</code> pour chaque recette de la carte.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">liste_smoothies_possibles</span>(self):
+    possibles = []
+    <span class="kw">for</span> smoothie <span class="kw">in</span> self.db_smoothies:
+        <span class="kw">if</span> self.<span class="fn">smoothie_possible</span>(smoothie):
+            possibles.<span class="fn">append</span>(smoothie)
+    <span class="kw">return</span> possibles</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q3 : Tester — <span class="tag-type tag-tester">Tester</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c2">Q3</span><div class="qt"><code>score_proximité(nom1, nom2)</code> (fournie) compte le nombre de fruits communs entre deux recettes. Compléter <code>test_score_proximité</code> avec des cas pertinents.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=B3" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On teste 0, 1, 2 et 3 fruits communs (le score maximum, recette identique à elle-même).</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">test_score_proximite</span>():
+    b = <span class="fn">Boutique_smoothie</span>([<span class="st">'Mangue'</span>, <span class="st">'Ananas'</span>, <span class="st">'Banane'</span>, <span class="st">'Fraise'</span>])
+    <span class="kw">assert</span> b.<span class="fn">score_proximite</span>(<span class="st">'Tropical'</span>, <span class="st">'Rouge'</span>) == <span class="nb">0</span>
+    <span class="kw">assert</span> b.<span class="fn">score_proximite</span>(<span class="st">'Agrume'</span>, <span class="st">'Tropical citron'</span>) == <span class="nb">1</span>
+    <span class="kw">assert</span> b.<span class="fn">score_proximite</span>(<span class="st">'Tropical'</span>, <span class="st">'Tropical citron'</span>) == <span class="nb">2</span>
+    <span class="kw">assert</span> b.<span class="fn">score_proximite</span>(<span class="st">'Tropical'</span>, <span class="st">'Tropical'</span>) == <span class="nb">3</span></pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q4 : Corriger — <span class="tag-type tag-corriger">Corriger</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c3">Q4</span><div class="qt"><code>plus_proche_possible(nom_smoothie_ref)</code> doit renvoyer l'alternative réalisable la plus proche. Mais elle renvoie systématiquement... le smoothie de référence lui-même. Identifier puis corriger le bug.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=B4" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Rien n'empêche la fonction de comparer la recette à elle-même — et une recette identique obtient toujours le meilleur score possible. Il faut explicitement exclure <code>nom_smoothie_ref</code>.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">plus_proche_possible</span>(self, nom_smoothie_ref):
+    max_communs = <span class="nb">0</span>
+    smoothie_proche = <span class="kw">None</span>
+    <span class="kw">for</span> nom_smoothie <span class="kw">in</span> self.db_smoothies:
+        <span class="kw">if</span> nom_smoothie != nom_smoothie_ref <span class="kw">and</span> self.<span class="fn">smoothie_possible</span>(nom_smoothie):
+            nb_communs = self.<span class="fn">score_proximite</span>(nom_smoothie_ref, nom_smoothie)
+            <span class="kw">if</span> nb_communs &gt; max_communs:
+                max_communs = nb_communs
+                smoothie_proche = nom_smoothie
+    <span class="kw">return</span> smoothie_proche</pre>
+</div>
+
+        </div>
+      </div>
+
+</div>
+
+</div>
+
+
+<!-- SUJET 5 -->
+<div class="ece-card">
+  <div class="ece-card-header">
+    <div class="ece-num">N°5</div>
+    <div>
+      <div class="ece-card-title">Empreinte carbone (dictionnaires imbriqués)</div>
+      <div class="ece-card-theme">Récursivité · Dictionnaires imbriqués · JSON</div>
+      <div class="ece-inspired">📌 Sujet officiel <strong>n°5</strong> de la <strong>BNS 2026</strong> — <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_5/sujet.pdf" target="_blank" rel="noopener">énoncé PDF original ↗</a></div>
+    </div>
+  </div>
+  <div class="ece-card-body">
+    <p>Un simulateur d'empreinte carbone (façon nosgestesclimat.fr) rend un résultat sous forme de dictionnaire associant une catégorie à une empreinte en kg de CO2. En version détaillée, les valeurs peuvent elles-mêmes être de…</p>
+    <div class="ece-tags">
+      <span class="tag-theme">Dictionnaires</span>
+      <span class="tag-theme">Récursivité</span>
+      <span class="tag-theme">JSON</span>
+    </div>
+    <div class="ece-tags">
+      <span class="tag-type tag-complete">Q1 </span>
+      <span class="tag-type tag-ecrire">Q2 </span>
+      <span class="tag-type tag-corriger">Q3 </span>
+      <span class="tag-type tag-tester">Q4 </span>
+    </div>
+  </div>
+  <div class="ece-card-footer" style="display:flex;align-items:stretch;border-top:1px solid var(--border)">
+    <button class="ece-toggle" style="flex:1;border-right:1px solid var(--border);border-radius:0" onclick="toggleSujet(this)">📄 Voir le sujet complet <span class="arrow">▼</span></button>
+  </div>
+  
+<div class="ece-sujet">
+  <div class="sujet-intro">Un simulateur d'empreinte carbone (façon nosgestesclimat.fr) rend un résultat sous forme de dictionnaire associant une catégorie à une empreinte en kg de CO2. En version détaillée, les valeurs peuvent elles-mêmes être des sous-dictionnaires imbriqués (« Logement » → « Énergie » → « Chauffage individuel » : 1500). Objectif : calculer un total, puis détecter les postes anormalement élevés, y compris dans les imbrications.</div>
+  <div class="sujet-section">
+    <h4>📄 Code / éléments fournis</h4>
+    <div class="code-label">exemple — structure imbriquée</div>
+<pre class="sc">{
+    <span class="st">"Logement"</span>: {
+        <span class="st">"Energie"</span>: {
+            <span class="st">"Electricite"</span>: <span class="nb">206</span>,
+            <span class="st">"Chauffage individuel"</span>: <span class="nb">1500</span>
+        },
+        <span class="st">"Construction"</span>: <span class="nb">650</span>
+    },
+    <span class="st">"Alimentation"</span>: <span class="nb">1500</span>
+}</pre>
+
+  </div>
+  
+      <div class="sujet-section">
+        <h4>Q1 : Compléter — <span class="tag-type tag-complete">Compléter</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c0">Q1</span><div class="qt">Compléter <code>total_simple(empreinte)</code> qui additionne toutes les valeurs d'un dictionnaire <em>non</em> imbriqué chargé depuis un fichier JSON.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=C1" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Une simple boucle sur les clés du dictionnaire suffit tant qu'il n'y a pas d'imbrication.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">total_simple</span>(empreinte):
+    d = <span class="fn">chargement_json</span>(empreinte)
+    total = <span class="nb">0</span>
+    <span class="kw">for</span> key <span class="kw">in</span> d:
+        total += d[key]
+    <span class="kw">return</span> total</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q2 : Écrire (récursif) — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c1">Q2</span><div class="qt">À l'aide de la fonction fournie <code>est_dictionnaire(valeur)</code>, écrire <code>total_rec(empreinte)</code>, une fonction <strong>récursive</strong> qui calcule la somme de toutes les valeurs numériques, y compris dans les sous-dictionnaires.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=C2" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Cas de base : la valeur est un nombre, on l'additionne directement. Cas récursif : la valeur est un sous-dictionnaire, on rappelle <code>total_rec</code> dessus.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">total_rec</span>(empreinte):
+    total = <span class="nb">0</span>
+    <span class="kw">for</span> key <span class="kw">in</span> empreinte:
+        <span class="kw">if</span> <span class="kw">not</span> <span class="fn">est_dictionnaire</span>(empreinte[key]):
+            total += empreinte[key]
+        <span class="kw">else</span>:
+            total += <span class="fn">total_rec</span>(empreinte[key])
+    <span class="kw">return</span> total</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q3 : Corriger — <span class="tag-type tag-corriger">Corriger</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c2">Q3</span><div class="qt"><code>alerte_valeur_aberrante(empreinte, limite)</code> doit renvoyer <code>True</code> dès qu'un poste dépasse <code>limite</code>, y compris dans une imbrication. Or avec « Chauffage individuel » = 1500 et une limite de 1000, elle renvoie <code>False</code>. Expliquer puis corriger.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=C3" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> La version fautive s'arrête dès qu'elle trouve un sous-dictionnaire, sans continuer à examiner les autres clés du dictionnaire courant : sa structure récursive coupe le parcours au lieu de le poursuivre. Il faut accumuler le résultat au fil du parcours complet, imbrications comprises.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">alerte_valeur_aberrante</span>(empreinte, limite):
+    valeur_aberrante = <span class="kw">False</span>
+    <span class="kw">for</span> categorie, valeur <span class="kw">in</span> empreinte.<span class="fn">items</span>():
+        <span class="kw">if</span> <span class="fn">est_dictionnaire</span>(valeur):
+            valeur_aberrante = valeur_aberrante <span class="kw">or</span> <span class="fn">alerte_valeur_aberrante</span>(valeur, limite)
+        <span class="kw">else</span>:
+            <span class="kw">if</span> valeur &gt; limite:
+                valeur_aberrante = <span class="kw">True</span>
+    <span class="kw">return</span> valeur_aberrante</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q4 : Tester — <span class="tag-type tag-tester">Tester</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c3">Q4</span><div class="qt">Proposer un jeu de tests <code>assert</code> couvrant : aucune imbrication, une imbrication simple, plusieurs imbrications, et des imbrications à plusieurs niveaux.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=C4" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On teste chaque niveau de complexité séparément pour être sûr que le correctif fonctionne à toutes les profondeurs.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">test_alerte_valeur_aberrante</span>():
+    dico1 = {<span class="st">'a'</span>: <span class="nb">15</span>, <span class="st">'b'</span>: <span class="nb">12</span>, <span class="st">'c'</span>: <span class="nb">14</span>, <span class="st">'d'</span>: <span class="nb">8</span>}
+    <span class="kw">assert</span> <span class="fn">alerte_valeur_aberrante</span>(dico1, <span class="nb">20</span>) == <span class="kw">False</span>
+
+    dico2 = {<span class="st">'a'</span>: <span class="nb">25</span>, <span class="st">'b'</span>: <span class="nb">12</span>, <span class="st">'c'</span>: <span class="nb">14</span>, <span class="st">'d'</span>: <span class="nb">8</span>}
+    <span class="kw">assert</span> <span class="fn">alerte_valeur_aberrante</span>(dico2, <span class="nb">20</span>) == <span class="kw">True</span>
+
+    <span class="cm"># avec une imbrication</span>
+    dico3 = {<span class="st">'a'</span>: {<span class="st">'a1'</span>: <span class="nb">15</span>, <span class="st">'a2'</span>: <span class="nb">4</span>}, <span class="st">'b'</span>: <span class="nb">12</span>, <span class="st">'c'</span>: <span class="nb">14</span>, <span class="st">'d'</span>: <span class="nb">8</span>}
+    <span class="kw">assert</span> <span class="fn">alerte_valeur_aberrante</span>(dico3, <span class="nb">20</span>) == <span class="kw">False</span>
+    dico4 = {<span class="st">'a'</span>: {<span class="st">'a1'</span>: <span class="nb">25</span>, <span class="st">'a2'</span>: <span class="nb">4</span>}, <span class="st">'b'</span>: <span class="nb">12</span>, <span class="st">'c'</span>: <span class="nb">14</span>, <span class="st">'d'</span>: <span class="nb">8</span>}
+    <span class="kw">assert</span> <span class="fn">alerte_valeur_aberrante</span>(dico4, <span class="nb">20</span>) == <span class="kw">True</span>
+
+    <span class="cm"># imbrication a deux niveaux</span>
+    dico5 = {<span class="st">'a'</span>: <span class="nb">15</span>, <span class="st">'b'</span>: {<span class="st">'b1'</span>: <span class="nb">12</span>, <span class="st">'b2'</span>: {<span class="st">'b21'</span>: <span class="nb">1</span>, <span class="st">'b22'</span>: <span class="nb">18</span>}}, <span class="st">'c'</span>: <span class="nb">14</span>, <span class="st">'d'</span>: <span class="nb">8</span>}
+    <span class="kw">assert</span> <span class="fn">alerte_valeur_aberrante</span>(dico5, <span class="nb">20</span>) == <span class="kw">False</span>
+    dico6 = {<span class="st">'a'</span>: <span class="nb">15</span>, <span class="st">'b'</span>: {<span class="st">'b1'</span>: <span class="nb">12</span>, <span class="st">'b2'</span>: {<span class="st">'b21'</span>: <span class="nb">1</span>, <span class="st">'b22'</span>: <span class="nb">28</span>}}, <span class="st">'c'</span>: <span class="nb">14</span>, <span class="st">'d'</span>: <span class="nb">8</span>}
+    <span class="kw">assert</span> <span class="fn">alerte_valeur_aberrante</span>(dico6, <span class="nb">20</span>) == <span class="kw">True</span>
+    <span class="fn">print</span>(<span class="st">"tests passes"</span>)</pre>
+</div>
+
+        </div>
+      </div>
+
+</div>
+
+</div>
+
+
+<!-- SUJET 7 -->
+<div class="ece-card">
+  <div class="ece-card-header">
+    <div class="ece-num">N°7</div>
+    <div>
+      <div class="ece-card-title">Coccinelles contre pucerons (simulation)</div>
+      <div class="ece-card-theme">POO · Simulation · Module random</div>
+      <div class="ece-inspired">📌 Sujet officiel <strong>n°7</strong> de la <strong>BNS 2026</strong> — <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_7/sujet.pdf" target="_blank" rel="noopener">énoncé PDF original ↗</a></div>
+    </div>
+  </div>
+  <div class="ece-card-body">
+    <p>Pour lutter contre une invasion de pucerons sans pesticide, un producteur introduit des coccinelles dans sa serre de tomates. La classe <code>Coccinelle</code> (âge, espérance de vie, sexe, niveau de nutrition) et la fon…</p>
+    <div class="ece-tags">
+      <span class="tag-theme">POO</span>
+      <span class="tag-theme">Simulation</span>
+      <span class="tag-theme">Module random</span>
+    </div>
+    <div class="ece-tags">
+      <span class="tag-type tag-ecrire">Q1 </span>
+      <span class="tag-type tag-ecrire">Q2 </span>
+      <span class="tag-type tag-expliquer">Q3 </span>
+      <span class="tag-type tag-corriger">Q4 </span>
+    </div>
+  </div>
+  <div class="ece-card-footer" style="display:flex;align-items:stretch;border-top:1px solid var(--border)">
+    <button class="ece-toggle" style="flex:1;border-right:1px solid var(--border);border-radius:0" onclick="toggleSujet(this)">📄 Voir le sujet complet <span class="arrow">▼</span></button>
+  </div>
+  
+<div class="ece-sujet">
+  <div class="sujet-intro">Pour lutter contre une invasion de pucerons sans pesticide, un producteur introduit des coccinelles dans sa serre de tomates. La classe <code>Coccinelle</code> (âge, espérance de vie, sexe, niveau de nutrition) et la fonction <code>evolution(population, nb_proies)</code> simulent un jour d'écosystème : chasse, reproduction, survie. Objectif : faire tourner puis affiner ce modèle proie-prédateur simplifié.</div>
+  <div class="sujet-section">
+    <h4>📄 Code / éléments fournis</h4>
+    <div class="code-label">rappel — module random</div>
+<pre class="sc"><span class="cm"># random.randint(a, b) -&gt; entier aléatoire entre a et b inclus</span>
+<span class="cm"># random.random()      -&gt; flottant aléatoire dans [0, 1[</span></pre>
+
+  </div>
+  
+      <div class="sujet-section">
+        <h4>Q1 : Écrire — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c0">Q1</span><div class="qt">Créer une population initiale de 3 coccinelles (2 femelles, 1 mâle), âgées de 10 jours, niveau de nutrition 2, face à 200 pucerons. Écrire une boucle appelant <code>evolution</code> sur 5 jours, en affichant l'effectif de coccinelles et de pucerons chaque jour.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=D1" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Chaque itération remplace <code>cocci</code> et <code>proies</code> par le nouvel état renvoyé.</div>
+  <pre class="cc">c1 = <span class="fn">Coccinelle</span>(<span class="st">'femelle'</span>, <span class="nb">10</span>, <span class="nb">2</span>)
+c2 = <span class="fn">Coccinelle</span>(<span class="st">'femelle'</span>, <span class="nb">10</span>, <span class="nb">2</span>)
+c3 = <span class="fn">Coccinelle</span>(<span class="st">'male'</span>, <span class="nb">10</span>, <span class="nb">2</span>)
+cocci = [c1, c2, c3]
+proies = <span class="nb">200</span>
+<span class="kw">for</span> k <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    cocci, proies = <span class="fn">evolution</span>(cocci, proies)
+    <span class="fn">print</span>(<span class="st">'jour :'</span>, k+<span class="nb">1</span>)
+    <span class="fn">print</span>(<span class="st">'nombre de coccinelles :'</span>, <span class="fn">len</span>(cocci))
+    <span class="fn">print</span>(<span class="st">'nombre de proies :'</span>, proies)</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q2 : Écrire — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c1">Q2</span><div class="qt">Écrire <code>simulation_simple(population, nb_proies)</code> qui répète le processus sur au plus 30 jours, s'arrête dès que la population de coccinelles ou de pucerons tombe à zéro, et renvoie un triplet (coccinelles finales, pucerons finaux, nombre de jours simulés).</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=D2" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Une boucle bornée avec deux conditions de sortie anticipée (<code>return</code> dès qu'un effectif atteint zéro).</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">simulation_simple</span>(population, nb_proies):
+    <span class="kw">for</span> k <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">30</span>):
+        population, nb_proies = <span class="fn">evolution</span>(population, nb_proies)
+        <span class="kw">if</span> <span class="fn">len</span>(population) == <span class="nb">0</span>:
+            <span class="kw">return</span> (<span class="fn">len</span>(population), nb_proies, k+<span class="nb">1</span>)
+        <span class="kw">if</span> nb_proies == <span class="nb">0</span>:
+            <span class="kw">return</span> (<span class="fn">len</span>(population), nb_proies, k+<span class="nb">1</span>)
+    <span class="kw">return</span> (<span class="fn">len</span>(population), nb_proies, k+<span class="nb">1</span>)</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q3 : Documenter — <span class="tag-type tag-expliquer">Expliquer / observer</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c2">Q3</span><div class="qt">La méthode <code>chasser(self, nb_proies, nb_coccinelles)</code> est fournie sans documentation ni commentaires. La lire attentivement puis rédiger sa docstring et des commentaires expliquant chaque étape (cas sans coccinelle, quantité mangée selon la disponibilité des proies, mise à jour du niveau de nutrition).</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=D3" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> L'essentiel à faire ressortir : le nombre de pucerons mangés dépend du ratio proies/coccinelle (trois paliers), et le niveau de nutrition monte ou redescend selon ce qui a été consommé.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">chasser</span>(self, nb_proies, nb_coccinelles):
+    <span class="st">""</span><span class="st">"Renvoie le nombre de pucerons restants après la chasse du jour,</span>
+    et met à jour le niveau de nutrition de la coccinelle.<span class="st">""</span><span class="st">"</span>
+    <span class="kw">if</span> nb_coccinelles == <span class="nb">0</span>:
+        <span class="kw">return</span> nb_proies                      <span class="cm"># personne pour chasser</span>
+    proies_par_cocci = nb_proies / nb_coccinelles
+    <span class="kw">if</span> proies_par_cocci &gt; <span class="nb">20</span>:
+        consomme = random.<span class="fn">randint</span>(<span class="nb">12</span>, <span class="nb">20</span>)     <span class="cm"># proies abondantes</span>
+    <span class="kw">elif</span> proies_par_cocci &gt; <span class="nb">10</span>:
+        consomme = random.<span class="fn">randint</span>(<span class="nb">8</span>, <span class="nb">15</span>)
+    <span class="kw">else</span>:
+        consomme = random.<span class="fn">randint</span>(<span class="nb">3</span>, <span class="nb">8</span>)       <span class="cm"># proies rares</span>
+    consomme = <span class="fn">min</span>(consomme, nb_proies)
+    <span class="kw">if</span> consomme &gt;= <span class="nb">10</span>:
+        self.niv_nutrition += <span class="nb">1</span>
+    <span class="kw">else</span>:
+        self.niv_nutrition = <span class="fn">max</span>(<span class="nb">0</span>, self.niv_nutrition - <span class="nb">1</span>)
+    <span class="kw">return</span> nb_proies - consomme</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q4 : Corriger — <span class="tag-type tag-corriger">Corriger</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c3">Q4</span><div class="qt">Le modèle est biologiquement incomplet : (1) il permet une reproduction dès la naissance, alors qu'elle ne devrait être possible qu'à partir de 20 jours ; (2) il ignore qu'une coccinelle à niveau de nutrition 0 a environ 1 chance sur 3 de mourir dans la journée. Modifier <code>reproduction</code> et <code>a_survecu</code> en conséquence.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=D4" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On ajoute une garde d'âge dans <code>reproduction</code>, et un tirage aléatoire de mortalité dans <code>a_survecu</code> quand la nutrition est à 0.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">reproduction</span>(self):
+    <span class="st">""</span><span class="st">"Une femelle de 20 jours ou plus avec un niveau de nutrition &gt;= 2</span>
+    engendre exactement deux descendants : un male et une femelle.<span class="st">""</span><span class="st">"</span>
+    <span class="kw">if</span> self.age &lt; <span class="nb">20</span>:
+        <span class="kw">return</span> []
+    descendants = []
+    <span class="kw">if</span> self.sexe == <span class="st">'femelle'</span> <span class="kw">and</span> self.niv_nutrition &gt;= <span class="nb">2</span>:
+        descendants.<span class="fn">append</span>(<span class="fn">Coccinelle</span>(<span class="st">'male'</span>, <span class="nb">0</span>, <span class="nb">0</span>))
+        descendants.<span class="fn">append</span>(<span class="fn">Coccinelle</span>(<span class="st">'femelle'</span>, <span class="nb">0</span>, <span class="nb">0</span>))
+        self.niv_nutrition = <span class="nb">0</span>
+    <span class="kw">return</span> descendants
+
+<span class="kw">def</span> <span class="fn">a_survecu</span>(self):
+    <span class="st">""</span><span class="st">"Met a jour l'age de la coccinelle et indique si elle est encore en vie."</span><span class="st">""</span>
+    <span class="kw">if</span> self.niv_nutrition == <span class="nb">0</span>:
+        r = random.<span class="fn">randint</span>(<span class="nb">1</span>, <span class="nb">3</span>)
+        <span class="kw">if</span> r == <span class="nb">1</span>:
+            <span class="kw">return</span> <span class="kw">False</span>
+    self.age = self.age + <span class="nb">1</span>
+    <span class="kw">return</span> self.age &lt; self.esperance_de_vie</pre>
+</div>
+
+        </div>
+      </div>
+
+</div>
+
+</div>
+
+
+<!-- SUJET 1 -->
+<div class="ece-card">
+  <div class="ece-card-header">
+    <div class="ece-num">N°1</div>
+    <div>
+      <div class="ece-card-title">Compression RLE d'une image en niveaux de gris</div>
+      <div class="ece-card-theme">Listes · Représentation d'image · Complexité</div>
+      <div class="ece-inspired">📌 Sujet officiel <strong>n°1</strong> de la <strong>BNS 2026</strong> — <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_3/EP-BAC-NSI-Sujet3.pdf" target="_blank" rel="noopener">énoncé PDF original ↗</a></div>
+    </div>
+  </div>
+  <div class="ece-card-body">
+    <p>Une image en niveaux de gris est vue comme une liste de valeurs (0 à 255, une par pixel). Sur des dessins/schémas avec de grands aplats de couleur uniforme, on peut la compresser en remplaçant chaque suite de valeurs ide…</p>
+    <div class="ece-tags">
+      <span class="tag-theme">Listes</span>
+      <span class="tag-theme">Complexité</span>
+      <span class="tag-theme">Représentation image</span>
+    </div>
+    <div class="ece-tags">
+      <span class="tag-type tag-expliquer">Q1 </span>
+      <span class="tag-type tag-ecrire">Q2 </span>
+      <span class="tag-type tag-expliquer">Q3 </span>
+      <span class="tag-type tag-corriger">Q4 </span>
+    </div>
+  </div>
+  <div class="ece-card-footer" style="display:flex;align-items:stretch;border-top:1px solid var(--border)">
+    <button class="ece-toggle" style="flex:1;border-right:1px solid var(--border);border-radius:0" onclick="toggleSujet(this)">📄 Voir le sujet complet <span class="arrow">▼</span></button>
+  </div>
+  
+<div class="ece-sujet">
+  <div class="sujet-intro">Une image en niveaux de gris est vue comme une liste de valeurs (0 à 255, une par pixel). Sur des dessins/schémas avec de grands aplats de couleur uniforme, on peut la compresser en remplaçant chaque suite de valeurs identiques (un « run ») par un couple (nombre de répétitions, valeur) : c'est le codage RLE (<em>run-length encoding</em>). Exemple : <code>[4,4,4,0,5,5]</code> devient <code>[3,4, 1,0, 2,5]</code>.</div>
+  <div class="sujet-section">
+    <h4>📄 Code / éléments fournis</h4>
+    <div class="code-label">exemple — codage fourni (à ne pas modifier au départ)</div>
+<pre class="sc"><span class="kw">def</span> <span class="fn">codage_rle</span>(liste_octets):
+    <span class="st">""</span><span class="st">"Renvoie une liste d'octets obtenue par compression RLE (version initiale,</span>
+    incomplète : ne gère pas les répétitions de plus de <span class="nb">255</span>).<span class="st">""</span><span class="st">"</span>
+    liste_rle = []
+    i = <span class="nb">0</span>
+    <span class="kw">while</span> i &lt; <span class="fn">len</span>(liste_octets):
+        c = liste_octets[i]
+        k = <span class="nb">1</span>
+        <span class="kw">while</span> i+k &lt; <span class="fn">len</span>(liste_octets) <span class="kw">and</span> liste_octets[i+k] == c:
+            k += <span class="nb">1</span>
+        liste_rle.<span class="fn">append</span>(k)
+        liste_rle.<span class="fn">append</span>(c)
+        i += k
+    <span class="kw">return</span> liste_rle</pre>
+
+  </div>
+  
+      <div class="sujet-section">
+        <h4>Q1 : Répondre — <span class="tag-type tag-expliquer">Expliquer / observer</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c0">Q1</span><div class="qt">La liste obtenue par codage RLE est-elle forcément de longueur inférieure ou égale à la liste de départ ? Justifier avec un exemple.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=E1" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Non : sur une liste sans répétitions, chaque valeur devient un couple (compte, valeur), donc la taille double. Exemple : <code>[3, 5, 0, 6]</code> (longueur 4) donne <code>[1,3, 1,5, 1,0, 1,6]</code> (longueur 8), deux fois plus longue.</div>
+  
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q2 : Écrire — <span class="tag-type tag-ecrire">Écrire</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c1">Q2</span><div class="qt">En étudiant <code>codage_rle</code> (fournie), écrire le corps de <code>decodage_rle(liste_rle)</code> qui reconstitue la liste d'octets d'origine. Des tests sont fournis dans <code>test_codage()</code>, à compléter si besoin.</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=E2" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> On relit la liste RLE deux valeurs par deux valeurs (compte, valeur), et on répète chaque valeur <code>compte</code> fois.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">decodage_rle</span>(liste_rle):
+    <span class="st">""</span><span class="st">"Renvoie la liste d'octets obtenue a partir de liste_rle</span>
+    (compressee par codage RLE).<span class="st">""</span><span class="st">"</span>
+    lst = []
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">0</span>, <span class="fn">len</span>(liste_rle), <span class="nb">2</span>):
+        <span class="kw">for</span> k <span class="kw">in</span> <span class="fn">range</span>(liste_rle[i]):
+            lst.<span class="fn">append</span>(liste_rle[i+<span class="nb">1</span>])
+    <span class="kw">return</span> lst
+
+<span class="kw">def</span> <span class="fn">test_codage</span>():
+    <span class="kw">assert</span> <span class="fn">codage_rle</span>([<span class="nb">255</span>, <span class="nb">255</span>, <span class="nb">0</span>, <span class="nb">255</span>, <span class="nb">255</span>, <span class="nb">255</span>]) == [<span class="nb">2</span>, <span class="nb">255</span>, <span class="nb">1</span>, <span class="nb">0</span>, <span class="nb">3</span>, <span class="nb">255</span>]
+    <span class="kw">assert</span> <span class="fn">decodage_rle</span>([<span class="nb">2</span>, <span class="nb">255</span>, <span class="nb">1</span>, <span class="nb">0</span>, <span class="nb">3</span>, <span class="nb">255</span>]) == [<span class="nb">255</span>, <span class="nb">255</span>, <span class="nb">0</span>, <span class="nb">255</span>, <span class="nb">255</span>, <span class="nb">255</span>]
+    <span class="kw">assert</span> <span class="fn">decodage_rle</span>([<span class="nb">4</span>, <span class="nb">85</span>]) == [<span class="nb">85</span>, <span class="nb">85</span>, <span class="nb">85</span>, <span class="nb">85</span>]
+    <span class="fn">print</span>(<span class="st">"Tests codage/decodage : OK"</span>)</pre>
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q3 : Observer — <span class="tag-type tag-expliquer">Expliquer / observer</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c2">Q3</span><div class="qt">Utiliser la fonction fournie <code>encoder_decoder_image</code> (qui encode puis décode une image et l'enregistre) sur <code>bac_nsi_32.png</code> puis <code>bac_nsi_256.png</code>. Que constate-t-on ?</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=E3" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Sur la petite image (32 px), tout va bien. Sur la grande image (256 px), l'image décodée présente un décalage visible : le texte n'est plus aligné correctement.</div>
+  
+</div>
+
+        </div>
+      </div>
+
+      <div class="sujet-section">
+        <h4>Q4 : Corriger — <span class="tag-type tag-corriger">Corriger</span></h4>
+        <div class="qblock">
+          <div class="qh"><span class="qn c3">Q4</span><div class="qt">Le problème vient d'un dépassement : sur une grande image, une même valeur peut se répéter plus de 255 fois d'affilée, ce qu'un octet ne peut pas coder. Proposer une solution et l'implémenter dans <code>codage_rle</code> (et <code>decodage_rle</code> si nécessaire).</div></div>
+          
+          <a class="edit-btn" href="editeur.html?exo=E4" target="_blank"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> &nbsp;Éditeur</a>
+<button class="cb" onclick="toggleCorr(this)">✓ Correction</button>
+<div class="cbox">
+  <div class="cexpl"><strong>Explication :</strong> Il suffit de découper les longues répétitions en plusieurs « paquets » de 255 au maximum, chacun suivi de la valeur répétée.</div>
+  <pre class="cc"><span class="kw">def</span> <span class="fn">codage_rle</span>(liste_octets):
+    <span class="st">""</span><span class="st">"Renvoie une liste d'octets obtenue par compression RLE,</span>
+    en decoupant les series de plus de <span class="nb">255</span> repetitions.<span class="st">""</span><span class="st">"</span>
+    liste_rle = []
+    i = <span class="nb">0</span>
+    <span class="kw">while</span> i &lt; <span class="fn">len</span>(liste_octets):
+        c = liste_octets[i]
+        k = <span class="nb">1</span>
+        <span class="kw">while</span> i+k &lt; <span class="fn">len</span>(liste_octets) <span class="kw">and</span> liste_octets[i+k] == c <span class="kw">and</span> k &lt; <span class="nb">255</span>:
+            k += <span class="nb">1</span>
+        liste_rle.<span class="fn">append</span>(k)
+        liste_rle.<span class="fn">append</span>(c)
+        i += k
+    <span class="kw">return</span> liste_rle</pre>
+</div>
+
+        </div>
+      </div>
+
+</div>
+
+</div>
+
+</div><!-- fin ece-grid -->
+
+<footer style="text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--text2)">
+  <p>NSI Terminale — 2026 · 5 sujets officiels de la BNS 2026 (Lycée François Mauriac — Bordeaux, CC BY-SA) ·
+  <a href="index.html">Accueil</a> · <a href="chapitres/index.html">Chapitres</a></p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function toggleSujet(btn){
+  const footer = btn.closest('.ece-card-footer') || btn.parentElement;
+  const s = footer.nextElementSibling;
+  const card = btn.closest('.ece-card');
+  const o = btn.classList.contains('open');
+  btn.classList.toggle('open', !o);
+  if(s && s.classList.contains('ece-sujet')){
+    s.classList.toggle('visible', !o);
+  }
+  if(card){
+    card.classList.toggle('card-expanded', !o);
+    if(!o){
+      document.querySelectorAll('.ece-card.card-expanded').forEach(c => {
+        if(c !== card){
+          c.classList.remove('card-expanded');
+          const ob = c.querySelector('.ece-toggle.open');
+          if(ob){
+            ob.classList.remove('open');
+            const arr2 = ob.querySelector('.arrow');
+            if(arr2) arr2.textContent = '▼';
+          }
+          const sib = c.querySelector('.ece-sujet');
+          if(sib) sib.classList.remove('visible');
+        }
+      });
+    }
+  }
+  const arr = btn.querySelector('.arrow');
+  if(arr) arr.textContent = o ? '▼' : '▲';
+}
+function toggleCorr(btn){
+  const b=btn.nextElementSibling;b.classList.toggle('visible');
+  btn.textContent=b.classList.contains('visible')?'✕ Masquer':'✓ Correction';
+}
+
+</script>
+</body>
+</html>
