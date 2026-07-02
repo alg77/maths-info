@@ -34,6 +34,14 @@
   };
   var page=(document.body.getAttribute('data-page')||'').trim();
   var dz=(document.body.getAttribute('data-zone')||'').trim();
+  if(dz==='prof'){
+    document.documentElement.classList.add('auth-checking');
+    var authCss=document.createElement('style');
+    authCss.textContent='html.auth-checking body{visibility:hidden!important}';
+    (document.head||document.documentElement).appendChild(authCss);
+    import(siteUrl('auth/auth.js')).then(function(module){ module.guardProf(); })
+      .catch(function(){ location.replace(siteUrl('index.html?auth=prof-required')); });
+  }
   var zone;
   if(dz==='prof'||dz==='eleves'){ zone=dz; try{ localStorage.setItem('site.zone',zone); }catch(e){} }
   else { try{ zone=localStorage.getItem('site.zone'); }catch(e){} if(zone!=='prof'&&zone!=='eleves') zone='eleves'; }

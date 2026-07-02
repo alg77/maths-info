@@ -89,10 +89,14 @@ export function redirectFor(role) {
 export function guardProf() {
   document.documentElement.classList.add("auth-checking");
   return observe((user, role, state) => {
-    if (!state.configured || !user || role !== "prof") {
-      const target = new URL(routes.login);
-      target.searchParams.set("auth", state.configured ? "prof-required" : "setup-required");
-      location.replace(target.href);
+    if (!state.configured || !user) {
+      const login = new URL(routes.login);
+      login.searchParams.set("auth", state.configured ? "prof-required" : "setup-required");
+      location.replace(login.href);
+      return;
+    }
+    if (role !== "prof") {
+      location.replace(routes.eleve);
       return;
     }
     document.documentElement.classList.remove("auth-checking");

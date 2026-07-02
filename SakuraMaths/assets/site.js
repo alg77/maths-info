@@ -12,15 +12,38 @@
   var siteRoot=script && script.src ? new URL('../',script.src) : new URL('./',document.baseURI);
   function siteUrl(path){ return new URL(path,siteRoot).href; }
 
-  var LINKS=[
-    ['accueil','accueil.html','Accueil'],
-    ['progressions','Progressions/progressions.html','Progressions'],
-    ['ressources','Progressions/ressources.html','Ressources'],
-    ['entrainement','Progressions/entrainement.html','Entraînement'],
-    ['productions','Productions/productions.html','Productions'],
-    ['projets','Productions/projets.html','Projets']
-  ];
+  var ZONES={
+    prof:{brand:'🌸 Espace prof',home:'accueil.html',carnet:true,links:[
+      ['accueil','accueil.html','Accueil'],
+      ['progressions','Progressions/progressions.html','Progressions'],
+      ['ressources','Progressions/ressources.html','Ressources'],
+      ['entrainement','Progressions/entrainement.html','Entraînement'],
+      ['productions','Productions/productions.html','Productions'],
+      ['projets','Productions/projets.html','Projets']
+    ]},
+    eleves:{brand:'🎒 Espace élèves & familles',home:'eleves.html',carnet:false,links:[
+      ['eleves-accueil','eleves.html','Accueil'],
+      ['entrainement','Progressions/entrainement.html','S’entraîner'],
+      ['productions','Productions/productions.html','Productions']
+    ]}
+  };
   var page=(document.body.getAttribute('data-page')||'').trim();
+  var dz=(document.body.getAttribute('data-zone')||'').trim();
+  var zone;
+  if(dz==='prof'||dz==='eleves'){ zone=dz; try{localStorage.setItem('site.zone',zone);}catch(e){} }
+  else { try{zone=localStorage.getItem('site.zone');}catch(e){} if(zone!=='prof'&&zone!=='eleves') zone='eleves'; }
+  var Z=ZONES[zone];
+
+  // Une page explicitement professeur reste invisible tant que Firebase
+  // n'a pas confirmé que le compte appartient à la liste des professeurs.
+  if(dz==='prof'){
+    document.documentElement.classList.add('auth-checking');
+    var authCss=document.createElement('style');
+    authCss.textContent='html.auth-checking body{visibility:hidden!important}';
+    (document.head||document.documentElement).appendChild(authCss);
+    import(siteUrl('auth/auth.js')).then(function(module){ module.guardProf(); })
+      .catch(function(){ location.replace(siteUrl('index.html?auth=prof-required')); });
+  }
 
   // favicon 🌸 (commun à toutes les pages)
   var head=document.head||document.getElementsByTagName('head')[0];
@@ -33,11 +56,11 @@
   nav.setAttribute('aria-label','Navigation principale');
 
   var brand=document.createElement('a');
-  brand.className='brand'; brand.href=siteUrl('index.html'); brand.textContent='🌸 Espace prof';
+  brand.className='brand'; brand.href=siteUrl(Z.home); brand.textContent=Z.brand;
   nav.appendChild(brand);
 
   var links=document.createElement('div'); links.className='navlinks';
-  LINKS.forEach(function(l){
+  Z.links.forEach(function(l){
     var a=document.createElement('a');
     a.className='navlink'+(l[0]===page?' active':'');
     a.href=siteUrl(l[1]); a.textContent=l[2];
@@ -46,22 +69,26 @@
   });
   nav.appendChild(links);
 
-  function carnetUrl(){ try{ return localStorage.getItem('prog.carnetUrl')||''; }catch(e){ return ''; } }
-  var carnet=document.createElement('button');
-  carnet.type='button'; carnet.className='navbtn';
-  carnet.textContent='📓 Carnet';
-  carnet.title='Ouvrir mon carnet (clic droit : changer l’URL)';
-  carnet.addEventListener('click',function(){
-    var u=carnetUrl();
-    if(!u){ u=prompt('Colle l’URL de ton carnet Apps Script (souvent en /exec) :',''); if(u){ try{localStorage.setItem('prog.carnetUrl',u.trim());}catch(e){} } }
-    if(u) window.open(u,'_blank');
-  });
-  carnet.addEventListener('contextmenu',function(e){
-    e.preventDefault();
-    var u=prompt('Modifier l’URL du carnet :', carnetUrl());
-    if(u!==null){ try{ localStorage.setItem('prog.carnetUrl',u.trim()); }catch(_){ } }
-  });
-  nav.appendChild(carnet);
+  if(Z.carnet){
+    function carnetUrl(){ try{ return localStorage.getItem('prog.carnetUrl')||''; }catch(e){ return ''; } }
+    var carnet=document.createElement('button');
+    carnet.type='button'; carnet.className='navbtn'; carnet.textContent='📓 Carnet';
+    carnet.title='Ouvrir mon carnet (clic droit : changer l’URL)';
+    carnet.addEventListener('click',function(){
+      var u=carnetUrl();
+      if(!u){ u=prompt('Colle l’URL de ton carnet Apps Script (souvent en /exec) :',''); if(u){ try{localStorage.setItem('prog.carnetUrl',u.trim());}catch(e){} } }
+      if(u) window.open(u,'_blank');
+    });
+    carnet.addEventListener('contextmenu',function(e){
+      e.preventDefault(); var u=prompt('Modifier l’URL du carnet :',carnetUrl());
+      if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u.trim());}catch(_){} }
+    });
+    nav.appendChild(carnet);
+  }
+
+  var swap=document.createElement('a');
+  swap.className='navbtn'; swap.href=siteUrl('index.html'); swap.textContent='↩ Espace';
+  swap.title='Changer d’espace'; swap.style.textDecoration='none'; nav.appendChild(swap);
 
   document.body.insertBefore(nav, document.body.firstChild);
 
