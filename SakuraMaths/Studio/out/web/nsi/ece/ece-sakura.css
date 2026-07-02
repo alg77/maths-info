@@ -1,0 +1,33 @@
+:root{
+  --text:#44364d;--text2:#7f7180;--accent:#7667ba;--accent2:#d783a4;
+  --green:#3d936c;--bg:rgba(255,255,255,.92);--bg2:#f7f2f8;--bg3:#eee8f3;
+  --border:#e4dbe7;--glass:rgba(255,255,255,.84)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html.auth-checking body{visibility:hidden}
+body{
+  margin:0;color:var(--text);font-family:Inter,system-ui,sans-serif;
+  background:linear-gradient(rgba(255,248,246,.24),rgba(255,248,246,.48)),url('../../../../../fond-sakura-maths.png') center top/cover fixed no-repeat
+}
+a{color:var(--accent);text-underline-offset:2px}
+nav{
+  position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;padding:12px 22px;
+  background:rgba(255,248,250,.9);border-bottom:1px solid rgba(216,139,164,.25);backdrop-filter:blur(14px)
+}
+.nav-brand{font-family:Georgia,serif;font-size:1.2rem;font-weight:800;text-decoration:none;color:#5a3f54}
+.nav-brand span{color:var(--accent2)}
+.nav-links{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.nav-links a{padding:7px 10px;border-radius:9px;text-decoration:none;font-weight:700;font-size:.85rem;color:#6b5265}
+.nav-links a:hover,.nav-links a.active{background:#f5e9ef;color:#a8607c}
+.nav-badge{margin-left:auto;padding:5px 10px;border-radius:999px;background:#eee9f7;color:#65569d;font-size:.74rem;font-weight:800}
+.burger{display:none}
+.ece-hero,.dash-hero{background:rgba(255,255,255,.74)!important;backdrop-filter:blur(8px)}
+.ece-card,.stat-card,.table-inner{box-shadow:0 12px 34px rgba(100,75,110,.12)}
+.table-inner{background:rgba(255,255,255,.94)}
+.dashboard-return{max-width:1000px;margin:18px auto 0;padding:0 1.5rem;display:flex;gap:8px;flex-wrap:wrap}
+.dashboard-return a{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.86);border:1px solid var(--border);text-decoration:none;font-weight:800;font-size:.82rem}
+@media(max-width:760px){nav{align-items:flex-start;flex-direction:column}.nav-badge{margin-left:0}.nav-links{width:100%}}
+@media print{nav,.dashboard-return{display:none!important}body{background:#fff}}
+
+.edit-btn[aria-disabled='true']{opacity:.48;pointer-events:none;cursor:not-allowed}

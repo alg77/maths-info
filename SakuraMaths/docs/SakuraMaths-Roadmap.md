@@ -65,7 +65,72 @@ Ne pas supprimer l'ancien dossier `Progressions/`.
 
 ---
 
-# ✅ Priorité 2 — Documents sur Google Drive
+# ✅ Priorité 2 — Cockpit de production
+
+Le générateur `builders/build_dashboard.py` analyse automatiquement :
+
+- les progressions disponibles ;
+- les sources Markdown ;
+- les PDF élève et professeur ;
+- les pages HTML, QCM, Kahoot, flashcards, évaluations et corrigés ;
+- l'avancement global, par niveau et par période.
+
+Chaque chapitre dispose d'une fiche dépliable et d'un statut de validation, lu depuis
+un éventuel fichier `metadata.json` ou déduit des ressources présentes.
+
+**État : première version complète générée dans `Studio/out/web/dashboard-production.html`,
+accessible depuis l'espace professeur avec le générateur de livrets.**
+---
+
+# ✅ Priorité 3 — Pipeline des livrets
+
+Objectif : produire depuis les Markdown un livret de période complet, avec couverture,
+sommaire paginé, versions élève/professeur et pages HTML.
+
+**État : opérationnel pour les niveaux collège présents.**
+
+## À poursuivre
+
+- relire les chapitres 4e ;
+- enrichir les contenus 5e et 6e ;
+- ajouter progressivement le niveau 3e sans valeur codée en dur ;
+- vérifier les sorties PDF, HTML et QCM après chaque évolution du moteur.
+
+---
+
+# 🎯 Priorité 4 — SakuraNSI : progressions, ECE et Pyxel
+
+Objectif : construire le pendant NSI du pipeline SakuraMaths sans diminuer la priorité
+des annales, du Bac et des ECE en Terminale.
+
+## Terminé
+
+- progressions interactives Première et Terminale avec Gantt conservé ;
+- séances mixtes théorie, papier, pratique et bilan ;
+- trois banques d'objectifs : BO, Bac/ECE et Pyxel ;
+- fil rouge Pyxel en Première et réinvestissements ciblés en Terminale ;
+- banque locale des 48 sujets ECE 2024 et des 23 sujets 2026 ;
+- quatre vues ECE clarifiées : dashboard, entraînement, professeur et élèves ;
+- liens réciproques entre cockpit SakuraMaths et dashboard ECE.
+
+## Todo NSI — ordre recommandé
+
+1. **Manifeste ECE unique** : indexer les 71 sujets, fichiers, thèmes, compétences et statuts.
+2. **Générateur ECE** : produire dashboard et vues élève/prof depuis une source unique.
+3. **Relire les 5 fiches interactives 2026** et vérifier les corrections.
+4. **Traiter les sujets 2026 restants**, en priorité ceux liés à la progression Terminale.
+5. **Brancher ECE ↔ progression** : afficher les sujets conseillés dans chaque séquence.
+6. **Basthon / éditeur Python** : fournir un environnement réellement fonctionnel.
+7. **Sources Markdown NSI** : cours, TP, exercices, annales et notebooks par chapitre.
+8. **Nuit du Code / Pyxel** : six séances Première, défis progressifs et grille d'évaluation.
+9. **QCM et QuestionBank NSI** reliés aux objectifs BO et Bac/ECE.
+10. **Tests d'usage** : vue élève sans corrigés, garde professeur et responsive iPad.
+
+Documentation : `docs/SakuraNSI-ECE.md`.
+
+---
+
+# 🧭 Priorité 5 — Documents sur Google Drive
 
 Les documents sensibles ne doivent plus être publiés sur GitHub Pages.
 
@@ -113,23 +178,6 @@ https://drive.google.com/file/d/ID/view
 
 **État : structure définie — en attente des dossiers et fichiers Drive partagés par l'administratrice.**
 
----
-
-# ✅ Priorité 3 — Cockpit de production
-
-Le générateur `builders/build_dashboard.py` analyse automatiquement :
-
-- les progressions disponibles ;
-- les sources Markdown ;
-- les PDF élève et professeur ;
-- les pages HTML, QCM, Kahoot, flashcards, évaluations et corrigés ;
-- l'avancement global, par niveau et par période.
-
-Chaque chapitre dispose d'une fiche dépliable et d'un statut de validation, lu depuis
-un éventuel fichier `metadata.json` ou déduit des ressources présentes.
-
-**État : première version complète générée dans `Studio/out/web/dashboard-production.html`,
-accessible depuis l'espace professeur avec le générateur de livrets.**
 ---
 
 # ✅ Priorité 6 — Nettoyage des PDF
@@ -218,9 +266,9 @@ Même fonctionnement pour les évaluations de calcul mental.
 
 ---
 
-# 💻 Priorité 10 — SakuraNSI
+# 💻 Priorité 10 — Industrialisation SakuraNSI
 
-Même architecture.
+Généraliser la même architecture une fois la priorité 4 stabilisée.
 
 Sources Markdown.
 
@@ -325,3 +373,4 @@ Première version opérationnelle :
 
 À poursuivre : enrichir progressivement les Markdown 5e/6e au format SakuraMaths afin
 d'obtenir la même qualité éditoriale que les chapitres pilotes de 4e.
+

@@ -192,6 +192,117 @@ window.REFNSIT = {
    "sousTheme": "Recherche textuelle",
    "type": "objectif",
    "famille": "De"
+  },
+
+  /* ===================== AUTOMATISMES (rituel de début de séance) =====================
+     Voir referentiel-nsi-premiere-data.js pour le détail du format du champ "drill". */
+  {
+   "code": "AUTO-SQL1",
+   "texte": "Compléter le squelette d'une requête SQL de sélection filtrée",
+   "theme": "B",
+   "sousTheme": "Automatismes — SQL",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"code","consigne":"Compléter","code":"-- Sélectionner les noms des élèves ayant plus de 10 en NSI\n... nom ... eleves ... note > 10","correction":"SELECT nom FROM eleves WHERE note > 10;"}
+  },
+  {
+   "code": "AUTO-SQL2",
+   "texte": "Connaître la clause SQL de tri",
+   "theme": "B",
+   "sousTheme": "Automatismes — SQL",
+   "type": "automatisme",
+   "famille": "De",
+   "drill": {"kind":"court","question":"Quelle clause SQL sert à trier les résultats d'une requête ?","reponse":"ORDER BY"}
+  },
+  {
+   "code": "AUTO-POO1",
+   "texte": "Compléter une définition de classe (self, constructeur)",
+   "theme": "O",
+   "sousTheme": "Automatismes — POO",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"code","consigne":"Compléter","code":"class Point:\n    def __init__(..., x, y):\n        self.x = ...\n        self.y = ...","correction":"class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y"}
+  },
+  {
+   "code": "AUTO-POO2",
+   "texte": "Corriger un oubli de self. sur un attribut",
+   "theme": "O",
+   "sousTheme": "Automatismes — POO",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"code","consigne":"Corriger","code":"class Compteur:\n    def __init__(self):\n        valeur = 0\n    def incrementer(self):\n        self.valeur += 1","correction":"class Compteur:\n    def __init__(self):\n        self.valeur = 0   # sans self., ce n'est pas un attribut\n    def incrementer(self):\n        self.valeur += 1"}
+  },
+  {
+   "code": "AUTO-REC1",
+   "texte": "Tracer l'exécution d'une fonction récursive simple",
+   "theme": "P",
+   "sousTheme": "Automatismes — récursivité",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"court","question":"def fact(n):\n    if n <= 1: return 1\n    return n * fact(n-1)\n\nQue renvoie fact(4) ?","reponse":"24"}
+  },
+  {
+   "code": "AUTO-ARBRE1",
+   "texte": "Connaître la hauteur d'un arbre réduit à un nœud",
+   "theme": "D",
+   "sousTheme": "Automatismes — arbres",
+   "type": "automatisme",
+   "famille": "De",
+   "drill": {"kind":"qcm","question":"La hauteur d'un arbre binaire réduit à un seul nœud (la racine) est :","options":["-1","0","1"],"reponse":1}
+  },
+  {
+   "code": "AUTO-GRAPHE1",
+   "texte": "Compter les arêtes d'un graphe complet",
+   "theme": "D",
+   "sousTheme": "Automatismes — graphes",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"court","question":"Dans un graphe complet à 5 sommets (chaque sommet relié à tous les autres), combien d'arêtes ?","reponse":"10"}
+  },
+  {
+   "code": "AUTO-COMPLEX2",
+   "texte": "Identifier à vue la complexité d'une recherche dichotomique",
+   "theme": "L",
+   "sousTheme": "Automatismes — complexité",
+   "type": "automatisme",
+   "famille": "De",
+   "drill": {"kind":"qcm","question":"La recherche dichotomique dans un tableau trié de taille n a une complexité :","options":["O(n)","O(log n)","O(n log n)","O(n²)"],"reponse":1}
+  },
+  {
+   "code": "AUTO-DEBUG2",
+   "texte": "Déboguer une division par zéro non gérée",
+   "theme": "P",
+   "sousTheme": "Automatismes — mise au point",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"code","consigne":"Déboguer","code":"def moyenne(notes):\n    return sum(notes) / len(notes)\n\nmoyenne([])  # plante","correction":"def moyenne(notes):\n    if len(notes) == 0:\n        return None\n    return sum(notes) / len(notes)"}
+  },
+  {
+   "code": "AUTO-BIN3",
+   "texte": "Connaître le principe du complément à 2",
+   "theme": "S",
+   "sousTheme": "Automatismes — représentation binaire",
+   "type": "automatisme",
+   "famille": "De",
+   "drill": {"kind":"court","question":"Sur 8 bits, quel est le complément à 2 de 00000001 (représentation de -1) ?","reponse":"11111111"}
+  },
+  {
+   "code": "AUTO-RESEAU1",
+   "texte": "Connaître la taille d'une adresse IPv4",
+   "theme": "R",
+   "sousTheme": "Automatismes — réseaux",
+   "type": "automatisme",
+   "famille": "De",
+   "drill": {"kind":"court","question":"Combien de bits compte une adresse IPv4 ?","reponse":"32"}
+  },
+  {
+   "code": "AUTO-DICT1",
+   "texte": "Compléter un accès sécurisé à un dictionnaire avec .get()",
+   "theme": "D",
+   "sousTheme": "Automatismes — structures de données",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"code","consigne":"Compléter","code":"stock = {\"pommes\": 4}\n# Lire le nombre de poires, 0 si absent, sans erreur\nn = stock....(\"poires\", ...)","correction":"n = stock.get(\"poires\", 0)"}
   }
  ]
 };

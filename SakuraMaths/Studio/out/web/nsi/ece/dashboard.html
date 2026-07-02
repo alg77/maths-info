@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,9 +6,10 @@
 <title>Dashboard — Traitement des sujets ECE (BNS 2026 / 2024)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="ece-sakura.css">
+<script type="module">import { guardProf } from "../../../../../auth/auth.js"; guardProf();</script>
 <style>
-body{background:#faf9fc}
+body{}
 .dash-hero{text-align:center;padding:3rem 2rem 1.5rem}
 .dash-hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.4rem}
 .dash-hero p{color:var(--text2);max-width:680px;margin:0 auto}
@@ -36,19 +37,15 @@ tr.row-done{background:#f0fdf4}
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-brand">NSI<span>.bac</span></a>
-  <div class="nav-links">
-    <a href="index.html">Accueil</a><a href="quiz.html">QCM</a>
-    <a href="methodes.html">Méthodes</a><a href="chapitres/index.html">Chapitres</a>
-    <a href="complexite.html">Complexité</a>
-    <a href="ece.html" style="color:var(--accent)">EP Pratique</a>
-  </div>
-  <span class="nav-badge">Terminale — 2026</span><button class="burger">☰</button>
+  <a href="../../../../../accueil.html" class="nav-brand">🌸 Sakura<span>NSI</span></a>
+  <div class="nav-links"><a href="../../dashboard-production.html">Cockpit</a><a class="active" href="dashboard.html">Dashboard ECE</a><a href="index.html">Entraînement</a><a href="eleves.html">Élèves</a><a href="prof.html">Professeur</a><a href="../../../../../Progressions/progression-gantt-nsi-terminale.html">Progression Terminale</a></div>
+  <span class="nav-badge">Terminale · ECE 2024/2026</span>
 </nav>
+<div class="dashboard-return"><a href="../../dashboard-production.html">← Cockpit SakuraMaths</a><a href="index.html">🎯 Ouvrir la banque interactive</a></div>
 
 <div class="dash-hero">
   <h1>📊 Dashboard — Traitement des sujets ECE</h1>
-  <p>Suivi de l'avancement de la conversion des sujets officiels (BNS) en fiches interactives sur <a href="ece.html">EP Pratique</a>. Un sujet « traité » a sa fiche complète (code, questions, corrections) sur les 3 pages du site.</p>
+  <p>Suivi de l'avancement de la conversion des sujets officiels (BNS) en fiches interactives sur <a href="index.html">EP Pratique</a>. Un sujet « traité » a sa fiche complète (code, questions, corrections) sur les 3 pages du site.</p>
 </div>
 
 <div class="stats-row">
@@ -587,7 +584,7 @@ tr.row-done{background:#f0fdf4}
 </div></div>
 
 <div class="legend-note">
-  🟢 Interactif = fiche complète disponible sur <a href="ece.html">ece.html</a> / <a href="ece_prof.html">ece_prof.html</a> / <a href="ece_eleves.html">ece_eleves.html</a>.
+  🟢 Interactif = fiche complète disponible sur <a href="index.html">index.html</a> / <a href="prof.html">prof.html</a> / <a href="eleves.html">eleves.html</a>.
   ⚪ Non traité = sujet répertorié (numéro, titre, lien PDF officiel) mais pas encore transformé en fiche interactive.
   <br><br>
   Sources : <a href="https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/BNS_2026/" target="_blank" rel="noopener">BNS 2026</a> ·
@@ -596,9 +593,12 @@ tr.row-done{background:#f0fdf4}
 </div>
 
 <footer style="text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--text2);margin-top:2rem">
-  <p>NSI Terminale — 2026 · <a href="index.html">Accueil</a> · <a href="ece.html">EP Pratique</a></p>
+  <p>NSI Terminale — 2026 · <a href="index.html">Accueil</a> · <a href="index.html">EP Pratique</a></p>
 </footer>
 
-<script src="js/main.js"></script>
+
 </body>
 </html>
+
+
+

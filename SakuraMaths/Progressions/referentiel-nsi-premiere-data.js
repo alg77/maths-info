@@ -254,6 +254,121 @@ window.REFNSIP = {
    "sousTheme": "Algorithmique",
    "type": "objectif",
    "famille": "Cr"
+  },
+
+  /* ===================== AUTOMATISMES (rituel de début de séance) =====================
+     Contrairement aux objectifs (compétences du BO), un automatisme porte son contenu
+     concret : un mini-exercice prêt à poser tel quel en 5 minutes. Champ "drill" :
+       - kind:"court" -> question, reponse (réponse courte à donner à l'oral/écrit)
+       - kind:"qcm"   -> question, options[], reponse (index dans options)
+       - kind:"code"  -> consigne ("Comprendre"|"Corriger"|"Compléter"|"Déboguer"), code, correction */
+  {
+   "code": "AUTO-BIN1",
+   "texte": "Convertir un petit entier décimal en binaire, à la main",
+   "theme": "D",
+   "sousTheme": "Automatismes — représentation des données",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"court","question":"Écris 16 en binaire (base 2).","reponse":"10000"}
+  },
+  {
+   "code": "AUTO-BIN2",
+   "texte": "Convertir un octet binaire en décimal, à la main",
+   "theme": "D",
+   "sousTheme": "Automatismes — représentation des données",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"court","question":"Que vaut 1011 en base 10 ?","reponse":"11"}
+  },
+  {
+   "code": "AUTO-HEX1",
+   "texte": "Convertir un entier décimal en hexadécimal",
+   "theme": "D",
+   "sousTheme": "Automatismes — représentation des données",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"court","question":"Écris 255 en hexadécimal.","reponse":"FF"}
+  },
+  {
+   "code": "AUTO-BOOL1",
+   "texte": "Évaluer une expression booléenne courte",
+   "theme": "D",
+   "sousTheme": "Automatismes — logique booléenne",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"qcm","question":"True and False or True vaut :","options":["True","False"],"reponse":0}
+  },
+  {
+   "code": "AUTO-BOOL2",
+   "texte": "Évaluer une expression booléenne avec négation",
+   "theme": "D",
+   "sousTheme": "Automatismes — logique booléenne",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"qcm","question":"not (True or False) vaut :","options":["True","False"],"reponse":1}
+  },
+  {
+   "code": "AUTO-TRACE1",
+   "texte": "Prédire la sortie d'un court programme (affectations)",
+   "theme": "P",
+   "sousTheme": "Automatismes — lecture de code",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"code","consigne":"Comprendre","code":"x = 5\ny = x * 2\nprint(y - 1)","correction":"Affiche 9 (y = 10, puis 10 - 1 = 9)."}
+  },
+  {
+   "code": "AUTO-TRACE2",
+   "texte": "Prédire la sortie d'une boucle simple",
+   "theme": "P",
+   "sousTheme": "Automatismes — lecture de code",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"code","consigne":"Comprendre","code":"total = 0\nfor i in range(4):\n    total += i\nprint(total)","correction":"Affiche 6 (0+1+2+3)."}
+  },
+  {
+   "code": "AUTO-COMPLETE1",
+   "texte": "Compléter une boucle for sur un intervalle",
+   "theme": "P",
+   "sousTheme": "Automatismes — syntaxe réflexe",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"code","consigne":"Compléter","code":"# Afficher les nombres pairs de 0 à 8 inclus\nfor i in range(...):\n    if ...:\n        print(i)","correction":"for i in range(9):\n    if i % 2 == 0:\n        print(i)"}
+  },
+  {
+   "code": "AUTO-CORRIGE1",
+   "texte": "Corriger une confusion entre affectation et égalité",
+   "theme": "P",
+   "sousTheme": "Automatismes — syntaxe réflexe",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"code","consigne":"Corriger","code":"x = 3\nif x = 3:\n    print(\"ok\")","correction":"if x == 3:\n    print(\"ok\")   # == pour comparer, = pour affecter"}
+  },
+  {
+   "code": "AUTO-DEBUG1",
+   "texte": "Déboguer une erreur d'index (off-by-one)",
+   "theme": "P",
+   "sousTheme": "Automatismes — mise au point",
+   "type": "automatisme",
+   "famille": "Ra",
+   "drill": {"kind":"code","consigne":"Déboguer","code":"lst = [10, 20, 30]\nfor i in range(len(lst) + 1):\n    print(lst[i])","correction":"for i in range(len(lst)):\n    print(lst[i])   # range(len(lst)+1) sort du tableau (IndexError)"}
+  },
+  {
+   "code": "AUTO-DICO1",
+   "texte": "Compléter un accès et une mise à jour de dictionnaire",
+   "theme": "D",
+   "sousTheme": "Automatismes — syntaxe réflexe",
+   "type": "automatisme",
+   "famille": "Cr",
+   "drill": {"kind":"code","consigne":"Compléter","code":"stock = {\"pommes\": 4, \"poires\": 2}\n# Ajouter 3 pommes au stock\nstock[...] = stock[...] + ...","correction":"stock[\"pommes\"] = stock[\"pommes\"] + 3"}
+  },
+  {
+   "code": "AUTO-COMPLEX1",
+   "texte": "Identifier à vue la complexité d'un parcours simple",
+   "theme": "L",
+   "sousTheme": "Automatismes — complexité",
+   "type": "automatisme",
+   "famille": "De",
+   "drill": {"kind":"qcm","question":"Un parcours simple (une boucle for) d'une liste de taille n a une complexité :","options":["O(1)","O(n)","O(n²)","O(log n)"],"reponse":1}
   }
  ]
 };

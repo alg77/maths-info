@@ -221,7 +221,9 @@ def domain_panel(title: str, icon_value: str, levels: list[tuple[str, list[dict]
     done = sum(item["core"] for _, items in levels for item in items)
     percent = round(done * 100 / count) if count else 0
     domain_progress = f'''<div class="domain-progress" title="{done} chapitre(s) complet(s) sur {count}"><div class="progress"><i style="width:{percent}%"></i></div><b>{percent} %</b></div>'''
-    return f'''<details class="domain-group" open><summary class="domain-summary"><span>{icon_value}</span><strong>{esc(title)}</strong><small>{done} / {count} chapitres</small>{domain_progress}</summary><div class="domain-content">{panels}</div></details>'''
+    ece_dashboard = STUDIO / "out" / "web" / "nsi" / "ece" / "dashboard.html"
+    extra_link = f'<a class="domain-tool" href="{esc(rel(ece_dashboard))}">🎯 Dashboard ECE</a>' if title == "NSI" and ece_dashboard.exists() else ""
+    return f'''<details class="domain-group" open><summary class="domain-summary"><span>{icon_value}</span><strong>{esc(title)}</strong><small>{done} / {count} chapitres</small>{domain_progress}{extra_link}</summary><div class="domain-content">{panels}</div></details>'''
 
 
 def main() -> None:
@@ -253,7 +255,7 @@ def main() -> None:
 const dashboardStyle = document.createElement('style');
 dashboardStyle.textContent = `.analysis-time{{margin-top:13px;color:var(--muted);font-size:.8rem}}.dashboard-tools{{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 15px;background:#ffffffb8;border:1px solid #fff;border-radius:18px;box-shadow:0 8px 24px #6f587512}}.filter-toggle{{display:flex;align-items:center;gap:9px;font-weight:800;cursor:pointer}}.filter-toggle input{{width:19px;height:19px;accent-color:var(--violet)}}.dashboard-tools button{{margin-left:auto;border:0;border-radius:999px;padding:9px 14px;background:#eee9f7;color:var(--ink);font-weight:800;cursor:pointer}}.show-todo-only [data-status="verified"]{{display:none!important}}.period-group.filter-empty{{display:none}}.detail-chip{{text-decoration:none}}a.detail-chip:hover{{outline:2px solid currentColor}}.table-caption{{display:flex;gap:8px;align-items:baseline;padding:0 3px 9px;color:var(--muted);font-size:.78rem}}.table-caption strong{{color:var(--ink)}}`;
 document.head.appendChild(dashboardStyle);
-dashboardStyle.textContent += `.domain-progress{{display:flex;align-items:center;gap:9px;min-width:190px}}.domain-progress .progress{{background:rgba(255,255,255,.28)}}.domain-progress .progress i{{background:linear-gradient(90deg,#ffd5e4,#fff)}}.domain-progress b{{min-width:42px;color:#fff;font-size:.82rem}}@media(max-width:760px){{.domain-summary{{flex-wrap:wrap}}.domain-progress{{width:100%;min-width:0}}.domain-summary small{{margin-left:auto}}}}`;
+dashboardStyle.textContent += `.domain-progress{{display:flex;align-items:center;gap:9px;min-width:190px}}.domain-progress .progress{{background:rgba(255,255,255,.28)}}.domain-progress .progress i{{background:linear-gradient(90deg,#ffd5e4,#fff)}}.domain-progress b{{min-width:42px;color:#fff;font-size:.82rem}}.domain-tool{{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;text-decoration:none;font-size:.78rem;font-weight:800;white-space:nowrap}}.domain-tool:hover{{background:rgba(255,255,255,.28)}}@media(max-width:760px){{.domain-summary{{flex-wrap:wrap}}.domain-progress{{width:100%;min-width:0}}.domain-summary small{{margin-left:auto}}}}`;
 document.body.style.background = "linear-gradient(rgba(255,248,246,.18),rgba(255,248,246,.40)),url('../../../fond-sakura-maths.png') center top / cover fixed no-repeat";
 const todoFilter = document.getElementById('todo-filter');
 todoFilter?.addEventListener('change', () => {{

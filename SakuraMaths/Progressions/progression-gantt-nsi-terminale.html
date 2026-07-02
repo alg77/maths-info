@@ -6,8 +6,6 @@
 <title>Progression &amp; Gantt — NSI Terminale</title>
 <link rel="stylesheet" href="progression-commun.css">
 <script src="referentiel-nsi-terminale-data.js"></script>
-<script src="referentiel-nsi-bac-ece-data.js"></script>
-<script src="referentiel-nsi-pyxel-data.js"></script>
 <style>
   :root{ --D:#8fb3d9; --B:#b9a3dd; --O:#e6a18c; --P:#9cc4a0; --R:#7fbfc9; --S:#cdb7a0; --L:#e6c27a;
          --Ra:#90c1cf; --Ce:#b6a6d6; --Co:#e0b18a; --Cr:#9cc6a6; --De:#e3a09a; --En:#d79bbf; }
@@ -38,6 +36,14 @@
   .bankobj .bo-in{ font-size:10px; color:#888; flex-shrink:0; }
   #bankBackdrop{ position:fixed; inset:0; background:rgba(20,10,25,.25); z-index:79; display:none; }
   #bankBackdrop.open{ display:block; }
+  .bank-type-tabs{ display:flex; gap:6px; padding:8px 14px 0; }
+  .btype{ flex:1; border:1px solid #ddd; background:#fff; border-radius:8px; padding:6px 8px; font-size:12px; font-weight:700; cursor:pointer; }
+  .btype.active{ background:#5b4a63; color:#fff; border-color:#5b4a63; }
+  .oz-wrap.auto-wrap{ border-left-color:#b08948; margin-top:8px; }
+  .objchip.auto{ background:#fff8ee; border-color:#e8cf9e; }
+  .oc-auto-ico{ font-size:11px; }
+  .bankobj.auto{ background:#fffaf0; }
+  .bo-drill{ font-size:10.5px; color:#8a6d3b; margin-top:2px; font-family:monospace; white-space:pre-wrap; }
 </style>
 </head>
 <body data-page="progressions">
@@ -95,6 +101,7 @@
   <div class="toolbar no-print">
     <button class="btn" id="addSeq" type="button">+ Séquence</button>
     <button class="btn" id="bankBtn" type="button">🎯 Banque d'objectifs</button>
+    <button class="btn ghost" id="suggestBtn" type="button">✨ Suggérer</button>
     <label class="toggle-details-all"><input type="checkbox" id="withDetails" checked> détails des séquences</label>
     <button class="btn ghost" id="carnetLink" type="button" title="Ouvrir mon carnet (clic droit : changer l'URL)">📓 Mon carnet</button>
     <button class="btn ghost" id="pdfProgBtn" type="button">PDF progression</button>
@@ -135,7 +142,6 @@
       <li><b>Sur la pertinence de l'ordre</b> : ton enchaînement tient. Un seul point — l'algorithmique en S9 fonctionne comme <b>synthèse</b> (diviser-pour-régner, prog. dynamique, glouton, kNN), à condition que les <b>parcours d'arbres/graphes</b> soient bien traités <i>dans</i> S5/S6 (c'est ce que j'ai mis). La récursivité (S4) arrive avant arbres/graphes ✓.</li>
       <li><b>Variante possible</b> : remonter la récursivité juste avant S5, ou fusionner S9 dans S5/S6 si tu préfères ne pas finir l'année sur de l'algo pur. Glisse-dépose pour tester.</li>
       <li><b>5 points d'évaluation ECE</b> ajoutés (BNS 2026, 23 sujets classés par thème dominant) : après S2 (SQL, sujet unique), après S3 (dico/POO simple), après S4 (récursivité/structures imbriquées), après S6 (POO avancée/simulation), et une révision généraliste en fin d'année juste avant l'épreuve. Chaque point propose 1 à 5 sujets au choix, à piocher selon le niveau de chaque élève pour l'évaluation individuelle chronométrée.</li>
-      <li><b>Séances mixtes et priorité Bac/ECE</b> : notion et annale papier, lecture ou raisonnement, pratique Python/SQL puis bilan. Pyxel reste un support ponctuel de réinvestissement en piles/files, POO, récursivité, arbres, graphes, algorithmique et bases de données — jamais le centre de l'année.</li>
       <li><b>Durées estimées</b> (6 h/sem, ~29,5 sem. avec les 5 points ECE) : à ajuster.</li>
       <li><b>Fin d'année calée sur le réel</b> : cours jusqu'au <b>1ᵉʳ vendredi de juin</b> (4 juin 2027 ici) — les <b>ECE de NSI</b> tombent la semaine précédente (dernière semaine du calendrier, 31 mai), <b>volontairement laissée libre</b> de tout contenu. Avec ce calage, le contenu (29,5 sem.) se termine ~2,5 semaines avant la fin, donc largement avant la semaine des ECE.</li>
     </ul>
@@ -148,6 +154,7 @@
     <input type="text" id="bankSearch" placeholder="Rechercher un objectif (code, mot-clé)…">
     <button class="bank-close" id="bankClose" type="button" title="Fermer">×</button>
   </div>
+  <div class="bank-type-tabs" id="bankTypeTabs"></div>
   <div class="bank-filters" id="bankFilters"></div>
   <div class="bank-list" id="bankList"></div>
 </div>
@@ -172,57 +179,75 @@ var DESC={
 };
 function famOf(code){ return code.slice(0,2); }
 
-/* ---------- banque d'objectifs BO (référentiel officiel NSI Terminale) ---------- */
-var RALL=[]; (function(){ var R=window.REFNSIT; if(!R||!R.objectifs) return; R.objectifs.forEach(function(o){ RALL.push({id:o.code, code:o.code, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type||'objectif'}); }); })();
+/* ---------- banque d'objectifs + automatismes BO (référentiel officiel NSI Terminale) ---------- */
+var RALL=[]; (function(){ var R=window.REFNSIT; if(!R||!R.objectifs) return; R.objectifs.forEach(function(o){ RALL.push({id:o.code, code:o.code, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type||'objectif', drill:o.drill||null}); }); })();
 var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
 function objTheme(id){ var o=RBY[id]; return o?o.theme:'D'; }
 function objText(id){ var o=RBY[id]; return o?o.texte:id; }
+function objType(id){ var o=RBY[id]; return o?o.type:'objectif'; }
 function objShort(id){ var t=objText(id); return t.length>70?t.slice(0,68)+'…':t; }
+function drillPreview(o){
+  if(!o||!o.drill) return '';
+  var d=o.drill;
+  if(d.kind==='court') return '❓ '+d.question;
+  if(d.kind==='qcm') return '☑ '+d.question;
+  if(d.kind==='code') return '💻 '+d.consigne+' : '+(d.code||'').split('\n')[0]+'…';
+  return '';
+}
 function migrateObjectifs(st){
   if(!st||!st.seq) return st;
-  st.seq.forEach(function(s){ if(!Array.isArray(s.objectifs)) s.objectifs=[]; });
+  st.seq.forEach(function(s){
+    if(!Array.isArray(s.objectifs)) s.objectifs=[];
+    if(!Array.isArray(s.automatismes)) s.automatismes=[];
+  });
   return st;
 }
+function zoneArr(s,id){ return objType(id)==='automatisme' ? s.automatismes : s.objectifs; }
 function placedInZone(id){
-  var r=[]; S.seq.forEach(function(s,i){ if(s.objectifs.indexOf(id)!==-1) r.push(i); });
+  var r=[]; S.seq.forEach(function(s,i){ if(s.objectifs.indexOf(id)!==-1 || s.automatismes.indexOf(id)!==-1) r.push(i); });
   return r;
 }
 function allPlacedObj(){
-  var set={}; S.seq.forEach(function(s){ s.objectifs.forEach(function(c){ set[c]=1; }); });
+  var set={}; S.seq.forEach(function(s){ s.objectifs.concat(s.automatismes).forEach(function(c){ set[c]=1; }); });
   return set;
 }
 function objChipHTML(id,i){
-  var col='var(--'+objTheme(id)+')';
-  return '<span class="objchip" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+esc(objText(id))+'">'
+  var col='var(--'+objTheme(id)+')', isAuto=objType(id)==='automatisme';
+  var tip=esc(objText(id))+(isAuto&&RBY[id].drill?'\n'+esc(drillPreview(RBY[id])):'');
+  return '<span class="objchip'+(isAuto?' auto':'')+'" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+tip+'">'
+    +(isAuto?'<span class="oc-auto-ico">🛠</span>':'')
     +'<span class="oc-code" style="background:'+col+'">'+esc(id)+'</span>'
     +'<span class="oc-txt">'+esc(objShort(id))+'</span>'
     +'<button type="button" class="oc-rm" data-id="'+id+'" data-i="'+i+'" title="Retirer">×</button></span>';
 }
-function ozoneHTML(s,i){
-  var arr=s.objectifs;
-  var body = arr.length ? arr.map(function(id){ return objChipHTML(id,i); }).join('') : '<span class="oz-empty">Glisse un objectif du BO ici</span>';
-  return '<div class="oz-wrap"><div class="oz-label">🎯 Objectifs du BO</div><div class="obj-zone" data-i="'+i+'">'+body+'</div></div>';
+function ozoneHTML(s,i,field,label,emptyTxt){
+  var arr=s[field];
+  var body = arr.length ? arr.map(function(id){ return objChipHTML(id,i); }).join('') : '<span class="oz-empty">'+emptyTxt+'</span>';
+  return '<div class="oz-wrap'+(field==='automatismes'?' auto-wrap':'')+'"><div class="oz-label">'+label+'</div><div class="obj-zone" data-i="'+i+'" data-field="'+field+'">'+body+'</div></div>';
 }
 function wireObjZone(el,i){
+  var field=el.dataset.field;
   el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('dragover'); });
   el.addEventListener('dragleave',function(){ el.classList.remove('dragover'); });
   el.addEventListener('drop',function(e){
     e.preventDefault(); el.classList.remove('dragover');
     var id = dragObjCode || e.dataTransfer.getData('text/plain');
     if(!id || !RBY[id]) return;
-    if(dragFromSeq!=null){ var src=S.seq[dragFromSeq].objectifs; var k=src.indexOf(id); if(k!==-1) src.splice(k,1); }
-    if(S.seq[i].objectifs.indexOf(id)===-1) S.seq[i].objectifs.push(id);
+    if(dragFromSeq!=null){ var src=zoneArr(S.seq[dragFromSeq],id); var k=src.indexOf(id); if(k!==-1) src.splice(k,1); }
+    var target=S.seq[i][field];
+    if(target.indexOf(id)===-1) target.push(id);
     dragObjCode=null; dragFromSeq=null; armedObj=null;
     save(); renderAll();
   });
   el.addEventListener('click',function(e){
     if(e.target.closest('.oc-rm')) return;
     if(!armedObj) return;
-    if(S.seq[i].objectifs.indexOf(armedObj)===-1) S.seq[i].objectifs.push(armedObj);
+    var target=S.seq[i][field];
+    if(target.indexOf(armedObj)===-1) target.push(armedObj);
     armedObj=null; save(); renderAll(); renderBank();
   });
 }
-var bankOpen=false, bankFilter='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
+var bankOpen=false, bankType='objectif', bankFilter='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
 function toggleBank(open){
   bankOpen = open!=null ? open : !bankOpen;
   document.getElementById('bankPanel').classList.toggle('open',bankOpen);
@@ -230,10 +255,43 @@ function toggleBank(open){
   if(bankOpen) renderBank();
 }
 document.getElementById('bankBtn').addEventListener('click',function(){ toggleBank(true); });
+function suggestAssoc(){
+  if(!confirm("Pré-associer automatiquement les objectifs ET les automatismes du BO à tes séquences (par mots-clés) ?\nC'est une suggestion à relire ; rien de ce que tu as déjà placé n'est modifié."))return;
+  var STOP={}; 'avec des une les que pour sur dans son ses leur entre sous est sont plus deux par aux quelques cette ceux dont etc forme type donnees diverses simple simples nombre nombres situation situations probleme problemes utiliser connaitre savoir resoudre representer calculer construire reconnaitre definir produire mettre faire dune dun'.split(' ').forEach(function(w){STOP[w]=1;});
+  function normTxt2(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  function words(s){return normTxt2(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>3&&!STOP[w];});}
+  var placedSet=allPlacedObj(), n=0, nAuto=0;
+  RALL.forEach(function(o){
+    if(placedSet[o.id])return;
+    var cands=[]; S.seq.forEach(function(s,i){ if(s.theme===o.theme)cands.push(i); });
+    if(!cands.length) S.seq.forEach(function(s,i){ cands.push(i); });
+    var ow=words(o.texte), best=-1, bs=0;
+    cands.forEach(function(i){
+      var set={}; words((S.seq[i].title||'')+' '+(S.seq[i].details||'')).forEach(function(w){set[w]=1;});
+      var sc=0; ow.forEach(function(w){ if(set[w])sc++; });
+      if(sc>bs){ bs=sc; best=i; }
+    });
+    if(best>=0 && bs>=2){
+      var target=zoneArr(S.seq[best],o.id);
+      if(target.indexOf(o.id)===-1){ target.push(o.id); n++; if(o.type==='automatisme')nAuto++; }
+    }
+  });
+  save(); renderAll();
+  alert(n+" item(s) pré-associé(s) dont "+nAuto+" automatisme(s) — à relire et ajuster (glisse-dépose pour corriger si besoin).");
+}
+document.getElementById('suggestBtn').addEventListener('click',suggestAssoc);
 document.getElementById('bankClose').addEventListener('click',function(){ toggleBank(false); });
 document.getElementById('bankBackdrop').addEventListener('click',function(){ toggleBank(false); });
 document.getElementById('bankSearch').addEventListener('input',function(){ bankQuery=this.value.toLowerCase(); renderBank(); });
 function normTxt(s){ return String(s||'').toLowerCase(); }
+function renderBankTypeTabs(){
+  var wrap=document.getElementById('bankTypeTabs'); if(!wrap)return;
+  var nObj=RALL.filter(function(o){return o.type==='objectif';}).length;
+  var nAuto=RALL.filter(function(o){return o.type==='automatisme';}).length;
+  wrap.innerHTML='<button type="button" class="btype'+(bankType==='objectif'?' active':'')+'" data-t="objectif">🎯 Objectifs ('+nObj+')</button>'
+    +'<button type="button" class="btype'+(bankType==='automatisme'?' active':'')+'" data-t="automatisme">🛠 Automatismes ('+nAuto+')</button>';
+  wrap.querySelectorAll('.btype').forEach(function(b){ b.addEventListener('click',function(){ bankType=b.getAttribute('data-t'); renderBank(); }); });
+}
 function renderBankFilters(){
   var wrap=document.getElementById('bankFilters'); wrap.innerHTML='';
   var themes=[['all','Tout']].concat(Object.keys(THEMES).map(function(k){return [k,THEMES[k]];}));
@@ -244,20 +302,23 @@ function renderBankFilters(){
   });
 }
 function renderBank(){
+  renderBankTypeTabs();
   renderBankFilters();
   var placed=allPlacedObj(), q=bankQuery;
   var items=RALL.filter(function(o){
+    if(o.type!==bankType) return false;
     if(bankFilter!=='all' && o.theme!==bankFilter) return false;
     if(q && normTxt(o.code+' '+o.texte+' '+o.sousTheme).indexOf(q)===-1) return false;
     return true;
   });
   var list=document.getElementById('bankList'); list.innerHTML='';
-  if(!items.length){ list.innerHTML='<div class="oz-empty">Aucun objectif ne correspond.</div>'; return; }
+  if(!items.length){ list.innerHTML='<div class="oz-empty">Aucun item ne correspond.</div>'; return; }
   items.forEach(function(o){
     var where=placedInZone(o.id);
-    var div=document.createElement('div'); div.className='bankobj'+(where.length?' placed':'')+(armedObj===o.id?' armed':'');
+    var div=document.createElement('div'); div.className='bankobj'+(o.type==='automatisme'?' auto':'')+(where.length?' placed':'')+(armedObj===o.id?' armed':'');
     div.draggable=true;
-    div.innerHTML='<span class="bo-code" style="background:var(--'+o.theme+')">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+'</span>'+(where.length?'<span class="bo-in">placé</span>':'');
+    var preview=o.type==='automatisme' ? '<div class="bo-drill">'+esc(drillPreview(o))+'</div>' : '';
+    div.innerHTML='<span class="bo-code" style="background:var(--'+o.theme+')">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+preview+'</span>'+(where.length?'<span class="bo-in">placé</span>':'');
     div.title=o.sousTheme||'';
     div.addEventListener('dragstart',function(e){ dragObjCode=o.id; dragFromSeq=null; e.dataTransfer.setData('text/plain',o.id); e.dataTransfer.effectAllowed='copy'; });
     div.addEventListener('click',function(){ armedObj = armedObj===o.id ? null : o.id; renderBank(); });
@@ -468,9 +529,10 @@ function renderSeq(){
     el.appendChild(dta);
 
     var objWrap=document.createElement('div');
-    objWrap.innerHTML = ozoneHTML(s,i);
+    objWrap.innerHTML = ozoneHTML(s,i,'objectifs','🎯 Objectifs du BO','Glisse un objectif du BO ici')
+                       + ozoneHTML(s,i,'automatismes','🛠 Automatismes (rituel de début de séance)','Glisse un automatisme ici');
     el.appendChild(objWrap);
-    var zEl=objWrap.querySelector('.obj-zone'); wireObjZone(zEl, i);
+    objWrap.querySelectorAll('.obj-zone').forEach(function(zEl){ wireObjZone(zEl, i); });
     objWrap.querySelectorAll('.objchip').forEach(function(chip){
       chip.addEventListener('dragstart',function(e){
         dragObjCode=chip.dataset.id; dragFromSeq=+chip.dataset.from;
@@ -480,7 +542,7 @@ function renderSeq(){
     objWrap.querySelectorAll('.oc-rm').forEach(function(btn){
       btn.addEventListener('click',function(e){
         e.stopPropagation();
-        var arr=s[btn.dataset.field||'objectifsBO']||[], k=arr.indexOf(btn.dataset.id); if(k!==-1) arr.splice(k,1);
+        var arr=zoneArr(s,btn.dataset.id), k=arr.indexOf(btn.dataset.id); if(k!==-1) arr.splice(k,1);
         save(); renderAll();
       });
     });
@@ -616,7 +678,7 @@ function setAllSeqDetails(open){
 }
 function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); if(bankOpen) renderBank(); }
 document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
-document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'D',weeks:1,comps:[],objectifs:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
+document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'D',weeks:1,comps:[],objectifs:[],automatismes:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
@@ -642,7 +704,7 @@ function printGantt(){ renderGantt(); document.body.classList.add('printing','pr
 function exportProgressionWord(){
   renderPrintDoc(true);
   var title=currentDocTitle();
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-objectives{font-size:11px;margin:6px 0;padding-left:10px;border-left:3px solid #d9b5ca}.pdoc-objectives div{margin:3px 0}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
   var blob=new Blob(['\ufeff',html],{type:'application/msword'});
   var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
 }
@@ -662,7 +724,6 @@ document.getElementById('importFile').addEventListener('change',function(e){ var
 
 renderAll();
 </script>
-<script src="progression-nsi-mixte.js"></script>
 <script src="site.js" defer></script>
 </body>
 </html>
