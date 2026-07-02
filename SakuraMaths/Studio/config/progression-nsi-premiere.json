@@ -1,0 +1,15 @@
+{
+  "discipline": "NSI",
+  "niveau": "Première",
+  "seq": [
+    {"code":"H1","title":"Histoire de l'informatique (fil rouge)","weeks":1},
+    {"code":"D1","title":"Représentation des données : types de base","weeks":3},
+    {"code":"P1","title":"Langages et programmation","weeks":3.5},
+    {"code":"D2","title":"Représentation des données : types construits","weeks":3},
+    {"code":"L1","title":"Algorithmique","weeks":4},
+    {"code":"T1","title":"Traitement de données en tables","weeks":3},
+    {"code":"W1","title":"Interactions homme-machine sur le Web","weeks":3.5},
+    {"code":"S1","title":"Architectures matérielles et systèmes d'exploitation","weeks":3},
+    {"code":"S2","title":"Réseaux","weeks":2}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "niveau": "4e",
+  "chapitres": {
+    "N1": {"status": "review"},
+    "G1": {"status": "review"},
+    "D1": {"status": "review"},
+    "N2": {"status": "review"},
+    "N3": {"status": "review"},
+    "G2": {"status": "review"},
+    "N4": {"status": "review"},
+    "D2": {"status": "review"},
+    "N5": {"status": "review"},
+    "G3": {"status": "review"},
+    "N6": {"status": "review"},
+    "G4": {"status": "review"},
+    "N7": {"status": "review"},
+    "G5": {"status": "review"},
+    "N8": {"status": "review"},
+    "G6": {"status": "review"},
+    "G7": {"status": "review"},
+    "D3": {"status": "review"},
+    "A1": {"status": "review"},
+    "N9": {"status": "review"}
+  }
+}

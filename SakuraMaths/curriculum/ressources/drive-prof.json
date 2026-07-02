@@ -1,0 +1,2967 @@
+{
+  "schema": "sakuramaths.drive-links.v1",
+  "instructions": "Coller un lien Google Drive complet ou un identifiant dans chaque champ drive. Laisser vide si le document n'existe pas encore.",
+  "niveaux": {
+    "6e": {
+      "P1": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-6e-P1-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-6e-P1-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N1": {
+            "titre": "Nombres entiers et décimaux",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G1": {
+            "titre": "Éléments de géométrie",
+            "ressources": {
+              "source_md": {
+                "fichier": "6G1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6G1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6G1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6G1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6G1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6G1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6G1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6G1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6G1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6G1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "C1": {
+            "titre": "Multiplier et diviser par 10, 100, 1000…",
+            "ressources": {
+              "source_md": {
+                "fichier": "6C1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6C1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6C1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6C1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6C1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6C1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6C1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6C1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6C1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6C1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "M1": {
+            "titre": "Angles (1)",
+            "ressources": {
+              "source_md": {
+                "fichier": "6M1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6M1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6M1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6M1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6M1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6M1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6M1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6M1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6M1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6M1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P2": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-6e-P2-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-6e-P2-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "G2": {
+            "titre": "Droites parallèles et perpendiculaires",
+            "ressources": {
+              "source_md": {
+                "fichier": "6G2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6G2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6G2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6G2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6G2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6G2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6G2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6G2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6G2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6G2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "M2": {
+            "titre": "Repérer et placer des décimaux sur une demi-droite graduée",
+            "ressources": {
+              "source_md": {
+                "fichier": "6M2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6M2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6M2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6M2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6M2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6M2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6M2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6M2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6M2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6M2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G3": {
+            "titre": "Distances et cercle",
+            "ressources": {
+              "source_md": {
+                "fichier": "6G3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6G3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6G3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6G3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6G3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6G3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6G3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6G3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6G3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6G3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N2": {
+            "titre": "Additionner et soustraire des nombres décimaux",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P3": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-6e-P3-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-6e-P3-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N3": {
+            "titre": "Multiplier des nombres décimaux",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G4": {
+            "titre": "Polygones particuliers",
+            "ressources": {
+              "source_md": {
+                "fichier": "6G4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6G4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6G4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6G4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6G4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6G4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6G4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6G4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6G4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6G4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "C2": {
+            "titre": "Ajouter ou retrancher 9, 99, 11…",
+            "ressources": {
+              "source_md": {
+                "fichier": "6C2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6C2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6C2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6C2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6C2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6C2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6C2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6C2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6C2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6C2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G5": {
+            "titre": "Solides : pavé droit et cube",
+            "ressources": {
+              "source_md": {
+                "fichier": "6G5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6G5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6G5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6G5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6G5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6G5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6G5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6G5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6G5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6G5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "M3": {
+            "titre": "Périmètres",
+            "ressources": {
+              "source_md": {
+                "fichier": "6M3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6M3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6M3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6M3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6M3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6M3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6M3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6M3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6M3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6M3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P4": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-6e-P4-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-6e-P4-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N4": {
+            "titre": "Division euclidienne",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "M4": {
+            "titre": "Angles (2)",
+            "ressources": {
+              "source_md": {
+                "fichier": "6M4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6M4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6M4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6M4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6M4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6M4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6M4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6M4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6M4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6M4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N5": {
+            "titre": "Division décimale",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N6": {
+            "titre": "Fractions",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N6.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N6__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N6__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N6.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N6-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N6__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N6__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N6__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N6__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N6__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P5": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-6e-P5-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-6e-P5-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N7": {
+            "titre": "Proportionnalité",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N7.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N7__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N7__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N7.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N7-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N7__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N7__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N7__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N7__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N7__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N8": {
+            "titre": "Probabilités",
+            "ressources": {
+              "source_md": {
+                "fichier": "6N8.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6N8__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6N8__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6N8.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6N8-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6N8__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6N8__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6N8__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6N8__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6N8__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "M5": {
+            "titre": "Aires et volumes",
+            "ressources": {
+              "source_md": {
+                "fichier": "6M5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6M5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6M5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6M5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6M5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6M5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6M5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6M5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6M5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6M5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G6": {
+            "titre": "Symétrie axiale et axes de symétrie",
+            "ressources": {
+              "source_md": {
+                "fichier": "6G6.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6G6__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6G6__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6G6.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6G6-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6G6__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6G6__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6G6__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6G6__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6G6__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "A": {
+            "titre": "Algorithmique & Tableur (fil rouge)",
+            "ressources": {
+              "source_md": {
+                "fichier": "6A.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "6A__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "6A__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "6A.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "6A-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "6A__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "6A__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "6A__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "6A__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "6A__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "5e": {
+      "P1": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-5e-P1-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-5e-P1-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N1": {
+            "titre": "Calculer avec les nombres décimaux",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G1": {
+            "titre": "Reconnaître et utiliser les symétries axiale et centrale",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N2": {
+            "titre": "Écrire et utiliser une expression littérale",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P2": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-5e-P2-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-5e-P2-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "G2": {
+            "titre": "Décrire, représenter le cylindre et le prisme droit ; calculer des volumes",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N3": {
+            "titre": "Définir, utiliser et représenter des nombres rationnels",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G3": {
+            "titre": "Construire un triangle et ses droites remarquables",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P3": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-5e-P3-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-5e-P3-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N4": {
+            "titre": "Utiliser les nombres entiers",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "D1": {
+            "titre": "Utiliser la proportionnalité pour résoudre des problèmes",
+            "ressources": {
+              "source_md": {
+                "fichier": "5D1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5D1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5D1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5D1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5D1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5D1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5D1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5D1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5D1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5D1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G4": {
+            "titre": "Symétrie centrale : construire et démontrer",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N5": {
+            "titre": "Découvrir, repérer et comparer les nombres relatifs",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P4": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-5e-P4-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-5e-P4-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "G5": {
+            "titre": "Reconnaître des angles particuliers et des droites parallèles",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N6": {
+            "titre": "Fractions égales ; comparer des fractions",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N6.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N6__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N6__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N6.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N6-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N6__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N6__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N6__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N6__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N6__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G6": {
+            "titre": "Construire et démontrer avec les angles d'un triangle",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G6.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G6__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G6__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G6.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G6-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G6__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G6__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G6__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G6__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G6__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N7": {
+            "titre": "Additionner et soustraire des nombres relatifs",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N7.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N7__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N7__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N7.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N7-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N7__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N7__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N7__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N7__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N7__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P5": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-5e-P5-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-5e-P5-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "D2": {
+            "titre": "Utiliser les pourcentages et les échelles",
+            "ressources": {
+              "source_md": {
+                "fichier": "5D2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5D2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5D2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5D2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5D2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5D2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5D2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5D2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5D2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5D2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G7": {
+            "titre": "Définir, construire et reconnaître un parallélogramme",
+            "ressources": {
+              "source_md": {
+                "fichier": "5G7.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5G7__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5G7__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5G7.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5G7-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5G7__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5G7__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5G7__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5G7__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5G7__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N8": {
+            "titre": "Additionner et soustraire des fractions",
+            "ressources": {
+              "source_md": {
+                "fichier": "5N8.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5N8__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5N8__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5N8.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5N8-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5N8__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5N8__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5N8__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5N8__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5N8__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "D3": {
+            "titre": "Traiter et représenter des données",
+            "ressources": {
+              "source_md": {
+                "fichier": "5D3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5D3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5D3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5D3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5D3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5D3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5D3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5D3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5D3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5D3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "A1": {
+            "titre": "Algorithmique & Tableur (fil rouge)",
+            "ressources": {
+              "source_md": {
+                "fichier": "5A1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "5A1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "5A1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "5A1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "5A1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "5A1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "5A1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "5A1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "5A1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "5A1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "4e": {
+      "P1": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-4e-P1-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-4e-P1-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N1": {
+            "titre": "Nombres relatifs : addition et soustraction",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G1": {
+            "titre": "Triangles : droites remarquables et droite des milieux",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "D1": {
+            "titre": "Proportionnalité",
+            "ressources": {
+              "source_md": {
+                "fichier": "4D1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4D1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4D1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4D1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4D1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4D1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4D1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4D1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4D1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4D1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P2": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-4e-P2-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-4e-P2-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N2": {
+            "titre": "Nombres relatifs : multiplication et division",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N3": {
+            "titre": "Calcul littéral 1",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G2": {
+            "titre": "Égalité de Pythagore (sens direct)",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P3": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-4e-P3-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-4e-P3-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N4": {
+            "titre": "Équations",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "D2": {
+            "titre": "Statistiques",
+            "ressources": {
+              "source_md": {
+                "fichier": "4D2.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4D2__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4D2__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4D2.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4D2-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4D2__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4D2__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4D2__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4D2__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4D2__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N5": {
+            "titre": "Fractions 1 : addition, soustraction, comparaison",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P4": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-4e-P4-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-4e-P4-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "G3": {
+            "titre": "Quadrilatères particuliers",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N6": {
+            "titre": "Calcul littéral 2",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N6.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N6__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N6__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N6.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N6-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N6__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N6__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N6__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N6__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N6__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G4": {
+            "titre": "Égalité de Pythagore (réciproque)",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G4.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G4__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G4__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G4.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G4-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G4__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G4__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G4__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G4__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G4__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N7": {
+            "titre": "Fractions 2 : multiplication et division",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N7.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N7__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N7__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N7.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N7-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N7__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N7__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N7__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N7__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N7__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G5": {
+            "titre": "Transformations : translation",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G5.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G5__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G5__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G5.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G5-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G5__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G5__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G5__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G5__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G5__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      },
+      "P5": {
+        "livrets": {
+          "livret_eleve_pdf": {
+            "fichier": "livret-4e-P5-eleve-v2.pdf",
+            "drive": ""
+          },
+          "livret_prof_pdf": {
+            "fichier": "livret-4e-P5-prof-v2.pdf",
+            "drive": ""
+          }
+        },
+        "chapitres": {
+          "N8": {
+            "titre": "Puissances",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N8.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N8__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N8__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N8.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N8-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N8__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N8__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N8__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N8__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N8__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G6": {
+            "titre": "Transformations : rotation",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G6.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G6__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G6__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G6.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G6-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G6__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G6__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G6__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G6__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G6__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "G7": {
+            "titre": "Solides : pyramide et cône",
+            "ressources": {
+              "source_md": {
+                "fichier": "4G7.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4G7__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4G7__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4G7.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4G7-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4G7__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4G7__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4G7__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4G7__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4G7__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "D3": {
+            "titre": "Grandeurs produits et quotients",
+            "ressources": {
+              "source_md": {
+                "fichier": "4D3.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4D3__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4D3__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4D3.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4D3-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4D3__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4D3__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4D3__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4D3__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4D3__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "A1": {
+            "titre": "Algorithmique (fil rouge ½ groupes)",
+            "ressources": {
+              "source_md": {
+                "fichier": "4A1.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4A1__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4A1__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4A1.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4A1-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4A1__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4A1__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4A1__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4A1__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4A1__bareme.pdf",
+                "drive": ""
+              }
+            }
+          },
+          "N9": {
+            "titre": "Probabilités (new)",
+            "ressources": {
+              "source_md": {
+                "fichier": "4N9.md",
+                "drive": ""
+              },
+              "cours_pdf_eleve": {
+                "fichier": "4N9__eleve_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "cours_pdf_prof": {
+                "fichier": "4N9__prof_atkinson_11pt_couleur.pdf",
+                "drive": ""
+              },
+              "page_html_eleve": {
+                "fichier": "4N9.html",
+                "drive": ""
+              },
+              "page_html_prof": {
+                "fichier": "4N9-prof.html",
+                "drive": ""
+              },
+              "evaluation_A": {
+                "fichier": "4N9__evaluation-A.pdf",
+                "drive": ""
+              },
+              "evaluation_B": {
+                "fichier": "4N9__evaluation-B.pdf",
+                "drive": ""
+              },
+              "evaluation_DYS_PAP": {
+                "fichier": "4N9__evaluation-DYS-PAP.pdf",
+                "drive": ""
+              },
+              "corrige": {
+                "fichier": "4N9__corrige.pdf",
+                "drive": ""
+              },
+              "bareme": {
+                "fichier": "4N9__bareme.pdf",
+                "drive": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

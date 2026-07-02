@@ -1,0 +1,15 @@
+{
+  "discipline": "NSI",
+  "niveau": "Terminale",
+  "seq": [
+    {"code":"D1","title":"Structures de données linéaires","weeks":3},
+    {"code":"B1","title":"Bases de données","weeks":3},
+    {"code":"O1","title":"Programmation orientée objet","weeks":3},
+    {"code":"P1","title":"Langages et programmation","weeks":3.5},
+    {"code":"D2","title":"Arbres","weeks":3},
+    {"code":"D3","title":"Graphes","weeks":3},
+    {"code":"R1","title":"Réseaux et sécurité","weeks":2.5},
+    {"code":"S1","title":"Architectures matérielles et systèmes","weeks":2.5},
+    {"code":"L1","title":"Algorithmique : paradigmes de synthèse","weeks":3}
+  ]
+}

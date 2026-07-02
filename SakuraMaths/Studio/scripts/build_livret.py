@@ -1668,7 +1668,7 @@ def main():
     ap.add_argument("--builder", action="store_true", help="générer le sélecteur HTML interactif")
     ap.add_argument("--pont", default=None, help="pont-livret JSON : objectifs visés + grille auto")
     ap.add_argument("--exomap", default=None, help="JSON {code: url} : colonne QR MathALÉA")
-    ap.add_argument("--out", default=str(STUDIO_DIR / "out" / "pdf"))
+    ap.add_argument("--out", default=None, help="dossier de sortie (par défaut Studio/out/pdf/<niveau>)")
     ap.add_argument("--export-qcm", default=None, help="écrire/mettre à jour questions.js avec les QCM générés depuis :::mathalea")
     ap.add_argument("--export-kahoot", default=None, help="exporter un .xlsx importable dans Kahoot")
     ap.add_argument("--qcm-html", default=None, help="générer une page qcm-4eme.html qui lit questions.js")
@@ -1680,6 +1680,8 @@ def main():
     args.niveau = infer_level(args.source, chapter_codes, args.niveau)
     if not args.niveau:
         ap.error("niveau impossible à déduire : place la source dans Studio/sources/<niveau> ou précise --niveau")
+    if args.out is None:
+        args.out = str(STUDIO_DIR / "out" / "pdf" / args.niveau)
     progression_path = level_resource("progression", args.niveau, args.progression)
     pont_path = level_resource("pont-livret", args.niveau, args.pont)
     cover_path = ROOT_DIR / "assets" / "covers" / f"cover-{args.niveau}.png"
