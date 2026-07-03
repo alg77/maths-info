@@ -44,6 +44,9 @@
   .oc-auto-ico{ font-size:11px; }
   .bankobj.auto{ background:#fffaf0; }
   .bo-drill{ font-size:10.5px; color:#8a6d3b; margin-top:2px; font-family:monospace; white-space:pre-wrap; }
+  .bank-hide{ display:block; padding:6px 14px; font-size:12px; color:#655; }
+  .armed-hint{ background:#fdf3e6; border:1px solid #f0dcc0; color:#a8782c; border-radius:9px; padding:7px 9px; font-size:12px; margin:6px 14px; }
+  .armed-hint[hidden]{ display:none; }
 </style>
 </head>
 <body data-page="progressions">
@@ -156,7 +159,9 @@
   </div>
   <div class="bank-type-tabs" id="bankTypeTabs"></div>
   <div class="bank-filters" id="bankFilters"></div>
+  <label class="bank-hide"><input type="checkbox" id="bankHidePlaced"> masquer les objectifs déjà placés</label>
   <div class="bank-list" id="bankList"></div>
+  <div id="armedHint" class="armed-hint" hidden></div>
 </div>
 
 <script>
@@ -185,6 +190,7 @@ var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
 function objTheme(id){ var o=RBY[id]; return o?o.theme:'D'; }
 function objText(id){ var o=RBY[id]; return o?o.texte:id; }
 function objType(id){ var o=RBY[id]; return o?o.type:'objectif'; }
+function objCode(id){ return id; }
 function objShort(id){ var t=objText(id); return t.length>70?t.slice(0,68)+'…':t; }
 function drillPreview(o){
   if(!o||!o.drill) return '';
@@ -225,29 +231,33 @@ function ozoneHTML(s,i,field,label,emptyTxt){
   var body = arr.length ? arr.map(function(id){ return objChipHTML(id,i); }).join('') : '<span class="oz-empty">'+emptyTxt+'</span>';
   return '<div class="oz-wrap'+(field==='automatismes'?' auto-wrap':'')+'"><div class="oz-label">'+label+'</div><div class="obj-zone" data-i="'+i+'" data-field="'+field+'">'+body+'</div></div>';
 }
-function wireObjZone(el,i){
-  var field=el.dataset.field;
-  el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('dragover'); });
-  el.addEventListener('dragleave',function(){ el.classList.remove('dragover'); });
-  el.addEventListener('drop',function(e){
-    e.preventDefault(); el.classList.remove('dragover');
-    var id = dragObjCode || e.dataTransfer.getData('text/plain');
-    if(!id || !RBY[id]) return;
-    if(dragFromSeq!=null){ var src=zoneArr(S.seq[dragFromSeq],id); var k=src.indexOf(id); if(k!==-1) src.splice(k,1); }
-    var target=S.seq[i][field];
-    if(target.indexOf(id)===-1) target.push(id);
-    dragObjCode=null; dragFromSeq=null; armedObj=null;
-    save(); renderAll();
-  });
-  el.addEventListener('click',function(e){
-    if(e.target.closest('.oc-rm')) return;
-    if(!armedObj) return;
-    var target=S.seq[i][field];
-    if(target.indexOf(armedObj)===-1) target.push(armedObj);
-    armedObj=null; save(); renderAll(); renderBank();
-  });
+function addToSeq(i,field,id){
+  if(!RBY[id]) return;
+  var target=S.seq[i][field];
+  if(target.indexOf(id)!==-1) return;
+  var where=placedInZone(id);
+  if(where.length){
+    var names=where.map(function(x){return S.seq[x].code;}).join(', ');
+    if(!confirm('« '+objCode(id)+' » est déjà placé dans : '+names+'.\nL\u2019ajouter aussi à '+S.seq[i].code+' ?'))return;
+  }
+  target.push(id);
+  save(); renderAll();
 }
-var bankOpen=false, bankType='objectif', bankFilter='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null;
+function removeFromSeq(i,field,id){
+  var arr=S.seq[i][field]; var k=arr.indexOf(id);
+  if(k!==-1){ arr.splice(k,1); save(); renderAll(); }
+}
+function moveItem(fromI,fromField,toI,toField,id){
+  if(fromI===toI && fromField===toField) return;
+  var src=S.seq[fromI][fromField]; var k=src.indexOf(id); if(k!==-1) src.splice(k,1);
+  addToSeq(toI,toField,id);
+}
+var bankOpen=false, bankType='objectif', bankFilter='all', bankQuery='', armedObj=null, dragObjCode=null, dragFromSeq=null, dragFromField=null;
+function updateArmedHint(){
+  var h=document.getElementById('armedHint'); if(!h)return;
+  if(armedObj){ h.hidden=false; h.textContent='👉 '+objCode(armedObj)+' sélectionné — touche une zone d\u2019une séquence pour le déposer (ou touche-le à nouveau pour annuler).'; }
+  else h.hidden=true;
+}
 function toggleBank(open){
   bankOpen = open!=null ? open : !bankOpen;
   document.getElementById('bankPanel').classList.toggle('open',bankOpen);
@@ -272,7 +282,8 @@ function suggestAssoc(){
       if(sc>bs){ bs=sc; best=i; }
     });
     if(best>=0 && bs>=2){
-      var target=zoneArr(S.seq[best],o.id);
+      var field=o.type==='automatisme'?'automatismes':'objectifs';
+      var target=S.seq[best][field];
       if(target.indexOf(o.id)===-1){ target.push(o.id); n++; if(o.type==='automatisme')nAuto++; }
     }
   });
@@ -283,6 +294,7 @@ document.getElementById('suggestBtn').addEventListener('click',suggestAssoc);
 document.getElementById('bankClose').addEventListener('click',function(){ toggleBank(false); });
 document.getElementById('bankBackdrop').addEventListener('click',function(){ toggleBank(false); });
 document.getElementById('bankSearch').addEventListener('input',function(){ bankQuery=this.value.toLowerCase(); renderBank(); });
+var bhp=document.getElementById('bankHidePlaced'); if(bhp) bhp.addEventListener('change',renderBank);
 function normTxt(s){ return String(s||'').toLowerCase(); }
 function renderBankTypeTabs(){
   var wrap=document.getElementById('bankTypeTabs'); if(!wrap)return;
@@ -304,10 +316,11 @@ function renderBankFilters(){
 function renderBank(){
   renderBankTypeTabs();
   renderBankFilters();
-  var placed=allPlacedObj(), q=bankQuery;
+  var placed=allPlacedObj(), hideEl=document.getElementById('bankHidePlaced'), hide=hideEl&&hideEl.checked, q=bankQuery;
   var items=RALL.filter(function(o){
     if(o.type!==bankType) return false;
     if(bankFilter!=='all' && o.theme!==bankFilter) return false;
+    if(hide && placed[o.id]) return false;
     if(q && normTxt(o.code+' '+o.texte+' '+o.sousTheme).indexOf(q)===-1) return false;
     return true;
   });
@@ -317,15 +330,66 @@ function renderBank(){
     var where=placedInZone(o.id);
     var div=document.createElement('div'); div.className='bankobj'+(o.type==='automatisme'?' auto':'')+(where.length?' placed':'')+(armedObj===o.id?' armed':'');
     div.draggable=true;
+    div.setAttribute('data-id',o.id);
     var preview=o.type==='automatisme' ? '<div class="bo-drill">'+esc(drillPreview(o))+'</div>' : '';
     div.innerHTML='<span class="bo-code" style="background:var(--'+o.theme+')">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+preview+'</span>'+(where.length?'<span class="bo-in">placé</span>':'');
     div.title=o.sousTheme||'';
-    div.addEventListener('dragstart',function(e){ dragObjCode=o.id; dragFromSeq=null; e.dataTransfer.setData('text/plain',o.id); e.dataTransfer.effectAllowed='copy'; });
-    div.addEventListener('click',function(){ armedObj = armedObj===o.id ? null : o.id; renderBank(); });
     list.appendChild(div);
   });
 }
-
+function initObjUI(){
+  var seqList=document.getElementById('seqList');
+  if(seqList){
+    seqList.addEventListener('dragstart',function(e){
+      var ch=e.target.closest('.objchip'); if(!ch)return;
+      dragObjCode=ch.getAttribute('data-id'); dragFromSeq=+ch.getAttribute('data-from');
+      dragFromField=ch.closest('.obj-zone').getAttribute('data-field');
+      e.dataTransfer.effectAllowed='move';
+      try{ e.dataTransfer.setData('text/plain',dragObjCode); }catch(_){ }
+    });
+    seqList.addEventListener('dragend',function(){
+      dragObjCode=null; dragFromSeq=null; dragFromField=null;
+      seqList.querySelectorAll('.obj-zone.dragover').forEach(function(z){ z.classList.remove('dragover'); });
+    });
+    seqList.addEventListener('dragover',function(e){
+      var z=e.target.closest('.obj-zone'); if(z&&dragObjCode){ e.preventDefault(); e.stopPropagation(); z.classList.add('dragover'); }
+    });
+    seqList.addEventListener('dragleave',function(e){
+      var z=e.target.closest('.obj-zone'); if(z)z.classList.remove('dragover');
+    });
+    seqList.addEventListener('drop',function(e){
+      var z=e.target.closest('.obj-zone'); if(z&&dragObjCode){
+        e.preventDefault(); e.stopPropagation(); z.classList.remove('dragover');
+        var i=+z.getAttribute('data-i'), field=z.getAttribute('data-field'), id=dragObjCode, from=dragFromSeq, fromField=dragFromField;
+        dragObjCode=null; dragFromSeq=null; dragFromField=null;
+        if(from!=null && (from!==i||fromField!==field)) moveItem(from,fromField,i,field,id);
+        else if(from==null) addToSeq(i,field,id);
+      }
+    });
+    seqList.addEventListener('click',function(e){
+      var rm=e.target.closest('.oc-rm');
+      if(rm){ e.stopPropagation(); removeFromSeq(+rm.getAttribute('data-i'),rm.closest('.obj-zone').getAttribute('data-field'),rm.getAttribute('data-id')); return; }
+      var z=e.target.closest('.obj-zone');
+      if(z&&armedObj){ addToSeq(+z.getAttribute('data-i'),z.getAttribute('data-field'),armedObj); armedObj=null; updateArmedHint(); }
+    });
+  }
+  var bankList=document.getElementById('bankList');
+  if(bankList){
+    bankList.addEventListener('dragstart',function(e){
+      var it=e.target.closest('.bankobj'); if(!it)return;
+      dragObjCode=it.getAttribute('data-id'); dragFromSeq=null; dragFromField=null;
+      e.dataTransfer.effectAllowed='copy';
+      try{ e.dataTransfer.setData('text/plain',dragObjCode); }catch(_){ }
+    });
+    bankList.addEventListener('dragend',function(){ dragObjCode=null; dragFromSeq=null; dragFromField=null; });
+    bankList.addEventListener('click',function(e){
+      var it=e.target.closest('.bankobj'); if(!it)return;
+      var id=it.getAttribute('data-id');
+      armedObj=(armedObj===id?null:id); renderBank(); updateArmedHint();
+    });
+  }
+}
+if(document.readyState!=='loading') initObjUI(); else document.addEventListener('DOMContentLoaded',initObjUI);
 /* ---------- état par défaut (ta progression NSI Terminale) ---------- */
 function defaultState(){
   return {
@@ -532,20 +596,6 @@ function renderSeq(){
     objWrap.innerHTML = ozoneHTML(s,i,'objectifs','🎯 Objectifs du BO','Glisse un objectif du BO ici')
                        + ozoneHTML(s,i,'automatismes','🛠 Automatismes (rituel de début de séance)','Glisse un automatisme ici');
     el.appendChild(objWrap);
-    objWrap.querySelectorAll('.obj-zone').forEach(function(zEl){ wireObjZone(zEl, i); });
-    objWrap.querySelectorAll('.objchip').forEach(function(chip){
-      chip.addEventListener('dragstart',function(e){
-        dragObjCode=chip.dataset.id; dragFromSeq=+chip.dataset.from;
-        e.dataTransfer.setData('text/plain',chip.dataset.id); e.dataTransfer.effectAllowed='move';
-      });
-    });
-    objWrap.querySelectorAll('.oc-rm').forEach(function(btn){
-      btn.addEventListener('click',function(e){
-        e.stopPropagation();
-        var arr=zoneArr(s,btn.dataset.id), k=arr.indexOf(btn.dataset.id); if(k!==-1) arr.splice(k,1);
-        save(); renderAll();
-      });
-    });
 
     el.setAttribute('data-i',i);
     root.appendChild(el);
