@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Progression &amp; Gantt — NSI Première</title>
+<title>Progression &amp; Gantt — NSI Terminale</title>
 <link rel="stylesheet" href="progression-commun.css">
-<script src="referentiel-nsi-premiere-data.js"></script>
-<script src="referentiel-nsi-tp-data.js"></script>
+<script src="referentiel-nsi-terminale-data.js"></script>
 <style>
-  :root{ --H:#cdb7a0; --D:#8fb3d9; --P:#9cc4a0; --L:#e6c27a; --T:#b9a3dd; --W:#e6a18c; --S:#7fbfc9;
+  :root{ --D:#8fb3d9; --B:#b9a3dd; --O:#e6a18c; --P:#9cc4a0; --R:#7fbfc9; --S:#cdb7a0; --L:#e6c27a;
          --Ra:#90c1cf; --Ce:#b6a6d6; --Co:#e0b18a; --Cr:#9cc6a6; --De:#e3a09a; --En:#d79bbf; }
-  /* ---- banque d'objectifs BO (drag&drop) ---- */
-  .oz-wrap{ margin-top:10px; border-left:3px solid var(--P); padding-left:10px; }
-  .oz-label{ font-size:12px; font-weight:700; color:#655; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+  .oz-wrap{ margin-top:10px; border-left:3px solid var(--L); padding-left:10px; }
+  .oz-label{ font-size:12px; font-weight:700; color:#655; margin-bottom:4px; }
   .obj-zone{ min-height:34px; border:1.5px dashed #d8d2de; border-radius:10px; padding:6px; display:flex; flex-wrap:wrap; gap:6px; background:#fbfaf9; }
   .obj-zone.dragover{ border-color:#a88; background:rgba(150,120,140,.10); }
   .oz-empty{ font-size:12px; color:#aaa; font-style:italic; padding:4px; }
@@ -44,10 +42,6 @@
   .oc-auto-ico{ font-size:11px; }
   .bankobj.auto{ background:#fffaf0; }
   .bo-drill{ font-size:10.5px; color:#8a6d3b; margin-top:2px; font-family:monospace; white-space:pre-wrap; }
-  .oz-wrap.tp-wrap{ border-left-color:#4a8f6b; margin-top:8px; }
-  .objchip.tp{ background:#eefaf3; border-color:#a9dcc0; }
-  .bankobj.tp{ background:#f2fbf6; }
-  .bankobj.tp .bo-drill{ color:#2f7a52; }
   .bank-hide{ display:block; padding:6px 14px; font-size:12px; color:#655; }
   .armed-hint{ background:#fdf3e6; border:1px solid #f0dcc0; color:#a8782c; border-radius:9px; padding:7px 9px; font-size:12px; margin:6px 14px; }
   .armed-hint[hidden]{ display:none; }
@@ -57,7 +51,7 @@
 <div class="wrap">
   <div class="hero">
     <div class="hero-txt">
-      <h1>💻 Progression &amp; Gantt — NSI Première</h1>
+      <h1>💻 Progression &amp; Gantt — NSI Terminale</h1>
       <div class="sub" id="yearSub">Année 2026-2027 · Zone C (Créteil) · Gantt généré automatiquement</div>
     </div>
   </div>
@@ -127,13 +121,13 @@
   <h2 id="ganttTitle">Calendrier annuel (Gantt)</h2>
   <div class="gantt-wrap" id="ganttWrap"></div>
   <div class="glegend">
-    <span class="k"><span class="d" style="background:var(--H)"></span>Histoire &amp; enjeux</span>
-    <span class="k"><span class="d" style="background:var(--D)"></span>Données</span>
-    <span class="k"><span class="d" style="background:var(--P)"></span>Programmation</span>
+    <span class="k"><span class="d" style="background:var(--D)"></span>Structures de données</span>
+    <span class="k"><span class="d" style="background:var(--B)"></span>Bases de données</span>
+    <span class="k"><span class="d" style="background:var(--O)"></span>POO</span>
+    <span class="k"><span class="d" style="background:var(--P)"></span>Langages &amp; prog.</span>
+    <span class="k"><span class="d" style="background:var(--R)"></span>Réseaux &amp; sécurité</span>
+    <span class="k"><span class="d" style="background:var(--S)"></span>Archi &amp; systèmes</span>
     <span class="k"><span class="d" style="background:var(--L)"></span>Algorithmique</span>
-    <span class="k"><span class="d" style="background:var(--T)"></span>Données en tables</span>
-    <span class="k"><span class="d" style="background:var(--W)"></span>Web / IHM</span>
-    <span class="k"><span class="d" style="background:var(--S)"></span>Archi, systèmes &amp; réseaux</span>
     <span class="k"><span class="d" style="background:var(--vac)"></span>vacances</span>
     <span class="k"><span class="d" style="background:var(--ferie)"></span>jour férié</span>
   </div>
@@ -144,14 +138,13 @@
 
   <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
   <div class="info no-print">
-    Progression <b>pré-remplie depuis le BO Première NSI</b>. Référentiel = les <b>6 compétences LSL</b>, thèmes = les grands domaines du programme.
+    Progression <b>pré-remplie depuis le BO</b>, dans <b>ton ordre S1→S9</b>. Référentiel = les <b>6 compétences LSL</b> (celles que tu évalues), thèmes = les grands domaines du programme.
     <ul>
-      <li><b>Ordre proposé</b> : types de base → programmation → types construits → <b>bibliothèques/Pyxel (lancement du fil rouge)</b> → algorithmique → données en tables → Web → architecture/systèmes/réseaux → <b>finalisation du jeu & Nuit du Code</b>, avec l'<b>histoire de l'informatique en fil rouge</b>. Tu n'avais pas de doc perso, donc c'est un point de départ à t'approprier.</li>
-      <li><b>Théorie et pratique mêlées</b> dans chaque séance (salle info disponible sur tout l'horaire) : plus de split jour dédié, une seule zone d'objectifs par séquence.</li>
-      <li><b>Projet fil rouge Pyxel</b> : lancé en P2 juste après les types construits (tableaux/dictionnaires nécessaires pour gérer les entités du jeu), réinvesti explicitement en L1 (algorithmique → collisions, score, IA simple), finalisé en P3 juste avant la Nuit du Code.</li>
-      <li><b>Logique des prérequis</b> : les types construits (tableaux, dictionnaires) précèdent Pyxel, l'algorithmique et le traitement de données en tables, qui en dépendent.</li>
-      <li><b>Durées estimées</b> (4 h/sem, ~30,5 sem. avec le projet Pyxel) volontairement prudentes : il te reste de la marge pour les évals — ajuste librement.</li>
-      <li><b>Fin d'année calée sur le réel</b> : cours jusqu'au <b>1ᵉʳ vendredi de juin</b> (4 juin 2027 ici), avec les <b>ECE de NSI la semaine précédente</b> (1ʳᵉ semaine de juin, laissée volontairement libre de toute séquence). Avec ce calendrier, P3 (finalisation Pyxel + présentation) tombe naturellement sur <b>mi → fin mai</b>, la fenêtre habituelle de la Nuit du Code — cale la date exacte de présentation dans cet intervalle une fois connue.</li>
+      <li><b>Sur la pertinence de l'ordre</b> : ton enchaînement tient. Un seul point — l'algorithmique en S9 fonctionne comme <b>synthèse</b> (diviser-pour-régner, prog. dynamique, glouton, kNN), à condition que les <b>parcours d'arbres/graphes</b> soient bien traités <i>dans</i> S5/S6 (c'est ce que j'ai mis). La récursivité (S4) arrive avant arbres/graphes ✓.</li>
+      <li><b>Variante possible</b> : remonter la récursivité juste avant S5, ou fusionner S9 dans S5/S6 si tu préfères ne pas finir l'année sur de l'algo pur. Glisse-dépose pour tester.</li>
+      <li><b>5 points d'évaluation ECE</b> ajoutés (BNS 2026, 23 sujets classés par thème dominant) : après S2 (SQL, sujet unique), après S3 (dico/POO simple), après S4 (récursivité/structures imbriquées), après S6 (POO avancée/simulation), et une révision généraliste en fin d'année juste avant l'épreuve. Chaque point propose 1 à 5 sujets au choix, à piocher selon le niveau de chaque élève pour l'évaluation individuelle chronométrée.</li>
+      <li><b>Durées estimées</b> (6 h/sem, ~29,5 sem. avec les 5 points ECE) : à ajuster.</li>
+      <li><b>Fin d'année calée sur le réel</b> : cours jusqu'au <b>1ᵉʳ vendredi de juin</b> (4 juin 2027 ici) — les <b>ECE de NSI</b> tombent la semaine précédente (dernière semaine du calendrier, 31 mai), <b>volontairement laissée libre</b> de tout contenu. Avec ce calage, le contenu (29,5 sem.) se termine ~2,5 semaines avant la fin, donc largement avant la semaine des ECE.</li>
     </ul>
   </div>
 </div>
@@ -181,16 +174,15 @@ var REF=[
 var DESC={
  Ra:"Raisonner, démontrer : analyser un problème, justifier une démarche, prouver la correction ou la terminaison d'un algorithme.",
  Ce:"Communiquer à l'écrit : documenter, commenter, spécifier, rédiger un compte rendu clair.",
- Co:"Communiquer à l'oral : présenter et justifier ses choix, expliquer son code.",
+ Co:"Communiquer à l'oral : présenter et justifier ses choix, expliquer son code, soutenir un projet (Grand oral).",
  Cr:"Concevoir, réaliser : programmer, mettre au point, tester, construire une solution.",
  De:"Décrire, expliquer : modéliser, schématiser, expliciter le fonctionnement d'un système ou d'un programme.",
  En:"Enjeux sociétaux : situer l'informatique dans ses impacts éthiques, juridiques, sociaux, environnementaux."
 };
 function famOf(code){ return code.slice(0,2); }
 
-/* ---------- banque d'objectifs + automatismes BO (référentiel officiel NSI Première) ---------- */
-var RALL=[]; (function(){ var R=window.REFNSIP; if(!R||!R.objectifs) return; R.objectifs.forEach(function(o){ RALL.push({id:o.code, code:o.code, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type||'objectif', drill:o.drill||null}); }); })();
-(function(){ var T=window.REFNSITP; if(!T||!T.activites) return; T.activites.filter(function(t){return t.niveau==='Première';}).forEach(function(t){ RALL.push({id:t.code, code:t.code, texte:t.titre, theme:t.theme, sousTheme:t.niveau, type:'tp', tp:t}); }); })();
+/* ---------- banque d'objectifs + automatismes BO (référentiel officiel NSI Terminale) ---------- */
+var RALL=[]; (function(){ var R=window.REFNSIT; if(!R||!R.objectifs) return; R.objectifs.forEach(function(o){ RALL.push({id:o.code, code:o.code, texte:o.texte, theme:o.theme, sousTheme:o.sousTheme, type:o.type||'objectif', drill:o.drill||null}); }); })();
 var RBY={}; RALL.forEach(function(o){ RBY[o.id]=o; });
 function objTheme(id){ var o=RBY[id]; return o?o.theme:'D'; }
 function objText(id){ var o=RBY[id]; return o?o.texte:id; }
@@ -205,42 +197,28 @@ function drillPreview(o){
   if(d.kind==='code') return '💻 '+d.consigne+' : '+(d.code||'').split('\n')[0]+'…';
   return '';
 }
-function tpPreview(o){
-  if(!o||!o.tp) return '';
-  var t=o.tp;
-  return '⏱ '+t.duree+' · '+'★'.repeat(t.difficulte)+'☆'.repeat(Math.max(0,5-t.difficulte))+' · '+(t.supports||[]).join('/');
-}
 function migrateObjectifs(st){
   if(!st||!st.seq) return st;
   st.seq.forEach(function(s){
     if(!Array.isArray(s.objectifs)) s.objectifs=[];
     if(!Array.isArray(s.automatismes)) s.automatismes=[];
-    if(!Array.isArray(s.activitesTP)) s.activitesTP=[];
-    if(Array.isArray(s.objTheorie) || Array.isArray(s.objPratique)){
-      var merged=s.objectifs.concat(s.objTheorie||[],s.objPratique||[]);
-      var seen={}; s.objectifs=merged.filter(function(c){ if(seen[c])return false; seen[c]=1; return true; });
-      delete s.objTheorie; delete s.objPratique;
-    }
   });
   return st;
 }
-function fieldOf(id){ var t=objType(id); if(t==='automatisme')return 'automatismes'; if(t==='tp')return 'activitesTP'; return 'objectifs'; }
-function zoneArr(s,id){ return s[fieldOf(id)]; }
+function zoneArr(s,id){ return objType(id)==='automatisme' ? s.automatismes : s.objectifs; }
 function placedInZone(id){
-  var r=[]; S.seq.forEach(function(s,i){ if(s.objectifs.indexOf(id)!==-1 || s.automatismes.indexOf(id)!==-1 || s.activitesTP.indexOf(id)!==-1) r.push(i); });
+  var r=[]; S.seq.forEach(function(s,i){ if(s.objectifs.indexOf(id)!==-1 || s.automatismes.indexOf(id)!==-1) r.push(i); });
   return r;
 }
 function allPlacedObj(){
-  var set={}; S.seq.forEach(function(s){ s.objectifs.concat(s.automatismes,s.activitesTP).forEach(function(c){ set[c]=1; }); });
+  var set={}; S.seq.forEach(function(s){ s.objectifs.concat(s.automatismes).forEach(function(c){ set[c]=1; }); });
   return set;
 }
 function objChipHTML(id,i){
-  var col='var(--'+objTheme(id)+')', ty=objType(id), isAuto=ty==='automatisme', isTp=ty==='tp';
-  var tip=esc(objText(id));
-  if(isAuto && RBY[id].drill) tip+='\n'+esc(drillPreview(RBY[id]));
-  if(isTp && RBY[id].tp) tip+='\n'+esc(tpPreview(RBY[id]))+'\n'+esc(RBY[id].tp.description||'');
-  return '<span class="objchip'+(isAuto?' auto':'')+(isTp?' tp':'')+'" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+tip+'">'
-    +(isAuto?'<span class="oc-auto-ico">🛠</span>':'')+(isTp?'<span class="oc-auto-ico">🚀</span>':'')
+  var col='var(--'+objTheme(id)+')', isAuto=objType(id)==='automatisme';
+  var tip=esc(objText(id))+(isAuto&&RBY[id].drill?'\n'+esc(drillPreview(RBY[id])):'');
+  return '<span class="objchip'+(isAuto?' auto':'')+'" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+tip+'">'
+    +(isAuto?'<span class="oc-auto-ico">🛠</span>':'')
     +'<span class="oc-code" style="background:'+col+'">'+esc(id)+'</span>'
     +'<span class="oc-txt">'+esc(objShort(id))+'</span>'
     +'<button type="button" class="oc-rm" data-id="'+id+'" data-i="'+i+'" title="Retirer">×</button></span>';
@@ -248,7 +226,7 @@ function objChipHTML(id,i){
 function ozoneHTML(s,i,field,label,emptyTxt){
   var arr=s[field];
   var body = arr.length ? arr.map(function(id){ return objChipHTML(id,i); }).join('') : '<span class="oz-empty">'+emptyTxt+'</span>';
-  return '<div class="oz-wrap'+(field==='automatismes'?' auto-wrap':'')+(field==='activitesTP'?' tp-wrap':'')+'"><div class="oz-label">'+label+'</div><div class="obj-zone" data-i="'+i+'" data-field="'+field+'">'+body+'</div></div>';
+  return '<div class="oz-wrap'+(field==='automatismes'?' auto-wrap':'')+'"><div class="oz-label">'+label+'</div><div class="obj-zone" data-i="'+i+'" data-field="'+field+'">'+body+'</div></div>';
 }
 function addToSeq(i,field,id){
   if(!RBY[id]) return;
@@ -300,7 +278,7 @@ function suggestAssoc(){
       if(sc>bs){ bs=sc; best=i; }
     });
     if(best>=0 && bs>=2){
-      var field=fieldOf(o.id);
+      var field=o.type==='automatisme'?'automatismes':'objectifs';
       var target=S.seq[best][field];
       if(target.indexOf(o.id)===-1){ target.push(o.id); n++; if(o.type==='automatisme')nAuto++; }
     }
@@ -317,10 +295,8 @@ function renderBankTypeTabs(){
   var wrap=document.getElementById('bankTypeTabs'); if(!wrap)return;
   var nObj=RALL.filter(function(o){return o.type==='objectif';}).length;
   var nAuto=RALL.filter(function(o){return o.type==='automatisme';}).length;
-  var nTp=RALL.filter(function(o){return o.type==='tp';}).length;
   wrap.innerHTML='<button type="button" class="btype'+(bankType==='objectif'?' active':'')+'" data-t="objectif">🎯 Objectifs ('+nObj+')</button>'
-    +'<button type="button" class="btype'+(bankType==='automatisme'?' active':'')+'" data-t="automatisme">🛠 Automat. ('+nAuto+')</button>'
-    +'<button type="button" class="btype'+(bankType==='tp'?' active':'')+'" data-t="tp">🚀 TP ('+nTp+')</button>';
+    +'<button type="button" class="btype'+(bankType==='automatisme'?' active':'')+'" data-t="automatisme">🛠 Automatismes ('+nAuto+')</button>';
   wrap.querySelectorAll('.btype').forEach(function(b){ b.addEventListener('click',function(){ bankType=b.getAttribute('data-t'); renderBank(); }); });
 }
 function renderBankFilters(){
@@ -347,14 +323,12 @@ function renderBank(){
   if(!items.length){ list.innerHTML='<div class="oz-empty">Aucun item ne correspond.</div>'; return; }
   items.forEach(function(o){
     var where=placedInZone(o.id);
-    var div=document.createElement('div'); div.className='bankobj'+(o.type==='automatisme'?' auto':'')+(o.type==='tp'?' tp':'')+(where.length?' placed':'')+(armedObj===o.id?' armed':'');
+    var div=document.createElement('div'); div.className='bankobj'+(o.type==='automatisme'?' auto':'')+(where.length?' placed':'')+(armedObj===o.id?' armed':'');
     div.draggable=true;
     div.setAttribute('data-id',o.id);
-    var preview='';
-    if(o.type==='automatisme') preview='<div class="bo-drill">'+esc(drillPreview(o))+'</div>';
-    if(o.type==='tp') preview='<div class="bo-drill">'+esc(tpPreview(o))+'</div>';
+    var preview=o.type==='automatisme' ? '<div class="bo-drill">'+esc(drillPreview(o))+'</div>' : '';
     div.innerHTML='<span class="bo-code" style="background:var(--'+o.theme+')">'+esc(o.code)+'</span><span class="bo-txt">'+esc(o.texte)+preview+'</span>'+(where.length?'<span class="bo-in">placé</span>':'');
-    div.title=o.type==='tp'&&o.tp?(o.tp.description||''):(o.sousTheme||'');
+    div.title=o.sousTheme||'';
     list.appendChild(div);
   });
 }
@@ -411,9 +385,7 @@ function initObjUI(){
   }
 }
 if(document.readyState!=='loading') initObjUI(); else document.addEventListener('DOMContentLoaded',initObjUI);
-
-
-/* ---------- état par défaut (ta progression NSI Première) ---------- */
+/* ---------- état par défaut (ta progression NSI Terminale) ---------- */
 function defaultState(){
   return {
     cal:{
@@ -427,24 +399,27 @@ function defaultState(){
       feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
     },
     seq:[
-      {code:'H1',title:"Histoire de l'informatique (fil rouge)",theme:'H',weeks:1,comps:['De','En','Co'],details:'Grandes étapes (machines, langages, réseaux, IA)\nFigures et inventions clés\nÀ réactiver tout au long de l\'année\nEnjeux : société, éthique, environnement'},
-      {code:'D1',title:'Représentation des données : types de base',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Binaire, hexadécimal ; conversions\nEntiers (signés, non signés), dépassement\nBooléens, opérateurs logiques, tables de vérité\nNombres flottants (principe, imprécisions)\nReprésentation des caractères (ASCII, Unicode)'},
-      {code:'P1',title:'Langages & programmation',theme:'P',weeks:3.5,comps:['Cr','Ra','Ce'],details:'Constructions élémentaires (séquences, conditions, boucles)\nVariables, types, affectation\nFonctions : paramètres, retour, portée\nSpécification, documentation, jeux de tests\nMise au point : erreurs, débogage'},
-      {code:'D2',title:'Représentation des données : types construits',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Tuples, p-uplets\nTableaux (listes), parcours, compréhension\nTableaux de tableaux\nDictionnaires (clés / valeurs), parcours\nChoix d\'une structure adaptée'},
-      {code:'P2',title:'Bibliothèques : découverte de Pyxel — lancement du jeu vidéo (fil rouge)',theme:'P',weeks:2.5,comps:['Cr','Ce','Co'],details:'Notion de bibliothèque : installer, importer, consulter la documentation\nDécouverte de Pyxel : fenêtre, boucle de jeu (update / draw), sprites, entrées clavier\nLancement du projet fil rouge, par binômes : jeu vidéo en Pyxel\nCahier des charges minimal : menu, un niveau jouable, score\nPremiers sprites et détection de collisions simples\nObjectif final : présentation à la Nuit du Code'},
-      {code:'L1',title:'Algorithmique',theme:'L',weeks:4,comps:['Ra','Cr','De'],details:'Parcours séquentiel d\'un tableau\nRecherche dichotomique (et coût)\nTri par insertion, tri par sélection\nAlgorithmes gloutons (rendu de monnaie)\nk plus proches voisins (kNN)\nCorrection et coût (sensibilisation à la complexité)\nRéinvestissement direct dans le jeu Pyxel : collisions, score, IA simple des ennemis'},
-      {code:'T1',title:'Traitement de données en tables',theme:'T',weeks:3,comps:['Cr','De','Ra','En'],details:'Importer des données (CSV)\nDonnées en tables : descripteurs, enregistrements\nRecherche, filtres\nTri selon un critère\nFusion de tables ; enjeux (données personnelles)'},
-      {code:'W1',title:'Interactions homme-machine sur le Web',theme:'W',weeks:3.5,comps:['Cr','De','En'],details:'HTML & CSS : structure et style d\'une page\nFormulaires ; requêtes GET et POST\nÉvénements (JavaScript) et interactions\nClient / serveur (notion)\nEnjeux : sécurité, données transmises'},
-      {code:'S1',title:"Architectures matérielles & systèmes d'exploitation",theme:'S',weeks:3,comps:['De','En','Ra'],details:'Modèle de von Neumann\nPortes logiques, circuits (notions)\nSystème d\'exploitation : rôle\nCommandes de base ; gestion des fichiers\nProcessus (notion)'},
-      {code:'S2',title:'Réseaux',theme:'S',weeks:2,comps:['De','En'],details:'Transmission : bits, paquets, protocoles\nAdressage, commutation\nRoutage (principe)\nInternet : architecture\nEnjeux : neutralité, sécurité'},
-      {code:'P3',title:'Finalisation du jeu vidéo Pyxel & Nuit du Code',theme:'P',weeks:2,comps:['Cr','Co','Ce'],details:'Finalisation du projet : menu complet, sons, plusieurs niveaux ou vagues d\'ennemis\nRefactorisation du code, correction des bugs, jeux de tests manuels\nDocumentation du projet (README, captures d\'écran, notice de jeu)\nPréparation de la présentation orale par binôme\nPrésentation des jeux lors de la Nuit du Code'}
+      {code:'D1',title:'S1 · Structures de données linéaires',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Rappels : listes, tuples, dictionnaires, p-uplets nommés\nType abstrait vs implémentation\nPiles (LIFO) : interface et implémentations\nFiles (FIFO) : interface et implémentations\nListes chaînées (notion)\nApplications (historique, file d\'attente, parcours)'},
+      {code:'B1',title:'S2 · Bases de données',theme:'B',weeks:3,comps:['Cr','De','Ra','Ce'],details:'Modèle relationnel : relations, attributs, domaines\nClés primaires et étrangères ; schéma relationnel\nCohérence et contraintes d\'intégrité\nSQL : SELECT, WHERE, ORDER BY, jointures\nSQL : INSERT, UPDATE, DELETE\nAgrégation (COUNT, GROUP BY)'},
+      {code:'B2',title:'Éval ECE #1 — SQL (BNS 2026)',theme:'B',weeks:0.5,comps:['Cr','Ra'],details:'Évaluation individuelle chronométrée (ex. 1h), sujet unique choisi selon le niveau de chaque élève.\nSujet 15 — cabinet vétérinaire (SQL + sqlite3, requêtes SELECT/JOIN, validation de format) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_15/sujet.pdf\n(Seul sujet 100% SQL de la BNS 2026 — bon point d\'ancrage juste après S2.)'},
+      {code:'O1',title:'S3 · Programmation orientée objet',theme:'O',weeks:3,comps:['Cr','De','Ra'],details:'Classes, objets, attributs, méthodes\nConstructeur, encapsulation\nInterface vs implémentation\nRéécrire piles / files en POO\nVocabulaire (instance, self)'},
+      {code:'O2',title:'Éval ECE #2 — dictionnaires & POO simple',theme:'O',weeks:0.5,comps:['Cr','Ra'],details:'Évaluation individuelle chronométrée, sujet unique adapté au niveau.\nSujet 2 — salaires en entreprise (dico, moyenne conditionnelle, erreur de type) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_2/EP-BAC-NSI-Sujet2.pdf\nSujet 4 — croissance de plantes (dico, bug classique de suppression pendant un parcours de liste) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_4/sujet.pdf\nSujet 6 — boutique de smoothies (POO simple, self, méthodes) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_6/sujet.pdf\nSujet 17 — budget associatif (dico, agrégation, erreur de range) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_17/sujet.pdf'},
+      {code:'P1',title:'S4 · Langages & programmation',theme:'P',weeks:3.5,comps:['Cr','Ra','De','Ce'],details:'Récursivité : principe, pile d\'appels, exemples\nModularité : fonctions, modules, import\nSpécification, jeux de tests, assertions\nMise au point : débogage, invariants\nNotion de complexité (coût d\'un algorithme)\nParadigmes (impératif, fonctionnel) — sensibilisation'},
+      {code:'P2',title:'Éval ECE #3 — récursivité & structures imbriquées',theme:'P',weeks:0.5,comps:['Cr','Ra'],details:'Évaluation individuelle chronométrée, sujet unique adapté au niveau.\nSujet 5 — empreinte carbone (dictionnaire récursif imbriqué, fonction récursive incomplète) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_5/sujet.pdf\nSujet 11 — prédiction d\'habitat (distance euclidienne, k plus proches voisins) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_11/sujet.pdf\nSujet 19 — gestion de réservoirs d\'eau (dico, vulnérabilité par district) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_19/sujet.pdf'},
+      {code:'D2',title:'S5 · Arbres',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Vocabulaire : racine, nœud, feuille, hauteur, taille\nArbres binaires ; arbres binaires de recherche (ABR)\nParcours (préfixe, infixe, suffixe, largeur) — récursifs\nInsertion et recherche dans un ABR\nImplémentations (classes / dictionnaires)'},
+      {code:'D3',title:'S6 · Graphes',theme:'D',weeks:3,comps:['Cr','De','Ra'],details:'Vocabulaire : sommets, arêtes, orienté / non orienté, degré\nReprésentations : matrice et listes d\'adjacence\nParcours en profondeur (DFS) et en largeur (BFS)\nRecherche de chemin ; détection de cycle\nApplications (réseaux, itinéraires)'},
+      {code:'O3',title:'Éval ECE #4 — simulation & classes avancées',theme:'O',weeks:0.5,comps:['Cr','Ra'],details:'Évaluation individuelle chronométrée, sujet unique adapté au niveau (POO + état qui évolue dans le temps).\nSujet 7 — coccinelles/pucerons (simulation, classe avec méthodes d\'évolution) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_7/sujet.pdf\nSujet 9 — objets 3D (classes Sommet/Face/Objet3D, transformation d\'échelle) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_9/sujet.pdf\nSujet 12 — refuge de renards (POO + import CSV, conversion de types) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_12/sujet.pdf\nSujet 14 — évacuation d\'une pièce (grille, POO, plus proche sortie) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_14/sujet.pdf\nSujet 21 — cartes de mémorisation façon flashcards (POO, dates, répétition espacée) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_21/sujet.pdf'},
+      {code:'R1',title:'S7 · Réseaux & sécurité',theme:'R',weeks:2.5,comps:['De','En','Ra'],details:'Protocoles, encapsulation, modèle en couches\nRoutage (RIP, OSPF — principes)\nAdressage IP, bits / paquets\nSécurité : chiffrement symétrique / asymétrique (principes)\nEnjeux : confidentialité, intégrité, authentification'},
+      {code:'S1',title:'S8 · Architectures matérielles & systèmes',theme:'S',weeks:2.5,comps:['De','En'],details:'Architectures (von Neumann, multicœur)\nSystème d\'exploitation : rôle, ressources\nGestion des processus ; interblocage (notion)\nCommandes système ; gestion de la mémoire\nCalcul parallèle (sensibilisation)'},
+      {code:'L1',title:'S9 · Algorithmique (paradigmes de synthèse)',theme:'L',weeks:3,comps:['Ra','Cr','De'],details:'Diviser pour régner (tri fusion, dichotomie)\nProgrammation dynamique (rendu de monnaie, plus court chemin)\nAlgorithmes gloutons\nk plus proches voisins (kNN)\nSynthèse algorithmes sur arbres / graphes et coûts\nCorrection, terminaison, complexité'},
+      {code:'L2',title:'Éval ECE #5 — révision généraliste (mix BNS 2026)',theme:'L',weeks:1,comps:['Cr','Ra','Co'],details:'Dernière ligne droite avant les ECE (1ʳᵉ semaine de juin) : plusieurs créneaux individuels chronométrés sur des sujets variés, pour couvrir large avant le jour J. Piocher selon le profil de chaque élève :\nSujet 1 — compression RLE d\'image (listes, bug de dépassement) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_3/EP-BAC-NSI-Sujet3.pdf\nSujet 3 — cycle et dates (calendrier, iCalendar, formatage de chaîne) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data/EP_sujets0_1/EP-BAC-NSI-Sujet1.pdf\nSujet 8 — addition en BCD (représentation binaire, retenues) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_8/sujet.pdf\nSujet 10 — qualité de l\'eau (lissage, moyenne glissante, cas limites) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_10/sujet.pdf\nSujet 13 — ballon-sonde (CSV, conversions, génération KML) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_13/sujet.pdf\nSujet 16 — warming stripes (dico, graphique matplotlib) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_16/sujet.pdf\nSujet 18 — températures Polynésie (dico, regroupement par décennie) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_18/sujet.pdf\nSujet 20 — empreinte carbone comparée (dico, pourcentages, division par zéro) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_20/sujet.pdf\nSujet 22 — QR code / ASCII (binaire, encodage/décodage) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_22/sujet.pdf\nSujet 23 — trame & bits de parité (POO, contrôle d\'erreur) : https://glassus.github.io/terminale_nsi/T6_6_Epreuve_pratique/data2026/26_BCG_NSI_23/sujet.pdf'}
     ]
   };
 }
-var THEMES={H:'Histoire & enjeux',D:'Données',P:'Programmation',L:'Algorithmique',T:'Données en tables',W:'Web / IHM',S:'Archi, systèmes & réseaux'};
+var THEMES={D:'Structures de données',B:'Bases de données',O:'Programmation objet',P:'Langages & programmation',R:'Réseaux & sécurité',S:'Architectures & systèmes',L:'Algorithmique'};
 
 /* ---------- persistance ---------- */
-var KEY='progNSI1ere_v1', S=load();
+var KEY='progNSItle_v1', S=load();
 function load(){ try{ var r=localStorage.getItem(KEY); if(r) return migrateObjectifs(JSON.parse(r)); }catch(e){} return migrateObjectifs(defaultState()); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
@@ -614,8 +589,7 @@ function renderSeq(){
 
     var objWrap=document.createElement('div');
     objWrap.innerHTML = ozoneHTML(s,i,'objectifs','🎯 Objectifs du BO','Glisse un objectif du BO ici')
-                       + ozoneHTML(s,i,'automatismes','🛠 Automatismes (rituel de début de séance)','Glisse un automatisme ici')
-                       + ozoneHTML(s,i,'activitesTP','🚀 Activités / TP','Glisse une activité ou un TP ici');
+                       + ozoneHTML(s,i,'automatismes','🛠 Automatismes (rituel de début de séance)','Glisse un automatisme ici');
     el.appendChild(objWrap);
 
     el.setAttribute('data-i',i);
@@ -749,11 +723,11 @@ function setAllSeqDetails(open){
 }
 function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); if(bankOpen) renderBank(); }
 document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
-document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'D',weeks:1,comps:[],objectifs:[],automatismes:[],activitesTP:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
+document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'D',weeks:1,comps:[],objectifs:[],automatismes:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
-  head.innerHTML='<h1 style="margin:0 0 2px">Progression — NSI Première</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
+  head.innerHTML='<h1 style="margin:0 0 2px">Progression — NSI Terminale</h1><div style="color:#8a7f70;font-size:13px;margin-bottom:6px">'+esc(document.getElementById('yearSub').textContent)+'</div>';
   root.appendChild(head);
   var periods=periodsInfo(), breaks=periodBreaks(), bi=0, cum=0, period=1;
   function phead(p){ var info=periods[p-1]; if(!info) return; var dv=document.createElement('div'); dv.className='pdoc-phead'; dv.textContent='P'+p+' · '+fmtD(info.start)+' → '+fmtD(info.end)+' · '+info.weeks+' semaines'; root.appendChild(dv); }
@@ -763,17 +737,6 @@ function renderPrintDoc(withDetails){
     var codes=s.comps.length?('<span class="pdoc-codes">'+esc(s.comps.join(' · '))+'</span>'):'';
     blk.innerHTML='<div><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b> &nbsp;'+codes+'</div>';
     if(withDetails && s.details){ var ul=document.createElement('ul'); s.details.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.textContent=l; ul.appendChild(li); } }); blk.appendChild(ul); }
-    if(withDetails && (s.objectifs.length||s.automatismes.length)){
-      var ulo=document.createElement('ul'); ulo.className='pdoc-obj';
-      s.objectifs.forEach(function(id){ var li=document.createElement('li'); li.textContent='🎯 '+objCode(id)+' — '+objText(id); ulo.appendChild(li); });
-      s.automatismes.forEach(function(id){ var li=document.createElement('li'); li.textContent='🛠 '+objCode(id)+' — '+objText(id); ulo.appendChild(li); });
-      blk.appendChild(ulo);
-    }
-    if(withDetails && s.activitesTP.length){
-      var ult=document.createElement('ul'); ult.className='pdoc-tp';
-      s.activitesTP.forEach(function(id){ var t=RBY[id]&&RBY[id].tp; var li=document.createElement('li'); li.textContent='🚀 '+id+' — '+objText(id)+(t?' ('+t.duree+', '+'★'.repeat(t.difficulte)+')':''); ult.appendChild(li); });
-      blk.appendChild(ult);
-    }
     root.appendChild(blk);
     cum+=(Number(s.weeks)||0);
     while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='— Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom+' —'; root.appendChild(vd); period++; phead(period); bi++; }
@@ -786,7 +749,7 @@ function printGantt(){ renderGantt(); document.body.classList.add('printing','pr
 function exportProgressionWord(){
   renderPrintDoc(true);
   var title=currentDocTitle();
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-obj{color:#5b4a9e}.pdoc-tp{color:#2f7a52}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}h1{font-family:Georgia,serif;color:#7d4563}.pdoc-phead{font-family:Georgia,serif;font-weight:bold;font-size:16px;border-bottom:2px solid #d98ba4;margin:18px 0 8px;padding-bottom:4px;color:#a8607c}.pdoc-seq{margin:8px 0;page-break-inside:avoid;break-inside:avoid}.pdoc-code{display:inline-block;border-radius:6px;padding:2px 7px;font-size:12px;font-weight:bold;margin-right:4px}.pdoc-codes{color:#777;font-size:12px}.pdoc-seq ul{margin:4px 0 0;padding-left:22px}.pdoc-vac{font-style:italic;color:#777;margin:8px 0;border-top:1px dashed #ddd;padding-top:6px}</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
   var blob=new Blob(['\ufeff',html],{type:'application/msword'});
   var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
 }
@@ -800,7 +763,7 @@ window.addEventListener('afterprint',function(){ document.body.classList.remove(
   b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
 })();
 document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
-document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-nsi-premiere.json'; a.click(); });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-nsi-terminale.json'; a.click(); });
 document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
 document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=JSON.parse(rd.result); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
 
