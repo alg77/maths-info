@@ -1,0 +1,397 @@
+{
+  "cal": {
+    "rentree": "2026-09-01",
+    "fin": "2027-06-04",
+    "vac": [
+      {
+        "nom": "Toussaint",
+        "sat": "2026-10-17",
+        "resume": "2026-11-02"
+      },
+      {
+        "nom": "Noël",
+        "sat": "2026-12-19",
+        "resume": "2027-01-04"
+      },
+      {
+        "nom": "Hiver",
+        "sat": "2027-02-06",
+        "resume": "2027-02-22"
+      },
+      {
+        "nom": "Printemps",
+        "sat": "2027-04-03",
+        "resume": "2027-04-19"
+      }
+    ],
+    "feries": [
+      "2026-11-11",
+      "2027-03-29",
+      "2027-05-06",
+      "2027-05-07",
+      "2027-05-17"
+    ]
+  },
+  "seq": [
+    {
+      "code": "H1",
+      "title": "Histoire de l'informatique (fil rouge)",
+      "theme": "H",
+      "weeks": 1,
+      "comps": [
+        "De",
+        "En",
+        "Co"
+      ],
+      "details": "Grandes étapes (machines, langages, réseaux, IA)\nFigures et inventions clés\nÀ réactiver tout au long de l'année\nEnjeux : société, éthique, environnement",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2"
+      ],
+      "objectifsPyxel": [],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "D1",
+      "title": "Représentation des données : types de base",
+      "theme": "D",
+      "weeks": 3,
+      "comps": [
+        "Cr",
+        "De",
+        "Ra"
+      ],
+      "details": "Binaire, hexadécimal ; conversions\nEntiers (signés, non signés), dépassement\nBooléens, opérateurs logiques, tables de vérité\nNombres flottants (principe, imprécisions)\nReprésentation des caractères (ASCII, Unicode)",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2"
+      ],
+      "objectifsPyxel": [],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "P1",
+      "title": "Langages & programmation",
+      "theme": "P",
+      "weeks": 3.5,
+      "comps": [
+        "Cr",
+        "Ra",
+        "Ce"
+      ],
+      "details": "Constructions élémentaires (séquences, conditions, boucles)\nVariables, types, affectation\nFonctions : paramètres, retour, portée\nSpécification, documentation, jeux de tests\nMise au point : erreurs, débogage",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2",
+        "ECE1",
+        "ECE2"
+      ],
+      "objectifsPyxel": [
+        "PYX1",
+        "PYX2"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "D2",
+      "title": "Représentation des données : types construits",
+      "theme": "D",
+      "weeks": 3,
+      "comps": [
+        "Cr",
+        "De",
+        "Ra"
+      ],
+      "details": "Tuples, p-uplets\nTableaux (listes), parcours, compréhension\nTableaux de tableaux\nDictionnaires (clés / valeurs), parcours\nChoix d'une structure adaptée",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2",
+        "ECE1",
+        "ECE2"
+      ],
+      "objectifsPyxel": [
+        "PYX4",
+        "PYX5",
+        "PYX6"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "P2",
+      "title": "Bibliothèques : découverte de Pyxel — lancement du jeu vidéo (fil rouge)",
+      "theme": "P",
+      "weeks": 2.5,
+      "comps": [
+        "Cr",
+        "Ce",
+        "Co"
+      ],
+      "details": "Notion de bibliothèque : installer, importer, consulter la documentation\nDécouverte de Pyxel : fenêtre, boucle de jeu (update / draw), sprites, entrées clavier\nLancement du projet fil rouge, par binômes : jeu vidéo en Pyxel\nCahier des charges minimal : menu, un niveau jouable, score\nPremiers sprites et détection de collisions simples\nObjectif final : présentation à la Nuit du Code",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2",
+        "ECE1",
+        "ECE2"
+      ],
+      "objectifsPyxel": [
+        "PYX1",
+        "PYX2",
+        "PYX3"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "L1",
+      "title": "Algorithmique",
+      "theme": "L",
+      "weeks": 4,
+      "comps": [
+        "Ra",
+        "Cr",
+        "De"
+      ],
+      "details": "Parcours séquentiel d'un tableau\nRecherche dichotomique (et coût)\nTri par insertion, tri par sélection\nAlgorithmes gloutons (rendu de monnaie)\nk plus proches voisins (kNN)\nCorrection et coût (sensibilisation à la complexité)\nRéinvestissement direct dans le jeu Pyxel : collisions, score, IA simple des ennemis",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2",
+        "ECE1",
+        "ECE2"
+      ],
+      "objectifsPyxel": [
+        "PYX3",
+        "PYX7",
+        "PYX8"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "T1",
+      "title": "Traitement de données en tables",
+      "theme": "T",
+      "weeks": 3,
+      "comps": [
+        "Cr",
+        "De",
+        "Ra",
+        "En"
+      ],
+      "details": "Importer des données (CSV)\nDonnées en tables : descripteurs, enregistrements\nRecherche, filtres\nTri selon un critère\nFusion de tables ; enjeux (données personnelles)",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2"
+      ],
+      "objectifsPyxel": [
+        "PYX9",
+        "PYX10"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "W1",
+      "title": "Interactions homme-machine sur le Web",
+      "theme": "W",
+      "weeks": 3.5,
+      "comps": [
+        "Cr",
+        "De",
+        "En"
+      ],
+      "details": "HTML & CSS : structure et style d'une page\nFormulaires ; requêtes GET et POST\nÉvénements (JavaScript) et interactions\nClient / serveur (notion)\nEnjeux : sécurité, données transmises",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2"
+      ],
+      "objectifsPyxel": [
+        "PYX11",
+        "PYX12"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "S1",
+      "title": "Architectures matérielles & systèmes d'exploitation",
+      "theme": "S",
+      "weeks": 3,
+      "comps": [
+        "De",
+        "En",
+        "Ra"
+      ],
+      "details": "Modèle de von Neumann\nPortes logiques, circuits (notions)\nSystème d'exploitation : rôle\nCommandes de base ; gestion des fichiers\nProcessus (notion)",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2"
+      ],
+      "objectifsPyxel": [],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "S2",
+      "title": "Réseaux",
+      "theme": "S",
+      "weeks": 2,
+      "comps": [
+        "De",
+        "En"
+      ],
+      "details": "Transmission : bits, paquets, protocoles\nAdressage, commutation\nRoutage (principe)\nInternet : architecture\nEnjeux : neutralité, sécurité",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2"
+      ],
+      "objectifsPyxel": [],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC"
+      ],
+      "evaluationPossible": false
+    },
+    {
+      "code": "P3",
+      "title": "Finalisation du jeu vidéo Pyxel & Nuit du Code",
+      "theme": "P",
+      "weeks": 2,
+      "comps": [
+        "Cr",
+        "Co",
+        "Ce"
+      ],
+      "details": "Finalisation du projet : menu complet, sons, plusieurs niveaux ou vagues d'ennemis\nRefactorisation du code, correction des bugs, jeux de tests manuels\nDocumentation du projet (README, captures d'écran, notice de jeu)\nPréparation de la présentation orale par binôme\nPrésentation des jeux lors de la Nuit du Code",
+      "objectifsBO": [],
+      "objectifsBacECE": [
+        "BAC1",
+        "BAC2",
+        "ECE1",
+        "ECE2"
+      ],
+      "objectifsPyxel": [
+        "PYX12",
+        "PYX13"
+      ],
+      "formatSeance": {
+        "intro": "10-20 min : notion, exemple ou problème déclencheur",
+        "papier": "20-30 min : exercices papier, raisonnement, lecture de code",
+        "pratique": "40-60 min : mise en pratique Python / Pyxel / SQL / réseau",
+        "bilan": "5-10 min : trace écrite, test rapide, commit ou export"
+      },
+      "typeSupports": [
+        "Papier",
+        "PC",
+        "Projet"
+      ],
+      "evaluationPossible": false
+    }
+  ]
+}

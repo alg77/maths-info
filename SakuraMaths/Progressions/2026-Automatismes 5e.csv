@@ -1,0 +1,48 @@
+Code actuel,Nouveau code,Intitulé automatisme,Texte
+0✖🅰1,CAL-01,Divisibilité 2-5-10,"Mobiliser les critères de divisibilité par 2, 5 et 10 vus en CM1 et CM2."
+0✖🅰2,CAL-02,Division euclidienne,Déterminer le quotient et le reste dans une division euclidienne.
+0✖🅰3,CAL-03,Décomposer un entier,Utiliser les tables de multiplication pour factoriser des nombres entiers.
+0✖🅰4,CAL-04,Produits décimaux,Savoir calculer des produits en lien avec les tables.
+0✖🅰5,CAL-05,"Multiplier par 10, 100, 1000","Multiplier et diviser par 10, 100, 1 000."
+0✖🅰6,CAL-06,Additions décimales,Additionner et soustraire des décimaux.
+0➖🅰7,REL-01,Calculs décimaux,"Additionner, soustraire, multiplier des nombres décimaux à une ou deux décimales."
+0➖🅰8,REL-02,Addition à trou,Savoir compléter une addition à trou par une soustraction.
+0➗🅰9,FRA-01,Tables de multiplication,Entretenir la connaissance et l'utilisation des tables de multiplication.
+0➗🅰10,FRA-02,Fractions usuelles,Entretenir l'écriture décimale des fractions simples.
+0➗🅰11,FRA-03,Nombre quotient,Faire vivre la notion de nombre quotient.
+0➗🅰12,FRA-04,Droite graduée,Lire l'abscisse d'un point sur une droite graduée.
+0➗🅰13,FRA-05,Fractions égales,Reconnaître des fractions égales.
+0➗🅰14,FRA-06,Comparer des fractions,Comparer deux fractions.
+0➗🅰15,FRA-07,Partie entière,Écrire une fraction sous la forme d'une somme d'un entier et d'une fraction.
+0➗🅰16,FRA-08,Calculer avec des fractions,Addition et soustraction de fractions simples.
+0➗🅰17,FRA-09,Fraction d'une quantité,Prendre une fraction simple d'un nombre.
+0➗🅰18,FRA-10,Pourcentages usuels,"Prendre 1 %, 10 % ou 50 % d'un nombre."
+0➗🅰19,FRA-11,Écritures d'un nombre,Écrire un même nombre sous de multiples formes.
+0⬆🅰20,PUI-01,Tables réflexes,Entretenir les tables de multiplication.
+0⬆🅰21,PUI-02,Unités d'aire et volume,Connaître les unités d'aires et de volume.
+0🔤🅰22,LIT-01,Suites de motifs,Identifier des régularités et poursuivre une suite de motifs évolutive.
+0🔤🅰23,LIT-02,Motif à l'étape n,Trouver le nombre d'éléments pour une étape donnée.
+0🔤🅰24,LIT-03,Régularités,Identifier la structure d'un motif évolutif.
+0🔤🅰25,LIT-04,Nombre quotient,Nombre quotient.
+0🧭🅰26,REP-01,Placer un décimal,Placer sur une demi-droite graduée un point dont l'abscisse est un nombre décimal.
+0🧭🅰27,REP-02,Lire une graduation,Repérer un nombre décimal sur une demi-droite graduée.
+0🧭🅰28,SOL-01,Vues de cubes,Reconnaître des vues d'empilements de cubes.
+0🧭🅰29,SOL-02,Compter les cubes,Dénombrer des cubes dans des empilements.
+0🧭🅰30,SOL-03,Perspective cavalière,Reconnaître un cube ou un pavé représenté en perspective cavalière.
+0🧭🅰31,SOL-04,Patrons de cube,Reconnaître un patron de cube.
+0🔄🅰32,SYM-01,Symétrie sur quadrillage,Reconnaître et construire le symétrique sur quadrillage.
+0🔄🅰33,SYM-02,Symétrie sur feuille,Construire un symétrique sur feuille blanche.
+0📐🅰34,ANG-01,Reconnaître les angles,Reconnaître et citer les différents types d'angles.
+0📐🅰35,ANG-02,Mesures d'angles,Connaître les mesures de l'angle droit et de l'angle plat.
+0📐🅰36,ANG-03,Bissectrice,Reconnaître une bissectrice.
+0📐🅰37,ANG-04,Équerre,Connaître les angles de l'équerre.
+0🔺🅰38,TRI-01,Triangles particuliers,"Reconnaître un triangle isocèle, équilatéral ou rectangle."
+0🔺🅰39,TRI-02,Somme des angles,Calculer le troisième angle d'un triangle.
+0🔺🅰40,TRI-03,Médiatrice,Connaître la médiatrice et le cercle circonscrit.
+0🔷🅰41,PAR-01,Quadrilatères,Reconnaître les quadrilatères particuliers.
+0🔷🅰42,PAR-02,Codage des quadrilatères,Exploiter le codage d'une figure.
+0🎲🅰43,PRO-01,Échelle de probabilité,Positionner des événements sur une échelle de probabilité.
+0🎲🅰44,PRO-02,Écrire une probabilité,Donner une probabilité sous différentes formes.
+0🎲🅰45,PRO-03,Une chance sur…,Lier « une chance sur… » à une probabilité.
+0∝🅰46,PROP-01,Situation proportionnelle,Reconnaître une situation de proportionnalité.
+0∝🅰47,PROP-02,Méthodes de proportionnalité,Mobiliser une procédure adaptée pour résoudre un problème de proportionnalité.

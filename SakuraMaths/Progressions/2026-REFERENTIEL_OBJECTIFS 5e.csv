@@ -1,0 +1,107 @@
+﻿Code actuel;Nouveau code;Thème pédagogique;Intitulé objectif;Texte;Famille compétence
+✖1;CAL-O01;Calcul numérique;Calculer pour résoudre;Additionner, soustraire, multiplier et diviser pour résoudre des problèmes et contrôler la vraisemblance de son résultat.;Ca
+✖2;CAL-O02;Calcul numérique;Choisir la bonne opération;Connaitre le sens et les situations d’emploi de ces opérations.;Ca
+✖3;CAL-O03;Calcul numérique;Diviser par un décimal;Diviser par un nombre décimal.;Ca
+✖4;CAL-O04;Calcul numérique;Enchaîner les opérations;Enchainer des opérations.;Ca
+✖5;CAL-O05;Calcul numérique;Traduire en expression;Traduire un problème, une succession donnée d’opérations, un programme de calcul, en une seule expression, en faisant appel ou non à des parenthèses.;Mo
+✖6;CAL-O06;Calcul numérique;Nommer un calcul;Nommer un calcul, distinguer sommes et produits, termes et facteurs.;Co
+✖7;CAL-O07;Calcul numérique;Priorités opératoires;Connaitre et utiliser les priorités opératoires.;Ca
+✖8;CAL-O08;Calcul numérique;Distributivité numérique;Connaitre et utiliser la distributivité simple sur des exemples numériques.;Ca
+✖9;CAL-O09;Calcul numérique;Multiples et diviseurs;Utiliser les notions de multiples et diviseurs.;Ca
+✖10;CAL-O10;Calcul numérique;Divisibilité par 3 et 9;Connaitre les critères de divisibilité par 3 et par 9.;Ca
+✖11;CAL-O11;Calcul numérique;Algorithme de calcul;Mobiliser un algorithme dans le cadre du calcul numérique.;Ca
+➖1;REL-O01;Nombres relatifs;Définir un relatif;Définir les nombres relatifs.;Ch
+➖2;REL-O02;Nombres relatifs;Opposé et valeur absolue;Définir l’opposé et la valeur absolue d’un nombre.;Ca
+➖3;REL-O03;Nombres relatifs;Signe d’un nombre;Définir la notion de nombre positif, strictement positif, négatif, strictement négatif.;Ch
+➖4;REL-O04;Nombres relatifs;Relatifs en contexte;Utiliser les nombres relatifs pour représenter des grandeurs observables qui peuvent prendre des valeurs inférieures à zéro (température, temps, altitude, etc.), en particulier dans le cadre de la résolution de problèmes.;Re
+➖5;REL-O05;Nombres relatifs;Relatifs sur droite graduée;Lire l’abscisse d’un nombre relatif sur une droite graduée et placer un nombre relatif d’abscisse donnée.;Re
+➖6;REL-O06;Nombres relatifs;Comparer les relatifs;Comparer et ranger dans l’ordre croissant et décroissant des nombres décimaux relatifs.;Ca
+➖7;REL-O07;Nombres relatifs;Additionner deux relatifs;Additionner deux nombres décimaux relatifs.;Ca
+➖8;REL-O08;Nombres relatifs;Additionner plusieurs relatifs;Additionner plusieurs nombres décimaux relatifs.;Ca
+➖9;REL-O09;Nombres relatifs;Soustraire des relatifs;Soustraire deux nombres décimaux relatifs.;Ca
+➖10;REL-O10;Nombres relatifs;Parenthèses nécessaires;Connaitre et justifier les situations dans lesquelles des parenthèses sont indispensables au sens des écritures.;Ra
+➖11;REL-O11;Nombres relatifs;Sommes avec parenthèses;Simplifier l’écriture de sommes comportant des parenthèses.;Ca
+➖12;REL-O12;Nombres relatifs;Enchaîner additions et soustractions;Enchainer additions et soustractions de décimaux relatifs.;Ca
+➖13;REL-O13;Nombres relatifs;Problèmes avec relatifs;Résoudre des problèmes mobilisant addition et soustraction de nombres décimaux relatifs.;Ch
+➗1;FRA-O01;Fractions et rationnels;Comparer des fractions;Comparer des fractions.;Ca
+➗2;FRA-O02;Fractions et rationnels;Additionner et soustraire des fractions;Additionner et soustraire des fractions de dénominateurs quelconques.;Ca
+➗3;FRA-O03;Fractions et rationnels;Problèmes avec fractions;Résoudre des problèmes avec des additions et soustractions de fractions.;Ca
+⬆1;PUI-O01;Puissances;Découvrir carré et cube;Découvrir la notion de puissance d’un nombre et sa notation dans le cas du carré et du cube.;Co
+⬆2;PUI-O02;Puissances;Carrés de 0 à 12;Connaitre les carrés des entiers de 0 à 12.;Ca
+⬆3;PUI-O03;Puissances;Cube de 10;Connaitre le cube de 10.;Ca
+⬆4;PUI-O04;Puissances;Écrire en carré ou cube;Savoir écrire un nombre sous la forme d’une puissance 2 ou 3.;Ca
+⬆5;PUI-O05;Puissances;Calculer avec puissances;Calculer la valeur numérique d’expressions contenant des puissances simples, additions, soustractions et produits.;Ca
+⬆6;PUI-O06;Puissances;Expression littérale avec puissance;Calculer la valeur d’une expression littérale contenant une puissance simple.;Ca
+🔤1;LIT-O01;Calcul littéral;Produire des formules;Produire des formules (double, triple, carré, successeur, prédécesseur, aire, périmètre, etc.).;Ca
+🔤2;LIT-O02;Calcul littéral;Substituer dans une expression;Calculer la valeur d’une expression littérale par substitution.;Ca
+🔤3;LIT-O03;Calcul littéral;Tester une égalité;Tester si une égalité entre expressions algébriques comportant une variable est vraie ou fausse.;Ra
+🔤4;LIT-O04;Calcul littéral;Somme ou produit ?;Déterminer si une expression littérale est une somme ou un produit.;Ch
+🔤5;LIT-O05;Calcul littéral;Développer ou factoriser;Exploiter les relations k(a + b) = ka + kb ou k(a – b) = ka – kb pour factoriser, ou développer une expression littérale.;Ca
+🔤6;LIT-O06;Calcul littéral;Réduire ax + b;Réduire une expression littérale de la forme a𝑥 + b, où a et b sont des nombres décimaux.;Ca
+🔤7;LIT-O07;Calcul littéral;Démontrer par le calcul littéral;Démontrer une propriété générale par le calcul littéral.;Ra
+🔤8;LIT-O08;Calcul littéral;Utiliser un contre-exemple;Utiliser un contre-exemple pour démontrer qu’une assertion est fausse.;Ra
+🔤9;LIT-O09;Calcul littéral;Conjecturer avec tableur ou algo;Formuler des conjectures en s’appuyant sur un langage algorithmique ou un tableur.;Ra
+🔤10;LIT-O10;Calcul littéral;Lettre inconnue;Donner à la lettre le statut d’inconnue.;Ch
+🔤11;LIT-O11;Calcul littéral;Modéliser par une équation;Modéliser des problèmes relevant des opérations à trous par des équations du type a𝑥 = c ou 𝑥 + b = c.;Mo
+🔤12;LIT-O12;Calcul littéral;Résoudre une équation simple;Résoudre des équations du type a𝑥 = c ou 𝑥 + b = c par des méthodes arithmétiques s'appuyant sur les opérations inverses.;Ca
+🧭1;REP-O01;Repérage;Lire une abscisse;Sur une droite graduée : lire l’abscisse d’un point donné;Re
+🧭2;REP-O02;Repérage;Placer une abscisse;Sur une droite graduée : placer un point d’abscisse donnée.;Re
+🧭3;REP-O03;Repérage;Lire des coordonnées;Dans le plan muni d’un repère orthogonal : lire les coordonnées d’un point donné.;Re
+🧭4;REP-O04;Repérage;Placer des coordonnées;Dans le plan muni d’un repère orthogonal : placer un point de coordonnées données.;Re
+🧊1;SOL-O01;Solides;Représenter des solides;Construire et mettre en relation différentes représentations en perspectives cavalières des solides suivants : pavé droit, cube, cylindre de révolution, prisme droit.;Re
+🧊2;SOL-O02;Solides;Associer solide et patron;Savoir mettre en relation une représentation en perspective cavalière et un patron d’un pavé, d’un prisme droit ou d’un cylindre de révolution.;Re
+🧊3;SOL-O03;Solides;Volumes de prismes droits;Calculer le volume du cube, du pavé droit, du prisme droit.;Ca
+🧊4;SOL-O04;Solides;Unités de volume et capacité;Connaitre et convertir des unités usuelles (volume et capacité).;Ca
+🧊5;SOL-O05;Solides;Disque et cylindre;Calculer l’aire du disque, le volume du cylindre de révolution.;Ca
+🔄1;SYM-O01;Transformations;Définir la symétrie centrale;Définir le demi-tour, ou symétrie centrale.;Ch
+🔄2;SYM-O02;Transformations;Propriétés du demi-tour;Connaitre les propriétés du demi-tour.;Ra
+📐1;ANG-O01;Angles;Angles et parallélisme;Caractériser le parallélisme par les angles : angles alternes internes, angles correspondants.;Ch
+🔺1;TRI-O01;Triangles;Somme des angles;Connaitre la somme des angles d’un triangle et savoir la démontrer.;Ra
+🔺2;TRI-O02;Triangles;Construire des triangles;Construire des triangles à partir de données partielles.;Re
+🔺3;TRI-O03;Triangles;Médiatrices et cercle circonscrit;Connaitre les propriétés des médiatrices et du cercle circonscrit dans le cas de triangles particuliers.;Ra
+🔺4;TRI-O04;Triangles;Aire du triangle;Calculer l’aire d’un triangle.;Ca
+🔺5;TRI-O05;Triangles;Hauteurs du triangle;Définir et tracer les hauteurs dans un triangle.;Re
+🔺6;TRI-O06;Triangles;Concours des hauteurs;Savoir que les hauteurs d’un triangle sont concourantes.;Ra
+🔺7;TRI-O07;Triangles;Médianes du triangle;Définir et tracer les médianes dans un triangle.;Re
+🔺8;TRI-O08;Triangles;Médiane et aires égales;Démontrer qu’une médiane partage un triangle en deux triangles d’aires égales.;Ra
+🔺9;TRI-O09;Triangles;Triangles particuliers;Utiliser ces propriétés dans le cas de triangles particuliers.;Ra
+🔷1;PAR-O01;Parallélogrammes;Définir le parallélogramme;Définir le parallélogramme.;Ch
+🔷2;PAR-O02;Parallélogrammes;Construire des parallélogrammes;Construire des parallélogrammes.;Re
+🔷3;PAR-O03;Parallélogrammes;Côtés et diagonales;Connaitre les propriétés caractéristiques des côtés opposés et des diagonales.;Ra
+🔷4;PAR-O04;Parallélogrammes;Caractériser un quadrilatère;Utiliser une propriété caractéristique sur les diagonales ou les côtés pour les construire ou donner la nature du quadrilatère.;Ra
+🔷5;PAR-O05;Parallélogrammes;Parallélogrammes particuliers;Définir les parallélogrammes particuliers (rectangle, losange, carré).;Ca
+🔷6;PAR-O06;Parallélogrammes;Propriétés caractéristiques;Connaitre les propriétés caractéristiques.;Ra
+🔷7;PAR-O07;Parallélogrammes;Aire du parallélogramme;Savoir calculer l’aire d’un parallélogramme et de figures complexes.;Ca
+🔷8;PAR-O08;Parallélogrammes;Conversions et grandeurs;Résoudre des problèmes faisant appel à des conversions d’unités de longueur et d’unités d’aires.;Ca
+📊1;STA-O01;Statistiques;Organiser des données;Recueillir et organiser des données.;Ch
+📊2;STA-O02;Statistiques;Effectifs et fréquences;Calculer des effectifs et des fréquences (exprimées sous forme décimale, fractionnaire ou de pourcentage).;Ca
+📊3;STA-O03;Statistiques;Lire tableaux et graphiques;Lire et interpréter des informations présentées sous forme de tableaux, de diagrammes et de graphiques.;Re
+📊4;STA-O04;Statistiques;Représenter des données;Représenter, sur papier ou à l’aide d’un tableur-grapheur, des données sous la forme d’un tableau, d’un diagramme (diagramme en barres, diagramme circulaire) ou d’un graphique cartésien.;Re
+📊5;STA-O05;Statistiques;Choisir une représentation;Choisir une représentation adaptée à ce qu’il convient de mettre en avant.;Re
+📊6;STA-O06;Statistiques;Moyenne simple;Calculer et interpréter la moyenne simple d’une série de données.;Ca
+🎲1;PROB-O01;Probabilités;Problèmes de hasard;Aborder les questions relatives au hasard à partir de problèmes simples.;Ch
+🎲2;PROB-O02;Probabilités;Vocabulaire des probabilités;Utiliser le vocabulaire des probabilités dans des contextes concrets : expérience aléatoire, issue, évènement.;Co
+🎲3;PROB-O03;Probabilités;Probabilités simples;Attribuer des probabilités dans des cas simples (équiprobabilité).;Ch
+🎲4;PROB-O04;Probabilités;Expérimenter et fréquences;Répéter matériellement une expérience aléatoire simple. Enregistrer les résultats observés dans un tableau d’effectifs et de fréquences.;Re
+∝1;PROP-O01;Proportionnalité;Utiliser proportions et pourcentages;Utiliser des proportions, des pourcentages.;Ca
+∝2;PROP-O02;Proportionnalité;Calculer proportions et pourcentages;Calculer, appliquer des proportions, des pourcentages.;Ca
+∝3;PROP-O03;Proportionnalité;Identifier la proportionnalité;Identifier des situations de proportionnalité dans des contextes concrets (prix, recettes, distances, échelles).;Mo
+∝4;PROP-O04;Proportionnalité;Coefficient de proportionnalité;Utiliser un coefficient de proportionnalité dans des contextes concrets (prix unitaire, vitesse moyenne, échelle, etc.).;Mo
+∝5;PROP-O05;Proportionnalité;Tableau ou graphique proportionnel;Représenter une situation de proportionnalité par un tableau ou un graphique.;Re
+∝6;PROP-O06;Proportionnalité;Reconnaître depuis tableau ou graphique;Reconnaitre une situation de proportionnalité à partir d’un tableau ou d’un graphique.;Re
+∝7;PROP-O07;Proportionnalité;Nuage de points proportionnel;Reconnaitre graphiquement qu’un nuage de points est ou n’est pas associé à une situation de proportionnalité entre données discrètes.;Re
+📈1;FON-O01;Fonctions;En fonction de;Introduire l’expression : « en fonction de » dans des contextes concrets ou mathématiques.;Mo
+📈2;FON-O02;Fonctions;Produire un tableau de valeurs;Produire un tableau de valeurs.;Re
+📈3;FON-O03;Fonctions;Lire un tableau de valeurs;Lire et interpréter un tableau de valeurs.;Re
+📈4;FON-O04;Fonctions;Placer des points;Placer dans un repère orthogonal donné des points correspondant à un tableau de valeurs.;Re
+📈5;FON-O05;Fonctions;Lire un graphique;Lire et interpréter un graphique cartésien donné par une courbe ou un nuage de points.;Re
+📈6;FON-O06;Fonctions;Tableau à partir d’une formule;Traduire la relation de dépendance entre deux grandeurs par un tableau de valeurs à partir d’une formule.;Re
+📈7;FON-O07;Fonctions;Produire une formule simple;Produire une formule simple représentant la dépendance de deux grandeurs.;Re
+📈8;FON-O08;Fonctions;Proportionnalité graphique;Caractériser graphiquement la proportionnalité.;Re
+🐱1;ALG-O01;Algorithmique;Séquences d’instructions;Manipuler des instructions simples et les séquencer.;Ch
+🐱2;ALG-O02;Algorithmique;Entrées et sorties;Identifier les entrées et sorties d’un programme.;Ch
+🐱3;ALG-O03;Algorithmique;Formule en blocs;Représenter des formules sous la forme d’une expression informatique dans un langage de programmation par blocs.;Re
+🐱4;ALG-O04;Algorithmique;Calculer avec un programme;Calculer la valeur de formules à l’aide d’une suite d’instructions dans un langage de programmation par blocs.;Ca
+🐱5;ALG-O05;Algorithmique;Prévoir un résultat;Prévoir la valeur d’une expression informatique avant son exécution.;Ch
+🐱6;ALG-O06;Algorithmique;Modifier un programme;Analyser un programme simple donné et modifier ses paramètres.;Ch
+🐱7;ALG-O07;Algorithmique;Boucle inconditionnelle;Effectuer une boucle inconditionnelle simple permettant de répéter une séquence linéaire d’instructions un nombre précis de fois.;Ca

@@ -144,7 +144,7 @@
   .pdoc-leg-list{margin:3px 0 0;padding-left:24px}
   .pdoc-leg-list li{font-size:12px;margin:5px 0;color:var(--ink)}
   .pdoc-leg-sublist{margin:3px 0 0;padding-left:20px;list-style:none}
-  .pdoc-leg-sublist li{margin:2px 0;font-size:11.5px;display:flex;align-items:baseline;gap:6px}
+  .pdoc-leg-sublist li{margin:2px 0;font-size:11.5px}
   .pdoc-leg-list u{text-decoration:none;font-weight:800;color:var(--accent-ink)}
 
   /* légende rapide en tête de document */
@@ -163,21 +163,12 @@
   .pdoc-seq{border-left:4px solid var(--seqc,var(--accent));padding-left:10px;margin-left:-2px}
   .pdoc-chips{margin:3px 0 2px;display:flex;flex-wrap:wrap;gap:4px}
   .pdoc-chip{display:inline-block;color:#fff;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:800;letter-spacing:.01em}
-  .pdoc-chip.lg{font-size:12.5px;padding:3px 10px;border-radius:7px;margin-bottom:2px}
   .pdoc-notes{margin:5px 0 4px;padding-left:22px}
   .pdoc-notes li{font-size:13.5px;margin:2px 0;color:var(--ink)}
   .pdoc-ref-list{margin:2px 0 0;padding-left:22px;opacity:.82}
   .pdoc-ref-list li{font-size:11px;margin:0;line-height:1.35;color:var(--muted)}
   .pdoc-ref-list b{color:var(--ink)}
   .pdoc-holes-intro{font-size:12px;color:var(--muted);margin:2px 0 8px}
-
-  /* Gantt compact (portrait, table-based pour un rendu fiable dans Word) */
-  .pdoc-ganttwrap{margin:14px 0 4px}
-  table.pdoc-gantt{width:100%;border-collapse:collapse;table-layout:fixed}
-  table.pdoc-gantt th.pg-mon{font-size:8.5px;font-weight:700;color:var(--accent-ink);text-align:center;padding:2px 0;border-bottom:1.5px solid var(--accent);border-left:1px solid var(--line)}
-  table.pdoc-gantt td.pg-label{width:52px;font-size:9.5px;padding:1px 4px 1px 0;white-space:nowrap;vertical-align:middle}
-  table.pdoc-gantt td.pg-cell{height:9px;border-left:1px solid rgba(0,0,0,.05);padding:0}
-  table.pdoc-gantt td.pg-cell.pg-vac{background:repeating-linear-gradient(45deg,#eee,#eee 3px,#f7f7f7 3px,#f7f7f7 6px)}
 
   /* gantt */
    .gantt-wrap{overflow-x:auto;border:1px solid rgba(255,255,255,.72);border-radius:18px;background:var(--glass-strong);box-shadow:0 8px 24px rgba(130,92,112,.12);backdrop-filter:blur(10px)}
@@ -332,8 +323,6 @@
   body.print-progression .pdoc-leg-list li{break-inside:avoid;page-break-inside:avoid}
   body.print-progression .pdoc-toc{break-after:page;page-break-after:always}
   body.print-progression table.pdoc-toc-table tr{break-inside:avoid;page-break-inside:avoid}
-  body.print-progression table.pdoc-gantt thead{display:table-header-group}
-  body.print-progression table.pdoc-gantt tr{break-inside:avoid;page-break-inside:avoid}
 
   body.print-gantt{page:gantt}
   body.print-gantt #printDoc,

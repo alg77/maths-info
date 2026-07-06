@@ -91,7 +91,7 @@
     },
     {
       "code": "N2",
-      "title": "Calcul littéral 2",
+      "title": "Écrire et utiliser une expression littérale",
       "theme": "N",
       "weeks": 2,
       "comps": [
@@ -101,13 +101,17 @@
         "Co1"
       ],
       "objectifs": [
-        "5:🔤6",
-        "5:🔤1",
+        "5:⬆5",
         "5:⬆6",
-        "5:⬆1",
-        "5:⬆2",
-        "5:⬆3",
-        "5:⬆4"
+        "5:🔤1",
+        "5:🔤2",
+        "5:🔤3",
+        "5:🔤5",
+        "5:🔤6",
+        "5:🔤10",
+        "5:🔤11",
+        "5:🔤12",
+        "5:📈1"
       ],
       "automatismes": [],
       "notes": "Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d'une expression (formules d'aires/volumes, conversions)\nTester une égalité\nSimplifier l'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire"
@@ -128,8 +132,7 @@
         "5:🧊2",
         "5:🧊3",
         "5:🧊5",
-        "5:🧊4",
-        "5:🔺4"
+        "5:🧊4"
       ],
       "automatismes": [
         "5:0🧭🅰30"
@@ -163,15 +166,12 @@
         "5:🔺5",
         "5:🔺6",
         "5:🔺2",
-        "5:🔺7",
-        "5:🔺8",
-        "5:🔺9",
-        "5:🔷8"
+        "5:🔺7"
       ],
       "automatismes": [
         "5:0🔺🅰40"
       ],
-      "notes": "Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d'existence d'un triangle ; cas d'alignement de 3 points\nRéinvestir la médiatrice d'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)\n\n"
+      "notes": "Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d'existence d'un triangle ; cas d'alignement de 3 points\nRéinvestir la médiatrice d'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)"
     },
     {
       "code": "N4",
@@ -262,7 +262,7 @@
       "automatismes": [
         "5:0➗🅰12"
       ],
-      "notes": "Définir les nombres relatifs (écriture, usages) \nAjouter la notion de valeur absolue.\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible"
+      "notes": "Définir les nombres relatifs (écriture, usages)\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible"
     },
     {
       "code": "G5",
@@ -312,10 +312,14 @@
       ],
       "objectifs": [
         "5:🔺1",
+        "5:🔺8",
+        "5:🔺9",
         "5:🔷5"
       ],
       "automatismes": [
-        "5:0📐🅰35"
+        "5:0📐🅰35",
+        "5:0🔺🅰38",
+        "5:0🔺🅰39"
       ],
       "notes": "Calculer un angle dans un triangle quelconque\nDémonstration possible : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)"
     },
@@ -419,77 +423,11 @@
       "weeks": 1.5,
       "comps": [
         "Ch3",
-        "Re3",
-        "Ra1",
-        "Ca1"
+        "Re3"
       ],
-      "objectifs": [
-        "5:🔤9",
-        "5:🐱1",
-        "5:🐱2",
-        "5:🐱3",
-        "5:🐱4",
-        "5:🐱5",
-        "5:🐱6",
-        "5:🐱7"
-      ],
+      "objectifs": [],
       "automatismes": [],
       "notes": "Scratch et tableur\nSéances réparties sur l'année"
-    },
-    {
-      "code": "N9",
-      "title": "Calcul littéral 2 : développer et factoriser",
-      "theme": "N",
-      "weeks": 1,
-      "comps": [
-        "Ra1",
-        "Ca1"
-      ],
-      "objectifs": [
-        "5:🔤3",
-        "5:🔤5"
-      ],
-      "automatismes": [],
-      "notes": ""
-    },
-    {
-      "code": "N10",
-      "title": "Calcul littéral 3 : équation",
-      "theme": "N",
-      "weeks": 1,
-      "comps": [
-        "Ch1",
-        "Mo1",
-        "Ra1",
-        "Ca1"
-      ],
-      "objectifs": [
-        "5:🔤10",
-        "5:🔤11",
-        "5:🔤12",
-        "5:🔤2",
-        "5:⬆5",
-        "5:🔤7"
-      ],
-      "automatismes": [],
-      "notes": ""
-    },
-    {
-      "code": "D4",
-      "title": "Probabilités",
-      "theme": "D",
-      "weeks": 1,
-      "comps": [
-        "Ch1",
-        "Co1"
-      ],
-      "objectifs": [
-        "5:🎲1",
-        "5:🎲2",
-        "5:🎲3"
-      ],
-      "automatismes": [],
-      "notes": ""
     }
   ]
 }

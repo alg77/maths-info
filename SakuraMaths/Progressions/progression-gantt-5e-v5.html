@@ -353,7 +353,7 @@ function periodsInfo(){
   return starts.map(function(st,i){ return {p:i+1,start:st,end:ends[i],weeks:tw(st,ends[i])}; });
 }
 function fmtD(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]; }
-function vacPhrase(nom){ if(/toussaint/i.test(nom)) return 'de la '+nom; if(/hiver/i.test(nom)) return "d'"+nom; return 'de '+nom; }
+function vacArticle(nom){ return /toussaint/i.test(nom)?'la ':(/hiver|printemps/i.test(nom)?"l'":''); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 var dragIndex=null;
 var seqDetailsOpen=[];
@@ -449,7 +449,7 @@ function renderSeq(){
     cum += (Number(s.weeks)||0);
     while(bi<breaks.length && cum >= breaks[bi].tw - 1e-9){
       var dv=document.createElement('div'); dv.className='vacdiv';
-      dv.innerHTML='🌿 Vacances '+vacPhrase(breaks[bi].nom);
+      dv.innerHTML='🌿 Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom;
       root.appendChild(dv); period++; screenPhead(period); bi++;
     }
   });
@@ -665,7 +665,7 @@ function renderPrintDoc(withDetails){
     }
     root.appendChild(blk);
     cum+=(Number(s.weeks)||0);
-    while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='🌴 Vacances '+vacPhrase(breaks[bi].nom); root.appendChild(vd); period++; phead(period); bi++; }
+    while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='🌴 Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom; root.appendChild(vd); period++; phead(period); bi++; }
   });
 
   if(withDetails){
@@ -699,11 +699,7 @@ function renderPrintDoc(withDetails){
     var ulC=document.createElement('ul'); ulC.className='pdoc-leg-list';
     REF.forEach(function(f){
       var li=document.createElement('li');
-      li.innerHTML='<span class="pdoc-chip lg" style="background:var(--'+f.k+')">'+esc(f.name)+' ('+f.k+')</span>'
-        +'<ul class="pdoc-leg-sublist">'+f.subs.map(function(sc){
-          var badge='<span class="pdoc-chip" style="background:var(--'+f.k+')">'+esc(sc)+'</span>';
-          return DESC[sc] ? ('<li>'+badge+' '+esc(DESC[sc])+'</li>') : ('<li>'+badge+'</li>');
-        }).join('')+'</ul>';
+      li.innerHTML='<b>'+esc(f.name)+'</b> ('+f.k+')<ul class="pdoc-leg-sublist">'+f.subs.map(function(sc){ return DESC[sc]?('<li><u>'+sc+'</u> : '+esc(DESC[sc])+'</li>'):('<li>'+sc+'</li>'); }).join('')+'</ul>';
       ulC.appendChild(li);
     });
     legComps.appendChild(ulC);
@@ -755,7 +751,6 @@ function exportProgressionWord(){
     +'.pdoc-leg-list{margin:4px 0 0;padding-left:22px}'
     +'.pdoc-leg-list li{font-size:12px;margin:5px 0}'
     +'.pdoc-leg-sublist{margin:3px 0 0;padding-left:20px;list-style:none}'
-    +'.pdoc-chip.lg{font-size:12.5px;padding:3px 10px;border-radius:7px;margin-bottom:2px;display:inline-block;color:#fff;font-weight:bold}'
     +'.pdoc-leg-sublist li{margin:2px 0;font-size:11.5px}'
     +'.pdoc-leg-list u{text-decoration:none;font-weight:bold;color:#a8607c}'
     +'.pdoc-ganttwrap{margin:14px 0 4px}'
