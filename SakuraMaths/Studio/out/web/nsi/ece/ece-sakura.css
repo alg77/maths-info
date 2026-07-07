@@ -27,7 +27,14 @@ nav{
 .table-inner{background:rgba(255,255,255,.94)}
 .dashboard-return{max-width:1000px;margin:18px auto 0;padding:0 1.5rem;display:flex;gap:8px;flex-wrap:wrap}
 .dashboard-return a{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.86);border:1px solid var(--border);text-decoration:none;font-weight:800;font-size:.82rem}
-@media(max-width:760px){nav{align-items:flex-start;flex-direction:column}.nav-badge{margin-left:0}.nav-links{width:100%}}
+.ece-filters{max-width:1100px;margin:22px auto 0;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.86);border:1px solid #fff;box-shadow:0 10px 30px rgba(100,75,110,.11)}
+.filter-head{display:flex;align-items:center;gap:16px}.filter-head>div{display:flex;flex-direction:column}.filter-head span,.filter-result{font-size:.78rem;color:var(--text2)}
+.filter-head input{margin-left:auto;min-width:250px;padding:9px 12px;border:1px solid var(--border);border-radius:999px;font:inherit;background:#fff}
+.theme-filters{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 8px}.theme-filters button{border:1px solid #dcd2e2;background:#faf7fb;color:#64556b;border-radius:999px;padding:6px 10px;font:700 .76rem Inter,sans-serif;cursor:pointer}.theme-filters button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.ece-card[hidden]{display:none!important}
+.python-editor-dialog{width:min(1120px,96vw);height:min(820px,92vh);padding:0;border:0;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 24px 80px rgba(40,25,50,.35)}
+.python-editor-dialog::backdrop{background:rgba(38,27,44,.55);backdrop-filter:blur(4px)}.editor-head{display:flex;align-items:center;gap:12px;padding:11px 14px;background:linear-gradient(90deg,#5c4e87,#7667ba);color:#fff}.editor-head>div{margin-left:auto;display:flex;gap:8px}.editor-head a,.editor-head button{border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 10px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;font:700 .75rem Inter,sans-serif;cursor:pointer}.python-editor-dialog iframe{display:block;width:100%;height:calc(100% - 78px);border:0}.editor-help{height:34px;margin:0;padding:8px 14px;color:var(--text2);font-size:.75rem;background:#faf7fb}
+@media(max-width:760px){nav{align-items:flex-start;flex-direction:column}.nav-badge{margin-left:0}.nav-links{width:100%}.filter-head{align-items:stretch;flex-direction:column}.filter-head input{width:100%;min-width:0;margin-left:0}}
 @media print{nav,.dashboard-return{display:none!important}body{background:#fff}}
 
 .edit-btn[aria-disabled='true']{opacity:.48;pointer-events:none;cursor:not-allowed}

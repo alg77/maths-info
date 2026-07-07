@@ -115,16 +115,20 @@ des annales, du Bac et des ECE en Terminale.
 
 ## Todo NSI — ordre recommandé
 
-1. **Manifeste ECE unique** : indexer les 71 sujets, fichiers, thèmes, compétences et statuts.
-2. **Générateur ECE** : produire dashboard et vues élève/prof depuis une source unique.
-3. **Relire les 5 fiches interactives 2026** et vérifier les corrections.
-4. **Traiter les sujets 2026 restants**, en priorité ceux liés à la progression Terminale.
-5. **Brancher ECE ↔ progression** : afficher les sujets conseillés dans chaque séquence.
-6. **Basthon / éditeur Python** : fournir un environnement réellement fonctionnel.
-7. **Sources Markdown NSI** : cours, TP, exercices, annales et notebooks par chapitre.
-8. **Nuit du Code / Pyxel** : six séances Première, défis progressifs et grille d'évaluation.
-9. **QCM et QuestionBank NSI** reliés aux objectifs BO et Bac/ECE.
-10. **Tests d'usage** : vue élève sans corrigés, garde professeur et responsive iPad.
+1. ✅ **Manifeste ECE unique** : 71 sujets, fichiers, thèmes, statuts, ZIP et liens de sortie.
+2. ✅ **Générateur du dashboard ECE** depuis le manifeste unique.
+3. ✅ **ZIP officiels** : 48 archives 2024 et 23 archives 2026.
+4. ✅ **Première intégration Basthon** : 20 scripts de départ ouverts dans Basthon-Console.
+5. **Relire les 8 fiches interactives 2026** et vérifier les corrections. Les sujets 2, 3 et 4 sont désormais intégrés.
+6. **Compléter l'indexation thématique**, surtout pour les sujets 2024 encore marqués « À indexer ».
+7. **Traiter les sujets 2026 restants**, en priorité ceux liés à la progression Terminale.
+8. **Générer les vues élève/prof depuis le manifeste**, sans duplication du contenu HTML.
+9. **Brancher ECE ↔ progression** : afficher les sujets conseillés dans chaque séquence.
+10. **Basthon avancé** : précharger automatiquement les fichiers annexes SQLite/CSV/JSON.
+11. **Sources Markdown NSI** : cours, TP, exercices, annales et notebooks par chapitre.
+12. **Nuit du Code / Pyxel** : six séances Première, défis progressifs et grille d'évaluation.
+13. **QCM et QuestionBank NSI** reliés aux objectifs BO et Bac/ECE.
+14. **Tests d'usage** : vue élève sans corrigés, garde professeur et responsive iPad.
 
 Documentation : `docs/SakuraNSI-ECE.md`.
 

@@ -31,19 +31,24 @@ Les sujets 2025 ne sont pas dupliqués : ils reprennent la banque 2024 dans un o
 ## État actuel
 
 - Banque officielle disponible : **48 sujets 2024 + 23 sujets 2026 = 71 sujets**.
-- Fiches interactives actuelles : **5 sujets 2026**.
+- Fiches interactives actuelles : **8 sujets 2026** (n° 1 à 7 et n° 15).
+- Manifeste généré : `Studio/references/nsi/ece/manifest-ece.json`.
+- Archives téléchargeables : **48 ZIP 2024 + 23 ZIP 2026**.
+- Dashboard généré par `builders/build_ece_dashboard.py`.
+- Scripts de départ Basthon générés par `builders/build_ece_starters.py`.
 - Le dashboard ECE est accessible depuis le volet NSI du cockpit SakuraMaths.
-- Le dashboard et la page professeur utilisent la garde Firebase professeur.
+- Le dashboard, la banque accompagnée `index.html` et la page professeur utilisent la garde Firebase professeur.
+- Seule `eleves.html`, sans correction, doit être proposée aux élèves.
 - La direction artistique est partagée dans `ece-sakura.css` : fond SakuraMaths, palette pastel, cartes et navigation cohérente.
 
 ## Suite recommandée
 
-1. Créer un manifeste unique décrivant les 71 sujets : millésime, numéro, thèmes, fichiers fournis, compétences et statut.
-2. Générer automatiquement `dashboard.html` depuis ce manifeste.
+1. Relire les cinq fiches interactives existantes.
+2. Compléter les thèmes des sujets encore marqués « À indexer ».
 3. Transformer progressivement les sujets en fiches interactives sans recopier leur contenu dans plusieurs pages.
-4. Générer les vues professeur et élève depuis une source unique.
+4. Générer les vues professeur et élève depuis le manifeste et une source unique.
 5. Brancher les sujets aux objectifs Bac/ECE des progressions Terminale.
-6. Ajouter un éditeur Python/Basthon réellement disponible avant d’activer les liens « Éditeur ».
+6. Étendre l'intégration Basthon aux fichiers annexes SQLite, CSV et JSON.
 
 ## Convention de statut
 
