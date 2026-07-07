@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon radar immo</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <header class="hero">
+    <div><p class="eyebrow">PROJET MAISON</p><h1>Mon radar immo <span>✦</span></h1><p>Les maisons qui méritent une visite, réunies au même endroit.</p></div>
+    <div class="hero-stats"><strong id="result-count">1</strong><span>bien suivi</span></div>
+  </header>
+  <main>
+    <section class="toolbar" aria-label="Filtres">
+      <label class="search">⌕ <input id="search" type="search" placeholder="Ville, quartier, détail…"></label>
+      <div id="filters" class="filters">
+        <button class="active" data-filter="all">Tous</button><button data-filter="favorite">Coups de cœur</button><button data-filter="visit">À visiter</button>
+      </div>
+    </section>
+    <section id="cards" class="cards"></section>
+  </main>
+  <template id="card-template">
+    <article class="card">
+      <div class="visual"><img alt=""><div class="placeholder"><span>⌂</span><small>Photos à ajouter</small></div><button class="gallery-nav previous" aria-label="Photo précédente">‹</button><button class="gallery-nav next" aria-label="Photo suivante">›</button><span class="photo-count"></span><button class="heart" aria-label="Ajouter aux coups de cœur">♡</button><span class="source"></span><div class="thumbnails"></div></div>
+      <div class="content">
+        <div class="headline"><div><p class="location"></p><h2></h2></div><strong class="price"></strong></div>
+        <div class="facts"></div><p class="description"></p>
+        <div class="tags"></div>
+        <div class="watch"><label>Suivi <select class="status"><option value="new">À étudier</option><option value="visit">À visiter</option><option value="contacted">Contact pris</option><option value="discarded">Écarté</option></select></label><label>Ma note <textarea rows="2" placeholder="Impressions, questions, travaux…"></textarea></label></div>
+        <div class="actions"><a class="primary" target="_blank" rel="noopener">Voir l’annonce ↗</a><button class="copy">Copier le résumé</button></div>
+      </div>
+    </article>
+  </template>
+  <script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>

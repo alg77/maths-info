@@ -10,8 +10,8 @@ window.ORAL_NSI = {
     { id: "bdd", label: "Bases de données", count: 7 },
     { id: "graphes", label: "Graphes", count: 3 },
     { id: "poo", label: "Programmation objet", count: 3 },
-    { id: "routage", label: "Protocoles de routage", count: 2 },
-    { id: "structures", label: "Structures linéaires", count: 4, file: "struct_lineaires" },
+    { id: "routage", label: "Protocoles de routage", count: 2, file: "protocoles_de_routage" },
+    { id: "structures", label: "Structures linéaires", count: 4, file: "structures_lineaires" },
     { id: "programmation", label: "Programmation", count: 2 }
   ]
 };
