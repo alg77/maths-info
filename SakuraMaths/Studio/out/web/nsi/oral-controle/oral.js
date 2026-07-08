@@ -2,6 +2,27 @@
   const data=window.ORAL_NSI;
   const byId=new Map(data.exercices.map(e=>[e.id,e]));
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function oralQuestionsHtml(theme){
+    const questions=window.ORAL_THEME_QUESTIONS?.[theme];
+    if(!questions?.length)return '';
+    return `<section class="oral-questions theme-${theme}"><h3>🎙️ Questions d’oral progressives</h3><ol>${questions.map(item=>`<li><strong>${item.q}</strong><br><span>${item.a}</span></li>`).join('')}</ol></section>`;
+  }
+  function renderThemeQuestionBank(){
+    const host=document.querySelector('.theme-question-bank');
+    if(!host||!window.ORAL_THEME_QUESTIONS)return;
+    const composerHref=document.querySelector('#composer-panel')?'#composer-panel':'prof.html#composer-panel';
+    host.innerHTML=`<div class="theme-bank-head"><div><span class="eyebrow">RELANCES PAR THÈME</span><h2>Questions d’oral progressives</h2><p>À utiliser pendant l’entretien : commence par les questions simples, puis monte d’un cran si l’élève est à l’aise. Les cartes des deux thèmes choisis se surlignent automatiquement.</p></div><a class="btn primary" href="${composerHref}">Choisir les 2 exercices</a></div><div class="theme-question-grid">${data.themes.map(theme=>{
+      const questions=window.ORAL_THEME_QUESTIONS[theme.id]||[];
+      if(!questions.length)return '';
+      return `<details class="theme-question-card theme-${theme.id}" data-theme="${theme.id}" open><summary><span>${theme.label}</span><small>${questions.length} questions</small></summary><ol>${questions.map((item,index)=>`<li><b>${index+1}. ${item.q}</b><span>${item.a}</span></li>`).join('')}</ol></details>`;
+    }).join('')}</div>`;
+  }
+  function updateThemeBankFocus(selects){
+    const themes=new Set(selectedExercises(selects).filter(Boolean).map(exercise=>exercise.theme));
+    document.querySelectorAll('.theme-question-card').forEach(card=>{
+      card.classList.toggle('selected-theme',themes.has(card.dataset.theme));
+    });
+  }
   function selectedExercises(selects){return selects.map(select=>byId.get(select.value));}
   function validatePassage(selects,requireCandidate=false){
     const exercises=selectedExercises(selects),warning=document.querySelector('.warning'),candidate=document.querySelector('#candidate-name').value.trim();
@@ -13,21 +34,24 @@
     const passage=validatePassage(selects);if(!passage)return;
     const panel=document.querySelector('#selected-corrections'),wrap=panel.querySelector('.selected-corrections-grid');
     document.querySelector('#corrections-title').textContent=passage.candidate?`Corrigés de ${passage.candidate}`:'Corrigés des deux exercices';
-    wrap.innerHTML=passage.exercises.map(exercise=>{const correction=window.ORAL_CORRECTIONS[exercise.id];return `<article class="selected-correction theme-${exercise.theme}"><div class="selected-correction-title"><span>${exercise.id.toUpperCase()}</span><div><h3>${esc(exercise.titre)}</h3><small>${esc(exercise.themeLabel)}</small></div></div><ol>${correction.answers.map(answer=>`<li>${answer}</li>`).join('')}</ol><p class="relance"><strong>Relance orale :</strong> ${correction.relance}</p></article>`}).join('');
+    wrap.innerHTML=passage.exercises.map(exercise=>{const correction=window.ORAL_CORRECTIONS[exercise.id];return `<article class="selected-correction theme-${exercise.theme}"><div class="selected-correction-title"><span>${exercise.id.toUpperCase()}</span><div><h3>${esc(exercise.titre)}</h3><small>${esc(exercise.themeLabel)}</small></div></div><ol>${correction.answers.map(answer=>`<li>${answer}</li>`).join('')}</ol><p class="relance"><strong>Relance orale :</strong> ${correction.relance}</p>${oralQuestionsHtml(exercise.theme)}</article>`}).join('');
     panel.hidden=false;
     if(print){document.body.classList.add('print-selected-corrections');const cleanup=()=>document.body.classList.remove('print-selected-corrections');window.addEventListener('afterprint',cleanup,{once:true});window.print();setTimeout(cleanup,1500);}else panel.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  function exerciseCard(e){const correction=window.ORAL_CORRECTIONS?.[e.id];const correctionHtml=correction?`<section class="correction"><h3>✅ Corrigé professeur</h3><ol>${correction.answers.map(answer=>`<li>${answer}</li>`).join('')}</ol><p class="relance"><strong>Relance orale :</strong> ${correction.relance}</p></section>`:'';return `<article class="exercise" id="ex-${e.id}" data-theme="${e.theme}"><div class="exercise-head"><span class="num">${e.id.toUpperCase()}</span><div><h2>${esc(e.titre)}</h2><div class="theme">${esc(e.themeLabel)}</div></div></div><div class="actions"><button class="btn preview-btn" type="button">Aperçu</button><button class="btn correction-btn" type="button">Voir le corrigé</button><button class="btn print-correction-btn" type="button">Imprimer le corrigé</button><a class="btn" href="${e.pdf}" target="_blank" rel="noopener">Ouvrir le PDF ↗</a><a class="btn primary" href="${e.pdf}" target="_blank" rel="noopener">Exporter / imprimer le PDF</a></div><div class="preview"><iframe loading="lazy" title="${esc(e.titre)}"></iframe></div>${correctionHtml}</article>`}
+  function exerciseCard(e){const correction=window.ORAL_CORRECTIONS?.[e.id];const correctionHtml=correction?`<section class="correction"><h3>✅ Corrigé professeur</h3><ol>${correction.answers.map(answer=>`<li>${answer}</li>`).join('')}</ol><p class="relance"><strong>Relance orale :</strong> ${correction.relance}</p>${oralQuestionsHtml(e.theme)}</section>`:'';return `<article class="exercise" id="ex-${e.id}" data-theme="${e.theme}"><div class="exercise-head"><span class="num">${e.id.toUpperCase()}</span><div><h2>${esc(e.titre)}</h2><div class="theme">${esc(e.themeLabel)}</div></div></div><div class="actions"><button class="btn preview-btn" type="button">Aperçu</button><button class="btn correction-btn" type="button">Voir le corrigé</button><button class="btn print-correction-btn" type="button">Imprimer le corrigé</button><a class="btn" href="${e.pdf}" target="_blank" rel="noopener">Ouvrir le PDF ↗</a><a class="btn primary" href="${e.pdf}" target="_blank" rel="noopener">Exporter / imprimer le PDF</a></div><div class="preview"><iframe loading="lazy" title="${esc(e.titre)}"></iframe></div>${correctionHtml}</article>`}
   function initProf(){
     const grid=document.querySelector('.oral-grid'); if(!grid)return;
+    renderThemeQuestionBank();
     grid.innerHTML=data.exercices.map(exerciseCard).join('');
     const selects=[...document.querySelectorAll('.exercise-select')];
     const options=data.exercices.map(e=>`<option value="${e.id}">${e.themeLabel} — n°${e.numero}</option>`).join('');
     selects.forEach((s,i)=>s.innerHTML='<option value="">Choisir un exercice…</option>'+options);
     document.querySelectorAll('[data-pair]').forEach(button=>button.addEventListener('click',()=>{
       const pair=button.dataset.pair.split(','); selects.forEach((select,index)=>select.value=pair[index]);
+      updateThemeBankFocus(selects);
       document.querySelector('.composer').scrollIntoView({behavior:'smooth',block:'start'});
     }));
+    selects.forEach(select=>select.addEventListener('change',()=>updateThemeBankFocus(selects)));
     grid.addEventListener('click',event=>{
       const card=event.target.closest('.exercise'); if(!card)return; const e=byId.get(card.id.slice(3));
       if(event.target.closest('.preview-btn')){const box=card.querySelector('.preview'); box.classList.toggle('open'); if(box.classList.contains('open'))box.querySelector('iframe').src=e.pdf;}
@@ -86,6 +110,7 @@
   }
   function initDashboard(){
     const body=document.querySelector('#exercises-body');if(!body)return;const key='sakura-oral-controle-used';const used=new Set(JSON.parse(localStorage.getItem(key)||'[]'));
+    renderThemeQuestionBank();
     body.innerHTML=data.exercices.map(e=>`<tr data-theme="${e.theme}" class="${used.has(e.id)?'used':''}"><td><input class="status" type="checkbox" data-id="${e.id}" ${used.has(e.id)?'checked':''}></td><td><strong>${e.id.toUpperCase()}</strong></td><td>${esc(e.themeLabel)}</td><td>Exercice ${e.numero}</td><td><a href="prof.html#ex-${e.id}">Sujet + corrigé →</a></td><td><a href="${e.pdf}" target="_blank" rel="noopener">PDF ↗</a></td></tr>`).join('');
     body.addEventListener('change',event=>{if(!event.target.matches('.status'))return;event.target.checked?used.add(event.target.dataset.id):used.delete(event.target.dataset.id);localStorage.setItem(key,JSON.stringify([...used]));event.target.closest('tr').classList.toggle('used',event.target.checked);update()});
     const update=()=>{document.querySelector('#used-count').textContent=used.size;document.querySelector('#remaining-count').textContent=data.exercices.length-used.size};update();

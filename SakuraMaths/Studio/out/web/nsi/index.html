@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hub NSI — SakuraMaths</title>
+  <script type="module">import { guardProf } from "../../../../auth/auth.js"; guardProf();</script>
+  <link rel="stylesheet" href="ece/ece-sakura.css">
+  <style>
+    :root{--ink:#3f3150;--muted:#7a6d7d;--rose:#d783a4;--violet:#7667ba;--blue:#4c79a6;--paper:rgba(255,255,255,.88)}
+    body{min-height:100vh;margin:0;color:var(--ink);font-family:Atkinson Hyperlegible,system-ui,sans-serif;background:linear-gradient(145deg,#fff5f7,#eef4ff)}
+    main{max-width:1120px;margin:auto;padding:32px 20px 70px}
+    .hero,.card{background:var(--paper);border:1px solid #fff;border-radius:28px;box-shadow:0 16px 44px #6f58751a;backdrop-filter:blur(12px)}
+    .hero{padding:30px;margin-bottom:22px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:999px;background:#fff1f7;color:#b25478;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.76rem}
+    h1,h2{font-family:Georgia,serif}
+    h1{font-size:clamp(2.3rem,6vw,4.3rem);margin:12px 0 8px}
+    .hero p{max-width:780px;color:var(--muted);line-height:1.65}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .card{padding:24px;display:flex;flex-direction:column;gap:12px}
+    .card .icon{font-size:2.1rem}
+    .card h2{font-size:1.65rem;margin:0}
+    .card p{color:var(--muted);line-height:1.55;margin:0}
+    .actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:auto}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:#f5eef8;color:var(--ink);text-decoration:none;font-weight:900;border:1px solid #eadde8}
+    .btn.primary{background:linear-gradient(90deg,var(--violet),var(--rose));color:#fff;border-color:transparent}
+    .btn:hover{transform:translateY(-1px)}
+    nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    nav a{color:var(--ink);font-weight:900;text-decoration:none;padding:8px 12px;border-radius:999px;background:#ffffffb8;border:1px solid #fff}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="../dashboard-production.html">← Cockpit prof</a>
+      <a href="../../../../accueil.html">Accueil</a>
+      <a href="../../../../Progressions/progressions.html">Progressions</a>
+    </nav>
+    <section class="hero">
+      <span class="eyebrow">💻 Espace professeur</span>
+      <h1>Hub NSI</h1>
+      <p>Accès direct aux outils NSI : entraînement ECE, oral de contrôle, tableaux de bord et progressions. C’est la petite gare de triage NSI — sans devoir repasser par les progressions à chaque fois.</p>
+    </section>
+    <section class="grid" aria-label="Accès rapides NSI">
+      <article class="card">
+        <span class="icon">🎯</span>
+        <h2>ECE NSI</h2>
+        <p>Dashboard professeur, banque interactive et page élève pour l’entraînement aux épreuves pratiques.</p>
+        <div class="actions">
+          <a class="btn primary" href="ece/dashboard.html">Dashboard ECE</a>
+          <a class="btn" href="ece/prof.html">Page prof</a>
+          <a class="btn" href="ece/eleves.html">Page élève</a>
+        </div>
+      </article>
+      <article class="card">
+        <span class="icon">🎙️</span>
+        <h2>Oral de contrôle</h2>
+        <p>Sujets, corrigés, questions progressives, suivi des passages et grille de notation /20.</p>
+        <div class="actions">
+          <a class="btn primary" href="oral-controle/dashboard.html">Dashboard oral</a>
+          <a class="btn" href="oral-controle/prof.html">Fiches professeur</a>
+        </div>
+      </article>
+      <article class="card">
+        <span class="icon">🧭</span>
+        <h2>Progressions NSI</h2>
+        <p>Progressions interactives Première et Terminale, avec Gantt et objectifs de séance.</p>
+        <div class="actions">
+          <a class="btn" href="../../../../Progressions/progression-gantt-nsi-premiere.html">Première</a>
+          <a class="btn" href="../../../../Progressions/progression-gantt-nsi-terminale.html">Terminale</a>
+        </div>
+      </article>
+      <article class="card">
+        <span class="icon">📚</span>
+        <h2>Référentiels & BO</h2>
+        <p>Pages de référence pour vérifier rapidement les attendus officiels NSI.</p>
+        <div class="actions">
+          <a class="btn" href="../../../../Progressions/bo-nsi-premiere.html">BO Première</a>
+          <a class="btn" href="../../../../Progressions/bo-nsi-terminale.html">BO Terminale</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

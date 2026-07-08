@@ -1,7 +1,7 @@
 window.ORAL_CORRECTIONS = {
   "arbres-1": { answers: [
-    "La taille est le nombre total de nœuds visibles. Compter chaque sommet une seule fois.",
-    "Pour décider si c’est un ABR, vérifier en chaque nœud que toutes les valeurs du sous-arbre gauche sont inférieures et celles du sous-arbre droit supérieures.",
+    "La taille est le nombre total de nœuds visibles. Compter chaque sommet une seule fois. --> taille = 10",
+    "Pour décider si c’est un ABR, vérifier en chaque nœud que toutes les valeurs du sous-arbre gauche sont inférieures et celles du sous-arbre droit supérieures.<br>Ce n'est pas le cas ici, donc ce n'est pas un ABR",
     "Parcours préfixe : racine, puis sous-arbre gauche, puis sous-arbre droit.",
     "taille_arbre est une fonction récursive.",
     "Code attendu : <code>if arbre == []: return 0</code>, sinon <code>return 1 + taille_arbre(arbre[1]) + taille_arbre(arbre[2])</code>."
@@ -151,4 +151,57 @@ window.ORAL_CORRECTIONS = {
     "Q2 : le cas <code>n == 0</code> (ou <code>n == 1</code> selon la définition) est le <strong>cas de base</strong> ; l’appel utilise un argument plus petit.",
     "Q3 : <code>def fact(n):<br>&nbsp;&nbsp;assert n &gt;= 0<br>&nbsp;&nbsp;if n == 0: return 1<br>&nbsp;&nbsp;return n * fact(n - 1)</code>."
   ], relance: "Faire tracer fact(4) puis la remontée des résultats." }
+};
+
+window.ORAL_THEME_QUESTIONS = {
+  arbres: [
+    { q: "Qu’est-ce qu’un arbre en informatique ?", a: "Une structure hiérarchique composée de nœuds reliés par des arêtes, avec un nœud particulier appelé racine." },
+    { q: "Comment appelle-t-on le nœud “à la base” de l’arbre ?", a: "La racine. Sur un dessin, elle est souvent placée en haut, même si on parle parfois de base de l’organisation." },
+    { q: "Qu’est-ce qu’une feuille ?", a: "Un nœud qui n’a aucun enfant." },
+    { q: "Quelle différence entre arbre, arbre binaire et ABR ?", a: "Un arbre peut avoir un nombre quelconque d’enfants. Un arbre binaire a au plus deux enfants par nœud : gauche et droit. Un ABR est un arbre binaire ordonné : à gauche on place les valeurs plus petites, à droite les valeurs plus grandes." },
+    { q: "À quoi correspondent taille et hauteur ?", a: "La taille est le nombre de nœuds. La hauteur mesure la longueur du plus long chemin entre la racine et une feuille ; selon les conventions, on compte les nœuds ou les arêtes, il faut donc préciser la convention." },
+    { q: "Quels sont les principaux parcours d’arbre ?", a: "Préfixe : racine-gauche-droite ; infixe : gauche-racine-droite ; suffixe/postfixe : gauche-droite-racine ; largeur : niveau par niveau." },
+    { q: "Dans quels cas concrets utilise-t-on des arbres ?", a: "Arborescence de fichiers, DOM d’une page web, expressions arithmétiques, arbres de décision, index de bases de données, recherche efficace avec des arbres équilibrés." }
+  ],
+  bdd: [
+    { q: "Qu’est-ce qu’une relation dans une base de données ?", a: "Une table : des lignes appelées enregistrements et des colonnes appelées attributs." },
+    { q: "À quoi sert une clé primaire ?", a: "À identifier de façon unique chaque ligne d’une table." },
+    { q: "À quoi sert une clé étrangère ?", a: "À référencer la clé primaire d’une autre table pour créer un lien cohérent entre deux relations." },
+    { q: "Quelle différence entre SELECT, FROM et WHERE ?", a: "SELECT choisit les colonnes, FROM indique les tables utilisées, WHERE filtre les lignes." },
+    { q: "Quand utilise-t-on une jointure ?", a: "Quand une information utile est répartie dans plusieurs tables liées par des clés." }
+  ],
+  graphes: [
+    { q: "Qu’est-ce qu’un graphe ?", a: "Un ensemble de sommets reliés par des arêtes ou des arcs." },
+    { q: "Quelle différence entre graphe orienté et non orienté ?", a: "Dans un graphe orienté, les liens ont un sens ; dans un graphe non orienté, on peut les parcourir dans les deux sens." },
+    { q: "Quelle différence entre graphe pondéré et non pondéré ?", a: "Un graphe pondéré associe un coût, une distance ou une valeur à chaque lien." },
+    { q: "Comment représenter un graphe en Python ?", a: "Par une liste d’adjacence, un dictionnaire de voisins ou une matrice d’adjacence." },
+    { q: "Quelle différence entre parcours en largeur et en profondeur ?", a: "La largeur utilise une file et explore par niveaux ; la profondeur utilise une pile ou la récursion et explore un chemin aussi loin que possible." }
+  ],
+  poo: [
+    { q: "Qu’est-ce qu’une classe ?", a: "Un modèle qui décrit les attributs et les méthodes d’objets de même nature." },
+    { q: "Qu’est-ce qu’une instance ?", a: "Un objet concret créé à partir d’une classe." },
+    { q: "Quelle différence entre attribut et méthode ?", a: "Un attribut stocke une donnée de l’objet ; une méthode est une fonction associée à l’objet." },
+    { q: "À quoi sert __init__ ?", a: "C’est le constructeur : il initialise les attributs d’une nouvelle instance." },
+    { q: "Que représente self ?", a: "La référence vers l’instance courante, celle sur laquelle la méthode est appelée." }
+  ],
+  routage: [
+    { q: "À quoi sert le routage ?", a: "À choisir le chemin que doivent suivre les paquets pour aller d’un réseau source vers un réseau destination." },
+    { q: "Quelle différence entre RIP et OSPF ?", a: "RIP choisit selon le nombre de sauts ; OSPF utilise un coût souvent lié au débit des liaisons et une meilleure vision de la topologie." },
+    { q: "Qu’est-ce qu’une table de routage ?", a: "Un tableau indiquant, pour chaque destination connue, la prochaine passerelle ou interface à utiliser." },
+    { q: "Pourquoi le chemin le plus court en nombre de routeurs n’est-il pas toujours le meilleur ?", a: "Parce qu’un lien plus long en nombre de sauts peut avoir un meilleur débit ou un coût OSPF plus faible." }
+  ],
+  structures: [
+    { q: "Qu’est-ce qu’une pile ?", a: "Une structure LIFO : dernier entré, premier sorti. Exemple : pile d’assiettes, appels de fonctions." },
+    { q: "Qu’est-ce qu’une file ?", a: "Une structure FIFO : premier entré, premier sorti. Exemple : file d’attente, impressions." },
+    { q: "Quelles opérations classiques fait-on sur une pile ?", a: "Empiler, dépiler, tester si elle est vide, lire le sommet selon l’interface choisie." },
+    { q: "Quelles opérations classiques fait-on sur une file ?", a: "Enfiler, défiler, tester si elle est vide, lire la tête selon l’interface choisie." },
+    { q: "Pourquoi faut-il être précis sur le sommet ou la tête ?", a: "Parce qu’une erreur de côté inverse l’ordre de traitement et change complètement le résultat." }
+  ],
+  programmation: [
+    { q: "Qu’est-ce qu’une précondition ?", a: "Une condition que les données doivent vérifier avant l’appel d’une fonction pour que son comportement soit correct." },
+    { q: "Qu’est-ce qu’un invariant ou une propriété de boucle ?", a: "Une propriété qui reste vraie pendant l’exécution d’une boucle et aide à justifier l’algorithme." },
+    { q: "Qu’est-ce qu’un cas de base en récursivité ?", a: "Le cas qui arrête les appels récursifs et permet à la fonction de terminer." },
+    { q: "Comment expliquer la complexité d’un algorithme simplement ?", a: "En estimant comment le nombre d’opérations évolue quand la taille des données augmente." },
+    { q: "Que signifie O(n) ?", a: "Le temps de calcul est proportionnel à la taille des données, par exemple un parcours complet d’une liste." }
+  ]
 };
