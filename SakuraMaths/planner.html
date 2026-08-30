@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planner Google Agenda — SakuraMaths</title>
+  <link rel="stylesheet" href="site-commun.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script type="module">import { guardProf } from "./auth/auth.js"; guardProf();</script>
+  <style>
+    .planner-shell{display:grid;gap:18px}
+    .planner-card{background:var(--glass);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 12px 35px rgba(130,92,112,.14);backdrop-filter:blur(10px)}
+    .planner-top{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
+    .planner-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+    .planner-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(216,139,164,.45);border-radius:14px;padding:11px 15px;background:var(--accent);color:#fff;font:inherit;font-weight:850;cursor:pointer;box-shadow:0 8px 18px rgba(216,139,164,.2)}
+    .planner-btn:hover{background:var(--accent-ink)}
+    .planner-btn.ghost{background:rgba(255,255,255,.62);color:var(--accent-ink);box-shadow:none}
+    .planner-btn:disabled{opacity:.55;cursor:wait}
+    .calendar-field{display:grid;gap:7px;color:var(--muted);font-size:.86rem;font-weight:800}
+    .calendar-field input{width:100%;border:1px solid rgba(216,139,164,.35);border-radius:13px;background:rgba(255,255,255,.72);padding:11px 12px;color:var(--ink);font:inherit}
+    .planner-status{margin-top:12px;color:var(--muted);line-height:1.55}
+    .planner-status.error{color:#9a3d4f;font-weight:750}
+    .week-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .week-title{font-family:Georgia,serif;color:#5a3f54;font-size:1.35rem;margin:0}
+    .week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
+    .day-column{min-height:260px;background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.76);border-radius:18px;padding:10px}
+    .day-column.today{outline:2px solid rgba(216,139,164,.45);background:rgba(253,238,241,.72)}
+    .day-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:9px;color:#5a3f54}
+    .day-name{font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem}
+    .day-date{font-family:Georgia,serif;font-size:1.25rem;color:var(--accent-ink)}
+    .event-card{display:block;margin:7px 0;padding:8px 9px;border-radius:13px;background:linear-gradient(135deg,#fff,#f8eff5);border:1px solid rgba(216,139,164,.28);color:var(--ink);text-decoration:none;box-shadow:0 5px 14px rgba(130,92,112,.08)}
+    .event-card strong{display:block;font-size:.86rem;line-height:1.25;color:#47304f}
+    .event-card span{display:block;margin-top:4px;color:var(--muted);font-size:.76rem;font-weight:750}
+    .event-card.all-day{border-color:rgba(124,58,237,.25);background:linear-gradient(135deg,#fff,#f2efff)}
+    .empty-day{color:#a08f9a;font-size:.8rem;font-style:italic;margin:8px 0}
+    .today-list,.upcoming-list{display:grid;gap:8px}
+    .mini-event{display:grid;grid-template-columns:74px 1fr;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.72)}
+    .mini-event time{font-weight:900;color:var(--accent-ink)}
+    .mini-event strong{color:#47304f}
+    .mini-event small{display:block;color:var(--muted);margin-top:2px}
+    .setup-note{border-left:5px solid var(--accent);background:rgba(255,255,255,.68);border-radius:18px;padding:14px 16px;color:var(--muted);line-height:1.55}
+    .setup-note code{background:#fff;border:1px solid rgba(216,139,164,.28);border-radius:8px;padding:2px 5px;color:#5a3f54}
+    @media(max-width:980px){.planner-top{grid-template-columns:1fr}.week-grid{grid-template-columns:1fr 1fr}.day-column{min-height:170px}}
+    @media(max-width:620px){.week-grid{grid-template-columns:1fr}.mini-event{grid-template-columns:1fr}.week-toolbar{align-items:flex-start}.planner-actions .planner-btn{width:100%}}
+  </style>
+</head>
+<body data-page="planner" data-zone="prof">
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">📅 Planner prof <span id="authIdentity"></span></div>
+      <h1>Google Agenda</h1>
+      <p class="intro">Une vue planner en lecture seule pour préparer la semaine, repérer les créneaux chargés et relier progressivement l’agenda aux progressions SakuraMaths.</p>
+    </section>
+
+    <section class="planner-shell">
+      <div class="planner-top">
+        <article class="planner-card">
+          <span class="badge tools">Connexion agenda</span>
+          <h2>Autoriser Google Agenda</h2>
+          <p class="muted">SakuraMaths utilise déjà ta connexion Google pour l’espace prof. Ici, on demande seulement un droit supplémentaire : lire ton agenda, sans le modifier.</p>
+          <div class="planner-actions">
+            <button class="planner-btn" id="authorizeCalendar" type="button">🔐 Autoriser l’agenda</button>
+            <button class="planner-btn ghost" id="refreshCalendar" type="button" disabled>↻ Actualiser</button>
+            <button class="planner-btn ghost" id="clearCalendarToken" type="button" disabled>Déconnecter l’agenda</button>
+          </div>
+          <p class="planner-status" id="calendarStatus">Agenda non autorisé pour le moment.</p>
+        </article>
+
+        <article class="planner-card">
+          <span class="badge maths">Réglages</span>
+          <h2>Agenda affiché</h2>
+          <label class="calendar-field">
+            Identifiant de l’agenda
+            <input id="calendarId" value="primary" autocomplete="off">
+          </label>
+          <p class="note">Garde <code>primary</code> pour ton agenda principal. Plus tard, on pourra connecter un agenda “SakuraMaths” dédié aux évaluations, livrets et progressions.</p>
+        </article>
+      </div>
+
+      <article class="planner-card">
+        <div class="week-toolbar">
+          <h2 class="week-title" id="weekTitle">Semaine</h2>
+          <div class="planner-actions">
+            <button class="planner-btn ghost" id="prevWeek" type="button">← Semaine précédente</button>
+            <button class="planner-btn ghost" id="thisWeek" type="button">Aujourd’hui</button>
+            <button class="planner-btn ghost" id="nextWeek" type="button">Semaine suivante →</button>
+          </div>
+        </div>
+        <div class="week-grid" id="weekGrid" aria-live="polite"></div>
+      </article>
+
+      <div class="planner-top">
+        <article class="planner-card">
+          <span class="badge green">Aujourd’hui</span>
+          <h2>À voir maintenant</h2>
+          <div class="today-list" id="todayList"></div>
+        </article>
+        <article class="planner-card">
+          <span class="badge quatrieme">À venir</span>
+          <h2>Prochains événements</h2>
+          <div class="upcoming-list" id="upcomingList"></div>
+        </article>
+      </div>
+
+      <aside class="setup-note">
+        Si l’autorisation échoue, vérifie dans Google Cloud que l’API Google Calendar est activée et que l’origine JavaScript autorisée contient <code>https://alg77.github.io</code>. En local, il faudra tester avec un petit serveur HTTP plutôt qu’en <code>file://</code>.
+      </aside>
+    </section>
+  </main>
+
+  <script src="assets/site.js" defer></script>
+  <script type="module">
+    import { googleCalendarConfig, googleCalendarConfigured } from "./auth/google-calendar-config.js";
+
+    const state = {
+      accessToken: "",
+      tokenClient: null,
+      weekStart: startOfWeek(new Date()),
+      events: []
+    };
+
+    const $ = id => document.getElementById(id);
+    const calendarIdInput = $("calendarId");
+    const status = $("calendarStatus");
+    const authorizeButton = $("authorizeCalendar");
+    const refreshButton = $("refreshCalendar");
+    const clearButton = $("clearCalendarToken");
+
+    document.addEventListener("sakura-auth", event => {
+      $("authIdentity").textContent = `· ${event.detail.user.email}`;
+    });
+
+    try {
+      calendarIdInput.value = localStorage.getItem("sakura.calendarId") || googleCalendarConfig.defaultCalendarId || "primary";
+    } catch (_) {}
+
+    calendarIdInput.addEventListener("change", () => {
+      try { localStorage.setItem("sakura.calendarId", calendarIdInput.value.trim() || "primary"); } catch (_) {}
+      if (state.accessToken) loadEvents();
+    });
+
+    authorizeButton.addEventListener("click", async () => {
+      if (!googleCalendarConfigured) {
+        showStatus("Configuration Google Calendar à compléter.", true);
+        return;
+      }
+      authorizeButton.disabled = true;
+      try {
+        await ensureToken(true);
+        await loadEvents();
+      } catch (error) {
+        showStatus(calendarError(error), true);
+      } finally {
+        authorizeButton.disabled = false;
+      }
+    });
+
+    refreshButton.addEventListener("click", () => loadEvents());
+    clearButton.addEventListener("click", () => {
+      if (state.accessToken && window.google?.accounts?.oauth2) {
+        google.accounts.oauth2.revoke(state.accessToken, () => {});
+      }
+      state.accessToken = "";
+      state.events = [];
+      refreshButton.disabled = true;
+      clearButton.disabled = true;
+      showStatus("Agenda déconnecté de cette page.");
+      render();
+    });
+
+    $("prevWeek").addEventListener("click", () => moveWeek(-7));
+    $("nextWeek").addEventListener("click", () => moveWeek(7));
+    $("thisWeek").addEventListener("click", () => {
+      state.weekStart = startOfWeek(new Date());
+      if (state.accessToken) loadEvents(); else render();
+    });
+
+    render();
+
+    async function ensureToken(promptUser) {
+      await loadGoogleIdentity();
+      if (!state.tokenClient) {
+        state.tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: googleCalendarConfig.clientId,
+          scope: googleCalendarConfig.scope,
+          callback: response => {
+            if (response.error) throw new Error(response.error);
+            state.accessToken = response.access_token;
+          }
+        });
+      }
+      if (state.accessToken && !promptUser) return;
+      await new Promise((resolve, reject) => {
+        state.tokenClient.callback = response => {
+          if (response.error) reject(new Error(response.error));
+          else {
+            state.accessToken = response.access_token;
+            resolve();
+          }
+        };
+        state.tokenClient.requestAccessToken({ prompt: promptUser ? "consent" : "" });
+      });
+      refreshButton.disabled = false;
+      clearButton.disabled = false;
+    }
+
+    function loadGoogleIdentity() {
+      if (window.google?.accounts?.oauth2) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://accounts.google.com/gsi/client";
+        script.async = true;
+        script.defer = true;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error("Impossible de charger Google Identity Services."));
+        document.head.appendChild(script);
+      });
+    }
+
+    async function loadEvents() {
+      if (!state.accessToken) await ensureToken(false);
+      showStatus("Chargement de l’agenda…");
+      const min = state.weekStart;
+      const max = addDays(state.weekStart, 21);
+      const params = new URLSearchParams({
+        timeMin: min.toISOString(),
+        timeMax: max.toISOString(),
+        singleEvents: "true",
+        orderBy: "startTime",
+        maxResults: "80"
+      });
+      const calendarId = encodeURIComponent(calendarIdInput.value.trim() || "primary");
+      const response = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?${params}`, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      });
+      if (!response.ok) {
+        const detail = await response.json().catch(() => ({}));
+        throw new Error(detail.error?.message || `Erreur Google Calendar ${response.status}`);
+      }
+      const data = await response.json();
+      state.events = (data.items || []).map(normalizeEvent);
+      showStatus(`${state.events.length} événement(s) récupéré(s).`);
+      render();
+    }
+
+    function moveWeek(days) {
+      state.weekStart = addDays(state.weekStart, days);
+      if (state.accessToken) loadEvents(); else render();
+    }
+
+    function render() {
+      const days = Array.from({ length: 7 }, (_, i) => addDays(state.weekStart, i));
+      $("weekTitle").textContent = `Semaine du ${formatLong(days[0])} au ${formatLong(days[6])}`;
+      $("weekGrid").innerHTML = days.map(dayTemplate).join("");
+      renderList("todayList", eventsForDay(new Date()).slice(0, 6), "Rien de prévu aujourd’hui.");
+      const now = new Date();
+      renderList("upcomingList", state.events.filter(event => event.end >= now).slice(0, 8), "Autorise l’agenda pour voir les prochains événements.");
+    }
+
+    function dayTemplate(day) {
+      const events = eventsForDay(day);
+      const today = sameDate(day, new Date());
+      return `<section class="day-column ${today ? "today" : ""}">
+        <header class="day-head"><span class="day-name">${escapeHtml(dayName(day))}</span><span class="day-date">${day.getDate()}</span></header>
+        ${events.length ? events.map(eventCard).join("") : '<p class="empty-day">Aucun événement.</p>'}
+      </section>`;
+    }
+
+    function eventCard(event) {
+      const href = event.htmlLink ? ` href="${escapeAttr(event.htmlLink)}" target="_blank" rel="noopener"` : "";
+      return `<a class="event-card ${event.allDay ? "all-day" : ""}"${href}>
+        <strong>${escapeHtml(event.summary)}</strong>
+        <span>${escapeHtml(eventTime(event))}</span>
+      </a>`;
+    }
+
+    function renderList(id, events, emptyText) {
+      $(id).innerHTML = events.length ? events.map(event => `<div class="mini-event">
+        <time>${escapeHtml(eventListTime(event))}</time>
+        <div><strong>${escapeHtml(event.summary)}</strong><small>${escapeHtml(eventDateLabel(event))}</small></div>
+      </div>`).join("") : `<p class="empty-day">${emptyText}</p>`;
+    }
+
+    function normalizeEvent(item) {
+      const allDay = Boolean(item.start?.date);
+      const start = new Date(item.start?.dateTime || `${item.start?.date}T00:00:00`);
+      const end = new Date(item.end?.dateTime || `${item.end?.date}T23:59:59`);
+      return {
+        summary: item.summary || "(Sans titre)",
+        htmlLink: item.htmlLink || "",
+        allDay,
+        start,
+        end
+      };
+    }
+
+    function eventsForDay(day) {
+      return state.events.filter(event => sameDate(event.start, day) || (event.start < endOfDay(day) && event.end > startOfDay(day)));
+    }
+
+    function eventTime(event) {
+      if (event.allDay) return "Toute la journée";
+      return `${timeFmt(event.start)} – ${timeFmt(event.end)}`;
+    }
+
+    function eventListTime(event) {
+      return sameDate(event.start, new Date()) ? eventTime(event) : shortDate(event.start);
+    }
+
+    function eventDateLabel(event) {
+      return `${dayName(event.start)} ${formatLong(event.start)}${event.allDay ? "" : ` · ${eventTime(event)}`}`;
+    }
+
+    function showStatus(message, isError = false) {
+      status.textContent = message;
+      status.classList.toggle("error", isError);
+    }
+
+    function calendarError(error) {
+      const msg = String(error?.message || error || "");
+      if (msg.includes("access_denied")) return "Autorisation annulée : l’agenda n’a pas été connecté.";
+      if (msg.includes("not been used") || msg.includes("disabled")) return "L’API Google Calendar semble désactivée dans Google Cloud.";
+      if (msg.includes("origin") || msg.includes("redirect_uri")) return "L’origine du site n’est probablement pas autorisée dans le client OAuth Google.";
+      return msg || "Impossible de charger l’agenda.";
+    }
+
+    function startOfWeek(date) {
+      const d = startOfDay(date);
+      const day = (d.getDay() + 6) % 7;
+      return addDays(d, -day);
+    }
+    function startOfDay(date) { const d = new Date(date); d.setHours(0,0,0,0); return d; }
+    function endOfDay(date) { const d = new Date(date); d.setHours(23,59,59,999); return d; }
+    function addDays(date, days) { const d = new Date(date); d.setDate(d.getDate() + days); return d; }
+    function sameDate(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+    function dayName(date){ return new Intl.DateTimeFormat("fr-FR",{weekday:"short"}).format(date); }
+    function formatLong(date){ return new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"long"}).format(date); }
+    function shortDate(date){ return new Intl.DateTimeFormat("fr-FR",{day:"2-digit",month:"2-digit"}).format(date); }
+    function timeFmt(date){ return new Intl.DateTimeFormat("fr-FR",{hour:"2-digit",minute:"2-digit"}).format(date); }
+    function escapeHtml(value){ return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char])); }
+    function escapeAttr(value){ return escapeHtml(value).replace(/`/g,"&#096;"); }
+  </script>
+</body>
+</html>

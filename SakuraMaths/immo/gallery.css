@@ -8,4 +8,4 @@
 .thumbnails{position:absolute;left:0;right:0;bottom:0;padding:10px;display:flex;gap:7px;overflow-x:auto;background:linear-gradient(transparent,#17231dcc)}
 .thumbnails button{flex:0 0 58px;height:44px;border:2px solid transparent;border-radius:7px;background-size:cover;background-position:center;cursor:pointer;opacity:.7}
 .thumbnails button.active{border-color:#fff;opacity:1}
-@media(max-width:760px){.visual{min-height:360px}}
+@media(max-width:760px){.visual{min-height:0}}

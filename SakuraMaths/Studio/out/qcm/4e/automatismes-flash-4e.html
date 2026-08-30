@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Automatismes flash — 4e</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <script src="practice-4e-data.js" defer></script>
+  <script src="automatismes-4e-generators.js" defer></script>
+  <style>
+    :root{--bg:#f3f8ff;--card:#fff;--border:#dce9f7;--ink:#304263;--muted:#6d7890;--accent:#7fa8dc;--accent-ink:#4d73ae;--N:#8fb3d9;--G:#e6a18c;--D:#8fd3b3;--A:#b9a3dd}
+    *{box-sizing:border-box}
+    body{font-family:'Atkinson Hyperlegible',sans-serif;margin:0;background:linear-gradient(145deg,#eef7ff,#f7f2ff);color:var(--ink);line-height:1.5}
+    h1,h2,h3{font-family:'Baloo 2',sans-serif}
+    .wrap{max-width:980px;margin:0 auto;padding:1.6rem 1.4rem 4rem}
+    header{text-align:center;margin-bottom:1.6rem}
+    h1{font-size:clamp(1.5rem,4vw,2.1rem);color:var(--accent-ink);margin:0 0 .3rem}
+    .sub{color:var(--muted);font-size:.9rem}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.5rem;margin-bottom:1.4rem;box-shadow:0 4px 18px rgba(80,110,150,.08)}
+    .panel h2{font-size:1.1rem;color:var(--accent-ink);margin:0 0 .8rem;border-bottom:1px solid var(--border);padding-bottom:.5rem}
+    .chaps{display:flex;flex-wrap:wrap;gap:.4rem}
+    .chap-chip{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--border);border-radius:999px;padding:.3rem .7rem;font-size:.8rem;cursor:pointer;user-select:none;background:#fff}
+    .chap-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+    .chap-chip .dot{width:8px;height:8px;border-radius:50%}
+    .row-controls{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+    .btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:.7rem 1.3rem;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Baloo 2',sans-serif;text-decoration:none}
+    .btn:hover{background:var(--accent-ink)}
+    .btn.ghost{background:#fff;color:var(--accent-ink);border:1px solid var(--border)}
+    .count-note{font-size:.82rem;color:var(--muted)}
+    .flash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin-top:1rem}
+    .flashcard{border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;background:#fffdfc;cursor:pointer;position:relative;min-height:100px}
+    .flashcard .fc-theme{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+    .flashcard .fc-code{font-size:.68rem;color:var(--muted);font-family:monospace}
+    .flashcard .fc-q{margin-top:.5rem;font-size:1.02rem;font-weight:600}
+    .flashcard .fc-a{margin-top:.6rem;padding-top:.5rem;border-top:1px dashed var(--border);color:var(--accent-ink);font-weight:700;display:none}
+    .flashcard.revealed .fc-a{display:block}
+    .flashcard .fc-hint{font-size:.72rem;color:var(--muted);margin-top:.5rem;font-style:italic}
+    footer{text-align:center;color:var(--muted);font-size:.82rem;padding:2rem 0 0}
+  </style>
+</head>
+<body><div class="wrap">
+<header><h1>⚡ Automatismes flash — 4e</h1><div class="sub">Pioche rapide pour début de séance : clique une carte pour afficher la réponse attendue.</div></header>
+<section class="panel">
+  <h2>📚 Choisir les chapitres</h2>
+  <div class="chaps" id="chapsList"></div>
+</section>
+<section class="panel">
+  <h2>🎲 Pioche flash du jour</h2>
+  <div class="row-controls"><label>Nombre de questions : <input type="number" id="flashCount" value="5" min="5" max="10" style="width:60px"></label><button class="btn" id="draw" type="button">Tirer 5 questions</button><button class="btn ghost" id="reveal" type="button">Tout révéler</button><a class="btn ghost" href="qcm-4e.html">🎯 Version QCM</a><span class="count-note">Cliquer une carte pour révéler la réponse.</span></div>
+  <div class="flash-grid" id="grid"></div>
+</section>
+<footer>SakuraMaths — banque d'automatismes 4e générée depuis le pont-livret</footer>
+</div><script>
+window.addEventListener('DOMContentLoaded',()=>{
+const autos=window.SAKURA_AUTOS_4E||[],data=window.SAKURA_4E_PRACTICE||{chapitres:[]},chips=document.querySelector('#chapsList'),grid=document.querySelector('#grid');
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const colors={N:'var(--N)',G:'var(--G)',D:'var(--D)',A:'var(--A)'};
+const chapters=[...new Set(autos.map(a=>a.seq).filter(Boolean))], selected=new Set(chapters);
+chips.innerHTML=chapters.map(c=>{const info=(data.chapitres||[]).find(x=>x.code===c)||{},theme=(info.theme||c[0]||'N').slice(0,1);return `<span class="chap-chip on" data-code="${esc(c)}"><i class="dot" style="background:${colors[theme]||'var(--accent)'}"></i>${esc(c)} · ${esc(info.titre||c)}</span>`}).join('');
+chips.querySelectorAll('.chap-chip').forEach(chip=>chip.addEventListener('click',()=>{const c=chip.dataset.code;selected.has(c)?selected.delete(c):selected.add(c);chip.classList.toggle('on',selected.has(c));draw()}));
+function choice(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function pickNRepeat(arr,n){const out=[];if(!arr.length)return out;for(let i=0;i<n;i++)out.push(choice(arr));return out}
+function draw(){const pool=autos.filter(a=>selected.has(a.seq));const n=Math.max(5,Math.min(10,+document.querySelector('#flashCount').value||5));document.querySelector('#draw').textContent='Tirer '+n+' questions';const chosen=pickNRepeat(pool,n);grid.innerHTML=chosen.length?chosen.map(a=>{const qa=a.generate();const theme=(a.theme||a.seq?.[0]||'N').slice(0,1);return `<article class="flashcard"><span class="fc-theme" style="background:${colors[theme]||'var(--accent)'}"></span><span class="fc-code">${esc(a.seq)} · ${esc(a.code)}</span><div class="fc-q">${qa.enonce}</div><div class="fc-a">${esc(qa.reponse)}</div><div class="fc-hint">${esc(a.label)}</div></article>`}).join(''):'<p class="count-note">Sélectionne au moins un chapitre.</p>';grid.querySelectorAll('.flashcard').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('revealed')))}
+document.querySelector('#draw').addEventListener('click',draw);document.querySelector('#reveal').addEventListener('click',()=>grid.querySelectorAll('.flashcard').forEach(c=>c.classList.add('revealed')));draw();
+});
+</script></body></html>

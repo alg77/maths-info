@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mon radar immo</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="gallery.css">
 </head>
@@ -15,21 +16,80 @@
   <main>
     <section class="toolbar" aria-label="Filtres">
       <label class="search">⌕ <input id="search" type="search" placeholder="Ville, quartier, détail…"></label>
+      <label class="select-control">Ville <select id="city-filter"><option value="all">Toutes</option></select></label>
+      <label class="select-control">Tri <select id="sort">
+        <option value="added-desc">Ajout récent</option>
+        <option value="price-asc">Prix ↑</option>
+        <option value="price-desc">Prix ↓</option>
+        <option value="sqm-asc">€/m² ↑</option>
+        <option value="surface-desc">Surface ↓</option>
+        <option value="land-desc">Terrain ↓</option>
+        <option value="city-asc">Ville A→Z</option>
+        <option value="dpe-asc">DPE meilleur</option>
+        <option value="score-desc">Note famille ↓</option>
+      </select></label>
       <div id="filters" class="filters">
-        <button class="active" data-filter="all">Tous</button><button data-filter="favorite">Coups de cœur</button><button data-filter="visit">À visiter</button>
+        <button class="active" data-filter="all">Tous</button><button data-filter="favorite">Coups de cœur</button><button data-filter="visit">À visiter</button><button data-filter="offer">Sous offre / compromis</button><button data-filter="sold">Vendus</button><button data-filter="discarded">Archives</button>
       </div>
+      <button id="reset-filters" class="copy">Réinitialiser</button>
+    </section>
+    <section id="insights" class="insights" aria-label="Résumé de la sélection"></section>
+    <section class="budget-planner" aria-labelledby="budget-title">
+      <div class="budget-intro"><p class="eyebrow">COÛT RÉEL</p><h2 id="budget-title">Simulateur du projet</h2><p>Les cartes additionnent crédit estimé, énergie connue et éventuelle deuxième voiture. Modifie les hypothèses selon votre financement.</p></div>
+      <div class="budget-grid">
+        <label>Apport (€)<input id="budget-down" type="number" min="0" step="1000"></label>
+        <label>Durée (ans)<input id="budget-years" type="number" min="1" max="35" step="1"></label>
+        <label>Taux nominal (%)<input id="budget-rate" type="number" min="0" max="20" step="0.1"></label>
+        <label>Frais d’acquisition (%)<input id="budget-notary" type="number" min="0" max="20" step="0.5"></label>
+        <label>Deuxième voiture (€)<input id="budget-car" type="number" min="0" step="1000"></label>
+        <label class="budget-check"><input id="budget-car-enabled" type="checkbox"> Ajouter la voiture hors Lagny</label>
+      </div>
+      <small>Estimation hors assurance emprunteur, taxe foncière, entretien, travaux et frais d’usage de la voiture. Les dépenses d’énergie sont des estimations en euros, pas des consommations en kWh.</small>
+    </section>
+    <section class="scoring-method">
+      <details>
+        <summary>Comment est calculée la compatibilité famille ?</summary>
+        <p>Référence actuelle très forte : appart de 97 m², collège à 7 min à pied, maternelle à 3 min à pied. L’idéal est une maison indépendante avec passage par le jardin tout autour. Une jonction uniquement par le garage reste acceptable ; un mur partagé avec les pièces de vie est fortement pénalisé. Pour le sport, une salle dédiée et exploitable suffit déjà. Un mini-dojo est idéal ; une dépendance ou un atelier séparé constitue un bonus, sans être indispensable vu le prix du m² habitable.</p>
+        <div>
+          <span><b>25%</b> quotidien travail/écoles</span>
+          <span><b>20%</b> chambres & espaces enfants</span>
+          <span><b>20%</b> stockage, collections & atelier</span>
+          <span><b>15%</b> extérieur & Shiba</span>
+          <span><b>10%</b> sport / dojo</span>
+          <span><b>10%</b> énergie & risques travaux</span>
+        </div>
+      </details>
     </section>
     <section id="cards" class="cards"></section>
   </main>
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Fermer la photo">×</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Photo précédente">‹</button>
+    <img alt="">
+    <button class="lightbox-nav lightbox-next" aria-label="Photo suivante">›</button>
+    <span class="lightbox-count"></span>
+  </div>
   <template id="card-template">
     <article class="card">
       <div class="visual"><img alt=""><div class="placeholder"><span>⌂</span><small>Photos à ajouter</small></div><button class="gallery-nav previous" aria-label="Photo précédente">‹</button><button class="gallery-nav next" aria-label="Photo suivante">›</button><span class="photo-count"></span><button class="heart" aria-label="Ajouter aux coups de cœur">♡</button><span class="source"></span><div class="thumbnails"></div></div>
       <div class="content">
         <div class="headline"><div><p class="location"></p><h2></h2></div><strong class="price"></strong></div>
+        <p class="address" hidden></p>
         <div class="facts"></div><p class="description"></p>
         <div class="tags"></div>
-        <div class="watch"><label>Suivi <select class="status"><option value="new">À étudier</option><option value="visit">À visiter</option><option value="contacted">Contact pris</option><option value="discarded">Écarté</option></select></label><label>Ma note <textarea rows="2" placeholder="Impressions, questions, travaux…"></textarea></label></div>
-        <div class="actions"><a class="primary" target="_blank" rel="noopener">Voir l’annonce ↗</a><button class="copy">Copier le résumé</button></div>
+        <div class="family-preview" hidden></div>
+        <div class="budget-summary"></div>
+        <div class="listing-links"></div>
+        <div class="updates" hidden>
+          <h3>Historique</h3>
+          <ul></ul>
+        </div>
+        <div class="map" hidden>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div><span class="map-label"></span><a class="map-link" target="_blank" rel="noopener">Ouvrir dans Maps ↗</a></div>
+        </div>
+        <div class="watch"><label>Suivi <select class="status"><option value="new">À étudier</option><option value="visit">À visiter</option><option value="contacted">Contact pris</option><option value="offer">Sous offre / compromis</option><option value="sold">Vendu</option><option value="discarded">Écarté</option></select></label><label>Ma note <textarea rows="2" placeholder="Impressions, questions, travaux…"></textarea></label></div>
+        <div class="actions"><a class="primary" target="_blank" rel="noopener">Voir l’annonce ↗</a><a class="details-link">Détails famille</a><button class="copy">Copier le résumé</button></div>
       </div>
     </article>
   </template>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mini-évaluations spiralaires — 4e</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <script src="practice-4e-data.js" defer></script>
+  <script src="automatismes-4e-generators.js" defer></script>
+  <style>
+    :root{--ink:#3f3150;--muted:#786b79;--rose:#d98ba4;--violet:#7667ba;--blue:#7fa8dc;--green:#8fd3b3;--paper:#fffdfc;--border:#eadde6}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,#fff7fb,#eef7ff);font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:var(--ink);line-height:1.45}
+    h1,h2,h3{font-family:'Baloo 2',system-ui,sans-serif;letter-spacing:.01em}
+    .wrap{max-width:1120px;margin:0 auto;padding:24px 18px 50px}
+    .hero,.panel{background:rgba(255,255,255,.88);border:1px solid #fff;border-radius:24px;box-shadow:0 16px 40px rgba(88,64,104,.12)}
+    .hero{padding:26px 30px;margin-bottom:18px;text-align:center}
+    .kicker{display:inline-flex;gap:6px;align-items:center;border-radius:999px;background:#fff0f6;color:#a85f7d;font-weight:800;padding:6px 12px;font-size:.82rem}
+    h1{font-size:clamp(2rem,5vw,3.5rem);margin:10px 0 4px;color:#4e3b62}
+    .sub{color:var(--muted);max-width:820px;margin:0 auto}
+    .panel{padding:20px;margin:16px 0}
+    .toolbar{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:12px;align-items:end}
+    label{display:grid;gap:5px;font-weight:700;color:#5b4a60}
+    select,input{font:inherit;border-radius:14px;border:1px solid var(--border);padding:10px 12px;background:#fff;color:var(--ink)}
+    .btn{border:0;border-radius:999px;padding:11px 17px;font:800 1rem 'Baloo 2',system-ui,sans-serif;cursor:pointer;background:linear-gradient(90deg,var(--violet),var(--rose));color:#fff;box-shadow:0 10px 22px rgba(166,91,124,.18)}
+    .btn.secondary{background:#fff;color:#8a5fac;border:1px solid var(--border);box-shadow:none}
+    .rule{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+    .rule-card{border:1px solid var(--border);background:#fffdfc;border-radius:16px;padding:12px;text-align:center}
+    .rule-card strong{display:block;color:#5d4baa;font-size:1.25rem}
+    .status{margin-top:12px;color:var(--muted)}
+    .subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:14px}
+    .subject{background:#fff;border:1px solid var(--border);border-radius:18px;padding:16px;break-inside:avoid}
+    .subject h3{margin:0 0 10px;color:#5d4baa;font-size:1.3rem}
+    ol{padding-left:1.4rem;margin:.3rem 0}
+    li{margin:.45rem 0;padding-left:.15rem}
+    .code{font:700 .72rem ui-monospace,Consolas,monospace;color:#7a6c7e;background:#f7f2ff;border-radius:8px;padding:2px 6px;white-space:nowrap}
+    .answer{color:#386b55;font-weight:700}
+    .answers{display:none}
+    body.show-answers .answers{display:block}
+    body.show-answers .only-print-subjects{display:none}
+    .theme-N{border-top:7px solid #8fb3d9}.theme-G{border-top:7px solid #e6a18c}.theme-D{border-top:7px solid #8fd3b3}.theme-A{border-top:7px solid #b9a3dd}
+    .empty{color:var(--muted);font-style:italic}
+    @media (max-width:760px){.toolbar,.rule{grid-template-columns:1fr}}
+    @media print{
+      body{background:#fff;color:#111}.wrap{max-width:none;padding:0}.hero,.panel{box-shadow:none;border:0;border-radius:0;padding:0;margin:0 0 10mm}
+      .toolbar,.rule,.status,.no-print{display:none!important}h1{font-size:22pt}.subjects{display:block}.subject{page-break-inside:avoid;border-color:#bbb;margin-bottom:8mm}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <span class="kicker">🌸 Automatismes 4e</span>
+    <h1>Mini-évaluations spiralaires</h1>
+    <p class="sub">20 questions : les 2 automatismes les plus récents sont renforcés, puis 2 anciens entretiennent la mémoire. Si moins de 4 automatismes sont débloqués, la répartition s’adapte automatiquement.</p>
+  </section>
+
+  <section class="panel no-print">
+    <div class="toolbar">
+      <label>Chapitre atteint
+        <select id="chapter"></select>
+      </label>
+      <label>Nombre de sujets
+        <input id="subjectCount" type="number" min="1" max="8" value="4">
+      </label>
+      <label>Questions
+        <input id="questionCount" type="number" min="5" max="30" value="20">
+      </label>
+      <button class="btn" id="generate" type="button">Générer</button>
+    </div>
+    <div class="rule">
+      <div class="rule-card"><strong>6</strong>questions sur le plus récent</div>
+      <div class="rule-card"><strong>6</strong>questions sur l’autre récent</div>
+      <div class="rule-card"><strong>4</strong>questions sur un ancien</div>
+      <div class="rule-card"><strong>4</strong>questions sur un ancien</div>
+    </div>
+    <p class="status" id="status"></p>
+    <p><button class="btn secondary" id="toggleAnswers" type="button">Afficher les corrigés</button> <button class="btn secondary" type="button" onclick="window.print()">Imprimer / PDF</button></p>
+  </section>
+
+  <section class="panel">
+    <h2>Sujets élèves</h2>
+    <div class="subjects only-print-subjects" id="subjects"></div>
+    <div class="answers">
+      <h2>Corrigés</h2>
+      <div class="subjects" id="answers"></div>
+    </div>
+  </section>
+</div>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  const data = window.SAKURA_4E_PRACTICE || {chapitres:[]};
+  const autos = (window.SAKURA_AUTOS_4E || []).filter(a => typeof a.generate === 'function');
+  const chapter = document.querySelector('#chapter');
+  const subjectsEl = document.querySelector('#subjects');
+  const answersEl = document.querySelector('#answers');
+  const statusEl = document.querySelector('#status');
+  const esc = s => String(s ?? '').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const chapterOrder = (data.chapitres || []).map(c => c.code).filter(Boolean);
+  const seen = new Set();
+  autos.forEach(a => { if(a.seq && !seen.has(a.seq)) { seen.add(a.seq); chapterOrder.push(a.seq); } });
+  const orderedChapters = [...new Set(chapterOrder)];
+  chapter.innerHTML = orderedChapters.map(c => {
+    const info = (data.chapitres || []).find(x => x.code === c) || {};
+    return `<option value="${esc(c)}">${esc(c)}${info.titre ? ' — ' + esc(info.titre) : ''}</option>`;
+  }).join('');
+  if (orderedChapters.length) chapter.value = orderedChapters[orderedChapters.length - 1];
+
+  function chapterIndex(code) {
+    const i = orderedChapters.indexOf(code);
+    return i < 0 ? 999 : i;
+  }
+  function choice(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+  function shuffle(arr) { return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]); }
+  function unlocked() {
+    const max = chapterIndex(chapter.value);
+    return autos.filter(a => chapterIndex(a.seq) <= max);
+  }
+  function plan(pool, total) {
+    const unique = [];
+    const byCode = new Map();
+    pool.forEach(a => byCode.set(a.code + '|' + a.seq, a));
+    byCode.forEach(a => unique.push(a));
+    unique.sort((a,b) => chapterIndex(a.seq) - chapterIndex(b.seq));
+    if (!unique.length) return [];
+    const recent = unique.slice(-2).reverse();
+    const older = unique.slice(0, Math.max(0, unique.length - 2));
+    const selected = recent.concat(shuffle(older).slice(0, Math.max(0, 4 - recent.length)));
+    const weights = selected.length === 1 ? [total] : selected.length === 2 ? [Math.ceil(total/2), Math.floor(total/2)] : selected.length === 3 ? [8,7,total-15] : [6,6,4,total-16];
+    return selected.map((a,i) => ({auto:a, count:Math.max(1, weights[i] || 1)}));
+  }
+  function makeSubject(letter, planItems) {
+    const items = [];
+    planItems.forEach(p => {
+      for(let i=0;i<p.count;i++) {
+        const q = p.auto.generate();
+        items.push({auto:p.auto, enonce:q.enonce, reponse:q.reponse});
+      }
+    });
+    return {letter, items:shuffle(items)};
+  }
+  function render() {
+    const pool = unlocked();
+    const total = Math.max(5, Math.min(30, +document.querySelector('#questionCount').value || 20));
+    const count = Math.max(1, Math.min(8, +document.querySelector('#subjectCount').value || 4));
+    const p = plan(pool, total);
+    if (!p.length) {
+      subjectsEl.innerHTML = '<p class="empty">Aucun automatisme disponible.</p>';
+      answersEl.innerHTML = '';
+      return;
+    }
+    const subjects = Array.from({length:count}, (_,i) => makeSubject(letters[i], p));
+    statusEl.innerHTML = 'Plan retenu : ' + p.map(x => `<span class="code">${esc(x.auto.seq)} · ${esc(x.auto.code)}</span> × ${x.count}`).join(' &nbsp; ');
+    subjectsEl.innerHTML = subjects.map(s => `<article class="subject theme-${esc((s.items[0]?.auto.theme||'N').slice(0,1))}"><h3>Sujet ${s.letter}</h3><ol>${s.items.map((it,i)=>`<li><span class="code">${esc(it.auto.code)}</span> ${it.enonce}</li>`).join('')}</ol></article>`).join('');
+    answersEl.innerHTML = subjects.map(s => `<article class="subject"><h3>Corrigé sujet ${s.letter}</h3><ol>${s.items.map((it,i)=>`<li><span class="code">${esc(it.auto.code)}</span> <span class="answer">${esc(it.reponse)}</span></li>`).join('')}</ol></article>`).join('');
+  }
+  document.querySelector('#generate').addEventListener('click', render);
+  chapter.addEventListener('change', render);
+  document.querySelector('#toggleAnswers').addEventListener('click', e => {
+    document.body.classList.toggle('show-answers');
+    e.currentTarget.textContent = document.body.classList.contains('show-answers') ? 'Masquer les corrigés' : 'Afficher les corrigés';
+  });
+  render();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatismes flash — 5ᵉ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6f8; --card:#fff; --border:#ecdfe4; --ink:#3f3540; --muted:#8a7f8a;
+  --accent:#d98ba4; --accent-ink:#a8607c; --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
+}
+*{box-sizing:border-box}
+body{font-family:'Atkinson Hyperlegible',sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.5}
+h1,h2,h3{font-family:'Baloo 2',sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:1.6rem 1.4rem 4rem}
+header{text-align:center;margin-bottom:1.6rem}
+h1{font-size:clamp(1.5rem,4vw,2rem);color:var(--accent-ink);margin:0 0 .3rem}
+.sub{color:var(--muted);font-size:.9rem}
+
+.panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.5rem;margin-bottom:1.4rem;box-shadow:0 4px 18px rgba(150,110,125,.07)}
+.panel h2{font-size:1.1rem;color:var(--accent-ink);margin:0 0 .8rem;border-bottom:1px solid var(--border);padding-bottom:.5rem}
+
+.chaps{display:flex;flex-wrap:wrap;gap:.4rem}
+.chap-chip{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--border);border-radius:999px;padding:.3rem .7rem;font-size:.8rem;cursor:pointer;user-select:none;background:#fff}
+.chap-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.chap-chip .dot{width:8px;height:8px;border-radius:50%}
+.date-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem;font-size:.88rem;flex-wrap:wrap}
+.date-row input[type=date]{border:1px solid var(--border);border-radius:8px;padding:.35rem .5rem;font-family:inherit}
+.btn-mini{border:1px solid var(--accent);background:#fff;color:var(--accent-ink);border-radius:8px;padding:.35rem .8rem;font-size:.8rem;font-weight:700;cursor:pointer}
+.btn-mini:hover{background:#fdf1f4}
+.count-note{font-size:.82rem;color:var(--muted)}
+
+.btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:.7rem 1.3rem;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Baloo 2',sans-serif}
+.btn:hover{background:var(--accent-ink)}
+.btn:disabled{background:#ccc;cursor:not-allowed}
+.row-controls{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.row-controls label{font-size:.85rem;color:var(--muted)}
+.row-controls select,.row-controls input[type=number]{border:1px solid var(--border);border-radius:8px;padding:.4rem .6rem;font-family:inherit}
+
+.flash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin-top:1rem}
+.flashcard{border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;background:#fffdfc;cursor:pointer;position:relative;min-height:100px}
+.flashcard .fc-theme{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.flashcard .fc-code{font-size:.68rem;color:var(--muted);font-family:monospace}
+.flashcard .fc-q{margin-top:.5rem;font-size:1.02rem;font-weight:600}
+.flashcard .fc-a{margin-top:.6rem;padding-top:.5rem;border-top:1px dashed var(--border);color:var(--accent-ink);font-weight:700;display:none}
+.flashcard.revealed .fc-a{display:block}
+.flashcard .fc-hint{font-size:.72rem;color:var(--muted);margin-top:.5rem;font-style:italic}
+
+.eval-preview{margin-top:1rem}
+.eval-subject{border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;margin-bottom:.7rem;background:#fff}
+.eval-subject h3{font-size:.95rem;margin:0 0 .5rem;color:var(--accent-ink)}
+.eval-subject ol{margin:0;padding-left:1.3rem;font-size:.88rem}
+.eval-subject li{margin:.3rem 0}
+.corr-val{color:var(--accent-ink);font-weight:700}
+
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:2rem 0 0}
+
+@media print{
+  body{background:#fff}
+  .no-print{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .panel{box-shadow:none;border:none;padding:0;margin:0}
+  #evalPrintArea{display:block!important}
+  .eval-print-page{page-break-after:always;padding:10mm}
+  .eval-print-page:last-child{page-break-after:auto}
+  .eval-print-title{font-family:'Baloo 2',sans-serif;font-size:15px;color:#a8607c;border-bottom:2px solid #d98ba4;padding-bottom:5px;margin-bottom:10px}
+  .subjects-grid{display:grid;grid-template-columns:1fr 1fr;gap:8mm}
+  .eval-subject{border:1px solid #ddd;border-radius:8px;padding:8px 10px;break-inside:avoid}
+  .eval-subject h3{font-size:12px}
+  .eval-subject ol{font-size:11px}
+  .corr-page .subjects-grid .eval-subject{background:#fbfbfb}
+}
+#evalPrintArea{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>🎯 Automatismes flash — 5ᵉ</h1>
+  <div class="sub">Pioche quotidienne + génération d'évaluations hebdomadaires, à partir des notions déjà vues en classe</div>
+</header>
+
+<div class="panel no-print">
+  <h2>📅 Chapitres déjà vus (spirale)</h2>
+  <div class="date-row">
+    <label>Date du jour : <input type="date" id="todayInput"></label>
+    <button class="btn-mini" id="autoBtn" type="button">↻ Recalculer automatiquement</button>
+    <span class="count-note" id="unlockCount"></span>
+  </div>
+  <div class="chaps" id="chapsList"></div>
+</div>
+
+<div class="panel no-print">
+  <h2>🎲 Pioche flash du jour</h2>
+  <div class="row-controls">
+    <button class="btn" id="drawBtn" type="button">Tirer 5 questions</button>
+    <span class="count-note">Cliquer une carte pour révéler la réponse.</span>
+  </div>
+  <div class="flash-grid" id="flashGrid"></div>
+</div>
+
+<div class="panel no-print">
+  <h2>📝 Générer une évaluation hebdomadaire</h2>
+  <div class="row-controls">
+    <label>Nombre de questions : <input type="number" id="evalCount" value="8" min="5" max="10" style="width:60px"></label>
+    <button class="btn" id="genEvalBtn" type="button">Générer 4 sujets</button>
+    <button class="btn" id="printEvalBtn" type="button" style="background:#7a5bc7" disabled>🖨️ Imprimer / PDF</button>
+  </div>
+  <div class="eval-preview" id="evalPreview"></div>
+</div>
+
+<footer>SakuraMaths — banque d'automatismes 5ᵉ · premier lot de 12 générateurs (sur 47), à compléter</footer>
+</div>
+
+<div id="evalPrintArea"></div>
+
+<script>
+var CAL = { rentree:'2026-09-01', fin:'2027-06-18',
+  vac:[{nom:'Toussaint',sat:'2026-10-17',resume:'2026-11-02'},
+       {nom:'Noël',sat:'2026-12-19',resume:'2027-01-04'},
+       {nom:'Hiver',sat:'2027-02-06',resume:'2027-02-22'},
+       {nom:'Printemps',sat:'2027-04-03',resume:'2027-04-19'}] };
+var SEQ = [
+  {code:'N1',theme:'N',weeks:1.5,title:'Nombres décimaux'},
+  {code:'G1',theme:'G',weeks:1,title:'Symétries axiale/centrale'},
+  {code:'N2',theme:'N',weeks:1.5,title:'Calcul littéral 1'},
+  {code:'G2',theme:'G',weeks:1.5,title:'Cylindre, prisme, volumes'},
+  {code:'N3',theme:'N',weeks:1,title:'Nombres rationnels'},
+  {code:'G3',theme:'G',weeks:2,title:'Triangle, droites remarquables'},
+  {code:'N4',theme:'N',weeks:1.5,title:'Nombres entiers'},
+  {code:'D1',theme:'D',weeks:1.5,title:'Proportionnalité'},
+  {code:'D_FCT',theme:'D',weeks:1.5,title:'Notion de fonction'},
+  {code:'G4',theme:'G',weeks:1,title:'Symétrie centrale (démo)'},
+  {code:'N5',theme:'N',weeks:2,title:'Relatifs & repérage'},
+  {code:'G5',theme:'G',weeks:1,title:'Angles particuliers'},
+  {code:'N6',theme:'N',weeks:1.5,title:'Fractions égales'},
+  {code:'G6',theme:'G',weeks:1.5,title:'Angles du triangle'},
+  {code:'N7',theme:'N',weeks:1,title:'Additionner les relatifs'},
+  {code:'D2',theme:'D',weeks:1.5,title:'Pourcentages, échelles'},
+  {code:'G7',theme:'G',weeks:1.5,title:'Parallélogramme'},
+  {code:'N8',theme:'N',weeks:1.5,title:'Additionner les fractions'},
+  {code:'D3',theme:'D',weeks:1.5,title:'Statistiques'},
+  {code:'A1',theme:'A',weeks:1,title:'Algo & tableur'},
+  {code:'N9',theme:'N',weeks:1,title:'Développer, factoriser'},
+  {code:'N10',theme:'N',weeks:1,title:'Résoudre une équation'},
+  {code:'D4',theme:'D',weeks:1,title:'Probabilités'}
+];
+
+function addDays(d,n){ var r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function parseD(s){ var p=s.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+function isVac(d){
+  return CAL.vac.some(function(v){ var a=parseD(v.sat), b=parseD(v.resume); return d>=a && d<b; });
+}
+function computeSeqEndDates(){
+  var cur = parseD(CAL.rentree);
+  var ends = {};
+  SEQ.forEach(function(s){
+    var weeksLeft = s.weeks;
+    while(weeksLeft > 0){
+      cur = addDays(cur,7);
+      while(isVac(cur)){
+        var v = CAL.vac.filter(function(vv){ var a=parseD(vv.sat); return cur>=a && cur<parseD(vv.resume); })[0];
+        cur = parseD(v.resume);
+      }
+      weeksLeft -= 1;
+    }
+    ends[s.code] = new Date(cur);
+  });
+  return ends;
+}
+var SEQ_END = computeSeqEndDates();
+
+function ri(a,b){ return a + Math.floor(Math.random()*(b-a+1)); }
+function choice(arr){ return arr[ri(0,arr.length-1)]; }
+function fmtNum(n){ return String(n).replace('.', ','); }
+
+var AUTOS = [
+ {code:'0✖🅰4', theme:'N', seq:'N1', label:'Produits type table (décimaux)', generate:function(){
+   if(Math.random()<0.5){
+     var a = ri(1,9)/10, b = ri(2,9);
+     return {enonce:'Calcule : '+fmtNum(a)+' × '+b, reponse: fmtNum(Math.round(a*b*100)/100)};
+   } else {
+     var d = choice([10,20,30,40,50,60,70,80,90]), e = ri(1,9)/100;
+     return {enonce:'Calcule : '+d+' × '+fmtNum(e), reponse: fmtNum(Math.round(d*e*1000)/1000)};
+   }
+ }},
+ {code:'0✖🅰5', theme:'N', seq:'N1', label:'Multiplier/diviser par 10, 100, 1000', generate:function(){
+   var n = ri(2,9999)/choice([1,10,100]);
+   var op = choice(['× 10','× 100','× 1 000','÷ 10','÷ 100']);
+   var fac = op.indexOf('×')!==-1 ? parseFloat(op.replace(/[× ]/g,'').replace('\u00a0','')) : 1/parseFloat(op.replace(/[÷ ]/g,''));
+   var res = n*fac;
+   return {enonce:'Calcule : '+fmtNum(n)+' '+op, reponse: fmtNum(Math.round(res*10000)/10000)};
+ }},
+ {code:'0➖🅰7', theme:'N', seq:'N1', label:'Additionner/soustraire des décimaux', generate:function(){
+   var a = ri(10,99)/10, b = ri(10,99)/10;
+   var op = choice(['+','−']);
+   if(op==='−' && b>a){ var tmp=a; a=b; b=tmp; } // pas de relatifs a ce stade : a >= b
+   var res = op==='+' ? a+b : a-b;
+   return {enonce:'Calcule : '+fmtNum(a)+' '+op+' '+fmtNum(b), reponse: fmtNum(Math.round(res*100)/100)};
+ }},
+ {code:'0✖🅰2', theme:'N', seq:'N4', label:'Division euclidienne (quotient, reste)', generate:function(){
+   var d = ri(2,9), q = ri(2,12), r = ri(0,d-1), n = d*q+r;
+   return {enonce:'Division euclidienne de '+n+' par '+d+' : donne le quotient et le reste.', reponse:'q = '+q+' et r = '+r};
+ }},
+ {code:'0➗🅰13', theme:'N', seq:'N6', label:'Fractions égales (compléter)', generate:function(){
+   var a = ri(1,8), b = ri(a+1,12), k = ri(2,6);
+   return {enonce:'Complète : '+a+'/'+b+' = …/'+(b*k), reponse: String(a*k)};
+ }},
+ {code:'0➗🅰14', theme:'N', seq:'N6', label:'Comparer deux fractions', generate:function(){
+   var b = choice([4,5,6,7,8,9,10]);
+   var a1 = ri(1,b-1), a2 = ri(1,b-1);
+   while(a2===a1) a2 = ri(1,b-1);
+   var symb = a1>a2 ? '>' : '<';
+   return {enonce:'Compare : '+a1+'/'+b+' et '+a2+'/'+b, reponse: a1+'/'+b+' '+symb+' '+a2+'/'+b};
+ }},
+ {code:'0⬆🅰20', theme:'N', seq:'N2', label:'Tables de multiplication', generate:function(){
+   var a = ri(2,10), b = ri(2,10);
+   return {enonce:'Calcule : '+a+' × '+b, reponse: String(a*b)};
+ }},
+ {code:'0🔤🅰22', theme:'N', seq:'D_FCT', label:"Suite de motifs évolutive (arithmétique)", generate:function(){
+   var start = ri(1,10), step = ri(2,6);
+   var terms = [start, start+step, start+2*step, start+3*step];
+   return {enonce:'Cette suite continue de la même façon : '+terms.join(' ; ')+' ; … Quel est le terme suivant ?', reponse: String(start+4*step)};
+ }},
+ {code:'0📐🅰35', theme:'G', seq:'G6', label:'Angle droit/plat (connaissance)', generate:function(){
+   var q = choice(['droit','plat']);
+   return {enonce:"Quelle est la mesure d'un angle "+q+' ?', reponse: q==='droit' ? '90°' : '180°'};
+ }},
+ {code:'0🔺🅰39', theme:'G', seq:'G6', label:"Somme des angles d'un triangle", generate:function(){
+   var a = ri(30,100), b = ri(20, Math.max(20,140-a));
+   if(a+b>=170){ b = 170-a; }
+   var c = 180-a-b;
+   return {enonce:'Un triangle a deux angles de '+a+'° et '+b+'°. Quelle est la mesure du 3ᵉ angle ?', reponse: c+'°'};
+ }},
+ {code:'0🎲🅰45', theme:'D', seq:'D4', label:'« une chance sur N » ↔ fraction', generate:function(){
+   var n = ri(2,10);
+   if(Math.random()<0.5){
+     return {enonce:'Traduis par une fraction : « une chance sur '+n+' ».', reponse:'1/'+n};
+   } else {
+     return {enonce:'Traduis par une phrase « une chance sur … » la probabilité 1/'+n+'.', reponse:'une chance sur '+n};
+   }
+ }},
+ {code:'0∝🅰47', theme:'D', seq:'D1', label:"Proportionnalité (retour à l'unité)", generate:function(){
+   var unite = ri(2,9), qte1 = ri(2,9), prix1 = unite*qte1, qte2 = ri(2,12);
+   while(qte2===qte1){ qte2 = ri(2,12); }
+   return {enonce: qte1+' '+choice(['stylos','cahiers','bonbons','billets'])+' coûtent '+prix1+' €. Combien coûtent '+qte2+' du même article (même prix unitaire) ?', reponse: (unite*qte2)+' €'};
+ }}
+];
+var AUTO_BY_CODE = {}; AUTOS.forEach(function(a){ AUTO_BY_CODE[a.code]=a; });
+
+var manualOverride = {};
+
+function autoUnlocked(code, todayStr){
+  var today = parseD(todayStr);
+  var end = SEQ_END[code];
+  return end ? today >= end : false;
+}
+function isUnlocked(seqCode, todayStr){
+  if(manualOverride.hasOwnProperty(seqCode)) return manualOverride[seqCode];
+  return autoUnlocked(seqCode, todayStr);
+}
+function renderChaps(){
+  var today = document.getElementById('todayInput').value;
+  var wrap = document.getElementById('chapsList'); wrap.innerHTML='';
+  SEQ.forEach(function(s){
+    var on = isUnlocked(s.code, today);
+    var chip = document.createElement('div');
+    chip.className = 'chap-chip'+(on?' on':'');
+    chip.innerHTML = '<span class="dot" style="background:'+(on?'#fff':'var(--'+s.theme+')')+'"></span>'+s.code+' — '+s.title;
+    chip.title = 'Fin prévue : '+SEQ_END[s.code].toLocaleDateString('fr-FR');
+    chip.addEventListener('click', function(){
+      manualOverride[s.code] = !on;
+      renderChaps();
+    });
+    wrap.appendChild(chip);
+  });
+  var nUnlocked = AUTOS.filter(function(a){ return isUnlocked(a.seq, today); }).length;
+  document.getElementById('unlockCount').textContent = nUnlocked+' / '+AUTOS.length+' automatismes du 1er lot débloqués';
+}
+document.getElementById('todayInput').addEventListener('change', function(){ manualOverride={}; renderChaps(); });
+document.getElementById('autoBtn').addEventListener('click', function(){ manualOverride={}; renderChaps(); });
+
+function unlockedPool(){
+  var today = document.getElementById('todayInput').value;
+  return AUTOS.filter(function(a){ return isUnlocked(a.seq, today); });
+}
+function pickN(arr, n){
+  var copy = arr.slice(), out = [];
+  n = Math.min(n, copy.length);
+  for(var i=0;i<n;i++){ out.push(copy.splice(ri(0,copy.length-1),1)[0]); }
+  return out;
+}
+function renderFlash(){
+  var pool = unlockedPool();
+  var grid = document.getElementById('flashGrid'); grid.innerHTML='';
+  if(!pool.length){ grid.innerHTML='<p class="count-note">Aucun automatisme débloqué pour l\'instant — avance la date ou coche des chapitres.</p>'; return; }
+  var picks = pickN(pool, 5);
+  picks.forEach(function(a){
+    var q = a.generate();
+    var card = document.createElement('div');
+    card.className = 'flashcard';
+    card.innerHTML = '<span class="fc-theme" style="background:var(--'+a.theme+')"></span><span class="fc-code">'+a.code+'</span>'
+      + '<div class="fc-q">'+q.enonce+'</div>'
+      + '<div class="fc-a">✅ '+q.reponse+'</div>'
+      + '<div class="fc-hint">Touche pour révéler</div>';
+    card.addEventListener('click', function(){ card.classList.toggle('revealed'); });
+    grid.appendChild(card);
+  });
+}
+document.getElementById('drawBtn').addEventListener('click', renderFlash);
+
+var lastEval = null;
+function genEval(){
+  var n = Math.max(5, Math.min(10, +document.getElementById('evalCount').value || 8));
+  var pool = unlockedPool();
+  if(!pool.length){ alert('Aucun automatisme débloqué pour le moment.'); return; }
+  var base = pickN(pool, Math.min(n, pool.length));
+  while(base.length < n){ base.push(choice(pool)); }
+  var subjects = ['A','B','C','D'].map(function(letter){
+    return { letter:letter, items: base.map(function(a){ var q=a.generate(); return {code:a.code, enonce:q.enonce, reponse:q.reponse}; }) };
+  });
+  lastEval = subjects;
+  renderEvalPreview(subjects);
+  document.getElementById('printEvalBtn').disabled = false;
+}
+function renderEvalPreview(subjects){
+  var wrap = document.getElementById('evalPreview'); wrap.innerHTML='';
+  subjects.forEach(function(s){
+    var div = document.createElement('div'); div.className='eval-subject';
+    div.innerHTML = '<h3>Sujet '+s.letter+'</h3><ol>'+s.items.map(function(it){ return '<li>'+it.enonce+' <span class="corr-val">→ '+it.reponse+'</span></li>'; }).join('')+'</ol>';
+    wrap.appendChild(div);
+  });
+}
+document.getElementById('genEvalBtn').addEventListener('click', genEval);
+
+function buildPrintArea(subjects){
+  var area = document.getElementById('evalPrintArea'); area.innerHTML='';
+  var p1 = document.createElement('div'); p1.className='eval-print-page';
+  p1.innerHTML = '<div class="eval-print-title">Automatismes — évaluation flash · '+new Date().toLocaleDateString('fr-FR')+'</div>';
+  var grid1 = document.createElement('div'); grid1.className='subjects-grid';
+  subjects.forEach(function(s){
+    var d=document.createElement('div'); d.className='eval-subject';
+    d.innerHTML='<h3>Sujet '+s.letter+'</h3><ol>'+s.items.map(function(it){ return '<li>'+it.enonce+'</li>'; }).join('')+'</ol>';
+    grid1.appendChild(d);
+  });
+  p1.appendChild(grid1); area.appendChild(p1);
+  var p2 = document.createElement('div'); p2.className='eval-print-page corr-page';
+  p2.innerHTML = '<div class="eval-print-title">Corrections</div>';
+  var grid2 = document.createElement('div'); grid2.className='subjects-grid';
+  subjects.forEach(function(s){
+    var d=document.createElement('div'); d.className='eval-subject';
+    d.innerHTML='<h3>Sujet '+s.letter+' — corrigé</h3><ol>'+s.items.map(function(it){ return '<li>'+it.enonce+' <span class="corr-val">→ '+it.reponse+'</span></li>'; }).join('')+'</ol>';
+    grid2.appendChild(d);
+  });
+  p2.appendChild(grid2); area.appendChild(p2);
+}
+document.getElementById('printEvalBtn').addEventListener('click', function(){
+  if(!lastEval) return;
+  buildPrintArea(lastEval);
+  setTimeout(function(){ window.print(); }, 50);
+});
+
+(function(){
+  var todayISO = new Date().toISOString().slice(0,10);
+  document.getElementById('todayInput').value = todayISO;
+  renderChaps();
+  renderFlash();
+})();
+</script>
+</body>
+</html>

@@ -15,6 +15,7 @@
   var ZONES={
     prof:{brand:'🌸 Espace prof',home:'accueil.html',carnet:true,links:[
       ['accueil','accueil.html','Accueil'],
+      ['planner','planner.html','Planner'],
       ['progressions','Progressions/progressions.html','Progressions'],
       ['ressources','Progressions/ressources.html','Ressources'],
       ['entrainement','Progressions/entrainement.html','Entraînement'],

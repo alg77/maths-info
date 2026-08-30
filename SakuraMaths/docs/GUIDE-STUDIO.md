@@ -117,3 +117,25 @@ N = bleu · G = corail · D = vert d'eau · M = jaune · A = violet · C = pêch
 ---
 Besoin d'un autre format de sortie plus tard (QCM, flashcards, page calcul mental de période) :
 c'est prévu dans la feuille de route — le `pont-livret` sert déjà de source unique.
+
+## 5. QCM et automatismes collège
+
+Les ressources d'entraînement sont générées niveau par niveau, puis détectées automatiquement
+par le dashboard.
+
+```bash
+python builders/build_4e_practice.py
+python builders/build_5e_practice.py
+python builders/build_dashboard.py
+```
+
+Pour chaque niveau, la commande synchronise la progression et le pont livret vers
+`Studio/config/`, puis produit :
+
+- `Studio/out/qcm/4e/qcm-4e.html` et `Studio/out/qcm/5e/qcm-5e.html` ;
+- `Studio/out/qcm/4e/automatismes-flash-4e.html` et `Studio/out/qcm/5e/automatismes-flash-5e.html` ;
+- `Studio/out/qcm/<niveau>/practice-<niveau>-data.js` ;
+- `Studio/out/qcm/<niveau>/automatismes-<niveau>-generators.js`.
+
+Le dashboard détecte ensuite automatiquement les chapitres couverts par les générateurs
+d'automatismes et rend les cellules QCM / Flash cliquables.

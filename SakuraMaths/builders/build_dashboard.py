@@ -53,6 +53,22 @@ def optional_resource(files: list[Path], full_code: str, words: tuple[str, ...],
     return sorted(matches)[-1] if matches else None
 
 
+def level_practice_resource(level: str, code: str, kind: str) -> Path | None:
+    """Retourne une ressource QCM/flash de niveau si le chapitre est couvert."""
+    folder = STUDIO / "out" / "qcm" / level
+    generators = folder / f"automatismes-{level}-generators.js"
+    if not generators.exists():
+        return None
+    text = generators.read_text(encoding="utf-8", errors="ignore")
+    if not re.search(rf"seq\s*:\s*['\"]{re.escape(code)}['\"]", text):
+        return None
+    if kind == "qcm":
+        path = folder / f"qcm-{level}.html"
+    else:
+        path = folder / f"automatismes-flash-{level}.html"
+    return path if path.exists() else None
+
+
 def progression_files() -> list[Path]:
     found: dict[str, Path] = {}
     for folder in reversed(CONFIG_DIRS):
@@ -119,9 +135,9 @@ def resource_state(level: str, chapter: dict, period: int, questions: str, files
     web_student = STUDIO / "out" / "web" / f"{full}.html"
     web_teacher = STUDIO / "out" / "web" / f"{full}-prof.html"
     html_path = web_student if web_student.exists() else web_teacher if web_teacher.exists() else None
-    qcm = code in questions or full in questions or ":::qcm" in md_text or ":::mathalea" in md_text
+    qcm = level_practice_resource(level, code, "qcm") or (code in questions or full in questions or ":::qcm" in md_text or ":::mathalea" in md_text)
     kahoot = optional_resource(files, full, ("kahoot",), (".xlsx", ".xls"))
-    flashcards = optional_resource(files, full, ("flashcard", "flashcards"))
+    flashcards = level_practice_resource(level, code, "flash") or optional_resource(files, full, ("flashcard", "flashcards"))
     evaluation = optional_resource(files, full, ("evaluation", "évaluation", "eval-", "eval_"))
     correction = optional_resource(files, full, ("corrige", "corrigé", "correction", "bareme", "barème"))
     notebook = optional_resource(files, full, (full.lower(),), (".ipynb",))
@@ -197,7 +213,7 @@ def level_panel(level: str, chapters: list[dict]) -> str:
         table_rows.append(f'''<div class="table-row p{item["period"]}" data-status="{esc(item["status"])}"><span><b>{esc(item["code"])}</b><small>{esc(item["title"])}</small></span>
           {icon(item["md"], item["md"])}{icon(item["student_pdf"], item["student_pdf"])}
           {icon(item["teacher_pdf"], item["teacher_pdf"])}{icon(item["html"], item["html"])}
-          {icon(item["qcm"])}{icon(item["kahoot"], item["kahoot"])}{icon(item["flashcards"], item["flashcards"])}
+          {icon(item["qcm"], item["qcm"] if isinstance(item["qcm"], Path) else None)}{icon(item["kahoot"], item["kahoot"])}{icon(item["flashcards"], item["flashcards"])}
           {icon(item["evaluation"], item["evaluation"])}{icon(item["correction"], item["correction"])}</div>''')
     period_blocks = "".join(
         f'''<section class="period-group period-{number}"><h3>P{number}</h3>
@@ -222,7 +238,17 @@ def domain_panel(title: str, icon_value: str, levels: list[tuple[str, list[dict]
     percent = round(done * 100 / count) if count else 0
     domain_progress = f'''<div class="domain-progress" title="{done} chapitre(s) complet(s) sur {count}"><div class="progress"><i style="width:{percent}%"></i></div><b>{percent} %</b></div>'''
     ece_dashboard = STUDIO / "out" / "web" / "nsi" / "ece" / "dashboard.html"
-    extra_link = f'<a class="domain-tool" href="{esc(rel(ece_dashboard))}">🎯 Dashboard ECE</a>' if title == "NSI" and ece_dashboard.exists() else ""
+    nsi_hub = STUDIO / "out" / "web" / "nsi" / "index.html"
+    oral_dashboard = STUDIO / "out" / "web" / "nsi" / "oral-controle" / "dashboard.html"
+    extra_links = []
+    if title == "NSI":
+        if nsi_hub.exists():
+            extra_links.append(f'<a class="domain-tool" href="{esc(rel(nsi_hub))}">💻 Hub NSI</a>')
+        if ece_dashboard.exists():
+            extra_links.append(f'<a class="domain-tool" href="{esc(rel(ece_dashboard))}">🎯 Dashboard ECE</a>')
+        if oral_dashboard.exists():
+            extra_links.append(f'<a class="domain-tool" href="{esc(rel(oral_dashboard))}">🎙️ Oral de contrôle</a>')
+    extra_link = "".join(extra_links)
     return f'''<details class="domain-group" open><summary class="domain-summary"><span>{icon_value}</span><strong>{esc(title)}</strong><small>{done} / {count} chapitres</small>{domain_progress}{extra_link}</summary><div class="domain-content">{panels}</div></details>'''
 
 
@@ -255,8 +281,9 @@ def main() -> None:
 const dashboardStyle = document.createElement('style');
 dashboardStyle.textContent = `.analysis-time{{margin-top:13px;color:var(--muted);font-size:.8rem}}.dashboard-tools{{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 15px;background:#ffffffb8;border:1px solid #fff;border-radius:18px;box-shadow:0 8px 24px #6f587512}}.filter-toggle{{display:flex;align-items:center;gap:9px;font-weight:800;cursor:pointer}}.filter-toggle input{{width:19px;height:19px;accent-color:var(--violet)}}.dashboard-tools button{{margin-left:auto;border:0;border-radius:999px;padding:9px 14px;background:#eee9f7;color:var(--ink);font-weight:800;cursor:pointer}}.show-todo-only [data-status="verified"]{{display:none!important}}.period-group.filter-empty{{display:none}}.detail-chip{{text-decoration:none}}a.detail-chip:hover{{outline:2px solid currentColor}}.table-caption{{display:flex;gap:8px;align-items:baseline;padding:0 3px 9px;color:var(--muted);font-size:.78rem}}.table-caption strong{{color:var(--ink)}}`;
 document.head.appendChild(dashboardStyle);
-dashboardStyle.textContent += `.domain-progress{{display:flex;align-items:center;gap:9px;min-width:190px}}.domain-progress .progress{{background:rgba(255,255,255,.28)}}.domain-progress .progress i{{background:linear-gradient(90deg,#ffd5e4,#fff)}}.domain-progress b{{min-width:42px;color:#fff;font-size:.82rem}}.domain-tool{{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;text-decoration:none;font-size:.78rem;font-weight:800;white-space:nowrap}}.domain-tool:hover{{background:rgba(255,255,255,.28)}}@media(max-width:760px){{.domain-summary{{flex-wrap:wrap}}.domain-progress{{width:100%;min-width:0}}.domain-summary small{{margin-left:auto}}}}`;
+dashboardStyle.textContent += `.domain-progress{{display:flex;align-items:center;gap:9px;min-width:190px}}.domain-progress .progress{{background:rgba(255,255,255,.28)}}.domain-progress .progress i{{background:linear-gradient(90deg,#ffd5e4,#fff)}}.domain-progress b{{min-width:42px;color:#fff;font-size:.82rem}}.domain-tool{{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;text-decoration:none;font-size:.78rem;font-weight:800;white-space:nowrap}}.domain-tool:hover{{background:rgba(255,255,255,.28)}}.quick-hubs{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 4px}}.quick-hub{{display:flex;gap:14px;align-items:center;padding:18px;border-radius:22px;background:rgba(255,255,255,.86);border:1px solid #fff;box-shadow:0 10px 28px #6f587514;text-decoration:none;color:var(--ink)}}.quick-hub:hover{{transform:translateY(-1px);box-shadow:0 14px 34px #6f58751f}}.quick-hub>span{{font-size:2rem}}.quick-hub strong{{display:block;font-family:Georgia,serif;font-size:1.45rem}}.quick-hub small{{color:var(--muted)}}@media(max-width:760px){{.domain-summary{{flex-wrap:wrap}}.domain-progress{{width:100%;min-width:0}}.domain-summary small{{margin-left:auto}}.quick-hubs{{grid-template-columns:1fr}}}}`;
 document.body.style.background = "linear-gradient(rgba(255,248,246,.18),rgba(255,248,246,.40)),url('../../../fond-sakura-maths.png') center top / cover fixed no-repeat";
+document.querySelector('.dashboard-tools')?.insertAdjacentHTML('afterend', `<section class="quick-hubs" aria-label="Accès directs professeur"><a class="quick-hub" href="../../../Studio/out/web/nsi/index.html"><span>💻</span><div><strong>Hub NSI</strong><small>ECE, oral de contrôle, pages prof/élèves et progressions NSI.</small></div></a><a class="quick-hub" href="../../../Studio/out/qcm/4e/automatismes-flash-4e.html"><span>⚡</span><div><strong>Automatismes 4e</strong><small>Pioche flash et QCM générés depuis le pont-livret 4e.</small></div></a><a class="quick-hub" href="../../../Studio/out/qcm/5e/automatismes-flash-5e.html"><span>🎯</span><div><strong>Automatismes 5e</strong><small>Questions flash et QCM générés depuis la progression 5e.</small></div></a></section>`);
 const todoFilter = document.getElementById('todo-filter');
 todoFilter?.addEventListener('change', () => {{
   document.body.classList.toggle('show-todo-only', todoFilter.checked);

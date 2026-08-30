@@ -17,6 +17,7 @@
     input:focus,select:focus{outline:3px solid #9d8ee42b;border-color:#8f83cf}.upload{border:1.5px dashed #9b8bdc;border-radius:15px;padding:12px;background:#faf9ff}
     .upload input{border:0;padding:4px 0;background:transparent}.status{font-size:.78rem;color:#777a8d;margin-top:5px}.status.ok{color:#2c8063}.status.bad{color:#b74958}
     .seg{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--line);border-radius:12px;padding:3px}.seg button{border:0;border-radius:9px;padding:7px;background:transparent;color:#65677a;cursor:pointer}.seg button.on{background:#7c70c5;color:#fff;font-weight:700}
+    .hint{font-size:.76rem;color:#777a8d;margin-top:4px;line-height:1.35}
     .chapters{list-style:none;margin:0;padding:0;max-height:300px;overflow:auto}.chapter{display:grid;grid-template-columns:22px 42px 1fr 56px;gap:7px;align-items:center;padding:7px 4px;border-bottom:1px solid #eeeaf8;font-size:.82rem}.chapter input{width:auto}.code{font-weight:800;color:var(--violet)}
     .moves{display:flex;gap:3px}.moves button{border:0;background:#f0edfa;color:#6558a8;border-radius:7px;width:25px;height:25px;cursor:pointer}.empty{padding:14px;color:#7a7d90;text-align:center;font-size:.85rem}
     .actions{display:grid;gap:8px}.btn{border:0;border-radius:13px;padding:11px 13px;background:linear-gradient(135deg,#6656ba,#8a7bd0);color:#fff;font-weight:750;cursor:pointer}.btn.alt{background:#eef0ff;color:#51459b}.btn.ghost{background:#fff;border:1.5px solid var(--line);color:#51459b}.btn:disabled{opacity:.45;cursor:not-allowed}
@@ -43,6 +44,15 @@
     </div>
 
     <div class="field"><label>Version</label><div class="seg" id="mode"><button data-mode="eleve">Élève</button><button data-mode="prof">Professeur</button><button class="on" data-mode="both">Les deux</button></div></div>
+    <div class="field">
+      <label for="profil">Profil d'impression</label>
+      <select id="profil">
+        <option value="standard" selected>Standard - Open Sans 11, interligne 1.5</option>
+        <option value="dys">DYS/PAP A4 - Open Sans 14, interligne 1.65</option>
+        <option value="compact">Compact - Open Sans 10.5, interligne 1.35</option>
+      </select>
+      <div class="hint">Ne pas imprimer le profil DYS A4 réduit en A5 : utiliser Standard/Compact, ou un futur A5 natif.</div>
+    </div>
 
     <h2>Progression</h2>
     <div class="upload"><label for="progression"><b>Charger la progression JSON</b></label><input id="progression" type="file" accept="application/json,.json"><div id="status" class="status">Choisir par exemple progression-4e.json</div></div>
@@ -65,7 +75,7 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const state={progression:null,chapters:[],mode:'both'};
+const state={progression:null,chapters:[],mode:'both',profil:'standard'};
 const DEFAULT_4E={seq:[
   ['N1','Nombres relatifs : addition et soustraction',1],['G1','Triangles : droites remarquables et droite des milieux',1],
   ['D1','Proportionnalité',1],['N2','Nombres relatifs : multiplication et division',1],
@@ -76,7 +86,7 @@ const DEFAULT_4E={seq:[
 ].map(([code,title,periode])=>({code,title,periode}))};
 const DEFAULT_5E={seq:[
   ['N1','Calculer avec les nombres décimaux',1],['G1','Reconnaître et utiliser les symétries axiale et centrale',1],['N2','Écrire et utiliser une expression littérale',1],
-  ['G2','Cylindre et prisme droit ; calculer des volumes',2],['N3','Définir et représenter des nombres rationnels',2],['G3','Triangle et droites remarquables',2],['N4','Utiliser les nombres entiers',2],
+  ['G2','Cylindre et prisme droit ; calculer des volumes',1],['N3','Définir et représenter des nombres rationnels',2],['G3','Triangle et droites remarquables',2],['N4','Utiliser les nombres entiers',2],
   ['D1','Utiliser la proportionnalité',3],['G4','Symétrie centrale : construire et démontrer',3],['N5','Découvrir les nombres relatifs',3],['G5','Angles particuliers et droites parallèles',3],
   ['N6','Fractions égales ; comparer des fractions',4],['G6','Angles d’un triangle',4],['N7','Additionner et soustraire des relatifs',4],['D2','Pourcentages et échelles',4],
   ['G7','Parallélogrammes',5],['N8','Additionner et soustraire des fractions',5],['D3','Traiter et représenter des données',5],['A1','Algorithmique & Tableur',5]
@@ -141,12 +151,12 @@ function manifest(){
   const outputs=state.mode==='both'
     ? {livret:`${stem}-eleve-v2.pdf`,livret_prof:`${stem}-prof-v2.pdf`}
     : state.mode==='prof' ? {livret_prof:`${stem}-prof-v2.pdf`} : {livret:`${stem}-eleve-v2.pdf`};
-  return {schema:'sakuramaths.livret-periode.v2',niveau,periode:`Période ${p}`,periode_id:id,annee:$('annee').value.trim(),prof:$('prof').value.trim(),mode:state.mode,progression:`Studio/config/progression-${niveau}.json`,cover:`assets/covers/cover-${niveau}.png`,...outputs,chapitres:selected().map(c=>({code:c.code,titre:c.title,comps:c.comps||[],source:sourceFor(c.code),html:{eleve:`Studio/out/web/${niveau[0]}${c.code}.html`,prof:`Studio/out/web/${niveau[0]}${c.code}-prof.html`}}))}
+  return {schema:'sakuramaths.livret-periode.v2',niveau,periode:`Période ${p}`,periode_id:id,annee:$('annee').value.trim(),prof:$('prof').value.trim(),mode:state.mode,profil:state.profil,progression:`Studio/config/progression-${niveau}.json`,cover:`assets/covers/cover-${niveau}.png`,...outputs,chapitres:selected().map(c=>({code:c.code,titre:c.title,comps:c.comps||[],source:sourceFor(c.code),html:{eleve:`Studio/out/web/${niveau[0]}${c.code}.html`,prof:`Studio/out/web/${niveau[0]}${c.code}-prof.html`}}))}
 }
 function command(){
   const m=manifest(),base='SakuraMaths',id=m.periode_id;
   const out=m.mode==='prof' ? m.livret_prof : m.livret;
-  return `python ${base}/builders/build_livret_periode.py --manifest ${base}/livrets/manifests/${m.niveau}-${id}.json --out ${base}/${out}`
+  return `python ${base}/builders/build_livret_periode.py --profil ${m.profil||'standard'} --manifest ${base}/livrets/manifests/${m.niveau}-${id}.json --out ${base}/${out}`
 }
 
 function renderAll(){
@@ -158,6 +168,7 @@ function renderAll(){
 $('progression').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{state.progression=JSON.parse(await file.text());$('status').textContent=`${file.name} chargé`;$('status').className='status ok';loadChapters()}catch(err){$('status').textContent='JSON invalide : '+err.message;$('status').className='status bad'}};
 $('periode').onchange=loadChapters;$('niveau').onchange=()=>{state.progression=null;state.chapters=[];$('progression').value='';loadDefaultProgression()};
 ['annee','prof'].forEach(id=>$(id).oninput=renderAll);
+document.getElementById('profil').onchange=e=>{state.profil=e.target.value;renderAll()};
 document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#mode button').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.mode=b.dataset.mode;renderAll()});
 $('download').onclick=()=>{const m=manifest(),blob=new Blob([JSON.stringify(m,null,2)+'\n'],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${m.niveau}-${m.periode_id}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 $('copy').onclick=async()=>{const text=command();try{await navigator.clipboard.writeText(text);$('copy').textContent='Commande copiée ✓'}catch{const area=document.createElement('textarea');area.value=text;document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();$('copy').textContent='Commande copiée ✓'}setTimeout(()=>$('copy').textContent='Copier la commande Python',1400)};

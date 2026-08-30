@@ -1,27 +1,75 @@
 {
-  "schema": "sakuramaths.livret-periode.v1",
+  "schema": "sakuramaths.livret-periode.v2",
   "niveau": "4e",
   "periode": "Période 2",
   "periode_id": "P2",
   "annee": "2026-2027",
   "prof": "Mme Le Guern",
-  "mode": "eleve",
-  "cover": "assets/covers/cover-4e.png",
+  "mode": "both",
+  "progression": "Studio/config/progression-4e.json",
+  "cover": "Studio/assets/images/4e-cover.png",
   "chapitres": [
     {
       "code": "N3",
       "titre": "Calcul littéral 1",
-      "source": "Studio/sources/4e/4N3.md"
+      "source": "Studio/sources/4e/4N3.md",
+      "html": {
+        "eleve": "Studio/out/web/4N3.html",
+        "prof": "Studio/out/web/4N3-prof.html"
+      },
+      "comps": [
+        "Ch1",
+        "Mo1",
+        "Re1",
+        "Ca3",
+        "Co1"
+      ],
+      "pages": {
+        "eleve": 2,
+        "prof": 2
+      }
     },
     {
       "code": "G2",
       "titre": "Égalité de Pythagore (sens direct)",
-      "source": "Studio/sources/4e/4G2.md"
+      "source": "Studio/sources/4e/4G2.md",
+      "html": {
+        "eleve": "Studio/out/web/4G2.html",
+        "prof": "Studio/out/web/4G2-prof.html"
+      },
+      "comps": [
+        "Mo1",
+        "Ra3",
+        "Ca1",
+        "Co2"
+      ],
+      "pages": {
+        "eleve": 6,
+        "prof": 6
+      }
     },
     {
       "code": "N4",
       "titre": "Équations",
-      "source": "Studio/sources/4e/4N4.md"
+      "source": "Studio/sources/4e/4N4.md",
+      "html": {
+        "eleve": "Studio/out/web/4N4.html",
+        "prof": "Studio/out/web/4N4-prof.html"
+      },
+      "comps": [
+        "Mo1",
+        "Mo2",
+        "Ra1",
+        "Ca2",
+        "Ca3",
+        "Co1"
+      ],
+      "pages": {
+        "eleve": 10,
+        "prof": 10
+      }
     }
-  ]
+  ],
+  "livret": "livrets/dist/4e/P2/livret-4e-P2-eleve-v3.pdf",
+  "livret_prof": "livrets/dist/4e/P2/livret-4e-P2-prof-v3.pdf"
 }

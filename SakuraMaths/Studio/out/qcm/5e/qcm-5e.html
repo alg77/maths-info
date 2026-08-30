@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QCM automatismes — 5e</title>
+  <script src="practice-5e-data.js" defer></script>
+  <script src="automatismes-5e-generators.js" defer></script>
+  <style>
+    :root{--ink:#3f3150;--muted:#786b79;--rose:#d98ba4;--violet:#7667ba;--paper:#fffdfc}
+    *{box-sizing:border-box}body{margin:0;padding:22px;background:linear-gradient(135deg,#fff6f7,#f3f6ff);font-family:Atkinson Hyperlegible,system-ui,sans-serif;color:var(--ink)}
+    main{max-width:980px;margin:auto}.hero,.card,.toolbar{background:#ffffffdc;border:1px solid #fff;border-radius:24px;box-shadow:0 12px 34px #7f5f7118}
+    .hero{padding:25px;margin-bottom:16px}.hero h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);margin:.1em 0}.hero p{color:var(--muted);line-height:1.55}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px;margin-bottom:16px}select,button{font:inherit;border-radius:999px;border:1px solid #eadde6;padding:9px 13px;background:#fff;color:var(--ink)}button{font-weight:800;cursor:pointer}.primary{background:linear-gradient(90deg,var(--violet),var(--rose));color:white;border-color:transparent}
+    .card{padding:22px}.meta{color:var(--muted);font-size:.9rem}.question{font-size:1.45rem;font-weight:850;margin:14px 0}.visual svg{max-width:100%;height:auto}.choices{display:grid;gap:10px;margin-top:14px}.choice{text-align:left;border-radius:16px;padding:13px;background:#fbf7fc;border:1px solid #eadde6}.choice.ok{background:#eaf8ef;border-color:#69b989}.choice.bad{background:#fff0f3;border-color:#c45a7a}.answer{display:none;margin-top:14px;padding:13px;border-left:5px solid #e6b450;background:#fff8ea;border-radius:12px}.answer.show{display:block}.empty{color:var(--muted)}
+    a{color:#a8607c;font-weight:800}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <h1>🎯 QCM automatismes — 5e</h1>
+    <p>Questions aléatoires générées depuis les automatismes 5e. Les mêmes générateurs servent à la page flash : une seule banque, deux usages.</p>
+    <p><a href="automatismes-flash-5e.html">Ouvrir la version flash libre →</a> · <a href="mini-eval-automatismes-5e.html">Générer une mini-éval spiralaire →</a></p>
+  </section>
+  <section class="toolbar">
+    <label>Chapitre <select id="chapter"></select></label>
+    <button class="primary" id="new" type="button">Nouvelle question</button>
+    <button id="show" type="button">Afficher la réponse</button>
+  </section>
+  <section class="card" id="card"></section>
+</main>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  const autos=(window.SAKURA_AUTOS_5E||[]).filter(a=>typeof a.generate==='function');
+  const data=window.SAKURA_5E_PRACTICE||{chapitres:[]};
+  const chapter=document.querySelector('#chapter'),card=document.querySelector('#card');
+  const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const chapters=[...new Set(autos.map(a=>a.seq).filter(Boolean))];
+  chapter.innerHTML='<option value="all">Tous les chapitres</option>'+chapters.map(c=>{
+    const info=(data.chapitres||[]).find(x=>x.code===c); return `<option value="${c}">${c}${info?' — '+info.titre:''}</option>`;
+  }).join('');
+  let current=null;
+  function shuffle(arr){return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);}
+  function distractors(answer){
+    const pool=new Set();
+    let guard=0;
+    while(pool.size<3 && guard<60){
+      guard++;
+      const a=autos[Math.floor(Math.random()*autos.length)];
+      try{const v=a.generate().reponse; if(v!==answer) pool.add(v);}catch(e){}
+    }
+    while(pool.size<3) pool.add(String(Math.floor(Math.random()*30)+1));
+    return [...pool].slice(0,3);
+  }
+  function pick(){
+    const pool=autos.filter(a=>chapter.value==='all'||a.seq===chapter.value);
+    if(!pool.length){card.innerHTML='<p class="empty">Aucun générateur disponible pour ce chapitre.</p>';return;}
+    const auto=pool[Math.floor(Math.random()*pool.length)];
+    const qa=auto.generate();
+    const choices=shuffle([qa.reponse,...distractors(qa.reponse)]);
+    current={auto,qa,choices,answer:qa.reponse};
+    render();
+  }
+  function render(){
+    if(!current)return;
+    card.innerHTML=`<div class="meta">${esc(current.auto.seq||'5e')} · ${esc(current.auto.code)} · ${esc(current.auto.label)}</div><div class="question">${current.qa.enonce}</div><div class="choices">${current.choices.map((c,i)=>`<button class="choice" data-i="${i}" data-value="${esc(c)}">${esc(c)}</button>`).join('')}</div><div class="answer">Réponse attendue : <strong>${esc(current.answer)}</strong></div>`;
+    card.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',()=>{
+      card.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+      const ok=btn.dataset.value===current.answer;
+      btn.classList.add(ok?'ok':'bad');
+      card.querySelectorAll('.choice').forEach(b=>{if(b.dataset.value===current.answer)b.classList.add('ok')});
+      card.querySelector('.answer').classList.add('show');
+    }));
+  }
+  document.querySelector('#new').addEventListener('click',pick);
+  document.querySelector('#show').addEventListener('click',()=>card.querySelector('.answer')?.classList.add('show'));
+  chapter.addEventListener('change',pick);
+  pick();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,637 @@
+Période 1
+N1 Priorités opératoires et distributivité 2
+G1 Reconnaître et utiliser les symétries axiale et centrale 8
+N2 Écrire et utiliser une expression littérale 12
+G2 Cylindre, prisme droit et volumes 18
+ANNÉE SCOLAIRE : 2026-2027 Mme Le Guern ✿✿
+❀  2 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+SAKURA_CHAPTER_N1
+Ca1 Eﬀectuer des calculs exacts ou approchés Ca2 Contrôler la vraisemblance (ordres de grandeur, encadrements)
+Co2 Expliquer à l'oral ou à l'écrit
+1 Calculer sans parenthèses
+EXEMPLES :
+A = 25 + 6 − 7 − 12
+A = 
+A = 
+A = 
+B = 10 × 6 ÷ 3 × 5 ÷ 4
+B = 
+B = 
+B = 
+B = 
+N1
+NOMBRES & CALCULS
+Priorités opératoires et distributivité 5 ᵉ
+Objectifs visés
+Dans ce chapitre, j'apprends à :
+Calculer avec les opérations et vériﬁer si le résultat est vraisemblable.
+Choisir l'opération adaptée à une situation.
+Diviser par un nombre décimal.
+Enchainer des opérations.
+Traduire un problème ou un programme de calcul par une expression.
+Je me souviens
+Calcule : 5 + 3 × 2 = 
+Calcule : (5 + 3) × 2 = 
+Le résultat d'une multiplication s'appelle un .
+Propriété
+Dans une expression sans parenthèses et constituée uniquement d'additions et de
+soustractions, on eﬀectue les calculs de la  vers la .
+Dans une expression sans parenthèses et constituée uniquement de multiplications et de
+divisions, on eﬀectue les calculs de la  vers la .
+❀  3 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+EXEMPLES :
+C = 21 + 8 + 39
+C =  + 8
+C =  + 8
+C = 
+D = 25 × 3 × 4 × 9
+D =  × 3 × 9
+D =  × 
+D = 
+EXEMPLES :
+E = 23 + 6 × 4
+E = 23 + 
+E = 
+F = 7 × 6 − 3 × 5
+F =  − 
+F = 
+2 Calculer avec parenthèses
+Vidéo d’explicationRemarque — calculs astucieux
+S'il n'y a que des additions, on peut eﬀectuer les calculs dans l'ordre que
+l'on veut.
+S'il n'y a que des multiplications, on peut eﬀectuer les calculs dans
+l'ordre que l'on veut.
+Règle des priorités de calculs
+Dans une expression sans parenthèses, on eﬀectue d'abord les  et les
+, puis les  et les .
+On dit que la multiplication et la division sont prioritaires par rapport à l'addition et à la
+soustraction.
+Vidéo d’explication
+Propriété
+Dans une expression avec parenthèses, on eﬀectue d'abord les calculs
+entre .
+Quand il y a plusieurs niveaux de parenthèses (parenthèses « emboîtées »), on commence
+par les parenthèses les plus .
+À l'intérieur des parenthèses, on applique les  de calculs.
+Dans un quotient, on peut remplacer la barre de fraction par une  et des
+expressions entre parenthèses.
+❀  4 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+EXEMPLES :
+G = 9 × (7 + 4)
+G = 9 × 
+G = 
+H = 2,5 × [7 − (5 − 3)]
+H = 2,5 × [7 − ]
+H = 2,5 × 
+H = 
+I = 12 × (5 + 2 × 3)
+I = 12 × (5 + )
+I = 12 × 
+I = 
+J = (9 + 5) ÷ 2
+J =  ÷ 2
+J = 
+3 Utiliser le bon vocabulaire
+EXEMPLES :
+18 + 14 = 32 →  18 et 14 sont les , 32 est la .
+34,6 − 12,5 = 22,1 →  34,6 et 12,5 sont les , 22,1 est la .
+6,4 × 5 = 32 →  6,4 et 5 sont les , 32 est le .
+27 ÷ 6 = 4,5 →  27 est le , 6 est le , 4,5 est le .
+Critères de réussite
+J'ai recopié l'expression en entier.
+J'ai respecté l'ordre des priorités opératoires.
+J'ai écrit chaque étape sur une ligne.
+Je n'ai pas fait d'erreurs de calculs.
+Vocabulaire
+Le résultat d'une addition est une somme. Les nombres que l'on ajoute s'appellent des
+termes.
+Le résultat d'une soustraction est une diﬀérence. Les nombres que l'on soustrait sont aussi
+des termes.
+Le résultat d'une multiplication est un produit. Les nombres que l'on multiplie sont les
+facteurs.
+Le résultat d'une division est un quotient, formé d'un dividende et d'un diviseur.
+Propriété — traduire une expression
+La nature d'une expression comportant plusieurs opérations est déterminée par l'opération
+eﬀectuée en .
+❀  5 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+EXEMPLES :
+Dans l'expression 3 + 5 × 4, c'est l'addition qu'on eﬀectue en dernier :
+c'est donc une  — la somme de 3 et du produit de 5 par 4.
+Traduis par une phrase : 7 × 5 - 3
+C'est la  entre le produit de 7 par 5 et 3.
+Écris l'expression qui permet d'obtenir la diﬀérence entre 5 et le quotient de
+4 par 3 :
+5 - 
+4 Utiliser la distributivité pour calculer astucieusement
+APPLIQUER LA DISTRIBUTIVITÉ :
+A = 34 × (20 + 1)
+A = 
+B = 25 × (100 − 2)
+B = 
+Vidéo d’explication
+Critères de réussite
+J'ai bien repéré la dernière opération à eﬀectuer.
+J'ai associé chaque opération au vocabulaire correspondant.
+J'ai traduit dans le bon ordre.
+Je n'ai pas fait de fautes d'orthographe.
+Définition
+Développer une expression, c'est transformer un produit en une somme.
+Propriété — distributivité simple
+k, a et b désignent des nombres.
+k × (a + b) = k × a + k × b
+produit →  somme
+On dit que la multiplication est distributive par rapport à l'addition.
+❀  6 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+CALCULER (STRATÉGIES DE CALCUL MENTAL) :
+C = 87 × 101
+C = 87 × 
+C = 87 × 100 + 87 × 1
+C = 8 700 + 
+C = 
+D = 43 × 999
+D = 43 × 
+D = 43 × 1 000 − 43 × 1
+D = 43 000 − 
+D = 
+Vidéo d’explication
+Vidéo d’explicationCritères de réussite
+J'ai fait apparaître un produit me permettant d'utiliser la formule.
+J'ai correctement utilisé la formule de distributivité pour développer.
+J'ai fait apparaître toutes les étapes de calculs.
+Je n'ai pas fait d'erreurs de calculs.
+J'ai retenu
+Sans regarder le cours :
+sans parenthèses : je calcule d'abord les  et ,
+puis les  et  ;
+avec parenthèses : je commence par l'intérieur des  les plus  ;
+k × (a+b) = 
+★★★  Défi du chapitre
+Calcule astucieusement, en une seule ligne d'étapes claires : E = 15 × 99 + 15.
+Explique en une phrase la stratégie utilisée.
+✎  RÉPONSE / TRACES DE RECHERCHE
+
+❀  7 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+Je suis maintenant capable de …
+Objectif je
+plante
+je
+progresse
+je
+maîtrise
+Calculer avec les opérations et vériﬁer si le résultat est
+vraisemblable.
+Choisir l'opération adaptée à une situation.
+Diviser par un nombre décimal.
+Enchainer des opérations.
+Traduire un problème ou un programme de calcul par une
+expression.
+Je mets une croix dans la case qui me correspond pour chaque objectif.
+❀  8 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+SAKURA_CHAPTER_G1
+Re4 Représenter des solides et des situations spatiales Ra3 Démontrer : raisonner logiquement pour conclure
+Co2 Expliquer à l'oral ou à l'écrit
+1 Transformer une ﬁgure par symétrie axiale (rappels)
+On dit aussi que :
+F2 est le symétrique de F1 par rapport à (d).
+F2 est l'image de F1 par la symétrie d'axe (d).
+G1
+GÉOMÉTRIE & ESPACE
+Reconnaître et utiliser les symétriesaxiale et centrale
+5 ᵉ
+Objectifs visés
+Dans ce chapitre, j'apprends à :
+Déﬁnir le demi-tour, ou symétrie centrale.
+Je me souviens
+Un triangle isocèle possède un axe de symétrie : vrai ou faux ? 
+Le symétrique d'un point A par rapport à une droite (d) qui passe par A est .
+Définition
+Deux ﬁgures F1 et F2 sont symétriques par rapport à une droite (d) si elles se superposent
+par pliage le long de cette droite.
+La droite (d) est appelée l'axe de symétrie.
+Cette symétrie s'appelle la symétrie axiale.
+Symétrie axiale —playlist de rappel
+Définition
+Deux points A et A' sont symétriques par rapport à une droite (d) si la droite (d) est la
+médiatrice du segment [AA'].
+Remarque
+Tous les points de l'axe de symétrie sont leur propre image par rapport à la droite (d).
+B ∈  (d), donc son symétrique par rapport à (d) est .
+❀  9 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+2 Transformer une ﬁgure par symétrie centrale
+On dit aussi que :
+F2 est le symétrique de F1 par rapport à O.
+F2 est l'image de F1 par la symétrie de centre O.
+Définition
+Deux ﬁgures F1 et F2 sont symétriques par rapport à un point O si elles se superposent
+lorsqu'on eﬀectue un demi-tour autour du point O.
+Le point O est appelé le centre de symétrie.
+Définition
+Soit O un point et A un point distinct de O.
+Le symétrique du point A par rapport à O est le point A' tel que O est le milieu de [AA'].
+Le symétrique du point O par rapport à O est .
+Construire le point A' symétrique d'un point A par rapport à un point O
+1. On trace la demi-droite [AO).
+2. On trace un arc de cercle de centre O et de rayon OA. Il coupe la demi-droite [AO) en un
+point.
+On pique le compas sur le point O, puis on reporte la longueur OA de l'autre côté de O sur la
+demi-droite [AO).
+3. On place le point A' à l'intersection de [AO) et de l'arc de cercle. On code la ﬁgure.
+Construire un pointsymétrique par
+rapport à un point
+Construire le symétrique d'une figure par rapport à un point
+Quatre niveaux de diﬃculté, du plus simple au plus complexe :
+Niveau 1 — points symétriques sur papier quadrillé.
+Niveau 2 — ﬁgure symétrique sur papier quadrillé.
+Niveau 3 — ﬁgure symétrique sur papier blanc.
+Niveau 4 — ﬁgure symétrique avec centre de symétrie à l'intérieur de la ﬁgure.
+❀  10 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+Exemple : Construis le symétrique du triangle ABC par rapport à O.
+B
+C
+A
+×O
+Construire le symétrique d'une figure par rapport à un point
+Niveau 1
+Points symétriques sur
+papier quadrillé
+Niveau 2
+Figure symétrique sur
+papier quadrillé
+Niveau 3
+Figure symétrique sur
+papier blanc
+Niveau 4
+Centre de symétrie à
+l'intérieur de la ﬁgure
+Critères de réussite
+J'ai appris le vocabulaire et les déﬁnitions.
+J'ai soigné ma construction : crayon de papier, traits ﬁns.
+J'ai été précis(e) dans mes tracés et j'ai utilisé les outils adaptés.
+J'ai laissé les traits de construction visibles.
+J'ai construit l'image de la ﬁgure (pas seulement des sommets).
+J'ai codé la ﬁgure.
+J'ai retenu
+Sans regarder le cours :
+symétrie axiale : deux ﬁgures se superposent par  le long d'une droite
+(d), appelée l'  ;
+symétrie centrale : deux ﬁgures se superposent par un  autour d'un point O,
+appelé le  ;
+si O est le milieu de [AA'], alors A' est le  de A par rapport à O.
+❀  11 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+Je suis maintenant capable de …
+Objectif je
+plante
+je
+progresse
+je
+maîtrise
+Déﬁnir le demi-tour, ou symétrie centrale.
+Je mets une croix dans la case qui me correspond pour chaque objectif.
+★★★  Défi du chapitre
+Place trois points A, B et O non alignés. Construis A' le symétrique de A par
+rapport à O, puis B' le symétrique de B par rapport à O. Que peux-tu dire des
+droites (AB) et (A'B') ? Vériﬁe ta conjecture avec le rapporteur ou l'équerre,
+puis explique pourquoi elle te semble toujours vraie.
+✎  RÉPONSE / TRACES DE RECHERCHE
+
+❀  12 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+SAKURA_CHAPTER_N2
+Ch1 Extraire des informations et les reformuler Mo2 Traduire en langage mathématique une situation réelle
+Ca3 Calculer en utilisant le langage algébrique Co1 Faire le lien entre langage naturel et langage algébrique
+1 Écrire une expression littérale
+N2
+NOMBRES & CALCULS
+Écrire et utiliser une expression littérale 5 ᵉ
+Objectifs visés
+Dans ce chapitre, j'apprends à :
+Calculer la valeur numérique d’expressions contenant des puissances simples, additions,
+soustractions et produits.
+Calculer la valeur d’une expression littérale contenant une puissance simple.
+Produire des formules (double, triple, carré, successeur, prédécesseur, aire, périmètre,
+etc.).
+Calculer la valeur d’une expression littérale par substitution.
+Tester si une égalité entre expressions algébriques comportant une variable est vraie ou
+fausse.
+Avant de commencer
+Calcule mentalement.
+3+3+3+3=
+5× 7=
+2× 4+3=
+Le périmètre d'un carré de côté c est c+c+c+c.
+Expression littérale
+Une expression littérale est une expression mathématique dans laquelle un ou plusieurs
+nombres sont représentés par des lettres.
+La lettre peut prendre plusieurs valeurs : on dit qu'elle représente une variable.
+❀  13 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+PÉRIMÈTRE D'UN TRIANGLE ÉQUILATÉRAL :
+On considère un triangle équilatéral ABC de côté x mètres.
+Comme les trois côtés ont la même longueur : P(ABC)=x+x+x=3x
+Le périmètre du triangle ABC est donc 3x mètres.
+PÉRIMÈTRE D'UN TRIANGLE ISOCÈLE :
+Le triangle DEF est isocèle en E. On sait que DF=7 m et que DE=EF=y.
+Alors : P(DEF)=y+y+7=2y+7
+Le périmètre du triangle DEF est donc 2y+7 mètres.
+2 Simpliﬁer l'écriture d'une expression littérale
+Exprimer en
+fonction de x
+Traduire une situation
+Pour écrire une expression littérale :
+1. Je repère la grandeur demandée.
+2. Je repère les longueurs connues et les longueurs représentées par une lettre.
+3. J'écris le calcul correspondant.
+4. Je simpliﬁe l'écriture si possible.
+À toi
+Exprime chaque grandeur en fonction de a.
+Une ligne composée de 6 segments de longueur a : L1=
+Une ligne composée de deux segments de longueur a et d'un segment de longueur 9 : L2=
+Supprimer le signe ×
+Dans une expression littérale, on peut supprimer le signe × :
+devant ou derrière une lettre ;
+devant ou derrière une parenthèse.
+Par convention, on écrit le nombre avant la lettre.
+❀  14 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+ÉCRITURES SIMPLIFIÉES :
+- 4× a=4a
+- a× b=ab
+- 6×(3-a)=6(3-a)
+- 10+5× a=10+5a
+- x× 7=7x
+- (3-x)× 4=4(3-x)
+- 2× a× 5=10a
+- 4× 5-2× a=20-2a
+3 Utiliser les notations carré et cube
+SIMPLIFIER :
+- 5× 5=52
+- 7× 7× 7=73
+- a× a=a2
+- b× b× b=b3
+- 3× a× a=3a2
+- a× b× a=a2b
+- a× a+a× b=a2+ab
+- 4× 4-x× x=42-x2
+- 5×(x× x+x)=5(x2+x)
+- 1× c=c
+- e× 0=0
+- 2d-d=d
+Simplifier une
+expression littérale
+Attention
+On ne supprime pas le signe × entre deux nombres.
+Par exemple, on écrit 4× 5=20, mais on n'écrit pas 45.
+Carré et cube
+Si a désigne un nombre, alors :
+a× a=a2, ce qui se lit « a au carré » ;
+a× a× a=a3, ce qui se lit « a au cube » ;
+1× a=a ;
+0× a=0.
+Carré et cube d'une
+lettre
+❀  15 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+4 Utiliser une formule
+AIRE D'UN RECTANGLE :
+La formule de l'aire d'un rectangle est : A=L× l
+Si L=4 cm et l=3 cm, alors : A=4× 3=12\ cm2
+L'aire du rectangle est donc 12\ cm2.
+5 Tester une égalité
+Formule
+Une formule est une égalité qui permet de calculer une grandeur.
+Elle contient souvent des lettres qui représentent les valeurs à utiliser.
+Utiliser une
+formule
+Remplacer une lettre par une valeur
+Pour utiliser une formule :
+1. J'écris la formule.
+2. Je remplace chaque lettre par sa valeur.
+3. Je calcule.
+4. J'écris une phrase réponse avec l'unité.
+Tester une égalité
+Tester une égalité, c'est remplacer la lettre par une valeur donnée, puis comparer les deux
+membres de l'égalité.
+Tester une égalité
+❀  16 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+L'ÉGALITÉ 3X+4=5+2X :
+On teste l'égalité 3x+4=5+2x. Pour x=0 : - membre de gauche : 3×0+4=4 ;
+- membre de droite : 5+2×0=5.
+Les deux résultats sont diﬀérents, donc l'égalité est fausse pour x=0. Pour x=1 :
+- membre de gauche : 3×1+4=7 ;
+- membre de droite : 5+2×1=7.
+Les deux résultats sont égaux, donc l'égalité est vraie pour x=1.
+Critères de réussite
+- J'utilise correctement les lettres pour représenter des nombres.
+- Je sais traduire une situation par une expression littérale.
+- Je simpliﬁe les produits avec des lettres.
+- Je remplace les lettres par des valeurs pour calculer.
+- Je pense aux unités dans mes réponses.
+À retenir
+3× x s'écrit 3x.
+x+x+x s'écrit 3x.
+x× x s'écrit x2.
+Pour tester une égalité, je calcule séparément les deux membres.
+Petit défi
+Un rectangle a pour longueur x+5 et pour largeur x.
+1. Écris son périmètre en fonction de x.
+2. Calcule ce périmètre pour x=4 cm.
+3. Peux-tu trouver une valeur de x pour laquelle le périmètre vaut 34 cm ?
+✎  RÉPONSE / TRACES DE RECHERCHE
+
+❀  17 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+Je suis maintenant capable de …
+Objectif je
+plante
+je
+progresse
+je
+maîtrise
+Calculer la valeur numérique d’expressions contenant des
+puissances simples, additions, soustractions et produits.
+Calculer la valeur d’une expression littérale contenant une
+puissance simple.
+Produire des formules (double, triple, carré, successeur,
+prédécesseur, aire, périmètre, etc.).
+Calculer la valeur d’une expression littérale par substitution.
+Tester si une égalité entre expressions algébriques comportant une
+variable est vraie ou fausse.
+Je mets une croix dans la case qui me correspond pour chaque objectif.
+❀  18 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+SAKURA_CHAPTER_G2
+Ch1 Extraire des informations et les reformuler Ch2 Re4 Représenter des solides et des situations spatiales
+Ca1 Eﬀectuer des calculs exacts ou approchés
+1 Représenter un solide en perspective cavalière
+G2
+GÉOMÉTRIE & ESPACE
+Décrire, représenter le cylindre et leprisme droit ; calculer des volumes
+5 ᵉ
+Objectifs visés
+Dans ce chapitre, j'apprends à :
+Représenter des solides en perspective cavalière.
+Relier une perspective cavalière à un patron.
+Calculer le volume d'un cube, d'un pavé droit ou d'un prisme droit.
+Calculer l'aire d'un disque et le volume d'un cylindre.
+Convertir des unités de volume et de capacité.
+Vocabulaire des solides
+Pour décrire un solide, on précise :
+le nombre de faces et leurs formes ;
+le nombre de sommets ;
+le nombre d'arêtes.
+Une face est une surface plane ou courbe qui limite le solide.
+Perspective cavalière
+La perspective cavalière permet de représenter un solide sur une feuille.
+En perspective cavalière :
+les faces vues de face sont dessinées en vraie grandeur ;
+les droites parallèles en réalité restent parallèles sur le dessin ;
+les arêtes cachées sont dessinées en pointillés.
+❀  19 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+Cylindre
+hauteur
+rayon
+Prisme droit
+arêtes latérales
+de même longueur
+2 Le cylindre de révolution
+Cylindre de révolution
+Un cylindre de révolution est un solide formé :
+de deux bases superposables et parallèles qui sont des disques ;
+d'une surface latérale courbe.
+Hauteur et rayon
+La hauteur d'un cylindre est la distance entre ses deux bases.
+Le rayon d'un cylindre est le rayon de ses bases.
+Origine du mot
+Le mot grec kylindros désignait un rouleau. Il est devenu cylindrus en latin, puis chilindre en
+ancien français.
+❀  20 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+3 Le prisme droit
+4 Construire un patron de cylindre
+Prisme droit
+Un prisme droit est un solide qui possède :
+deux faces polygonales identiques et parallèles, appelées les bases ;
+des faces latérales qui sont des rectangles.
+Hauteur d'un prisme droit
+Les arêtes latérales d'un prisme droit ont toutes la même longueur.
+Cette longueur correspond à la hauteur du prisme droit.
+Reconnaître unprisme droitCas particuliers
+Les cubes et les pavés droits sont des prismes droits particuliers.
+Patron d'un cylindre
+Un patron de cylindre est constitué :
+d'un rectangle correspondant à la surface latérale ;
+de deux disques identiques correspondant aux bases.
+Si le cylindre a pour rayon r et pour hauteur h, alors le rectangle a :
+pour largeur h ;
+pour longueur 2π r.
+Patron d'uncylindrePatron interactif
+Exercice MathALÉA
+https://www.geogebra.org/m/ggrvrb93
+❀  21 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+longueur : 2πr
+h
+r
+2 disques
++ 1 rectangle
+PATRON D'UN CYLINDRE :
+On veut réaliser le patron d'un cylindre de rayon 2 cm et de hauteur 4 cm.
+La face latérale est un rectangle : - largeur : h=4 cm ;
+- longueur : L=2π r=2×π×2=4π≈12,6 cm.
+On trace donc un rectangle de dimensions 12,6 cm et 4 cm, puis deux disques de rayon 2 cm.
+5 Construire un patron de prisme droit
+Patron d'un prisme droit
+Pour construire un patron de prisme droit :
+1. Je trace les faces latérales, qui sont des rectangles.
+2. Je respecte les dimensions de chaque rectangle.
+3. J'ajoute les deux bases, qui sont deux polygones identiques.
+4. Je vériﬁe que le patron peut se replier sans superposition.
+Patron d'un prismedroitPatron interactif
+Exercice MathALÉA
+https://www.geogebra.org/m/YE9jnwce
+❀  22 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+5 cm × 3 cm 5 cm × 2,5 cm5 cm × 1,5 cm
+base
+base identique
+Faces latérales
+rectangles
+Bases
+triangles identiques
+PATRON D'UN PRISME DROIT :
+On veut réaliser le patron d'un prisme droit à base triangulaire.
+- On commence par une face latérale : un rectangle de dimensions 5 cm et 3 cm.
+- On dessine les deux autres faces latérales : 5 cm par 2,5 cm, puis 5 cm par 1,5 cm.
+- On ajoute les deux bases : deux triangles identiques de côtés 3 cm, 2,5 cm et 1,5 cm.
+6 Convertir des volumes
+Critères de réussite : représentation de solides
+- J'ai représenté toutes les faces.
+- J'ai respecté les dimensions données.
+- J'ai tracé les arêtes cachées en pointillés.
+- J'ai travaillé avec soin : crayon de papier, traits ﬁns, précision.
+Volume
+Le volume d'un solide est la mesure de l'espace qu'il occupe.
+Unités de volume
+On utilise les unités de volume :
+mm3, cm3, dm3, m3
+On utilise aussi les unités de contenance :
+1\ dm3=1\ L
+❀  23 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+CONVERSION :
+Convertir 503,9\ dm3 en m3. Comme 1\ m3=1 000\ dm3, on divise par 1 000 :
+503,9\ dm3=0,5039\ m3
+AVEC LES LITRES :
+Convertir 57,32\ m3 en litres, puis en hectolitres. 57,32\ m3=57 320\ L=573,2\ hL
+7 Calculer des volumes de solides droits
+CALCULER LE VOLUME D'UN CYLINDRE :
+On considère un cylindre de rayon 3 cm et de hauteur 7 cm.
+V=π r2h V=π×32×7 V=63π\ cm3
+V≈197,92\ cm3
+Le volume du cylindre est donc 63π\ cm3, soit environ 197,92\ cm3.
+Convertir des volumes
+2 vidéos courtes pour revoir cette notion.
+Scanner ou cliquer pour ouvrir.
+Vidéo 1 Vidéo 2
+Volume d'un solide droit
+Pour calculer le volume d'un solide droit :
+V=Abase× h
+où Abase est l'aire d'une base et h est la hauteur du solide.
+Volume d'un cylindre
+Le volume V d'un cylindre de rayon r et de hauteur h est :
+V=π r2h
+Volume d'uncylindre
+❀  24 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+CALCULER LE VOLUME D'UN PRISME DROIT :
+On considère un prisme droit à base triangulaire.
+La base du triangle mesure 3 cm et sa hauteur mesure 2 cm.
+La hauteur du prisme droit est 6 cm. Je calcule l'aire de la base :
+Abase= 3×2
+2 =3\ cm2 Je calcule le volume : V=Abase× h
+V=3×6=18\ cm3 Le prisme droit a donc pour volume 18\ cm3.
+Volume d'un prisme droit
+Le volume d'un prisme droit est :
+V=Abase× h
+Volume d'un prisme
+droit
+Critères de réussite : volumes
+- J'écris la formule utilisée.
+- Je repère correctement la base et la hauteur du solide.
+- Je convertis les unités si nécessaire.
+- Je détaille les calculs.
+- Je conclus avec une phrase réponse et une unité.
+À retenir
+Cylindre : deux bases circulaires et une surface latérale.
+Prisme droit : deux bases polygonales identiques et des faces latérales
+rectangulaires.
+Patron d'un cylindre : deux disques et un rectangle.
+Volume d'un solide droit : V=Abase× h.
+Volume d'un cylindre : V=π r2h.
+❀  25 ❀Maths Livret 5 ᵉ  - Période 1 - 2026-2027 - Mme Le Guern
+Je suis maintenant capable de …
+Objectif je
+plante
+je
+progresse
+je
+maîtrise
+Représenter des solides en perspective cavalière.
+Relier une perspective cavalière à un patron.
+Calculer le volume d'un cube, d'un pavé droit ou d'un prisme droit.
+Calculer l'aire d'un disque et le volume d'un cylindre.
+Convertir des unités de volume et de capacité.
+Je mets une croix dans la case qui me correspond pour chaque objectif.
+Jolie construction
+Construis le patron d'un cylindre de rayon 1,5 cm et de hauteur 5 cm.
+Calcule d'abord la longueur du rectangle, puis trace le patron avec soin.
+✎  RÉPONSE / TRACES DE RECHERCHE

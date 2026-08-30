@@ -1,0 +1,24 @@
+{
+  "niveau": "4e",
+  "objectifs": 75,
+  "automatismes": 39,
+  "generateursFlash": "automatismes-4e-generators.js",
+  "qcm": "qcm-4e.html",
+  "flash": "automatismes-flash-4e.html",
+  "miniEvalSpiralaire": "mini-eval-automatismes-4e.html",
+  "regleMiniEval": {
+    "questions": 20,
+    "strategie": "spiralaire",
+    "repartition": "6 + 6 sur les 2 automatismes les plus récents, puis 4 + 4 sur 2 automatismes anciens",
+    "adaptation": {
+      "1 automatisme": "20",
+      "2 automatismes": "10 + 10",
+      "3 automatismes": "8 + 7 + 5",
+      "4 automatismes et plus": "6 + 6 + 4 + 4"
+    }
+  },
+  "sources": [
+    "Progressions/pont-livret-4e.json",
+    "Progressions/progression-4e.json"
+  ]
+}

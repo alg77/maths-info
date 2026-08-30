@@ -7,9 +7,9 @@
   "prof": "Mme Le Guern",
   "mode": "both",
   "progression": "Studio/config/progression-4e.json",
-  "cover": "assets/covers/cover-4e.png",
-  "livret": "livrets/dist/4e/P1/livret-4e-P1-eleve-v3.pdf",
-  "livret_prof": "livrets/dist/4e/P1/livret-4e-P1-prof-v3.pdf",
+  "cover": "Studio/assets/images/4e-cover.png",
+  "livret": "livrets/dist/4e/P1/livret-4e-P1-eleve-v8.pdf",
+  "livret_prof": "livrets/dist/4e/P1/livret-4e-P1-prof-v8.pdf",
   "chapitres": [
     {
       "code": "N1",

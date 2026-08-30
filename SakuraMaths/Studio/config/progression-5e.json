@@ -35,7 +35,7 @@
   "seq": [
     {
       "code": "N1",
-      "title": "Calculer avec les nombres décimaux",
+      "title": "Priorités opératoires et distributivité",
       "theme": "N",
       "weeks": 2,
       "comps": [
@@ -107,7 +107,8 @@
         "5:⬆1",
         "5:⬆2",
         "5:⬆3",
-        "5:⬆4"
+        "5:⬆4",
+        "5:📈1"
       ],
       "automatismes": [],
       "notes": "Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d'une expression (formules d'aires/volumes, conversions)\nTester une égalité\nSimplifier l'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire"
@@ -132,7 +133,8 @@
         "5:🔺4"
       ],
       "automatismes": [
-        "5:0🧭🅰30"
+        "5:0🧭🅰30",
+        "5:0⬆🅰21"
       ],
       "notes": "Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d'un cylindre et d'un prisme droit\nCalculer le volume d'un pavé droit, d'un cylindre\nCalculer l'aire de la base d'un prisme droit et son volume"
     },
@@ -142,10 +144,17 @@
       "theme": "N",
       "weeks": 2,
       "comps": [
-        "Re2"
+        "Ch1",
+        "Re2",
+        "Ca1"
       ],
       "objectifs": [],
-      "automatismes": [],
+      "automatismes": [
+        "5:0🔤🅰25",
+        "5:0➗🅰10",
+        "5:0➗🅰11",
+        "5:0➗🅰17"
+      ],
       "notes": "Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions"
     },
     {
@@ -154,6 +163,7 @@
       "theme": "G",
       "weeks": 2,
       "comps": [
+        "Ch1",
         "Re4",
         "Ra3",
         "Ca1"
@@ -169,7 +179,8 @@
         "5:🔷8"
       ],
       "automatismes": [
-        "5:0🔺🅰40"
+        "5:0🔺🅰40",
+        "5:0📐🅰36"
       ],
       "notes": "Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d'existence d'un triangle ; cas d'alignement de 3 points\nRéinvestir la médiatrice d'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)\n\n"
     },
@@ -214,7 +225,8 @@
         "5:📈8"
       ],
       "automatismes": [
-        "5:0∝🅰47"
+        "5:0∝🅰47",
+        "5:0∝🅰46"
       ],
       "notes": "Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)"
     },
@@ -260,7 +272,9 @@
         "5:🧭4"
       ],
       "automatismes": [
-        "5:0➗🅰12"
+        "5:0➗🅰12",
+        "5:0🧭🅰26",
+        "5:0🧭🅰27"
       ],
       "notes": "Définir les nombres relatifs (écriture, usages) \nAjouter la notion de valeur absolue.\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible"
     },
@@ -371,7 +385,10 @@
         "5:🔷2",
         "5:🔷6"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "5:0🔷🅰42",
+        "5:0🔷🅰41"
+      ],
       "notes": "Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nReconnaître ; calculer l'aire"
     },
     {
@@ -386,7 +403,8 @@
         "5:➗2"
       ],
       "automatismes": [
-        "5:0➗🅰19"
+        "5:0➗🅰19",
+        "5:0➗🅰16"
       ],
       "notes": "Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)"
     },
@@ -481,6 +499,7 @@
       "weeks": 1,
       "comps": [
         "Ch1",
+        "Ca1",
         "Co1"
       ],
       "objectifs": [
@@ -488,7 +507,11 @@
         "5:🎲2",
         "5:🎲3"
       ],
-      "automatismes": [],
+      "automatismes": [
+        "5:0🎲🅰43",
+        "5:0🎲🅰44",
+        "5:0🎲🅰45"
+      ],
       "notes": ""
     }
   ]

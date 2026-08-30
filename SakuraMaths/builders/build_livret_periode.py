@@ -19,6 +19,10 @@ ROOT = Path(__file__).resolve().parents[1]
 STUDIO = ROOT / "Studio"
 
 
+def niveau_exposant(niveau: str) -> str:
+    return re.sub(r"(\d+)e\b", r"\1ᵉ", str(niveau or ""))
+
+
 def resolve_path(value: str | Path, base: Path = ROOT) -> Path:
     """Accepte les chemins depuis SakuraMaths ou depuis son dossier parent."""
     path = Path(value).expanduser()
@@ -112,6 +116,11 @@ def period_css(footer: str) -> str:
     safe = footer.replace("'", "’")
     return f"""
 @page cover {{ size:A4; margin:0; }}
+@page :first {{
+  size:A4; margin:0;
+  @bottom-left {{ content:''; }}
+  @bottom-right {{ content:''; }}
+}}
 @page {{
   size:A4; margin:17mm 15mm 16mm;
   @bottom-left {{
@@ -130,13 +139,15 @@ def period_css(footer: str) -> str:
   padding:2.2mm 10mm; border-radius:999px; background:rgba(255,255,255,.94);
   color:#594da7; font:700 15pt 'Round','DejaVu Sans',sans-serif; letter-spacing:.4px;
   box-shadow:0 1.2mm 3mm rgba(76,63,140,.16); }}
-.cover-summary {{ position:absolute; left:12.5%; right:12.5%; top:72.7%; margin:0;
-  padding:0; list-style:none; color:#263f84; font:600 10.5pt 'Atkinson','DejaVu Sans',sans-serif; }}
-.cover-summary li {{ display:grid; grid-template-columns:13mm auto 1fr 8mm; gap:2mm; align-items:baseline;
-  padding:1.25mm 2mm; }}
+.cover-summary {{ position:absolute; left:12.5%; right:12.5%; top:73.65%; bottom:24mm; margin:0;
+  padding:0 2mm; list-style:none; color:#263f84; font:600 10.5pt/1.16 'Atkinson','DejaVu Sans',sans-serif;
+  overflow:hidden; }}
+.cover-summary li {{ display:grid; grid-template-columns:12mm minmax(0,auto) minmax(18mm,1fr) 7mm; gap:1.5mm;
+  align-items:baseline; padding:.7mm 0; break-inside:avoid; }}
 .cover-summary b {{ color:#6656ba; font-family:'Round','DejaVu Sans',sans-serif; }}
-.cover-summary span {{ text-align:left; }}
-.cover-summary i {{ border-bottom:.35mm dotted rgba(89,77,167,.45); min-width:8mm; }}
+.cover-summary span {{ text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+.cover-summary i {{ border-bottom:.35mm dotted rgba(89,77,167,.45); min-width:5mm;
+  width:68%; justify-self:center; }}
 .cover-summary em {{ color:#594da7; font-style:normal; font-weight:800; text-align:right; }}
 .cover-meta {{ position:absolute; left:15%; right:13%; bottom:4.2mm; display:flex;
   justify-content:center; gap:8mm; align-items:center; padding:3mm 5mm;
@@ -158,8 +169,12 @@ def write_pdf(renderer, document: str, output: Path) -> None:
         except PermissionError:
             raise SystemExit(f"Ferme le PDF déjà ouvert avant de le régénérer : {output}")
     if renderer.HTML is not None:
-        renderer.HTML(string=document, base_url=str(ROOT)).write_pdf(str(output))
-        return
+        try:
+            renderer.HTML(string=document, base_url=str(ROOT)).write_pdf(str(output))
+        except Exception:
+            pass
+        if output.exists() and output.stat().st_size > 0:
+            return
     browsers = [
         shutil.which("chrome"), shutil.which("msedge"),
         Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe"),
@@ -187,16 +202,8 @@ def write_pdf(renderer, document: str, output: Path) -> None:
             raise RuntimeError(f"Chrome n'a pas pu générer le PDF : {detail}")
 
 
-def prepare_source(renderer, path: Path, item: dict, niveau: str, progression: dict) -> str:
-    """Ajoute un en-tête SakuraMaths aux anciens exports Google Docs."""
-    source = renderer.load_source(path)
-    if re.search(r"(?m)^#\s+[^|\n]+\|[^\n]+\|", source):
-        return source
-    code = str(item.get("code", "")).upper()
-    title = str(item.get("titre") or item.get("title") or progression.get(code, {}).get("title") or code)
-    comps = item.get("comps") or progression.get(code, {}).get("comps") or []
-    if isinstance(comps, str):
-        comps = [part.strip() for part in comps.split(",") if part.strip()]
+def clean_markdown_export(source: str) -> str:
+    """Nettoie les artefacts Google Docs tout en conservant les liens transformables en QR."""
     clean = []
     for line in source.splitlines():
         if re.match(r"^\s*!\[\]\[image\d+\]\s*$", line):
@@ -207,8 +214,21 @@ def prepare_source(renderer, path: Path, item: dict, niveau: str, progression: d
         line = re.sub(r"!\[\]\[image\d+\]", "", line)
         line = re.sub(r"^\s*\d+\.\s*#+\s*", "## ", line)
         clean.append(line)
+    return "\n".join(clean).strip() + "\n"
+
+
+def prepare_source(renderer, path: Path, item: dict, niveau: str, progression: dict) -> str:
+    """Ajoute un en-tête SakuraMaths aux anciens exports Google Docs."""
+    source = clean_markdown_export(renderer.load_source(path))
+    if re.search(r"(?m)^#\s+[^|\n]+\|[^\n]+\|", source):
+        return source
+    code = str(item.get("code", "")).upper()
+    title = str(item.get("titre") or item.get("title") or progression.get(code, {}).get("title") or code)
+    comps = item.get("comps") or progression.get(code, {}).get("comps") or []
+    if isinstance(comps, str):
+        comps = [part.strip() for part in comps.split(",") if part.strip()]
     header = f"# {code} | {title} | {niveau} | {', '.join(comps)}"
-    return header + "\n\n" + "\n".join(clean).strip() + "\n"
+    return header + "\n\n" + source.strip() + "\n"
 
 
 def chapter_pages(pdf: Path, chapters: list[dict]) -> dict[str, int]:
@@ -258,9 +278,11 @@ def main() -> None:
                         help="remplace le mode du manifeste (both par défaut)")
     parser.add_argument("--cover")
     parser.add_argument("--out", required=True)
-    parser.add_argument("--police", choices=["atkinson", "opensans", "opendyslexic"], default="atkinson")
-    parser.add_argument("--taille", type=float, default=11)
-    parser.add_argument("--interligne", type=float, default=1.45)
+    parser.add_argument("--profil", choices=["standard", "dys", "compact", "prof"], default="standard",
+                        help="standard=Open Sans 11/interligne 1.5 ; dys=A4 14pt ; compact=économie papier")
+    parser.add_argument("--police", choices=["atkinson", "opensans", "opendyslexic"], default=None)
+    parser.add_argument("--taille", type=float, default=None)
+    parser.add_argument("--interligne", type=float, default=None)
     parser.add_argument("--couleur", choices=["couleur", "nb"], default="couleur")
     args = parser.parse_args()
 
@@ -281,6 +303,7 @@ def main() -> None:
         raise FileNotFoundError(f"Couverture introuvable : {cover}")
 
     renderer = load_renderer()
+    args = renderer.apply_print_profile(args)
     pont = STUDIO / "config" / f"pont-livret-{niveau}.json"
     if not pont.exists():
         pont = ROOT / "Progressions" / f"pont-livret-{niveau}.json"
@@ -307,8 +330,8 @@ def main() -> None:
     generated = {}
     for current_mode, current_output in output_paths(output, mode).items():
         chapter_body = mark_chapters(renderer.render(blocks, current_mode), chapters)
-        footer = f"Maths Livret {niveau} - {periode} - {annee} - {prof}"
-        css = renderer.build_print_css(args.police, args.taille, args.interligne, args.couleur, "") + period_css(footer)
+        footer = f"Maths Livret {niveau_exposant(niveau)} - {periode} - {annee} - {prof}"
+        css = renderer.build_print_css(args.police, args.taille, args.interligne, args.couleur, "", args.blank_height) + period_css(footer)
         first_cover = cover_html(cover, chapters, niveau, periode, annee, prof, current_mode, footer)
         first_pdf = current_output.with_name(f".{current_output.stem}-pass1.pdf")
         write_pdf(renderer, renderer.html_doc(first_cover + chapter_body, css,
@@ -344,6 +367,7 @@ def main() -> None:
     data.update({"schema": "sakuramaths.livret-periode.v2", "niveau": niveau,
                  "periode": periode, "periode_id": period_id(periode), "annee": annee,
                  "prof": prof, "mode": "both" if mode == "both" else mode,
+                 "profil": args.profil,
                  "progression": str(progression_path.relative_to(ROOT)).replace("\\", "/")
                  if progression_path.exists() else f"Studio/config/progression-{niveau}.json",
                  "cover": str(cover.relative_to(ROOT)).replace("\\", "/"), "chapitres": chapters})

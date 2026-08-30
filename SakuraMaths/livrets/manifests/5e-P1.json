@@ -6,11 +6,12 @@
   "annee": "2026-2027",
   "prof": "Mme Le Guern",
   "mode": "both",
-  "cover": "assets/covers/cover-5e.png",
+  "progression": "Studio/config/progression-5e.json",
+  "cover": "Studio/assets/images/5e-cover.png",
   "chapitres": [
     {
       "code": "N1",
-      "titre": "Calculer avec les nombres décimaux",
+      "titre": "Priorités opératoires et distributivité",
       "source": "Studio/sources/5e/5N1.md",
       "html": {
         "eleve": "Studio/out/web/5N1.html",
@@ -42,8 +43,8 @@
         "Co2"
       ],
       "pages": {
-        "eleve": 5,
-        "prof": 5
+        "eleve": 8,
+        "prof": 8
       }
     },
     {
@@ -61,12 +62,31 @@
         "Co1"
       ],
       "pages": {
-        "eleve": 7,
-        "prof": 7
+        "eleve": 12,
+        "prof": 12
+      }
+    },
+    {
+      "code": "G2",
+      "titre": "Cylindre, prisme droit et volumes",
+      "source": "Studio/sources/5e/5G2.md",
+      "comps": [
+        "Ch1",
+        "Ch2",
+        "Re4",
+        "Ca1"
+      ],
+      "html": {
+        "eleve": "Studio/out/web/5G2.html",
+        "prof": "Studio/out/web/5G2-prof.html"
+      },
+      "pages": {
+        "eleve": 18,
+        "prof": 18
       }
     }
   ],
-  "progression": "Progressions/progression-5e.json",
-  "livret": "livrets/dist/5e/P1/livret-5e-P1-eleve.pdf",
-  "livret_prof": "livrets/dist/5e/P1/livret-5e-P1-prof.pdf"
+  "livret": "livrets/dist/5e/P1/livret-5e-P1-eleve-v26.pdf",
+  "livret_prof": "livrets/dist/5e/P1/livret-5e-P1-prof-v26.pdf",
+  "profil": "standard"
 }

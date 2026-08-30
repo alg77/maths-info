@@ -42,6 +42,15 @@ try:
 except ImportError:
     HAS_QR = False
 
+try:
+    from reportlab.graphics.barcode import qr as reportlab_qr
+    from reportlab.graphics.shapes import Drawing
+    from reportlab.graphics import renderSVG
+    from reportlab.lib.units import mm
+    HAS_QR_SVG = True
+except ImportError:
+    HAS_QR_SVG = False
+
 VENDOR_DIR = Path(__file__).resolve().parent.parent / "vendor"
 if VENDOR_DIR.exists() and str(VENDOR_DIR) not in sys.path:
     sys.path.insert(0, str(VENDOR_DIR))
@@ -84,17 +93,36 @@ def link_to(url, label=None, cls=""):
 def make_qr(url):
     """Génère un QR code cliquable : sur iPad on peut scanner OU toucher le QR/lien."""
     safe_url = html.escape(url.strip(), quote=True)
-    if not HAS_QR:
+    if not HAS_QR and not HAS_QR_SVG:
         return link_to(url, f'[QR: {url}]', 'qr-missing')
-    img = qrcode.make(url)
-    buf = io.BytesIO(); img.save(buf, format="PNG")
-    data = base64.b64encode(buf.getvalue()).decode()
+    if HAS_QR:
+        img = qrcode.make(url)
+        buf = io.BytesIO(); img.save(buf, format="PNG")
+        data = base64.b64encode(buf.getvalue()).decode()
+        src = f"data:image/png;base64,{data}"
+    else:
+        widget = reportlab_qr.QrCodeWidget(url.strip())
+        x1, y1, x2, y2 = widget.getBounds()
+        width, height = x2 - x1, y2 - y1
+        size = 28 * mm
+        drawing = Drawing(size, size, transform=[size / width, 0, 0, size / height, 0, 0])
+        drawing.add(widget)
+        svg = renderSVG.drawToString(drawing)
+        data = base64.b64encode(svg.encode("utf-8")).decode()
+        src = f"data:image/svg+xml;base64,{data}"
     return (f'<a class="qr-link" href="{safe_url}" target="_blank" rel="noopener" aria-label="Ouvrir le lien">'
-            f'<img class="qr" src="data:image/png;base64,{data}" alt="QR code cliquable"/></a>')
+            f'<img class="qr" src="{src}" alt="QR code cliquable"/></a>')
 
 def mathify(s):
     """Mini-convertisseur LaTeX → HTML (sous-ensemble collège)."""
     s = s.replace('\\dfrac', '\\frac')
+    s = s.replace('{,}', ',')
+    s = re.sub(r'\\\s+', '\u2009', s)
+    text_blocks = []
+    def hold_text(m):
+        text_blocks.append(html.escape(m.group(1)))
+        return f'\x03{len(text_blocks)-1}\x04'
+    s = re.sub(r'\\text\{([^{}]*)\}', hold_text, s)
     cmds = []
     s = re.sub(r'\\[a-zA-Z]+', lambda m: cmds.append(m.group(0)) or f'\x00{len(cmds)-1}\x00', s)
     s = re.sub(r'[A-Za-z]+', lambda m: f'<em>{m.group()}</em>', s)          # variables en italique
@@ -102,7 +130,7 @@ def mathify(s):
     for k, v in {'\\times':'×','\\div':'÷','\\cdot':'·','\\parallel':'∥','\\perp':'⊥','\\Rightarrow':'⇒',
                  '\\pm':'±','\\leq':'≤','\\le':'≤',
                  '\\geq':'≥','\\ge':'≥','\\neq':'≠','\\ne':'≠','\\approx':'≈','\\pi':'π',
-                 '\\ldots':'…','\\dots':'…','\\%':'%','\\,':'\u2009'}.items():
+                 '\\ldots':'…','\\dots':'…','\\%':'%','\\,':'\u2009','\\quad':'\u2003'}.items():
         s = s.replace(k, v)
     s = re.sub(r'\\sqrt\{([^{}]*)\}', r'√<span class="sqrtarg">\1</span>', s)
     for _ in range(4):
@@ -114,6 +142,7 @@ def mathify(s):
     s = re.sub(r'\^(<em>\w</em>|\w)', r'<sup>\1</sup>', s)
     s = re.sub(r'_\{([^{}]*)\}', r'<sub>\1</sub>', s)
     s = re.sub(r'_(<em>\w</em>|\w)', r'<sub>\1</sub>', s)
+    s = re.sub(r'\x03(\d+)\x04', lambda m: f'<span class="mtext">{text_blocks[int(m.group(1))]}</span>', s)
     return f'<span class="math">{s}</span>'
 
 def _inline_basic(text):
@@ -289,10 +318,21 @@ def render_table(rows, mode):
         out.append("<tr>" + "".join(f"<td>{process(c, mode)}</td>" for c in cells(r)) + "</tr>")
     return f'<table class="grid">{"".join(out)}</table>'
 
+def is_display_math(t):
+    return bool(re.match(r'^\s*\$[^$]+\$\s*$', t or ""))
+
 def lines_html(body, mode):
     out, i, n, in_ul = [], 0, len(body), False
     while i < n:
         ln = body[i]; t = ln.strip()
+        img_match = re.match(r'!\[([^\]]*)\]\(([^)]+)\)', t)
+        if img_match:
+            if in_ul: out.append("</ul>"); in_ul = False
+            alt = html.escape(img_match.group(1).strip())
+            src = _img_b64(img_match.group(2).strip())
+            if src:
+                out.append(f'<figure class="md-figure"><img src="{src}" alt="{alt}"/></figure>')
+            i += 1; continue
         if t.startswith('<svg'):
             if in_ul: out.append("</ul>"); in_ul = False
             buf = [ln]
@@ -308,6 +348,9 @@ def lines_html(body, mode):
         if not t:
             if in_ul: out.append("</ul>"); in_ul = False
             i += 1; continue
+        if is_display_math(t):
+            if in_ul: out.append("</ul>"); in_ul = False
+            out.append(f'<div class="display-math">{process(t, mode)}</div>'); i += 1; continue
         if t.startswith("- "):
             if not in_ul: out.append("<ul>"); in_ul = True
             out.append(f"<li>{process(t[2:], mode)}</li>"); i += 1; continue
@@ -484,6 +527,20 @@ def _calc_lines(c, mode):
             out.append(process(t, mode))
     return '<br>'.join(out)
 
+def is_calc_line(t):
+    t = (t or "").strip()
+    if not t:
+        return False
+    if is_display_math(t):
+        return True
+    return bool(re.match(r'^[A-Za-zÀ-ÿ][\wÀ-ÿ]*\s*=', t))
+
+def _example_line_html(line, mode):
+    t = line.strip()
+    if is_display_math(t):
+        return f'<div class="calc formula-card">{process(t, mode)}</div>'
+    return f'<p class="extext">{process(t, mode)}</p>'
+
 def render_example(btitle, bbody, mode):
     calcs, cur = [], []
     for l in bbody:
@@ -495,13 +552,22 @@ def render_example(btitle, bbody, mode):
     def example_cell(c):
         if c and all(line.strip().startswith('|') for line in c if line.strip()):
             return f'<div class="calc table-card">{render_table(c, mode)}</div>'
-        return f'<div class="calc">{_calc_lines(c, mode)}</div>'
+        if len(c) >= 2 and all(is_calc_line(line.strip()) for line in c if line.strip()):
+            return f'<div class="calc calc-steps">{_calc_lines(c, mode)}</div>'
+        if len(c) == 1:
+            return _example_line_html(c[0], mode)
+        if all(is_display_math(line.strip()) for line in c if line.strip()):
+            return f'<div class="calc formula-card">{_calc_lines(c, mode)}</div>'
+        return "".join(_example_line_html(line, mode) for line in c if line.strip())
     cells = "".join(example_cell(c) for c in calcs)
     return (f'<div class="ex"><span class="exlab">{inline(btitle or "Exemples")}&nbsp;:</span>'
             f'<div class="calcs">{cells}</div></div>')
 
-BOXMAP = {"def":("def","Définition"),"prop":("prop","Propriété"),"regle":("prop","Règle"),
-          "methode":("meth","Méthode"),"meth":("meth","Méthode"),
+BOXMAP = {"def":("def","Définition"),"definition":("def","Définition"),
+          "prop":("prop","Propriété"),"propriete":("prop","Propriété"),"propriété":("prop","Propriété"),
+          "regle":("prop","Règle"),"règle":("prop","Règle"),"notation":("prop","Notation"),
+          "formule":("formule","Formule"),
+          "methode":("meth","Méthode"),"méthode":("meth","Méthode"),"meth":("meth","Méthode"),
           "rem":("rem","Remarque"),"remarque":("rem","Remarque"),"vocabulaire":("rem","Vocabulaire"),
           "rappel":("rappel","Je me souviens"),"retenu":("retenu","J'ai retenu")}
 
@@ -617,11 +683,36 @@ def split_label_url(line):
 def render_raw(btitle, bbody, mode):
     return "\n".join(bbody)
 
+PLACEHOLDER_RE = re.compile(
+    r"(liens?\s+à\s+compléter|liens?\s+a\s+completer|à\s+compléter|a\s+completer|placeholder|via\s+`?--exomap`?)",
+    re.I,
+)
+
+def _meaningful_lines(lines):
+    return [l for l in lines if l.strip() and not PLACEHOLDER_RE.search(l)]
+
 def render_reussite(btitle, bbody, mode):
-    items = "".join(f'<div class="rchk"><span class="rbox"></span>{process(l.strip(), mode)}</div>'
-                    for l in bbody if l.strip())
+    bbody = _meaningful_lines(bbody)
+    if not bbody:
+        return ""
+    items = "".join(
+        f'<div class="rchk"><span class="rbox"></span>{process(re.sub(r"^[-*•]\s*", "", l.strip()), mode)}</div>'
+        for l in bbody if l.strip()
+    )
     return (f'<div class="box reussite has-sticker"><span class="lab">{html.escape(btitle or "Critères de réussite")}</span>'
             f'{sticker_img("reussite")}<div class="box-content">{items}</div></div>')
+
+def render_colonnes(btitle, bbody, mode):
+    bbody = _meaningful_lines(bbody)
+    if not bbody:
+        return ""
+    lines = []
+    for l in bbody:
+        t = re.sub(r"^[-*•]\s*", "", l.strip())
+        if t:
+            lines.append(f'<li>{process(t, mode)}</li>')
+    title = f'<div class="cols-title">{inline(btitle)} :</div>' if btitle else ""
+    return f'<div class="cols-box">{title}<ul class="cols-list">{"".join(lines)}</ul></div>'
 
 def render_ressources(btitle, bbody, mode):
     items = []
@@ -633,24 +724,77 @@ def render_ressources(btitle, bbody, mode):
         qr = make_qr(url) if url else ""
         items.append(f'<li><span class="res-txt">{inline(lab)}<br>'
                      f'<span class="res-url">{link_to(url, url)}</span></span>{qr}</li>')
+    if not items:
+        return ""
     return (f'<div class="box plus"><span class="lab">{html.escape(btitle or "Pour aller plus loin")}</span>'
             f'<ul class="ressources">{"".join(items)}</ul></div>')
 
 def render_video(btitle, bbody, mode):
     raw = "\n".join(x.strip() for x in bbody if x.strip())
-    m = URL_RE.search(raw)
-    if not m:
+    matches = list(URL_RE.finditer(raw))
+    if not matches:
         return f'<div class="box video"><span class="lab">Vidéo</span>{lines_html(bbody, mode)}</div>'
-    url = m.group(0).rstrip(").,; ")
-    note = (raw[:m.start()] + raw[m.end():]).strip()
+    urls = [m.group(0).rstrip(").,; ") for m in matches]
+    note = raw
+    for url in urls:
+        note = note.replace(url, " ")
+    note = re.sub(r"\s+", " ", note).strip(" :–—-")
     title = btitle or "Vidéo d’explication"
-    note_html = f'<p class="qr-note">{process(note, mode)}</p>' if note else '<p class="qr-note">Scanne pour revoir cette notion.</p>'
+    if len(urls) == 1 and not note:
+        return (f'<div class="box video qrbox video-compact"><span class="lab">{inline(title)}</span>'
+                f'<div class="qr-mini">{make_qr(urls[0])}</div></div>')
+    if note:
+        note_html = f'<p class="qr-note">{process(note, mode)}</p>'
+    elif len(urls) > 1:
+        note_html = f'<p class="qr-note">{len(urls)} vidéos courtes pour revoir cette notion.</p>'
+    else:
+        note_html = '<p class="qr-note">Scanne pour revoir cette notion.</p>'
+    if len(urls) == 1:
+        qr_html = f'<div class="qr-side">{make_qr(urls[0])}</div>'
+    else:
+        qr_html = '<div class="qr-row">' + "".join(
+            f'<div class="video-qr"><span>Vidéo {i}</span>{make_qr(url)}</div>'
+            for i, url in enumerate(urls, 1)
+        ) + '</div>'
     return (f'<div class="box video qrbox"><span class="lab">{inline(title)}</span>'
             f'<div class="qr-main"><div class="qr-text">{note_html}'
-            f'<div class="tap-hint">Scanner ou cliquer pour ouvrir.</div></div><div class="qr-side">{make_qr(url)}</div></div></div>')
+            f'<div class="tap-hint">Scanner ou cliquer pour ouvrir.</div></div>{qr_html}</div></div>')
+
+def render_videos(btitle, bbody, mode):
+    entries = []
+    for raw in bbody:
+        line = raw.strip().lstrip("- ").strip()
+        if not line:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        url = ""
+        label = ""
+        detail = ""
+        for part in parts:
+            m = URL_RE.search(part)
+            if m:
+                url = m.group(0).rstrip(").,; ")
+            elif not label:
+                label = part
+            elif not detail:
+                detail = part
+        if url:
+            entries.append((label or mathalea_title_from_url(url), detail, url))
+    if not entries:
+        return ""
+    cells = "".join(
+        f'<div class="video-card"><strong>{inline(label)}</strong>'
+        f'<span>{inline(detail)}</span>{make_qr(url)}</div>'
+        for label, detail, url in entries
+    )
+    return (f'<div class="box videos compact-video-grid video-count-{len(entries)}"><span class="lab">{inline(btitle or "Vidéos")}</span>'
+            f'<div class="video-grid">{cells}</div></div>')
 
 def render_defi(btitle, bbody, mode):
     """Petit défi de fin de chapitre, dans l'esprit du cahier de vacances."""
+    bbody = _meaningful_lines(bbody)
+    if not bbody:
+        return ""
     title = btitle or "★★★ Défi du chapitre"
     content = lines_html(bbody, mode)
     return (f'<div class="box defi has-sticker"><span class="lab">{inline(title)}</span>'
@@ -684,7 +828,7 @@ def render_mathalea(btitle, bbody, mode):
         if url:
             entries.append((lab, url))
     if not entries:
-        return f'<div class="box mathalea"><span class="lab">MathALÉA</span>{lines_html(bbody, mode)}</div>'
+        return ""
 
     # Si une page-hub de chapitre est fournie, on privilégie un seul QR :
     # plus lisible sur le livret papier, et plus cohérent avec l'usage iPad.
@@ -706,6 +850,9 @@ def render_mathalea(btitle, bbody, mode):
             f'<div class="mathalea-grid">{rows}</div></div>')
 
 def render_standard_box(btype, btitle, bbody, mode):
+    bbody = _meaningful_lines(bbody)
+    if not bbody:
+        return ""
     cls, deflabel = BOXMAP.get(btype, ("rem", btype.capitalize()))
     label = btitle or deflabel
     st = sticker_img(btype) if btype in ("rappel", "retenu") else ""
@@ -719,7 +866,10 @@ BOX_RENDERERS = {
     "ex": lambda t, b, m: render_example(t, b, m),
     "reussite": render_reussite,
     "ressources": render_ressources,
+    "colonnes": render_colonnes,
+    "cols": render_colonnes,
     "video": render_video,
+    "videos": render_videos,
     "mathalea": render_mathalea,
     "defi": render_defi,
 }
@@ -730,13 +880,13 @@ def render_box(btype, btitle, bbody, mode):
         return renderer(btitle, bbody, mode)
     return render_standard_box(btype, btitle, bbody, mode)
 
-def render_body(body, mode):
+def render_body(body, mode, skip_objectifs=False):
     parts, secn = [], 0
     for kind, data in body:
         if kind == "section":
             secn += 1
             t = data.strip()
-            mm = re.match(r'^([IVXLC]+|[A-Z])[.)]\s*(.+)$', t)
+            mm = re.match(r'^(\d+|[IVXLC]+|[A-Z])[.)]\s*(.+)$', t)
             num = str(secn)  # numérotation classique 1,2,3
             ttl = mm.group(2) if mm else t
             parts.append(f'<div class="sec"><span class="n">{num}</span><h2>{inline(ttl)}</h2></div>')
@@ -744,6 +894,8 @@ def render_body(body, mode):
             parts.append(lines_html(data, mode))
         elif kind == "box":
             btype, btitle, bbody = data
+            if skip_objectifs and btype == "objectifs":
+                continue
             parts.append(render_box(btype, btitle, bbody, mode))
     return "\n".join(parts)
 
@@ -769,15 +921,68 @@ FACE = {
  "mid": '<svg viewBox="0 0 42 42" class="plantface plant-sprout" aria-label="jeune pousse"><circle cx="21" cy="21" r="19" fill="#f3fbf6" stroke="#bfe8c8" stroke-width="2"/><ellipse cx="21" cy="30" rx="8" ry="3.4" fill="#8a5a3b"/><path d="M21 30 C21 23 21 18 21 12" stroke="#3f8d6a" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="16.5" cy="17" rx="7" ry="3.8" fill="#72bf68" transform="rotate(-38 16.5 17)"/><ellipse cx="26" cy="15" rx="7.6" ry="4.1" fill="#8ed37d" transform="rotate(34 26 15)"/></svg>',
  "ok": '<svg viewBox="0 0 42 42" class="plantface plant-flower" aria-label="fleur"><circle cx="21" cy="21" r="19" fill="#fff5fb" stroke="#f2c4dc" stroke-width="2"/><g fill="#f4a9c4"><ellipse cx="21" cy="12" rx="4" ry="7"/><ellipse cx="21" cy="30" rx="4" ry="7"/><ellipse cx="12" cy="21" rx="7" ry="4"/><ellipse cx="30" cy="21" rx="7" ry="4"/><ellipse cx="14.7" cy="14.7" rx="4" ry="6" transform="rotate(-45 14.7 14.7)"/><ellipse cx="27.3" cy="14.7" rx="4" ry="6" transform="rotate(45 27.3 14.7)"/><ellipse cx="14.7" cy="27.3" rx="4" ry="6" transform="rotate(45 14.7 27.3)"/><ellipse cx="27.3" cy="27.3" rx="4" ry="6" transform="rotate(-45 27.3 27.3)"/></g><circle cx="21" cy="21" r="4.6" fill="#f4d06f"/></svg>',
 }
+
+def _short_objectif(text):
+    t = re.sub(r"\s+", " ", str(text or "")).strip()
+    replacements = [
+        (r"Additionner, soustraire, multiplier et diviser pour résoudre des problèmes et contrôler la vraisemblance de son résultat\.?",
+         "Calculer avec les opérations et vérifier si le résultat est vraisemblable."),
+        (r"Connaitre le sens et les situations d’emploi de ces opérations\.?",
+         "Choisir l'opération adaptée à une situation."),
+        (r"Traduire un problème, une succession donnée d’opérations, un programme de calcul, en une seule expression, en faisant appel ou non à des parenthèses\.?",
+         "Traduire un problème ou un programme de calcul par une expression."),
+        (r"Nommer un calcul, distinguer sommes et produits, termes et facteurs\.?",
+         "Distinguer somme, produit, termes et facteurs."),
+        (r"Connaitre et justifier les situations dans lesquelles des parenthèses sont indispensables au sens des écritures\.?",
+         "Expliquer quand les parenthèses sont nécessaires."),
+        (r"Connaitre et utiliser les priorités opératoires\.?",
+         "Utiliser les priorités opératoires."),
+        (r"Connaitre et utiliser la distributivité simple sur des exemples numériques\.?",
+         "Utiliser la distributivité simple."),
+        (r"Construire et mettre en relation différentes représentations en perspectives cavalières des solides suivants\s*:\s*pavé droit, cube, cylindre de révolution, prisme droit\.?",
+         "Représenter des solides en perspective cavalière."),
+        (r"Savoir mettre en relation une représentation en perspective cavalière et un patron d’un pavé, d’un prisme droit ou d’un cylindre de révolution\.?",
+         "Relier une perspective cavalière à un patron."),
+        (r"Calculer le volume du cube, du pavé droit, du prisme droit\.?",
+         "Calculer le volume d'un cube, d'un pavé droit ou d'un prisme droit."),
+        (r"Calculer l’aire du disque, le volume du cylindre de révolution\.?",
+         "Calculer l'aire d'un disque et le volume d'un cylindre."),
+        (r"Connaitre et convertir des unités usuelles \(volume et capacité\)\.?",
+         "Convertir des unités de volume et de capacité."),
+    ]
+    for pattern, repl in replacements:
+        t = re.sub(pattern, repl, t, flags=re.I)
+    t = re.sub(r"^Savoir\s+", "", t, flags=re.I)
+    t = re.sub(r"^Connaitre et utiliser\s+", "Utiliser ", t, flags=re.I)
+    t = re.sub(r"^Connaitre\s+", "Connaître ", t, flags=re.I)
+    if len(t) > 125:
+        cut = t[:122].rsplit(" ", 1)[0].rstrip(" ,;:")
+        t = cut + "..."
+    return t
+
+def visible_objectifs(seq, max_items=5):
+    raw = seq.get("objectifsEleves") or seq.get("objectifs", []) or []
+    out, seen = [], set()
+    for item in raw:
+        obj = dict(item) if isinstance(item, dict) else {"texte": str(item)}
+        obj["texte"] = _short_objectif(obj.get("texte", ""))
+        key = re.sub(r"\W+", "", obj["texte"].lower())
+        if obj["texte"] and key not in seen:
+            out.append(obj)
+            seen.add(key)
+        if len(out) >= max_items:
+            break
+    return out
+
 def render_objectifs_vises(seq, mode):
-    objs = seq.get("objectifs", []) or []
+    objs = visible_objectifs(seq)
     if not objs: return ""
     lis = "".join(f'<li>{_niv_badge(o.get("niveau","")) if mode!="eleve" else ""}{inline(o.get("texte",""))}</li>' for o in objs)
     return ('<div class="box objectifs"><span class="lab">Objectifs visés</span>'
             "<p class=\"obj-intro\">Dans ce chapitre, j'apprends à&nbsp;:</p>"
             f'<ul class="obj-list">{lis}</ul></div>')
 def render_capable(seq, mode):
-    objs = seq.get("objectifs", []) or []
+    objs = visible_objectifs(seq)
     if not objs: return ""
     qrcol = any(EXOMAP.get(o.get("code")) for o in objs)
     extra = '<th class="cap-exo">Pour m\'entraîner</th>' if qrcol else ''
@@ -810,7 +1015,7 @@ def render(blocks, mode):
         base_code = re.split(r"[.\-]", code_up, maxsplit=1)[0]
         seqp = PONT.get(code) or PONT.get(code_up) or PONT.get(base_code)
         if seqp: parts.append(render_objectifs_vises(seqp, mode))
-        parts.append(render_body(ch["body"], mode))
+        parts.append(render_body(ch["body"], mode, skip_objectifs=bool(seqp)))
         if seqp: parts.append(render_capable(seqp, mode))
         if not body_has_box(ch["body"], "defi"):
             full_code = code if (code and code[0].isdigit()) else f"{niveau[:1]}{code}"
@@ -866,6 +1071,31 @@ def font_faces_b64(police="atkinson"):
     return "".join(out)
 
 BODYFAM = {"atkinson":"'Atkinson','Atkinson Hyperlegible'", "opensans":"'Body','Open Sans'", "opendyslexic":"'OpenDyslexic'"}
+
+PRINT_PROFILES = {
+    # Profil courant : proche de tes livrets 2025-2026, économe en papier.
+    "standard": {"police": "opensans", "taille": 11.0, "interligne": 1.5, "blank_height": 2.0},
+    # Version A4 pour DYS/PAP : ne pas réduire en A5.
+    "dys": {"police": "opensans", "taille": 14.0, "interligne": 1.65, "blank_height": 2.2},
+    # Version compacte : à réserver aux élèves sans aménagement, idéalement A4 ou A5 natif plus tard.
+    "compact": {"police": "opensans", "taille": 10.5, "interligne": 1.35, "blank_height": 1.7},
+    # Alias pratique pour tes exemplaires corrigés.
+    "prof": {"police": "opensans", "taille": 11.0, "interligne": 1.5, "blank_height": 1.2},
+}
+
+def apply_print_profile(args):
+    profile = PRINT_PROFILES.get(getattr(args, "profil", None) or "standard", PRINT_PROFILES["standard"])
+    if getattr(args, "police", None) is None:
+        args.police = profile["police"]
+    if getattr(args, "taille", None) is None:
+        args.taille = profile["taille"]
+    if getattr(args, "interligne", None) is None:
+        args.interligne = profile["interligne"]
+    args.blank_height = profile["blank_height"]
+    return args
+
+def niveau_exposant(niveau):
+    return re.sub(r"(\d+)e\b", r"\1ᵉ", str(niveau or ""))
 
 FOOT = ""
 
@@ -929,7 +1159,7 @@ p{ margin:.34em 0; } ul{ margin:.3em 0 .3em 1.1em; padding:0 0 0 .4em; } li{ mar
 .sub{ font-family:var(--round); font-weight:600; color:var(--thd); font-size:12pt; margin:4mm 0 2mm; padding-left:3mm; border-left:3px solid var(--th); }
 
 /* encadres */
-.box{ position:relative; border-radius:14px; padding:2.9mm 4.6mm; margin:2.4mm 0; border:1.5px solid var(--bc);
+.box{ clear:both; position:relative; border-radius:14px; padding:2.9mm 4.6mm; margin:2.4mm 0; border:1.5px solid var(--bc);
   border-left:6px solid var(--bl); background:var(--bg); box-shadow:0 3px 10px #c9a9e012; }
 .box .lab{ display:inline-block; font-family:var(--round); font-weight:700; color:#fff; background:var(--bl);
   border-radius:999px; padding:1px 12px; font-size:9pt; margin-bottom:1.6mm; letter-spacing:.3px; }
@@ -947,6 +1177,21 @@ p{ margin:.34em 0; } ul{ margin:.3em 0 .3em 1.1em; padding:0 0 0 .4em; } li{ mar
 .box.mathalea .lab{ background:#47bfc7; }
 .box.video{ --bc:#cfe8ff; --bl:#6daee6; --bg:#f3f9ff; }
 .box.video .lab{ background:#6daee6; }
+.box.formule{ --bc:#dcd3f3; --bl:#a899dd; --bg:#f7f4fc; }
+.box.formule .lab{ background:#a899dd; }
+.box.videos{ --bc:#cfe8ff; --bl:#6daee6; --bg:#f8fbff; padding:2.4mm 3mm; }
+.box.videos .lab{ background:#6daee6; }
+.video-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(34mm,1fr)); gap:0; border:1.2px solid #8fbde5; border-radius:10px; overflow:hidden; background:#fff; }
+.video-card{ display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:1mm; min-height:37mm; padding:2mm 1.5mm; text-align:center; border-right:1px solid #cfe8ff; }
+.video-card:last-child{ border-right:0; }
+.video-card strong{ font-family:var(--round); font-weight:800; color:var(--thd); font-size:10.8pt; line-height:1.05; }
+.video-card span{ font-size:8.4pt; line-height:1.2; color:#3f4560; min-height:2.4em; }
+.video-card .qr{ width:17mm; height:17mm; }
+.video-count-2{ padding:1.8mm 2.4mm; }
+.video-count-2 .video-card{ min-height:25mm; padding:1.4mm 1.5mm; gap:.5mm; }
+.video-count-2 .video-card strong{ font-size:10pt; }
+.video-count-2 .video-card span{ min-height:0; font-size:8pt; }
+.video-count-2 .video-card .qr{ width:15mm; height:15mm; }
 .box.objectifs{ --bc:color-mix(in srgb,var(--th) 45%,white); --bl:var(--th); --bg:color-mix(in srgb,var(--th) 8%,white); }
 .box.reussite{ --bc:#f6d2b0; --bl:#df8a4e; --bg:#fff5ec; }
 .box.reussite .lab{ background:#df8a4e; }
@@ -960,12 +1205,18 @@ p{ margin:.34em 0; } ul{ margin:.3em 0 .3em 1.1em; padding:0 0 0 .4em; } li{ mar
 /* exemples */
 .ex{ margin:2.4mm 0 1mm; }
 .exlab{ font-family:var(--title); font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--thd); font-size:10.5pt; }
-.calcs{ display:flex; gap:4mm; flex-wrap:wrap; margin-top:1.4mm; }
+.calcs{ display:flex; column-gap:3.2mm; row-gap:1.1mm; flex-wrap:wrap; margin-top:1.2mm; }
 .calc{ background:#faf7fc; border:1px solid #efe7f5; border-radius:11px; padding:2.4mm 4.5mm; line-height:1.65; min-width:38mm; }
+.extext{ flex-basis:100%; margin:.2mm 0 .4mm; }
+.formula-card{ min-width:34mm; text-align:center; font-size:12.2pt; font-weight:700; line-height:1.25; padding:1.8mm 4mm; }
+.formula-card .math{ font-weight:700; }
 .calc.table-card{ flex-basis:100%; padding:0; border:0; background:transparent; }
 .calc.table-card table.grid{ margin:0; }
 .id{ font-family:'MathVar','KaTeX_Math',serif; font-style:italic; color:var(--thd); font-weight:700; }
 .math em,.mit{ font-family:'MathVar','KaTeX_Math',serif; font-style:italic; }
+.math .mtext{ font-family:var(--body); font-style:normal; }
+.display-math{ text-align:center; font-size:13.4pt; font-weight:800; margin:.8mm auto 1.1mm; line-height:1.18; color:var(--thd); }
+.display-math .math{ font-weight:800; }
 .res{ color:#c0698e; font-weight:700; }
 .rep{ color:@@REP@@; font-weight:700; }
 .blank{ display:inline-block; border-bottom:1.5px dotted #b9a6c9; min-width:3.2em; height:1.1em; vertical-align:bottom; margin:0 2px; }
@@ -1022,6 +1273,14 @@ a:hover{ text-decoration:underline; }
 .qrbox .qr-main{ display:flex; align-items:center; justify-content:space-between; gap:7mm; }
 .qrbox .qr-note{ margin:.5mm 0 1mm; }
 .qrbox .qr-side .qr{ height:18mm; width:18mm; }
+.video-compact{ float:right; clear:right; width:34mm; min-height:23mm; margin:0 0 1.8mm 4mm; padding:1.8mm 2mm; text-align:center; break-inside:avoid; }
+.video-compact .lab{ max-width:100%; white-space:normal; line-height:1.05; font-size:7.5pt; padding:1.2mm 2.5mm; margin:0 auto 1.4mm; }
+.video-compact .qr-mini{ display:flex; justify-content:center; }
+.video-compact .qr{ height:16mm; width:16mm; }
+.qr-row{ display:flex; align-items:flex-start; justify-content:flex-end; gap:4mm; flex-wrap:nowrap; }
+.video-qr{ display:flex; flex-direction:column; align-items:center; gap:1mm; font-size:7.4pt;
+  color:#6f6780; font-weight:700; white-space:nowrap; }
+.video-qr .qr{ height:16mm; width:16mm; }
 .mathalea-grid{ display:flex; flex-wrap:wrap; gap:3mm 5mm; margin-top:2mm; align-items:flex-start; }
 .ma-cell{ width:36mm; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1.5mm; }
 .ma-title{ font-weight:600; color:#6b5572; font-size:.82em; line-height:1.15; min-height:2.4em; display:flex; align-items:center; }
@@ -1029,6 +1288,12 @@ a:hover{ text-decoration:underline; }
 .ma-qr .qr{ height:22mm; width:22mm; }
 .tap-hint{font-size:.82em;color:#8a7ea0;font-style:italic;margin-top:1mm;}
 .qr-detail{font-size:.82em;color:#6f6780;margin:.5mm 0 1mm;}
+.cols-box{ margin:2mm 0 2.8mm; break-inside:avoid; }
+.video-compact + .cols-box{ clear:none; margin-right:39mm; }
+.cols-title{ font-family:var(--title); font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--thd); font-size:10.5pt; margin-bottom:1.4mm; }
+.cols-list{ list-style:none; margin:0; padding:2.4mm 4mm; columns:2; column-gap:9mm; background:#faf7fc; border:1px solid #efe7f5; border-radius:11px; line-height:1.55; }
+.cols-list li{ break-inside:avoid; margin:0 0 1.1mm; }
+.cols-list li::before{ content:"- "; color:var(--ink-soft); }
 .compact-train{ margin:2.4mm 0; padding-top:2.2mm; padding-bottom:2.2mm; }
 .compact-train .qr-main{ gap:4mm; }
 .compact-train .sticker{ width:16mm; max-height:17mm; margin-bottom:0; }
@@ -1042,10 +1307,14 @@ table.grid th{ background:linear-gradient(135deg,color-mix(in srgb,var(--th) 28%
 table.grid td:first-child{ background:color-mix(in srgb,var(--th) 8%,white); color:var(--thd); font-weight:700; text-align:left; }
 .mode-eleve table.grid td{ min-height:11mm; }
 svg.fig{ display:block; float:right; width:200px; margin:0 0 6px 12px; }
+svg.fig.wide-fig{ float:none; clear:both; width:100%; max-height:90mm; margin:4mm auto; }
+svg.fig.geo-exercise{ float:none; clear:both; width:46%; max-height:46mm; margin:2mm auto 3mm; }
+.md-figure{ margin:3mm auto; text-align:center; break-inside:avoid; }
+.md-figure img{ max-width:100%; max-height:85mm; object-fit:contain; border-radius:12px; }
 .mode-eleve .prof-only,.mode-prof .eleve-only{ display:none !important; }
 """
 
-def build_print_css(police, taille, interligne, couleur, foot=""):
+def build_print_css(police, taille, interligne, couleur, foot="", blank_height=2.0):
     nb = (couleur == "nb")
     # Bas de page dans l'esprit du cahier de vacances : petite étoile à gauche,
     # texte discret, et compteur de pages en capsule violette à droite.
@@ -1058,7 +1327,11 @@ def build_print_css(police, taille, interligne, couleur, foot=""):
             "background:#cdb4e0; border-radius:999px; padding:2px 12px; } }")
     bodyfam = BODYFAM.get(police, "'Atkinson'")
     css = CHARTER_CSS.replace("@@SIZE@@", f"{taille}").replace("@@LH@@", f"{interligne}").replace("@@REP@@", "#c0698e" if not nb else "#222").replace("@@BODY@@", bodyfam)
-    return font_faces_b64(police) + "\n" + page + "\n" + css + "\n" + cover_css(nb) + cover_vacances_css()
+    profile_css = (
+        f"\n.mode-eleve .blank{{ height:{blank_height}em; vertical-align:bottom; }}\n"
+        f".mode-prof .blank{{ height:{min(1.2, blank_height)}em; }}\n"
+    )
+    return font_faces_b64(police) + "\n" + page + "\n" + css + profile_css + "\n" + cover_css(nb) + cover_vacances_css()
 
 def build_web_css(police):
     bodyfam = BODYFAM.get(police, "'Atkinson'")
@@ -1660,9 +1933,11 @@ def main():
     ap.add_argument("--niveau", default=None, help="niveau (déduit automatiquement de la source si omis)")
     ap.add_argument("--progression", default=None, help="progression JSON utilisée pour calculer les périodes")
     ap.add_argument("--mode", choices=["prof","eleve","both"], default="both")
-    ap.add_argument("--police", choices=["atkinson","opensans","opendyslexic"], default="atkinson")
-    ap.add_argument("--taille", type=float, default=11)
-    ap.add_argument("--interligne", type=float, default=1.45)
+    ap.add_argument("--profil", choices=list(PRINT_PROFILES), default="standard",
+                    help="profil d'impression : standard=Open Sans 11/interligne 1.5, dys=A4 14pt, compact=économie papier")
+    ap.add_argument("--police", choices=["atkinson","opensans","opendyslexic"], default=None)
+    ap.add_argument("--taille", type=float, default=None)
+    ap.add_argument("--interligne", type=float, default=None)
     ap.add_argument("--couleur", choices=["couleur","nb"], default="couleur")
     ap.add_argument("--html", action="store_true")
     ap.add_argument("--builder", action="store_true", help="générer le sélecteur HTML interactif")
@@ -1674,7 +1949,7 @@ def main():
     ap.add_argument("--qcm-html", default=None, help="générer une page qcm-4eme.html qui lit questions.js")
     ap.add_argument("--qcm-par-lien", type=int, default=6, help="nombre de questions générées par lien MathALÉA")
     ap.add_argument("--hub-url", default="", help="URL unique de la page du chapitre (remplace les QR MathALÉA multiples dans le livret)")
-    args = ap.parse_args()
+    args = apply_print_profile(ap.parse_args())
 
     chapter_codes = [x.strip().upper() for x in (args.chapitres or "").split(",") if x.strip()]
     args.niveau = infer_level(args.source, chapter_codes, args.niveau)
@@ -1694,7 +1969,7 @@ def main():
         print(f"[lot] {len(chapter_sources)} chapitre(s) : {', '.join(chapter_codes)}")
         for chapter_source in chapter_sources:
             cmd = [sys.executable, str(Path(__file__).resolve()), str(chapter_source),
-                   "--mode", args.mode, "--police", args.police, "--taille", str(args.taille),
+                   "--mode", args.mode, "--profil", args.profil, "--police", args.police, "--taille", str(args.taille),
                    "--interligne", str(args.interligne), "--couleur", args.couleur,
                    "--out", args.out]
             if args.html: cmd.append("--html")
@@ -1726,7 +2001,7 @@ def main():
     foot_left = "Mathématiques · Mme Le Guern"
     if _chaps0:
         _h = _chaps0[0]["header"]
-        foot_left = f"Mathématiques · {_h[0]} · Mme Le Guern · {_h[2]}"
+        foot_left = f"Mathématiques · {_h[0]} · Mme Le Guern · {niveau_exposant(_h[2])}"
     outdir = Path(args.out); outdir.mkdir(parents=True, exist_ok=True)
     stem = ("livret_" + "_".join(chapter_codes)) if chapter_sources else Path(args.source).stem
 
@@ -1761,7 +2036,7 @@ def main():
         body = render(blocks, m)
         suffix = f"{m}_{args.police}_{int(args.taille)}pt_{args.couleur}"
         pdf = _uniq(outdir / f"{stem}__{suffix}.pdf")
-        write_pdf_document(html_doc(body, build_print_css(args.police, args.taille, args.interligne, args.couleur, foot_left)), pdf)
+        write_pdf_document(html_doc(body, build_print_css(args.police, args.taille, args.interligne, args.couleur, foot_left, args.blank_height)), pdf)
         print(f"  ✓ {pdf.name}")
         if _chaps0:
             _code, _title, _niveau, _comp = _chaps0[0]["header"]

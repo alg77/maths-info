@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Jeogori Borahae 💜 — Tuto pas à pas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orchidee:#8B4E7F;
+  --orchidee-fonce:#6E3A64;
+  --lavande:#EDE3F2;
+  --lavande-claire:#F8F3FB;
+  --creme:#FFFDF9;
+  --encre:#3D2C3E;
+  --dore:#C9A24B;
+  --rose:#E8B4C8;
+  --vert-ok:#7FA86F;
+  --rouge-alerte:#C25B5B;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Atkinson Hyperlegible',sans-serif;
+  background:var(--lavande-claire);
+  color:var(--encre);
+  line-height:1.65;
+  font-size:17px;
+}
+h1,h2,h3{font-family:'Baloo 2',cursive;line-height:1.2}
+
+/* ---------- HERO ---------- */
+header{
+  background:linear-gradient(135deg,var(--orchidee-fonce) 0%,var(--orchidee) 55%,#A96B9C 100%);
+  color:#fff;
+  padding:56px 24px 72px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:0;height:26px;
+  background:
+    linear-gradient(90deg,
+      var(--dore) 0 14.28%, var(--rose) 0 28.56%, #fff 0 42.84%,
+      #B8D8C8 0 57.12%, var(--rose) 0 71.4%, var(--dore) 0 85.68%, #fff 0 100%);
+  opacity:.85;
+}
+header .badge{
+  display:inline-block;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.45);
+  padding:6px 18px;border-radius:999px;font-weight:700;
+  letter-spacing:.06em;font-size:.85rem;margin-bottom:18px;
+}
+header h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:800;margin-bottom:10px}
+header p{max-width:560px;margin:0 auto;opacity:.92}
+
+main{max-width:820px;margin:0 auto;padding:40px 20px 80px}
+
+/* ---------- SECTIONS ---------- */
+section{margin-bottom:52px}
+.eyebrow{
+  font-family:'Baloo 2',cursive;font-weight:700;color:var(--orchidee);
+  text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;margin-bottom:4px;
+}
+section>h2{font-size:1.7rem;color:var(--orchidee-fonce);margin-bottom:16px}
+
+.card{
+  background:var(--creme);
+  border:1px solid #E8DCEE;
+  border-radius:var(--radius);
+  padding:22px 24px;
+  margin-bottom:16px;
+  box-shadow:0 2px 10px rgba(110,58,100,.06);
+}
+
+/* ---------- ÉTAPES ---------- */
+.etape{
+  background:var(--creme);
+  border:1px solid #E8DCEE;
+  border-left:6px solid var(--orchidee);
+  border-radius:var(--radius);
+  padding:20px 22px 20px 20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 10px rgba(110,58,100,.06);
+}
+.etape h3{
+  display:flex;align-items:center;gap:12px;
+  font-size:1.2rem;color:var(--orchidee-fonce);margin-bottom:10px;
+}
+.num{
+  flex:none;width:38px;height:38px;border-radius:50%;
+  background:var(--orchidee);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;
+}
+.etape ol{padding-left:22px;margin:8px 0}
+.etape ol li{margin-bottom:9px}
+.etape ul{padding-left:22px;margin:8px 0}
+.etape ul li{margin-bottom:6px}
+
+/* encadrés */
+.astuce,.attention,.pourquoi{
+  border-radius:12px;padding:12px 16px;margin:12px 0;font-size:.95rem;
+}
+.astuce{background:#F1F7EE;border:1px solid #CDE3C3}
+.astuce::before{content:"🌸 Astuce — ";font-weight:700;color:var(--vert-ok)}
+.attention{background:#FBEFEF;border:1px solid #EBC9C9}
+.attention::before{content:"⚠️ Attention — ";font-weight:700;color:var(--rouge-alerte)}
+.pourquoi{background:var(--lavande);border:1px solid #DCC8E6}
+.pourquoi::before{content:"💜 Pourquoi ? ";font-weight:700;color:var(--orchidee)}
+
+/* ---------- LEXIQUE ---------- */
+dl.lexique{display:grid;grid-template-columns:1fr;gap:0}
+dl.lexique .terme{
+  padding:12px 0;border-bottom:1px dashed #DCC8E6;
+}
+dl.lexique .terme:last-child{border-bottom:none}
+dl.lexique dt{font-weight:700;color:var(--orchidee-fonce)}
+dl.lexique dd{margin-left:0;font-size:.95rem}
+
+/* ---------- TABLEAUX ---------- */
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin:10px 0}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #E8DCEE}
+th{background:var(--lavande);font-family:'Baloo 2',cursive;color:var(--orchidee-fonce)}
+tr:nth-child(even) td{background:#FBF8FD}
+
+/* ---------- CHECKLIST ---------- */
+.check{display:flex;align-items:flex-start;gap:10px;padding:7px 0}
+.check input{
+  appearance:none;flex:none;width:22px;height:22px;margin-top:2px;
+  border:2px solid var(--orchidee);border-radius:7px;background:#fff;
+  cursor:pointer;position:relative;transition:background .15s;
+}
+.check input:checked{background:var(--orchidee)}
+.check input:checked::after{
+  content:"✓";color:#fff;position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;
+}
+.check input:checked+label{opacity:.55;text-decoration:line-through}
+.check label{cursor:pointer}
+.check input:focus-visible{outline:3px solid var(--dore);outline-offset:2px}
+
+/* planning */
+.jour{display:flex;gap:14px;align-items:baseline;padding:8px 0;border-bottom:1px dashed #DCC8E6}
+.jour:last-child{border-bottom:none}
+.jour .j{
+  flex:none;font-family:'Baloo 2',cursive;font-weight:800;color:var(--orchidee);
+  min-width:64px;
+}
+
+footer{
+  text-align:center;padding:30px 20px 50px;color:var(--orchidee-fonce);
+  font-size:.9rem;
+}
+footer .fleur{font-size:1.4rem}
+
+@media (max-width:560px){
+  body{font-size:16px}
+  .etape{padding:16px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .etape{transition:transform .15s ease}
+  .etape:hover{transform:translateX(3px)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">CONCERT BTS · STADE DE FRANCE · J−10 💜</div>
+  <h1>Mon Jeogori Borahae</h1>
+  <p>Guide pas à pas pour coudre le <strong>Hanbok Top &amp; Jacket</strong> de Sewing Therapy — expliqué en français, pour une débutante sereine. Coton Orchidée, marges de couture de <strong>1&nbsp;cm partout</strong>.</p>
+</header>
+
+<main>
+
+<!-- ================= AVANT DE COMMENCER ================= -->
+<section>
+  <div class="eyebrow">Étape 0</div>
+  <h2>Avant de commencer</h2>
+
+  <div class="card">
+    <h3 style="color:var(--orchidee-fonce);margin-bottom:8px">🧵 Le matériel</h3>
+    <ul style="padding-left:22px">
+      <li><strong>Tissu coton Orchidée</strong> : 1,4 m minimum par top en 142 cm de large pour XS/S/M ; 1,5 m par top te laisse une marge confortable</li>
+      <li><strong>Entoilage thermocollant léger</strong> : 0,5 yard / environ 0,5 m, pour col + parementures</li>
+      <li><strong>2 rubans coton de 30,5 cm</strong> par top (liens intérieurs) — ou coupés dans le tissu</li>
+      <li>Fil assorti, épingles ou pinces, ciseaux ou cutter rotatif, craie ou stylo Frixion</li>
+      <li>Fer à repasser + pattemouille : <em>ton meilleur ami sur ce projet !</em></li>
+      <li>Machine à coudre avec point droit + point zigzag (pas besoin de surjeteuse)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--orchidee-fonce);margin-bottom:8px">📖 Petit lexique (à lire une fois, tu y reviendras)</h3>
+    <dl class="lexique">
+      <div class="terme"><dt>Endroit contre endroit (le « RST » du patron)</dt>
+      <dd>Les deux « beaux côtés » du tissu se regardent, face à face. C'est la position par défaut avant de coudre une couture.</dd></div>
+      <div class="terme"><dt>Marge de couture</dt>
+      <dd>La distance entre le bord du tissu et ta ligne de couture. Ici : <strong>1 cm partout</strong>, déjà incluse dans le patron. Repère le guide « 1 cm » sur la plaque de ta machine.</dd></div>
+      <div class="terme"><dt>Cranter / repères</dt>
+      <dd>Les petites encoches du patron. Marque-les d'un mini coup de ciseaux (3 mm max !) dans la marge : elles servent à aligner les pièces.</dd></div>
+      <div class="terme"><dt>Point de soutien (staystitch)</dt>
+      <dd>Une couture droite simple à ~7 mm du bord, sur une seule épaisseur, qui empêche une courbe (l'encolure !) de se déformer pendant que tu manipules le tissu.</dd></div>
+      <div class="terme"><dt>Surfiler</dt>
+      <dd>Passer un point zigzag sur le bord vif du tissu pour qu'il ne s'effiloche pas.</dd></div>
+      <div class="terme"><dt>Sous-piquer (understitch)</dt>
+      <dd>Coudre la parementure sur les marges de couture, à 3 mm de la couture, pour qu'elle reste bien à l'intérieur et ne roule pas vers l'extérieur.</dd></div>
+      <div class="terme"><dt>Surpiquer</dt>
+      <dd>Une couture visible sur l'endroit, décorative et solide (par ex. pour fermer le col et la ceinture).</dd></div>
+      <div class="terme"><dt>Pince</dt>
+      <dd>Un petit pli triangulaire cousu qui donne du galbe au vêtement.</dd></div>
+      <div class="terme"><dt>WST / envers contre envers</dt>
+      <dd>Les deux envers du tissu se regardent. Le patron l'utilise moins souvent que RST, mais c'est utile à reconnaître dans les explications vidéo.</dd></div>
+    </dl>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--orchidee-fonce);margin-bottom:8px">📌 Repères Sewing Therapy à garder sous les yeux</h3>
+    <ul style="padding-left:22px">
+      <li>Niveau annoncé : <strong>débutante confiante / intermédiaire</strong>. Pour un premier projet, avance lentement et repasse à chaque étape.</li>
+      <li>Choisis la taille selon le <strong>tour de poitrine</strong>. Si tu es entre deux tailles, Sewing Therapy conseille de prendre la plus grande.</li>
+      <li>Le patron est prévu pour une stature de <strong>163 cm</strong> et arrive autour du haut des hanches ; allonge ou raccourcis seulement si tu veux modifier ce rendu.</li>
+      <li>Marges incluses : <strong>3/8 inch = 1 cm</strong>, sauf mention contraire.</li>
+      <li>Pour un top léger : coton, lin, soie ou tissu chaîne et trame léger à moyen. Évite un coton très raide si tu veux un tombé souple.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= PRÉPARATION ================= -->
+<section>
+  <div class="eyebrow">Phase 1</div>
+  <h2>Préparer le tissu et couper</h2>
+
+  <div class="etape">
+    <h3><span class="num">1</span>Laver et repasser le tissu</h3>
+    <p>Dès demain soir : machine à 30–40°, séchage, puis bon repassage. Le coton rétrécit au premier lavage — mieux vaut que ça arrive <em>avant</em> la coupe !</p>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">2</span>Imprimer et assembler le patron</h3>
+    <ol>
+      <li>Imprime le fichier A4 à <strong>100 % / « Taille réelle »</strong> — jamais « ajuster à la page ».</li>
+      <li>Règle l'orientation sur <strong>automatique</strong> ou <strong>paysage</strong>, car le patron est prévu en paysage.</li>
+      <li>Vérifie le carré test : il doit mesurer exactement <strong>1 inch / 2,54 cm</strong> et <strong>5 cm</strong>.</li>
+      <li>Le PDF A4 compte 24 pages. Pour XS/S, tu peux t'arrêter à la page 18 : les rectangles (ceinture, liens) se tracent directement avec le tableau « Paper Saver » — voir étape 3.</li>
+      <li>Assemble les pages dans l'ordre A1→A6, B1→B6… en faisant coïncider les losanges gris.</li>
+      <li>Découpe <strong>ta taille</strong> en suivant la légende des pointillés (chaque taille a son style de trait). Toi : S · Ta fille : XS ou S selon son tour de poitrine.</li>
+    </ol>
+    <div class="astuce">Si vous êtes toutes les deux sur des tailles voisines, décalque une des tailles sur du papier de soie ou à la roulette plutôt que de découper le patron : tu gardes toutes les tailles intactes.</div>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">3</span>Couper les pièces dans le tissu</h3>
+    <p>Plie le tissu endroit contre endroit, lisières alignées, et respecte le <strong>droit-fil</strong> (la flèche « grain line » doit être parallèle à la lisière).</p>
+    <table>
+      <tr><th>Pièce</th><th>Quantité</th><th>Remarque</th></tr>
+      <tr><td>Devant (Front Bodice)</td><td>2 miroir</td><td>Coupées sur tissu plié = automatique</td></tr>
+      <tr><td>Dos (Back Bodice)</td><td>1 au pli</td><td>Bord « ON FOLD » posé sur la pliure</td></tr>
+      <tr><td>Col (Neckband)</td><td>2</td><td>+ 1 en entoilage ; suis le repère ON FOLD si tu utilises la pièce patron</td></tr>
+      <tr><td>Parementure devant (Front Facing)</td><td>2 miroir</td><td>+ 2 en entoilage</td></tr>
+      <tr><td>Manche (Sleeve)</td><td>2 miroir</td><td>Choisis la ligne <em>manche courte</em> (concert en juillet ! ou longue pour le style Leesle)</td></tr>
+      <tr><td>Ceinture (Waistband)</td><td>2</td><td>Au pli avec la pièce patron, ou à plat avec les mesures Paper Saver</td></tr>
+      <tr><td>Lien extérieur (Outer Tie)</td><td>2</td><td>Rectangle du tableau</td></tr>
+      <tr><td>Lien intérieur (Inner Tie)</td><td>2</td><td>Ou ruban coton 30,5 cm</td></tr>
+    </table>
+    <div class="pourquoi">Les rectangles Paper Saver se coupent <strong>à plat, pas au pli</strong> : ceinture S = 103 × 16,5 cm, XS = 96 × 16,5 cm, liens extérieurs = 43 × 10 cm (S) / 41 × 10 cm (XS), liens intérieurs = 30,5 × 5 cm. Gain de papier, gain de temps !</div>
+    <div class="attention">Reporte tous les crans + les pointes des pinces (au stylo Frixion à travers un petit trou d'épingle dans le patron) <em>avant</em> de retirer le papier.</div>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">4</span>Thermocoller et sécuriser l'encolure</h3>
+    <ol>
+      <li>Pose l'entoilage côté colle (le côté granuleux) contre l'<strong>envers</strong> d'UN col et des 2 parementures. Fer chaud sans vapeur, presse 10–12 s zone par zone, sans glisser.</li>
+      <li><strong>Point de soutien</strong> sur l'encolure des devants et du dos : point droit à 7 mm du bord. <em>Ne saute surtout pas cette étape</em> — l'encolure du jeogori est en biais et se détendrait sinon.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= CONSTRUCTION ================= -->
+<section>
+  <div class="eyebrow">Phase 2</div>
+  <h2>Construire le corps</h2>
+
+  <div class="etape">
+    <h3><span class="num">5</span>Les liens extérieurs (goreum)</h3>
+    <ol>
+      <li>Plie chaque lien en deux dans la longueur, endroit contre endroit.</li>
+      <li>Couds un petit côté + le grand côté à 1 cm. Laisse l'autre petit côté ouvert.</li>
+      <li>Retourne sur l'endroit (une baguette ou un crayon aide bien !) et repasse à plat.</li>
+    </ol>
+    <p>Tu obtiens 2 liens, chacun avec une extrémité fermée et une ouverte. Mets-les de côté.</p>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">6</span>Les pinces</h3>
+    <ol>
+      <li>Endroit contre endroit, rabats la pince sur elle-même pour superposer les deux traits, épingle.</li>
+      <li>Couds du bord du tissu vers la pointe. En approchant de la pointe, incurve légèrement ta couture vers le pli.</li>
+      <li>À la pointe : <strong>pas de point arrière !</strong> Sors l'aiguille, coupe le fil long, fais 2 petits nœuds à la main, puis recoupe à 1 cm.</li>
+      <li>Repasse les pinces couchées vers les coutures de côté.</li>
+    </ol>
+    <div class="pourquoi">Un point arrière à la pointe d'une pince crée un vilain petit « bec » de tissu. Le nœud manuel donne une pointe parfaitement lisse.</div>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">7</span>Épaules + liens intérieurs</h3>
+    <ol>
+      <li>Couds les épaules devant/dos endroit contre endroit à 1 cm. Surfile ensemble au zigzag, couche vers le dos, repasse.</li>
+      <li>Pose le corps <strong>envers du dos face à toi</strong>. Épingle le bord vif d'un lien intérieur au milieu de la couture de côté <em>gauche</em> (à ta droite quand tu regardes l'envers du dos), lien posé sur l'endroit du tissu. Bâtis-le (grand point droit dans la marge).</li>
+      <li>Épingle le second lien intérieur au milieu du bord devant, sur l'<strong>endroit</strong> du devant <em>droit</em>. Bâtis.</li>
+      <li>Couds les coutures de côté endroit contre endroit, surfile.</li>
+    </ol>
+    <div class="pourquoi">Ces deux petits liens invisibles ferment le côté « caché » du portefeuille. C'est eux qui font que le jeogori reste bien en place quand tu lèves ton ARMY Bomb 💜</div>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">8</span>Les manches</h3>
+    <ol>
+      <li>Plie une manche en deux endroit contre endroit, couds la couture de dessous de bras, surfile.</li>
+      <li>Ourlet : replie le bas de 2,5 cm vers l'envers, repasse, couds.</li>
+      <li>Manche toujours sur l'envers, corps sur l'endroit : glisse le corps <em>dans</em> la manche (elles se retrouvent endroit contre endroit). Fais correspondre couture de dessous de bras ↔ couture de côté, cran d'épaule ↔ couture d'épaule, et les repères DEVANT/DOS.</li>
+      <li>Couds l'emmanchure à 1 cm, surfile.</li>
+    </ol>
+    <div class="astuce">La manche est volontairement un peu plus grande que l'emmanchure côté devant : répartis le léger excédent en 1 ou 2 mini plis ou en fronçant à peine. C'est voulu — ça donne la jolie tête de manche bouffante du hanbok !</div>
+  </div>
+</section>
+
+<!-- ================= FINITIONS ================= -->
+<section>
+  <div class="eyebrow">Phase 3</div>
+  <h2>Parementure, ceinture et col</h2>
+
+  <div class="etape">
+    <h3><span class="num">9</span>La parementure devant</h3>
+    <ol>
+      <li>Pose la parementure sur le bord devant, endroit contre endroit — le lien intérieur bâti est pris en sandwich entre les deux. Couds à 1 cm.</li>
+      <li>Couche la parementure et les marges du même côté, puis <strong>sous-pique</strong> à 3 mm de la couture (tu couds parementure + marges ensemble, pas le devant).</li>
+      <li>Replie le bord libre de la parementure de 1 cm vers l'envers, repasse.</li>
+      <li>Rabats la parementure vers l'intérieur du devant, repasse bien.</li>
+      <li>Bâtis son bord en biais le long de l'encolure et son bord bas le long de la taille.</li>
+      <li>Fixe le bord libre : surpiqûre à la machine (rapide) ou point invisible à la main (chic).</li>
+    </ol>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">10</span>La ceinture + liens extérieurs</h3>
+    <ol>
+      <li>Sur UNE ceinture : replie un grand côté d'un peu moins de 1 cm vers l'envers, repasse. Mets-la de côté (ce sera la face intérieure).</li>
+      <li>Couds l'autre ceinture au bas du corps, endroit contre endroit, à 1 cm. Repasse la ceinture vers le bas.</li>
+      <li>Bâtis un lien extérieur (bord vif) sur le bord devant <em>gauche</em> de la ceinture, au centre ou un peu au-dessus, endroit contre endroit.</li>
+      <li>Couds le bord vif de l'autre lien au niveau de la couture de côté <em>droite</em>, même hauteur, puis rabats le lien par-dessus pour cacher le bord et surpique.</li>
+      <li>Pose la 2ᵉ ceinture par-dessus, endroit contre endroit, et couds tout le pourtour extérieur (les liens sont à l'intérieur du sandwich !).</li>
+      <li>Retourne, fais bien sortir les angles, glisse la marge de couture entre les deux épaisseurs, repasse : le bord plié doit cacher d'1 mm la ligne de couture.</li>
+      <li>Épingle généreusement et surpique tout le tour.</li>
+    </ol>
+    <div class="attention">Avant de coudre le sandwich, vérifie deux fois que les liens sont bien rangés <em>à l'intérieur</em> et qu'aucun ne sera pris dans la couture du pourtour.</div>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">11</span>Le col (git + dongjeong)</h3>
+    <ol>
+      <li>Sur le col <strong>entoilé</strong> : replie le bord cranté d'un peu moins de 1 cm, repasse, réserve.</li>
+      <li>Si tu veux ajouter une petite étiquette de couture, c'est le bon moment : elle sera prise proprement dans le montage du col.</li>
+      <li>Prends le col <strong>non entoilé</strong> : épingle l'endroit de son bord cranté contre l'<strong>envers</strong> de l'encolure du corps. Oui, c'est contre-intuitif — le col se pose d'abord côté intérieur, puis viendra se rabattre sur l'endroit !</li>
+      <li>Fais coïncider le repère du col avec la future ligne de couture du bord devant, épingle beaucoup (l'encolure est en biais), couds à 1 cm.</li>
+      <li>Repasse le col vers la couture.</li>
+      <li>Pose le col entoilé par-dessus, endroit contre endroit, couds le pourtour extérieur.</li>
+      <li>Retourne le col, glisse la couture entre les deux épaisseurs, repasse : le bord plié cache légèrement la ligne de couture.</li>
+      <li>Épingle et surpique.</li>
+    </ol>
+    <div class="astuce">Envie du look traditionnel ? Coupe une bande de coton blanc, plie les bords et faufile-la à la main sur le col : c'est le <strong>dongjeong</strong>, amovible et tellement élégant. Sur l'Orchidée, un dongjeong blanc sera superbe avec ta jupe Uniqlo !</div>
+  </div>
+
+  <div class="etape">
+    <h3><span class="num">12</span>Dernière ligne droite ✨</h3>
+    <ul>
+      <li>Coupe tous les fils qui dépassent.</li>
+      <li>Grand repassage final à la pattemouille.</li>
+      <li>Essayage : lien intérieur noué d'abord (côté caché), puis les goreum noués en <em>otgoreum</em> — la boucle asymétrique tombante caractéristique du hanbok.</li>
+    </ul>
+    <p style="margin-top:8px">Et voilà : <strong>jeogori terminé, borahae !</strong> 💜</p>
+  </div>
+</section>
+
+<!-- ================= CHECKLIST ================= -->
+<section>
+  <div class="eyebrow">Suivi</div>
+  <h2>Ma checklist (top n°1)</h2>
+  <div class="card">
+    <div class="check"><input type="checkbox" id="c1"><label for="c1">Tissu lavé, séché, repassé</label></div>
+    <div class="check"><input type="checkbox" id="c2"><label for="c2">Patron imprimé à 100 % + carré test vérifié</label></div>
+    <div class="check"><input type="checkbox" id="c3"><label for="c3">Pièces coupées + crans et pinces marqués</label></div>
+    <div class="check"><input type="checkbox" id="c4"><label for="c4">Entoilage posé (1 col + 2 parementures)</label></div>
+    <div class="check"><input type="checkbox" id="c5"><label for="c5">Points de soutien sur les encolures</label></div>
+    <div class="check"><input type="checkbox" id="c6"><label for="c6">Liens extérieurs cousus et retournés</label></div>
+    <div class="check"><input type="checkbox" id="c7"><label for="c7">Pinces cousues et repassées</label></div>
+    <div class="check"><input type="checkbox" id="c8"><label for="c8">Épaules + liens intérieurs + côtés</label></div>
+    <div class="check"><input type="checkbox" id="c9"><label for="c9">Manches montées, ourlets faits</label></div>
+    <div class="check"><input type="checkbox" id="c10"><label for="c10">Parementures posées et fixées</label></div>
+    <div class="check"><input type="checkbox" id="c11"><label for="c11">Ceinture + liens extérieurs surpiqués</label></div>
+    <div class="check"><input type="checkbox" id="c12"><label for="c12">Col posé et surpiqué</label></div>
+    <div class="check"><input type="checkbox" id="c13"><label for="c13">Repassage final — prête pour le Stade de France ! 💜</label></div>
+  </div>
+  <p style="font-size:.85rem;opacity:.7">Les cases se décochent si tu recharges la page — imprime-la ou garde l'onglet ouvert pendant la couture.</p>
+</section>
+
+<!-- ================= PLANNING ================= -->
+<section>
+  <div class="eyebrow">Objectif 18 juillet</div>
+  <h2>Planning des 10 jours (×2 tops !)</h2>
+  <div class="card">
+    <div class="jour"><span class="j">J−10</span><span>Achat tissu + fournitures, lavage en machine le soir même</span></div>
+    <div class="jour"><span class="j">J−9</span><span>Repassage, impression + assemblage du patron</span></div>
+    <div class="jour"><span class="j">J−8</span><span>Coupe des deux tops + marquages + thermocollage + points de soutien</span></div>
+    <div class="jour"><span class="j">J−7</span><span><strong>Top n°1</strong> : liens, pinces, épaules, côtés (étapes 5→7)</span></div>
+    <div class="jour"><span class="j">J−6</span><span>Top n°1 : manches + parementures (étapes 8→9)</span></div>
+    <div class="jour"><span class="j">J−5</span><span>Top n°1 : ceinture + col + finitions — <em>premier essayage !</em></span></div>
+    <div class="jour"><span class="j">J−4</span><span><strong>Top n°2</strong> : liens, pinces, épaules, côtés (tu iras 2× plus vite)</span></div>
+    <div class="jour"><span class="j">J−3</span><span>Top n°2 : manches + parementures</span></div>
+    <div class="jour"><span class="j">J−2</span><span>Top n°2 : ceinture + col + finitions</span></div>
+    <div class="jour"><span class="j">J−1</span><span>Marge de sécurité, dongjeong blanc, repassage — et repos !</span></div>
+  </div>
+  <div class="astuce">Regarde le sewalong vidéo de Sewing Therapy sur YouTube en parallèle des étapes 9 à 11 : voir les gestes une fois vaut mille schémas.</div>
+</section>
+
+<footer>
+  <div class="fleur">🌸 💜 🌸</div>
+  <p>Fait avec amour pour deux ARMY en route vers le Stade de France.<br>
+  Patron : Hanbok Top &amp; Jacket © Sewing Therapy — ce guide est un pense-bête personnel.</p>
+</footer>
+
+</main>
+</body>
+</html>

@@ -89,6 +89,12 @@ sommaire paginé, versions élève/professeur et pages HTML.
 
 **État : opérationnel pour les niveaux collège présents.**
 
+**Ajout juillet 2026 : la 4e et la 5e disposent maintenant d'une génération dédiée
+QCM / automatismes. Les builders `builders/build_4e_practice.py` et
+`builders/build_5e_practice.py` produisent les données normalisées, les pages QCM et
+les pages flash dans `Studio/out/qcm/<niveau>/`, puis le cockpit les détecte
+automatiquement.**
+
 ## À poursuivre
 
 - relire les chapitres 4e ;

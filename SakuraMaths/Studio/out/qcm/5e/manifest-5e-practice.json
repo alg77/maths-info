@@ -1,0 +1,26 @@
+{
+  "niveau": "5e",
+  "objectifs": 106,
+  "automatismes": 47,
+  "generateursFlash": "automatismes-5e-generators.js",
+  "qcm": "qcm-5e.html",
+  "flash": "automatismes-flash-5e.html",
+  "miniEvalSpiralaire": "mini-eval-automatismes-5e.html",
+  "regleMiniEval": {
+    "questions": 20,
+    "strategie": "spiralaire",
+    "repartition": "6 + 6 sur les 2 automatismes les plus récents, puis 4 + 4 sur 2 automatismes anciens",
+    "adaptation": {
+      "1 automatisme": "20",
+      "2 automatismes": "10 + 10",
+      "3 automatismes": "8 + 7 + 5",
+      "4 automatismes et plus": "6 + 6 + 4 + 4"
+    }
+  },
+  "sources": [
+    "Progressions/2026-REFERENTIEL_OBJECTIFS 5e.csv",
+    "Progressions/2026-Automatismes 5e.csv",
+    "Progressions/automatismes-flash-5e.html",
+    "Progressions/pont-livret-5e.json"
+  ]
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progression des automatismes — 4ᵉ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6f8; --card:#fff; --border:#ecdfe4; --ink:#3f3540; --muted:#8a7f8a;
+  --accent:#d98ba4; --accent-ink:#a8607c; --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0;
+}
+*{box-sizing:border-box}
+body{font-family:'Atkinson Hyperlegible',sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.5}
+h1,h2,h3{font-family:'Baloo 2',sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:1.6rem 1.4rem 4rem}
+header{text-align:center;margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,1.9rem);color:var(--accent-ink);margin:0 0 .2rem}
+.sub{color:var(--muted);font-size:.88rem}
+.timestamp{color:var(--muted);font-size:.78rem;font-style:italic;margin-top:.2rem}
+
+.no-print button{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:.6rem 1.2rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Baloo 2',sans-serif}
+.no-print{text-align:center;margin:1rem 0 2rem}
+
+h2.section-title{font-size:1.25rem;color:var(--accent-ink);border-bottom:2px solid var(--accent);padding-bottom:.4rem;margin:2.2rem 0 1rem}
+.legend-note{font-size:.85rem;color:var(--muted);margin-bottom:1.2rem}
+
+.periode-block{margin-bottom:1.6rem}
+.periode-head{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1rem;color:#fff;background:var(--accent-ink);display:inline-block;padding:.3rem 1rem;border-radius:999px;margin-bottom:.7rem}
+
+.seq-card{border-left:5px solid var(--seqc,var(--accent));background:var(--card);border-radius:0 12px 12px 0;padding:.8rem 1.1rem;margin-bottom:.7rem;border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.seq-card-head{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
+.seq-code{font-family:'Baloo 2',sans-serif;font-weight:800;color:#fff;background:var(--seqc,var(--accent));border-radius:6px;padding:.1rem .6rem;font-size:.85rem}
+.seq-title{font-weight:700;font-size:.95rem}
+.seq-date{color:var(--muted);font-size:.8rem;margin-left:auto}
+.auto-list{margin:0;padding-left:1.3rem;font-size:.86rem}
+.auto-list li{margin:.15rem 0}
+.auto-code{font-family:monospace;font-size:.72rem;color:var(--accent-ink);font-weight:700}
+
+table.suivi{width:100%;border-collapse:collapse;margin-top:.5rem}
+table.suivi th{background:var(--accent);color:#fff;font-family:'Baloo 2',sans-serif;font-size:.8rem;padding:.5rem .4rem;text-align:center}
+table.suivi td{border:1px solid var(--border);padding:.45rem .4rem;text-align:center;font-size:.83rem;height:1.6rem}
+table.suivi td.week-label{text-align:left;font-weight:700;background:#fbfaff;white-space:nowrap}
+table.suivi tr.periode-sep td{background:var(--accent-ink);color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;text-align:left;padding:.4rem .6rem}
+
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:2rem 0 0}
+
+@page{ size:A4 portrait; margin:14mm 12mm; }
+@media print{
+  body{background:#fff}
+  .no-print{display:none!important}
+  .seq-card,tr,table.suivi{break-inside:avoid}
+  .periode-block{break-inside:avoid-page}
+  h2.section-title{break-after:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>🎯 Progression des automatismes — 4ᵉ</h1>
+  <div class="sub">Année 2026-2027 · calendrier de déblocage + suivi des mini-évaluations hebdomadaires</div>
+  <div class="timestamp" id="ts"></div>
+</header>
+
+<div class="no-print"><button onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button></div>
+
+<h2 class="section-title">📅 Calendrier de déblocage</h2>
+<p class="legend-note">Chaque automatisme devient disponible pour les mini-évaluations dès que sa séquence est terminée (date indiquée). Contrairement aux ceintures, il n'y a pas de palier de maîtrise à valider : chaque mini-éval pioche au hasard parmi <em>tous</em> les automatismes déjà débloqués, mélangeant réactivation et nouveauté — c'est le principe de la spirale.</p>
+
+<div id="periodesContainer"></div>
+
+<h2 class="section-title" style="break-before:page">📝 Suivi des mini-évaluations</h2>
+<p class="legend-note">Une mini-évaluation par semaine (5 à 10 questions flash), notée et comptant dans la moyenne. En cas de résultat insuffisant : un seul rattrapage possible, sur une nouvelle mini-évaluation générée avec les mêmes automatismes disponibles à cette date.</p>
+
+<table class="suivi" id="suiviTable"></table>
+
+<footer>SakuraMaths — Progression des automatismes 4ᵉ, générée à partir du référentiel officiel et du calendrier réel de la progression.</footer>
+</div>
+
+<script>
+var SCHEDULE = [{"seqCode": "N1", "seqTitle": "Nombres relatifs : addition et soustraction", "theme": "N", "endDate": "2026-09-15", "items": [{"code": "aOPR1", "texte": "Manipulation de sommes et différences de nombres relatifs.", "sousTheme": "Opérations sur les nombres relatifs"}, {"code": "aOPR2", "texte": "Opposé d'un nombre, somme des opposés.", "sousTheme": "Opérations sur les nombres relatifs"}, {"code": "aOPR3", "texte": "Entretien des tables de multiplication.", "sousTheme": "Opérations sur les nombres relatifs"}, {"code": "aOPR4", "texte": "Multiplier et diviser par 10, 100, 1 000.", "sousTheme": "Opérations sur les nombres relatifs"}, {"code": "aREP1", "texte": "Placer sur une droite graduée un point dont l'abscisse est un nombre relatif.", "sousTheme": "Repérage sur une droite et dans le plan"}, {"code": "aREP2", "texte": "Repérer un nombre relatif sur une droite graduée.", "sousTheme": "Repérage sur une droite et dans le plan"}], "periode": 1, "dateFmt": "15 septembre 2026"}, {"seqCode": "G1", "seqTitle": "Triangles : droites remarquables et droite des milieux", "theme": "G", "endDate": "2026-09-29", "items": [{"code": "aTRI1", "texte": "Reconnaitre des droites remarquables, y compris dans les triangles particuliers (médiatrices, médianes, hauteurs, bissectrices).", "sousTheme": "Triangles"}], "periode": 1, "dateFmt": "29 septembre 2026"}, {"seqCode": "D1", "seqTitle": "Proportionnalité", "theme": "D", "endDate": "2026-10-13", "items": [{"code": "aPRP1", "texte": "Déterminer a % de c quand a vaut 100, 50, 25, 10, 1.", "sousTheme": "Proportionnalité"}, {"code": "aPRP2", "texte": "Compléter : 20 % de 120 = … ; 30 = …/100 × 1 000.", "sousTheme": "Proportionnalité"}], "periode": 1, "dateFmt": "13 octobre 2026"}, {"seqCode": "N2", "seqTitle": "Nombres relatifs : multiplication et division", "theme": "N", "endDate": "2026-11-09", "items": [{"code": "aOPR5", "texte": "Compléter des multiplications à trou : 5 × … = 3 ; faire le lien entre multiplication et division.", "sousTheme": "Opérations sur les nombres relatifs"}, {"code": "aOPR6", "texte": "Multiplication comme addition itérée : 3 + 3 + 3 + 3 = 4 × 3.", "sousTheme": "Opérations sur les nombres relatifs"}, {"code": "aREP3", "texte": "Dans le plan muni d'un repère orthogonal : lire les coordonnées d'un point donné ; placer un point de coordonnées données.", "sousTheme": "Repérage sur une droite et dans le plan"}], "periode": 2, "dateFmt": "9 novembre 2026"}, {"seqCode": "N3", "seqTitle": "Calcul littéral 1", "theme": "N", "endDate": "2026-11-23", "items": [{"code": "aLIT1", "texte": "Donner la valeur d'expressions numériques simples.", "sousTheme": "Calcul littéral et algébrique"}, {"code": "aLIT3", "texte": "Écrire 3 × x sous la forme 3x et savoir que 3x c'est 3 × x.", "sousTheme": "Calcul littéral et algébrique"}, {"code": "aLIT4", "texte": "Connaitre et utiliser : 1×x = x ; x + x = 2x ; x × x = x² ; 3x + 2x = 5x ; 3x × 2x = 6x².", "sousTheme": "Calcul littéral et algébrique"}, {"code": "aLIT5", "texte": "Donner le double, le triple, la moitié, le prédécesseur, le successeur, le carré d'un nombre.", "sousTheme": "Calcul littéral et algébrique"}], "periode": 2, "dateFmt": "23 novembre 2026"}, {"seqCode": "G2", "seqTitle": "Égalité de Pythagore (sens direct)", "theme": "G", "endDate": "2026-12-07", "items": [{"code": "aRAC1", "texte": "Donner les carrés des nombres entiers compris entre 0 et 12.", "sousTheme": "Racine carrée"}], "periode": 2, "dateFmt": "7 décembre 2026"}, {"seqCode": "N4", "seqTitle": "Équations", "theme": "N", "endDate": "2027-01-11", "items": [{"code": "aLIT2", "texte": "Résoudre des équations du type ax = c et x + b = c, où a, b et c sont des nombres.", "sousTheme": "Calcul littéral et algébrique"}, {"code": "aLIT6", "texte": "Tester si un nombre vérifie une égalité.", "sousTheme": "Calcul littéral et algébrique"}], "periode": 3, "dateFmt": "11 janvier 2027"}, {"seqCode": "D2", "seqTitle": "Statistiques", "theme": "D", "endDate": "2027-01-25", "items": [{"code": "aSTA1", "texte": "Calculer une moyenne pour un très petit nombre de valeurs.", "sousTheme": "Statistiques"}, {"code": "aSTA2", "texte": "Calculer un effectif manquant dans un tableau pour un petit nombre de valeurs.", "sousTheme": "Statistiques"}, {"code": "aSTA3", "texte": "Calculer une fréquence simple.", "sousTheme": "Statistiques"}], "periode": 3, "dateFmt": "25 janvier 2027"}, {"seqCode": "N5", "seqTitle": "Fractions 1 : addition, soustraction, comparaison", "theme": "N", "endDate": "2027-02-22", "items": [{"code": "aRAT1", "texte": "Addition et soustraction de fractions de dénominateurs quelconques mais simples.", "sousTheme": "Nombres rationnels"}, {"code": "aRAT2", "texte": "Comparaison de fractions.", "sousTheme": "Nombres rationnels"}], "periode": 4, "dateFmt": "22 février 2027"}, {"seqCode": "G3", "seqTitle": "Quadrilatères particuliers", "theme": "G", "endDate": "2027-03-08", "items": [{"code": "aPAR3", "texte": "Reconnaitre un parallélogramme à l'aide de sa définition ou d'une propriété caractéristique grâce aux codages.", "sousTheme": "Parallélogrammes et translations"}, {"code": "aPAR4", "texte": "Reconnaitre un parallélogramme particulier à partir de ses propriétés caractéristiques, notamment à partir des propriétés de ses diagonales.", "sousTheme": "Parallélogrammes et translations"}], "periode": 4, "dateFmt": "8 mars 2027"}, {"seqCode": "N7", "seqTitle": "Fractions 2 : multiplication et division", "theme": "N", "endDate": "2027-04-19", "items": [{"code": "aRAT3", "texte": "Savoir qu'une fraction est aussi le quotient.", "sousTheme": "Nombres rationnels"}, {"code": "aRAT4", "texte": "Savoir que prendre la fraction d'un nombre revient à multiplier la fraction par ce nombre.", "sousTheme": "Nombres rationnels"}], "periode": 5, "dateFmt": "19 avril 2027"}, {"seqCode": "G5", "seqTitle": "Transformations : translation", "theme": "G", "endDate": "2027-04-26", "items": [{"code": "aPAR1", "texte": "Dire si des figures planes sont images l'une de l'autre par une symétrie axiale (dont on identifie l'axe) ou par un demi-tour (dont on identifie le centre).", "sousTheme": "Parallélogrammes et translations"}, {"code": "aPAR2", "texte": "Dans une configuration donnée, déterminer les images de figures, de droites, de segments, de points par une symétrie axiale ou un demi-tour.", "sousTheme": "Parallélogrammes et translations"}], "periode": 5, "dateFmt": "26 avril 2027"}, {"seqCode": "N8", "seqTitle": "Puissances", "theme": "N", "endDate": "2027-05-10", "items": [{"code": "aPUI1", "texte": "Connaitre et reconnaitre les carrés parfaits des entiers de 0 à 12.", "sousTheme": "Puissances"}, {"code": "aPUI2", "texte": "Multiplier et diviser par 10, 100, 1 000 ; savoir compléter 1 200 = 1,2 × …", "sousTheme": "Puissances"}, {"code": "aPUI3", "texte": "Puissances simples : 2² = 4 ; 2³ = 8 ; 3³ = 27.", "sousTheme": "Puissances"}, {"code": "aPUI4", "texte": "10² = 100 ; 10³ = 1 000.", "sousTheme": "Puissances"}], "periode": 5, "dateFmt": "10 mai 2027"}, {"seqCode": "G6", "seqTitle": "Transformations : rotation", "theme": "G", "endDate": "2027-05-17", "items": [{"code": "aTRF1", "texte": "Construire le symétrique d'un point par demi-tour.", "sousTheme": "Transformations"}], "periode": 5, "dateFmt": "17 mai 2027"}, {"seqCode": "G7", "seqTitle": "Solides : pyramide et cône", "theme": "G", "endDate": "2027-05-24", "items": [{"code": "aESP1", "texte": "Reconnaitre les solides : cube, pavé, cylindre, prisme droit.", "sousTheme": "Représentation de l'espace"}, {"code": "aESP2", "texte": "Connaitre et utiliser les formules du volume d'un cube, d'un pavé, d'un prisme, d'un cylindre.", "sousTheme": "Représentation de l'espace"}, {"code": "aESP3", "texte": "Reconnaitre la base d'un prisme donné en perspective cavalière.", "sousTheme": "Représentation de l'espace"}, {"code": "aESP4", "texte": "Savoir calculer l'aire des figures planes usuelles : triangle, rectangle, disque.", "sousTheme": "Représentation de l'espace"}], "periode": 5, "dateFmt": "24 mai 2027"}];
+
+var THEMELAB = {N:'Nombres',G:'Géométrie',D:'Données & proportionnalité',A:'Algorithmique'};
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderPeriodes(){
+  var byPeriode = {};
+  SCHEDULE.forEach(function(o){ (byPeriode[o.periode] = byPeriode[o.periode]||[]).push(o); });
+  var container = document.getElementById('periodesContainer');
+  Object.keys(byPeriode).sort(function(a,b){return a-b;}).forEach(function(p){
+    var block = document.createElement('div'); block.className='periode-block';
+    block.innerHTML = '<div class="periode-head">Période '+p+'</div>';
+    byPeriode[p].forEach(function(o){
+      var card = document.createElement('div'); card.className='seq-card'; card.style.setProperty('--seqc','var(--'+o.theme+')');
+      var items = o.items.map(function(it){ return '<li><span class="auto-code">'+esc(it.code)+'</span> — '+esc(it.texte)+'</li>'; }).join('');
+      card.innerHTML = '<div class="seq-card-head"><span class="seq-code">'+esc(o.seqCode)+'</span><span class="seq-title">'+esc(o.seqTitle)+'</span><span class="seq-date">débloqué le '+esc(o.dateFmt)+'</span></div>'
+        + '<ul class="auto-list">'+items+'</ul>';
+      block.appendChild(card);
+    });
+    container.appendChild(block);
+  });
+}
+
+function renderSuivi(){
+  var tbl = document.getElementById('suiviTable');
+  var head = '<tr><th style="text-align:left">Semaine</th><th>Date</th><th>Note /20</th><th>Rattrapage (date)</th><th>Note rattrapage</th></tr>';
+  var rows = '';
+  var periodeNames = {1:'Période 1 — sept. à oct.',2:'Période 2 — nov. à déc.',3:'Période 3 — janv. à févr.',4:'Période 4 — févr. à avril',5:'Période 5 — avril à juin'};
+  var seenP = {};
+  var totalWeeks = 30; // ~semaines d'enseignement hors vacances, feuille generique a completer
+  var currentP = 1;
+  for(var w=1; w<=totalWeeks; w++){
+    if(!seenP[currentP]){ rows += '<tr class="periode-sep"><td colspan="5">'+periodeNames[currentP]+'</td></tr>'; seenP[currentP]=true; }
+    rows += '<tr><td class="week-label">Semaine '+w+'</td><td></td><td></td><td></td><td></td></tr>';
+    if(w % 6 === 0 && currentP < 5) currentP++;
+  }
+  tbl.innerHTML = head + rows;
+}
+
+document.getElementById('ts').textContent = 'Généré le ' + new Date().toLocaleDateString('fr-FR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+renderPeriodes();
+renderSuivi();
+</script>
+</body>
+</html>
