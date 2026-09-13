@@ -58,15 +58,19 @@ python Studio/scripts/build_livret.py Studio/sources/4e/4N1.md --pont Studio/con
 # Trois chapitres séparés, professeur et élève
 python Studio/scripts/build_livret.py --chapitres 4N1,4G1,4N2 --niveau 4e --pont Studio/config/pont-livret-4e.json --mode both --out Studio/out/pdf
 
-# Sélecteur de livret par période
-python Studio/scripts/build_livret.py --chapitres 4N1,4G1,4N2 --niveau 4e --builder --pont Studio/config/pont-livret-4e.json --progression Studio/config/progression-4e.json --out Studio/out/web
+# Livret de période avec pagination globale
+python builders/build_livret_periode.py --manifest livrets/manifests/4e-P1.json --mode both --profil standard --out livrets/dist/4e/P1/livret-4e-P1-eleve-v9.pdf
 ```
 
-Dans le sélecteur HTML, on choisit simplement la période (`Période 1`,
-`Période 2`…), la version professeur ou élève, puis les chapitres et leur ordre.
-Il faut ensuite sélectionner **un PDF déjà généré par chapitre** dans la zone
-prévue. Le sélecteur crée la couverture et son sommaire, puis concatène les PDF
-dans l'ordre choisi. Il peut aussi produire la couverture PDF seule.
+Le sélecteur HTML sert maintenant à préparer un manifeste JSON et une commande
+Python. Le livret final est régénéré depuis les Markdown : il obtient donc une
+pagination continue, un seul pied de page global et un sommaire avec les vraies
+pages de début de chapitre.
+
+Voir aussi :
+
+- [`COURS-MD.md`](COURS-MD.md) pour le mémo complet des codes Markdown.
+- [`LIVRET-PERIODE.md`](LIVRET-PERIODE.md) pour la procédure de génération des livrets.
 
 ## 3. Écrire un chapitre (gabarit = `4N1.md`)
 **En-tête** (obligatoire, 1re ligne) :

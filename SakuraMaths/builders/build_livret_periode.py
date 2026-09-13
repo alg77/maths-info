@@ -139,7 +139,7 @@ def period_css(footer: str) -> str:
   padding:2.2mm 10mm; border-radius:999px; background:rgba(255,255,255,.94);
   color:#594da7; font:700 15pt 'Round','DejaVu Sans',sans-serif; letter-spacing:.4px;
   box-shadow:0 1.2mm 3mm rgba(76,63,140,.16); }}
-.cover-summary {{ position:absolute; left:12.5%; right:12.5%; top:73.65%; bottom:24mm; margin:0;
+.cover-summary {{ position:absolute; left:12.5%; right:12.5%; top:75.2%; bottom:24mm; margin:0;
   padding:0 2mm; list-style:none; color:#263f84; font:600 10.5pt/1.16 'Atkinson','DejaVu Sans',sans-serif;
   overflow:hidden; }}
 .cover-summary li {{ display:grid; grid-template-columns:12mm minmax(0,auto) minmax(18mm,1fr) 7mm; gap:1.5mm;

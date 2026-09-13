@@ -169,12 +169,18 @@ def blank_width(ans):
 def process(text, mode):
     answers = []
     def hold(m):
-        answers.append(m.group(1))
+        in_math = text[:m.start()].count("$") % 2 == 1
+        answers.append((m.group(1), in_math))
         return f'\x01{len(answers)-1}\x02'
     rendered = inline(re.sub(r'\[\[(.+?)\]\]', hold, text))
     def restore(m):
-        ans = answers[int(m.group(1))]
-        answer_html = mathify(ans) if (re.search(r'\\[A-Za-z]+', ans) and '$' not in ans) else inline(ans)
+        ans, in_math = answers[int(m.group(1))]
+        if "$" in ans:
+            answer_html = inline(ans)
+        elif in_math or re.search(r'\\[A-Za-z]+', ans):
+            answer_html = mathify(ans)
+        else:
+            answer_html = inline(ans)
         if mode == "prof":
             return f'<span class="rep">{answer_html}</span>'
         if mode == "inter":
@@ -743,6 +749,13 @@ def render_video(btitle, bbody, mode):
     if len(urls) == 1 and not note:
         return (f'<div class="box video qrbox video-compact"><span class="lab">{inline(title)}</span>'
                 f'<div class="qr-mini">{make_qr(urls[0])}</div></div>')
+    if len(urls) > 1 and not note:
+        cells = "".join(
+            f'<div class="video-card"><strong>Vidéo {i}</strong>{make_qr(url)}</div>'
+            for i, url in enumerate(urls, 1)
+        )
+        return (f'<div class="box videos compact-video-grid video-count-{len(urls)}"><span class="lab">{inline(title)}</span>'
+                f'<div class="video-grid">{cells}</div></div>')
     if note:
         note_html = f'<p class="qr-note">{process(note, mode)}</p>'
     elif len(urls) > 1:

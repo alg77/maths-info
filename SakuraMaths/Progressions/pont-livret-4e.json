@@ -138,7 +138,7 @@
     },
     {
       "code": "G1",
-      "titre": "Triangles : droites remarquables et droite des milieux",
+      "titre": "Angles et triangles : triangles égaux et semblables",
       "theme": "G",
       "semaines": 2,
       "competences": [
@@ -149,43 +149,50 @@
       ],
       "objectifs": [
         {
-          "code": "TRI1",
+          "code": "G1T1",
           "niveau": "4e",
-          "texte": "Connaitre les trois théorèmes relatifs à la droite des milieux dans un triangle.",
-          "famille": "Ra",
-          "fichier": "cours/4e/objectifs/OBJ-connaitre-les-trois-theoremes-relatifs-a-la-droi.md"
-        },
-        {
-          "code": "TRI4",
-          "niveau": "4e",
-          "texte": "Caractériser un triangle rectangle à l'aide de son cercle circonscrit, par son inscription dans un demi-cercle dont le diamètre est un côté du triangle.",
-          "famille": "Ch",
-          "fichier": "cours/4e/objectifs/OBJ-caracteriser-un-triangle-rectangle-a-l-aide-de-s.md"
-        },
-        {
-          "code": "TRI5",
-          "niveau": "4e",
-          "texte": "Déterminer le centre du cercle circonscrit d'un triangle rectangle.",
-          "famille": "Ch",
-          "fichier": "cours/4e/objectifs/OBJ-determiner-le-centre-du-cercle-circonscrit-d-un-.md"
-        },
-        {
-          "code": "TRI6",
-          "niveau": "4e",
-          "texte": "Construire des rectangles sans équerre.",
+          "texte": "Reconnaître deux triangles égaux et utiliser le vocabulaire des côtés, angles et sommets homologues.",
           "famille": "Re",
-          "fichier": "cours/4e/objectifs/OBJ-construire-des-rectangles-sans-equerre.md"
+          "fichier": "cours/4e/objectifs/G1-triangles-egaux.md"
+        },
+        {
+          "code": "G1T2",
+          "niveau": "4e",
+          "texte": "Utiliser un critère de triangles égaux pour justifier une égalité de longueurs ou d’angles.",
+          "famille": "Ra",
+          "fichier": "cours/4e/objectifs/G1-criteres-triangles-egaux.md"
+        },
+        {
+          "code": "G1T3",
+          "niveau": "4e",
+          "texte": "Reconnaître deux triangles semblables à partir de leurs angles.",
+          "famille": "Re",
+          "fichier": "cours/4e/objectifs/G1-triangles-semblables.md"
+        },
+        {
+          "code": "G1T4",
+          "niveau": "4e",
+          "texte": "Calculer ou utiliser un rapport d’agrandissement ou de réduction dans des triangles semblables.",
+          "famille": "Ca",
+          "fichier": "cours/4e/objectifs/G1-rapport-similitude.md"
+        },
+        {
+          "code": "G1T5",
+          "niveau": "4e",
+          "texte": "Rédiger une démonstration courte en citant les données, la propriété utilisée et la conclusion.",
+          "famille": "Co",
+          "fichier": "cours/4e/objectifs/G1-redaction-demonstration.md"
         }
       ],
       "automatismes": [
         {
-          "code": "aTRI1",
+          "code": "aG1T1",
           "niveau": "4e",
-          "texte": "Reconnaitre des droites remarquables, y compris dans les triangles particuliers (médiatrices, médianes, hauteurs, bissectrices).",
-          "famille": "Ca"
+          "texte": "Identifier des angles de même mesure et des côtés correspondants sur deux triangles.",
+          "famille": "Re"
         }
       ],
-      "notes": "Réactivation des droites remarquables\nTrois théorèmes de la droite des milieux\nDémonstrations et calculs de longueurs"
+      "notes": "Ancien programme 4e maintenu pour 2026-2027\nTriangles égaux : définition, critères de reconnaissance, côtés/angles homologues\nTriangles semblables : angles égaux, agrandissement/réduction, rapport de similitude\nRédaction d’une démonstration : Je sais que / Or / Donc"
     },
     {
       "code": "D1",

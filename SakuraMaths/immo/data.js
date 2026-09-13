@@ -1168,7 +1168,7 @@ window.PROPERTIES = [
     dpe: "D",
     ges: "D",
     year: 1975,
-    images: [],
+    images: Array.from({ length: 22 }, (_, i) => `images/Pomponne-Maison_5_pièces_120_m²_-_terrain_555_m²/photo${String(i + 1).padStart(2, "0")}.webp`),
     mapQuery: "École Marie Dumez, 1 rue de l'École, 77400 Pomponne",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=%C3%89cole%20Marie%20Dumez%2C%201%20rue%20de%20l%27%C3%89cole%2C%2077400%20Pomponne",
     mapLabel: "Point de référence du quartier : école Marie-Dumez (ex-école des Cornouillers)",
@@ -1183,8 +1183,9 @@ window.PROPERTIES = [
     },
     tags: ["Sous compromis", "Exclusivité", "4 chambres", "5e chambre possible", "2 chambres RDC", "Jardin sud", "2 terrasses", "Garage", "Grenier", "Mitoyenne", "DPE D", "GES D"],
     updates: [
+      { date: "06/09/2026", text: "Galerie réparée : les 22 photos présentes dans le dossier sont maintenant rattachées à la fiche." },
       { date: "06/08/2026", text: "Ajoutée comme archive comparative : exclusivité iad affichée à 384 000 €, désormais sous compromis." },
-      { date: "06/08/2026", text: "Le dossier photo est présent mais encore vide ; la galerie se complétera lorsque les images y seront ajoutées." }
+      { date: "06/08/2026", text: "Dossier photo créé pour cette archive comparative." }
     ],
     description: "Deuxième référence concrète du marché des Cornouillers : 120 m² bien entretenus, quatre chambres, jardin sud et garage, partis sous compromis à un prix affiché de 384 000 €. Elle confirme la demande pour les maisons familiales immédiatement habitables sous 400 000 €.",
     fullDescription: [
@@ -1363,20 +1364,20 @@ window.PROPERTIES = [
     source: "SeLoger · GWENDOM Immobilier",
     url: "https://www.seloger.com/annonces/achat/maison/gouvernes-77/253715747.htm",
     listings: [
-      { source: "SeLoger · GWENDOM Immobilier", url: "https://www.seloger.com/annonces/achat/maison/gouvernes-77/253715747.htm", price: 395000 }
+      { source: "SeLoger · GWENDOM Immobilier", url: "https://www.seloger.com/annonces/achat/maison/gouvernes-77/253715747.htm", price: 365000 }
     ],
     videoUrl: "https://youtu.be/tCzP3M-UJas?si=WxkwqrFoBVTlVvAS",
     title: "Maison ancienne rénovée au cœur de Gouvernes",
     location: "Gouvernes · à deux pas de la mairie",
     city: "Gouvernes",
-    price: 395000,
+    price: 365000,
     surface: 129,
     usableSurface: 160,
     rooms: 5,
     bedrooms: 3,
     mainBedrooms: 3,
     land: 172,
-    pricePerSqm: 3062,
+    pricePerSqm: 2829,
     dpe: "E",
     ges: "E",
     year: 1949,
@@ -1391,6 +1392,7 @@ window.PROPERTIES = [
     },
     tags: ["Vidéo disponible", "Non mitoyenne", "3 chambres dans la maison", "129 m² Carrez / 160 m² au sol", "Rénovée en 2023", "Suite parentale", "Terrasse", "Petit jardin", "Sans garage", "DPE E", "GES E"],
     updates: [
+      { date: "06/09/2026", text: "Baisse de prix constatée : 365 000 €, soit 30 000 € de moins que le prix initialement suivi de 395 000 €." },
       { date: "10/08/2026", text: "Annonce ajoutée à 395 000 € avec 15 photos et la visite vidéo YouTube." }
     ],
     description: "Beaucoup de charme et 160 m² au sol dans une maison non mitoyenne rénovée, mais une organisation sur trois niveaux, seulement trois chambres, presque aucun jardin et aucun garage.",
@@ -1402,8 +1404,8 @@ window.PROPERTIES = [
       "L’extérieur se compose surtout d’une grande terrasse, d’un petit espace vert pour les animaux et d’un appentis de rangement. Il n’y a ni garage ni stationnement privatif annoncé ; les véhicules se garent dans la rue. Le DPE E et le GES E tempèrent l’intérêt des rénovations récentes."
     ],
     familyFit: {
-      score: 3.5,
-      verdict: "Un vrai coup de cœur esthétique possible, mais pas la candidate la plus rationnelle pour vous. Elle couvre juste les trois chambres nécessaires et offre de beaux volumes au sol, cependant la vie sur trois niveaux, le minuscule terrain et l’absence de garage ou de pièce bonus compliquent vos collections, le sport et le quotidien avec les filles et le Shiba.",
+      score: 3.7,
+      verdict: "La baisse à 365 000 € la rend plus défendable, mais elle reste davantage un coup de cœur esthétique que la candidate la plus rationnelle pour vous. Elle couvre juste les trois chambres nécessaires et offre de beaux volumes au sol ; la vie sur trois niveaux, le minuscule terrain et l’absence de garage ou de pièce bonus compliquent toujours vos collections, le sport et le quotidien avec les filles et le Shiba.",
       pros: [
         "Trois chambres dans la maison principale : le besoin minimum des parents et des deux filles est respecté.",
         "Maison non mitoyenne malgré une parcelle très compacte : excellent point pour le calme et l’indépendance.",
@@ -1421,9 +1423,151 @@ window.PROPERTIES = [
         "Deux étages à monter quotidiennement, notamment pour rejoindre la suite parentale et une chambre sous combles.",
         "DPE E / GES E avec chauffage au gaz malgré les rénovations : demander le diagnostic complet et les dépenses réelles.",
         "Stationnement uniquement dans la rue annoncé, alors que Gouvernes impliquera probablement davantage la voiture que Lagny.",
-        "À 395 000 €, elle mise beaucoup sur son charme alors que sa parcelle, son stockage et sa flexibilité familiale sont faibles."
+        "Même à 365 000 €, elle mise beaucoup sur son charme alors que sa parcelle, son stockage et sa flexibilité familiale sont faibles."
       ],
-      criteria: ["3 chambres maison principale: oui, exactement", "Non-mitoyenne: oui", "Collections: faible", "Mini-dojo: non", "Salle de sport: difficile", "Chien: moyen", "Ado + 4 ans: correct", "Vie sur 3 niveaux: contraignante", "Garage: absent", "Énergie: mauvais", "Charme: excellent", "Rapport besoins/prix: moyen"]
+      criteria: ["3 chambres maison principale: oui, exactement", "Non-mitoyenne: oui", "Collections: faible", "Mini-dojo: non", "Salle de sport: difficile", "Chien: moyen", "Ado + 4 ans: correct", "Vie sur 3 niveaux: contraignante", "Garage: absent", "Énergie: mauvais", "Charme: excellent", "Prix: amélioré à 365 k€"]
+    }
+  },
+  {
+    id: "seloger-2676I4Z9X8NG",
+    source: "SeLoger · Biglione Jean-Luc Immobilier",
+    url: "https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/2676I4Z9X8NG",
+    listings: [
+      { source: "SeLoger · Biglione Jean-Luc Immobilier", url: "https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/2676I4Z9X8NG", price: 278000 }
+    ],
+    title: "Maison en pierre à rénover avec rez-de-jardin et combles",
+    location: "17 rue Roger · Lagny-sur-Marne",
+    city: "Lagny-sur-Marne",
+    address: "17 rue Roger, 77400 Lagny-sur-Marne",
+    price: 278000,
+    surface: 74.5,
+    rooms: 4,
+    bedrooms: 3,
+    mainBedrooms: 3,
+    land: 435,
+    pricePerSqm: 3732,
+    dpe: "E",
+    ges: "E",
+    year: 1953,
+    energyCost: { min: 800, max: 1400, reference: "Estimation DPE, prix de l’énergie 2023" },
+    images: Array.from({ length: 16 }, (_, i) => `images/Lagny-Maison_4_pièces_75_m²_-_terrain_435_m²/photo${String(i + 1).padStart(2, "0")}.webp`),
+    mapQuery: "17 rue Roger, 77400 Lagny-sur-Marne",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=17%20rue%20Roger%2C%2077400%20Lagny-sur-Marne",
+    mapLabel: "Adresse identifiée : 17 rue Roger",
+    commute: {
+      level: "excellent",
+      label: "Saint-Laurent reste accessible à pied",
+      text: "Depuis le 17 rue Roger, l’entrée de Saint-Laurent côté 10 rue des Sources est à environ 1,2 km et 17 min à pied. C’est moins performant que vos 7 min actuelles, mais suffisamment proche pour conserver un quotidien scolaire sans voiture. Le trajet vers Saint-Joseph et GGSB reste à chronométrer précisément.",
+      links: [
+        { label: "Itinéraire à pied vers Saint-Laurent", url: "https://www.google.com/maps/dir/?api=1&origin=17%20rue%20Roger%2C%2077400%20Lagny-sur-Marne&destination=10%20rue%20des%20Sources%2C%2077400%20Lagny-sur-Marne&travelmode=walking" },
+        { label: "Itinéraire vers GGSB", url: "https://www.google.com/maps/dir/?api=1&origin=17%20rue%20Roger%2C%2077400%20Lagny-sur-Marne&destination=28%20rue%20du%20Tir%2C%2077500%20Chelles&travelmode=driving" }
+      ]
+    },
+    tags: ["3 chambres hors sous-sol", "Bureau", "Maison indépendante", "Impasse calme", "Garage", "Rez-de-jardin aménageable", "Combles aménageables", "Terrain 435 m²", "Travaux importants", "DPE E", "GES E"],
+    updates: [
+      { date: "06/09/2026", text: "Annonce ajoutée à 278 000 € avec 16 images et l’adresse identifiée au 17 rue Roger." },
+      { date: "06/09/2026", text: "Saint-Laurent mesuré à 1,2 km et environ 17 min à pied par l’entrée rue des Sources." }
+    ],
+    description: "Seulement 74,5 m² habitables aujourd’hui, mais trois chambres hors sous-sol, un bureau, un rez-de-jardin complet et des combles aménageables dans un secteur encore praticable à pied vers Saint-Laurent.",
+    fullDescription: [
+      "Maison indépendante en pierre construite en 1953, située au calme dans une impasse sur les hauteurs des bords de Marne. Elle est affichée à 278 000 €, dont 8 000 € d’honoraires acquéreur, pour 74,5 m² habitables sur une parcelle de 435 m².",
+      "Le niveau principal dessert un séjour, une cuisine indépendante, deux chambres, une salle d’eau et un WC séparé. Les fenêtres PVC de ce niveau ont déjà été remplacées et la chaudière au gaz est annoncée récente.",
+      "À l’étage se trouvent une troisième chambre et un bureau. Ces deux pièces sont bien dans la partie principale de la maison et aucune chambre nécessaire à la famille n’est située au sous-sol. Les combles sont annoncés aménageables, mais leur surface, leur hauteur et la faisabilité technique doivent être confirmées.",
+      "Le rez-de-jardin comprend un garage, une buanderie, une remise et une cave, avec une hauteur sous plafond présentée comme intéressante. Il pourrait accueillir du stockage, un atelier ou une salle de sport après travaux, sous réserve de contrôler humidité, ventilation, lumière, chauffage et hauteur réelle.",
+      "Le bien possède de beaux éléments anciens, notamment du parquet et une belle hauteur sous plafond, mais l’annonce indique explicitement qu’une rénovation est nécessaire. Le DPE et le GES sont E. Les dépenses annoncées entre 800 et 1 400 € par an semblent étonnamment basses pour une maison au gaz classée E : factures et rapport DPE complet sont indispensables."
+    ],
+    familyFit: {
+      score: 3.9,
+      verdict: "Une candidate imparfaite mais stratégiquement intéressante : le prix et l’emplacement laissent envisager un projet progressif, et elle respecte déjà la règle des trois chambres hors sous-sol. En l’état, 74,5 m² seront trop serrés pour vos collections ; sa réussite dépend entièrement du coût et de la qualité d’aménagement du rez-de-jardin et des combles.",
+      pros: [
+        "Trois chambres dans la maison principale, sans utiliser le sous-sol : votre critère familial essentiel est respecté.",
+        "Un bureau supplémentaire à l’étage, rare à ce prix, qui peut accueillir une partie des mangas ou servir de bureau de prof.",
+        "Rez-de-jardin avec garage, remise, cave et buanderie : vrai potentiel pour stockage, Warhammer, outils et salle de sport.",
+        "Combles encore aménageables : possibilité future de créer davantage d’espace pour les collections ou un grand palier-bibliothèque.",
+        "Maison indépendante avec terrain de 435 m², bien plus favorable au Shiba et à la vie dehors que la maison de Gouvernes.",
+        "Saint-Laurent à environ 17 min à pied : la voiture n’est pas nécessaire pour ton trajet et celui de votre grande.",
+        "Prix de 278 000 € laissant théoriquement une marge pour les travaux par rapport aux maisons terminées du radar."
+      ],
+      cons: [
+        "74,5 m² habitables en l’état : séjour, cuisine et chambres risquent d’être très compacts pour quatre personnes et vos collections.",
+        "Les trois chambres et le bureau ne suffiront pas à absorber plus de 1 000 mangas, les BD, jeux, Magic, Warhammer et le village Sylvanian sans aménagement annexe.",
+        "Rénovation annoncée nécessaire : chiffrer toiture, isolation, électricité, plomberie, pièces d’eau et finitions avant de considérer le prix comme une affaire.",
+        "Le rez-de-jardin n’est pas une surface habitable garantie ; humidité et température peuvent le rendre impropre aux mangas, cartes et jeux.",
+        "Mini-dojo seulement envisageable après travaux dans le rez-de-jardin, avec contrôle de la hauteur, du sol et de la fixation du sac de frappe.",
+        "Une seule salle d’eau et un seul WC pour quatre personnes.",
+        "DPE E / GES E au gaz et estimation énergétique étonnamment faible : données à vérifier soigneusement.",
+        "17 min de marche vers Saint-Laurent restent nettement moins confortables que vos 7 min actuelles, notamment sous la pluie avec les affaires scolaires."
+      ],
+      criteria: ["3 chambres maison principale: oui", "Chambre au sous-sol: aucune", "Saint-Laurent: 17 min à pied", "Collections: faible en l’état, bon potentiel", "Mini-dojo: potentiel au rez-de-jardin", "Bureau: oui", "Garage/cave/remise: oui", "Combles: aménageables à vérifier", "Chien: très bon", "Maison indépendante: oui", "Énergie: mauvais", "Travaux: importants", "Prix avant travaux: attractif"]
+    }
+  },
+  {
+    id: "seloger-26VXWGGGRQ62",
+    source: "SeLoger · BCA IMMO",
+    url: "https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/26VXWGGGRQ62",
+    listings: [
+      { source: "SeLoger · BCA IMMO", url: "https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/26VXWGGGRQ62", price: 359000 }
+    ],
+    title: "Maison traditionnelle avec sous-sol total",
+    location: "Lagny-sur-Marne · secteur Saint-Laurent à confirmer",
+    city: "Lagny-sur-Marne",
+    price: 359000,
+    surface: 81.12,
+    rooms: 4,
+    bedrooms: 3,
+    mainBedrooms: 3,
+    land: 325,
+    pricePerSqm: 4426,
+    dpe: "D",
+    ges: "D",
+    year: null,
+    energyCost: { min: 1670, max: 2310, reference: "Estimation DPE, prix de l’énergie 2021 à 2023" },
+    images: Array.from({ length: 12 }, (_, i) => `images/Lagny-Maison_4_pièces_81_m²_-_terrain_325_m²/photo${String(i + 1).padStart(2, "0")}.webp`),
+    mapQuery: "Quartier Saint-Laurent, Lagny-sur-Marne 77400",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Quartier%20Saint-Laurent%2C%20Lagny-sur-Marne%2077400",
+    mapLabel: "Secteur annoncé : Saint-Laurent, adresse exacte inconnue",
+    commute: {
+      level: "good",
+      label: "Potentiellement excellente à pied, mais adresse indispensable",
+      text: "La maison est présentée comme située dans le secteur Saint-Laurent, tandis que les portails la classent plus largement dans le secteur Déviation–Route Nationale Nord. Sans adresse, impossible de valoriser sérieusement la marche vers l’entrée du collège au 10 rue des Sources : demander l’adresse avant toute comparaison avec vos 7 min actuelles.",
+      links: [
+        { label: "Repère Saint-Laurent", url: "https://www.google.com/maps/search/?api=1&query=10%20rue%20des%20Sources%2C%2077400%20Lagny-sur-Marne" }
+      ]
+    },
+    tags: ["3 chambres hors sous-sol", "Sous-sol total", "Garage", "Stockage", "Maison individuelle probable", "Jardin faisant le tour", "Terrain 325 m²", "Quartier calme", "Cheminée", "Balcon", "DPE D", "GES D"],
+    updates: [
+      { date: "06/09/2026", text: "Annonce ajoutée à 359 000 € avec 12 photos ; secteur Saint-Laurent annoncé mais adresse exacte encore inconnue." }
+    ],
+    description: "Petite surface habitable mais configuration prometteuse : trois chambres hors sous-sol, sous-sol total et jardin faisant le tour de la maison, potentiellement proche de Saint-Laurent.",
+    fullDescription: [
+      "Maison traditionnelle libre de toute occupation, proposée à 359 000 €, développant 81,12 m² habitables sur une parcelle de 325 m². L’annonce insiste sur un environnement calme et un terrain permettant de faire le tour de la maison.",
+      "La partie habitable comprend un salon avec cheminée ouvrant sur un balcon et trois chambres lumineuses. L’annonce ne fournit ni plan détaillé ni surfaces pièce par pièce : il faut vérifier que chacune des trois chambres constitue une vraie chambre confortable et qu’aucune n’est traversante.",
+      "Un sous-sol total permet de rentrer une voiture et apporte une importante capacité de stockage. Pour votre projet, il pourrait absorber cartons, Warhammer, outils et matériel sportif, voire une salle de sport ou un mini-dojo partiel si la hauteur, la ventilation, l’humidité et la surface dégagée le permettent.",
+      "Le terrain de 325 m² reste compact, mais sa circulation tout autour de la maison est un vrai avantage : absence de mitoyenneté directe probable, accès pratique au jardin et possibilité d’installer la barre de traction dehors. L’exposition, le vis-à-vis et la surface réellement utilisable derrière la maison restent à vérifier.",
+      "Le DPE et le GES sont classés D. Les dépenses énergétiques sont estimées entre 1 670 et 2 310 € par an, soit environ 166 € par mois en moyenne. À 4 426 €/m² habitable, son prix est élevé et ne se justifie pour vous que si l’adresse permet réellement de rejoindre Saint-Laurent à pied et si le sous-sol est sain et exploitable."
+    ],
+    familyFit: {
+      score: 4.0,
+      verdict: "Une candidate compacte mais étonnamment alignée avec vos priorités : trois chambres dans la maison, sous-sol total pour le stockage et le sport, jardin circulant et possible proximité de Saint-Laurent. Elle peut devenir un bon compromis à condition que les chambres ne soient pas minuscules, que le sous-sol soit sain et que l’adresse confirme un vrai trajet à pied.",
+      pros: [
+        "Trois chambres hors sous-sol : le besoin des parents et des deux filles est respecté sans compromis.",
+        "Sous-sol total avec garage : très utile pour les cartons, Warhammer, jeux en rotation, outils et matériel de sport.",
+        "Potentiel de salle de sport ou mini-dojo au sous-sol sans sacrifier une chambre, sous réserve des contrôles techniques.",
+        "Terrain faisant le tour de la maison : correspond précisément à votre préférence et limite le problème de mitoyenneté.",
+        "Terrain de 325 m² suffisant pour terrasse, Shiba et barre de traction, avec moins d’entretien qu’un très grand jardin.",
+        "Secteur Saint-Laurent annoncé : possibilité réelle de préserver une partie de votre organisation piétonne.",
+        "DPE D et GES D : profil énergétique plus rassurant que plusieurs maisons anciennes du radar."
+      ],
+      cons: [
+        "Seulement 81,12 m² habitables : les chambres, le séjour et les rangements du quotidien peuvent être nettement plus serrés que dans votre appartement de 97 m².",
+        "Aucune pièce bonus chauffée annoncée pour les mangas, BD, Magic, Sylvanian et jeux de société.",
+        "Les collections fragiles ne doivent pas être placées au sous-sol avant contrôle rigoureux de l’humidité et de la température.",
+        "À 4 426 €/m², elle est chère pour sa surface ; une grande partie de sa valeur dépend du quartier et du sous-sol.",
+        "Adresse exacte inconnue : le prétendu secteur Saint-Laurent ne garantit pas encore un trajet scolaire satisfaisant à pied.",
+        "Description commerciale très vague : absence de surfaces des chambres, de l’état intérieur, de l’année de construction et des équipements précis.",
+        "Une seule pièce de vie semble annoncée ; avec vos collections et jeux, elle risque de saturer rapidement."
+      ],
+      criteria: ["3 chambres maison principale: oui", "Chambre au sous-sol: aucune", "Saint-Laurent à pied: potentiel à confirmer", "Sous-sol total: oui", "Collections: bon stockage, exposition difficile", "Mini-dojo: bon potentiel sous-sol", "Garage: oui", "Tour de maison: oui annoncé", "Chien: très bon", "Mitoyenneté: probablement aucune, à confirmer", "Énergie: correct", "Prix au m²: élevé", "Surface habitable: faible"]
     }
   }
 ];

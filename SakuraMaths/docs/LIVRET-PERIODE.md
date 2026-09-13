@@ -14,13 +14,22 @@ le pied de page sont donc continus, sans conserver les pieds de page des chapitr
 La couverture n'a pas de pied de page. Les pages suivantes affichent seulement leur
 numéro dans un petit encadrement décoratif. Les QR codes sont générés localement.
 
-Exemple depuis le dossier qui contient `SakuraMaths` :
+Exemple depuis le dossier `SakuraMaths` :
 
 ```powershell
-python SakuraMaths/builders/build_livret_periode.py --manifest SakuraMaths/livrets/manifests/4e-P1.json --out SakuraMaths/livrets/dist/4e/P1/livret-4e-P1-eleve-v2.pdf
+python builders/build_livret_periode.py --manifest livrets/manifests/4e-P1.json --mode both --profil standard --out livrets/dist/4e/P1/livret-4e-P1-eleve-v9.pdf
 ```
 
-Le même script accepte aussi `--police`, `--taille`, `--interligne` et `--couleur`.
+Le même script accepte aussi `--police`, `--taille`, `--interligne`, `--couleur` et `--profil`.
+
+Profils recommandés :
+
+| Profil | Usage |
+|---|---|
+| `standard` | Open Sans 11, interligne 1.5 : version courante, équilibre lisibilité/papier |
+| `dys` | A4 police 14 : impression dédiée élèves DYS/PAP |
+| `prof` | version professeur compacte |
+| `compact` | économie papier, à tester visuellement avant impression |
 
 Le mode enregistré dans le manifeste est utilisé automatiquement. Avec `both`, les
 versions élève et professeur sont générées ensemble. Le sommaire
@@ -29,3 +38,17 @@ Le manifeste est ensuite enrichi avec ces pages et les chemins des sorties. Les 
 HTML de chaque chapitre et le dashboard de production sont également actualisés.
 
 Dépendances Python utiles : `qrcode`, `Pillow` et `pypdf`.
+
+## Points à vérifier après génération
+
+- La couverture ne doit pas afficher de pied de page ni de numéro de page.
+- Le sommaire doit rester dans le cadre, en une seule ligne par chapitre.
+- Les QR codes doivent être entièrement visibles et scannables.
+- Les formules doivent être en style mathématique, surtout dans les réponses `[[...]]`.
+- Le titre du PDF doit correspondre au nom du fichier, par exemple `livret-4e-P1-eleve-v9`.
+
+## Où écrire les liens ?
+
+- Liens vidéo et MathALÉA d'un chapitre : dans le fichier MD du chapitre.
+- Objectifs, progression, périodes et ordre des chapitres : dans les JSON de progression/manifeste.
+- Liens Drive publics des PDF/HTML publiés : dans le fichier de liens Drive ou le dashboard, selon l'usage.

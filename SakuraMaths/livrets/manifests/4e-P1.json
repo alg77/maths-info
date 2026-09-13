@@ -8,8 +8,8 @@
   "mode": "both",
   "progression": "Studio/config/progression-4e.json",
   "cover": "Studio/assets/images/4e-cover.png",
-  "livret": "livrets/dist/4e/P1/livret-4e-P1-eleve-v8.pdf",
-  "livret_prof": "livrets/dist/4e/P1/livret-4e-P1-prof-v8.pdf",
+  "livret": "livrets/dist/4e/P1/livret-4e-P1-eleve-v10.pdf",
+  "livret_prof": "livrets/dist/4e/P1/livret-4e-P1-prof-v10.pdf",
   "chapitres": [
     {
       "code": "N1",
@@ -32,14 +32,14 @@
     },
     {
       "code": "G1",
-      "titre": "Triangles : droites remarquables et droite des milieux",
+      "titre": "Angles et triangles : triangles égaux et semblables",
       "comps": [
         "Ch1",
         "Re1",
         "Ra3",
         "Co2"
       ],
-      "source": "Studio/sources/4e/4G1.md",
+      "source": "Studio/sources/4e/4G1-Angles et Triangles.md",
       "html": {
         "eleve": "Studio/out/web/4G1.html",
         "prof": "Studio/out/web/4G1-prof.html"
@@ -63,8 +63,8 @@
         "prof": "Studio/out/web/4D1-prof.html"
       },
       "pages": {
-        "eleve": 11,
-        "prof": 11
+        "eleve": 12,
+        "prof": 12
       }
     },
     {
@@ -81,9 +81,10 @@
         "prof": "Studio/out/web/4N2-prof.html"
       },
       "pages": {
-        "eleve": 18,
-        "prof": 18
+        "eleve": 19,
+        "prof": 19
       }
     }
-  ]
+  ],
+  "profil": "standard"
 }

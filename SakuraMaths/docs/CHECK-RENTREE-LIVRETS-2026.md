@@ -1,6 +1,6 @@
 # Check rentrée - livrets de période 2026-2027
 
-Dernier contrôle effectué : 27 août 2026.
+Dernier contrôle effectué : 31 août 2026.
 
 ## Principe validé
 
@@ -19,7 +19,7 @@ Cela permet de conserver :
 Depuis le dossier `SakuraMaths` :
 
 ```powershell
-python builders/build_livret_periode.py --manifest livrets/manifests/4e-P1.json --mode both --out livrets/dist/4e/P1/livret-4e-P1-eleve-v8.pdf
+python builders/build_livret_periode.py --manifest livrets/manifests/4e-P1.json --mode both --profil standard --out livrets/dist/4e/P1/livret-4e-P1-eleve-v9.pdf
 ```
 
 Si `--mode both` est utilisé, le nom `-eleve-` sert de modèle et le PDF professeur est généré automatiquement avec `-prof-`.
@@ -28,7 +28,7 @@ Si `--mode both` est utilisé, le nom `-eleve-` sert de modèle et le PDF profes
 
 | Livret | Élève | Prof | Pages | État |
 |---|---:|---:|---:|---|
-| 4e P1 | v8 | v8 | 22 | OK |
+| 4e P1 | v9 | v9 | 22 | OK |
 | 4e P2 | v3 | v3 | 12 | OK |
 | 5e P1 | v7 | v7 | 17 | OK |
 
@@ -46,6 +46,9 @@ Si `--mode both` est utilisé, le nom `-eleve-` sert de modèle et le PDF profes
 - pied de page global sur les pages intérieures ;
 - numéro de page décoratif sans le mot `Page` ;
 - QR codes visibles, notamment les 3 QR codes de la page 21 du livret 4e P1 professeur.
+- sommaire 4e P1 redescendu dans le cadre de couverture ;
+- vidéos multiples rendues en grille compacte ;
+- réponses `[[...]]` placées dans une formule `$...$` rendues comme expressions mathématiques.
 
 ## À surveiller avant impression réelle
 

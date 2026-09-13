@@ -176,11 +176,13 @@
 
   <h2 class="no-print">À adapter pour la rentrée 🌿</h2>
   <div class="info no-print">
-    Point de départ : ta progression <b>5ᵉ 2024-2025</b> (séquences, compétences et objectifs repris de tes docs), calendrier <b>recalé en Zone C 2026-2027</b>.
+    Point de départ : ta progression <b>5ᵉ 2024-2025</b>, la progression commune 2026-2027 remise au propre, et le référentiel BO/automatismes 5ᵉ injecté dans SakuraMaths. Calendrier <b>recalé en Zone C 2026-2027</b>.
     <ul>
-      <li>Le <b>nouveau BO 5ᵉ</b> entre en vigueur à la rentrée 2026 : c'est une base à faire évoluer (ajoute/retire des séquences, ajuste les compétences au fil de l'eau).</li>
-      <li><b>G2</b> et <b>G5</b> étaient coupées par des vacances chez toi (cylindre puis volumes ; angles particuliers puis droites parallèles). Laissées en blocs de 2 semaines, le Gantt les fait chevaucher la coupure — ajuste les durées si besoin.</li>
-      <li><b>D4 (probabilités)</b> et l'algorithmique n'étaient pas planifiées : j'ai mis un fil rouge « Algorithmique &amp; Tableur » ; ajoute D4 quand le programme le précisera.</li>
+      <li>Le <b>nouveau BO 5ᵉ</b> entre en vigueur à la rentrée 2026 : les objectifs et automatismes sont attribués aux séquences, mais restent ajustables par glisser-déposer.</li>
+      <li><b>G2</b> regroupe solides, patrons et volumes pour rester compatible avec les cours/livrets SakuraMaths. Variante possible : reporter une partie du volume du prisme après <b>G7</b>, quand l'aire du parallélogramme et du triangle aura été réinvestie.</li>
+      <li><b>D4 (probabilités)</b> et <b>A1 Algorithmique &amp; Tableur</b> sont intégrés en fin d'année, avec une marge pour évaluations, rattrapages et imprévus.</li>
+      <li><b>Voyage 5ᵉ</b> : une semaine est grisée par défaut autour du 10 mai ; elle ne crée pas de période supplémentaire. Déplace-la dès que la date définitive est connue.</li>
+      <li><b>N10 équations</b> : point de vigilance BO 5ᵉ, rester sur les formes <i>ax = c</i> et <i>x + b = c</i> ; <i>ax + b = c</i> est gardé hors programme cette année.</li>
     </ul>
   </div>
 </div>
@@ -224,44 +226,572 @@ function famOf(code){ return code.slice(0,2); }
 /* ---------- état par défaut (ta progression 5e) ---------- */
 function defaultState(){
   return {
-    cal:{
-      rentree:'2026-09-01', fin:'2027-07-02',
-      vac:[
-        {nom:'Toussaint', sat:'2026-10-17', resume:'2026-11-02'},
-        {nom:'Noël',      sat:'2026-12-19', resume:'2027-01-04'},
-        {nom:'Hiver',     sat:'2027-02-06', resume:'2027-02-22'},
-        {nom:'Printemps', sat:'2027-04-03', resume:'2027-04-19'}
-      ],
-      feries:['2026-11-11','2027-03-29','2027-05-06','2027-05-07','2027-05-17']
+    "cal": {
+        "rentree": "2026-09-01",
+        "fin": "2027-06-18",
+        "vac": [
+            {
+                "nom": "Toussaint",
+                "sat": "2026-10-17",
+                "resume": "2026-11-02"
+            },
+            {
+                "nom": "Noël",
+                "sat": "2026-12-19",
+                "resume": "2027-01-04"
+            },
+            {
+                "nom": "Hiver",
+                "sat": "2027-02-06",
+                "resume": "2027-02-22"
+            },
+            {
+                "nom": "Printemps",
+                "sat": "2027-04-03",
+                "resume": "2027-04-19"
+            },
+            {
+                "nom": "Voyage 5ᵉ",
+                "sat": "2027-05-08",
+                "resume": "2027-05-17",
+                "hors": true
+            }
+        ],
+        "feries": [
+            "2026-11-11",
+            "2027-03-29",
+            "2027-05-06",
+            "2027-05-07",
+            "2027-05-17"
+        ]
     },
-    seq:[
-      {code:'N1',title:'Calculer avec les nombres décimaux',theme:'N',weeks:2,comps:['Ch1','Ca1','Co1'],details:'Vocabulaire : somme, différence, termes, produit, quotient, facteur\nCalculer avec et sans parenthèses (parenthèses emboîtées)\nCalculer des quotients écrits avec une barre de fraction\nProduire une expression numérique pour résoudre des problèmes\nCalcul astucieux : multiplier par 9, 11, 99… (distributivité)\nRéinvestir périmètre et aire'},
-      {code:'G1',title:'Reconnaître et utiliser les symétries axiale et centrale',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Construire avec la symétrie centrale (avec et sans quadrillage)\nConstruire avec la symétrie axiale (rappels)\nReconnaître les figures obtenues par symétrie (frises, pavages, rosaces)\nRechercher les éléments de symétrie d\'une figure (axes et centre)'},
-      {code:'N2',title:'Écrire et utiliser une expression littérale',theme:'N',weeks:2,comps:['Mo2','Ca3','Co1'],details:'Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nCalculer la valeur d\'une expression (formules d\'aires/volumes, conversions)\nTester une égalité\nSimplifier l\'écriture ; réduire des expressions ax + bx\nRéinvestir périmètre et aire'},
-      {code:'G2',title:'Décrire, représenter le cylindre et le prisme droit ; calculer des volumes',theme:'G',weeks:2,comps:['Ch1','Ch2','Re4','Ca1'],details:'Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d\'un cylindre et d\'un prisme droit\nCalculer le volume d\'un pavé droit, d\'un cylindre\nCalculer l\'aire de la base d\'un prisme droit et son volume'},
-      {code:'N3',title:'Définir, utiliser et représenter des nombres rationnels',theme:'N',weeks:2,comps:['Re2'],details:'Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions'},
-      {code:'G3',title:'Construire un triangle et ses droites remarquables',theme:'G',weeks:2,comps:['Re4','Ra3','Ca1'],details:'Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d\'existence d\'un triangle ; cas d\'alignement de 3 points\nRéinvestir la médiatrice d\'un segment\nConstruire médiatrices et hauteurs\nDémonstration possible : médiatrices concourantes (cercle circonscrit)'},
-      {code:'N4',title:'Utiliser les nombres entiers',theme:'N',weeks:2,comps:['Re2','Ra1'],details:'Diviseur, multiple, divisibilité (division euclidienne)\nDéterminer les diviseurs d\'un entier\nReconnaître un nombre premier (< 30)\nDécomposer en produit de facteurs premiers\nGrandeurs : systèmes centésimal et sexagésimal'},
-      {code:'D1',title:'Utiliser la proportionnalité pour résoudre des problèmes',theme:'D',weeks:2,comps:['Ch1','Mo2','Ca1'],details:'Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)'},
-      {code:'G4',title:'Symétrie centrale : construire et démontrer',theme:'G',weeks:1,comps:['Ch2','Ra3'],details:'Conjecturer les propriétés avec GeoGebra\nConstruire le symétrique d\'une figure\nS\'initier au raisonnement déductif (tri des données, propriété, « donc »)'},
-      {code:'N5',title:'Découvrir, repérer et comparer les nombres relatifs',theme:'N',weeks:2,comps:['Re2','Ca2'],details:'Définir les nombres relatifs (écriture, usages)\nReconnaître des opposés\nRepérer sur une droite graduée ; comparer\nRepérer un point dans le plan\nAlgorithmique possible'},
-      {code:'G5',title:'Reconnaître des angles particuliers et des droites parallèles',theme:'G',weeks:2,comps:['Mo3','Ra3'],details:'Angles complémentaires, supplémentaires, adjacents, opposés par le sommet\nAngles alternes-internes et correspondants\nReconnaître des droites parallèles (raisonnement déductif)'},
-      {code:'N6',title:'Fractions égales ; comparer des fractions',theme:'N',weeks:2,comps:['Re2','Ca1'],details:'Reconnaître des fractions égales\nSimplifier une fraction (critères de divisibilité)\nDiviser par un nombre décimal\nComparer des fractions (même dénominateur, par rapport à 1)'},
-      {code:'G6',title:'Construire et démontrer avec les angles d\'un triangle',theme:'G',weeks:2,comps:['Mo4','Re4','Co2'],details:'Calculer un angle dans un triangle quelconque\nDémonstration possible : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)'},
-      {code:'N7',title:'Additionner et soustraire des nombres relatifs',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions'},
-      {code:'D2',title:'Utiliser les pourcentages et les échelles',theme:'D',weeks:2,comps:['Mo1','Re2','Ca1'],details:'Appliquer et calculer un pourcentage (augmentation/baisse)\nDéfinir et utiliser une échelle'},
-      {code:'G7',title:'Définir, construire et reconnaître un parallélogramme',theme:'G',weeks:2,comps:['Re4','Ra3','Co2'],details:'Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nReconnaître ; calculer l\'aire'},
-      {code:'N8',title:'Additionner et soustraire des fractions',theme:'N',weeks:1,comps:['Ca1'],details:'Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)'},
-      {code:'D3',title:'Traiter et représenter des données',theme:'D',weeks:2,comps:['Re3','Ca1'],details:'Calculer des effectifs et des fréquences\nReprésenter graphiquement des données\nCalculer et interpréter une moyenne\nTableur possible'},
-      {code:'A',title:'Algorithmique & Tableur (fil rouge)',theme:'A',weeks:1.5,comps:['Ch3','Re3'],details:'Scratch et tableur\nSéances réparties sur l\'année'}
+    "seq": [
+        {
+            "code": "N1",
+            "title": "Priorités opératoires et distributivité",
+            "theme": "N",
+            "weeks": 1.5,
+            "comps": [
+                "Ch1",
+                "Mo1",
+                "Ra1",
+                "Ca1",
+                "Co1"
+            ],
+            "objectifs": [
+                "5:✖1",
+                "5:✖2",
+                "5:✖3",
+                "5:✖4",
+                "5:✖5",
+                "5:✖6",
+                "5:✖7",
+                "5:✖8",
+                "5:✖11",
+                "5:➖10",
+                "5:➖11",
+                "5:🔤4"
+            ],
+            "automatismes": [
+                "5:0✖🅰4",
+                "5:0✖🅰5",
+                "5:0✖🅰6",
+                "5:0➖🅰7",
+                "5:0➖🅰8",
+                "5:0➗🅰9",
+                "5:0➗🅰15",
+                "5:0⬆🅰20"
+            ],
+    "notes": "Vocabulaire : somme, différence, termes, produit, quotient, facteur\nCalculer avec et sans parenthèses (parenthèses emboîtées)\nCalculer des quotients écrits avec une barre de fraction\nProduire une expression numérique pour résoudre des problèmes\nCalcul astucieux : multiplier par 9, 11, 99… (distributivité simple)\nAP : réinvestir périmètre et aire"
+        },
+        {
+            "code": "G1",
+            "title": "Reconnaître et utiliser les symétries axiale et centrale",
+            "theme": "G",
+            "weeks": 1.5,
+            "comps": [
+                "Mo4",
+                "Re4",
+                "Co2"
+            ],
+            "objectifs": [
+                "5:🔄1"
+            ],
+            "automatismes": [
+                "5:0🔄🅰32"
+            ],
+    "notes": "Construire avec la symétrie axiale (exercices/activités de rappel 6ᵉ)\nConstruire avec la symétrie centrale (avec et sans quadrillage)\nReconnaître les figures obtenues par symétrie (frises, pavages, rosaces)\nRechercher les éléments de symétrie d'une figure (axes et centre)\nAP : iPad, appli transformations\nG4 reprend ensuite la symétrie centrale pour construire et démontrer."
+        },
+        {
+            "code": "N2",
+            "title": "Écrire et utiliser une expression littérale",
+            "theme": "N",
+            "weeks": 2,
+            "comps": [
+                "Ch1",
+                "Mo2",
+                "Ca3",
+                "Co1"
+            ],
+            "objectifs": [
+                "5:⬆1",
+                "5:⬆2",
+                "5:⬆3",
+                "5:⬆4",
+                "5:⬆6",
+                "5:📈1",
+                "5:📈6",
+                "5:📈7",
+                "5:🔤1",
+                "5:🔤6"
+            ],
+            "automatismes": [],
+    "notes": "Définir une expression littérale, donner des exemples\nProduire une expression littérale (pair/impair, multiple ; programme de calcul)\nÉvaluer une expression : formules d'aires/volumes, conversions de longueurs et d'aires\nTester une égalité\nSimplifier l'écriture ; réduire des expressions ax + bx (a, b décimaux)\nCarré et cube : notation, carrés de 0 à 12, cube de 10\nIntroduire « en fonction de » ; produire une formule de dépendance\nAP : réglettes Cuisenaire ; réinvestir périmètre et aire"
+        },
+        {
+            "code": "G2",
+            "title": "Décrire, représenter le cylindre et le prisme droit ; calculer des volumes",
+            "theme": "G",
+            "weeks": 2,
+            "comps": [
+                "Ch1",
+                "Ch2",
+                "Re4",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:🔺4",
+                "5:🧊1",
+                "5:🧊2",
+                "5:🧊3",
+                "5:🧊4",
+                "5:🧊5"
+            ],
+            "automatismes": [
+                "5:0⬆🅰21",
+                "5:0🧭🅰28",
+                "5:0🧭🅰29",
+                "5:0🧭🅰30",
+                "5:0🧭🅰31"
+            ],
+    "notes": "Réinvestir la perspective cavalière et le patron du pavé droit\nReprésenter et construire le patron d'un cylindre (périmètre du cercle) et d'un prisme droit\nCalculer le volume d'un pavé droit, d'un cylindre (aire du disque)\nCalculer l'aire de la base d'un prisme droit et son volume (unités d'aire et de volume)\nAP : GeoGebra 3D possible\nVariante collègue : la partie « volume du prisme » peut être reportée en fin d'année, après G7 (aire du parallélogramme → aire du triangle)."
+        },
+        {
+            "code": "N3",
+            "title": "Définir, utiliser et représenter des nombres rationnels",
+            "theme": "N",
+            "weeks": 1.5,
+            "comps": [
+                "Ch1",
+                "Re2",
+                "Ca1"
+            ],
+            "objectifs": [],
+            "automatismes": [
+                "5:0➗🅰10",
+                "5:0➗🅰11",
+                "5:0➗🅰17",
+                "5:0🔤🅰25"
+            ],
+            "notes": "Utiliser la fraction : partage, proportion, quotient\nDéfinir le rationnel ; le repérer sur une droite graduée\nDifférentes écritures (décimale, fraction décimale, arrondi)\nUtiliser une proportion (multiplier par une fraction)\nGrandeurs et mesures : conversions"
+        },
+        {
+            "code": "G3",
+            "title": "Construire un triangle et ses droites remarquables",
+            "theme": "G",
+            "weeks": 2,
+            "comps": [
+                "Ch1",
+                "Re4",
+                "Ra3",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:🔷8",
+                "5:🔺2",
+                "5:🔺3",
+                "5:🔺5",
+                "5:🔺6",
+                "5:🔺7",
+                "5:🔺8",
+                "5:🔺9"
+            ],
+            "automatismes": [
+                "5:0📐🅰36",
+                "5:0🔺🅰40"
+            ],
+            "notes": "Construire un triangle connaissant ses 3 longueurs (rappels 6ᵉ)\nCas d'existence d'un triangle ; cas d'alignement de 3 points\nRéinvestir la médiatrice d'un segment\nConstruire médiatrices, hauteurs et médianes\nDémonstration possible : médiatrices concourantes (cercle circonscrit)"
+        },
+        {
+            "code": "N4",
+            "title": "Utiliser les nombres entiers",
+            "theme": "N",
+            "weeks": 1.5,
+            "comps": [
+                "Re2",
+                "Ra1",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:✖9",
+                "5:✖10"
+            ],
+            "automatismes": [
+                "5:0✖🅰2",
+                "5:0✖🅰3"
+            ],
+            "notes": "Diviseur, multiple, divisibilité (division euclidienne)\nDéterminer les diviseurs d'un entier\nCritères de divisibilité par 3 et par 9\nGrandeurs : systèmes centésimal et sexagésimal\n(Nombres premiers / décomposition : hors objectifs 5ᵉ du nouveau BO → en approfondissement seulement)"
+        },
+        {
+            "code": "D1",
+            "title": "Utiliser la proportionnalité pour résoudre des problèmes",
+            "theme": "D",
+            "weeks": 2,
+            "comps": [
+                "Ch1",
+                "Mo2",
+                "Re1",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:∝1",
+                "5:∝3",
+                "5:∝4",
+                "5:∝5",
+                "5:∝6",
+                "5:∝7",
+                "5:📈2",
+                "5:📈3",
+                "5:📈4",
+                "5:📈8"
+            ],
+            "automatismes": [
+                "5:0∝🅰46",
+                "5:0∝🅰47"
+            ],
+            "notes": "Reconnaître une situation de proportionnalité\nCalculer une quatrième proportionnelle (méthode la plus adaptée)\nProduire, lire et interpréter un tableau de valeurs\nPlacer des points dans un repère orthogonal ; nuage de points"
+        },
+        {
+            "code": "G4",
+            "title": "Symétrie centrale : construire et démontrer",
+            "theme": "G",
+            "weeks": 1,
+            "comps": [
+                "Ch2",
+                "Ra3"
+            ],
+            "objectifs": [
+                "5:🔄2"
+            ],
+            "automatismes": [
+                "5:0🔄🅰33"
+            ],
+            "notes": "Conjecturer les propriétés avec GeoGebra\nConstruire le symétrique d'une figure\nS'initier au raisonnement déductif (tri des données, propriété, « donc »)"
+        },
+        {
+            "code": "N5",
+            "title": "Découvrir, repérer et comparer les nombres relatifs",
+            "theme": "N",
+            "weeks": 1.5,
+            "comps": [
+                "Ch1",
+                "Re2",
+                "Ca2"
+            ],
+            "objectifs": [
+                "5:➖1",
+                "5:➖2",
+                "5:➖3",
+                "5:➖4",
+                "5:➖5",
+                "5:➖6",
+                "5:🧭1",
+                "5:🧭2",
+                "5:🧭3",
+                "5:🧭4"
+            ],
+            "automatismes": [
+                "5:0➗🅰12",
+                "5:0🧭🅰26",
+                "5:0🧭🅰27"
+            ],
+            "notes": "Définir les nombres relatifs (écriture, usages)\nOpposé et valeur absolue\nRepérer sur une droite graduée ; comparer, ranger\nRepérer un point dans le plan (repère orthogonal)\nAlgorithmique possible"
+        },
+        {
+            "code": "N6",
+            "title": "Additionner et soustraire des nombres relatifs",
+            "theme": "N",
+            "weeks": 1,
+            "comps": [
+                "Ca1",
+                "Ra1"
+            ],
+            "objectifs": [
+                "5:➖7",
+                "5:➖8",
+                "5:➖9",
+                "5:➖12",
+                "5:➖13"
+            ],
+            "automatismes": [],
+            "notes": "Additionner des nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions\nProblèmes (températures, altitudes, comptes)"
+        },
+        {
+            "code": "G5",
+            "title": "Reconnaître des angles particuliers et des droites parallèles",
+            "theme": "G",
+            "weeks": 1.5,
+            "comps": [
+                "Mo3",
+                "Ra3"
+            ],
+            "objectifs": [
+                "5:📐1"
+            ],
+            "automatismes": [
+                "5:0📐🅰34",
+                "5:0📐🅰37"
+            ],
+            "notes": "Angles complémentaires, supplémentaires, adjacents, opposés par le sommet\nAngles alternes-internes et correspondants\nReconnaître des droites parallèles (raisonnement déductif)"
+        },
+        {
+            "code": "N7",
+            "title": "Fractions égales ; comparer des fractions",
+            "theme": "N",
+            "weeks": 1,
+            "comps": [
+                "Re2",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:➗1"
+            ],
+            "automatismes": [
+                "5:0✖🅰1",
+                "5:0➗🅰13",
+                "5:0➗🅰14"
+            ],
+            "notes": "Reconnaître des fractions égales\nSimplifier une fraction (critères de divisibilité)\nDiviser par un nombre décimal\nComparer des fractions (même dénominateur, par rapport à 1)"
+        },
+        {
+            "code": "N8",
+            "title": "Additionner et soustraire des fractions",
+            "theme": "N",
+            "weeks": 1,
+            "comps": [
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:➗2",
+                "5:➗3"
+            ],
+            "automatismes": [
+                "5:0➗🅰16",
+                "5:0➗🅰19"
+            ],
+            "notes": "Additionner des fractions (même dénominateur, dénominateurs multiples)\nSoustraire des fractions (mêmes cas)\nRésoudre des problèmes"
+        },
+        {
+            "code": "G6",
+            "title": "Construire et démontrer avec les angles d'un triangle",
+            "theme": "G",
+            "weeks": 1.5,
+            "comps": [
+                "Mo4",
+                "Re4",
+                "Co2"
+            ],
+            "objectifs": [
+                "5:🔺1"
+            ],
+            "automatismes": [
+                "5:0📐🅰35",
+                "5:0🔺🅰38",
+                "5:0🔺🅰39"
+            ],
+            "notes": "Calculer un angle dans un triangle quelconque\nDémonstration : somme des angles = 180°\nAngles des triangles particuliers (isocèle, rectangle, équilatéral)\nConstruire un triangle (2 angles + 1 longueur, ou 2 longueurs + 1 angle)\nReconnaître un triangle particulier (raisonnement déductif)"
+        },
+        {
+            "code": "N9",
+            "title": "Développer et factoriser une expression littérale",
+            "theme": "N",
+            "weeks": 1,
+            "comps": [
+                "Ra1",
+                "Ca1",
+                "Ca3",
+                "Co1"
+            ],
+            "objectifs": [
+                "5:🔤3",
+                "5:🔤5",
+                "5:🔤8"
+            ],
+            "automatismes": [
+                "5:0🔤🅰22",
+                "5:0🔤🅰23",
+                "5:0🔤🅰24"
+            ],
+            "notes": "Distributivité simple : k(a + b) et k(a – b)\nDévelopper, factoriser, réduire\nTester une égalité ; contre-exemple\nSuites de motifs : identifier une régularité, produire une formule"
+        },
+        {
+            "code": "D2",
+            "title": "Utiliser les pourcentages et les échelles",
+            "theme": "D",
+            "weeks": 1.5,
+            "comps": [
+                "Mo1",
+                "Re2",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:∝2"
+            ],
+            "automatismes": [
+                "5:0➗🅰18"
+            ],
+            "notes": "Appliquer et calculer un pourcentage (augmentation/baisse)\nDéfinir et utiliser une échelle"
+        },
+        {
+            "code": "G7",
+            "title": "Définir, construire et reconnaître un parallélogramme",
+            "theme": "G",
+            "weeks": 1.5,
+            "comps": [
+                "Ch1",
+                "Re4",
+                "Ra3",
+                "Co2"
+            ],
+            "objectifs": [
+                "5:🔷1",
+                "5:🔷2",
+                "5:🔷3",
+                "5:🔷4",
+                "5:🔷5",
+                "5:🔷6",
+                "5:🔷7"
+            ],
+            "automatismes": [
+                "5:0🔷🅰41",
+                "5:0🔷🅰42"
+            ],
+            "notes": "Définir le parallélogramme (côtés opposés parallèles)\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nConstruire avec définition et propriétés\nParallélogrammes particuliers ; calculer l'aire"
+        },
+        {
+            "code": "N10",
+            "title": "Résoudre des équations simples",
+            "theme": "N",
+            "weeks": 1.5,
+            "comps": [
+                "Ch1",
+                "Mo1",
+                "Ra1",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:⬆5",
+                "5:🔤2",
+                "5:🔤7",
+                "5:🔤10",
+                "5:🔤11",
+                "5:🔤12"
+            ],
+            "automatismes": [],
+    "notes": "Donner à la lettre le statut d'inconnue\nModéliser un problème d'opération à trou par une équation\nRésoudre par méthodes arithmétiques (opérations inverses) ; vérifier la solution\nCalculer la valeur numérique d'expressions avec puissances simples\nDémontrer une propriété générale par le calcul littéral\nPoint de vigilance BO 5ᵉ : se limiter à ax = c et x + b = c ; ax + b = c est hors programme cette année."
+        },
+        {
+            "code": "D3",
+            "title": "Traiter et représenter des données",
+            "theme": "D",
+            "weeks": 1.5,
+            "comps": [
+                "Ch1",
+                "Re3",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:🎲4",
+                "5:📈5",
+                "5:📊1",
+                "5:📊2",
+                "5:📊3",
+                "5:📊4",
+                "5:📊5",
+                "5:📊6"
+            ],
+            "automatismes": [],
+            "notes": "Calculer des effectifs et des fréquences\nReprésenter graphiquement des données (barres, circulaire, cartésien)\nCalculer et interpréter une moyenne\nTableur : séance en salle info"
+        },
+        {
+            "code": "D4",
+            "title": "Probabilités",
+            "theme": "D",
+            "weeks": 1,
+            "comps": [
+                "Ch1",
+                "Ca1",
+                "Co1",
+                "Mo1"
+            ],
+            "objectifs": [
+                "5:🎲1",
+                "5:🎲2",
+                "5:🎲3"
+            ],
+            "automatismes": [
+                "5:0🎲🅰43",
+                "5:0🎲🅰44",
+                "5:0🎲🅰45"
+            ],
+            "notes": "Expérience aléatoire, issue, évènement\nÉchelle de probabilité (impossible / certain)\nÉquiprobabilité : attribuer des probabilités simples\nLiens avec les fractions et les pourcentages"
+        },
+        {
+            "code": "A1",
+            "title": "Algorithmique & Tableur (fil rouge)",
+            "theme": "A",
+            "weeks": 0.5,
+            "comps": [
+                "Ch3",
+                "Re3",
+                "Ra1",
+                "Ca1"
+            ],
+            "objectifs": [
+                "5:🐱1",
+                "5:🐱2",
+                "5:🐱3",
+                "5:🐱4",
+                "5:🐱5",
+                "5:🐱6",
+                "5:🐱7",
+                "5:🔤9"
+            ],
+            "automatismes": [],
+            "notes": "Scratch et tableur — séances réparties sur l'année (≈ 6 à 8 séances)\nÀ raccrocher : N5 (relatifs), N9 (motifs/formules), D3 (tableur), D4 (simulation)"
+        }
     ]
-  };
+};
 }
 var THEMES={N:'Nombres & Calculs',G:'Géométrie',D:'Données',A:'Algo'};
 
 /* ---------- persistance ---------- */
 var KEY='prog5e_v1', S=load();
-function load(){ try{ var r=localStorage.getItem(KEY); if(r) return migrate(JSON.parse(r)); }catch(e){} return migrate(defaultState()); }
+function restoreRefsFromDefault(st){
+  var def=migrate(defaultState()), byCode={};
+  def.seq.forEach(function(s){ byCode[s.code]=s; });
+  if(!st||!Array.isArray(st.seq)) return st;
+  var defRefCount=def.seq.reduce(function(a,s){return a+(s.objectifs||[]).length+(s.automatismes||[]).length;},0);
+  var stRefCount=st.seq.reduce(function(a,s){return a+(s.objectifs||[]).length+(s.automatismes||[]).length;},0);
+  if(st.seq.length<def.seq.length-2 || stRefCount<Math.round(defRefCount*0.65)) return def;
+  st.seq.forEach(function(s){
+    var d=byCode[s.code]; if(!d) return;
+    if((!Array.isArray(s.objectifs)||s.objectifs.length===0) && d.objectifs && d.objectifs.length) s.objectifs=d.objectifs.slice();
+    if((!Array.isArray(s.automatismes)||s.automatismes.length===0) && d.automatismes && d.automatismes.length) s.automatismes=d.automatismes.slice();
+  });
+  return st;
+}
+function load(){ try{ var r=localStorage.getItem(KEY); if(r) return restoreRefsFromDefault(migrate(JSON.parse(r))); }catch(e){} return migrate(defaultState()); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
 
@@ -342,13 +872,13 @@ document.getElementById('saveBtn').addEventListener('click',function(){ save(); 
 /* ---------- rendu : séquences ---------- */
 function periodBreaks(){
   var weeks=buildWeeks(), teach=[]; weeks.forEach(function(w,i){ if(!w.vac) teach.push(i); });
-  return S.cal.vac.map(function(v){ var vs=d(v.sat), cnt=0; for(var i=0;i<teach.length;i++){ if(weeks[teach[i]].mon<vs) cnt++; else break; } return {tw:cnt, nom:v.nom}; });
+  return S.cal.vac.filter(function(v){return !v.hors;}).map(function(v){ var vs=d(v.sat), cnt=0; for(var i=0;i<teach.length;i++){ if(weeks[teach[i]].mon<vs) cnt++; else break; } return {tw:cnt, nom:v.nom}; });
 }
 function periodsInfo(){
   var weeks=buildWeeks();
   function tw(st,en){ var c=0,ms=mondayOf(st),me=mondayOf(en); weeks.forEach(function(w){ if(!w.vac && w.mon>=ms && w.mon<=me) c++; }); return c; }
   var starts=[d(S.cal.rentree)], ends=[];
-  S.cal.vac.forEach(function(v){ ends.push(addDays(d(v.sat),-1)); starts.push(d(v.resume)); });
+  S.cal.vac.filter(function(v){return !v.hors;}).forEach(function(v){ ends.push(addDays(d(v.sat),-1)); starts.push(d(v.resume)); });
   ends.push(d(S.cal.fin));
   return starts.map(function(st,i){ return {p:i+1,start:st,end:ends[i],weeks:tw(st,ends[i])}; });
 }
@@ -644,7 +1174,6 @@ function renderPrintDoc(withDetails){
     var totRow=document.createElement('div'); totRow.className='pdoc-toc-total'; totRow.textContent=S.seq.length+' séquences · '+totalWeeks+' semaines de cours au total';
     toc.appendChild(totRow);
     root.appendChild(toc);
-    root.appendChild(renderPrintGantt());
   }
 
   // ---- détail des séquences, période par période ----
@@ -653,7 +1182,7 @@ function renderPrintDoc(withDetails){
   phead(1);
   S.seq.forEach(function(s,i){
     var blk=document.createElement('div'); blk.className='pdoc-seq'; blk.style.setProperty('--seqc','var(--'+s.theme+')');
-    var chips=(s.comps||[]).map(function(c){ return '<span class="pdoc-chip" style="background:'+(FAMCOL2[famOf(c)]||'#999')+'">'+esc(c)+'</span>'; }).join('');
+    var chips=(s.comps||[]).map(function(c){ return '<span class="pdoc-chip" style="background:var(--'+famOf(c)+')">'+esc(c)+'</span>'; }).join('');
     blk.innerHTML='<div class="pdoc-seqhead"><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b> <span class="pdoc-weeks">· '+s.weeks+' sem.</span></div>'
       +(chips?'<div class="pdoc-chips">'+chips+'</div>':'');
     if(withDetails){
@@ -719,7 +1248,7 @@ function printGantt(){ renderGantt(); document.body.classList.add('printing','pr
 function exportProgressionWord(){
   renderPrintDoc(true);
   var title=currentDocTitle();
-  var style=':root{--N:#8fb3d9;--G:#e6a18c;--D:#b9a3dd;--A:#9cc4a0}'
+  var style=':root{--N:#8fb3d9;--G:#e6a18c;--D:#b9a3dd;--A:#9cc4a0;--Ch:#b6a6d6;--Mo:#e0b18a;--Re:#e3a09a;--Ra:#90c1cf;--Ca:#d79bbf;--Co:#9cc6a6}'
     +'body{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}'
     +'h1{font-family:Georgia,serif;color:#7d4563}'
     +'.pdoc-timestamp{font-size:11px;color:#a8607c;font-style:italic;margin-bottom:10px}'
@@ -802,7 +1331,7 @@ function objNiv(id){var o=RBY[id];return o?o.niveau:'';}
 function objCode(id){var o=RBY[id];return o?o.code:id;}
 function objSlug(id){var o=RBY[id];return o?('OBJ-'+(slugify(o.texte).slice(0,48)||o.code)):('OBJ-'+id);}
 function famNameOf(k){for(var x=0;x<REF.length;x++){if(REF[x].k===k)return REF[x].name;}return k;}
-function migrate(st){ if(!st||!st.seq) return st; st.seq.forEach(function(s){ if(!Array.isArray(s.objectifs))s.objectifs=[]; if(!Array.isArray(s.automatismes))s.automatismes=[]; if(s.notes==null)s.notes=(s.details!=null?s.details:''); if('details' in s)delete s.details; if(!Array.isArray(s.comps))s.comps=[]; s.objectifs=s.objectifs.map(function(c){return (typeof c==='string'&&c.indexOf(':')===-1)?('5:'+c):c;}); s.automatismes=s.automatismes.map(function(c){return (typeof c==='string'&&c.indexOf(':')===-1)?('5:'+c):c;}); sortObjArr(s.objectifs); sortObjArr(s.automatismes); }); return st; }
+function migrate(st){ if(!st||!st.seq) return st; st.seq.forEach(function(s){ if(!Array.isArray(s.objectifs))s.objectifs=[]; if(!Array.isArray(s.automatismes))s.automatismes=[]; if(s.notes==null)s.notes=(s.details!=null?s.details:''); if('details' in s)delete s.details; if(!Array.isArray(s.comps))s.comps=[]; s.objectifs=s.objectifs.map(function(c){return (typeof c==='string'&&c.indexOf(':')===-1)?('5:'+c):c;}); s.automatismes=s.automatismes.map(function(c){return (typeof c==='string'&&c.indexOf(':')===-1)?('5:'+c):c;}); if(typeof RBY!=='undefined'&&RBY){ sortObjArr(s.objectifs); sortObjArr(s.automatismes); } }); return st; }
 function placedIn(id){var r=[];S.seq.forEach(function(s,i){if(s.objectifs.indexOf(id)!==-1||s.automatismes.indexOf(id)!==-1)r.push(i);});return r;}
 function allPlaced(){var set={};S.seq.forEach(function(s){s.objectifs.forEach(function(c){set[c]=1;});s.automatismes.forEach(function(c){set[c]=1;});});return set;}
 function zoneArr(s,id){return objType(id)==='automatisme'?s.automatismes:s.objectifs;}

@@ -65,7 +65,7 @@
     },
     {
       "code": "G1",
-      "title": "Triangles : droites remarquables et droite des milieux",
+      "title": "Angles et triangles : triangles égaux et semblables",
       "theme": "G",
       "weeks": 2,
       "comps": [
@@ -75,15 +75,16 @@
         "Co2"
       ],
       "objectifs": [
-        "4:TRI1",
-        "4:TRI4",
-        "4:TRI5",
-        "4:TRI6"
+        "4:G1T1",
+        "4:G1T2",
+        "4:G1T3",
+        "4:G1T4",
+        "4:G1T5"
       ],
       "automatismes": [
-        "4:aTRI1"
+        "4:aG1T1"
       ],
-      "notes": "Réactivation des droites remarquables\nTrois théorèmes de la droite des milieux\nDémonstrations et calculs de longueurs"
+      "notes": "Ancien programme 4e maintenu pour 2026-2027\nTriangles égaux : définition, critères de reconnaissance, côtés/angles homologues\nTriangles semblables : angles égaux, agrandissement/réduction, rapport de similitude\nRédaction d’une démonstration : Je sais que / Or / Donc"
     },
     {
       "code": "D1",

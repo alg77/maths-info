@@ -342,28 +342,31 @@
   body.print-gantt .info,
   body.print-gantt h2:not(#ganttTitle){display:none!important}
   body.print-gantt #ganttSection{display:block!important;page-break-before:auto!important;margin:0!important}
+  body.print-gantt #ganttSection,
+  body.print-gantt .gantt-wrap,
+  body.print-gantt table.gantt{break-inside:avoid!important;page-break-inside:avoid!important}
   body.print-gantt #ganttTitle{display:block!important;margin:0 0 4px!important;font-size:14px!important;padding:0!important;border:0!important;color:#4a414a!important;text-shadow:none!important}
   body.print-gantt .wrap{max-width:none!important;padding:0!important}
   body.print-gantt .gantt-wrap{overflow:visible!important;border:0!important;box-shadow:none!important;background:#fff!important;backdrop-filter:none!important}
-  body.print-gantt table.gantt{width:100%!important;table-layout:fixed!important;font-size:6.8px!important;border-collapse:collapse!important}
+  body.print-gantt table.gantt{width:100%!important;table-layout:fixed!important;font-size:6.4px!important;border-collapse:collapse!important}
   body.print-gantt table.gantt th,
   body.print-gantt table.gantt td{border-color:#ddd!important}
-  body.print-gantt table.gantt .gcol{width:auto!important;min-width:0!important;height:17px!important}
-  body.print-gantt .glabel{min-width:195px!important;max-width:195px!important;width:195px!important;font-size:7px!important;padding:2px 3px!important;white-space:normal!important;overflow:hidden!important;box-shadow:none!important;background:#fff!important}
+  body.print-gantt table.gantt .gcol{width:auto!important;min-width:0!important;height:14px!important}
+  body.print-gantt .glabel{min-width:185px!important;max-width:185px!important;width:185px!important;font-size:6.6px!important;padding:1px 3px!important;white-space:normal!important;overflow:hidden!important;box-shadow:none!important;background:#fff!important}
   body.print-gantt thead .glabel{background:#fdf5f4!important}
-  body.print-gantt .gseq{display:grid!important;grid-template-columns:18px 1fr!important;gap:3px!important;align-items:start!important;min-height:18px!important}
+  body.print-gantt .gseq{display:grid!important;grid-template-columns:16px 1fr!important;gap:2px!important;align-items:start!important;min-height:15px!important}
   body.print-gantt .gseq .grip,
   body.print-gantt .gseq select,
   body.print-gantt .gseq input{display:none!important}
-  body.print-gantt .gseq .num{width:15px!important;height:15px!important;font-size:7px!important;grid-column:1!important;grid-row:1 / span 2!important}
+  body.print-gantt .gseq .num{width:13px!important;height:13px!important;font-size:6.4px!important;grid-column:1!important;grid-row:1 / span 2!important}
   body.print-gantt .gtitlebox{grid-column:2!important;min-width:0!important}
-  body.print-gantt .gtitle{font-size:7px!important;line-height:1.05!important;white-space:normal!important;overflow:hidden!important;text-overflow:clip!important}
-  body.print-gantt .gcompprint{display:block!important;font-size:5.8px!important;line-height:1.05!important;color:#7a707a!important}
-  body.print-gantt .bar.fracbar{height:10px!important;top:3px!important}
-  body.print-gantt .barlabel{font-size:5.8px!important;top:2px!important;left:1px!important}
+  body.print-gantt .gtitle{font-size:6.5px!important;line-height:1!important;white-space:normal!important;overflow:hidden!important;text-overflow:clip!important}
+  body.print-gantt .gcompprint{display:block!important;font-size:5.4px!important;line-height:1!important;color:#7a707a!important}
+  body.print-gantt .bar.fracbar{height:8px!important;top:3px!important}
+  body.print-gantt .barlabel{font-size:5.2px!important;top:1px!important;left:1px!important}
   body.print-gantt .feridot{width:4px!important;height:4px!important}
-  body.print-gantt .moncell{font-size:6.5px!important}
-  body.print-gantt .wkcell{font-size:5.2px!important}
+  body.print-gantt .moncell{font-size:6px!important}
+  body.print-gantt .wkcell{font-size:4.9px!important}
   body.print-gantt .glegend{font-size:6.5px!important;gap:6px!important;margin:3px 0 0!important;line-height:1.1!important}
   body.print-gantt .glegend .d{width:8px!important;height:6px!important}
 
