@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Progression &amp; Gantt — Maths 5ᵉ</title>
 <link rel="stylesheet" href="progression-commun.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <style>
   :root{ --N:#8fb3d9; --G:#e6a18c; --D:#b9a3dd; --A:#9cc4a0; --M:#dec27e;
          --Ch:#b6a6d6; --Mo:#e0b18a; --Re:#e3a09a; --Ra:#90c1cf; --Ca:#d79bbf; --Co:#9cc6a6; }
@@ -69,11 +71,16 @@
   /* --- styles du document imprime (partages ecran / PDF / Word) --- */
   #printDoc{font-family:Arial,sans-serif;color:#3f3540;line-height:1.35}
   #printDoc h1{font-family:Georgia,serif;color:#7d4563}
+  .gantt-sub{font-size:12px;color:#a8607c;font-style:italic;margin:-4px 0 10px}
   #printDoc .pdoc-timestamp{font-size:11px;color:#a8607c;font-style:italic;margin-bottom:10px}
   #printDoc .pdoc-quicklegend{margin:2px 0 18px;padding-bottom:12px;border-bottom:1px dashed #ddd}
   #printDoc .pdoc-toc{margin-bottom:8px}
   #printDoc table.pdoc-toc-table{width:100%;border-collapse:collapse;margin-top:6px}
   #printDoc table.pdoc-toc-table td{padding:3px 8px 3px 0;font-size:12.5px;border-bottom:1px solid #eee}
+  #printDoc table.pdoc-toc-table tr.pdoc-toc-per td{font-family:Georgia,serif;font-weight:bold;font-size:13px;color:#a8607c;background:#fff;border-bottom:2px solid #d98ba4;padding:10px 0 3px}
+  #printDoc .pdoc-toc-dates{color:#a89a90;font-style:normal;font-size:10.5px}
+  #printDoc table.pdoc-toc-table td.pdoc-toc-d{width:42px;color:#a8607c;font-size:11px;white-space:nowrap;padding-right:8px}
+  #printDoc table.pdoc-toc-table tr.pdoc-toc-vac td{background:#faf6f2;color:#8a7f70;font-style:italic;font-size:11.5px}
   #printDoc .pdoc-toc-w{color:#777;text-align:right;white-space:nowrap}
   #printDoc .pdoc-toc-total{margin-top:8px;font-size:12px;color:#a8607c;font-weight:bold;text-align:right}
   #printDoc .pdoc-code.sm{font-size:11px;padding:1px 6px}
@@ -95,7 +102,11 @@
   #printDoc .pdoc-holes{margin-top:10px}
   #printDoc .pdoc-holes-intro{font-size:12px;color:#888;margin:2px 0 8px}
   #printDoc .pdoc-allplaced{color:#3f7a2c;font-weight:bold}
-  #printDoc .pdoc-legend{margin-top:10px}
+  #printDoc .pdoc-legend{margin-top:0;page-break-before:always;break-before:page}
+  #printDoc .pdoc-leg-themes,#printDoc .pdoc-leg-comps{page-break-inside:avoid;break-inside:avoid}
+  #printDoc .pdoc-leg-list>li{page-break-inside:avoid;break-inside:avoid}
+  #printDoc .pdoc-math{font-family:'Cambria Math','Latin Modern Math',Georgia,serif;font-style:italic;white-space:nowrap}
+  #printDoc .katex{font-size:1.02em}
   #printDoc .pdoc-leg-themes{margin:6px 0 12px}
   #printDoc .pdoc-legswatch{display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12.5px}
   #printDoc .pdoc-dot{display:inline-block;width:11px;height:11px;border-radius:50%}
@@ -208,6 +219,7 @@
 
   <section id="ganttSection">
   <h2 id="ganttTitle">Calendrier annuel (Gantt)</h2>
+  <div id="ganttSub" class="gantt-sub"></div>
   <div class="gantt-wrap" id="ganttWrap"></div>
   <div class="glegend">
     <span class="k"><span class="d" style="background:var(--N)"></span>Nombres &amp; Calculs</span>
@@ -274,7 +286,7 @@ function famOf(code){ return code.slice(0,2); }
 function defaultState(){
   return {
     cal:{
-      rentree:'2026-09-01', fin:'2027-07-02',
+      rentree:'2026-09-01', fin:'2027-06-18',
       vac:[
         {nom:'Toussaint', sat:'2026-10-17', resume:'2026-11-02'},
         {nom:'Noël',      sat:'2026-12-19', resume:'2027-01-04'},
@@ -311,7 +323,15 @@ var THEMES={N:'Nombres & Calculs',G:'Géométrie',D:'Données',M:'Grandeurs & Me
 /* ---------- persistance ---------- */
 var KEY='prog5e_v1', S=load();
 function load(){ try{ var r=localStorage.getItem(KEY); if(r) return migrate(JSON.parse(r)); }catch(e){} return migrate(defaultState()); }
-function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
+function save(){ S.updated=new Date().toISOString();
+  try{ localStorage.setItem(KEY,JSON.stringify(S)); flash('Enregistré ✓'); }catch(e){ flash('(stockage indispo)'); } }
+function updatedLabel(){
+  var t=S.updated?new Date(S.updated):null;
+  if(!t||isNaN(t)) return 'Dernière mise à jour inconnue';
+  return 'Dernière mise à jour : '+t.toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'})
+    +' à '+t.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}).replace(':','h');
+}
+function ganttDocTitle(){ return 'Programmation '+PRIMARY_NIV+' - '+docYear()+' - Diagramme de Gantt'; }
 var fT; function flash(t){ var m=document.getElementById('saveMsg'); m.textContent=t; clearTimeout(fT); fT=setTimeout(function(){m.textContent='';},1500); }
 
 /* ---------- dates ---------- */
@@ -403,6 +423,7 @@ function periodsInfo(){
 }
 function fmtD(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]; }
 function vacPhrase(nom){ if(/toussaint/i.test(nom)) return 'de la '+nom; if(/hiver/i.test(nom)) return "d'"+nom; return 'de '+nom; }
+function vacLabel(nom){ return /voyage/i.test(nom) ? String(nom) : 'Vacances '+vacPhrase(nom); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 var dragIndex=null;
 var seqDetailsOpen=[];
@@ -498,7 +519,7 @@ function renderSeq(){
     cum += (Number(s.weeks)||0);
     while(bi<breaks.length && cum >= breaks[bi].tw - 1e-9){
       var dv=document.createElement('div'); dv.className='vacdiv';
-      dv.innerHTML='🌿 Vacances '+vacPhrase(breaks[bi].nom);
+      dv.innerHTML='🌿 '+vacLabel(breaks[bi].nom);
       root.appendChild(dv); period++; screenPhead(period); bi++;
     }
   });
@@ -518,6 +539,8 @@ function totalWeeks(){ return S.seq.reduce(function(a,s){return a+(Number(s.week
 
 /* ---------- rendu : gantt ---------- */
 function renderGantt(){
+  var gt=document.getElementById('ganttTitle'); if(gt) gt.textContent=ganttDocTitle();
+  var gs=document.getElementById('ganttSub'); if(gs) gs.textContent=updatedLabel();
   var weeks=buildWeeks(), placed=placeSequences(weeks), wrap=document.getElementById('ganttWrap');
   var teachingIndexByWeek=[], tcur=0;
   weeks.forEach(function(w,i){
@@ -661,6 +684,70 @@ function renderPrintGantt(){
   return div;
 }
 
+/* --- formules : $...$ rendu par KaTeX si dispo, sinon repli lisible --- */
+function texFallback(t){
+  return t.replace(/\\(?:text|mathrm|mathit)\s*\{([^{}]*)\}/g,'$1')
+          .replace(/\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g,'$1/$2')
+          .replace(/\\times/g,'\u00d7').replace(/\\div/g,'\u00f7').replace(/\\cdot/g,'\u00b7')
+          .replace(/\\pi/g,'\u03c0').replace(/\\le/g,'\u2264').replace(/\\ge/g,'\u2265')
+          .replace(/\^\{?2\}?/g,'\u00b2').replace(/\^\{?3\}?/g,'\u00b3')
+          .replace(/[{}]/g,'').replace(/\\,/g,' ').replace(/\\/g,'');
+}
+function mathify(txt){
+  return esc(String(txt==null?'':txt)).replace(/\$([^$]+)\$/g, function(m, body){
+    var src = body.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+    if(window.katex){
+      try{ return katex.renderToString(src,{throwOnError:false,displayMode:false}); }catch(e){}
+    }
+    return '<span class="pdoc-math">'+esc(texFallback(src))+'</span>';
+  });
+}
+function tocRowsHTML(){
+  var weeks=buildWeeks(), placed=placeSequences(weeks);
+  var startAt={};
+  placed.forEach(function(pl){
+    var k=Math.floor(pl.startT+1e-9);
+    (startAt[k]=startAt[k]||[]).push(pl);
+  });
+  var rows=[], total=0, done={}, seenVac={}, ti=0;
+  var pers=periodsInfo(), perDone={}, nextPer=1;
+  weeks.forEach(function(w){
+    if(w.vac){
+      var v=null;
+      S.cal.vac.forEach(function(x){ if(w.mon>=d(x.sat) && w.mon<d(x.resume)) v=x; });
+      if(v && !seenVac[v.nom]){
+        seenVac[v.nom]=1;
+        var fin=addDays(d(v.resume),-1);
+        rows.push('<tr class="pdoc-toc-vac"><td class="pdoc-toc-d">'+esc(fmtShort(d(v.sat)))+'</td>'
+          +'<td></td><td>\uD83C\uDF34 '+esc(vacLabel(v.nom))+' <span class="pdoc-toc-dates">(du '
+          +esc(fmtShort(d(v.sat)))+' au '+esc(fmtShort(fin))+')</span></td><td class="pdoc-toc-w"></td></tr>');
+        nextPer++;
+      }
+      return;
+    }
+    if(!perDone[nextPer]){
+      perDone[nextPer]=1;
+      var pinfo=pers[nextPer-1];
+      if(pinfo) rows.push('<tr class="pdoc-toc-per"><td colspan="4">P'+nextPer+' \u00b7 '
+        +esc(fmtD(pinfo.start))+' \u2192 '+esc(fmtD(pinfo.end))+' \u00b7 '+pinfo.weeks+' semaines</td></tr>');
+    }
+    (startAt[ti]||[]).forEach(function(pl){
+      var q=pl.seq; done[q.code]=1; total+=(Number(q.weeks)||0);
+      rows.push('<tr><td class="pdoc-toc-d">'+esc(fmtShort(w.mon))+'</td>'
+        +'<td><span class="pdoc-code sm" style="background:var(--'+q.theme+')">'+esc(q.code)+'</span></td>'
+        +'<td>'+esc(q.title)+'</td><td class="pdoc-toc-w">'+q.weeks+' sem.</td></tr>');
+    });
+    ti++;
+  });
+  S.seq.forEach(function(q){            // securite : sequence debordant du calendrier
+    if(done[q.code]) return;
+    total+=(Number(q.weeks)||0);
+    rows.push('<tr><td class="pdoc-toc-d">\u2014</td>'
+      +'<td><span class="pdoc-code sm" style="background:var(--'+q.theme+')">'+esc(q.code)+'</span></td>'
+      +'<td>'+esc(q.title)+'</td><td class="pdoc-toc-w">'+q.weeks+' sem.</td></tr>');
+  });
+  return {html:rows.join(''), total:total};
+}
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
 
@@ -681,9 +768,8 @@ function renderPrintDoc(withDetails){
     var toc=document.createElement('div'); toc.className='pdoc-toc';
     toc.innerHTML='<h2 class="pdoc-h2" style="margin-top:0;border-top:none;padding-top:0">📋 Sommaire de l\'année</h2>';
     var tbl=document.createElement('table'); tbl.className='pdoc-toc-table';
-    var totalWeeks=0;
-    var rows=S.seq.map(function(s){ totalWeeks+=(Number(s.weeks)||0); return '<tr><td><span class="pdoc-code sm" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span></td><td>'+esc(s.title)+'</td><td class="pdoc-toc-w">'+s.weeks+' sem.</td></tr>'; }).join('');
-    tbl.innerHTML='<tbody>'+rows+'</tbody>';
+    var toc1=tocRowsHTML(), totalWeeks=toc1.total;
+    tbl.innerHTML='<tbody>'+toc1.html+'</tbody>';
     toc.appendChild(tbl);
     var totRow=document.createElement('div'); totRow.className='pdoc-toc-total'; totRow.textContent=S.seq.length+' séquences · '+totalWeeks+' semaines de cours au total';
     toc.appendChild(totRow);
@@ -701,14 +787,14 @@ function renderPrintDoc(withDetails){
       +(chips?'<div class="pdoc-chips">'+chips+'</div>':'');
     if(withDetails){
       // les notes personnelles d'abord : c'est le contenu qu'on relit vraiment au quotidien
-      if(s.notes){ var u3=document.createElement('ul'); u3.className='pdoc-notes'; s.notes.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.textContent=l; u3.appendChild(li); } }); if(u3.children.length) blk.appendChild(u3); }
+      if(s.notes){ var u3=document.createElement('ul'); u3.className='pdoc-notes'; s.notes.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.innerHTML=mathify(l); u3.appendChild(li); } }); if(u3.children.length) blk.appendChild(u3); }
       // objectifs BO et automatismes : matière première officielle, en retrait visuel (référence, pas lecture courante)
-      if(s.objectifs && s.objectifs.length){ var d1=document.createElement('div'); d1.className='pdoc-sub'; d1.textContent='Objectifs du BO ('+s.objectifs.length+')'; blk.appendChild(d1); var u1=document.createElement('ul'); u1.className='pdoc-ref-list'; s.objectifs.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objCode(c))+'</b> '+esc(objText(c)); u1.appendChild(li); }); blk.appendChild(u1); }
-      if(s.automatismes && s.automatismes.length){ var d2=document.createElement('div'); d2.className='pdoc-sub'; d2.textContent='Automatismes ('+s.automatismes.length+')'; blk.appendChild(d2); var u2=document.createElement('ul'); u2.className='pdoc-ref-list'; s.automatismes.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objCode(c))+'</b> '+esc(objText(c)); u2.appendChild(li); }); blk.appendChild(u2); }
+      if(s.objectifs && s.objectifs.length){ var d1=document.createElement('div'); d1.className='pdoc-sub'; d1.textContent='Objectifs du BO ('+s.objectifs.length+')'; blk.appendChild(d1); var u1=document.createElement('ul'); u1.className='pdoc-ref-list'; s.objectifs.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objCode(c))+'</b> '+mathify(objText(c)); u1.appendChild(li); }); blk.appendChild(u1); }
+      if(s.automatismes && s.automatismes.length){ var d2=document.createElement('div'); d2.className='pdoc-sub'; d2.textContent='Automatismes ('+s.automatismes.length+')'; blk.appendChild(d2); var u2=document.createElement('ul'); u2.className='pdoc-ref-list'; s.automatismes.forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(objCode(c))+'</b> '+mathify(objText(c)); u2.appendChild(li); }); blk.appendChild(u2); }
     }
     root.appendChild(blk);
     cum+=(Number(s.weeks)||0);
-    while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='🌴 Vacances '+vacPhrase(breaks[bi].nom); root.appendChild(vd); period++; phead(period); bi++; }
+    while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='🌴 '+vacLabel(breaks[bi].nom); root.appendChild(vd); period++; phead(period); bi++; }
   });
 
   if(withDetails){
@@ -772,7 +858,7 @@ function setPrintName(name){ var old=document.title; document.title=name;
   var back=function(){ document.title=old; window.removeEventListener('afterprint',back); };
   window.addEventListener('afterprint',back); }
 function printProgression(){ renderPrintDoc(true); document.body.classList.add('printing','print-progression'); setPrintName(exportName('progression')); setTimeout(function(){ window.print(); },30); }
-function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setPrintName(exportName('gantt')); setTimeout(function(){ window.print(); },30); }
+function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setPrintName(slugify(ganttDocTitle())+'-'+nowStamp()); setTimeout(function(){ window.print(); },30); }
 function exportProgressionWord(){
   renderPrintDoc(true);
   var title=currentDocTitle();
@@ -784,6 +870,10 @@ function exportProgressionWord(){
     +'.pdoc-toc{margin-bottom:8px}'
     +'table.pdoc-toc-table{width:100%;border-collapse:collapse;margin-top:6px}'
     +'table.pdoc-toc-table td{padding:3px 8px 3px 0;font-size:12.5px;border-bottom:1px solid #eee}'
+    +'table.pdoc-toc-table tr.pdoc-toc-per td{font-family:Georgia,serif;font-weight:bold;font-size:13px;color:#a8607c;border-bottom:2px solid #d98ba4;padding:10px 0 3px}'
+    +'.pdoc-toc-dates{color:#a89a90;font-style:normal;font-size:10.5px}'
+    +'table.pdoc-toc-table td.pdoc-toc-d{width:42px;color:#a8607c;font-size:11px;white-space:nowrap;padding-right:8px}'
+    +'table.pdoc-toc-table tr.pdoc-toc-vac td{background:#faf6f2;color:#8a7f70;font-style:italic;font-size:11.5px}'
     +'.pdoc-toc-w{color:#777;text-align:right;white-space:nowrap}'
     +'.pdoc-toc-total{margin-top:8px;font-size:12px;color:#a8607c;font-weight:bold;text-align:right}'
     +'.pdoc-code.sm{font-size:11px;padding:1px 6px}'
@@ -805,7 +895,10 @@ function exportProgressionWord(){
     +'.pdoc-holes{margin-top:10px}'
     +'.pdoc-holes-intro{font-size:12px;color:#888;margin:2px 0 8px}'
     +'.pdoc-allplaced{color:#3f7a2c;font-weight:bold}'
-    +'.pdoc-legend{margin-top:10px}'
+    +'.pdoc-legend{margin-top:0;page-break-before:always}'
+    +'.pdoc-leg-themes,.pdoc-leg-comps{page-break-inside:avoid}'
+    +'.pdoc-leg-list>li{page-break-inside:avoid}'
+    +'.pdoc-math{font-family:"Cambria Math",Georgia,serif;font-style:italic}'
     +'.pdoc-leg-themes{margin:6px 0 12px}'
     +'.pdoc-legswatch{display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12.5px}'
     +'.pdoc-dot{display:inline-block;width:11px;height:11px;border-radius:50%}'

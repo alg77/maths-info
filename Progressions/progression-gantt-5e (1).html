@@ -688,6 +688,7 @@ function renderPrintDoc(withDetails){
     var totRow=document.createElement('div'); totRow.className='pdoc-toc-total'; totRow.textContent=S.seq.length+' séquences · '+totalWeeks+' semaines de cours au total';
     toc.appendChild(totRow);
     root.appendChild(toc);
+    root.appendChild(renderPrintGantt());
   }
 
   // ---- détail des séquences, période par période ----
@@ -762,17 +763,8 @@ function themeLegendHTML(){
     return '<span class="pdoc-legswatch"><span class="pdoc-dot" style="background:var(--'+k+')"></span>'+THEMES[k]+'</span>';
   }).join('');
 }
-/* --- nommage des exports : <type>-<niveau>-<annee>-vNN, sans caractere special --- */
-function docYear(){ var a=String(S.cal.rentree).slice(0,4), b=String(S.cal.fin).slice(0,4);
-  return a===b ? a : a+'-'+b; }
-function nowStamp(){ var d=new Date(), p=function(n){ return (n<10?'0':'')+n; };
-  return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+p(d.getHours())+p(d.getMinutes()); }
-function exportName(kind){ return slugify(kind+'-'+PRIMARY_NIV+'-'+docYear())+'-'+nowStamp(); }
-function setPrintName(name){ var old=document.title; document.title=name;
-  var back=function(){ document.title=old; window.removeEventListener('afterprint',back); };
-  window.addEventListener('afterprint',back); }
-function printProgression(){ renderPrintDoc(true); document.body.classList.add('printing','print-progression'); setPrintName(exportName('progression')); setTimeout(function(){ window.print(); },30); }
-function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setPrintName(exportName('gantt')); setTimeout(function(){ window.print(); },30); }
+function printProgression(){ renderPrintDoc(true); document.body.classList.add('printing','print-progression'); setTimeout(function(){ window.print(); },30); }
+function printGantt(){ renderGantt(); document.body.classList.add('printing','print-gantt'); setTimeout(function(){ window.print(); },30); }
 function exportProgressionWord(){
   renderPrintDoc(true);
   var title=currentDocTitle();
@@ -823,7 +815,7 @@ function exportProgressionWord(){
     +'table.pdoc-gantt td.pg-cell.pg-vac{background:#eee}';
   var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>'+style+'</style></head><body>'+document.getElementById('printDoc').innerHTML+'</body></html>';
   var blob=new Blob(['\ufeff',html],{type:'application/msword'});
-  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=exportName('progression')+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slugify(title)+'.doc'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
 }
 document.getElementById('pdfProgBtn').addEventListener('click',printProgression);
 document.getElementById('wordProgBtn').addEventListener('click',exportProgressionWord);
@@ -835,7 +827,7 @@ window.addEventListener('afterprint',function(){ document.body.classList.remove(
   b.addEventListener('contextmenu',function(e){ e.preventDefault(); var u=prompt('Modifier l’URL du carnet :', cu()); if(u!==null){ try{localStorage.setItem('prog.carnetUrl',u);}catch(_){ } } });
 })();
 document.getElementById('resetBtn').addEventListener('click',function(){ if(confirm('Revenir à la progression d\'origine ? (tes modifs seront perdues)')){ S=defaultState(); save(); renderAll(); } });
-document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=exportName('progression')+'.json'; a.click(); });
+document.getElementById('exportBtn').addEventListener('click',function(){ var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='progression-5e.json'; a.click(); });
 document.getElementById('importBtn').addEventListener('click',function(){ document.getElementById('importFile').click(); });
 document.getElementById('importFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ try{ S=migrate(JSON.parse(rd.result)); save(); renderAll(); }catch(err){ alert('Fichier illisible'); } }; rd.readAsText(f); });
 
@@ -900,7 +892,7 @@ function renderCoverage(){ var body=document.getElementById('covBody'); if(!body
   h+='<details class="cov-holes"><summary>'+notP.length+' objectif(s) '+PRIMARY_NIV+' non placé(s)</summary><div>'+notP.map(function(o){return '<div class="cov-hole"><b>'+o.niveau+' '+esc(o.code)+'</b> '+esc(o.texte)+'</div>';}).join('')+'</div></details>';
   body.innerHTML=h; }
 function exportPontLivret(){ var data={niveau:PRIMARY_NIV,genere:new Date().toISOString(), periodes:periodsInfo().map(function(p,i){return {periode:i+1,debut:iso(p.start),fin:iso(p.end),semaines:p.weeks};}), sequences:S.seq.map(function(s){return {code:s.code,titre:s.title,theme:s.theme,semaines:s.weeks,competences:s.comps.slice(), objectifs:s.objectifs.map(function(id){return {code:objCode(id),niveau:objNiv(id),texte:objText(id),famille:objFam(id),fichier:'cours/'+objNiv(id)+'/objectifs/'+objSlug(id)+'.md'};}), automatismes:s.automatismes.map(function(id){return {code:objCode(id),niveau:objNiv(id),texte:objText(id),famille:objFam(id)};}), notes:s.notes||''};})};
-  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=exportName('pont-livret')+'.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000); }
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pont-livret-'+PRIMARY_NIV+'.json'; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000); }
 function initObjUI(){ var seqList=document.getElementById('seqList');
   if(seqList){
     seqList.addEventListener('dragstart',function(e){ var ch=e.target.closest('.objchip'); if(!ch)return; dragObjCode=ch.getAttribute('data-id'); dragFromSeq=+ch.getAttribute('data-from'); dragIndex=null; e.dataTransfer.effectAllowed='move'; try{e.dataTransfer.setData('text/plain',dragObjCode);}catch(_){ } });

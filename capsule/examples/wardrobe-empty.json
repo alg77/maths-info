@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "garments": [],
+  "outfits": [],
+  "wishlist": [],
+  "inspirations": [],
+  "boards": [],
+  "wearEvents": [],
+  "vocabularies": {
+    "categories": [
+      {
+        "id": "Veste",
+        "label": "Veste",
+        "role": "outerwear"
+      },
+      {
+        "id": "Maille",
+        "label": "Maille",
+        "role": "top"
+      },
+      {
+        "id": "Haut",
+        "label": "Haut",
+        "role": "top"
+      },
+      {
+        "id": "Bas",
+        "label": "Bas",
+        "role": "bottom"
+      },
+      {
+        "id": "Robe",
+        "label": "Robe",
+        "role": "dress"
+      },
+      {
+        "id": "Chaussures",
+        "label": "Chaussures",
+        "role": "shoes"
+      },
+      {
+        "id": "Accessoire",
+        "label": "Accessoire",
+        "role": "accessory"
+      }
+    ],
+    "styles": [
+      "Preppy",
+      "Romantique",
+      "French chic",
+      "Décontracté",
+      "Smart casual",
+      "Minimaliste",
+      "Cottagecore",
+      "Workwear",
+      "Professor chic"
+    ],
+    "colors": [
+      {
+        "id": "cream",
+        "label": "Écru",
+        "hex": "#eee6d2",
+        "neutral": true
+      },
+      {
+        "id": "white",
+        "label": "Blanc",
+        "hex": "#ffffff",
+        "neutral": true
+      },
+      {
+        "id": "navy",
+        "label": "Marine",
+        "hex": "#28344e",
+        "neutral": true
+      },
+      {
+        "id": "black",
+        "label": "Noir",
+        "hex": "#282725",
+        "neutral": true
+      },
+      {
+        "id": "camel",
+        "label": "Camel",
+        "hex": "#ba8957",
+        "neutral": true
+      },
+      {
+        "id": "brown",
+        "label": "Chocolat",
+        "hex": "#624237",
+        "neutral": true
+      },
+      {
+        "id": "taupe",
+        "label": "Taupe",
+        "hex": "#998b7c",
+        "neutral": true
+      },
+      {
+        "id": "burgundy",
+        "label": "Bordeaux",
+        "hex": "#773c4c",
+        "neutral": false
+      },
+      {
+        "id": "green",
+        "label": "Vert",
+        "hex": "#536952",
+        "neutral": false
+      },
+      {
+        "id": "pink",
+        "label": "Rose",
+        "hex": "#d5a9ac",
+        "neutral": false
+      },
+      {
+        "id": "blue",
+        "label": "Bleu",
+        "hex": "#6e8ca5",
+        "neutral": false
+      },
+      {
+        "id": "ochre",
+        "label": "Ocre",
+        "hex": "#b79346",
+        "neutral": false
+      },
+      {
+        "id": "rust",
+        "label": "Terracotta",
+        "hex": "#ac6048",
+        "neutral": false
+      },
+      {
+        "id": "purple",
+        "label": "Prune",
+        "hex": "#745569",
+        "neutral": false
+      }
+    ],
+    "occasions": [
+      "Quotidien",
+      "Travail",
+      "Week-end",
+      "Soirée",
+      "Cérémonie",
+      "Voyage"
+    ],
+    "seasons": [
+      "Printemps",
+      "Été",
+      "Automne",
+      "Hiver"
+    ],
+    "formalityLevels": [
+      "Décontracté",
+      "Soigné",
+      "Habillé",
+      "Formel"
+    ]
+  },
+  "preferences": {
+    "name": "",
+    "temperature": 18,
+    "occasion": "Quotidien",
+    "style": "",
+    "currency": "EUR"
+  },
+  "legacy": {}
+}

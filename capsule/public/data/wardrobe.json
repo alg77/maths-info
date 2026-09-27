@@ -1,0 +1,5261 @@
+{
+  "schemaVersion": 1,
+  "garments": [
+    {
+      "id": "s_taupe",
+      "name": "Samuel Taupe",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_pull_samuel_taupe-foncé.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "taupe"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "s_taupe",
+          "name": "Samuel Taupe",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_taupe-foncé.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "v_clyde",
+      "name": "Manteau Clyde Chocolat",
+      "brand": "",
+      "category": "Veste",
+      "subcategory": "",
+      "role": "outerwear",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "outer",
+      "imagePath": "images/sézane_manteau_clyde_chocolat.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "brown"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "v_clyde",
+          "name": "Manteau Clyde Chocolat",
+          "category": "Veste",
+          "img": "sézane_manteau_clyde_chocolat.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "v_jayden",
+      "name": "Manteau Jayden Épice",
+      "brand": "",
+      "category": "Veste",
+      "subcategory": "",
+      "role": "outerwear",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "outer",
+      "imagePath": "images/sézane_manteau_jayden-épice.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "rust"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "v_jayden",
+          "name": "Manteau Jayden Épice",
+          "category": "Veste",
+          "img": "sézane_manteau_jayden-épice.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "m_lizy",
+      "name": "Gilet Lizy Caramel",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_gilet-lizy-camel.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "camel"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_lizy",
+          "name": "Gilet Lizy Caramel",
+          "category": "Maille",
+          "img": "sézane_gilet-lizy-camel.webp",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "m_louisa_choco",
+      "name": "Pull Louisa Chocolat",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-louisa_chocolat-clair.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "brown"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_louisa_choco",
+          "name": "Pull Louisa Chocolat",
+          "category": "Maille",
+          "img": "sézane_maille-louisa_chocolat-clair.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "h_lise",
+      "name": "Chemise Lise Écru",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_chemise_lise_écru.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h_lise",
+          "name": "Chemise Lise Écru",
+          "category": "Haut",
+          "img": "sézane_chemise_lise_écru.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "name": "Low Bridget Chocolat",
+      "brand": "",
+      "category": "Chaussures",
+      "subcategory": "",
+      "role": "shoes",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_bottes_low-bridget-chocolat-glacé.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "brown"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "c2",
+          "name": "Low Bridget Chocolat",
+          "category": "Chaussures",
+          "img": "sézane_bottes_low-bridget-chocolat-glacé.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "m_maxime",
+      "name": "Gilet Maxime Ocre",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_gilet_maxime-ocre.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "ochre"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_maxime",
+          "name": "Gilet Maxime Ocre",
+          "category": "Maille",
+          "img": "sézane_gilet_maxime-ocre.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "m_maxime_moka",
+      "name": "Gilet Maxime Moka",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_gilet_maxime-moka.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "brown"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_maxime_moka",
+          "name": "Gilet Maxime Moka",
+          "category": "Maille",
+          "img": "sézane_gilet_maxime-moka.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "h5",
+      "name": "Chemise Rym Col Montant",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_chemise_rym_écru.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h5",
+          "name": "Chemise Rym Col Montant",
+          "category": "Haut",
+          "img": "sézane_chemise_rym_écru.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "a2",
+      "name": "Écharpe Camel",
+      "brand": "",
+      "category": "Accessoire",
+      "subcategory": "",
+      "role": "accessory",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_écharpe_marianne_camel.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "camel"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "a2",
+          "name": "Écharpe Camel",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_camel.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "s_grenat",
+      "name": "Samuel Grenat",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_pull_samuel_grenat.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "burgundy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "s_grenat",
+          "name": "Samuel Grenat",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_grenat.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "s_pistache",
+      "name": "Samuel Vert Pistache",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_pull_samuel_vert-pistache.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "green"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "s_pistache",
+          "name": "Samuel Vert Pistache",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_vert-pistache.avif",
+          "wishlist": true
+        }
+      }
+    },
+    {
+      "id": "v1",
+      "name": "Perfecto Zig Terracotta",
+      "brand": "",
+      "category": "Veste",
+      "subcategory": "",
+      "role": "outerwear",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "outer",
+      "imagePath": "images/sézane_perfecto_zig-terracotta.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "rust"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "v1",
+          "name": "Perfecto Zig Terracotta",
+          "category": "Veste",
+          "img": "sézane_perfecto_zig-terracotta.webp",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "v_rafael",
+      "name": "Manteau Rafael Écureuil",
+      "brand": "",
+      "category": "Veste",
+      "subcategory": "",
+      "role": "outerwear",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "outer",
+      "imagePath": "images/sézane_manteau_rafael-écureuil.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "rust"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "v_rafael",
+          "name": "Manteau Rafael Écureuil",
+          "category": "Veste",
+          "img": "sézane_manteau_rafael-écureuil.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m1",
+      "name": "Gilet Betty Marine",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_gilet_betty_crochet_marine.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "navy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m1",
+          "name": "Gilet Betty Marine",
+          "category": "Maille",
+          "img": "sézane_gilet_betty_crochet_marine.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m2",
+      "name": "Gilet Gaspard Camel",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-gaspard-camel.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "camel"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m2",
+          "name": "Gilet Gaspard Camel",
+          "category": "Maille",
+          "img": "sézane_maille-gaspard-camel.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_gaspard_rouge",
+      "name": "Gilet Gaspard Rouge",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-gaspard-rouge.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "burgundy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_gaspard_rouge",
+          "name": "Gilet Gaspard Rouge",
+          "category": "Maille",
+          "img": "sézane_maille-gaspard-rouge.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_gaspard_boug",
+      "name": "Gilet Gaspard Boug.",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-gaspard-bougainvilliers.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "pink"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_gaspard_boug",
+          "name": "Gilet Gaspard Boug.",
+          "category": "Maille",
+          "img": "sézane_maille-gaspard-bougainvilliers.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m7",
+      "name": "Veste Thaïs Vert Parfait",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_veste-thais-vert-parfait.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "green"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m7",
+          "name": "Veste Thaïs Vert Parfait",
+          "category": "Maille",
+          "img": "sézane_veste-thais-vert-parfait.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m6",
+      "name": "Pull Stacy Grenat",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-stacy-grenat.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "burgundy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m6",
+          "name": "Pull Stacy Grenat",
+          "category": "Maille",
+          "img": "sézane_maille-stacy-grenat.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_etienne",
+      "name": "Pull Étienne Raisin",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-étienne-raisin.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "purple"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_etienne",
+          "name": "Pull Étienne Raisin",
+          "category": "Maille",
+          "img": "sézane_maille-étienne-raisin.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m8",
+      "name": "Gilet Long DPH Kaki",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/dph_gilet-denia-graine-kaki1.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "green"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m8",
+          "name": "Gilet Long DPH Kaki",
+          "category": "Maille",
+          "img": "dph_gilet-denia-graine-kaki1.webp",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m4",
+      "name": "Pull Louisa Beige",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille-louisa_beige_chiné.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m4",
+          "name": "Pull Louisa Beige",
+          "category": "Maille",
+          "img": "sézane_maille-louisa_beige_chiné.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_angie",
+      "name": "Gilet Angie Rose",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane-maille_angie_rose.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "pink"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_angie",
+          "name": "Gilet Angie Rose",
+          "category": "Maille",
+          "img": "sézane-maille_angie_rose.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_carlota",
+      "name": "Pull Carlota Vert Garden",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane-maille_carlota_vert_garden.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "green"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_carlota",
+          "name": "Pull Carlota Vert Garden",
+          "category": "Maille",
+          "img": "sézane-maille_carlota_vert_garden.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_luke",
+      "name": "Pull Luke Beige",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane-maille_luke-beige-chiné.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_luke",
+          "name": "Pull Luke Beige",
+          "category": "Maille",
+          "img": "sézane-maille_luke-beige-chiné.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m_luke2",
+      "name": "Pull Luke Bleu",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane-maille_luke-bleu.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "blue"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m_luke2",
+          "name": "Pull Luke Bleu",
+          "category": "Maille",
+          "img": "sézane-maille_luke-bleu.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h_ron",
+      "name": "Top Ron Crochet",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_top_ron.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Romantique",
+        "French chic"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h_ron",
+          "name": "Top Ron Crochet",
+          "category": "Haut",
+          "img": "sézane_top_ron.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h1",
+      "name": "Chemise Honey Écru",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_chemise_honey_écru.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h1",
+          "name": "Chemise Honey Écru",
+          "category": "Haut",
+          "img": "sézane_chemise_honey_écru.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h2",
+      "name": "Chemise Guipure Ocre",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_chemise_guipure_contrastée_ocre.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "ochre"
+      ],
+      "styles": [
+        "Romantique",
+        "French chic"
+      ],
+      "pattern": "",
+      "details": [
+        "Dentelle"
+      ],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h2",
+          "name": "Chemise Guipure Ocre",
+          "category": "Haut",
+          "img": "sézane_chemise_guipure_contrastée_ocre.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h3",
+      "name": "Chemise Chlo Rayée",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_chemise_chlo_rayée_écru_bleu.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "Rayures",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h3",
+          "name": "Chemise Chlo Rayée",
+          "category": "Haut",
+          "img": "sézane_chemise_chlo_rayée_écru_bleu.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h4",
+      "name": "Blouse Bianca Dentelle",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_blouse_bianca.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Romantique",
+        "French chic"
+      ],
+      "pattern": "",
+      "details": [
+        "Dentelle"
+      ],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h4",
+          "name": "Blouse Bianca Dentelle",
+          "category": "Haut",
+          "img": "sézane_blouse_bianca.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h_uniqlo",
+      "name": "Blouse Uniqlo Blanche",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/uniqlo_blouse_rayonne-blanche.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "white"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h_uniqlo",
+          "name": "Blouse Uniqlo Blanche",
+          "category": "Haut",
+          "img": "uniqlo_blouse_rayonne-blanche.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "h_uniqlo_bleu",
+      "name": "Chemise Boxy Rayée",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/uniqlo_chemise-boxy-bleu-rayée.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "Rayures",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "h_uniqlo_bleu",
+          "name": "Chemise Boxy Rayée",
+          "category": "Haut",
+          "img": "uniqlo_chemise-boxy-bleu-rayée.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b5",
+      "name": "Jupe Plissée Camel",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/uniqlo_jupe-plissée-camel.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "camel"
+      ],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b5",
+          "name": "Jupe Plissée Camel",
+          "category": "Bas",
+          "img": "uniqlo_jupe-plissée-camel.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b4",
+      "name": "Jupe Caroll Marine",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/caroll_jupe-plissée-marine.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "navy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b4",
+          "name": "Jupe Caroll Marine",
+          "category": "Bas",
+          "img": "caroll_jupe-plissée-marine.webp",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b1",
+      "name": "Jupe Opaline Carreaux",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_jupe_opaline.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Preppy",
+        "Smart casual"
+      ],
+      "pattern": "Carreaux",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b1",
+          "name": "Jupe Opaline Carreaux",
+          "category": "Bas",
+          "img": "sézane_jupe_opaline.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b2",
+      "name": "Jupe Peter Taupe",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_jupe_peter_taupe.png",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "taupe"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b2",
+          "name": "Jupe Peter Taupe",
+          "category": "Bas",
+          "img": "sézane_jupe_peter_taupe.png",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b3",
+      "name": "Jupe Velours Bordeaux",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/nafnaf_jupe_bordeaux_velours_côtelé.png",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "burgundy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b3",
+          "name": "Jupe Velours Bordeaux",
+          "category": "Bas",
+          "img": "nafnaf_jupe_bordeaux_velours_côtelé.png",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b_caro_rose",
+      "name": "Jupe Carolina Rose",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane-jupe_carolina_fleurs_roses.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "pink"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b_caro_rose",
+          "name": "Jupe Carolina Rose",
+          "category": "Bas",
+          "img": "sézane-jupe_carolina_fleurs_roses.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "b_caro_miel",
+      "name": "Jupe Carolina Miel",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane-jupe_carolina_fleurs_miel.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "ochre"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "b_caro_miel",
+          "name": "Jupe Carolina Miel",
+          "category": "Bas",
+          "img": "sézane-jupe_carolina_fleurs_miel.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "j_bleu",
+      "name": "Jean Slim Bleu",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_jean_slim_parfait_bleu_denim.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "blue"
+      ],
+      "styles": [
+        "Décontracté",
+        "Minimaliste"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "j_bleu",
+          "name": "Jean Slim Bleu",
+          "category": "Bas",
+          "img": "sézane_jean_slim_parfait_bleu_denim.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "j_noir",
+      "name": "Jean Slim Noir",
+      "brand": "",
+      "category": "Bas",
+      "subcategory": "",
+      "role": "bottom",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_jean_slim_parfait_noir.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "black"
+      ],
+      "styles": [
+        "Décontracté",
+        "Minimaliste"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "j_noir",
+          "name": "Jean Slim Noir",
+          "category": "Bas",
+          "img": "sézane_jean_slim_parfait_noir.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "r1",
+      "name": "Robe Evy Fleurs",
+      "brand": "",
+      "category": "Robe",
+      "subcategory": "",
+      "role": "dress",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_robe_evy_fleurs_violet2.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Romantique",
+        "French chic"
+      ],
+      "pattern": "Fleuri",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "r1",
+          "name": "Robe Evy Fleurs",
+          "category": "Robe",
+          "img": "sézane_robe_evy_fleurs_violet2.webp",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "r2",
+      "name": "Robe Fond Noir",
+      "brand": "",
+      "category": "Robe",
+      "subcategory": "",
+      "role": "dress",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_robe_fleurie1.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "black"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "r2",
+          "name": "Robe Fond Noir",
+          "category": "Robe",
+          "img": "sézane_robe_fleurie1.webp",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "r3",
+      "name": "Robe Naomi Fleurs",
+      "brand": "",
+      "category": "Robe",
+      "subcategory": "",
+      "role": "dress",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_robe_naomi.webp",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Romantique",
+        "French chic"
+      ],
+      "pattern": "Fleuri",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "r3",
+          "name": "Robe Naomi Fleurs",
+          "category": "Robe",
+          "img": "sézane_robe_naomi.webp",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "r_selena",
+      "name": "Robe Selena Marine",
+      "brand": "",
+      "category": "Robe",
+      "subcategory": "",
+      "role": "dress",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_robe_selena_marine.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "navy"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "r_selena",
+          "name": "Robe Selena Marine",
+          "category": "Robe",
+          "img": "sézane_robe_selena_marine.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "r_abigail",
+      "name": "Robe Abigail Écru",
+      "brand": "",
+      "category": "Robe",
+      "subcategory": "",
+      "role": "dress",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_robe_abigail.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "r_abigail",
+          "name": "Robe Abigail Écru",
+          "category": "Robe",
+          "img": "sézane_robe_abigail.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "c1",
+      "name": "Bottes Anna Field Daim",
+      "brand": "",
+      "category": "Chaussures",
+      "subcategory": "",
+      "role": "shoes",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/anna-field-bottes-marron.jpg",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "c1",
+          "name": "Bottes Anna Field Daim",
+          "category": "Chaussures",
+          "img": "anna-field-bottes-marron.jpg",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "a_blush",
+      "name": "Écharpe Blush",
+      "brand": "",
+      "category": "Accessoire",
+      "subcategory": "",
+      "role": "accessory",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_écharpe_marianne_blush.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": true,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "pink"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "a_blush",
+          "name": "Écharpe Blush",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_blush.avif",
+          "owned": true,
+          "sell": true
+        }
+      }
+    },
+    {
+      "id": "a_moka",
+      "name": "Écharpe Moka",
+      "brand": "",
+      "category": "Accessoire",
+      "subcategory": "",
+      "role": "accessory",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_écharpe_marianne_moka.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "brown"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "a_moka",
+          "name": "Écharpe Moka",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_moka.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "a_ecru",
+      "name": "Écharpe Écru",
+      "brand": "",
+      "category": "Accessoire",
+      "subcategory": "",
+      "role": "accessory",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "base",
+      "imagePath": "images/sézane_écharpe_marianne_écru.avif",
+      "notes": "",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "a_ecru",
+          "name": "Écharpe Écru",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_écru.avif",
+          "owned": true
+        }
+      }
+    },
+    {
+      "id": "m5",
+      "name": "Gilet Barry Blush",
+      "brand": "",
+      "category": "Maille",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "",
+      "fit": "",
+      "silhouette": "",
+      "length": "",
+      "sleeve": "",
+      "neckline": "",
+      "warmth": null,
+      "seasons": [],
+      "temperature": null,
+      "formality": null,
+      "occasions": [],
+      "layeringRole": "mid",
+      "imagePath": "images/sézane_maille_barry_blush.webp",
+      "notes": "Trop froid/Été",
+      "favorite": false,
+      "status": "owned",
+      "archived": false,
+      "forSale": true,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "pink"
+      ],
+      "styles": [
+        "Smart casual"
+      ],
+      "pattern": "",
+      "details": [],
+      "reviewNeeded": true,
+      "legacy": {
+        "source": "capsule/index.html",
+        "original": {
+          "id": "m5",
+          "name": "Gilet Barry Blush",
+          "category": "Maille",
+          "img": "sézane_maille_barry_blush.webp",
+          "owned": true,
+          "sell": true,
+          "reason": "Trop froid/Été"
+        }
+      }
+    }
+  ],
+  "outfits": [
+    {
+      "id": "capsule-0-0",
+      "name": "L'Écolière Rétro",
+      "itemIds": [
+        "h1",
+        "h_ron",
+        "b4"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Ton look photo : Chemise Honey + Top Ron + Jupe Caroll. Le mix dentelle/crochet est superbe !",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksReal"
+      }
+    },
+    {
+      "id": "capsule-0-1",
+      "name": "Soft Autumn",
+      "itemIds": [
+        "h1",
+        "h_ron",
+        "b5"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Ton look photo : Le même layering avec la jupe Camel. Plus doux et lumineux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksReal"
+      }
+    },
+    {
+      "id": "capsule-0-2",
+      "name": "Office Minimalist",
+      "itemIds": [
+        "m1",
+        "b5",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Ton look photo : Betty Marine + Jupe Camel. Simple, efficace et très chic.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksReal"
+      }
+    },
+    {
+      "id": "capsule-1-0",
+      "name": "Working Girl Chic",
+      "itemIds": [
+        "h_uniqlo",
+        "s_taupe",
+        "b2",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Blouse Blanche + Samuel Taupe (Wish) + Jupe Peter. Le blanc illumine, le taupe réchauffe.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-1",
+      "name": "Selena & Ocre",
+      "itemIds": [
+        "r_selena",
+        "m_maxime",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Selena + Gilet Maxime (Wish). L'Ocre réchauffe instantanément le bleu marine.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-2",
+      "name": "Abigail Hiver",
+      "itemIds": [
+        "r_abigail",
+        "m_gaspard_rouge",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Abigail + Gaspard Rouge. Le rouge sur l'écru est une combinaison joyeuse et punchy.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-3",
+      "name": "Le Duo Vert",
+      "itemIds": [
+        "h4",
+        "m7",
+        "b2",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Bianca + Veste Verte + Jupe Taupe. Le vert sapin donne du punch au neutre de la jupe.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-4",
+      "name": "Preppy Moderne",
+      "itemIds": [
+        "h1",
+        "s_taupe",
+        "b4",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Honey + Samuel Taupe (Wish) + Jupe Caroll. Le layering parfait pour le bureau.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-5",
+      "name": "Prune & Taupe",
+      "itemIds": [
+        "m_etienne",
+        "b2",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Prune + Jupe Peter. Des tons riches et profonds qui s'harmonisent.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-6",
+      "name": "L'Officier",
+      "itemIds": [
+        "h4",
+        "m1",
+        "b4",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Bianca + Betty Marine + Jupe Caroll. Total look bleu texturé, très professionnel.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-7",
+      "name": "Caramel & Marine",
+      "itemIds": [
+        "m_lizy",
+        "b4",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Gilet Lizy (Wish) + Jupe Caroll. Le caramel fait briller le bleu.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-1-8",
+      "name": "Gaspard Classique",
+      "itemIds": [
+        "h3",
+        "m2",
+        "j_bleu"
+      ],
+      "styles": [],
+      "occasions": [
+        "Travail"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Rayée + Gaspard Camel + Jean. Simple et efficace.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWork"
+      }
+    },
+    {
+      "id": "capsule-2-0",
+      "name": "Boxy & Prune",
+      "itemIds": [
+        "h_uniqlo_bleu",
+        "m_etienne",
+        "j_noir"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Boxy Bleu + Pull Prune + Jean Noir. La couleur prune est magnifique sur le bleu ciel.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-1",
+      "name": "Layering Écureuil",
+      "itemIds": [
+        "h3",
+        "m_maxime",
+        "b1",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Rayée + Gilet Maxime (Wish) + Jupe Opaline. Une harmonie très chaude et automnale.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-2",
+      "name": "Lise & Rafael",
+      "itemIds": [
+        "h_lise",
+        "v_rafael",
+        "j_bleu",
+        "a_moka"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Lise (Wish) + Manteau Rafael + Jean. Le manteau Écureuil est la pièce maîtresse.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-3",
+      "name": "Le Ron Chic",
+      "itemIds": [
+        "h_ron",
+        "b1",
+        "m1",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Top Ron + Jupe Opaline + Betty Marine. Mix de textures crochet/carreaux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-4",
+      "name": "Flower Power",
+      "itemIds": [
+        "b_caro_miel",
+        "h_uniqlo_bleu",
+        "s_taupe"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Jupe Miel + Chemise Rayée + Samuel Taupe (Wish). Mélange d'imprimés audacieux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-5",
+      "name": "Taupe sur Dentelle",
+      "itemIds": [
+        "h4",
+        "s_taupe",
+        "b3"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Bianca + Samuel Taupe (Wish) + Jupe Bordeaux. Le taupe calme le bordeaux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-6",
+      "name": "Boxy Contrast",
+      "itemIds": [
+        "h_uniqlo_bleu",
+        "m_gaspard_rouge",
+        "j_noir"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Bleu + Gaspard Rouge + Noir. Contraste fort.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-7",
+      "name": "Flower Layer",
+      "itemIds": [
+        "b_caro_miel",
+        "h1",
+        "m2"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Jupe Miel + Honey + Gaspard Camel. Tout en douceur.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-2-8",
+      "name": "Classique Rayures",
+      "itemIds": [
+        "h3",
+        "s_taupe",
+        "b5"
+      ],
+      "styles": [],
+      "occasions": [],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chlo + Samuel Taupe (Wish) + Jupe Camel.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksLayering"
+      }
+    },
+    {
+      "id": "capsule-3-0",
+      "name": "Luke & Moka",
+      "itemIds": [
+        "m_luke",
+        "j_bleu",
+        "a_moka"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Luke + Jean + Écharpe Moka. Le beige et le marron glacé se marient très bien.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-1",
+      "name": "Bohème Rose",
+      "itemIds": [
+        "m_angie",
+        "b_caro_rose",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Gilet Angie + Jupe Carolina Rose. Un total look rose poudré, très doux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-2",
+      "name": "Miel & Ocre",
+      "itemIds": [
+        "h2",
+        "b_caro_miel",
+        "m2"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Ocre + Jupe Carolina Miel + Gaspard Camel. Camaïeu de jaunes/ors très lumineux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-3",
+      "name": "Rock Doux",
+      "itemIds": [
+        "m4",
+        "b2",
+        "v1",
+        "a_ecru"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Louisa Beige + Jupe Taupe + Perfecto. Une base neutre réveillée par le cuir Terracotta.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-4",
+      "name": "Écureuil Flamboyant",
+      "itemIds": [
+        "h2",
+        "v_rafael",
+        "j_bleu"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Manteau Rafael + Chemise Ocre. Camaïeu d'automne flamboyant avec du denim.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-5",
+      "name": "Velours Cosy",
+      "itemIds": [
+        "m6",
+        "b3",
+        "a_ecru"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Stacy Grenat + Jupe Bordeaux. Camaïeu de rouges.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-6",
+      "name": "Vert Garden",
+      "itemIds": [
+        "m_carlota",
+        "j_bleu",
+        "a_moka"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Carlota + Jean. Naturel et frais.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-7",
+      "name": "Confort Absolu",
+      "itemIds": [
+        "r1",
+        "m2",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Evy + Gaspard Camel. Le gilet ouvert sur la robe.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-3-8",
+      "name": "Louisa Choco",
+      "itemIds": [
+        "m_louisa_choco",
+        "b5",
+        "v_rafael"
+      ],
+      "styles": [],
+      "occasions": [
+        "Quotidien"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Louisa (Wish) + Jupe Camel + Manteau Rafael.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksWeekend"
+      }
+    },
+    {
+      "id": "capsule-4-0",
+      "name": "Festive Lizy",
+      "itemIds": [
+        "m_lizy",
+        "b4",
+        "c2"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Gilet Lizy (Wish) + Jupe Marine. Les sequins sur le marine, c'est le chic absolu pour le soir.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-1",
+      "name": "Allure Rétro",
+      "itemIds": [
+        "r3",
+        "m1",
+        "v_rafael"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Naomi + Betty + Manteau Rafael. Le manteau Écureuil illumine la robe sombre.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-2",
+      "name": "La Dame en Noir",
+      "itemIds": [
+        "r2",
+        "m1",
+        "a_moka"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Fond Noir + Betty Marine. Le mélange Noir/Marine est le chic ultime.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-3",
+      "name": "Gold & Velvet",
+      "itemIds": [
+        "h2",
+        "b3",
+        "v1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Ocre + Bordeaux + Perfecto. Couleurs bijoux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-4",
+      "name": "Bougainvilliers",
+      "itemIds": [
+        "r2",
+        "m_gaspard_boug"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Noire + Gaspard Boug. Une touche de couleur vive le soir.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-5",
+      "name": "Dentelle du Soir",
+      "itemIds": [
+        "h_lise",
+        "b3",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Chemise Lise (Wish) + Jupe Bordeaux.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-6",
+      "name": "Manteau Chocolat",
+      "itemIds": [
+        "r1",
+        "v_clyde",
+        "c2"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Robe Evy + Clyde (Wish) + Low Bridget (Wish).",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-7",
+      "name": "Étienne Raisin",
+      "itemIds": [
+        "m_etienne",
+        "b2",
+        "c1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Raisin + Jupe Taupe. Très sophistiqué pour un dîner.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    },
+    {
+      "id": "capsule-4-8",
+      "name": "Prune Intense",
+      "itemIds": [
+        "m_etienne",
+        "b1",
+        "v1"
+      ],
+      "styles": [],
+      "occasions": [
+        "Soirée"
+      ],
+      "seasons": [],
+      "temperature": null,
+      "rating": null,
+      "notes": "Pull Prune + Jupe Opaline + Perfecto.",
+      "imagePath": "",
+      "source": "manual",
+      "createdAt": "",
+      "legacy": {
+        "group": "looksEvening"
+      }
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "wish-s_taupe",
+      "garmentId": "s_taupe",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-v_clyde",
+      "garmentId": "v_clyde",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-v_jayden",
+      "garmentId": "v_jayden",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-m_lizy",
+      "garmentId": "m_lizy",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-m_louisa_choco",
+      "garmentId": "m_louisa_choco",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-h_lise",
+      "garmentId": "h_lise",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-c2",
+      "garmentId": "c2",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-m_maxime",
+      "garmentId": "m_maxime",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-m_maxime_moka",
+      "garmentId": "m_maxime_moka",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-h5",
+      "garmentId": "h5",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-a2",
+      "garmentId": "a2",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-s_grenat",
+      "garmentId": "s_grenat",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    },
+    {
+      "id": "wish-s_pistache",
+      "garmentId": "s_pistache",
+      "priority": "medium",
+      "notes": "",
+      "budget": null
+    }
+  ],
+  "inspirations": [],
+  "boards": [],
+  "wearEvents": [],
+  "vocabularies": {
+    "categories": [
+      {
+        "id": "Veste",
+        "label": "Veste",
+        "role": "outerwear"
+      },
+      {
+        "id": "Maille",
+        "label": "Maille",
+        "role": "top"
+      },
+      {
+        "id": "Haut",
+        "label": "Haut",
+        "role": "top"
+      },
+      {
+        "id": "Bas",
+        "label": "Bas",
+        "role": "bottom"
+      },
+      {
+        "id": "Robe",
+        "label": "Robe",
+        "role": "dress"
+      },
+      {
+        "id": "Chaussures",
+        "label": "Chaussures",
+        "role": "shoes"
+      },
+      {
+        "id": "Accessoire",
+        "label": "Accessoire",
+        "role": "accessory"
+      }
+    ],
+    "styles": [
+      "Preppy",
+      "Romantique",
+      "French chic",
+      "Décontracté",
+      "Smart casual",
+      "Minimaliste",
+      "Cottagecore",
+      "Workwear",
+      "Professor chic"
+    ],
+    "colors": [
+      {
+        "id": "cream",
+        "label": "Écru",
+        "hex": "#eee6d2",
+        "neutral": true
+      },
+      {
+        "id": "white",
+        "label": "Blanc",
+        "hex": "#ffffff",
+        "neutral": true
+      },
+      {
+        "id": "navy",
+        "label": "Marine",
+        "hex": "#28344e",
+        "neutral": true
+      },
+      {
+        "id": "black",
+        "label": "Noir",
+        "hex": "#282725",
+        "neutral": true
+      },
+      {
+        "id": "camel",
+        "label": "Camel",
+        "hex": "#ba8957",
+        "neutral": true
+      },
+      {
+        "id": "brown",
+        "label": "Chocolat",
+        "hex": "#624237",
+        "neutral": true
+      },
+      {
+        "id": "taupe",
+        "label": "Taupe",
+        "hex": "#998b7c",
+        "neutral": true
+      },
+      {
+        "id": "burgundy",
+        "label": "Bordeaux",
+        "hex": "#773c4c",
+        "neutral": false
+      },
+      {
+        "id": "green",
+        "label": "Vert",
+        "hex": "#536952",
+        "neutral": false
+      },
+      {
+        "id": "pink",
+        "label": "Rose",
+        "hex": "#d5a9ac",
+        "neutral": false
+      },
+      {
+        "id": "blue",
+        "label": "Bleu",
+        "hex": "#6e8ca5",
+        "neutral": false
+      },
+      {
+        "id": "ochre",
+        "label": "Ocre",
+        "hex": "#b79346",
+        "neutral": false
+      },
+      {
+        "id": "rust",
+        "label": "Terracotta",
+        "hex": "#ac6048",
+        "neutral": false
+      },
+      {
+        "id": "purple",
+        "label": "Prune",
+        "hex": "#745569",
+        "neutral": false
+      }
+    ],
+    "occasions": [
+      "Quotidien",
+      "Travail",
+      "Week-end",
+      "Soirée",
+      "Cérémonie",
+      "Voyage"
+    ],
+    "seasons": [
+      "Printemps",
+      "Été",
+      "Automne",
+      "Hiver"
+    ],
+    "formalityLevels": [
+      "Décontracté",
+      "Soigné",
+      "Habillé",
+      "Formel"
+    ]
+  },
+  "preferences": {
+    "name": "",
+    "temperature": 18,
+    "occasion": "Quotidien",
+    "style": "",
+    "currency": "EUR"
+  },
+  "legacy": {
+    "migration": {
+      "source": "capsule/index.html",
+      "count": 54
+    },
+    "capsuleV62": {
+      "garments": [
+        {
+          "id": "r_louisette_raisin",
+          "name": "Robe Plissée Louisette Raisin",
+          "category": "Robe",
+          "img": "sézane_robe_louisette-raisin.webp",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 8.5,
+          "c_tip": "Jolie texture plissée. Couleur Raisin intense qui se réchauffe bien avec tes mailles Taupe ou Chocolat."
+        },
+        {
+          "id": "b_nehir",
+          "name": "Jupe Nehir Pied de Poule",
+          "category": "Bas",
+          "img": "sézane_jupe_nehir_pied-de-poule.avif",
+          "owned": true,
+          "price": 60,
+          "wear_count": 0,
+          "c_score": 9.5,
+          "c_tip": "Le pied de poule aux tons chauds (Ocre) est parfait. Coupe courte idéale avec tes bottes hautes."
+        },
+        {
+          "id": "r_freja",
+          "name": "Robe Freja Écureuil",
+          "category": "Robe",
+          "img": "sézane_robe_freja-écureuil.avif",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 10,
+          "c_tip": "Couleur Écureuil (Roux chaud) sublime pour ton teint. Maille mousseuse, très cocooning."
+        },
+        {
+          "id": "r_paulie",
+          "name": "Robe Paulie Vert Parfait (100% Yack)",
+          "category": "Robe",
+          "img": "sézane_robe_paulie-vert-parfait.avif",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 10,
+          "c_tip": "Le Graal : 100% Yack (douceur absolue) + Vert Parfait (le même que ta veste Thaïs !). Col montant idéal pour la Normandie."
+        },
+        {
+          "id": "r_noemie",
+          "name": "Robe Chasuble Noémie Camel",
+          "category": "Robe",
+          "img": "sézane_robe_noémie-camel.avif",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 9.5,
+          "c_tip": "L'essence du style Preppy 60's. À porter absolument SUR ta chemise Amael (col qui dépasse) ou un sous-pull écru."
+        },
+        {
+          "id": "m_dylan_taupe",
+          "name": "Pull Dylan Taupe Yack",
+          "category": "Maille",
+          "img": "sézane_pull_dylan-taupe.avif",
+          "owned": true,
+          "price": 175,
+          "wear_count": 0,
+          "c_score": 10,
+          "c_tip": "Le remplaçant luxe du Blaise. Douceur absolue."
+        },
+        {
+          "id": "m_jacob_marine",
+          "name": "Pull Jacob Marine",
+          "category": "Maille",
+          "img": "sézane_pull_jacob_marine.avif",
+          "owned": true,
+          "price": 95,
+          "wear_count": 1,
+          "c_score": 9,
+          "c_tip": "Basique chic avec détails boutons."
+        },
+        {
+          "id": "h_amael",
+          "name": "Chemise Amael Écru",
+          "category": "Haut",
+          "img": "sézane_chemise-amael.avif",
+          "owned": true,
+          "price": 115,
+          "wear_count": 0,
+          "c_score": 10,
+          "c_tip": "Indispensable sous les pulls sans manches."
+        },
+        {
+          "id": "b_orlane",
+          "name": "Jupe Orlane Carreaux",
+          "category": "Bas",
+          "img": "sézane_jupe_orlane-carreaux-marine.avif",
+          "owned": true,
+          "price": 145,
+          "wear_count": 0,
+          "c_score": 10,
+          "c_tip": "La pièce maîtresse Hiver."
+        },
+        {
+          "id": "b_vladou",
+          "name": "Jupe Vladou DPH",
+          "category": "Bas",
+          "img": "dph_jupe-vladou-bordeaux.webp",
+          "owned": true,
+          "price": 45,
+          "wear_count": 0,
+          "c_score": 9,
+          "c_tip": "Style casual avec poches. Moins chaude."
+        },
+        {
+          "id": "r_framboise",
+          "name": "Robe Plissée Louisette raisin",
+          "category": "Robe",
+          "img": "sézane_robe_louisette-raisin.webp",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 8.5
+        },
+        {
+          "id": "a_gants_will",
+          "name": "Gants Will Cuir",
+          "category": "Accessoire",
+          "img": "123-gants-cuir-will-chocolat.avif",
+          "owned": true,
+          "price": 55,
+          "wear_count": 0,
+          "c_score": 10,
+          "c_tip": "Test du bonhomme de neige validé !"
+        },
+        {
+          "id": "m_cheryl_roi",
+          "name": "Pull Cheryle Bleau Roi",
+          "category": "Maille",
+          "img": "sézane_maille_cheryl_bleu-roi.png",
+          "owned": true,
+          "price": 70,
+          "wear_count": 0,
+          "c_score": 6
+        },
+        {
+          "id": "m_cheryl_chataigne",
+          "name": "Pull Cheryle Chataîgne",
+          "category": "Maille",
+          "img": "sézane_maille-cheryle-chataigne.avif",
+          "owned": true,
+          "price": 70,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "m_othello_rose",
+          "name": "Gilet Othello Rose",
+          "category": "Maille",
+          "img": "sézane_maille-othello-bois-de-rose-foncé.avif",
+          "owned": true,
+          "price": 125,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "a_artemis",
+          "name": "Ceinture Artemis",
+          "category": "Accessoire",
+          "img": "sézane_ceinture-cuir-naturel-héritage.png",
+          "owned": true,
+          "price": 65,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "s_vert",
+          "name": "Samuel Vert Parfait",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_vert-parfait-foncé.avif",
+          "owned": true,
+          "c_score": 10,
+          "c_tip": "Couleur pépite.",
+          "price": 100,
+          "wear_count": 0
+        },
+        {
+          "id": "m_betty_tomette",
+          "name": "Gilet Betty Tomette",
+          "category": "Maille",
+          "img": "sézane_gilet_betty_crochet_tomette.avif",
+          "owned": true,
+          "c_score": 10,
+          "c_tip": "Couleur Wouah !",
+          "price": 125,
+          "wear_count": 0
+        },
+        {
+          "id": "v1",
+          "name": "Perfecto Zig Terracotta",
+          "category": "Veste",
+          "img": "sézane_perfecto_zig-terracotta.webp",
+          "owned": true,
+          "price": 190,
+          "wear_count": 0,
+          "c_score": 10
+        },
+        {
+          "id": "m2",
+          "name": "Gilet Gaspard Camel",
+          "category": "Maille",
+          "img": "sézane_maille-gaspard-camel.avif",
+          "owned": true,
+          "price": 120,
+          "wear_count": 0,
+          "c_score": 8.5
+        },
+        {
+          "id": "m_gaspard_rouge",
+          "name": "Gilet Gaspard Rouge",
+          "category": "Maille",
+          "img": "sézane_maille-gaspard-rouge.avif",
+          "owned": true,
+          "price": 120,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "m_gaspard_boug",
+          "name": "Gilet Gaspard Boug.",
+          "category": "Maille",
+          "img": "sézane_maille-gaspard-bougainvilliers.avif",
+          "owned": true,
+          "price": 120,
+          "wear_count": 0,
+          "c_score": 7
+        },
+        {
+          "id": "m7",
+          "name": "Veste Thaïs Vert",
+          "category": "Maille",
+          "img": "sézane_veste-thais-vert-parfait.avif",
+          "owned": true,
+          "price": 175,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "m6",
+          "name": "Pull Stacy Grenat",
+          "category": "Maille",
+          "img": "sézane_maille-stacy-grenat.avif",
+          "owned": true,
+          "price": 125,
+          "wear_count": 0,
+          "c_score": 10
+        },
+        {
+          "id": "m_etienne",
+          "name": "Pull Étienne Raisin",
+          "category": "Maille",
+          "img": "sézane_maille-étienne-raisin.avif",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "m8",
+          "name": "Gilet Long DPH Kaki",
+          "category": "Maille",
+          "img": "dph_gilet-denia-graine-kaki1.webp",
+          "owned": true,
+          "price": 85,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "m4",
+          "name": "Pull Louisa Beige",
+          "category": "Maille",
+          "img": "sézane_maille-louisa_beige_chiné.avif",
+          "owned": true,
+          "price": 115,
+          "wear_count": 0,
+          "c_score": 7.5
+        },
+        {
+          "id": "m_angie",
+          "name": "Gilet Angie Rose",
+          "category": "Maille",
+          "img": "sézane-maille_angie_rose.jpg",
+          "owned": true,
+          "price": 120,
+          "wear_count": 0,
+          "c_score": 6
+        },
+        {
+          "id": "m_carlota",
+          "name": "Pull Carlota Vert",
+          "category": "Maille",
+          "img": "sézane-maille_carlota_vert_garden.jpg",
+          "owned": true,
+          "price": 115,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "m_luke",
+          "name": "Pull Luke Beige",
+          "category": "Maille",
+          "img": "sézane-maille_luke-beige-chiné.jpg",
+          "owned": true,
+          "price": 115,
+          "wear_count": 0,
+          "c_score": 7.5
+        },
+        {
+          "id": "h_ron",
+          "name": "Top Ron Crochet",
+          "category": "Haut",
+          "img": "sézane_top_ron.avif",
+          "owned": true,
+          "price": 95,
+          "wear_count": 0,
+          "c_score": 8
+        },
+        {
+          "id": "h1",
+          "name": "Chemise Honey Écru",
+          "category": "Haut",
+          "img": "sézane_chemise_honey_écru.avif",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 8
+        },
+        {
+          "id": "h2",
+          "name": "Chemise Guipure Ocre",
+          "category": "Haut",
+          "img": "sézane_chemise_guipure_contrastée_ocre.avif",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "h_chlo_rayée",
+          "name": "Chemise Chlo Rayée",
+          "category": "Haut",
+          "img": "sézane_chemise_chlo_rayée_écru_bleu.avif",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 7
+        },
+        {
+          "id": "h_bianca",
+          "name": "Blouse Bianca",
+          "category": "Haut",
+          "img": "sézane_blouse_bianca.avif",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 8
+        },
+        {
+          "id": "h_uniqlo",
+          "name": "Blouse Uniqlo",
+          "category": "Haut",
+          "img": "uniqlo_blouse_rayonne-blanche.avif",
+          "owned": true,
+          "price": 35,
+          "wear_count": 0,
+          "c_score": 6.5
+        },
+        {
+          "id": "h_uniqlo_bleu",
+          "name": "Chemise Boxy",
+          "category": "Haut",
+          "img": "uniqlo_chemise-boxy-bleu-rayée.avif",
+          "owned": true,
+          "price": 40,
+          "wear_count": 0,
+          "c_score": 6
+        },
+        {
+          "id": "b_jupe_camel",
+          "name": "Jupe Plissée Camel",
+          "category": "Bas",
+          "img": "uniqlo_jupe-plissée-camel.jpg",
+          "owned": true,
+          "price": 45,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "b_jupe_marine",
+          "name": "Jupe Caroll Marine",
+          "category": "Bas",
+          "img": "caroll_jupe-plissée-marine.webp",
+          "owned": true,
+          "price": 65,
+          "wear_count": 0,
+          "c_score": 8.5
+        },
+        {
+          "id": "b_opaline",
+          "name": "Jupe Opaline",
+          "category": "Bas",
+          "img": "sézane_jupe_opaline.avif",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "b_peter",
+          "name": "Jupe Peter Taupe",
+          "category": "Bas",
+          "img": "sézane_jupe_peter_taupe.png",
+          "owned": true,
+          "price": 95,
+          "wear_count": 0,
+          "c_score": 8.5
+        },
+        {
+          "id": "b_velours_bx",
+          "name": "Jupe Velours Bordeaux",
+          "category": "Bas",
+          "img": "nafnaf_jupe_bordeaux_velours_côtelé.png",
+          "owned": true,
+          "price": 55,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "b_caro_rose",
+          "name": "Jupe Carolina Rose",
+          "category": "Bas",
+          "img": "sézane-jupe_carolina_fleurs_roses.jpg",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 7
+        },
+        {
+          "id": "b_caro_miel",
+          "name": "Jupe Carolina Miel",
+          "category": "Bas",
+          "img": "sézane-jupe_carolina_fleurs_miel.jpg",
+          "owned": true,
+          "price": 100,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "j_bleu",
+          "name": "Jean Slim Bleu",
+          "category": "Bas",
+          "img": "sézane_jean_slim_parfait_bleu_denim.avif",
+          "owned": true,
+          "price": 105,
+          "wear_count": 0,
+          "c_score": 8
+        },
+        {
+          "id": "j_noir",
+          "name": "Jean Slim Noir",
+          "category": "Bas",
+          "img": "sézane_jean_slim_parfait_noir.avif",
+          "owned": true,
+          "price": 105,
+          "wear_count": 0,
+          "c_score": 7
+        },
+        {
+          "id": "r1",
+          "name": "Robe Evy Fleurs",
+          "category": "Robe",
+          "img": "sézane_robe_evy_fleurs_violet2.webp",
+          "owned": true,
+          "price": 155,
+          "wear_count": 0,
+          "c_score": 8.5
+        },
+        {
+          "id": "r2",
+          "name": "Robe Fond Noir",
+          "category": "Robe",
+          "img": "sézane_robe_fleurie1.webp",
+          "owned": true,
+          "price": 140,
+          "wear_count": 0,
+          "c_score": 7.5
+        },
+        {
+          "id": "r3",
+          "name": "Robe Naomi Fleurs",
+          "category": "Robe",
+          "img": "sézane_robe_naomi.webp",
+          "owned": true,
+          "price": 140,
+          "wear_count": 0,
+          "c_score": 8
+        },
+        {
+          "id": "r_selena",
+          "name": "Robe Selena Marine",
+          "category": "Robe",
+          "img": "sézane_robe_selena_marine.avif",
+          "owned": true,
+          "price": 155,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "r_abigail",
+          "name": "Robe Abigail Écru",
+          "category": "Robe",
+          "img": "sézane_robe_abigail.avif",
+          "owned": true,
+          "price": 160,
+          "wear_count": 0,
+          "c_score": 8
+        },
+        {
+          "id": "t_col_noir",
+          "name": "Collants Noirs 50D",
+          "category": "Tech",
+          "img": "calzedonia-50d-soft-comfort-noir.webp",
+          "owned": true,
+          "price": 7.95
+        },
+        {
+          "id": "t_col_moka",
+          "name": "Collants Strong Sculpt Moka 30D",
+          "category": "Tech",
+          "img": "calzedonia-30d-strong-sculpt-nude-11.webp",
+          "owned": true,
+          "price": 15,
+          "wear_count": 3
+        },
+        {
+          "id": "b_leg_navy",
+          "name": "Legging Heattech Marine",
+          "category": "Tech",
+          "img": "uniqlo_legging-heattech-noir.avif",
+          "owned": true,
+          "price": 25,
+          "c_score": 7
+        },
+        {
+          "id": "a2",
+          "name": "Écharpe Camel",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_camel.avif",
+          "owned": true,
+          "price": 75,
+          "wear_count": 2,
+          "c_score": 9
+        },
+        {
+          "id": "a_blush",
+          "name": "Écharpe Blush",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_blush.avif",
+          "owned": true,
+          "price": 75,
+          "wear_count": 1,
+          "c_score": 4
+        },
+        {
+          "id": "c1",
+          "name": "Bottes Anna Field",
+          "category": "Chaussures",
+          "img": "anna-field-bottes-marron.jpg",
+          "owned": true,
+          "price": 70,
+          "wear_count": 0,
+          "c_score": 9
+        },
+        {
+          "id": "c_boots_noeud",
+          "name": "Bottines Camel Nœud",
+          "category": "Chaussures",
+          "img": "bottines-marron-lovely-skull.webp",
+          "owned": true,
+          "price": 80,
+          "wear_count": 0,
+          "c_score": 10
+        },
+        {
+          "id": "c_panda",
+          "name": "Baskets Panda Roux",
+          "category": "Chaussures",
+          "img": "minuit_virevolte_panda_roux_1100x.webp",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 10
+        },
+        {
+          "id": "c_coquelicot",
+          "name": "Baskets Coquelicot",
+          "category": "Chaussures",
+          "img": "minuit_virevolte_coquelicot.jpg",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 9.5
+        },
+        {
+          "id": "c_corgi",
+          "name": "Baskets Corgi",
+          "category": "Chaussures",
+          "img": "minuit_virevolte_corgi.jpg",
+          "owned": true,
+          "price": 130,
+          "wear_count": 0,
+          "c_score": 7
+        },
+        {
+          "id": "h_col_choco",
+          "name": "Col roulé en Cachemire mélangé HEATTECH Extra Chaud Chocolat",
+          "category": "Haut",
+          "img": "uniqlo_col-roulé-heattech-cachemire-marron.avif",
+          "wishlist": true,
+          "price": 24.9,
+          "c_score": 10,
+          "c_tip": "Le sous-pull parfait pour l'Automne Profond."
+        },
+        {
+          "id": "h_col_bordeaux",
+          "name": "Col roulé en Cachemire mélangé HEATTECH Extra Chaud Bordeaux",
+          "category": "Haut",
+          "img": "uniqlo_col-roulé-heattech-cachemire-bordeaux.avif",
+          "wishlist": true,
+          "price": 24.9,
+          "c_score": 10,
+          "c_tip": "Illumine le visage instantanément."
+        },
+        {
+          "id": "h_col_nude",
+          "name": "Col roulé en Cachemire mélangé HEATTECH Extra Chaud Écru",
+          "category": "Haut",
+          "img": "uniqlo_col-roulé-heattech-cachemire-nude.avif",
+          "wishlist": true,
+          "price": 24.9,
+          "c_score": 8,
+          "c_tip": "Lumière et douceur."
+        },
+        {
+          "id": "b_leg_choco",
+          "name": "Legging HEATTECH en cachemire mélangé Extra Chaud",
+          "category": "Bas",
+          "img": "uniqlo_legging-heattech-cachemire-marron.avif",
+          "wishlist": true,
+          "price": 30,
+          "c_score": 9,
+          "c_tip": "Change du noir, allonge la jambe."
+        },
+        {
+          "id": "t_heat_noir",
+          "name": "Heattech Noir",
+          "category": "Tech",
+          "img": "https://placehold.co/200x250/333/FFF?text=Heattech",
+          "owned": true,
+          "price": 20,
+          "wear_count": 0
+        },
+        {
+          "id": "t_heat_chair",
+          "name": "Heattech Chair",
+          "category": "Tech",
+          "img": "https://placehold.co/200x250/e3c5a8/555?text=Heattech",
+          "owned": true,
+          "price": 20,
+          "wear_count": 0
+        },
+        {
+          "id": "t_top_dentelle",
+          "name": "Top Dentelle Blanc",
+          "category": "Tech",
+          "img": "https://placehold.co/200x250/fafafa/333?text=Dentelle",
+          "owned": true,
+          "price": 35,
+          "wear_count": 0
+        },
+        {
+          "id": "m5",
+          "name": "Gilet Barry Blush",
+          "category": "Maille",
+          "img": "sézane_maille_barry_blush.webp",
+          "owned": true,
+          "sell": true,
+          "reason": "Trop froid",
+          "c_score": 4
+        },
+        {
+          "id": "m1",
+          "name": "Gilet Betty Marine",
+          "category": "Maille",
+          "img": "sézane_gilet_betty_crochet_marine.avif",
+          "owned": true,
+          "sell": true,
+          "reason": "Retour",
+          "c_score": 8.5
+        },
+        {
+          "id": "m_lizy",
+          "name": "Gilet Lizy Caramel",
+          "category": "Maille",
+          "img": "sézane_maille-lizy-camel-doré.avif",
+          "wishlist": true,
+          "priority": true,
+          "c_score": 10
+        },
+        {
+          "id": "m_patchwork_vinted",
+          "name": "Pull Sézane Hollie Patchwork",
+          "category": "Maille",
+          "img": "sézane-maille_hollie-rose.jpg",
+          "wishlist": true,
+          "priority": true,
+          "c_score": 9,
+          "c_tip": "Le bordeaux et le doré sauvent le rose pâle. Superbe éclat.",
+          "price": 74
+        },
+        {
+          "id": "r_print_autom",
+          "name": "Robe Fleurs Automne",
+          "category": "Robe",
+          "img": "sézane-robe-aurora-paris-est-une-fête.jpg",
+          "wishlist": true,
+          "c_score": 9
+        },
+        {
+          "id": "v_clyde",
+          "name": "Manteau Clyde Chocolat",
+          "category": "Veste",
+          "img": "sézane_manteau_clyde_chocolat.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "v_rafael",
+          "name": "Manteau Rafael Écureuil",
+          "category": "Veste",
+          "img": "sézane_manteau_rafael-écureuil.avif",
+          "wishlist": true,
+          "c_score": 10,
+          "c_tip": "Mieux que le Clyde !"
+        },
+        {
+          "id": "v_james",
+          "name": "Manteau James Bordeaux",
+          "category": "Veste",
+          "img": "sézane_manteau_james-bordeaux-foncé - Copie.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "v_ander",
+          "name": "Manteau Ander Cannelle",
+          "category": "Veste",
+          "img": "sézane_manteau_ander-cannelle - Copie.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "v_jayden",
+          "name": "Manteau Jayden Épice",
+          "category": "Veste",
+          "img": "sézane_manteau_jayden-épice.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "c2",
+          "name": "Low Bridget Chocolat",
+          "category": "Chaussures",
+          "img": "sézane_bottes_low-bridget-chocolat-glacé.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "c_theo",
+          "name": "Bottes Théodora Chocolat",
+          "category": "Chaussures",
+          "img": "sézane_bottes_théodora-chocolat-glacé.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "m_louisa_choco",
+          "name": "Pull Louisa Chocolat",
+          "category": "Maille",
+          "img": "sézane_maille-louisa_chocolat-clair.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "m_maxime",
+          "name": "Gilet Maxime Ocre",
+          "category": "Maille",
+          "img": "sézane_gilet_maxime-ocre.avif",
+          "wishlist": true,
+          "c_score": 9.5
+        },
+        {
+          "id": "m_maxime_moka",
+          "name": "Gilet Maxime Moka",
+          "category": "Maille",
+          "img": "sézane_gilet_maxime-moka.avif",
+          "wishlist": true,
+          "c_score": 9.5
+        },
+        {
+          "id": "h5",
+          "name": "Chemise Rym",
+          "category": "Haut",
+          "img": "sézane_chemise_rym_écru.avif",
+          "wishlist": true,
+          "c_score": 8
+        },
+        {
+          "id": "h_lise",
+          "name": "Chemise Lise Écru",
+          "category": "Haut",
+          "img": "sézane_chemise_lise_écru.avif",
+          "wishlist": true,
+          "c_score": 8
+        },
+        {
+          "id": "a3",
+          "name": "Écharpe Vert",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_vert-parfait.avif",
+          "wishlist": true,
+          "c_score": 9.5
+        },
+        {
+          "id": "a4",
+          "name": "Écharpe Grenat",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_grenat.avif",
+          "wishlist": true,
+          "c_score": 9.5
+        },
+        {
+          "id": "a_moka",
+          "name": "Écharpe Moka",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_moka.avif",
+          "wishlist": true,
+          "c_score": 9.5
+        },
+        {
+          "id": "a_marine",
+          "name": "Écharpe Marine",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_marine.avif",
+          "wishlist": true,
+          "c_score": 8.5
+        },
+        {
+          "id": "a_ecru",
+          "name": "Écharpe Ecru",
+          "category": "Accessoire",
+          "img": "sézane_écharpe_marianne_écru.avif",
+          "wishlist": true,
+          "c_score": 8
+        },
+        {
+          "id": "s_grenat",
+          "name": "Samuel Grenat",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_grenat.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "s_pistache",
+          "name": "Samuel Pistache",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_vert-pistache.avif",
+          "wishlist": true,
+          "c_score": 6
+        },
+        {
+          "id": "s_acajou",
+          "name": "Samuel Acajou",
+          "category": "Maille",
+          "img": "sézane_pull_samuel_acajou.avif",
+          "wishlist": true,
+          "c_score": 10
+        },
+        {
+          "id": "t_col_marron",
+          "name": "Collants Marron 50D",
+          "category": "Tech",
+          "img": "calzedonia-50d-soft-comfort-marron.webp",
+          "wishlist": true,
+          "price": 7.95
+        },
+        {
+          "id": "b_wallace",
+          "name": "Short Wallace Taupe",
+          "category": "Bas",
+          "img": "sézane_short_wallace-taupe.avif",
+          "wishlist": true,
+          "priority_reason": "Parfait pour une Petite : montre les jambes avec élégance.",
+          "c_score": 9,
+          "c_tip": "Excellent neutre.",
+          "price": 105
+        }
+      ],
+      "outfits": [
+        {
+          "title": "British Librarian",
+          "items": [
+            "h_chlo_rayée",
+            "m_betty_tomette",
+            "b_jupe_tartan",
+            "c1"
+          ],
+          "m_score": 10,
+          "m_justif": "Mix d'imprimés et de maille.",
+          "comment": "Le col Chlo qui dépasse du Betty : le détail qui tue."
+        },
+        {
+          "title": "Slytherin Soft",
+          "items": [
+            "h_col_nude",
+            "s_vert",
+            "b_jupe_marine",
+            "c1"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Marine & Vert : Duo Profond.",
+          "comment": "L'écru illumine le visage, le reste est ultra chic."
+        },
+        {
+          "title": "Golden Camaïeu",
+          "items": [
+            "h_bianca",
+            "m_betty_tomette",
+            "b_jupe_camel",
+            "c1"
+          ],
+          "m_score": 9,
+          "m_justif": "Douceur monochrome.",
+          "comment": "Jupe Camel + Bottes Camel = Jambes de 2 mètres !"
+        },
+        {
+          "title": "Cosy Taupe",
+          "items": [
+            "h_col_bordeaux",
+            "b_peter",
+            "c1"
+          ],
+          "m_score": 10,
+          "m_justif": "Simple & Efficace.",
+          "comment": "Le bordeaux réchauffe le gris taupe à la perfection."
+        },
+        {
+          "title": "Cambridge Green",
+          "items": [
+            "h_col_nude",
+            "s_vert",
+            "b_wallace",
+            "c_boots_noeud"
+          ],
+          "m_score": 10,
+          "m_justif": "Le duo Col Roulé + Pull Sans Manches est la base du style Preppy.",
+          "comment": "Le vert et le taupe s'équilibrent avec la lumière de l'écru."
+        },
+        {
+          "title": "Tomette Schoolgirl",
+          "items": [
+            "h_col_choco",
+            "m_betty_tomette",
+            "b_wallace"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Harmonie Automne Profond parfaite.",
+          "comment": "Gilet ouvert sur col roulé sombre : chic et chaud."
+        },
+        {
+          "title": "Choco Heritage",
+          "items": [
+            "m_louisa_choco",
+            "b_wallace",
+            "a_moka"
+          ],
+          "m_score": 9,
+          "m_justif": "Monochrome de textures.",
+          "comment": "Simple, efficace, très 'Old Money'."
+        },
+        {
+          "title": "Preppy Green",
+          "items": [
+            "h_bianca",
+            "s_vert",
+            "b_jupe_marine",
+            "c1"
+          ],
+          "m_score": 10,
+          "m_justif": "Le Col Chlo sous le Samuel : Perfection.",
+          "comment": "Le col montant donne ce côté aristocratique anglais adorable."
+        },
+        {
+          "title": "Tartan Academy",
+          "items": [
+            "h_col_choco",
+            "m_betty_tomette",
+            "b1",
+            "c1"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Chaud et Rétro.",
+          "comment": "Le gilet ouvert sur le col roulé structure la silhouette."
+        },
+        {
+          "title": "Douceur Camel",
+          "items": [
+            "h_bianca",
+            "m_louisa_choco",
+            "b_jupe_camel",
+            "c1"
+          ],
+          "m_score": 10,
+          "m_justif": "Combo Automne Profond Idéal.",
+          "comment": "Le chocolat et le camel s'illuminent grâce au col de la chemise."
+        },
+        {
+          "title": "Vintage Taupe",
+          "items": [
+            "h_col_bordeaux",
+            "b_peter",
+            "c_boots_noeud"
+          ],
+          "m_score": 9,
+          "m_justif": "Simple et Efficace.",
+          "comment": "Le bordeaux réveille le gris/taupe de la jupe."
+        },
+        {
+          "title": "Casual Panda",
+          "items": [
+            "m_luke",
+            "j_bleu",
+            "c_panda"
+          ],
+          "m_score": 9,
+          "m_justif": "Confort Chic.",
+          "comment": "La broderie rousse rappelle le beige du pull."
+        },
+        {
+          "title": "Coquelicot Touch",
+          "items": [
+            "h_uniqlo",
+            "b_wallace",
+            "c_coquelicot"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Jambes mises en valeur.",
+          "comment": "Le rouge des fleurs réveille le neutre."
+        },
+        {
+          "title": "Boots Cute",
+          "items": [
+            "m_angie",
+            "j_noir",
+            "c_boots_noeud"
+          ],
+          "m_score": 10,
+          "m_justif": "Mignon & Chaud.",
+          "comment": "Harmonie rose/noir/camel."
+        },
+        {
+          "title": "Roi & Denim",
+          "items": [
+            "m_cheryl_roi",
+            "j_bleu",
+            "c_corgi"
+          ],
+          "m_score": 8,
+          "m_justif": "Peps.",
+          "comment": "Le bleu roi est fort, on le calme avec le jean."
+        },
+        {
+          "title": "Robe & Baskets Chic",
+          "items": [
+            "r_print_autom",
+            "m_louisa_choco",
+            "c_panda"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Mix Styles.",
+          "comment": "Casser le côté 'dame' de la robe avec les baskets."
+        },
+        {
+          "title": "Tomette & Marine",
+          "items": [
+            "m_betty_tomette",
+            "b_jupe_marine",
+            "c_boots_noeud"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Contraste Chic.",
+          "comment": "Le rouille et le marine s'adorent."
+        },
+        {
+          "title": "Tomette & Jean",
+          "items": [
+            "m_betty_tomette",
+            "j_bleu",
+            "a_moka"
+          ],
+          "m_score": 9,
+          "m_justif": "Casual.",
+          "comment": "Peps immédiat sur du denim."
+        },
+        {
+          "title": "Look Short",
+          "items": [
+            "m_betty_tomette",
+            "b_wallace",
+            "c1"
+          ],
+          "m_score": 10,
+          "m_justif": "Jambes allongées.",
+          "comment": "Le short taupe et le gilet rouille s'adorent."
+        },
+        {
+          "title": "Tomette Opale",
+          "items": [
+            "m_betty_tomette",
+            "b1",
+            "c1"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Mix Imprimé.",
+          "comment": "Le gilet reprend les tons chauds de la jupe."
+        },
+        {
+          "title": "Romance Berry",
+          "items": [
+            "h_bianca",
+            "m5",
+            "b3"
+          ],
+          "m_score": 9,
+          "m_justif": "Gilet ouvert.",
+          "comment": "Le blush adoucit le bordeaux."
+        },
+        {
+          "title": "Douceur Cuir",
+          "items": [
+            "m5",
+            "b_jupe_camel",
+            "v1"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Structuré.",
+          "comment": "Cuir + Maille mousseuse."
+        },
+        {
+          "title": "Othello Noir",
+          "items": [
+            "m_othello_rose",
+            "j_noir",
+            "c_boots_noeud",
+            "a_artemis"
+          ],
+          "m_score": 9,
+          "m_justif": "Simple.",
+          "comment": "Le vieux rose réchauffe le noir."
+        },
+        {
+          "title": "Working Girl",
+          "items": [
+            "h_uniqlo",
+            "s_vert",
+            "b_peter"
+          ],
+          "m_score": 9,
+          "m_justif": "Verticalité.",
+          "comment": "Le vert remplace le taupe."
+        },
+        {
+          "title": "Selena & Ocre",
+          "items": [
+            "r_selena",
+            "m_maxime",
+            "a_artemis"
+          ],
+          "m_score": 9,
+          "m_justif": "Ceinturé.",
+          "comment": "Bleu et Or."
+        },
+        {
+          "title": "Duo Vert",
+          "items": [
+            "h_bianca",
+            "m7",
+            "b_peter",
+            "c1"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Veste courte.",
+          "comment": "Top pour 1m60."
+        },
+        {
+          "title": "L'Officier",
+          "items": [
+            "h_bianca",
+            "m_betty_tomette",
+            "b_jupe_marine"
+          ],
+          "m_score": 10,
+          "m_justif": "Silhouette nette.",
+          "comment": "Le Tomette en structure."
+        },
+        {
+          "title": "Le Ron Chic",
+          "items": [
+            "h_ron",
+            "b1",
+            "m_betty_tomette"
+          ],
+          "m_score": 10,
+          "m_justif": "Taille haute.",
+          "comment": "Mix textures."
+        },
+        {
+          "title": "Flower Power",
+          "items": [
+            "b_caro_miel",
+            "h_uniqlo_bleu",
+            "s_vert"
+          ],
+          "m_score": 9,
+          "m_justif": "Volumes OK.",
+          "comment": "Le vert calme l'imprimé."
+        },
+        {
+          "title": "Taupe sur Dentelle",
+          "items": [
+            "h_bianca",
+            "m_louisa_choco",
+            "b3"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Trapèze.",
+          "comment": "Douceur chocolat."
+        },
+        {
+          "title": "Etienne Layer",
+          "items": [
+            "h_uniqlo",
+            "m_etienne",
+            "j_bleu"
+          ],
+          "m_score": 8.5,
+          "m_justif": "Col visible.",
+          "comment": "Le col blanc illumine le pull sombre."
+        },
+        {
+          "title": "Miel & Ocre",
+          "items": [
+            "h2",
+            "b_caro_miel",
+            "m2"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Monochrome.",
+          "comment": "Rayonnant."
+        },
+        {
+          "title": "Rock Doux",
+          "items": [
+            "m4",
+            "b_peter",
+            "v1"
+          ],
+          "m_score": 10,
+          "m_justif": "Veste courte.",
+          "comment": "Neutre et cuir."
+        },
+        {
+          "title": "Confort Absolu",
+          "items": [
+            "r1",
+            "m2",
+            "c_boots_noeud"
+          ],
+          "m_score": 9,
+          "m_justif": "Bohème.",
+          "comment": "Robe longue et gilet doudou."
+        },
+        {
+          "title": "Kaki Nature",
+          "items": [
+            "m8",
+            "b_jupe_camel",
+            "h_ron"
+          ],
+          "m_score": 9,
+          "m_justif": "Longiligne.",
+          "comment": "Gilet long sur jupe plissée."
+        },
+        {
+          "title": "Festive Lizy",
+          "items": [
+            "m_lizy",
+            "b_jupe_marine"
+          ],
+          "m_score": 10,
+          "m_justif": "Gilet court.",
+          "comment": "Sequins chics."
+        },
+        {
+          "title": "Allure Rétro",
+          "items": [
+            "r3",
+            "m_betty_tomette"
+          ],
+          "m_score": 9,
+          "m_justif": "Structure.",
+          "comment": "Gilet fermé sur robe."
+        },
+        {
+          "title": "Velours Chic",
+          "items": [
+            "h_lise",
+            "b3",
+            "c_theo"
+          ],
+          "m_score": 9.5,
+          "m_justif": "Matières.",
+          "comment": "Dentelle et Velours."
+        },
+        {
+          "title": "Betty Tomette",
+          "items": [
+            "m_betty_tomette",
+            "b_wallace",
+            "c1"
+          ],
+          "m_score": 10,
+          "m_justif": "Silhouette idéale.",
+          "comment": "Perfection."
+        },
+        {
+          "title": "Choco-Crème",
+          "items": [
+            "h_lise",
+            "b_peter",
+            "v_clyde"
+          ],
+          "m_score": 9,
+          "m_justif": "Contraste doux.",
+          "comment": "Mélange gourmand."
+        },
+        {
+          "title": "Double Maille",
+          "items": [
+            "h1",
+            "s_vert",
+            "m2",
+            "j_bleu"
+          ],
+          "m_score": 8.5,
+          "m_justif": "Chaleur.",
+          "comment": "Cozy chic."
+        },
+        {
+          "title": "Mix Imprimés",
+          "items": [
+            "b_caro_rose",
+            "h_uniqlo_bleu",
+            "m_angie"
+          ],
+          "m_score": 8,
+          "m_justif": "Oser.",
+          "comment": "Rayures et fleurs."
+        }
+      ],
+      "weeklyPlan": [
+        {
+          "day": "Lundi",
+          "title": "Douceur de Reprise",
+          "items": [
+            "m_betty_tomette",
+            "j_bleu",
+            "c_panda"
+          ]
+        },
+        {
+          "day": "Mardi",
+          "title": "Office Chic",
+          "items": [
+            "h_uniqlo",
+            "s_vert",
+            "b_peter",
+            "c1"
+          ]
+        },
+        {
+          "day": "Mercredi (Marché)",
+          "title": "Pratique & Cute",
+          "items": [
+            "m_luke",
+            "j_noir",
+            "a_moka",
+            "c_boots_noeud"
+          ]
+        },
+        {
+          "day": "Jeudi",
+          "title": "Pro & Féminin",
+          "items": [
+            "h_bianca",
+            "m7",
+            "b_jupe_marine",
+            "c1"
+          ]
+        },
+        {
+          "day": "Vendredi",
+          "title": "Cool & Coquelicot",
+          "items": [
+            "m_louisa_choco",
+            "b_wallace",
+            "c_coquelicot"
+          ]
+        },
+        {
+          "day": "Samedi",
+          "title": "Balade Ville",
+          "items": [
+            "v1",
+            "m4",
+            "b_caro_miel",
+            "c_corgi"
+          ]
+        },
+        {
+          "day": "Dimanche (Marché)",
+          "title": "Cocooning Chic",
+          "items": [
+            "m_angie",
+            "b_wallace",
+            "a_blush",
+            "c_boots_noeud"
+          ]
+        }
+      ]
+    }
+  }
+}

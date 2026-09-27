@@ -1,0 +1,1419 @@
+{
+  "niveau": "5e",
+  "genere": "2026-09-27T14:46:36.458Z",
+  "periodes": [
+    {
+      "periode": 1,
+      "debut": "2026-09-01",
+      "fin": "2026-10-16",
+      "semaines": 7
+    },
+    {
+      "periode": 2,
+      "debut": "2026-11-02",
+      "fin": "2026-12-18",
+      "semaines": 7
+    },
+    {
+      "periode": 3,
+      "debut": "2027-01-04",
+      "fin": "2027-02-05",
+      "semaines": 5
+    },
+    {
+      "periode": 4,
+      "debut": "2027-02-22",
+      "fin": "2027-04-02",
+      "semaines": 6
+    },
+    {
+      "periode": 5,
+      "debut": "2027-04-19",
+      "fin": "2027-05-09",
+      "semaines": 3
+    },
+    {
+      "periode": 6,
+      "debut": "2027-05-17",
+      "fin": "2027-06-18",
+      "semaines": 5
+    }
+  ],
+  "sequences": [
+    {
+      "code": "N1",
+      "titre": "Calculer avec les nombres décimaux",
+      "theme": "N",
+      "semaines": 1.5,
+      "competences": [
+        "Mo1",
+        "Ra1",
+        "Ca1",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "✖1",
+          "niveau": "5e",
+          "texte": "Additionner, soustraire, multiplier et diviser pour résoudre des problèmes et contrôler la vraisemblance de son résultat.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-additionner-soustraire-multiplier-et-diviser-pou.md"
+        },
+        {
+          "code": "✖2",
+          "niveau": "5e",
+          "texte": "Connaitre le sens et les situations d’emploi de ces opérations.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-le-sens-et-les-situations-d-emploi-de-.md"
+        },
+        {
+          "code": "✖4",
+          "niveau": "5e",
+          "texte": "Enchainer des opérations.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-enchainer-des-operations.md"
+        },
+        {
+          "code": "✖5",
+          "niveau": "5e",
+          "texte": "Traduire un problème, une succession donnée d’opérations, un programme de calcul, en une seule expression, en faisant appel ou non à des parenthèses.",
+          "famille": "Mo",
+          "fichier": "cours/5e/objectifs/OBJ-traduire-un-probleme-une-succession-donnee-d-ope.md"
+        },
+        {
+          "code": "✖6",
+          "niveau": "5e",
+          "texte": "Nommer un calcul, distinguer sommes et produits, termes et facteurs.",
+          "famille": "Co",
+          "fichier": "cours/5e/objectifs/OBJ-nommer-un-calcul-distinguer-sommes-et-produits-t.md"
+        },
+        {
+          "code": "✖7",
+          "niveau": "5e",
+          "texte": "Connaitre et utiliser les priorités opératoires.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-et-utiliser-les-priorites-operatoires.md"
+        },
+        {
+          "code": "✖8",
+          "niveau": "5e",
+          "texte": "Connaitre et utiliser la distributivité simple sur des exemples numériques.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-et-utiliser-la-distributivite-simple-s.md"
+        },
+        {
+          "code": "✖11",
+          "niveau": "5e",
+          "texte": "Mobiliser un algorithme dans le cadre du calcul numérique.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-mobiliser-un-algorithme-dans-le-cadre-du-calcul-.md"
+        },
+        {
+          "code": "➖10",
+          "niveau": "5e",
+          "texte": "Connaitre et justifier les situations dans lesquelles des parenthèses sont indispensables au sens des écritures.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-et-justifier-les-situations-dans-lesqu.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0✖🅰4",
+          "niveau": "5e",
+          "texte": "Savoir calculer des produits en lien avec les tables : 0,6 × 7 ; 40 × 0,03.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0✖🅰5",
+          "niveau": "5e",
+          "texte": "Multiplier et diviser par 10, 100, 1 000.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0✖🅰6",
+          "niveau": "5e",
+          "texte": "Additionner et soustraire des décimaux, par exemple, 2,7 + 1,4 ; 3,4 – 0,8",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➖🅰7",
+          "niveau": "5e",
+          "texte": "Additionner, soustraire, multiplier des nombres décimaux à une ou deux décimales.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➖🅰8",
+          "niveau": "5e",
+          "texte": "Savoir que pour compléter une addition à trou, on utilise une soustraction : 2 + ... = 7 se complète en calculant 7 – 2.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰9",
+          "niveau": "5e",
+          "texte": "Entretenir la connaissance et l’utilisation des tables de multiplication",
+          "famille": "Ca"
+        },
+        {
+          "code": "0⬆🅰20",
+          "niveau": "5e",
+          "texte": "Entretenir les tables de multiplications.",
+          "famille": "Ca"
+        }
+      ],
+      "notes": "Semaine de rentrée : les cours commencent le mercredi 2 septembre — 2 semaines de calendrier pour ≈ 1,5 semaine de contenu\nCalculs sans parenthèses : de la gauche vers la droite ; priorités opératoires\nCalculs astucieux ; parenthèses, y compris emboîtées ; barre de fraction remplacée par une division\nVocabulaire : somme, différence, termes, produit, facteurs, quotient\nDistributivité simple : $\\times 9$, $\\times 11$, $\\times 99$ — reprise en N5 pour le calcul littéral\nContrôler la vraisemblance d'un résultat (ordre de grandeur) et mobiliser un algorithme dans le cadre du calcul numérique — à travailler en exercices et sur le fil rouge A1"
+    },
+    {
+      "code": "G1",
+      "titre": "Symétries axiale et centrale (1)",
+      "theme": "G",
+      "semaines": 2,
+      "competences": [
+        "Mo4",
+        "Re4",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "🔄1",
+          "niveau": "5e",
+          "texte": "Définir le demi-tour, ou symétrie centrale.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-definir-le-demi-tour-ou-symetrie-centrale.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0🔄🅰32",
+          "niveau": "5e",
+          "texte": "Reconnaitre et construire le symétrique d’une figure par symétrie axiale, dont l’axe est vertical, horizontal, ou en diagonale sur quadrillage.",
+          "famille": "Re"
+        }
+      ],
+      "notes": "Rappel 6ᵉ : symétrie axiale, médiatrice de [AA']\nDéfinir le demi-tour, ou symétrie centrale ; centre de symétrie ; O milieu de [AA']\nConstruire le symétrique d'un point puis d'une figure — quatre niveaux de difficulté avec QR codes\nReconnaître les figures obtenues par symétrie axiale ou centrale dans des frises, des pavages et des rosaces\nEntrée culturelle possible : frises et pavages, motifs de l'Alhambra, rosaces de cathédrale\nMatériel : iPad, appli transformations\nLe « (1) » du titre annonce G3, qui reprend la symétrie centrale pour chercher les éléments de symétrie et démontrer"
+    },
+    {
+      "code": "N2",
+      "titre": "Écrire et utiliser une expression littérale",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Mo2",
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "⬆1",
+          "niveau": "5e",
+          "texte": "Découvrir la notion de puissance d’un nombre et sa notation dans le cas du carré et du cube.",
+          "famille": "Co",
+          "fichier": "cours/5e/objectifs/OBJ-decouvrir-la-notion-de-puissance-d-un-nombre-et-.md"
+        },
+        {
+          "code": "⬆2",
+          "niveau": "5e",
+          "texte": "Connaitre les carrés des entiers de 0 à 12.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-les-carres-des-entiers-de-0-a-12.md"
+        },
+        {
+          "code": "⬆3",
+          "niveau": "5e",
+          "texte": "Connaitre le cube de 10.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-le-cube-de-10.md"
+        },
+        {
+          "code": "⬆4",
+          "niveau": "5e",
+          "texte": "Savoir écrire un nombre sous la forme d’une puissance 2 ou 3.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-savoir-ecrire-un-nombre-sous-la-forme-d-une-puis.md"
+        },
+        {
+          "code": "⬆5",
+          "niveau": "5e",
+          "texte": "Calculer la valeur numérique d’expressions contenant des puissances simples, additions, soustractions et produits.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-la-valeur-numerique-d-expressions-conte.md"
+        },
+        {
+          "code": "⬆6",
+          "niveau": "5e",
+          "texte": "Calculer la valeur d’une expression littérale contenant une puissance simple.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-la-valeur-d-une-expression-litterale-co.md"
+        },
+        {
+          "code": "📈1",
+          "niveau": "5e",
+          "texte": "Introduire l’expression : « en fonction de » dans des contextes concrets ou mathématiques.",
+          "famille": "Mo",
+          "fichier": "cours/5e/objectifs/OBJ-introduire-l-expression-en-fonction-de-dans-des-.md"
+        },
+        {
+          "code": "📈7",
+          "niveau": "5e",
+          "texte": "Produire une formule simple représentant la dépendance de deux grandeurs.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-produire-une-formule-simple-representant-la-depe.md"
+        },
+        {
+          "code": "🔤1",
+          "niveau": "5e",
+          "texte": "Produire des formules (double, triple, carré, successeur, prédécesseur, aire, périmètre, etc.).",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-produire-des-formules-double-triple-carre-succes.md"
+        },
+        {
+          "code": "🔤2",
+          "niveau": "5e",
+          "texte": "Calculer la valeur d’une expression littérale par substitution.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-la-valeur-d-une-expression-litterale-pa.md"
+        },
+        {
+          "code": "🔤3",
+          "niveau": "5e",
+          "texte": "Tester si une égalité entre expressions algébriques comportant une variable est vraie ou fausse.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-tester-si-une-egalite-entre-expressions-algebriq.md"
+        },
+        {
+          "code": "🔤4",
+          "niveau": "5e",
+          "texte": "Déterminer si une expression littérale est une somme ou un produit.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-determiner-si-une-expression-litterale-est-une-s.md"
+        },
+        {
+          "code": "🔤6",
+          "niveau": "5e",
+          "texte": "Réduire une expression littérale de la forme a𝑥 + b, où a et b sont des nombres décimaux.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-reduire-une-expression-litterale-de-la-forme-a-b.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Définir une expression littérale ; traduire une situation\nReconnaître si une expression littérale est une somme ou un produit\nExprimer une grandeur en fonction d'une autre — la formulation « en fonction de x » est installée ici\nProduire une formule simple représentant la dépendance de deux grandeurs\nSimplifier l'écriture d'une expression littérale (suppression du signe ×)\nNotations carré et cube ; carrés des entiers de 0 à 12, cube de 10 ; écrire un nombre sous forme d'une puissance 2 ou 3\nProduire des formules : double, triple, carré, successeur, prédécesseur, aire, périmètre\nCalculer la valeur d'une expression par substitution, y compris avec une puissance simple\nTester si une égalité comportant une variable est vraie ou fausse\nRéduire une expression de la forme $ax+b$ — installée ici, réinvestie en N5 sur des expressions développées\nMatériel : réglettes Cuisenaire en AP"
+    },
+    {
+      "code": "G2",
+      "titre": "Solides : cylindre et prisme droit",
+      "theme": "G",
+      "semaines": 1.5,
+      "competences": [
+        "Ch2",
+        "Re1",
+        "Re4"
+      ],
+      "objectifs": [
+        {
+          "code": "🧊1",
+          "niveau": "5e",
+          "texte": "Construire et mettre en relation différentes représentations en perspectives cavalières des solides suivants : pavé droit, cube, cylindre de révolution, prisme droit.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-construire-et-mettre-en-relation-differentes-rep.md"
+        },
+        {
+          "code": "🧊2",
+          "niveau": "5e",
+          "texte": "Savoir mettre en relation une représentation en perspective cavalière et un patron d’un pavé, d’un prisme droit ou d’un cylindre de révolution.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-savoir-mettre-en-relation-une-representation-en-.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0🧭🅰28",
+          "niveau": "5e",
+          "texte": "Reconnaitre des vues (de dessus, dessous…) d’empilements de cubes.",
+          "famille": "Re"
+        },
+        {
+          "code": "0🧭🅰29",
+          "niveau": "5e",
+          "texte": "Dénombrer des cubes dans des empilements.",
+          "famille": "Re"
+        },
+        {
+          "code": "0🧭🅰30",
+          "niveau": "5e",
+          "texte": "Reconnaitre un cube, un pavé représenté en perspective cavalière.",
+          "famille": "Re"
+        },
+        {
+          "code": "0🧭🅰31",
+          "niveau": "5e",
+          "texte": "Reconnaitre un patron d’un cube.",
+          "famille": "Re"
+        }
+      ],
+      "notes": "Rappels 6ᵉ : perspective cavalière et patron du pavé droit\nVocabulaire des solides : faces, sommets, arêtes\nCylindre de révolution et prisme droit : définitions, hauteur, rayon, bases, faces latérales\nReprésenter en perspective cavalière ; relier une perspective à un patron\nConstruire le patron du cylindre ($L=2\\pi r$) et du prisme droit\nLes conversions et les volumes sont traités en M2, en avril, après l'aire du parallélogramme et celle du triangle"
+    },
+    {
+      "code": "A1",
+      "titre": "Algorithmique & Tableur (fil rouge)",
+      "theme": "A",
+      "semaines": 0.5,
+      "competences": [
+        "Ch3",
+        "Re3",
+        "Ra1",
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "🐱1",
+          "niveau": "5e",
+          "texte": "Manipuler des instructions simples et les séquencer.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-manipuler-des-instructions-simples-et-les-sequen.md"
+        },
+        {
+          "code": "🐱2",
+          "niveau": "5e",
+          "texte": "Identifier les entrées et sorties d’un programme.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-identifier-les-entrees-et-sorties-d-un-programme.md"
+        },
+        {
+          "code": "🐱3",
+          "niveau": "5e",
+          "texte": "Représenter des formules sous la forme d’une expression informatique dans un langage de programmation par blocs.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-representer-des-formules-sous-la-forme-d-une-exp.md"
+        },
+        {
+          "code": "🐱4",
+          "niveau": "5e",
+          "texte": "Calculer la valeur de formules à l’aide d’une suite d’instructions dans un langage de programmation par blocs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-la-valeur-de-formules-a-l-aide-d-une-su.md"
+        },
+        {
+          "code": "🐱5",
+          "niveau": "5e",
+          "texte": "Prévoir la valeur d’une expression informatique avant son exécution.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-prevoir-la-valeur-d-une-expression-informatique-.md"
+        },
+        {
+          "code": "🐱6",
+          "niveau": "5e",
+          "texte": "Analyser un programme simple donné et modifier ses paramètres.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-analyser-un-programme-simple-donne-et-modifier-s.md"
+        },
+        {
+          "code": "🐱7",
+          "niveau": "5e",
+          "texte": "Effectuer une boucle inconditionnelle simple permettant de répéter une séquence linéaire d’instructions un nombre précis de fois.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-effectuer-une-boucle-inconditionnelle-simple-per.md"
+        },
+        {
+          "code": "🔤9",
+          "niveau": "5e",
+          "texte": "Formuler des conjectures en s’appuyant sur un langage algorithmique ou un tableur.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-formuler-des-conjectures-en-s-appuyant-sur-un-la.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Fil rouge : une activité à (presque) chaque séance en demi-groupe, sur les heures de dédoublement\nLe bloc est posé en début de novembre pour marquer le lancement : le temps réel se répartit ensuite sur toute l'année\nScratch : manipuler et séquencer des instructions, identifier entrées et sorties, traduire une formule en expression informatique, calculer la valeur d'une formule par une suite d'instructions\nPrévoir la valeur d'une expression avant exécution ; analyser un programme donné et modifier ses paramètres ; boucle inconditionnelle\nTableur : formules, formuler des conjectures à l'aide d'un tableur ou d'un langage algorithmique\nPoints d'accroche : D1 (formules et tableaux), N4 (repérage), N5 (motifs), D3 (graphiques), D4 (tableur et simulation)\n0,5 sem. réservée pour l'équilibre du décompte — le temps réel est pris sur les dédoublements"
+    },
+    {
+      "code": "N3",
+      "titre": "Fractions : comparer, additionner, soustraire",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ch1",
+        "Re2",
+        "Ra1",
+        "Ra2",
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "✖3",
+          "niveau": "5e",
+          "texte": "Diviser par un nombre décimal.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-diviser-par-un-nombre-decimal.md"
+        },
+        {
+          "code": "✖9",
+          "niveau": "5e",
+          "texte": "Utiliser les notions de multiples et diviseurs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-les-notions-de-multiples-et-diviseurs.md"
+        },
+        {
+          "code": "✖10",
+          "niveau": "5e",
+          "texte": "Connaitre les critères de divisibilité par 3 et par 9.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-les-criteres-de-divisibilite-par-3-et-.md"
+        },
+        {
+          "code": "➗1",
+          "niveau": "5e",
+          "texte": "Comparer des fractions.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-comparer-des-fractions.md"
+        },
+        {
+          "code": "➗2",
+          "niveau": "5e",
+          "texte": "Additionner et soustraire des fractions de dénominateurs quelconques.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-additionner-et-soustraire-des-fractions-de-denom.md"
+        },
+        {
+          "code": "➗3",
+          "niveau": "5e",
+          "texte": "Résoudre des problèmes avec des additions et soustractions de fractions.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-resoudre-des-problemes-avec-des-additions-et-sou.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0✖🅰1",
+          "niveau": "5e",
+          "texte": "Mobiliser les critères de divisibilité par 2, 5 et 10 vus en CM1 et CM2.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0✖🅰2",
+          "niveau": "5e",
+          "texte": "Déterminer le quotient et le reste dans une division euclidienne, par exemple, savoir que 17 = 3 × 5 + 2.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0✖🅰3",
+          "niveau": "5e",
+          "texte": "Utiliser les tables de multiplication pour factoriser des nombres entiers décomposables en produit de deux nombres différents de 1, par exemple, 21 = 3 × 7.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰10",
+          "niveau": "5e",
+          "texte": "Entretenir l’écriture décimale des fractions simples comme 1/2 ; 1/4 ; 3/4 ; 3/2 ; 4/2 ; 5/2 ; 1/10 ; 100/100 ; 7/1",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰11",
+          "niveau": "5e",
+          "texte": "Faire vivre la notion de nombre quotient en complétant des multiplications à trou : 3 × … = 7 puis 3 × (7/3) = …",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰13",
+          "niveau": "5e",
+          "texte": "Reconnaitre des fractions égales : 2/3 = …/15 ; 4/7 = …/14",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰14",
+          "niveau": "5e",
+          "texte": "Comparer deux fractions : 2/7 et 5/7 ; 8/12 et 8/21 ; 3/4 et 7/18 ; 8/3 et 6/7",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰15",
+          "niveau": "5e",
+          "texte": "Écrire une fraction sous la forme d’une somme d’un nombre entier et d’une fraction inférieure à 1 : 17/5 = 3 + 2/5",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰16",
+          "niveau": "5e",
+          "texte": "Addition et soustraction de fractions simples : 3/5 + 4/5 ; 1 - 2/3 ; 4/7 - 2/21 ; 3 + 2/5 ; 2/5 + 1/4",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰17",
+          "niveau": "5e",
+          "texte": "Prendre une fraction simple d’un nombre : le 1/3 de 18 ; le 1/4 de 12",
+          "famille": "Ca"
+        },
+        {
+          "code": "0➗🅰19",
+          "niveau": "5e",
+          "texte": "Écrire un même nombre sous de multiples formes, par exemple dire que 1,2 = 12/10 = 6/5 = 1 + 1/5 = 120 % = 120/100",
+          "famille": "Ch"
+        },
+        {
+          "code": "0🔤🅰25",
+          "niveau": "5e",
+          "texte": "Nombre quotient.",
+          "famille": "Ch"
+        }
+      ],
+      "notes": "Séquence unique : le chapitre 6N6 actualisé couvre déjà le vocabulaire, le partage, la droite graduée, la multiplication par une fraction, les fractions égales, la simplification et l'addition à dénominateurs égaux puis multiples\nRappel 6ᵉ (≈ 1 séance) : division euclidienne, diviseur, multiple, divisibilité ; critères par 2, 3, 5, 9 et 10 — chapitre 6N4\nSéance de réactivation indispensable sur les fractions égales et la simplification : les élèves n'y ont pas touché depuis juin, et le cas général ne peut pas s'installer sur un socle froid\nDéfinir le nombre rationnel ; le repérer sur une droite graduée ; le nombre irrationnel π\nDifférentes écritures (décimale ou non, fraction décimale, valeur approchée, arrondi)\nUtiliser une proportion : multiplier un nombre par une fraction — rappel du chapitre 6N6\nConsolider la simplification sur de plus grands nombres ($\\frac{12}{28}$, $\\frac{45}{35}$, $\\frac{63}{81}$) — la notion de fraction irréductible reste en 4ᵉ\nDiviser par un nombre décimal, avec les quotients\nCœur du chapitre : réduire au même dénominateur dans le cas général, quand aucun dénominateur n'est multiple de l'autre\nPremière application — comparer : même dénominateur, même numérateur, par rapport à 1, puis par réduction ($\\frac{3}{4}$ et $\\frac{2}{3}$)\nSeconde application — additionner et soustraire à dénominateurs quelconques ($\\frac{3}{4}-\\frac{11}{6}$) : même geste que la comparaison, d'où le regroupement en une seule séquence\nRésoudre des problèmes avec des additions et des soustractions de fractions\nLes fractions négatives restent hors programme de 5ᵉ : les exemples à résultat négatif sont réservés à la 4ᵉ\nL'espacement est assuré par les automatismes ritualisés sur toute l'année, pas par un découpage en deux chapitres\nDémonstration possible : activité 3 p. 47, ancien manuel Phare\nAP : droite graduée ; conversions d'unités ; systèmes centésimal et sexagésimal\n⚠ Supprimés : nombres premiers < 30 et décomposition en facteurs premiers (hors objectifs 5ᵉ du BO 2026)"
+    },
+    {
+      "code": "G3",
+      "titre": "Construire un triangle et ses droites remarquables",
+      "theme": "G",
+      "semaines": 2,
+      "competences": [
+        "Ch1",
+        "Ch3",
+        "Re4",
+        "Ra3",
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "🔺2",
+          "niveau": "5e",
+          "texte": "Construire des triangles à partir de données partielles.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-construire-des-triangles-a-partir-de-donnees-par.md"
+        },
+        {
+          "code": "🔺3",
+          "niveau": "5e",
+          "texte": "Connaitre les propriétés des médiatrices et du cercle circonscrit dans le cas de triangles particuliers.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-les-proprietes-des-mediatrices-et-du-c.md"
+        },
+        {
+          "code": "🔺5",
+          "niveau": "5e",
+          "texte": "Définir et tracer les hauteurs dans un triangle.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-definir-et-tracer-les-hauteurs-dans-un-triangle.md"
+        },
+        {
+          "code": "🔺6",
+          "niveau": "5e",
+          "texte": "Savoir que les hauteurs d’un triangle sont concourantes.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-savoir-que-les-hauteurs-d-un-triangle-sont-conco.md"
+        },
+        {
+          "code": "🔺7",
+          "niveau": "5e",
+          "texte": "Définir et tracer les médianes dans un triangle.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-definir-et-tracer-les-medianes-dans-un-triangle.md"
+        },
+        {
+          "code": "🔺8",
+          "niveau": "5e",
+          "texte": "Démontrer qu’une médiane partage un triangle en deux triangles d’aires égales.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-demontrer-qu-une-mediane-partage-un-triangle-en-.md"
+        },
+        {
+          "code": "🔺9",
+          "niveau": "5e",
+          "texte": "Utiliser ces propriétés dans le cas de triangles particuliers.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-ces-proprietes-dans-le-cas-de-triangles.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0📐🅰36",
+          "niveau": "5e",
+          "texte": "Reconnaitre une bissectrice.",
+          "famille": "Ch"
+        },
+        {
+          "code": "0🔺🅰40",
+          "niveau": "5e",
+          "texte": "Connaitre la notion de médiatrice, de cercle circonscrit.",
+          "famille": "Ch"
+        }
+      ],
+      "notes": "La construction de la médiatrice est faite en 6ᵉ — simple rappel, ainsi que la bissectrice\nConstruire des triangles à partir de données partielles ; cas d'existence, cas d'alignement de trois points\nLe travail de 5ᵉ porte sur le concours des médiatrices et le cercle circonscrit\nDéfinir et tracer les hauteurs (concourantes : orthocentre) et les médianes — les médianes sont nouvelles au programme\nUtiliser ces propriétés dans le cas de triangles particuliers : le sommet de l'angle droit est sur le cercle de diamètre l'hypoténuse\nDémonstration : les médiatrices sont concourantes → centre du cercle circonscrit\nDémonstration : une médiane partage le triangle en deux aires égales (même base, même hauteur — la formule de l'aire n'est établie qu'en M1)\nAP : GeoGebra\nDroite d'Euler : prolongement possible, hors programme 5ᵉ"
+    },
+    {
+      "code": "D1",
+      "titre": "Proportionnalité, pourcentages et échelles",
+      "theme": "D",
+      "semaines": 1.5,
+      "competences": [
+        "Ch1",
+        "Ch4",
+        "Mo1",
+        "Ca1",
+        "Co3"
+      ],
+      "objectifs": [
+        {
+          "code": "∝1",
+          "niveau": "5e",
+          "texte": "Utiliser des proportions, des pourcentages.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-des-proportions-des-pourcentages.md"
+        },
+        {
+          "code": "∝2",
+          "niveau": "5e",
+          "texte": "Calculer, appliquer des proportions, des pourcentages.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-appliquer-des-proportions-des-pourcenta.md"
+        },
+        {
+          "code": "∝3",
+          "niveau": "5e",
+          "texte": "Identifier des situations de proportionnalité dans des contextes concrets (prix, recettes, distances, échelles).",
+          "famille": "Mo",
+          "fichier": "cours/5e/objectifs/OBJ-identifier-des-situations-de-proportionnalite-da.md"
+        },
+        {
+          "code": "📈2",
+          "niveau": "5e",
+          "texte": "Produire un tableau de valeurs.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-produire-un-tableau-de-valeurs.md"
+        },
+        {
+          "code": "📈3",
+          "niveau": "5e",
+          "texte": "Lire et interpréter un tableau de valeurs.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-lire-et-interpreter-un-tableau-de-valeurs.md"
+        },
+        {
+          "code": "📈6",
+          "niveau": "5e",
+          "texte": "Traduire la relation de dépendance entre deux grandeurs par un tableau de valeurs à partir d’une formule.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-traduire-la-relation-de-dependance-entre-deux-gr.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0∝🅰46",
+          "niveau": "5e",
+          "texte": "Reconnaitre si une situation donnée entre dans le cadre de la proportionnalité ou non.",
+          "famille": "Mo"
+        },
+        {
+          "code": "0∝🅰47",
+          "niveau": "5e",
+          "texte": "Mobiliser une procédure adaptée (propriété de linéarité pour la multiplication ou l’addition, retour à l’unité) pour résoudre un problème lié à la proportionnalité dans des situations simples.",
+          "famille": "Ra"
+        },
+        {
+          "code": "0➗🅰18",
+          "niveau": "5e",
+          "texte": "Prendre 1 %, 10 % ou 50 % d’un nombre, en lien avec la proportionnalité",
+          "famille": "Mo"
+        }
+      ],
+      "notes": "Reconnaître une situation de proportionnalité (grandeurs proportionnelles ou non)\nCalculer une quatrième proportionnelle (retour à l'unité, linéarité, coefficient)\nProduire, lire et interpréter un tableau de valeurs\nTraduire la dépendance entre deux grandeurs par un tableau de valeurs à partir d'une formule — la formule a été produite en N2\nAppliquer et calculer un pourcentage ; pourcentage simple d'augmentation ou de baisse\nDéfinir et utiliser une échelle\nAutomatismes : prendre 1 %, 10 %, 50 % d'un nombre\nLes représentations graphiques sont traitées à part, en D2, après le repérage dans le plan\nAP : tableur"
+    },
+    {
+      "code": "G4",
+      "titre": "Symétrie centrale : construire et démontrer",
+      "theme": "G",
+      "semaines": 1,
+      "competences": [
+        "Ch2",
+        "Mo3",
+        "Ra3"
+      ],
+      "objectifs": [
+        {
+          "code": "🔄2",
+          "niveau": "5e",
+          "texte": "Connaitre les propriétés du demi-tour.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-les-proprietes-du-demi-tour.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0🔄🅰33",
+          "niveau": "5e",
+          "texte": "Construire le symétrique, par rapport à un axe, d’un point, d’une figure, sur feuille blanche.",
+          "famille": "Re"
+        }
+      ],
+      "notes": "AP : conjecturer les propriétés du demi-tour avec GeoGebra\nRechercher les éléments de symétrie d'une figure : axes et centre — axes de G1, centre installé ici\nUtiliser les propriétés pour construire le symétrique d'une figure\nConservation des longueurs, des angles et des aires\nS'initier au raisonnement déductif : tri des données utiles, choix d'une propriété, conclusion avec « donc »\nRaisonnement déductif structuré : une seule propriété, une seule étape"
+    },
+    {
+      "code": "N4",
+      "titre": "Découvrir, repérer et comparer les nombres relatifs",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ch1",
+        "Re2",
+        "Ca2"
+      ],
+      "objectifs": [
+        {
+          "code": "➖1",
+          "niveau": "5e",
+          "texte": "Définir les nombres relatifs.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-definir-les-nombres-relatifs.md"
+        },
+        {
+          "code": "➖2",
+          "niveau": "5e",
+          "texte": "Définir l’opposé et la valeur absolue d’un nombre.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-definir-l-oppose-et-la-valeur-absolue-d-un-nombr.md"
+        },
+        {
+          "code": "➖3",
+          "niveau": "5e",
+          "texte": "Définir la notion de nombre positif, strictement positif, négatif, strictement négatif.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-definir-la-notion-de-nombre-positif-strictement-.md"
+        },
+        {
+          "code": "➖4",
+          "niveau": "5e",
+          "texte": "Utiliser les nombres relatifs pour représenter des grandeurs observables qui peuvent prendre des valeurs inférieures à zéro (température, temps, altitude, etc.), en particulier dans le cadre de la résolution de problèmes.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-les-nombres-relatifs-pour-representer-d.md"
+        },
+        {
+          "code": "➖5",
+          "niveau": "5e",
+          "texte": "Lire l’abscisse d’un nombre relatif sur une droite graduée et placer un nombre relatif d’abscisse donnée.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-lire-l-abscisse-d-un-nombre-relatif-sur-une-droi.md"
+        },
+        {
+          "code": "➖6",
+          "niveau": "5e",
+          "texte": "Comparer et ranger dans l’ordre croissant et décroissant des nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-comparer-et-ranger-dans-l-ordre-croissant-et-dec.md"
+        },
+        {
+          "code": "🧭1",
+          "niveau": "5e",
+          "texte": "Sur une droite graduée : lire l’abscisse d’un point donné",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-sur-une-droite-graduee-lire-l-abscisse-d-un-poin.md"
+        },
+        {
+          "code": "🧭2",
+          "niveau": "5e",
+          "texte": "Sur une droite graduée : placer un point d’abscisse donnée.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-sur-une-droite-graduee-placer-un-point-d-absciss.md"
+        },
+        {
+          "code": "🧭3",
+          "niveau": "5e",
+          "texte": "Dans le plan muni d’un repère orthogonal : lire les coordonnées d’un point donné.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-dans-le-plan-muni-d-un-repere-orthogonal-lire-le.md"
+        },
+        {
+          "code": "🧭4",
+          "niveau": "5e",
+          "texte": "Dans le plan muni d’un repère orthogonal : placer un point de coordonnées données.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-dans-le-plan-muni-d-un-repere-orthogonal-placer-.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0➗🅰12",
+          "niveau": "5e",
+          "texte": "Lire l’abscisse d’un point sur une droite graduée en tiers, en quarts, en moitiés, en dixièmes",
+          "famille": "Re"
+        },
+        {
+          "code": "0🧭🅰26",
+          "niveau": "5e",
+          "texte": "Placer sur une demi-droite graduée un point dont l’abscisse est un nombre décimal.",
+          "famille": "Re"
+        },
+        {
+          "code": "0🧭🅰27",
+          "niveau": "5e",
+          "texte": "Repérer un nombre décimal sur une demi-droite graduée.",
+          "famille": "Re"
+        }
+      ],
+      "notes": "Définir les nombres relatifs (écriture, usages dans la vie courante)\nOpposé et valeur absolue = distance à zéro (sans la notation)\nVocabulaire : positif, strictement positif, négatif, strictement négatif\nRésoudre des problèmes avec des grandeurs pouvant descendre sous zéro : température, altitude, temps, comptes\nLire et placer l'abscisse d'un relatif sur une droite graduée ; comparer et ranger (ordre croissant et décroissant)\nRepérer un point dans le plan : lire et placer des coordonnées dans un repère orthogonal\nLe repérage installé ici est le prérequis de D2 et D3 (graphiques)\nAP : algorithmique — repérage avec Scratch"
+    },
+    {
+      "code": "G5",
+      "titre": "Angles, droites parallèles et somme des angles d'un triangle",
+      "theme": "G",
+      "semaines": 1.5,
+      "competences": [
+        "Mo3",
+        "Mo4",
+        "Ra3",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "📐1",
+          "niveau": "5e",
+          "texte": "Caractériser le parallélisme par les angles : angles alternes internes, angles correspondants.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-caracteriser-le-parallelisme-par-les-angles-angl.md"
+        },
+        {
+          "code": "🔺1",
+          "niveau": "5e",
+          "texte": "Connaitre la somme des angles d’un triangle et savoir la démontrer.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-la-somme-des-angles-d-un-triangle-et-s.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0📐🅰34",
+          "niveau": "5e",
+          "texte": "Reconnaitre et citer sur une configuration géométrique des angles : angle plein, plat, nul, droit ; angles opposés par le sommet, adjacents, supplémentaires, aigus, obtus.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0📐🅰35",
+          "niveau": "5e",
+          "texte": "Savoir qu’un angle droit mesure 90°, qu’un angle plat mesure 180°.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0📐🅰37",
+          "niveau": "5e",
+          "texte": "Connaitre les mesures des angles de l’équerre dont dispose l’élève (30° 60° 90° ou 45° 45° 90°).",
+          "famille": "Ca"
+        },
+        {
+          "code": "0🔺🅰38",
+          "niveau": "5e",
+          "texte": "Reconnaitre un triangle isocèle, équilatéral ou rectangle à partir d’un schéma codé.",
+          "famille": "Re"
+        },
+        {
+          "code": "0🔺🅰39",
+          "niveau": "5e",
+          "texte": "Connaitre la somme des angles d’un triangle, calculer le 3e angle d’un triangle connaissant les mesures des deux autres.",
+          "famille": "Ca"
+        }
+      ],
+      "notes": "Angles complémentaires, supplémentaires, adjacents, opposés par le sommet : acquis de 6ᵉ — simple rappel, ainsi que les mesures des angles de l'équerre\nAngles alternes-internes et correspondants ; caractériser le parallélisme par les angles\nLa somme des angles d'un triangle est connue depuis la 6ᵉ — l'enjeu de 5ᵉ est de la démontrer\nCalculer le 3ᵉ angle ; angles des triangles particuliers (isocèle, rectangle, équilatéral)\nReconnaître un triangle particulier à partir d'un schéma codé (automatisme)\nDémonstration : somme des angles = 180°, en s'appuyant sur les alternes-internes"
+    },
+    {
+      "code": "N5",
+      "titre": "Calcul littéral : développer et factoriser",
+      "theme": "N",
+      "semaines": 1,
+      "competences": [
+        "Ch2",
+        "Ra1",
+        "Ca3",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "🔤5",
+          "niveau": "5e",
+          "texte": "Exploiter les relations k(a + b) = ka + kb ou k(a – b) = ka – kb pour factoriser, ou développer une expression littérale.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-exploiter-les-relations-k-a-b-ka-kb-ou-k-a-b-ka-.md"
+        },
+        {
+          "code": "🔤8",
+          "niveau": "5e",
+          "texte": "Utiliser un contre-exemple pour démontrer qu’une assertion est fausse.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-un-contre-exemple-pour-demontrer-qu-une.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0🔤🅰22",
+          "niveau": "5e",
+          "texte": "Identifier des régularités et poursuivre une suite de motifs évolutive.",
+          "famille": "Ch"
+        },
+        {
+          "code": "0🔤🅰23",
+          "niveau": "5e",
+          "texte": "Trouver le nombre d’éléments pour une étape donnée dans une suite de motifs évolutive.",
+          "famille": "Ch"
+        },
+        {
+          "code": "0🔤🅰24",
+          "niveau": "5e",
+          "texte": "Identifier la structure d’un motif évolutif en repérant une régularité.",
+          "famille": "Ch"
+        }
+      ],
+      "notes": "Développer : distributivité simple $k(a+b)$ et $k(a-b)$\nFactoriser (facteur apparent)\nRéinvestir le calcul astucieux de N1 : multiplier par 9, 11, 99…\nLa réduction de $ax+b$ a été installée en N2 : on la réinvestit sur des expressions développées\nRéfuter une assertion par un contre-exemple\nLe test d'une égalité a été installé en N2\nPremières démonstrations par le calcul littéral ; la propriété générale est formalisée en N7\nSuites de motifs évolutives : régularité, structure, formule"
+    },
+    {
+      "code": "A2",
+      "titre": "Marge de période — évaluations, remédiation",
+      "theme": "A",
+      "semaines": 0.5,
+      "competences": [],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Marge de période réservée aux évaluations, remédiations, devoirs communs, sorties et imprévus."
+    },
+    {
+      "code": "D2",
+      "titre": "Représenter la dépendance entre deux grandeurs : graphiques et grandeurs quotients",
+      "theme": "D",
+      "semaines": 1,
+      "competences": [
+        "Mo1",
+        "Re1",
+        "Ra1",
+        "Ca1",
+        "Co3"
+      ],
+      "objectifs": [
+        {
+          "code": "∝4",
+          "niveau": "5e",
+          "texte": "Utiliser un coefficient de proportionnalité dans des contextes concrets (prix unitaire, vitesse moyenne, échelle, etc.).",
+          "famille": "Mo",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-un-coefficient-de-proportionnalite-dans.md"
+        },
+        {
+          "code": "∝5",
+          "niveau": "5e",
+          "texte": "Représenter une situation de proportionnalité par un tableau ou un graphique.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-representer-une-situation-de-proportionnalite-pa.md"
+        },
+        {
+          "code": "∝6",
+          "niveau": "5e",
+          "texte": "Reconnaitre une situation de proportionnalité à partir d’un tableau ou d’un graphique.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-reconnaitre-une-situation-de-proportionnalite-a-.md"
+        },
+        {
+          "code": "∝7",
+          "niveau": "5e",
+          "texte": "Reconnaitre graphiquement qu’un nuage de points est ou n’est pas associé à une situation de proportionnalité entre données discrètes.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-reconnaitre-graphiquement-qu-un-nuage-de-points-.md"
+        },
+        {
+          "code": "📈4",
+          "niveau": "5e",
+          "texte": "Placer dans un repère orthogonal donné des points correspondant à un tableau de valeurs.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-placer-dans-un-repere-orthogonal-donne-des-point.md"
+        },
+        {
+          "code": "📈5",
+          "niveau": "5e",
+          "texte": "Lire et interpréter un graphique cartésien donné par une courbe ou un nuage de points.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-lire-et-interpreter-un-graphique-cartesien-donne.md"
+        },
+        {
+          "code": "📈8",
+          "niveau": "5e",
+          "texte": "Caractériser graphiquement la proportionnalité.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-caracteriser-graphiquement-la-proportionnalite.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Séquence de synthèse : on relie ici les trois écritures d'une même dépendance — la formule produite en N2, le tableau de valeurs de D1, le graphique installé ici\nPasser d'une écriture à l'autre sur un même exemple : formule → tableau → graphique, et retour\nGrandeurs quotients : vitesse moyenne, prix unitaire, débit\nReprésenter une situation de proportionnalité par un tableau ou par un graphique\nPlacer dans un repère orthogonal des points correspondant à un tableau de valeurs\nLire et interpréter un graphique cartésien : courbe ou nuage de points\nCaractériser graphiquement la proportionnalité : droite passant par l'origine\nReconnaître si un nuage de points relève ou non d'une proportionnalité\nPlacée après N4 : le repérage dans le plan y est introduit\nLa notion de fonction n'est pas au programme de 5ᵉ : on installe seulement la formulation « en fonction de » et le passage entre registres\nAP / demi-groupe : tableur-grapheur"
+    },
+    {
+      "code": "N6",
+      "titre": "Additionner et soustraire des nombres relatifs",
+      "theme": "N",
+      "semaines": 2,
+      "competences": [
+        "Ra1",
+        "Ca1",
+        "Ca2"
+      ],
+      "objectifs": [
+        {
+          "code": "➖7",
+          "niveau": "5e",
+          "texte": "Additionner deux nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-additionner-deux-nombres-decimaux-relatifs.md"
+        },
+        {
+          "code": "➖8",
+          "niveau": "5e",
+          "texte": "Additionner plusieurs nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-additionner-plusieurs-nombres-decimaux-relatifs.md"
+        },
+        {
+          "code": "➖9",
+          "niveau": "5e",
+          "texte": "Soustraire deux nombres décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-soustraire-deux-nombres-decimaux-relatifs.md"
+        },
+        {
+          "code": "➖11",
+          "niveau": "5e",
+          "texte": "Simplifier l’écriture de sommes comportant des parenthèses.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-simplifier-l-ecriture-de-sommes-comportant-des-p.md"
+        },
+        {
+          "code": "➖12",
+          "niveau": "5e",
+          "texte": "Enchainer additions et soustractions de décimaux relatifs.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-enchainer-additions-et-soustractions-de-decimaux.md"
+        },
+        {
+          "code": "➖13",
+          "niveau": "5e",
+          "texte": "Résoudre des problèmes mobilisant addition et soustraction de nombres décimaux relatifs.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-resoudre-des-problemes-mobilisant-addition-et-so.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Additionner deux puis plusieurs nombres relatifs\nSoustraire des nombres relatifs\nEnchaîner additions et soustractions\nSimplifier l'écriture de sommes comportant des parenthèses : $+(-3)=-3$, $-(-3)=+3$\nProblèmes : températures, altitudes, comptes\nVolontairement séparée de N4 par les vacances d'hiver et trois semaines de cours"
+    },
+    {
+      "code": "G6",
+      "titre": "Définir, construire et reconnaître un parallélogramme",
+      "theme": "G",
+      "semaines": 1.5,
+      "competences": [
+        "Re4",
+        "Ra3",
+        "Ra4",
+        "Co2"
+      ],
+      "objectifs": [
+        {
+          "code": "🔷1",
+          "niveau": "5e",
+          "texte": "Définir le parallélogramme.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-definir-le-parallelogramme.md"
+        },
+        {
+          "code": "🔷2",
+          "niveau": "5e",
+          "texte": "Construire des parallélogrammes.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-construire-des-parallelogrammes.md"
+        },
+        {
+          "code": "🔷3",
+          "niveau": "5e",
+          "texte": "Connaitre les propriétés caractéristiques des côtés opposés et des diagonales.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-les-proprietes-caracteristiques-des-co.md"
+        },
+        {
+          "code": "🔷4",
+          "niveau": "5e",
+          "texte": "Utiliser une propriété caractéristique sur les diagonales ou les côtés pour les construire ou donner la nature du quadrilatère.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-une-propriete-caracteristique-sur-les-d.md"
+        },
+        {
+          "code": "🔷5",
+          "niveau": "5e",
+          "texte": "Définir les parallélogrammes particuliers (rectangle, losange, carré).",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-definir-les-parallelogrammes-particuliers-rectan.md"
+        },
+        {
+          "code": "🔷6",
+          "niveau": "5e",
+          "texte": "Connaitre les propriétés caractéristiques.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-les-proprietes-caracteristiques.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0🔷🅰41",
+          "niveau": "5e",
+          "texte": "Reconnaitre en justifiant un quadrilatère, un parallélogramme, un rectangle, un losange, un carré, un trapèze, un pentagone, un hexagone dans des figures complexes.",
+          "famille": "Ra"
+        },
+        {
+          "code": "0🔷🅰42",
+          "niveau": "5e",
+          "texte": "Exploiter le codage d’une figure pour identifier des parallélogrammes particuliers.",
+          "famille": "Re"
+        }
+      ],
+      "notes": "Définir le parallélogramme à partir des côtés opposés parallèles\nUtiliser le centre de symétrie pour démontrer ses propriétés\nDémonstration : les diagonales se coupent en leur milieu\nUtiliser définition et propriétés pour construire (angles) et pour prouver\nParallélogrammes particuliers : rectangle, losange, carré\nL'aire est traitée juste après, en M1\nAP : GeoGebra pour conjecturer"
+    },
+    {
+      "code": "M1",
+      "titre": "Calculer des aires",
+      "theme": "M",
+      "semaines": 1,
+      "competences": [
+        "Re1",
+        "Re2",
+        "Ra1",
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "🔷7",
+          "niveau": "5e",
+          "texte": "Savoir calculer l’aire d’un parallélogramme et de figures complexes.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-savoir-calculer-l-aire-d-un-parallelogramme-et-d.md"
+        },
+        {
+          "code": "🔷8",
+          "niveau": "5e",
+          "texte": "Résoudre des problèmes faisant appel à des conversions d’unités de longueur et d’unités d’aires.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-resoudre-des-problemes-faisant-appel-a-des-conve.md"
+        },
+        {
+          "code": "🔺4",
+          "niveau": "5e",
+          "texte": "Calculer l’aire d’un triangle.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-l-aire-d-un-triangle.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Aire du parallélogramme et de figures composées, en prolongement direct de G6\nAire du triangle, déduite de celle du parallélogramme\nRésoudre des problèmes faisant appel à des conversions d'unités de longueur et d'aires\nPlacée juste après G6, en fin de P4 : l'aire du parallélogramme se démontre à partir de la construction, encore fraîche\nL'aire du disque et les volumes suivent en M2, au retour des vacances de printemps"
+    },
+    {
+      "code": "A3",
+      "titre": "Marge de période — évaluations, remédiation",
+      "theme": "A",
+      "semaines": 0.5,
+      "competences": [],
+      "objectifs": [],
+      "automatismes": [],
+      "notes": "Marge de période réservée aux évaluations, remédiations, devoirs communs, sorties et imprévus."
+    },
+    {
+      "code": "D3",
+      "titre": "Traiter et représenter des données",
+      "theme": "D",
+      "semaines": 1.5,
+      "competences": [
+        "Ch1",
+        "Re3",
+        "Ca1",
+        "Co3"
+      ],
+      "objectifs": [
+        {
+          "code": "🎲4",
+          "niveau": "5e",
+          "texte": "Répéter matériellement une expérience aléatoire simple. Enregistrer les résultats observés dans un tableau d’effectifs et de fréquences.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-repeter-materiellement-une-experience-aleatoire-.md"
+        },
+        {
+          "code": "📊1",
+          "niveau": "5e",
+          "texte": "Recueillir et organiser des données.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-recueillir-et-organiser-des-donnees.md"
+        },
+        {
+          "code": "📊2",
+          "niveau": "5e",
+          "texte": "Calculer des effectifs et des fréquences (exprimées sous forme décimale, fractionnaire ou de pourcentage).",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-des-effectifs-et-des-frequences-exprime.md"
+        },
+        {
+          "code": "📊3",
+          "niveau": "5e",
+          "texte": "Lire et interpréter des informations présentées sous forme de tableaux, de diagrammes et de graphiques.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-lire-et-interpreter-des-informations-presentees-.md"
+        },
+        {
+          "code": "📊4",
+          "niveau": "5e",
+          "texte": "Représenter, sur papier ou à l’aide d’un tableur-grapheur, des données sous la forme d’un tableau, d’un diagramme (diagramme en barres, diagramme circulaire) ou d’un graphique cartésien.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-representer-sur-papier-ou-a-l-aide-d-un-tableur-.md"
+        },
+        {
+          "code": "📊5",
+          "niveau": "5e",
+          "texte": "Choisir une représentation adaptée à ce qu’il convient de mettre en avant.",
+          "famille": "Re",
+          "fichier": "cours/5e/objectifs/OBJ-choisir-une-representation-adaptee-a-ce-qu-il-co.md"
+        },
+        {
+          "code": "📊6",
+          "niveau": "5e",
+          "texte": "Calculer et interpréter la moyenne simple d’une série de données.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-et-interpreter-la-moyenne-simple-d-une-.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Recueillir et organiser des données\nCalculer des effectifs et des fréquences (décimale, fractionnaire, pourcentage)\nReprésenter : tableau, diagramme en barres, diagramme circulaire, graphique cartésien\nChoisir une représentation adaptée à ce qu'il faut mettre en avant ; lire et interpréter\nCalculer et interpréter la moyenne simple d'une série\nRépéter matériellement une expérience aléatoire et consigner les résultats dans un tableau d'effectifs et de fréquences — c'est la passerelle vers D4\nAP / demi-groupe : tableur-grapheur"
+    },
+    {
+      "code": "N7",
+      "titre": "Calcul littéral : résoudre des équations (ax = c ; x + b = c)",
+      "theme": "N",
+      "semaines": 1.5,
+      "competences": [
+        "Mo2",
+        "Ra1",
+        "Ra4",
+        "Ca3"
+      ],
+      "objectifs": [
+        {
+          "code": "🔤7",
+          "niveau": "5e",
+          "texte": "Démontrer une propriété générale par le calcul littéral.",
+          "famille": "Ra",
+          "fichier": "cours/5e/objectifs/OBJ-demontrer-une-propriete-generale-par-le-calcul-l.md"
+        },
+        {
+          "code": "🔤10",
+          "niveau": "5e",
+          "texte": "Donner à la lettre le statut d’inconnue.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-donner-a-la-lettre-le-statut-d-inconnue.md"
+        },
+        {
+          "code": "🔤11",
+          "niveau": "5e",
+          "texte": "Modéliser des problèmes relevant des opérations à trous par des équations du type a𝑥 = c ou 𝑥 + b = c.",
+          "famille": "Mo",
+          "fichier": "cours/5e/objectifs/OBJ-modeliser-des-problemes-relevant-des-operations-.md"
+        },
+        {
+          "code": "🔤12",
+          "niveau": "5e",
+          "texte": "Résoudre des équations du type a𝑥 = c ou 𝑥 + b = c par des méthodes arithmétiques s'appuyant sur les opérations inverses.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-resoudre-des-equations-du-type-a-c-ou-b-c-par-de.md"
+        }
+      ],
+      "automatismes": [],
+      "notes": "Donner à la lettre le statut d'inconnue\nTester si un nombre est solution d'une équation\nModéliser par une équation $ax=c$ ou $x+b=c$ un problème relevant d'une opération à trou\nRésoudre par méthodes arithmétiques s'appuyant sur les opérations inverses ; vérifier la solution\nDémonstration : établir une propriété générale par le calcul littéral, en réinvestissant le développement de N5\nProlongement algorithmique : programme de calcul, test d'une égalité\n⚠ Le BO 5ᵉ se limite à $ax=c$ et $x+b=c$ : $ax+b=c$ est hors programme cette année"
+    },
+    {
+      "code": "M2",
+      "titre": "Calculer des volumes",
+      "theme": "M",
+      "semaines": 1,
+      "competences": [
+        "Ch4",
+        "Mo3",
+        "Re4",
+        "Ca1"
+      ],
+      "objectifs": [
+        {
+          "code": "🧊3",
+          "niveau": "5e",
+          "texte": "Calculer le volume du cube, du pavé droit, du prisme droit.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-le-volume-du-cube-du-pave-droit-du-pris.md"
+        },
+        {
+          "code": "🧊4",
+          "niveau": "5e",
+          "texte": "Connaitre et convertir des unités usuelles (volume et capacité).",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-connaitre-et-convertir-des-unites-usuelles-volum.md"
+        },
+        {
+          "code": "🧊5",
+          "niveau": "5e",
+          "texte": "Calculer l’aire du disque, le volume du cylindre de révolution.",
+          "famille": "Ca",
+          "fichier": "cours/5e/objectifs/OBJ-calculer-l-aire-du-disque-le-volume-du-cylindre-.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0⬆🅰21",
+          "niveau": "5e",
+          "texte": "Connaitre les unités d’aires et de volume",
+          "famille": "Ca"
+        }
+      ],
+      "notes": "Convertir des unités de volume et de capacité\nVolume du cube, du pavé droit, du prisme droit : $V$ = aire de la base × hauteur\nAire du disque — ⚠ elle n'est plus traitée en 6ᵉ : à installer ici, avant la formule $V=\\pi r^{2}h$\nVolume du cylindre de révolution\nRéinvestit les patrons et la perspective cavalière de G2, et arrive après l'aire du parallélogramme et du triangle (M1, fin mars)\nGeoGebra : patrons interactifs"
+    },
+    {
+      "code": "D4",
+      "titre": "Aborder les probabilités",
+      "theme": "D",
+      "semaines": 1.5,
+      "competences": [
+        "Mo1",
+        "Ra2",
+        "Ca1",
+        "Co1"
+      ],
+      "objectifs": [
+        {
+          "code": "🎲1",
+          "niveau": "5e",
+          "texte": "Aborder les questions relatives au hasard à partir de problèmes simples.",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-aborder-les-questions-relatives-au-hasard-a-part.md"
+        },
+        {
+          "code": "🎲2",
+          "niveau": "5e",
+          "texte": "Utiliser le vocabulaire des probabilités dans des contextes concrets : expérience aléatoire, issue, évènement.",
+          "famille": "Co",
+          "fichier": "cours/5e/objectifs/OBJ-utiliser-le-vocabulaire-des-probabilites-dans-de.md"
+        },
+        {
+          "code": "🎲3",
+          "niveau": "5e",
+          "texte": "Attribuer des probabilités dans des cas simples (équiprobabilité).",
+          "famille": "Ch",
+          "fichier": "cours/5e/objectifs/OBJ-attribuer-des-probabilites-dans-des-cas-simples-.md"
+        }
+      ],
+      "automatismes": [
+        {
+          "code": "0🎲🅰43",
+          "niveau": "5e",
+          "texte": "Positionner sur une échelle de probabilité les évènements du type : évènement impossible ; évènement certain ; obtenir pile en lançant une pièce équilibrée ; obtenir une valeur donnée en lançant un dé équilibré ; obtenir une couleur d’une boule lors du tirage dans une urne ; ne pas obtenir la bonne combinaison au loto ; obtenir 10 fois de suite la valeur 1 en lançant un dé à six faces.",
+          "famille": "Ch"
+        },
+        {
+          "code": "0🎲🅰44",
+          "niveau": "5e",
+          "texte": "Donner la probabilité sous diverses formes (fraction, décimale, pourcentage) pour les cinq premiers évènements ci-dessus.",
+          "famille": "Ca"
+        },
+        {
+          "code": "0🎲🅰45",
+          "niveau": "5e",
+          "texte": "Lier l’expression « une chance sur quatre » (par exemple) et la probabilité 1/4.",
+          "famille": "Ch"
+        }
+      ],
+      "notes": "Aborder le hasard à partir de problèmes simples\nVocabulaire : expérience aléatoire, issue, évènement\nÉchelle de probabilité (impossible / certain) ; équiprobabilité\nApproche fréquentiste : répéter l'expérience, observer la stabilisation des fréquences\nDonner une probabilité sous forme de fraction, décimale, pourcentage\nMatériel : iPad, appli probabilités ; simulation au tableur ou avec Scratch\nPlacement de fin d'année assumé : traitement ludique — dés, roues, tirages, petits jeux — pour tenir l'attention en juin\nRéinvestit directement les fréquences de D3 et les fractions de N3"
+    }
+  ]
+}

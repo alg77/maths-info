@@ -1,0 +1,57 @@
+{
+  "kind": "garments",
+  "garments": [
+    {
+      "id": "example-collar-blouse",
+      "name": "Blouse crème à col Claudine",
+      "brand": "",
+      "category": "Haut",
+      "subcategory": "",
+      "role": "top",
+      "secondaryColors": [],
+      "material": "Coton",
+      "fit": "Droite",
+      "silhouette": "Droite",
+      "length": "Hanches",
+      "sleeve": "Longues",
+      "neckline": "Col Claudine",
+      "warmth": 2,
+      "seasons": [
+        "Printemps",
+        "Automne"
+      ],
+      "temperature": [
+        12,
+        23
+      ],
+      "formality": 1,
+      "occasions": [
+        "Quotidien",
+        "Travail"
+      ],
+      "layeringRole": "base",
+      "imagePath": "",
+      "notes": "Exemple de pièce candidate : ajoutez votre propre photo.",
+      "favorite": false,
+      "status": "wishlist",
+      "archived": false,
+      "forSale": false,
+      "usageCount": 0,
+      "lastWorn": null,
+      "price": null,
+      "colors": [
+        "cream"
+      ],
+      "styles": [
+        "Preppy",
+        "Romantique",
+        "French chic"
+      ],
+      "pattern": "Uni",
+      "details": [
+        "Col Claudine"
+      ],
+      "reviewNeeded": false
+    }
+  ]
+}

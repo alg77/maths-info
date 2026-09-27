@@ -1,0 +1,8 @@
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve(import.meta.dirname,'../dist');
+if(!fs.existsSync(path.join(root,'index.html'))){console.error('Construire le site avec pnpm build avant le lancement.');process.exit(1);}
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.avif':'image/avif','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.gif':'image/gif'};
+const port=Number(process.argv[2]||4173);
+http.createServer((req,res)=>{try{if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405).end();return;}const relative=decodeURIComponent(new URL(req.url,'http://localhost').pathname);const target=path.resolve(root,'.'+(relative==='/'?'/index.html':relative));if(!target.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(!fs.existsSync(target)||!fs.statSync(target).isFile()){res.writeHead(404).end('Fichier introuvable.');return;}res.writeHead(200,{'Content-Type':types[path.extname(target)]||'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'});if(req.method==='HEAD')res.end();else fs.createReadStream(target).pipe(res);}catch{res.writeHead(400).end();}}).listen(port,'127.0.0.1',()=>console.log(`Atelier est prêt : http://127.0.0.1:${port}\nOuvrez cette adresse dans votre navigateur. Ctrl+C pour arrêter.`)).on('error',e=>{console.error(e.code==='EADDRINUSE'?`Atelier est peut-être déjà ouvert : http://127.0.0.1:${port}`:e.message);process.exit(1);});
