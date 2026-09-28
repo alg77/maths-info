@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+if (fs.existsSync('dist/index.source.html')) fs.renameSync('dist/index.source.html','dist/index.html');
 const walk = (dir) =>
   fs
     .readdirSync(dir, { withFileTypes: true })

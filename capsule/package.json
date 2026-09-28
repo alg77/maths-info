@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --configLoader native --host 127.0.0.1",
-    "build": "tsc --noEmit && vite build --configLoader native && node scripts/service-worker.mjs",
+    "build": "tsc --noEmit && vite build --configLoader native && node scripts/service-worker.mjs && node scripts/publish-static.mjs",
     "preview": "vite preview --configLoader native --host 127.0.0.1",
     "test": "tsx --test tests/*.test.ts",
     "migrate": "node scripts/migrate.mjs"

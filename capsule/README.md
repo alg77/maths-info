@@ -13,7 +13,7 @@ pnpm install
 pnpm dev
 ```
 
-Le développement ouvre un serveur sur `http://127.0.0.1:5173`. Pour la version hors ligne :
+Le développement ouvre `http://127.0.0.1:5173/index.source.html`. Le fichier `index.source.html` est l’entrée de développement ; `index.html` est la version compilée à publier. Pour reconstruire :
 
 ```sh
 pnpm test
@@ -33,6 +33,12 @@ Sur cet ordinateur, si pnpm n’est pas dans PATH :
 ```
 
 `dist/` est la version statique prête à servir. Rien n’est publié automatiquement. Un serveur de fichiers local suffit, il n’y a pas de serveur applicatif.
+
+## Publier sur GitHub Pages
+
+`pnpm build` construit le site dans `dist/`, puis recopie automatiquement la version publique à la racine du projet. Pour l’URL `https://alg77.github.io/maths-info/capsule/index.html`, publier dans le dossier `capsule/` les fichiers `index.html`, `icon.svg`, `manifest.webmanifest`, `sw.js` et les dossiers `assets/`, `images/`, `data/`. Leurs chemins sont relatifs : ils fonctionnent dans ce sous-dossier. Les sources restent dans `src/`, `public/` et `index.source.html` pour les modifications futures. Ne pas remplacer `index.html` par `index.source.html` sur le site publié.
+
+Attention : les fichiers JSON et images publiés sur GitHub Pages sont publics. Le jeu de départ du site est donc consultable. Les modifications effectuées dans l’interface restent, elles, dans le navigateur et ne sont pas envoyées au dépôt. Pour diffuser une application générique sans dressing personnel, remplacer `public/data/wardrobe.json` par `examples/wardrobe-empty.json`, retirer les images personnelles du jeu distribué, puis reconstruire.
 
 ## Ce qui est inclus
 
