@@ -1,47 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours de Mathématiques de 5e</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="Images/Maths-logo1.webp" alt="Logo Maths" class="logo">
-        </div>
-        <h1>Mes Cours de Maths - 5<sup>ème</sup></h1>
-        <nav>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-                <li class="dropdown">
-                    <a href="#maths" class="dropbtn">Mathématiques</a>
-                    <div class="dropdown-content">
-                        <a href="cours_6e.html">6<sup>ème</sup></a>
-                        <a href="cours_5e.html">5<sup>ème</sup></a>
-                        <a href="cours_4e.html">4<sup>ème</sup></a>
-                        <a href="cours_3e.html">3<sup>ème</sup></a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#informatique" class="dropbtn">Informatique</a>
-                    <div class="dropdown-content">
-                        <a href="cours_1ere.html">1<sup>ère</sup></a>
-                        <a href="cours_terminale.html">Terminale</a>
-                    </div>
-                </li>
-                <li><a href="#exercices">Exercices</a></li>
-                <li><a href="#liens-utiles">Liens Utiles</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#fdeef1"><title>Mathématiques · Cinquième · Mme Le Guern</title><link rel="stylesheet" href="accueil-pastel.css"></head>
+<body class="level-page"><a class="skip" href="#contenu">Aller au contenu</a><header>
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="Maths et informatique — accueil"><img class="brand-icon" src="Images/avatar-prof.png" width="52" height="52" alt=""><span>Maths &amp; informatique<small>L’espace élèves · Mme Le Guern</small></span></a>
+      <nav aria-label="Navigation principale"><a href="index.html#maths">Mathématiques</a><a href="index.html#ressources">Ressources</a><a class="nav-nsi" href="../siteNSI/index.html">Site NSI <span aria-hidden="true">↗</span></a></nav>
+    </div>
+  </header>
+<main id="contenu" class="wrap"><section class="hero" aria-labelledby="titre-niveau"><div><p class="eyebrow">Mathématiques · Collège</p><h1 id="titre-niveau">Les maths en <span>5<sup>e</sup></span></h1><p class="intro">Retrouve les thèmes abordés et les repères pour t’accompagner tout au long de l’année.</p></div><figure class="hero-art"><img src="Images/avatar-prof.png" width="1408" height="1120" alt="Avatar de Mme Le Guern"></figure></section>
+<nav class="level-nav" aria-label="Choisir un niveau"><a href="index.html">← Accueil</a><a href="cours_6e.html">6<sup>e</sup> · Sixième</a><a href="cours_5e.html" aria-current="page">5<sup>e</sup> · Cinquième</a><a href="cours_4e.html">4<sup>e</sup> · Quatrième</a></nav><nav class="page-shortcuts" aria-label="Dans cette page"><a href="#chapitres">Chapitres</a><a href="#programme">Programme et repères</a><a href="#competences-5e">Compétences</a></nav><div class="level-content">
         <section id="maths-5e">
-            <h2>Programme officiel</h2>
+            <h2 id="programme">Programme et repères</h2>
             <article class="course-card">
                 <h3>Programme du Cycle 4 & repères de progression par année</h3>
                 <ul>
@@ -49,167 +17,102 @@
                     <li><a href="https://eduscol.education.fr/document/14044/download">ATTENDUS DE FIN D'ANNÉE DE 5<sup>e</sup> - B.O. n° 22 du 29 mai 2019 - Programme en vigueur depuis 2019</a></li>
                     <li><a href="https://eduscol.education.fr/document/14080/download">REPÈRES ANNUELS DE PROGRESSION POUR LE CYCLE 4 - B.O. n° 22 du 29 mai 2019 - Programme en vigueur depuis 2019</a></li>
                 </ul>
-
-                <h2>Programmation et progression</h2>
-                <article class="course-card">
-                    <div class="course-card-content">
-                        <h3>Programmation</h3>
-                        <div>
-                            <a href="5eme/PDF/Gantt_5e.pdf" class="pdf-link btn">Télécharger la programmation</a>
-                        </div>
-                        <img src="Images/5e-gantt.png" alt="Aperçu du PDF" class="pdf-preview">
-                    </div>
-                    <div class="course-card-content">
-                        <h3>Progression sur l'année</h3>
-                        <div>
-                            <a href="5eme/PDF/Progression_5e_2024-25.pdf" class="pdf-link btn">Télécharger la progression</a>
-                        </div>
-                        <img src="Images/5e-progression.png" alt="Aperçu du PDF" class="pdf-preview">
-                    </div>
-                </article>
             </article>
 
-            <h2>Chapitres étudiés</h2>
-            <article class="course-card">
-                <h3>Nombres et Calculs</h3>
-                <ul>
-                    <li><a href="5eme/cours_5n1.html">N1. Calculer avec les nombres décimaux</a></li>
-                    <li><a href="5eme/cours_5n2.html">N2. Écrire et utiliser une expression littérale</a></li>
-                    <li><a href="5eme/cours_5n3.html">N3. Définir, utiliser et représenter des nombres rationnels</a></li>
-                    <li><a href="5eme/cours_5n4.html">N4. Utiliser les nombres entiers</a></li>
-                    <li><a href="5eme/cours_5n5.html">N5. Découvrir, repérer et comparer les nombres relatifs</a></li>
-                    <li><a href="5eme/cours_5n6.html">N6. Reconnaître et utiliser des fractions égales - Comparer des fractions</a></li>
-                    <li><a href="5eme/cours_5n7.html">N7. Additionner et soustraire des nombres relatifs</a></li>
-                    <li><a href="5eme/cours_5n8.html">N8. Additionner et soustraire des fractions</a></li>
-                </ul>
-            </article>
-            <article class="course-card">
-                <h3>Géométrie et Espace</h3>
-                <ul>
-                    <li><a href="5eme/cours_5g1.html">G1. Reconnaître et utiliser les symétries axiale et centrale</a></li>
-                    <li><a href="5eme/cours_5g2.html">G2. Décrire et représenter le cylindre et le prisme droit</a></li>
-                    <li><a href="5eme/cours_5g3.html">G3. Construire un triangle et ses droites remarquables</a></li>
-                    <li><a href="5eme/cours_5g4.html">G4. Utiliser les propriétés de la symétrie centrale pour construire et démontrer</a></li>
-                    <li><a href="5eme/cours_5g5.html">G5. Reconnaître des angles particuliers et des droites parallèles</a></li>
-                    <li><a href="5eme/cours_5g6.html">G6. Construire et démontrer avec les angles d’un triangle</a></li>
-                    <li><a href="5eme/cours_5g7.html">G7. Définir, construire et reconnaître un parallélogramme</a></li>
-                </ul>
-            </article>
-            <article class="course-card">
-                <h3>Organisation et Gestion de Données</h3>
-                <ul>
-                    <li><a href="5eme/cours_5d1.html">D1. Reconnaître et utiliser la proportionnalité pour résoudre des problèmes</a></li>
-                    <li><a href="5eme/cours_5d2.html">D2. Utiliser les pourcentages et les échelles</a></li>
-                    <li><a href="5eme/cours_5d3.html">D3. Traiter et représenter des données</a></li>
-                    <li><a href="5eme/cours_5d4.html">D4. S’initier aux probabilités</a></li>
-                </ul>
-            </article>
-        </section>
+            <h2 id="chapitres">Chapitres étudiés</h2>
+<!-- CHAPITRES:START -->
+<p class="chapters-note">Les thèmes abordés au fil de l’année, regroupés par domaine.</p>
+<article class="course-card"><h3>Nombres et calculs</h3><ul>
+<li><span class="chapter-title"><span class="chapter-code">N1</span> Calculer avec les nombres décimaux</span></li>
+<li><span class="chapter-title"><span class="chapter-code">N2</span> Écrire et utiliser une expression littérale</span></li>
+<li><span class="chapter-title"><span class="chapter-code">N3</span> Fractions : comparer, additionner, soustraire</span></li>
+<li><span class="chapter-title"><span class="chapter-code">N4</span> Découvrir, repérer et comparer les nombres relatifs</span></li>
+<li><span class="chapter-title"><span class="chapter-code">N5</span> Calcul littéral : développer et factoriser</span></li>
+<li><span class="chapter-title"><span class="chapter-code">N6</span> Additionner et soustraire des nombres relatifs</span></li>
+<li><span class="chapter-title"><span class="chapter-code">N7</span> Calcul littéral : résoudre des équations (ax = c ; x + b = c)</span></li>
+</ul></article>
+<article class="course-card"><h3>Géométrie et espace</h3><ul>
+<li><span class="chapter-title"><span class="chapter-code">G1</span> Symétries axiale et centrale (1)</span></li>
+<li><span class="chapter-title"><span class="chapter-code">G2</span> Solides : cylindre et prisme droit</span></li>
+<li><span class="chapter-title"><span class="chapter-code">G3</span> Construire un triangle et ses droites remarquables</span></li>
+<li><span class="chapter-title"><span class="chapter-code">G4</span> Symétrie centrale : construire et démontrer</span></li>
+<li><span class="chapter-title"><span class="chapter-code">G5</span> Angles, droites parallèles et somme des angles d&#x27;un triangle</span></li>
+<li><span class="chapter-title"><span class="chapter-code">G6</span> Définir, construire et reconnaître un parallélogramme</span></li>
+</ul></article>
+<article class="course-card"><h3>Algorithmique et programmation</h3><ul>
+<li><span class="chapter-title"><span class="chapter-code">A1</span> Algorithmique &amp; Tableur (fil rouge)</span></li>
+</ul></article>
+<article class="course-card"><h3>Organisation et gestion de données</h3><ul>
+<li><span class="chapter-title"><span class="chapter-code">D1</span> Proportionnalité, pourcentages et échelles</span></li>
+<li><span class="chapter-title"><span class="chapter-code">D2</span> Représenter la dépendance entre deux grandeurs : graphiques et grandeurs quotients</span></li>
+<li><span class="chapter-title"><span class="chapter-code">D3</span> Traiter et représenter des données</span></li>
+<li><span class="chapter-title"><span class="chapter-code">D4</span> Aborder les probabilités</span></li>
+</ul></article>
+<article class="course-card"><h3>Grandeurs et mesures</h3><ul>
+<li><span class="chapter-title"><span class="chapter-code">M1</span> Calculer des aires</span></li>
+<li><span class="chapter-title"><span class="chapter-code">M2</span> Calculer des volumes</span></li>
+</ul></article>
+<!-- CHAPITRES:END -->
+</section>
         <section id="competences-5e">
             <h2>Compétences travaillées en 5<sup>e</sup></h2>
 
             <section id="chercher">
-                <h3><i class="fa-solid fa-magnifying-glass"></i> Chercher</h3>
+                <h3> Chercher</h3>
                 <ul class="competences">
-                    <li><i class="fa-solid fa-magnifying-glass"></i> Ch1 : Extraire les infos utiles d'un document et les organiser.</li>
-                    <li><i class="fa-solid fa-magnifying-glass"></i> Ch2 : Observer, questionner et expérimenter pour faire des hypothèses.</li>
-                    <li><i class="fa-solid fa-magnifying-glass"></i> Ch3 : Tester plusieurs pistes.</li>
-                    <li><i class="fa-solid fa-magnifying-glass"></i> Ch4 : Diviser un problème en petites étapes.</li>
+                    <li> Ch1 : Extraire les infos utiles d'un document et les organiser.</li>
+                    <li> Ch2 : Observer, questionner et expérimenter pour faire des hypothèses.</li>
+                    <li> Ch3 : Tester plusieurs pistes.</li>
+                    <li> Ch4 : Diviser un problème en petites étapes.</li>
                 </ul>
             </section>
 
             <section id="modeliser">
-                <h3><i class="fa-solid fa-pen-to-square"></i> Modéliser</h3>
+                <h3> Modéliser</h3>
                 <ul class="competences">
-                    <li><i class="fa-solid fa-pen-to-square"></i> Mo1 : Identifier un modèle mathématique et l'utiliser pour résoudre un problème.</li>
-                    <li><i class="fa-solid fa-pen-to-square"></i> Mo2 : Traduire une situation réelle en langage mathématique.</li>
-                    <li><i class="fa-solid fa-pen-to-square"></i> Mo3 : Utiliser une simulation numérique ou géométrique.</li>
-                    <li><i class="fa-solid fa-pen-to-square"></i> Mo4 : Vérifier si un modèle convient à une situation.</li>
+                    <li> Mo1 : Identifier un modèle mathématique et l'utiliser pour résoudre un problème.</li>
+                    <li> Mo2 : Traduire une situation réelle en langage mathématique.</li>
+                    <li> Mo3 : Utiliser une simulation numérique ou géométrique.</li>
+                    <li> Mo4 : Vérifier si un modèle convient à une situation.</li>
                 </ul>
             </section>
 
             <section id="representer">
-                <h3><i class="fa-solid fa-chart-line"></i> Représenter</h3>
+                <h3> Représenter</h3>
                 <ul class="competences">
-                    <li><i class="fa-solid fa-chart-line"></i> Re1 : Choisir la représentation la plus adaptée.</li>
-                    <li><i class="fa-solid fa-chart-line"></i> Re2 : Représenter les nombres de plusieurs façons.</li>
-                    <li><i class="fa-solid fa-chart-line"></i> Re3 : Afficher les données sous forme de tableau ou de graphique.</li>
-                    <li><i class="fa-solid fa-chart-line"></i> Re4 : Utiliser des schémas ou maquettes pour représenter l'espace.</li>
+                    <li> Re1 : Choisir la représentation la plus adaptée.</li>
+                    <li> Re2 : Représenter les nombres de plusieurs façons.</li>
+                    <li> Re3 : Afficher les données sous forme de tableau ou de graphique.</li>
+                    <li> Re4 : Utiliser des schémas ou maquettes pour représenter l'espace.</li>
                 </ul>
             </section>
 
             <section id="raisonner">
-                <h3><i class="fa-solid fa-gears"></i> Raisonner</h3>
+                <h3> Raisonner</h3>
                 <ul class="competences">
-                    <li><i class="fa-solid fa-gears"></i> Ra1 : Mobiliser ses connaissances, tester plusieurs solutions et apprendre de ses erreurs.</li>
-                    <li><i class="fa-solid fa-gears"></i> Ra2 : Travailler en groupe en tenant compte des idées de chacun.</li>
-                    <li><i class="fa-solid fa-gears"></i> Ra3 : Utiliser un raisonnement logique et des règles connues pour démontrer.</li>
-                    <li><i class="fa-solid fa-gears"></i> Ra4 : Justifier son avis en s'appuyant sur des résultats et en argumentant.</li>
+                    <li> Ra1 : Mobiliser ses connaissances, tester plusieurs solutions et apprendre de ses erreurs.</li>
+                    <li> Ra2 : Travailler en groupe en tenant compte des idées de chacun.</li>
+                    <li> Ra3 : Utiliser un raisonnement logique et des règles connues pour démontrer.</li>
+                    <li> Ra4 : Justifier son avis en s'appuyant sur des résultats et en argumentant.</li>
                 </ul>
             </section>
 
             <section id="calculer">
-                <h3><i class="fa-solid fa-calculator"></i> Calculer</h3>
+                <h3> Calculer</h3>
                 <ul class="competences">
-                    <li><i class="fa-solid fa-calculator"></i> Ca1 : Calculer avec les nombres en utilisant mental, brouillon ou calculatrice.</li>
-                    <li><i class="fa-solid fa-calculator"></i> Ca2 : Vérifier si ses résultats sont plausibles (ordre de grandeur, encadrements).</li>
-                    <li><i class="fa-solid fa-calculator"></i> Ca3 : Effectuer des calculs avec des expressions utilisant des lettres et des symboles.</li>
+                    <li> Ca1 : Calculer avec les nombres en utilisant mental, brouillon ou calculatrice.</li>
+                    <li> Ca2 : Vérifier si ses résultats sont plausibles (ordre de grandeur, encadrements).</li>
+                    <li> Ca3 : Effectuer des calculs avec des expressions utilisant des lettres et des symboles.</li>
                 </ul>
             </section>
 
             <section id="communiquer">
-                <h3><i class="fa-solid fa-comment"></i> Communiquer</h3>
+                <h3> Communiquer</h3>
                 <ul class="competences">
-                    <li><i class="fa-solid fa-comment"></i> Co1 : Passer du langage courant au langage algébrique et connaître la différence.</li>
-                    <li><i class="fa-solid fa-comment"></i> Co2 : Expliquer sa démarche, comprendre celle des autres et argumenter.</li>
-                    <li><i class="fa-solid fa-comment"></i> Co3 : Vérifier une information et interpréter des tableaux ou graphiques.</li>
+                    <li> Co1 : Passer du langage courant au langage algébrique et connaître la différence.</li>
+                    <li> Co2 : Expliquer sa démarche, comprendre celle des autres et argumenter.</li>
+                    <li> Co3 : Vérifier une information et interpréter des tableaux ou graphiques.</li>
                 </ul>
             </section>
         </section>
-    </main>
-
-    <!-- Pop-up container -->
-    <div id="popup" class="popup">
-        <span class="close">&times;</span>
-        <img class="popup-content" id="popup-img">
-    </div>
-    
-    <footer>
-        <p>&copy; 2024 Mes Cours de Maths et de NSI - Tous droits réservés</p>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Get the pop-up elements
-        var popup = document.getElementById("popup");
-        var popupImg = document.getElementById("popup-img");
-        var close = document.getElementsByClassName("close")[0];
-
-        // Function to open the pop-up
-        function openPopup(src) {
-            popup.style.display = "block";
-            popupImg.src = src;
-        }
-
-        // Function to close the pop-up
-        close.onclick = function() {
-            popup.style.display = "none";
-        }
-
-        // Close the pop-up when clicking outside of the image
-        window.onclick = function(event) {
-            if (event.target == popup) {
-                popup.style.display = "none";
-            }
-        }
-
-        // Add click event to all images with class 'pdf-preview'
-        var images = document.getElementsByClassName('pdf-preview');
-        for (var i = 0; i < images.length; i++) {
-            images[i].onclick = function() {
-                openPopup(this.src);
-            }
-        }
-    </script>
-</body>
-</html>
+    </div></main><footer><div class="wrap footer-inner"><p>© 2026 Mme Le Guern · Maths &amp; informatique</p><p>Un espace pour apprendre, à ton rythme.</p></div></footer></body></html>
