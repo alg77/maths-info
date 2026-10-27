@@ -1,3 +1,4 @@
+import { colorAdvice } from "./colorimetry";
 import type { Garment, Wardrobe, Role, Recipe, Inspiration } from "./model";
 export type Context = {
   temperature?: number;
@@ -239,8 +240,23 @@ export function assess(
     score +=
       avg(items.filter((g) => g.formality !== null).map((g) => g.formality!)) *
       2;
+  const paletteResults = items
+    .map((g) => colorAdvice(g, data))
+    .filter((r) => r.nearFace && r.score !== null);
+  const paletteAdjustment = paletteResults.length
+    ? (avg(paletteResults.map((r) => r.score!)) - 50) / 10
+    : 0;
+  if (paletteResults.length)
+    reasons.unshift(
+      "Votre palette personnelle contribue légèrement au classement ; aucune couleur n’est exclue.",
+    );
   return {
-    score: Math.round(Math.max(0, Math.min(100, score - missing.length * 18))),
+    score: Math.round(
+      Math.max(
+        0,
+        Math.min(100, score - missing.length * 18 + paletteAdjustment),
+      ),
+    ),
     confidence: Math.round(
       avg(pairs.map((p) => p.confidence)) *
         (items.some((g) => g.reviewNeeded) ? 0.7 : 1),
@@ -464,14 +480,18 @@ export function insights(data: Wardrobe) {
     (g) => g.status === "owned" && !g.archived,
   );
   const all = enumerate(data);
-  const garmentMap=new Map(data.garments.map(g=>[g.id,g]));
-  const baseItems=all.outfits.map(o=>o.itemIds.map(id=>garmentMap.get(id)!));
+  const garmentMap = new Map(data.garments.map((g) => [g.id, g]));
+  const baseItems = all.outfits.map((o) =>
+    o.itemIds.map((id) => garmentMap.get(id)!),
+  );
   const versatility = owned
     .map((g) => ({
       item: g,
-      count: !g.forSale&&!core(g)
-        ? baseItems.filter(items=>assess([...items,g],data).score>=50).length
-        : all.outfits.filter((o) => o.itemIds.includes(g.id)).length,
+      count:
+        !g.forSale && !core(g)
+          ? baseItems.filter((items) => assess([...items, g], data).score >= 50)
+              .length
+          : all.outfits.filter((o) => o.itemIds.includes(g.id)).length,
       matches: owned.filter(
         (x) => x.id !== g.id && pair(g, x, data).score >= 65,
       ).length,

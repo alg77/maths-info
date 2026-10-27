@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visite – Maison 4 pièces 80 m² - terrain 450 m²</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7F9; --card:#FFFFFF; --ink:#3E3644; --soft:#8A7E90; --line:#EFE4EA; --line2:#E4D6DE;
+  --rose:#F6DCE4; --rose-ink:#A24D6D; --sage:#DCEDE2; --sage-ink:#3D6B53; --lilas:#E7E1F5; --lilas-ink:#5A4D8C;
+  --peche:#FCE6D8; --peche-ink:#93543A; --beurre:#F8EFCB; --beurre-ink:#76601F; --ciel:#DFECF6; --ciel-ink:#3A6587;
+  --gris:#EEEAF0; --gris-ink:#6A6270;
+  --shadow:0 1px 2px rgba(62,54,68,.05), 0 10px 28px -16px rgba(62,54,68,.18);
+  --serif:'Young Serif', Georgia, 'Times New Roman', serif;
+  --sans:'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --paper:#211C25; --card:#2B2530; --ink:#F1E8EE; --soft:#A99CAE; --line:#3A3240; --line2:#463D4D;
+  --rose:#4A2F3C; --rose-ink:#F2B6CA; --sage:#2D4236; --sage-ink:#A9D8BC; --lilas:#383057; --lilas-ink:#CCC2F2;
+  --peche:#4A3328; --peche-ink:#F5C3A6; --beurre:#463C1F; --beurre-ink:#EBD58A; --ciel:#283B4C; --ciel-ink:#AFD0EC;
+  --gris:#38323D; --gris-ink:#C9C0CE; --shadow:0 1px 2px rgba(0,0,0,.25), 0 10px 28px -16px rgba(0,0,0,.6);
+  color-scheme: dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.55 var(--sans);font-feature-settings:"tnum" 0}
+a{color:var(--rose-ink);text-decoration:none;text-underline-offset:3px}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--rose-ink);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;margin:0;line-height:1.2}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+.soft{color:var(--soft)}
+.num{font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;border:1px solid var(--line2);
+     background:var(--card);color:var(--ink);font:500 14px var(--sans);cursor:pointer;text-decoration:none}
+.btn:hover{text-decoration:none;border-color:var(--rose-ink)}
+.btn.main{background:var(--rose-ink);border-color:var(--rose-ink);color:#fff}
+@media (prefers-color-scheme: dark){ .btn.main{color:#2B2530} }
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font:500 12.5px/1.5 var(--sans);
+      background:var(--gris);color:var(--gris-ink);white-space:nowrap}
+.chip.rose{background:var(--rose);color:var(--rose-ink)} .chip.sage{background:var(--sage);color:var(--sage-ink)}
+.chip.lilas{background:var(--lilas);color:var(--lilas-ink)} .chip.peche{background:var(--peche);color:var(--peche-ink)}
+.chip.beurre{background:var(--beurre);color:var(--beurre-ink)} .chip.ciel{background:var(--ciel);color:var(--ciel-ink)}
+.chip.ligne{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+.chip.strong{font-weight:600}
+.dpe{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 12.5px/1.5 var(--sans)}
+.dpe.A{background:#C7E6CF;color:#245A38}.dpe.B{background:#D9ECC3;color:#3F5F22}.dpe.C{background:#ECF0C2;color:#56601B}
+.dpe.D{background:#F8ECBC;color:#6E5A16}.dpe.E{background:#F9DCBE;color:#7E4A20}.dpe.F{background:#F6C9BA;color:#863A27}
+.dpe.G{background:#EFBAC5;color:#842B42}.dpe.X{background:var(--gris);color:var(--gris-ink)}
+.panel{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:20px 22px}
+.note{color:var(--soft);font-size:12.5px;line-height:1.5}
+.up{color:var(--rose-ink)} .down{color:var(--sage-ink)}
+input,select,button{font:inherit;color:inherit}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+.dvf{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px 24px;margin:18px 0}
+.dvf h2{font-size:1.35rem;margin-bottom:4px}
+.dvf h3{font-size:1.05rem;margin:22px 0 8px}
+.dvf .sous{color:var(--soft);font-size:13.5px;margin:0 0 14px}
+.frise{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
+.frise::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;border-radius:2px;background:var(--lilas)}
+.frise li{position:relative;padding:2px 0 16px}
+.frise li:last-child{padding-bottom:2px}
+.frise li::before{content:"";position:absolute;left:-21px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:var(--card);border:2px solid var(--lilas-ink)}
+.frise li.cle::before{background:var(--rose-ink);border-color:var(--rose-ink)}
+.frise .quand{font-family:var(--serif);font-size:1.02rem}
+.frise .prix{font-family:var(--serif);font-size:1.5rem;color:var(--rose-ink);margin:2px 0 4px;font-variant-numeric:lining-nums}
+.frise .det{color:var(--soft);font-size:13.5px}
+.frise .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.frise .rem{font-size:12.5px;color:var(--soft);margin-top:4px}
+.tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tuile{background:var(--paper);border-radius:12px;padding:11px 13px}
+.tuile small{display:block;color:var(--soft);font-size:12.5px}
+.tuile b{display:block;font:400 1.2rem/1.3 var(--serif);margin:2px 0}
+.dvf table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.dvf th,.dvf td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+.dvf th{font-weight:600;color:var(--soft);font-size:12.5px}
+.dvf td.n,.dvf th.n{text-align:right;white-space:nowrap}
+.dvf details{margin-top:12px}
+.dvf summary{cursor:pointer;color:var(--rose-ink);font-weight:500}
+.dvf .note{margin-top:14px}
+.risques ul{margin:6px 0;padding-left:18px} .risques li{margin:6px 0}
+.choix{margin-top:8px}
+.btn-choix{border:1px solid var(--sage-ink);background:var(--sage);color:var(--sage-ink);border-radius:999px;padding:5px 14px;
+  font:600 13px var(--sans);cursor:pointer}
+.btn-choix:hover{filter:brightness(.97)}
+.choix.fait .btn-choix{background:var(--sage-ink);color:var(--card)}
+.choix .aide{margin-top:8px;font-size:13px;background:var(--sage);color:var(--ink);border-radius:12px;padding:10px 12px;max-width:62ch}
+.lien-gps{border:0;background:none;color:var(--rose-ink);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+
+@page{size:A4;margin:12mm}
+body{font-size:14px;background:var(--paper)}
+.feuille{max-width:780px;margin:0 auto;padding-block:18px 60px;padding-left:max(14px, env(safe-area-inset-left, 0px));padding-right:max(14px, env(safe-area-inset-right, 0px));display:grid;gap:14px}
+.entete{display:grid;gap:4px}
+.photos-f{display:grid;gap:8px}
+.photos-f .grande{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;cursor:zoom-in;background:var(--rose)}
+.photos-f .vignettes{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px}
+.photos-f .vignettes img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;cursor:pointer;display:block;opacity:.85}
+.photos-f .vignettes img.on{opacity:1;outline:2px solid var(--rose-ink);outline-offset:1px}
+.lbf{position:fixed;inset:0;background:rgba(33,28,37,.92);display:none;align-items:center;justify-content:center;z-index:20}
+.lbf img{max-width:96vw;max-height:90vh;border-radius:10px}
+.crit{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
+.crit span{font-size:13.5px}
+.etoiles{display:flex;gap:4px}
+.etoiles button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);background:var(--paper);color:var(--soft);font:600 13px var(--sans);cursor:pointer}
+.etoiles button.on{background:var(--rose-ink);border-color:var(--rose-ink);color:var(--card)}
+.etoiles button.on.auto{background:var(--rose);color:var(--rose-ink)}
+#moyenne{margin-top:8px;font-size:14px}
+.entete h1{font-size:1.45rem}
+.entete .lieu{color:var(--soft);margin:3px 0 8px}
+.entete .prix{font:400 1.5rem/1.2 var(--serif);color:var(--rose-ink);margin-bottom:6px}
+.ligne-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.carte-f{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:14px 16px}
+.carte-f h2{font-size:1.1rem;margin:0 0 8px}
+.infos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}
+.infos div{min-width:0;overflow-wrap:anywhere}
+.infos small{display:block;color:var(--soft);font-size:11.5px}
+.cles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.cles div{background:var(--paper);border-radius:12px;padding:8px 10px}
+.cles small{display:block;color:var(--soft);font-size:11.5px}
+.cles b{font:400 1.15rem var(--serif);color:var(--rose-ink)}
+.alerte{font-size:13px;line-height:1.45;padding:8px 10px;border-radius:10px;background:var(--peche);color:var(--peche-ink)}
+.barre-f{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--paper);padding-block:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.jauge{flex:1;min-width:120px;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.jauge i{display:block;height:100%;width:0;background:var(--sage-ink)}
+#compte{font-size:12.5px;color:var(--soft);font-variant-numeric:tabular-nums}
+.barre-f .btn{padding:6px 12px;font-size:13px}
+#msg{font-size:12.5px;color:var(--sage-ink);min-height:1em}
+details.sec{background:var(--card);border-radius:18px;box-shadow:var(--shadow)}
+details.sec summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+details.sec summary::-webkit-details-marker{display:none}
+details.sec summary h2{font-size:1.08rem;margin:0}
+details.sec summary .n{font-size:12px;color:var(--soft);white-space:nowrap}
+details.sec summary .n.fini{color:var(--sage-ink);font-weight:600}
+.items{padding:0 16px 14px}
+.it{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.it input[type=checkbox]{width:18px;height:18px;margin:2px 0 0;accent-color:var(--sage-ink)}
+.it label{cursor:pointer;display:block}
+.it small{display:block;color:var(--soft);font-size:12.5px;line-height:1.45;margin-top:2px}
+.it:has(input:checked) .t{color:var(--soft)}
+.cle{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--rose-ink);background:var(--rose);border-radius:6px;padding:0 6px;margin-left:4px;vertical-align:1px}
+textarea,input.champ{width:100%;border:1px dashed var(--line2);border-radius:10px;background:var(--paper);color:var(--ink);font:400 14px/1.45 var(--sans);padding:7px 9px;margin-top:6px}
+textarea{min-height:38px;resize:none;overflow:hidden}
+textarea:focus,input.champ:focus{border-style:solid;outline:2px solid var(--rose-ink);outline-offset:1px}
+.lev{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:9px 0;border-top:1px solid var(--line)}
+.lev .m{font-weight:600;color:var(--rose-ink);white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.lev small{grid-column:1/-1;color:var(--soft);font-size:12.5px}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px}
+.calc label{font-size:12.5px;color:var(--soft)}
+.resultat{margin-top:10px;background:var(--sage);color:var(--sage-ink);border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.5}
+.ressenti{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.ressenti label{font-size:12.5px;color:var(--soft)}
+.dvf{box-shadow:none;border:1px solid var(--line2);padding:14px 16px}
+.dvf .prix{font-size:1.2rem}
+.pied{color:var(--soft);font-size:11px}
+input[type=file]{display:none}
+@media print{
+  :root{--paper:#fff}
+  .barre-f,.no-print,.etoiles button:not(.on){display:none!important}
+  .photos-f .vignettes{grid-template-columns:repeat(8,1fr)}
+  details.sec{box-shadow:none;border:1px solid #ddd} details.sec:not([open]) .items{display:block}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  textarea,input.champ{border:1px solid #ccc;min-height:44px}
+}
+@media (max-width:600px){.entete{grid-template-columns:1fr}.infos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="feuille">
+  <header class="entete">
+    <div>
+      <h1>Maison 4 pièces 80 m² – terrain 450 m²</h1>
+      <div class="lieu">Lagny-sur-Marne (77400)</div>
+      <div class="prix">299 000 € <span class="soft" style="font:500 13px var(--sans)">3 738 €/m²</span></div>
+      <div class="ligne-chips"><span class="chip ligne">80 m²</span><span class="chip ligne">terrain 450 m²</span><span class="chip ligne">4 pièces</span><span class="dpe F">DPE F (385)</span><span class="dpe C">GES C (12)</span><span class="chip ciel">Contactée le 17/11/2025</span></div>
+      <div class="ligne-chips no-print"><a class="btn" href="Maison_4_pièces_80_m²_-_terrain_450_m².html">Fiche complète</a><a class="btn" href="https://www.seloger.com/annonces/achat/maison/lagny-sur-marne-77/tassigny-leclerc-centre/254187635.htm" target="_blank" rel="noopener">Seloger</a><a class="btn" href="https://aev.immo/fr/propriete/vente+maison+lagny-sur-marne+maison-avec-jardin+85310813" target="_blank" rel="noopener">Agence</a></div>
+    </div>
+  </header>
+
+  <section class="photos-f"><img class="grande" id="grande" src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo01.webp" alt="Photo 1"><div class="vignettes"><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo01.webp" alt="Photo 1" loading="lazy" class=on><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo02.webp" alt="Photo 2" loading="lazy"><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo03.webp" alt="Photo 3" loading="lazy"><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo04.webp" alt="Photo 4" loading="lazy"><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo05.webp" alt="Photo 5" loading="lazy"><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo06.webp" alt="Photo 6" loading="lazy"><img src="../images/Maison_4_pièces_80_m²_-_terrain_450_m²/photo07.webp" alt="Photo 7" loading="lazy"></div></section>
+  <div class="lbf" id="lbf"><img id="lbfimg" alt=""></div>
+  <div class="barre-f">
+    <div class="jauge" aria-hidden="true"><i id="jauge"></i></div><span id="compte"></span>
+    <button class="btn" id="copier" type="button">Copier</button>
+    <button class="btn" id="expTxt" type="button">Exporter .txt</button>
+    <button class="btn" id="expJson" type="button">Sauvegarde</button>
+    <button class="btn" id="impBtn" type="button">Importer</button><input type="file" id="imp" accept=".json,application/json">
+    <button class="btn" type="button" onclick="window.print()">Imprimer</button>
+  </div>
+  <div id="msg" role="status"></div>
+
+  <section class="carte-f">
+    <h2>Ce qu’on sait déjà</h2>
+    <div class="cles"><div><small>Coût mensuel estimé</small><b>1 919 €/mois</b><small>crédit 1 509 € + énergie 284 € + taxe 126 €</small></div><div><small>Offre conseillée</small><b>287 000 €</b><small>marge observée −4,0 %</small></div><div><small>Frais de notaire</small><b>≈ 21 500 €</b><small>payés par la vente de l’appartement</small></div><div><small>À pied de St Laurent</small><b>5 min</b><small>400 m</small></div><div><small>DPE officiel (ADEME)</small><b>F · 81,6 m²</b><small>3 403 €/an, 11/04/2025</small></div></div>
+    <p class="alerte">Adresse probable d’après la base DPE : 25 Rue Henri Moissan</p>
+    <div class="infos" style="margin-top:10px">
+      
+      <div><small>Date de l’annonce</small>11/11/2025</div>
+      
+      
+      <div><small>St Laurent</small>5 min à pied (400 m), 2 min en voiture (570 m)</div><div><small>GGSB</small>16 min en voiture (9,7 km)</div>
+    </div>
+    <label for="r-date_visite" style="display:block;margin-top:10px;font-size:12.5px;color:var(--soft)">Date et heure de la visite</label>
+    <input class="champ" id="r-date_visite" data-r="date_visite" placeholder="ex. mardi 27/10 à 14 h" value="">
+  </section>
+
+  <div id="sections" style="display:grid;gap:12px"></div>
+
+  <section class="carte-f">
+    <h2>Ce qui peut faire baisser le prix</h2>
+    <p class="soft" style="margin:0 0 6px;font-size:13px">Repéré dans l’annonce. Montants indicatifs, à confirmer avec des devis.</p>
+    <div id="leviers"></div>
+    <div class="calc">
+      <div><label for="r-mon_offre">Mon offre (€)</label><input class="champ" id="r-mon_offre" data-r="mon_offre" inputmode="numeric" placeholder="287000"></div>
+      <div><label for="r-travaux">Travaux estimés (€)</label><input class="champ" id="r-travaux" data-r="travaux" inputmode="numeric" placeholder="ex. 35000"></div>
+    </div>
+    <div class="resultat" id="resultat"></div>
+  </section>
+
+  <section class="carte-f">
+    <h2>Ressenti</h2>
+    <p class="soft" style="margin:0 0 4px;font-size:13px">Note chaque critère de 1 (bof) à 4 (top). En rose clair : note proposée d’après les trajets et la carte, à corriger sur place.</p>
+    <div id="criteres"></div>
+    <div id="moyenne" class="soft"></div>
+    <div class="ressenti" style="margin-top:10px">
+      <div><label for="r-note">Note sur 10</label><input class="champ" id="r-note" data-r="note" inputmode="decimal"></div>
+      <div><label for="r-coeur">Coup de cœur ?</label><input class="champ" id="r-coeur" data-r="coeur" placeholder="oui / non / bof"></div>
+    </div>
+    <label for="r-plus" style="display:block;margin-top:8px;font-size:12.5px;color:var(--soft)">Points positifs</label><textarea id="r-plus" data-r="plus"></textarea>
+    <label for="r-moins" style="display:block;margin-top:8px;font-size:12.5px;color:var(--soft)">Points négatifs, doutes</label><textarea id="r-moins" data-r="moins"></textarea>
+  </section>
+  
+  <section class="dvf"><h2>Ce bien a-t-il déjà été vendu ?</h2><p class="sous">Ventes de la commune avec le même terrain et une surface proche. Renseigne l’adresse dans ton fichier pour une réponse certaine.</p><ol class="frise"><li class=""><div class="quand">29 octobre 2021</div><div class="prix">324 400 €</div><div class="det">Maison · 4 pièces · 73 m² · terrain 446 m² · 4 444 €/m²</div><div class="chips"><span class="chip beurre">possible</span><span class="chip ligne">vente précédente</span></div></li></ol><h3>Prix par rapport au marché</h3><div class="tuiles"><div class="tuile"><small>Maisons comparables vendues</small><b>45</b><small>surface ±20 %, terrain ±40 %, 2 ans</small></div><div class="tuile"><small>Prix médian au m²</small><b>4 096 €</b><small>de 3 722 € à 4 661 €</small></div><div class="tuile"><small>Prix au m² de l’annonce</small><b>3 738 €</b></div><div class="tuile"><small>Valeur estimée</small><b>328 000 €</b><small class="down">annonce −8,8 %</small></div></div></section>
+  <p class="pied">Fiche générée le 27/10/2026 à 11:05. Les réponses restent enregistrées dans ce navigateur ; « Sauvegarde » les garde dans un fichier.</p>
+</main>
+<script>
+const F = {"criteres":[["quartier","Quartier : calme, ambiance, voisinage","Quartier et trajets"],["ecole","Trajet jusqu’à St Laurent","Quartier et trajets"],["grande","Trajet sûr pour la grande en autonomie (rues, traversées, bus)","Quartier et trajets"],["chelles","Trajet vers Chelles (GGSB) en voiture","Quartier et trajets"],["parc","Parc ou promenade à côté (pour la shiba)","Quartier et trajets"],["sport","Running, vélo : pistes cyclables, coins verts","Quartier et trajets"],["lumiere","Luminosité, orientation","La maison"],["vie","Pièces de vie, agencement","La maison"],["chambres","Chambres, place pour chacune","La maison"],["etat","État général (4 = peu de travaux)","La maison"],["calme","Calme dans la maison (bruit)","La maison"],["exterieur","Jardin : taille, exposition, intimité","La maison"],["clos","Jardin clos et sûr pour la shiba (clôture, portail)","Pour nous"],["bureau","Bureau calme pour travailler (copies, préparations)","Pour nous"],["atelier","Atelier (couture, impression 3D), rangements, garage","Pour nous"],["potentiel","Potentiel : agrandir, aménager","Pour nous"]],"id":"Maison_4_pièces_80_m²_-_terrain_450_m²","fichier":"visite_Maison_4_pieces_80_m2_-_terrain_450_m2","titre":"Maison 4 pièces 80 m² - terrain 450 m²","ville":"Lagny-sur-Marne","adresse":"","sections":[{"id":"docs","titre":"Documents à demander","items":[{"t":"Dossier de diagnostics complet (DDT)","d":"DPE, électricité, amiante, gaz s’il y en a, état des risques (ERP), assainissement, termites si concerné","cle":true,"ph":"","id":"docs_dossier_de_diagnostics_complet_ddt"},{"t":"Dernier avis de taxe foncière","d":"Pour le coût mensuel réel","cle":true,"ph":"Montant €/an","id":"docs_dernier_avis_de_taxe_fonciere"},{"t":"Factures d’énergie sur un an","d":"La consommation réelle, au-delà de l’estimation du DPE","cle":true,"ph":"€/an, kWh","id":"docs_factures_d_energie_sur_un_an"},{"t":"Factures des travaux déjà faits","d":"Toiture, isolation, fenêtres, chauffage, électricité : dates et entreprises","cle":false,"ph":"","id":"docs_factures_des_travaux_deja_faits"},{"t":"Plan ou croquis avec les surfaces","d":"Pièce par pièce, y compris l’étage","cle":false,"ph":"","id":"docs_plan_ou_croquis_avec_les_surfaces"}]},{"id":"questions","titre":"Questions aux vendeurs et à l’agent","items":[{"t":"Pourquoi vendent-ils, et depuis quand c’est en vente ?","d":"En ligne depuis environ 350 jours. Succession, mutation, délai souhaité : ça donne la marge de négociation","cle":true,"ph":"","id":"questions_pourquoi_vendent_ils_et_depuis_quand_c_e"},{"t":"Y a-t-il déjà eu des offres ?","d":"Et à quel prix ?","cle":false,"ph":"","id":"questions_y_a_t_il_deja_eu_des_offres"},{"t":"Travaux faits et dates","d":"Toiture, isolation, fenêtres, chauffage, électricité, plomberie","cle":false,"ph":"","id":"questions_travaux_faits_et_dates"},{"t":"Le chauffage : coût réel par an, confort ?","d":"","cle":false,"ph":"","id":"questions_le_chauffage_cout_reel_par_an_confort"},{"t":"L’étage ou les combles : chaud l’été, froid l’hiver ?","d":"Isolation refaite ? Épaisseur ?","cle":true,"ph":"","id":"questions_l_etage_ou_les_combles_chaud_l_ete_froid"},{"t":"Le bruit : rue, voisins, jour et nuit ?","d":"","cle":false,"ph":"","id":"questions_le_bruit_rue_voisins_jour_et_nuit"},{"t":"Tout-à-l’égout ou fosse ?","d":"","cle":false,"ph":"","id":"questions_tout_a_l_egout_ou_fosse"},{"t":"Gaz de ville dans la rue ? Fibre raccordée ?","d":"","cle":false,"ph":"","id":"questions_gaz_de_ville_dans_la_rue_fibre_raccordee"},{"t":"Ce qui reste dans la vente","d":"Cuisine équipée, cabanon, récupérateur d’eau… et le terrain sera-t-il débarrassé ?","cle":false,"ph":"","id":"questions_ce_qui_reste_dans_la_vente"}]},{"id":"dehors","titre":"Extérieur","items":[{"t":"Toiture : tuiles, mousse, gouttières, solins","d":"Jumelles ou zoom du téléphone","cle":false,"ph":"","id":"dehors_toiture_tuiles_mousse_gouttieres_solins"},{"t":"Fissures sur les façades","d":"Fine et verticale : souvent bénigne. En escalier, en diagonale, plus large qu’une pièce : plus inquiétant. Photo avec une pièce pour l’échelle.","cle":false,"ph":"","id":"dehors_fissures_sur_les_facades"},{"t":"Garage : dimensions, porte, électricité, humidité","d":"Grenier ou mezzanine au-dessus ?","cle":false,"ph":"","id":"dehors_garage_dimensions_porte_electricite_humi"},{"t":"Sous-sol : hauteur, traces d’eau, odeur","d":"","cle":true,"ph":"","id":"dehors_sous_sol_hauteur_traces_d_eau_odeur"},{"t":"Terrain : clôtures, limites, écoulement de l’eau","d":"","cle":false,"ph":"","id":"dehors_terrain_clotures_limites_ecoulement_de_l"},{"t":"Écouter le bruit depuis le jardin","d":"Ressenti de 1 à 5","cle":false,"ph":"1 à 5","id":"dehors_ecouter_le_bruit_depuis_le_jardin"},{"t":"Orientation du jardin, ensoleillement","d":"","cle":false,"ph":"","id":"dehors_orientation_du_jardin_ensoleillement"},{"t":"Matériaux possiblement amiantés (plaques ondulées, auvents, conduits)","d":"Construction avant 1997 : regarde le diagnostic amiante","cle":false,"ph":"","id":"dehors_materiaux_possiblement_amiantes_plaques"}]},{"id":"dedans","titre":"Intérieur","items":[{"t":"Tableau électrique","d":"Âge, disjoncteurs, différentiel 30 mA, prise de terre","cle":true,"ph":"","id":"dedans_tableau_electrique"},{"t":"Radiateurs et chauffage : combien, quel état","d":"","cle":false,"ph":"","id":"dedans_radiateurs_et_chauffage_combien_quel_eta"},{"t":"Fenêtres : simple ou double vitrage, joints, état","d":"","cle":false,"ph":"","id":"dedans_fenetres_simple_ou_double_vitrage_joints"},{"t":"Humidité : bas des murs, odeur, moisissures","d":"Derrière les meubles et dans les placards","cle":false,"ph":"","id":"dedans_humidite_bas_des_murs_odeur_moisissures"},{"t":"Salle de bains et WC : état, ventilation","d":"","cle":true,"ph":"","id":"dedans_salle_de_bains_et_wc_etat_ventilation"},{"t":"Ballon d’eau chaude : capacité, âge ; pression de l’eau","d":"","cle":false,"ph":"","id":"dedans_ballon_d_eau_chaude_capacite_age_pressio"},{"t":"VMC : présente, fonctionne ?","d":"Feuille de papier sur les bouches","cle":false,"ph":"","id":"dedans_vmc_presente_fonctionne"},{"t":"Étage : ouvrir les trappes ou petites portes des soupentes","d":"Type et épaisseur d’isolant (moins de 10 cm = insuffisant, idéal 20 à 30 cm)","cle":true,"ph":"","id":"dedans_etage_ouvrir_les_trappes_ou_petites_port"},{"t":"Velux : modèle et année (plaque sur le cadre), traces d’infiltration","d":"","cle":false,"ph":"","id":"dedans_velux_modele_et_annee_plaque_sur_le_cadr"},{"t":"Surfaces au-dessus de 1,80 m à l’étage","d":"","cle":false,"ph":"m²","id":"dedans_surfaces_au_dessus_de_1_80_m_a_l_etage"}]},{"id":"pieces","titre":"Pièces","items":[{"t":"Séjour","d":"Lumière, bruit, vis-à-vis","cle":false,"ph":"Surface, état, remarques","id":"pieces_sejour"},{"t":"Cuisine","d":"Ouverte ou fermée, état, équipements","cle":false,"ph":"Surface, état, remarques","id":"pieces_cuisine"},{"t":"Chambre 1","d":"","cle":false,"ph":"Surface, état, rangements","id":"pieces_chambre_1"},{"t":"Chambre 2","d":"","cle":false,"ph":"Surface, état, rangements","id":"pieces_chambre_2"},{"t":"Chambre 3","d":"","cle":false,"ph":"Surface, état, rangements","id":"pieces_chambre_3"},{"t":"Salle de bains","d":"","cle":false,"ph":"Surface, état","id":"pieces_salle_de_bains"},{"t":"Autres pièces","d":"Bureau, buanderie, cellier…","cle":false,"ph":"Lesquelles, surfaces","id":"pieces_autres_pieces"}]},{"id":"apres","titre":"Après la visite","items":[{"t":"Faire le trajet à pied jusqu’à St Laurent","d":"≈ 5 min (400 m) par l’entrée 10 rue des Sources","cle":false,"ph":"","id":"apres_faire_le_trajet_a_pied_jusqu_a_st_lauren"},{"t":"Repasser à une autre heure","d":"Heure de pointe pour le bruit, le soir pour l’ambiance du quartier","cle":false,"ph":"","id":"apres_repasser_a_une_autre_heure"},{"t":"Exporter cette fiche","d":"Bouton « Sauvegarde » en haut, à mettre dans le dossier visites","cle":false,"ph":"","id":"apres_exporter_cette_fiche"}]}],"leviers":[{"t":"Chauffage à moderniser (DPE F)","m":"9 000 à 19 000 €","d":"Pompe à chaleur air/air ou air/eau, ballon thermodynamique"},{"t":"Passoire thermique (F/G) : location interdite à terme, gros travaux","m":"20 000 à 50 000 €","d":"Isolation, fenêtres, chauffage"},{"t":"Isolation de l’étage ou des combles à prouver","m":"4 000 à 12 000 €","d":"Selon ce que montrent les soupentes"},{"t":"Électricité d’origine possible (1953)","m":"3 000 à 15 000 €","d":"Selon les anomalies du diagnostic"},{"t":"En vente depuis environ 350 jours","m":"argument","d":"Un bien qui ne part pas laisse plus de marge"}],"prefill":{},"offre":287000,"k":0.005256235702594917,"autres":410,"voiture":false,"auto":{"chelles":[3,"calculé : 16 min (9,7 km), hors bouchons"],"grande":[4,"5 min à pied : à vérifier sur place (traversées)"],"ecole":[4,"calculé : 5 min à pied (400 m)"]}};
+const CLE = 'fiche:' + F.id;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const eur = n => (n == null || isNaN(n)) ? '—' : Math.round(n).toLocaleString('fr-FR') + ' €';
+let E = {};
+try { E = JSON.parse(localStorage.getItem(CLE) || 'null') || null; } catch (e) { E = null; }
+if (!E || !Object.keys(E).length) E = Object.assign({}, F.prefill || {});
+const sauver = () => { E._maj = new Date().toISOString(); try { localStorage.setItem(CLE, JSON.stringify(E)); } catch (e) {} };
+
+$('sections').innerHTML = F.sections.map((s, k) => `
+  <details class="sec" id="s-${s.id}" ${k < 2 ? 'open' : ''}>
+    <summary><h2>${esc(s.titre)}</h2><span class="n" data-n="${s.id}"></span></summary>
+    <div class="items">${s.items.map(it => `<div class="it">
+      <input type="checkbox" id="c-${it.id}" data-c="${it.id}" data-s="${s.id}">
+      <div style="min-width:0"><label for="c-${it.id}"><span class="t">${esc(it.t)}</span>${it.cle ? '<span class="cle">clé</span>' : ''}${it.d ? `<small>${esc(it.d)}</small>` : ''}</label>
+      <textarea rows="1" id="r-${it.id}" data-r="${it.id}" placeholder="${esc(it.ph || 'Réponse…')}" aria-label="Réponse : ${esc(it.t)}"></textarea></div></div>`).join('')}
+    </div></details>`).join('');
+$('leviers').innerHTML = F.leviers.map(l => `<div class="lev"><span>${esc(l.t)}</span><span class="m">${esc(l.m)}</span>${l.d ? `<small>${esc(l.d)}</small>` : ''}</div>`).join('')
+  || '<p class="soft">Rien de particulier repéré dans l’annonce : à compléter après la visite.</p>';
+
+const ajuster = t => { t.style.height = 'auto'; t.style.height = (t.scrollHeight + 2) + 'px'; };
+const cases = [...document.querySelectorAll('input[data-c]')];
+cases.forEach(c => { c.checked = !!E['c:' + c.dataset.c]; c.addEventListener('change', () => { E['c:' + c.dataset.c] = c.checked; sauver(); maj(); }); });
+document.querySelectorAll('[data-r]').forEach(t => {
+  if (E['r:' + t.dataset.r] != null) t.value = E['r:' + t.dataset.r]; if (t.tagName === 'TEXTAREA') ajuster(t);
+  t.addEventListener('input', () => {
+    E['r:' + t.dataset.r] = t.value; if (t.tagName === 'TEXTAREA') ajuster(t);
+    const c = $('c-' + t.dataset.r);
+    if (c && t.value.trim() && !c.checked) { c.checked = true; E['c:' + t.dataset.r] = true; maj(); }
+    sauver(); calcul();
+  });
+});
+function maj() {
+  const f = cases.filter(c => c.checked).length;
+  $('compte').textContent = `${f} / ${cases.length}`;
+  $('jauge').style.width = (cases.length ? f / cases.length * 100 : 0) + '%';
+  F.sections.forEach(s => {
+    const cs = cases.filter(c => c.dataset.s === s.id), n = cs.filter(c => c.checked).length, el = document.querySelector(`[data-n="${s.id}"]`);
+    el.textContent = `${n} / ${cs.length}`; el.classList.toggle('fini', n === cs.length && n > 0);
+  });
+}
+const num = v => { const x = parseFloat(String(v || '').replace(/\s/g, '').replace(',', '.')); return isNaN(x) ? null : x; };
+function calcul() {
+  const offre = num(E['r:mon_offre']) ?? F.offre, trav = num(E['r:travaux']) || 0;
+  if (!offre) { $('resultat').textContent = ''; return; }
+  const total = offre + trav, mens = F.k * offre + (trav ? F.k * trav : 0);
+  $('resultat').innerHTML = `Offre ${eur(offre)} + travaux ${eur(trav)} = <b>${eur(total)}</b><br>` +
+    `Crédit ≈ ${eur(mens)}/mois si tout est emprunté` + (F.autres != null ? ` · total ≈ <b>${eur(mens + F.autres)}/mois</b> avec énergie, taxe${F.voiture ? ' et voiture' : ''}` : '');
+}
+maj(); calcul();
+
+// Photos : vignette → grande photo, grande photo → plein écran
+const grande = $('grande');
+document.querySelectorAll('.photos-f .vignettes img').forEach(v => v.addEventListener('click', () => {
+  grande.src = v.src; document.querySelectorAll('.photos-f .vignettes img').forEach(x => x.classList.toggle('on', x === v));
+}));
+if (grande) grande.addEventListener('click', () => { $('lbfimg').src = grande.src; $('lbf').style.display = 'flex'; });
+$('lbf').addEventListener('click', () => $('lbf').style.display = 'none');
+
+// Critères notés de 1 à 4
+const AUTO = F.auto || {};
+const val = k => (E['r:crit_' + k] != null && E['r:crit_' + k] !== undefined) ? E['r:crit_' + k] : (AUTO[k] ? String(AUTO[k][0]) : '');
+let grp_ = '';
+$('criteres').innerHTML = F.criteres.map(([k, l, g]) => (g && g !== grp_ ? (grp_ = g, `<h3 style="font:600 12px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--rose-ink);margin:14px 0 2px">${esc(g)}</h3>`) : '') + `<div class="crit"><span>${esc(l)}${AUTO[k] ? `<small class="soft" style="display:block;font-size:12px">${esc(AUTO[k][1])}</small>` : ''}</span><div class="etoiles" role="group" aria-label="${esc(l)}">` +
+  [1, 2, 3, 4].map(n => `<button type="button" data-k="${k}" data-v="${n}" aria-pressed="false">${n}</button>`).join('') + '</div></div>').join('');
+function notes() {
+  document.querySelectorAll('.etoiles button').forEach(b => { const on = val(b.dataset.k) === b.dataset.v; b.classList.toggle('on', on);
+    b.classList.toggle('auto', on && E['r:crit_' + b.dataset.k] == null); b.setAttribute('aria-pressed', on); });
+  const vs = F.criteres.map(([k]) => +val(k)).filter(v => v > 0);
+  $('moyenne').innerHTML = vs.length ? `Moyenne : <b>${(vs.reduce((a, b) => a + b, 0) / vs.length).toFixed(1).replace('.', ',')} / 4</b> sur ${vs.length} critère${vs.length > 1 ? 's' : ''} (≈ ${(vs.reduce((a, b) => a + b, 0) / vs.length * 2.5).toFixed(1).replace('.', ',')} / 10)` : '';
+}
+document.querySelectorAll('.etoiles button').forEach(b => b.addEventListener('click', () => {
+  const k = 'r:crit_' + b.dataset.k; E[k] = val(b.dataset.k) === b.dataset.v ? '' : b.dataset.v; sauver(); notes();
+}));
+notes();
+
+function texte() {
+  const L = [F.titre, F.adresse || F.ville, 'Visite : ' + (E['r:date_visite'] || '…'), ''];
+  F.sections.forEach(s => {
+    L.push('== ' + s.titre + ' ==');
+    s.items.forEach(it => { const r = (E['r:' + it.id] || '').trim(); L.push(`${E['c:' + it.id] ? '[x]' : '[ ]'} ${it.t}` + (r ? '\n    → ' + r.replace(/\n/g, '\n      ') : '')); });
+    L.push('');
+  });
+  L.push('== Bilan ==');
+  F.criteres.forEach(([k, l]) => { const v = val(k); if (v) L.push(`${l} : ${v}/4` + (E['r:crit_' + k] == null ? ' (calculé)' : '')); });
+  [['note', 'Note /10'], ['coeur', 'Coup de cœur'], ['plus', 'Points positifs'], ['moins', 'Points négatifs'], ['travaux', 'Travaux estimés (€)'], ['mon_offre', 'Mon offre (€)']]
+    .forEach(([k, l]) => { if ((E['r:' + k] || '').trim()) L.push(l + ' : ' + E['r:' + k].trim()); });
+  return L.join('\n');
+}
+function telecharger(nom, contenu, type) {
+  // data: plutôt que blob: — depuis un fichier local, Chrome ignore le nom des téléchargements blob
+  const a = document.createElement('a');
+  a.href = 'data:' + type + ',' + encodeURIComponent('\ufeff' + contenu); a.download = nom;
+  document.body.appendChild(a); a.click(); setTimeout(() => a.remove(), 500);
+}
+$('expTxt').onclick = () => { telecharger(F.fichier + '.txt', texte(), 'text/plain;charset=utf-8'); $('msg').textContent = 'Fichier texte enregistré dans tes téléchargements.'; };
+$('expJson').onclick = () => { telecharger(F.fichier + '.json', JSON.stringify({ id: F.id, titre: F.titre, reponses: E }, null, 1), 'application/json'); $('msg').textContent = 'Sauvegarde enregistrée : mets-la dans le dossier « visites » à côté du script.'; };
+$('copier').onclick = () => {
+  const t = texte();
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => $('msg').textContent = 'Réponses copiées.')
+    .catch(() => { const ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); $('msg').textContent = 'Réponses copiées.'; } catch (e) {} ta.remove(); });
+};
+$('impBtn').onclick = () => $('imp').click();
+$('imp').onchange = ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  f.text().then(t => { const j = JSON.parse(t.replace(/^\ufeff/, '')); E = j.reponses || j; sauver(); location.reload(); })
+    .catch(() => $('msg').textContent = 'Fichier illisible : choisis un fichier visite_….json.');
+};
+</script>
+</body>
+</html>

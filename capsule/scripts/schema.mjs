@@ -161,6 +161,11 @@ const preferences = object({
   style: string,
   currency: { enum: ["EUR", "USD", "GBP", "CHF", "CAD", "JPY"] },
 });
+preferences.properties.colorProfile = object({
+  name: string, undertone: string, contrast: string, notes: string,
+  enabled: boolean, avoid: strings,
+  palette: {type: "array", maxItems: 32, items: object({label: {type:"string",maxLength:200}, hex: {type:"string",pattern:"^#[0-9a-fA-F]{6}$"}})}
+});
 const collections = {
   garments: "garment",
   outfits: "outfit",

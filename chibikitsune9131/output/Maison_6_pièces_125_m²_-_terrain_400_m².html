@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison 6 pièces 125 m² - terrain 400 m²</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7F9; --card:#FFFFFF; --ink:#3E3644; --soft:#8A7E90; --line:#EFE4EA; --line2:#E4D6DE;
+  --rose:#F6DCE4; --rose-ink:#A24D6D; --sage:#DCEDE2; --sage-ink:#3D6B53; --lilas:#E7E1F5; --lilas-ink:#5A4D8C;
+  --peche:#FCE6D8; --peche-ink:#93543A; --beurre:#F8EFCB; --beurre-ink:#76601F; --ciel:#DFECF6; --ciel-ink:#3A6587;
+  --gris:#EEEAF0; --gris-ink:#6A6270;
+  --shadow:0 1px 2px rgba(62,54,68,.05), 0 10px 28px -16px rgba(62,54,68,.18);
+  --serif:'Young Serif', Georgia, 'Times New Roman', serif;
+  --sans:'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --paper:#211C25; --card:#2B2530; --ink:#F1E8EE; --soft:#A99CAE; --line:#3A3240; --line2:#463D4D;
+  --rose:#4A2F3C; --rose-ink:#F2B6CA; --sage:#2D4236; --sage-ink:#A9D8BC; --lilas:#383057; --lilas-ink:#CCC2F2;
+  --peche:#4A3328; --peche-ink:#F5C3A6; --beurre:#463C1F; --beurre-ink:#EBD58A; --ciel:#283B4C; --ciel-ink:#AFD0EC;
+  --gris:#38323D; --gris-ink:#C9C0CE; --shadow:0 1px 2px rgba(0,0,0,.25), 0 10px 28px -16px rgba(0,0,0,.6);
+  color-scheme: dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.55 var(--sans);font-feature-settings:"tnum" 0}
+a{color:var(--rose-ink);text-decoration:none;text-underline-offset:3px}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--rose-ink);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;margin:0;line-height:1.2}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+.soft{color:var(--soft)}
+.num{font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;border:1px solid var(--line2);
+     background:var(--card);color:var(--ink);font:500 14px var(--sans);cursor:pointer;text-decoration:none}
+.btn:hover{text-decoration:none;border-color:var(--rose-ink)}
+.btn.main{background:var(--rose-ink);border-color:var(--rose-ink);color:#fff}
+@media (prefers-color-scheme: dark){ .btn.main{color:#2B2530} }
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font:500 12.5px/1.5 var(--sans);
+      background:var(--gris);color:var(--gris-ink);white-space:nowrap}
+.chip.rose{background:var(--rose);color:var(--rose-ink)} .chip.sage{background:var(--sage);color:var(--sage-ink)}
+.chip.lilas{background:var(--lilas);color:var(--lilas-ink)} .chip.peche{background:var(--peche);color:var(--peche-ink)}
+.chip.beurre{background:var(--beurre);color:var(--beurre-ink)} .chip.ciel{background:var(--ciel);color:var(--ciel-ink)}
+.chip.ligne{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+.chip.strong{font-weight:600}
+.dpe{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 12.5px/1.5 var(--sans)}
+.dpe.A{background:#C7E6CF;color:#245A38}.dpe.B{background:#D9ECC3;color:#3F5F22}.dpe.C{background:#ECF0C2;color:#56601B}
+.dpe.D{background:#F8ECBC;color:#6E5A16}.dpe.E{background:#F9DCBE;color:#7E4A20}.dpe.F{background:#F6C9BA;color:#863A27}
+.dpe.G{background:#EFBAC5;color:#842B42}.dpe.X{background:var(--gris);color:var(--gris-ink)}
+.panel{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:20px 22px}
+.note{color:var(--soft);font-size:12.5px;line-height:1.5}
+.up{color:var(--rose-ink)} .down{color:var(--sage-ink)}
+input,select,button{font:inherit;color:inherit}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+.dvf{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px 24px;margin:18px 0}
+.dvf h2{font-size:1.35rem;margin-bottom:4px}
+.dvf h3{font-size:1.05rem;margin:22px 0 8px}
+.dvf .sous{color:var(--soft);font-size:13.5px;margin:0 0 14px}
+.frise{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
+.frise::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;border-radius:2px;background:var(--lilas)}
+.frise li{position:relative;padding:2px 0 16px}
+.frise li:last-child{padding-bottom:2px}
+.frise li::before{content:"";position:absolute;left:-21px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:var(--card);border:2px solid var(--lilas-ink)}
+.frise li.cle::before{background:var(--rose-ink);border-color:var(--rose-ink)}
+.frise .quand{font-family:var(--serif);font-size:1.02rem}
+.frise .prix{font-family:var(--serif);font-size:1.5rem;color:var(--rose-ink);margin:2px 0 4px;font-variant-numeric:lining-nums}
+.frise .det{color:var(--soft);font-size:13.5px}
+.frise .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.frise .rem{font-size:12.5px;color:var(--soft);margin-top:4px}
+.tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tuile{background:var(--paper);border-radius:12px;padding:11px 13px}
+.tuile small{display:block;color:var(--soft);font-size:12.5px}
+.tuile b{display:block;font:400 1.2rem/1.3 var(--serif);margin:2px 0}
+.dvf table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.dvf th,.dvf td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+.dvf th{font-weight:600;color:var(--soft);font-size:12.5px}
+.dvf td.n,.dvf th.n{text-align:right;white-space:nowrap}
+.dvf details{margin-top:12px}
+.dvf summary{cursor:pointer;color:var(--rose-ink);font-weight:500}
+.dvf .note{margin-top:14px}
+.risques ul{margin:6px 0;padding-left:18px} .risques li{margin:6px 0}
+.choix{margin-top:8px}
+.btn-choix{border:1px solid var(--sage-ink);background:var(--sage);color:var(--sage-ink);border-radius:999px;padding:5px 14px;
+  font:600 13px var(--sans);cursor:pointer}
+.btn-choix:hover{filter:brightness(.97)}
+.choix.fait .btn-choix{background:var(--sage-ink);color:var(--card)}
+.choix .aide{margin-top:8px;font-size:13px;background:var(--sage);color:var(--ink);border-radius:12px;padding:10px 12px;max-width:62ch}
+.lien-gps{border:0;background:none;color:var(--rose-ink);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+
+.haut{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;margin-bottom:22px}
+.haut nav{display:flex;gap:8px;flex-wrap:wrap}
+.titre h1{font-size:clamp(1.6rem,3.2vw,2.3rem);max-width:34ch;text-wrap:balance}
+.titre .lieu{color:var(--soft);margin-top:6px}
+.statuts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.grille-detail{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:26px;margin-top:22px;align-items:start}
+main > .dvf:first-child{margin-top:0}
+.photo-principale{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:20px;display:block;cursor:zoom-in;background:var(--rose)}
+.sans-photo{aspect-ratio:3/2;border-radius:20px;background:var(--rose);color:var(--rose-ink);display:grid;place-items:center}
+.sans-photo svg{width:90px;opacity:.55}
+.galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px}
+.galerie img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;cursor:zoom-in;display:block}
+.description{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px 26px}
+.description h2{font-size:1.2rem;margin-bottom:10px}
+.description p{max-width:72ch;line-height:1.65;margin:0 0 1em}
+aside.fiche{position:sticky;top:18px;background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px}
+.gros-prix{font:400 2.2rem/1.1 var(--serif);color:var(--rose-ink);font-variant-numeric:lining-nums}
+.prix-m2{color:var(--soft);margin:4px 0 12px}
+.faits{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+dl.infos{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin:0 0 6px}
+dl.infos div{min-width:0} dl.infos dt{color:var(--soft);font-size:12.5px} dl.infos dd{margin:0;overflow-wrap:anywhere}
+aside h2{font-size:1.02rem;margin:20px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+aside ul{list-style:none;margin:0;padding:0} aside li{margin:6px 0}
+.carte{width:100%;height:210px;border:0;border-radius:14px;margin-top:14px;display:block}
+.texte{white-space:pre-wrap;font-size:14px}
+dl.budget b{font:400 1.15rem var(--serif);color:var(--rose-ink)}
+.cout{font-size:14px}
+.cm-l{display:flex;justify-content:space-between;gap:10px;padding:6px 0 0}
+.cm-l b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cm-n{color:var(--soft);font-size:12.5px;line-height:1.4;padding-bottom:6px;border-bottom:1px solid var(--line)}
+ul.pistes{margin:0;padding:0;list-style:none;font-size:13.5px} ul.pistes li{margin:0 0 8px}
+.cm-total{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 6px}
+.cm-total b{font:400 1.6rem var(--serif);color:var(--rose-ink)}
+.trajets-l li{margin:0 0 12px}
+.trajets-l .poi{font-weight:600;margin-bottom:2px}
+.trajet{display:grid;grid-template-columns:86px 1fr auto;gap:8px;align-items:baseline;font-size:14px}
+.trajet span{color:var(--soft)} .trajet b{font-weight:500;font-variant-numeric:tabular-nums} .trajet a{font-size:13px}
+.lb{position:fixed;inset:0;background:rgba(33,28,37,.9);display:none;align-items:center;justify-content:center;z-index:10}
+.lb img{max-width:92vw;max-height:88vh;border-radius:14px}
+.lb button{position:absolute;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer;padding:10px 18px}
+.lb .fermer{top:10px;right:10px} .lb .prec{left:6px;top:50%} .lb .suiv{right:6px;top:50%}
+@media (max-width:900px){.grille-detail{grid-template-columns:1fr} aside.fiche{position:static}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="haut">
+    <a class="btn" href="annonces.html">Toutes les annonces</a>
+    <nav><a class="btn" href="carte.html">Carte</a><a class="btn" href="comparer.html?ids=Maison_6_pi%C3%A8ces_125_m%C2%B2_-_terrain_400_m%C2%B2">Comparer</a><a class="btn" href="ventes.html">Ventes du secteur</a><a class="btn main" href="Maison_6_pièces_125_m²_-_terrain_400_m²_fiche.html" target="_blank">Fiche de visite</a></nav>
+  </div>
+  <header class="titre">
+    <h1>Maison 6 pièces 125 m² – terrain 400 m²</h1>
+    <div class="lieu">Lagny-sur-Marne (77400) – Kaufman &amp; Broad - Bords de Marne</div>
+    
+    <div class="statuts"><span class="chip rose" title="Risque Existant - modéré">Argiles (retrait-gonflement)</span><span class="chip rose" title="Risque Existant">Inondation</span><span class="chip rose" title="Risque Existant">Mouvement de terrain</span><span class="chip rose" title="Risque Existant">Remontée de nappe</span></div>
+  </header>
+  <div class="grille-detail">
+    <main>
+      <img class="photo-principale" src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo01.jpg" data-i="0" alt="Photo principale"><div class="galerie"><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo02.jpg" data-i="1" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo03.jpg" data-i="2" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo04.jpg" data-i="3" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo05.jpg" data-i="4" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo06.jpg" data-i="5" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo07.jpg" data-i="6" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo08.jpg" data-i="7" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo09.jpg" data-i="8" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo10.jpg" data-i="9" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo11.jpg" data-i="10" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo12.jpg" data-i="11" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo13.jpg" data-i="12" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo14.jpg" data-i="13" loading="lazy" alt=""><img src="../images/Maison_6_pièces_125_m²_-_terrain_400_m²/photo15.jpg" data-i="14" loading="lazy" alt=""></div>
+      <section class="dvf"><h2>Ce bien a-t-il déjà été vendu ?</h2><p class="sous">Ventes de la commune avec le même terrain et une surface proche. L’adresse de ton fichier n’a rien donné dans DVF.</p><ol class="frise"><li class=""><div class="quand">6 juillet 2021</div><div class="prix">438 000 €</div><div class="det">Maison · 6 pièces · 125 m² · 3 504 €/m² · <a href="https://www.google.com/maps/search/?api=1&query=6%20Rue%20de%20l%20Ile%20Maubert%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">6 Rue de l Ile Maubert</a></div><div class="chips"><span class="chip sage">très probable</span><span class="chip ligne">vente précédente</span></div><div class="choix" data-id="2021-1314498"><button type="button" class="btn-choix" data-adr="6 Rue de l Ile Maubert" data-gps="48.881185, 2.724952">C’est cette maison : copier l’adresse</button><div class="aide" hidden>Adresse copiée : <b>6 Rue de l Ile Maubert</b>. Colle-la dans la colonne <b>Adresse</b> de cette annonce dans ton Excel, puis relance le script. <button type="button" class="lien-gps" data-gps="48.881185, 2.724952">Copier aussi les coordonnées GPS</button> (colonne <b>Coord GPS</b>, pour des trajets précis).</div></div></li></ol><h3>Prix par rapport au marché</h3><div class="tuiles"><div class="tuile"><small>Maisons comparables vendues</small><b>38</b><small>surface ±20 %, terrain ±40 %, 2 ans</small></div><div class="tuile"><small>Prix médian au m²</small><b>3 640 €</b><small>de 3 021 € à 3 941 €</small></div><div class="tuile"><small>Prix au m² de l’annonce</small><b>3 360 €</b></div><div class="tuile"><small>Valeur estimée</small><b>455 000 €</b><small class="down">annonce −7,7 %</small></div></div><details><summary>Voir les ventes comparables</summary><table><tr><th>Date</th><th>Adresse</th><th class="n">Prix</th><th class="n">Surface</th><th class="n">Terrain</th><th class="n">Prix au m²</th></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=31%20Rue%20du%20Chariot%20d%20Or%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">31 Rue du Chariot d Or</a></td><td class="n">389 650 €</td><td class="n">103 m²</td><td class="n">—</td><td class="n">3 783 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=9%20Rue%20Saint%20Laurent%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">9 Rue Saint Laurent</a></td><td class="n">625 000 €</td><td class="n">115 m²</td><td class="n">—</td><td class="n">5 435 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=4%20All%C3%A9e%20Benjamin%20Raynaud%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">4 Allée Benjamin Raynaud</a></td><td class="n">427 000 €</td><td class="n">109 m²</td><td class="n">438 m²</td><td class="n">3 917 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=6%20Impasse%20Normandie%20Niemen%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">6 Impasse Normandie Niemen</a></td><td class="n">440 000 €</td><td class="n">113 m²</td><td class="n">530 m²</td><td class="n">3 894 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=7%20Rue%20Sarda%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">7 Rue Sarda</a></td><td class="n">465 000 €</td><td class="n">130 m²</td><td class="n">367 m²</td><td class="n">3 577 €</td></tr><tr><td>mars 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=53%20Quai%20du%20Pre%20Long%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">53 Quai du Pre Long</a></td><td class="n">341 200 €</td><td class="n">100 m²</td><td class="n">485 m²</td><td class="n">3 412 €</td></tr><tr><td>févr. 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=7%20Avenue%20Charles%20Latoison%20Duval%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">7 Avenue Charles Latoison Duval</a></td><td class="n">406 900 €</td><td class="n">106 m²</td><td class="n">307 m²</td><td class="n">3 839 €</td></tr><tr><td>févr. 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=63%20Quai%20du%20Pre%20Long%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">63 Quai du Pre Long</a></td><td class="n">566 000 €</td><td class="n">104 m²</td><td class="n">255 m²</td><td class="n">5 442 €</td></tr><tr><td>janv. 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=27%20Rue%20Victor%20Hugo%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">27 Rue Victor Hugo</a></td><td class="n">490 700 €</td><td class="n">109 m²</td><td class="n">392 m²</td><td class="n">4 502 €</td></tr><tr><td>janv. 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=21%20Rue%20Jeanne%20d%20Arc%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">21 Rue Jeanne d Arc</a></td><td class="n">340 000 €</td><td class="n">132 m²</td><td class="n">—</td><td class="n">2 576 €</td></tr><tr><td>déc. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=29%20Rue%20des%20Chauffernes%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">29 Rue des Chauffernes</a></td><td class="n">450 000 €</td><td class="n">116 m²</td><td class="n">350 m²</td><td class="n">3 879 €</td></tr><tr><td>déc. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=38%20Avenue%20des%20Acacias%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">38 Avenue des Acacias</a></td><td class="n">347 000 €</td><td class="n">125 m²</td><td class="n">457 m²</td><td class="n">2 776 €</td></tr></table></details><p class="note">Source : DVF (DGFiP, data.gouv.fr), prix signés chez le notaire, publiés avec environ six mois de décalage. Valeur estimée = prix médian au m² × surface de l’annonce.</p></section>
+      <section class="dvf"><h2>Ventes du quartier</h2><p class="sous">Maisons vendues dans la même rue et autour : utile pour situer le prix et repérer un quartier.</p><div class="tuiles"><div class="tuile"><small>Rue de l Ile Maubert</small><b>3 ventes</b><small>depuis 2014</small></div><div class="tuile"><small>Maisons à moins de 300 m</small><b>4 208 €/m²</b><small>médiane de 10 ventes, 3 ans</small></div><div class="tuile"><small>Toute la commune</small><b>4 030 €/m²</b><small>maisons, 3 ans</small></div><div class="tuile"><small>Cette annonce</small><b>3 360 €/m²</b><small class="down">−20,2 % par rapport au quartier</small></div></div><h3>Rue de l Ile Maubert, depuis 2014</h3><table><tr><th>Date</th><th>Adresse</th><th class="n">Prix</th><th class="n">Surface</th><th class="n">Terrain</th><th class="n">Prix au m²</th></tr><tr><td>juil. 2021</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=6%20Rue%20de%20l%20Ile%20Maubert%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">6 Rue de l Ile Maubert</a></td><td class="n">438 000 €</td><td class="n">125 m²</td><td class="n">—</td><td class="n">3 504 €</td></tr><tr><td>juin 2021</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=14%20Rue%20de%20l%20Ile%20Maubert%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">14 Rue de l Ile Maubert</a></td><td class="n">473 000 €</td><td class="n">142 m²</td><td class="n">—</td><td class="n">3 331 €</td></tr><tr><td>janv. 2021</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=2%20Rue%20de%20l%20Ile%20Maubert%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">2 Rue de l Ile Maubert</a></td><td class="n">530 000 €</td><td class="n">142 m²</td><td class="n">—</td><td class="n">3 732 €</td></tr></table><details><summary>Rues voisines : 10 maisons vendues à moins de 300 m depuis juil. 2023</summary><table><tr><th>Date</th><th>Adresse</th><th class="n">Prix</th><th class="n">Surface</th><th class="n">Terrain</th><th class="n">Prix au m²</th><th class=n>Distance</th></tr><tr><td>sept. 2024</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=47%20Chemin%20de%20Quincangrogne%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">47 Chemin de Quincangrogne</a></td><td class="n">485 000 €</td><td class="n">142 m²</td><td class="n">—</td><td class="n">3 415 €</td><td class="n">20 m</td></tr><tr><td>juin 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=16%20Chemin%20des%20Etoisies%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">16 Chemin des Etoisies</a></td><td class="n">536 900 €</td><td class="n">142 m²</td><td class="n">—</td><td class="n">3 781 €</td><td class="n">20 m</td></tr><tr><td>mars 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=4%20All%C3%A9e%20des%20Mesanges%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">4 Allée des Mesanges</a></td><td class="n">380 000 €</td><td class="n">90 m²</td><td class="n">1426 m²</td><td class="n">4 222 €</td><td class="n">80 m</td></tr><tr><td>juil. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=2%20Chemin%20de%20Quincangrogne%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">2 Chemin de Quincangrogne</a></td><td class="n">613 000 €</td><td class="n">93 m²</td><td class="n">1403 m²</td><td class="n">6 591 €</td><td class="n">90 m</td></tr><tr><td>juin 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=13%20Chemin%20des%20Etoisies%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">13 Chemin des Etoisies</a></td><td class="n">381 550 €</td><td class="n">99 m²</td><td class="n">797 m²</td><td class="n">3 854 €</td><td class="n">120 m</td></tr><tr><td>juil. 2024</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=8%20Chemin%20de%20Quincangrogne%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">8 Chemin de Quincangrogne</a></td><td class="n">363 700 €</td><td class="n">78 m²</td><td class="n">179 m²</td><td class="n">4 663 €</td><td class="n">130 m</td></tr><tr><td>déc. 2023</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=93%20Quai%20de%20la%20Gourdine%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">93 Quai de la Gourdine</a></td><td class="n">555 000 €</td><td class="n">90 m²</td><td class="n">939 m²</td><td class="n">6 167 €</td><td class="n">140 m</td></tr><tr><td>nov. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=83%20Quai%20de%20la%20Gourdine%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">83 Quai de la Gourdine</a></td><td class="n">81 000 €</td><td class="n">20 m²</td><td class="n">215 m²</td><td class="n">4 050 €</td><td class="n">160 m</td></tr><tr><td>août 2024</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=30%20Chemin%20de%20Quincangrogne%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">30 Chemin de Quincangrogne</a></td><td class="n">335 000 €</td><td class="n">78 m²</td><td class="n">194 m²</td><td class="n">4 295 €</td><td class="n">170 m</td></tr><tr><td>sept. 2023</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=6%20All%C3%A9e%20des%20Noisetiers%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">6 Allée des Noisetiers</a></td><td class="n">499 000 €</td><td class="n">119 m²</td><td class="n">700 m²</td><td class="n">4 193 €</td><td class="n">220 m</td></tr></table></details><p style="margin:12px 0 0"><a class="btn" href="ventes.html#autour=48.881230,2.724757,0.3">Voir ces ventes sur la carte</a></p></section>
+      <section class="dvf risques"><h2>Risques</h2><p class="sous">Synthèse Géorisques pour la position de la maison. À vérifier dans l’état des risques fourni par le vendeur.</p><h3>À cette adresse</h3><ul><li><b>Argiles (retrait-gonflement)</b> : Risque Existant - modéré</li><li><b>Inondation</b> : Risque Existant</li><li><b>Mouvement de terrain</b> : Risque Existant</li><li><b>Remontée de nappe</b> : Risque Existant</li><li><b>Sols pollués</b> : Risque Concerne</li><li><b>Canalisations de matières dangereuses</b> : Risque Concerne</li><li><b>Radon</b> : Risque Existant - faible</li><li><b>Séisme</b> : Risque Existant - faible</li></ul><details><summary>Dans la commune (1)</summary><ul><li><b>Installations industrielles</b> : Risque non Concerne</li></ul></details><p class="note"><a href="https://www.georisques.gouv.fr/mes-risques/connaitre-les-risques-pres-de-chez-moi/rapport2?typeForm=adresse&amp;city=Lagny-sur-Marne&amp;codeInsee=77243&amp;lon=2.724757&amp;lat=48.881230&amp;adresse=12+Rue+de+l%27Ile+Maubert%2C+77400+Lagny-sur-Marne" target="_blank" rel="noopener">Ouvrir le rapport complet sur Géorisques</a></p></section>
+      <section class="description"><h2>Description</h2><p>Maison individuelle Kaufman &amp; Broad – Modèle Angélique – 4 chambres – Quartier recherché des bords de Marne.</p><p>Dans un environnement privilégié, à quelques pas des bords de Marne, découvrez cette charmante maison individuelle Kaufman &amp; Broad, modèle Angélique, construite en 2000.</p><p>Nichée au calme, elle offre un cadre de vie idéal pour une famille, à proximité des écoles, des commerces et des transports.</p><p>Dès l&#x27;entrée, vous serez séduit par ses beaux volumes et sa distribution fonctionnelle.<br>Le rez-de-chaussée comprend une entrée avec rangements, un spacieux double séjour baigné de lumière, agrémenté d&#x27;un poêle à bois, une cuisine indépendante pouvant être ouverte sur la pièce de vie afin de créer un vaste espace de réception, une lingerie/buanderie ainsi qu&#x27;un garage attenant.</p><p>À l&#x27;étage, un palier dessert trois belles chambres avec rangements, une salle d&#x27;eau et une confortable suite parentale avec sa salle de bains privative.</p><p>Les combles aménageables en modifiant la charpente, constituent un véritable atout et offrent un beau potentiel d&#x27;agrandissement selon vos projets : chambres supplémentaires, bureau, salle de jeux ou espace détente.</p><p>À l&#x27;extérieur, vous profiterez d&#x27;un agréable jardin d&#x27;environ 400 m², exposé plein sud, d&#x27;une terrasse idéale pour les repas en famille et les moments de convivialité, ainsi que de plusieurs possibilités de stationnement, à l&#x27;intérieur comme à l&#x27;extérieur de la propriété.</p><p>Des travaux de rénovation sont à prévoir, offrant une belle opportunité de moderniser les prestations et de personnaliser cette maison selon vos goûts.<br>Grâce à sa construction de qualité, ses volumes généreux et son emplacement particulièrement recherché, elle représente un excellent investissement pour créer un lieu de vie à votre image.</p><p>Les + :</p><p>Maison individuelle Kaufman &amp; Broad<br>Quartier calme et recherché<br>À proximité immédiate des bords de Marne<br>Double séjour avec poêle à bois<br>4 chambres dont une suite parentale<br>Combles aménageables<br>Jardin exposé plein sud avec terrasse<br>Garage et stationnements<br>Beau potentiel de valorisation</p><p>Une maison familiale offrant de nombreuses possibilités d&#x27;aménagement, dans un secteur où les opportunités sont rares.</p><p>Bien soumis au statut de la copropriété.<br>Pas de procédure en cours au titre de l&#x27;article L 721-1 du CCH.<br>Copropriété comprenant 32 lots dont 32 lots d&#x27;habitation.<br>Charges annuelles : 279 €.<br>Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr</p><p>NOUVEAUTÉ AGENCITY LAGNY : Maison familiale de 155m2 avec piscine et dépendance sur un terrain de plus de 1000m2, dans un quartier pavillonnaire très recherché à 15&#x27; à pied du centre-ville.</p><p>Au RDC : une entrée cathédrale, un séjour avec cheminée ouvrant sur une terrasse en partie couverte par une véranda, une grande cuisine, une buanderie et un wc.</p><p>Au 1er étage : un dégagement, 4 chambres dont une avec placard, une pièce, une salle de bains et un wc.</p><p>A l&#x27;extérieur : plusieurs espaces de jardin, une terrasse, une piscine, un garage et une dépendance permettant un revenu locatif.</p><p>Les+ : Secteur très recherché, maison familiale, piscine, terrasse, grand terrain, dépendance, garage.</p><p>Un seul numéro pour visiter [Coordonnées masquées]... A tout de suite !</p><p>Votre conseiller AGENCITY LAGNY : Matthieu MIRAMOND<br>Agent commercial (Entreprise individuelle)</p><p>Surface : 155 m²<br>Date de réalisation du diagnostic énergétique : 11/03/2025</p><p>Consommation énergie primaire : 328 kWh/m²/an<br>Consommation énergie finale : 170.00 kWh/m²/an</p><p>Montant estimé des dépenses annuelles d&#x27;énergie pour un usage standard : entre 3 530 € et 4 800 € sur les années 2021, 2022 et 2023 (abonnements compris).</p><p>Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr</p></section>
+    </main>
+    <aside class="fiche">
+      <div class="gros-prix">420 000 €</div>
+      <div class="prix-m2">3 360 € le m²</div>
+      <div class="faits"><span class="chip ligne">125 m²</span><span class="chip ligne">terrain 400 m²</span><span class="chip ligne">6 pièces</span><span class="dpe C">DPE C</span><span class="dpe C">GES C</span></div>
+      <dl class="infos">
+        <div><dt>Adresse</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=12%20Rue%20de%20l%27%C3%8Ele%20Maubert%2C%2077400%20Lagny-sur-Marne" target="_blank" rel="noopener">12 Rue de l&#x27;Île Maubert</a></dd></div><div><dt>Annonce du</dt><dd>01/09/2026</dd></div>
+        <div><dt>État</dt><dd>Rénovation nécessaire</dd></div><div><dt>Construction</dt><dd>2000</dd></div>
+        <div><dt>Taxe foncière</dt><dd>2377 €/an</dd></div>
+        <div><dt>Agence</dt><dd>ORPI</dd></div>
+      </dl>
+      <iframe class="carte" src="https://maps.google.com/maps?q=48.88123,2.724757&z=15&output=embed" loading="lazy" title="Carte"></iframe>
+      <h2>Coût mensuel</h2><div class="cout"><div class="cm-l"><span>Crédit</span><b>2 118 €</b></div><div class="cm-n">403 000 € sur 25 ans à 3,5 %, assurance comprise, sans apport. Offre : 403 000 €, prix affiché −4,0 % (marge médiane observée).</div><div class="cm-l"><span>Énergie</span><b>139 €</b></div><div class="cm-n">d’après l’annonce · DPE C du 07/07/2026, 102,3 m², 1 674 €/an (à l’adresse)</div><div class="cm-l"><span>Taxe foncière</span><b>198 €</b></div><div class="cm-n">2 377 €/an, d’après l’annonce</div><div class="cm-l"><span>Seconde voiture</span><b>247 €</b></div><div class="cm-n">St Laurent à 23 min à pied (plus de 20 min). Achat 150 € + assurance 45 € + entretien 40 € + carburant 12 € (≈ 99 km/mois, St Laurent à 2,1 km en voiture)</div><div class="cm-total"><span>Total par mois</span><b>2 702 €</b></div><div class="cm-n">Frais de notaire ≈ 30 200 €, payés par la vente de l’appartement.</div></div>
+      <h2>Trajets</h2><p class="soft" style="font-size:12.5px;margin:-4px 0 8px">Calculés depuis l’adresse.</p><ul class="trajets-l"><li><div class="poi">St Laurent</div><div class="trajet"><span>À pied</span><b>23 min (1,8 km) · Entrée 10 rue des Sources</b><a href="https://www.google.com/maps/dir/?api=1&amp;origin=48.88123%2C2.724757&amp;destination=48.875228%2C2.707801&amp;travelmode=walking" target="_blank" rel="noopener">itinéraire</a></div><div class="trajet"><span>En voiture</span><b>5 min (2,1 km)</b><a href="https://www.google.com/maps/dir/?api=1&amp;origin=48.88123%2C2.724757&amp;destination=47%20rue%20Saint-Laurent%2C%2077400%20Lagny%20sur%20Marne&amp;travelmode=driving" target="_blank" rel="noopener">itinéraire</a></div><div class="soft" style="font-size:12.5px">Noté à la main : 28 ; 1,9 km</div></li><li><div class="poi">GGSB</div><div class="trajet"><span>En voiture</span><b>18 min (13,2 km)</b><a href="https://www.google.com/maps/dir/?api=1&amp;origin=48.88123%2C2.724757&amp;destination=Coll%C3%A8ge%20Lyc%C3%A9e%20GASNIER-GUY-SAINTE-BATHILDE%2C%2077500%20Chelles&amp;travelmode=driving" target="_blank" rel="noopener">itinéraire</a></div></li></ul>
+      <h2>Liens</h2><ul><li><a href="https://www.leboncoin.fr/ad/ventes_immobilieres/3233495426" target="_blank" rel="noopener">Leboncoin</a></li><li><a href="https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/26CPVJ9FBF97" target="_blank" rel="noopener">Seloger</a></li><li><a href="https://www.orpi.com/annonce-vente-maison-t6-lagny-sur-marne-77400-da2960ba-9efd-4eae-a540-e36ed3dd55f5" target="_blank" rel="noopener">Agence</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=12%20Rue%20de%20l%27%C3%8Ele%20Maubert%2C%2077400%20Lagny-sur-Marne" target="_blank" rel="noopener">Adresse dans Google Maps</a></li></ul>
+      <h2>Baisses de prix</h2><div class="texte">23/10/26 : 420 k€ (agencity)
+01/09/26 : 436 k€ (2R Immo)</div>
+      
+      
+    </aside>
+  </div>
+</div>
+<div class="lb" id="lb" role="dialog" aria-label="Photos">
+  <button class="fermer" aria-label="Fermer">×</button><button class="prec" aria-label="Photo précédente">‹</button>
+  <img id="lbimg" alt=""><button class="suiv" aria-label="Photo suivante">›</button>
+</div>
+<script>
+const imgs=[...document.querySelectorAll('[data-i]')].sort((a,b)=>a.dataset.i-b.dataset.i).map(e=>e.src);
+const lb=document.getElementById('lb'), im=document.getElementById('lbimg'); let cur=0;
+const show=i=>{cur=(i+imgs.length)%imgs.length; im.src=imgs[cur]; lb.style.display='flex';};
+document.querySelectorAll('[data-i]').forEach(e=>e.addEventListener('click',()=>show(+e.dataset.i)));
+lb.querySelector('.fermer').onclick=()=>lb.style.display='none';
+lb.querySelector('.prec').onclick=()=>show(cur-1); lb.querySelector('.suiv').onclick=()=>show(cur+1);
+lb.addEventListener('click',e=>{if(e.target===lb) lb.style.display='none';});
+function copier(t){
+  if(navigator.clipboard && window.isSecureContext!==false) return navigator.clipboard.writeText(t).catch(()=>copierVieux(t));
+  return Promise.resolve(copierVieux(t));
+}
+function copierVieux(t){ const z=document.createElement('textarea'); z.value=t; z.style.position='fixed'; z.style.opacity='0';
+  document.body.appendChild(z); z.select(); try{document.execCommand('copy');}catch(e){} z.remove(); }
+const CLE_CHOIX='choix-'+location.pathname;
+document.querySelectorAll('.btn-choix').forEach(b=>b.addEventListener('click',()=>{
+  copier(b.dataset.adr); const c=b.closest('.choix'); document.querySelectorAll('.choix').forEach(x=>{x.classList.remove('fait');x.querySelector('.aide').hidden=true;});
+  c.classList.add('fait'); c.querySelector('.aide').hidden=false; b.textContent='Adresse copiée ✓';
+  try{localStorage.setItem(CLE_CHOIX,c.dataset.id);}catch(e){}
+}));
+document.querySelectorAll('.lien-gps').forEach(b=>b.addEventListener('click',()=>{ copier(b.dataset.gps); b.textContent='Coordonnées copiées ✓'; }));
+try{ const id=localStorage.getItem(CLE_CHOIX); const c=id&&document.querySelector('.choix[data-id="'+CSS.escape(id)+'"]');
+  if(c){ c.classList.add('fait'); c.querySelector('.btn-choix').textContent='Choisie : recopier l’adresse'; } }catch(e){}
+document.addEventListener('keydown',e=>{ if(lb.style.display!=='flex') return;
+  if(e.key==='Escape') lb.style.display='none'; if(e.key==='ArrowLeft') show(cur-1); if(e.key==='ArrowRight') show(cur+1); });
+</script>
+</body>
+</html>

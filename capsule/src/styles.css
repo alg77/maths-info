@@ -2747,3 +2747,12 @@ small {
     font-size: 9px;
   }
 }
+
+.color-advice { background: #f2eee6; border-radius: 14px; padding: 14px 16px; margin: 14px 0; }
+.color-advice p { margin: 8px 0; }
+.color-advice small { color: #655e54; line-height: 1.5; }
+.personal-palette { display: grid; gap: 8px; margin-bottom: 14px; }
+.palette-edit { display: grid; grid-template-columns: 48px minmax(0, 1fr) 36px; gap: 8px; align-items: center; }
+.palette-edit input[type=color] { width: 48px; height: 42px; padding: 3px; }
+.palette-item { border-top: 1px solid #e5dfd4; padding: 12px 0; }
+.palette-item .wish-row { width: 100%; }

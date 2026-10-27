@@ -165,6 +165,28 @@ export function validate(value: unknown): asserts value is Wardrobe {
     !["EUR", "USD", "GBP", "CHF", "CAD", "JPY"].includes(d.preferences.currency)
   )
     error("Préférences invalides.");
+  const cp = d.preferences.colorProfile;
+  if (
+    cp !== undefined &&
+    (!object(cp) ||
+      !["name", "undertone", "contrast", "notes"].every(
+        (k) => typeof cp[k] === "string" && cp[k].length <= 50000,
+      ) ||
+      typeof cp.enabled !== "boolean" ||
+      !strings(cp.avoid) ||
+      !Array.isArray(cp.palette) ||
+      cp.palette.length > 32 ||
+      (cp.enabled && !cp.palette.length) ||
+      cp.palette.some(
+        (c: any) =>
+          !object(c) ||
+          typeof c.label !== "string" ||
+          c.label.length > 200 ||
+          typeof c.hex !== "string" ||
+          !/^#[0-9a-f]{6}$/i.test(c.hex),
+      ))
+  )
+    error("Profil colorimétrique invalide.");
   const ids = new Set<string>();
   const identity = (o: any) => {
     if (!object(o) || typeof o.id !== "string" || !o.id || o.id.length > 200)
@@ -327,10 +349,13 @@ export function download(
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
-  a.style.display = 'none';
+  a.style.display = "none";
   document.body.append(a);
   a.click();
-  setTimeout(() => {a.remove();URL.revokeObjectURL(url);}, 60000);
+  setTimeout(() => {
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, 60000);
 }
 export async function readImage(file: File): Promise<string> {
   if (file.size > 5 * 1024 * 1024)
@@ -433,7 +458,33 @@ export function prepareImport(
       sacs: "bag",
       bijoux: "accessory",
     };
-    for (const item of legacy.dressing) {
+    const clothingWishes = (
+      Array.isArray(legacy.wishlist) ? legacy.wishlist : []
+    ).filter(
+      (w: any) =>
+        [
+          "vêtements",
+          "vetements",
+          "robes",
+          "blouses",
+          "chemises",
+          "jupes",
+          "pantalons",
+          "chaussures",
+          "sacs",
+          "vestes",
+          "manteaux",
+          "bijoux",
+        ].includes(w.category) && !["acheté", "abandonné"].includes(w.status),
+    );
+    for (const item of [
+      ...legacy.dressing,
+      ...clothingWishes.map((w: any) => ({
+        ...w,
+        id: "wish-" + w.id,
+        importedWish: true,
+      })),
+    ]) {
       const role = map[item.category] || "top";
       let cat = data.vocabularies.categories.find((c) => c.role === role);
       if (!cat) {
@@ -445,11 +496,36 @@ export function prepareImport(
       g.name = item.name || `${item.category || "Pièce"} ${item.brand || ""}`;
       g.brand = item.brand || "";
       g.material = item.material || "";
+      const color = data.vocabularies.colors.find((c) =>
+        [c.id, c.label.toLocaleLowerCase()].includes(
+          String(item.color || "").toLocaleLowerCase(),
+        ),
+      );
+      g.colors = color ? [color.id] : [];
+      if (item.color && !color)
+        g.notes =
+          "Couleur d’origine à préciser dans le nuancier : " + item.color;
       g.price = Number(item.price) || null;
       g.usageCount = Math.max(0, Math.floor(Number(item.uses) || 0));
       g.favorite = !!item.fav;
       g.imagePath = safeImage(item.photo || "") ? item.photo || "" : "";
       g.legacy = item;
+      if (item.importedWish) {
+        g.status = "wishlist";
+        g.notes = [g.notes, item.note || ""].filter(Boolean).join(" · ");
+        data.wishlist.push({
+          id: "wish-" + g.id,
+          garmentId: g.id,
+          priority:
+            item.priority === "haute"
+              ? "high"
+              : item.priority === "basse"
+                ? "low"
+                : "medium",
+          notes: item.note || "",
+          budget: g.price,
+        });
+      }
       g.reviewNeeded = true;
       if (data.garments.some((x) => x.id === g.id))
         throw new Error("Ce dashboard a déjà été importé.");
@@ -458,7 +534,7 @@ export function prepareImport(
     validate(data);
     return {
       data,
-      summary: `Ajout de ${legacy.dressing.length} pièces du dashboard. Les données beauté et autres champs sont conservés dans legacy.`,
+      summary: `Ajout de ${legacy.dressing.length} pièces du dashboard et ${clothingWishes.length} envies vestimentaires. Les données beauté et autres champs sont conservés dans legacy.`,
     };
   }
   if (raw?.myClosetCounts || raw?.myClosetHistory) {

@@ -1,3 +1,12 @@
+export type ColorProfile = {
+  name: string;
+  undertone: string;
+  contrast: string;
+  palette: { label: string; hex: string }[];
+  avoid: string[];
+  notes: string;
+  enabled: boolean;
+};
 export type Role =
   | "top"
   | "bottom"
@@ -122,6 +131,7 @@ export type Wardrobe = {
     formalityLevels: string[];
   };
   preferences: {
+    colorProfile?: ColorProfile;
     name: string;
     temperature: number;
     occasion: string;

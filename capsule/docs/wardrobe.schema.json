@@ -813,6 +813,70 @@
             "CAD",
             "JPY"
           ]
+        },
+        "colorProfile": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 50000
+            },
+            "undertone": {
+              "type": "string",
+              "maxLength": 50000
+            },
+            "contrast": {
+              "type": "string",
+              "maxLength": 50000
+            },
+            "notes": {
+              "type": "string",
+              "maxLength": 50000
+            },
+            "enabled": {
+              "type": "boolean"
+            },
+            "avoid": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 50000
+              },
+              "maxItems": 10000
+            },
+            "palette": {
+              "type": "array",
+              "maxItems": 32,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "hex": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  }
+                },
+                "required": [
+                  "label",
+                  "hex"
+                ],
+                "additionalProperties": true
+              }
+            }
+          },
+          "required": [
+            "name",
+            "undertone",
+            "contrast",
+            "notes",
+            "enabled",
+            "avoid",
+            "palette"
+          ],
+          "additionalProperties": true
         }
       },
       "required": [

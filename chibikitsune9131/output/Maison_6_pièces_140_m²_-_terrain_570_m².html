@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison 6 pièces 140 m² - terrain 570 m²</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7F9; --card:#FFFFFF; --ink:#3E3644; --soft:#8A7E90; --line:#EFE4EA; --line2:#E4D6DE;
+  --rose:#F6DCE4; --rose-ink:#A24D6D; --sage:#DCEDE2; --sage-ink:#3D6B53; --lilas:#E7E1F5; --lilas-ink:#5A4D8C;
+  --peche:#FCE6D8; --peche-ink:#93543A; --beurre:#F8EFCB; --beurre-ink:#76601F; --ciel:#DFECF6; --ciel-ink:#3A6587;
+  --gris:#EEEAF0; --gris-ink:#6A6270;
+  --shadow:0 1px 2px rgba(62,54,68,.05), 0 10px 28px -16px rgba(62,54,68,.18);
+  --serif:'Young Serif', Georgia, 'Times New Roman', serif;
+  --sans:'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --paper:#211C25; --card:#2B2530; --ink:#F1E8EE; --soft:#A99CAE; --line:#3A3240; --line2:#463D4D;
+  --rose:#4A2F3C; --rose-ink:#F2B6CA; --sage:#2D4236; --sage-ink:#A9D8BC; --lilas:#383057; --lilas-ink:#CCC2F2;
+  --peche:#4A3328; --peche-ink:#F5C3A6; --beurre:#463C1F; --beurre-ink:#EBD58A; --ciel:#283B4C; --ciel-ink:#AFD0EC;
+  --gris:#38323D; --gris-ink:#C9C0CE; --shadow:0 1px 2px rgba(0,0,0,.25), 0 10px 28px -16px rgba(0,0,0,.6);
+  color-scheme: dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.55 var(--sans);font-feature-settings:"tnum" 0}
+a{color:var(--rose-ink);text-decoration:none;text-underline-offset:3px}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--rose-ink);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;margin:0;line-height:1.2}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+.soft{color:var(--soft)}
+.num{font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;border:1px solid var(--line2);
+     background:var(--card);color:var(--ink);font:500 14px var(--sans);cursor:pointer;text-decoration:none}
+.btn:hover{text-decoration:none;border-color:var(--rose-ink)}
+.btn.main{background:var(--rose-ink);border-color:var(--rose-ink);color:#fff}
+@media (prefers-color-scheme: dark){ .btn.main{color:#2B2530} }
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font:500 12.5px/1.5 var(--sans);
+      background:var(--gris);color:var(--gris-ink);white-space:nowrap}
+.chip.rose{background:var(--rose);color:var(--rose-ink)} .chip.sage{background:var(--sage);color:var(--sage-ink)}
+.chip.lilas{background:var(--lilas);color:var(--lilas-ink)} .chip.peche{background:var(--peche);color:var(--peche-ink)}
+.chip.beurre{background:var(--beurre);color:var(--beurre-ink)} .chip.ciel{background:var(--ciel);color:var(--ciel-ink)}
+.chip.ligne{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+.chip.strong{font-weight:600}
+.dpe{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font:600 12.5px/1.5 var(--sans)}
+.dpe.A{background:#C7E6CF;color:#245A38}.dpe.B{background:#D9ECC3;color:#3F5F22}.dpe.C{background:#ECF0C2;color:#56601B}
+.dpe.D{background:#F8ECBC;color:#6E5A16}.dpe.E{background:#F9DCBE;color:#7E4A20}.dpe.F{background:#F6C9BA;color:#863A27}
+.dpe.G{background:#EFBAC5;color:#842B42}.dpe.X{background:var(--gris);color:var(--gris-ink)}
+.panel{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:20px 22px}
+.note{color:var(--soft);font-size:12.5px;line-height:1.5}
+.up{color:var(--rose-ink)} .down{color:var(--sage-ink)}
+input,select,button{font:inherit;color:inherit}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+.dvf{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px 24px;margin:18px 0}
+.dvf h2{font-size:1.35rem;margin-bottom:4px}
+.dvf h3{font-size:1.05rem;margin:22px 0 8px}
+.dvf .sous{color:var(--soft);font-size:13.5px;margin:0 0 14px}
+.frise{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
+.frise::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;border-radius:2px;background:var(--lilas)}
+.frise li{position:relative;padding:2px 0 16px}
+.frise li:last-child{padding-bottom:2px}
+.frise li::before{content:"";position:absolute;left:-21px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:var(--card);border:2px solid var(--lilas-ink)}
+.frise li.cle::before{background:var(--rose-ink);border-color:var(--rose-ink)}
+.frise .quand{font-family:var(--serif);font-size:1.02rem}
+.frise .prix{font-family:var(--serif);font-size:1.5rem;color:var(--rose-ink);margin:2px 0 4px;font-variant-numeric:lining-nums}
+.frise .det{color:var(--soft);font-size:13.5px}
+.frise .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.frise .rem{font-size:12.5px;color:var(--soft);margin-top:4px}
+.tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tuile{background:var(--paper);border-radius:12px;padding:11px 13px}
+.tuile small{display:block;color:var(--soft);font-size:12.5px}
+.tuile b{display:block;font:400 1.2rem/1.3 var(--serif);margin:2px 0}
+.dvf table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.dvf th,.dvf td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+.dvf th{font-weight:600;color:var(--soft);font-size:12.5px}
+.dvf td.n,.dvf th.n{text-align:right;white-space:nowrap}
+.dvf details{margin-top:12px}
+.dvf summary{cursor:pointer;color:var(--rose-ink);font-weight:500}
+.dvf .note{margin-top:14px}
+.risques ul{margin:6px 0;padding-left:18px} .risques li{margin:6px 0}
+.choix{margin-top:8px}
+.btn-choix{border:1px solid var(--sage-ink);background:var(--sage);color:var(--sage-ink);border-radius:999px;padding:5px 14px;
+  font:600 13px var(--sans);cursor:pointer}
+.btn-choix:hover{filter:brightness(.97)}
+.choix.fait .btn-choix{background:var(--sage-ink);color:var(--card)}
+.choix .aide{margin-top:8px;font-size:13px;background:var(--sage);color:var(--ink);border-radius:12px;padding:10px 12px;max-width:62ch}
+.lien-gps{border:0;background:none;color:var(--rose-ink);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+
+.haut{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;margin-bottom:22px}
+.haut nav{display:flex;gap:8px;flex-wrap:wrap}
+.titre h1{font-size:clamp(1.6rem,3.2vw,2.3rem);max-width:34ch;text-wrap:balance}
+.titre .lieu{color:var(--soft);margin-top:6px}
+.statuts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.grille-detail{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:26px;margin-top:22px;align-items:start}
+main > .dvf:first-child{margin-top:0}
+.photo-principale{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:20px;display:block;cursor:zoom-in;background:var(--rose)}
+.sans-photo{aspect-ratio:3/2;border-radius:20px;background:var(--rose);color:var(--rose-ink);display:grid;place-items:center}
+.sans-photo svg{width:90px;opacity:.55}
+.galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px}
+.galerie img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;cursor:zoom-in;display:block}
+.description{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px 26px}
+.description h2{font-size:1.2rem;margin-bottom:10px}
+.description p{max-width:72ch;line-height:1.65;margin:0 0 1em}
+aside.fiche{position:sticky;top:18px;background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px}
+.gros-prix{font:400 2.2rem/1.1 var(--serif);color:var(--rose-ink);font-variant-numeric:lining-nums}
+.prix-m2{color:var(--soft);margin:4px 0 12px}
+.faits{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+dl.infos{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin:0 0 6px}
+dl.infos div{min-width:0} dl.infos dt{color:var(--soft);font-size:12.5px} dl.infos dd{margin:0;overflow-wrap:anywhere}
+aside h2{font-size:1.02rem;margin:20px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+aside ul{list-style:none;margin:0;padding:0} aside li{margin:6px 0}
+.carte{width:100%;height:210px;border:0;border-radius:14px;margin-top:14px;display:block}
+.texte{white-space:pre-wrap;font-size:14px}
+dl.budget b{font:400 1.15rem var(--serif);color:var(--rose-ink)}
+.cout{font-size:14px}
+.cm-l{display:flex;justify-content:space-between;gap:10px;padding:6px 0 0}
+.cm-l b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cm-n{color:var(--soft);font-size:12.5px;line-height:1.4;padding-bottom:6px;border-bottom:1px solid var(--line)}
+ul.pistes{margin:0;padding:0;list-style:none;font-size:13.5px} ul.pistes li{margin:0 0 8px}
+.cm-total{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 6px}
+.cm-total b{font:400 1.6rem var(--serif);color:var(--rose-ink)}
+.trajets-l li{margin:0 0 12px}
+.trajets-l .poi{font-weight:600;margin-bottom:2px}
+.trajet{display:grid;grid-template-columns:86px 1fr auto;gap:8px;align-items:baseline;font-size:14px}
+.trajet span{color:var(--soft)} .trajet b{font-weight:500;font-variant-numeric:tabular-nums} .trajet a{font-size:13px}
+.lb{position:fixed;inset:0;background:rgba(33,28,37,.9);display:none;align-items:center;justify-content:center;z-index:10}
+.lb img{max-width:92vw;max-height:88vh;border-radius:14px}
+.lb button{position:absolute;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer;padding:10px 18px}
+.lb .fermer{top:10px;right:10px} .lb .prec{left:6px;top:50%} .lb .suiv{right:6px;top:50%}
+@media (max-width:900px){.grille-detail{grid-template-columns:1fr} aside.fiche{position:static}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="haut">
+    <a class="btn" href="annonces.html">Toutes les annonces</a>
+    <nav><a class="btn" href="retrouver_Maison_6_pièces_140_m²_-_terrain_570_m².html">Retrouver la maison (40 pistes)</a><a class="btn" href="carte.html">Carte</a><a class="btn" href="comparer.html?ids=Maison_6_pi%C3%A8ces_140_m%C2%B2_-_terrain_570_m%C2%B2">Comparer</a><a class="btn" href="ventes.html">Ventes du secteur</a><a class="btn main" href="Maison_6_pièces_140_m²_-_terrain_570_m²_fiche.html" target="_blank">Fiche de visite</a></nav>
+  </div>
+  <header class="titre">
+    <h1>Maison 6 pièces 140 m² – terrain 570 m²</h1>
+    <div class="lieu">Lagny-sur-Marne (77400)</div>
+    
+    
+  </header>
+  <div class="grille-detail">
+    <main>
+      <img class="photo-principale" src="../images/Maison_6_pièces_140_m²_-_terrain_570_m²/photo01.webp" data-i="0" alt="Photo principale"><div class="galerie"><img src="../images/Maison_6_pièces_140_m²_-_terrain_570_m²/photo02.webp" data-i="1" loading="lazy" alt=""><img src="../images/Maison_6_pièces_140_m²_-_terrain_570_m²/photo03.webp" data-i="2" loading="lazy" alt=""><img src="../images/Maison_6_pièces_140_m²_-_terrain_570_m²/photo04.webp" data-i="3" loading="lazy" alt=""><img src="../images/Maison_6_pièces_140_m²_-_terrain_570_m²/photo05.webp" data-i="4" loading="lazy" alt=""><img src="../images/Maison_6_pièces_140_m²_-_terrain_570_m²/photo06.webp" data-i="5" loading="lazy" alt=""></div>
+      <section class="dvf"><h2>Ce bien a-t-il déjà été vendu ?</h2><p class="sous">Ventes de la commune avec le même terrain et une surface proche. Renseigne l’adresse dans ton fichier pour une réponse certaine.</p><ol class="frise"><li class=""><div class="quand">15 novembre 2023</div><div class="prix">445 000 €</div><div class="det">Maison · 5 pièces · 130 m² · terrain 567 m² · 3 423 €/m² · <a href="https://www.google.com/maps/search/?api=1&query=7%20Rue%20de%20Bellevue%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">7 Rue de Bellevue</a></div><div class="chips"><span class="chip beurre">possible</span><span class="chip ligne">vente précédente</span></div><div class="choix" data-id="2023-1042718"><button type="button" class="btn-choix" data-adr="7 Rue de Bellevue" data-gps="48.868461, 2.716481">C’est cette maison : copier l’adresse</button><div class="aide" hidden>Adresse copiée : <b>7 Rue de Bellevue</b>. Colle-la dans la colonne <b>Adresse</b> de cette annonce dans ton Excel, puis relance le script. <button type="button" class="lien-gps" data-gps="48.868461, 2.716481">Copier aussi les coordonnées GPS</button> (colonne <b>Coord GPS</b>, pour des trajets précis).</div></div></li></ol><h3>Prix par rapport au marché</h3><div class="tuiles"><div class="tuile"><small>Maisons comparables vendues</small><b>37</b><small>surface ±20 %, terrain ±40 %, 2 ans</small></div><div class="tuile"><small>Prix médian au m²</small><b>3 623 €</b><small>de 2 942 € à 3 964 €</small></div><div class="tuile"><small>Prix au m² de l’annonce</small><b>2 750 €</b></div><div class="tuile"><small>Valeur estimée</small><b>507 000 €</b><small class="down">annonce −24,1 %</small></div></div><details><summary>Voir les ventes comparables</summary><table><tr><th>Date</th><th>Adresse</th><th class="n">Prix</th><th class="n">Surface</th><th class="n">Terrain</th><th class="n">Prix au m²</th></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=9%20Rue%20Saint%20Laurent%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">9 Rue Saint Laurent</a></td><td class="n">625 000 €</td><td class="n">115 m²</td><td class="n">—</td><td class="n">5 435 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=6%20Impasse%20Normandie%20Niemen%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">6 Impasse Normandie Niemen</a></td><td class="n">440 000 €</td><td class="n">113 m²</td><td class="n">530 m²</td><td class="n">3 894 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=6%20Rue%20des%20Saules%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">6 Rue des Saules</a></td><td class="n">539 000 €</td><td class="n">135 m²</td><td class="n">791 m²</td><td class="n">3 993 €</td></tr><tr><td>juin 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=7%20Rue%20Sarda%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">7 Rue Sarda</a></td><td class="n">465 000 €</td><td class="n">130 m²</td><td class="n">367 m²</td><td class="n">3 577 €</td></tr><tr><td>mars 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=3%20Rue%20de%20Metz%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">3 Rue de Metz</a></td><td class="n">760 000 €</td><td class="n">163 m²</td><td class="n">525 m²</td><td class="n">4 663 €</td></tr><tr><td>mars 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=4%20Rue%20Gibert%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">4 Rue Gibert</a></td><td class="n">617 750 €</td><td class="n">157 m²</td><td class="n">465 m²</td><td class="n">3 935 €</td></tr><tr><td>janv. 2026</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=21%20Rue%20Jeanne%20d%20Arc%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">21 Rue Jeanne d Arc</a></td><td class="n">340 000 €</td><td class="n">132 m²</td><td class="n">—</td><td class="n">2 576 €</td></tr><tr><td>déc. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=19%20Rue%20du%20Chariot%20d%20Or%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">19 Rue du Chariot d Or</a></td><td class="n">515 300 €</td><td class="n">154 m²</td><td class="n">733 m²</td><td class="n">3 346 €</td></tr><tr><td>déc. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=29%20Rue%20des%20Chauffernes%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">29 Rue des Chauffernes</a></td><td class="n">450 000 €</td><td class="n">116 m²</td><td class="n">350 m²</td><td class="n">3 879 €</td></tr><tr><td>déc. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=38%20Avenue%20des%20Acacias%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">38 Avenue des Acacias</a></td><td class="n">347 000 €</td><td class="n">125 m²</td><td class="n">457 m²</td><td class="n">2 776 €</td></tr><tr><td>nov. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=14%20Avenue%20Charles%20Latoison%20Duval%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">14 Avenue Charles Latoison Duval</a></td><td class="n">389 000 €</td><td class="n">142 m²</td><td class="n">464 m²</td><td class="n">2 739 €</td></tr><tr><td>oct. 2025</td><td><a href="https://www.google.com/maps/search/?api=1&amp;query=17%20Rue%20de%20la%20Grange%20au%20Bois%2C%20Lagny-sur-Marne" target="_blank" rel="noopener">17 Rue de la Grange au Bois</a></td><td class="n">440 000 €</td><td class="n">129 m²</td><td class="n">559 m²</td><td class="n">3 411 €</td></tr></table></details><p class="note">Source : DVF (DGFiP, data.gouv.fr), prix signés chez le notaire, publiés avec environ six mois de décalage. Valeur estimée = prix médian au m² × surface de l’annonce.</p></section>
+      
+      
+      <section class="description"><h2>Description</h2><p>**Maison 5 pièces**</p><p>Située dans les faubourgs de Lagny sur Marne, dans un quartier calme et résidentiel.</p><p>Sur un jardin arboré et sans vis à vis, d&#x27;une surface d&#x27;environ 570 m2, clos de murs et grillages, cette maison traditionnelle de 1989 d&#x27;une surface d&#x27;environ 140 m2 offre des volumes et des espaces agréables.</p><p>Au RDC : Une entrée ouverte sur l&#x27;ensemble des pièces dessert un salon-séjour de 35 m2 env. agrémenté d&#x27;une cheminée, ce bel espace bénéficie d&#x27;ouvertures de part et d&#x27;autres, la lumière est traversante, coté sud, des portes fenêtres donnent accès à une terrasse idéalement exposée. Une cuisine, une chambre avec porte fenêtre donnant sur le jardin, une salle de bain. wc séparé.</p><p>À l&#x27;étage : Un couloir dessert 3 chambres et des espaces destinés à devenir une salle de bain et un sanitaire.</p><p>La maison est édifiée sur un sous-sol total disposant d&#x27;un garage et d&#x27;espaces ; atelier, chaufferie, buanderie. Un stationnement extérieur.</p><p>Des travaux sont à prévoir pour cette maison familiale de bonne construction.</p></section>
+    </main>
+    <aside class="fiche">
+      <div class="gros-prix">385 000 €</div>
+      <div class="prix-m2">2 750 € le m²</div>
+      <div class="faits"><span class="chip ligne">140 m²</span><span class="chip ligne">terrain 570 m²</span><span class="chip ligne">6 pièces</span></div>
+      <dl class="infos">
+        <div><dt>Annonce du</dt><dd>01/10/2026</dd></div>
+        <div><dt>Construction</dt><dd>1989</dd></div>
+        
+        <div><dt>Sous-sol</dt><dd>total</dd></div>
+      </dl>
+      
+      <h2>Coût mensuel</h2><div class="cout"><div class="cm-l"><span>Crédit</span><b>1 945 €</b></div><div class="cm-n">370 000 € sur 25 ans à 3,5 %, assurance comprise, sans apport. Offre : 370 000 €, prix affiché −4,0 % (marge médiane observée).</div><div class="cm-l"><span>Énergie</span><b>—</b></div><div class="cm-n">inconnue</div><div class="cm-l"><span>Taxe foncière</span><b>220 €</b></div><div class="cm-n">2 640 €/an, estimée : médiane au m² de tes annonces de la commune</div><div class="cm-l"><span>Seconde voiture</span><b>0 €</b></div><div class="cm-n">St Laurent à 5 min à pied</div><div class="cm-total"><span>Total par mois</span><b>2 165 €</b></div><div class="cm-n">Frais de notaire ≈ 27 800 €, payés par la vente de l’appartement.</div></div>
+      <h2>Trajets</h2><p class="soft" style="font-size:12.5px;margin:-4px 0 8px">Calculés depuis la mairie de Lagny-sur-Marne, faute d’adresse dans ton fichier.</p><ul class="trajets-l"><li><div class="poi">St Laurent</div><div class="trajet"><span>À pied</span><b>5 min (400 m) · Entrée 10 rue des Sources</b><a href="https://www.google.com/maps/dir/?api=1&amp;origin=48.877215%2C2.705566&amp;destination=48.875228%2C2.707801&amp;travelmode=walking" target="_blank" rel="noopener">itinéraire</a></div><div class="trajet"><span>En voiture</span><b>2 min (570 m)</b><a href="https://www.google.com/maps/dir/?api=1&amp;origin=48.877215%2C2.705566&amp;destination=47%20rue%20Saint-Laurent%2C%2077400%20Lagny%20sur%20Marne&amp;travelmode=driving" target="_blank" rel="noopener">itinéraire</a></div></li><li><div class="poi">GGSB</div><div class="trajet"><span>En voiture</span><b>16 min (9,7 km)</b><a href="https://www.google.com/maps/dir/?api=1&amp;origin=48.877215%2C2.705566&amp;destination=Coll%C3%A8ge%20Lyc%C3%A9e%20GASNIER-GUY-SAINTE-BATHILDE%2C%2077500%20Chelles&amp;travelmode=driving" target="_blank" rel="noopener">itinéraire</a></div></li></ul>
+      <h2>Liens</h2><ul><li><a href="https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/26INZ8IJSG7G" target="_blank" rel="noopener">Seloger</a></li></ul>
+      
+      
+      
+    </aside>
+  </div>
+</div>
+<div class="lb" id="lb" role="dialog" aria-label="Photos">
+  <button class="fermer" aria-label="Fermer">×</button><button class="prec" aria-label="Photo précédente">‹</button>
+  <img id="lbimg" alt=""><button class="suiv" aria-label="Photo suivante">›</button>
+</div>
+<script>
+const imgs=[...document.querySelectorAll('[data-i]')].sort((a,b)=>a.dataset.i-b.dataset.i).map(e=>e.src);
+const lb=document.getElementById('lb'), im=document.getElementById('lbimg'); let cur=0;
+const show=i=>{cur=(i+imgs.length)%imgs.length; im.src=imgs[cur]; lb.style.display='flex';};
+document.querySelectorAll('[data-i]').forEach(e=>e.addEventListener('click',()=>show(+e.dataset.i)));
+lb.querySelector('.fermer').onclick=()=>lb.style.display='none';
+lb.querySelector('.prec').onclick=()=>show(cur-1); lb.querySelector('.suiv').onclick=()=>show(cur+1);
+lb.addEventListener('click',e=>{if(e.target===lb) lb.style.display='none';});
+function copier(t){
+  if(navigator.clipboard && window.isSecureContext!==false) return navigator.clipboard.writeText(t).catch(()=>copierVieux(t));
+  return Promise.resolve(copierVieux(t));
+}
+function copierVieux(t){ const z=document.createElement('textarea'); z.value=t; z.style.position='fixed'; z.style.opacity='0';
+  document.body.appendChild(z); z.select(); try{document.execCommand('copy');}catch(e){} z.remove(); }
+const CLE_CHOIX='choix-'+location.pathname;
+document.querySelectorAll('.btn-choix').forEach(b=>b.addEventListener('click',()=>{
+  copier(b.dataset.adr); const c=b.closest('.choix'); document.querySelectorAll('.choix').forEach(x=>{x.classList.remove('fait');x.querySelector('.aide').hidden=true;});
+  c.classList.add('fait'); c.querySelector('.aide').hidden=false; b.textContent='Adresse copiée ✓';
+  try{localStorage.setItem(CLE_CHOIX,c.dataset.id);}catch(e){}
+}));
+document.querySelectorAll('.lien-gps').forEach(b=>b.addEventListener('click',()=>{ copier(b.dataset.gps); b.textContent='Coordonnées copiées ✓'; }));
+try{ const id=localStorage.getItem(CLE_CHOIX); const c=id&&document.querySelector('.choix[data-id="'+CSS.escape(id)+'"]');
+  if(c){ c.classList.add('fait'); c.querySelector('.btn-choix').textContent='Choisie : recopier l’adresse'; } }catch(e){}
+document.addEventListener('keydown',e=>{ if(lb.style.display!=='flex') return;
+  if(e.key==='Escape') lb.style.display='none'; if(e.key==='ArrowLeft') show(cur-1); if(e.key==='ArrowRight') show(cur+1); });
+</script>
+</body>
+</html>

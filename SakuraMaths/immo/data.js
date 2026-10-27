@@ -1509,8 +1509,9 @@ window.PROPERTIES = [
       { source: "SeLoger · BCA IMMO", url: "https://www.seloger.com/annonce/achat/ile-de-france/seine-et-marne-77/lagny-sur-marne-77400/26VXWGGGRQ62", price: 359000 }
     ],
     title: "Maison traditionnelle avec sous-sol total",
-    location: "Lagny-sur-Marne · secteur Saint-Laurent à confirmer",
+    location: "15 rue des Chauffernes · Lagny-sur-Marne",
     city: "Lagny-sur-Marne",
+    address: "15 rue des Chauffernes, 77400 Lagny-sur-Marne",
     price: 359000,
     surface: 81.12,
     rooms: 4,
@@ -1520,27 +1521,29 @@ window.PROPERTIES = [
     pricePerSqm: 4426,
     dpe: "D",
     ges: "D",
-    year: null,
+    year: 1971,
     energyCost: { min: 1670, max: 2310, reference: "Estimation DPE, prix de l’énergie 2021 à 2023" },
     images: Array.from({ length: 12 }, (_, i) => `images/Lagny-Maison_4_pièces_81_m²_-_terrain_325_m²/photo${String(i + 1).padStart(2, "0")}.webp`),
-    mapQuery: "Quartier Saint-Laurent, Lagny-sur-Marne 77400",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Quartier%20Saint-Laurent%2C%20Lagny-sur-Marne%2077400",
-    mapLabel: "Secteur annoncé : Saint-Laurent, adresse exacte inconnue",
+    mapQuery: "15 rue des Chauffernes, 77400 Lagny-sur-Marne",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=15%20rue%20des%20Chauffernes%2C%2077400%20Lagny-sur-Marne",
+    mapLabel: "Adresse identifiée : 15 rue des Chauffernes",
     commute: {
       level: "good",
-      label: "Potentiellement excellente à pied, mais adresse indispensable",
-      text: "La maison est présentée comme située dans le secteur Saint-Laurent, tandis que les portails la classent plus largement dans le secteur Déviation–Route Nationale Nord. Sans adresse, impossible de valoriser sérieusement la marche vers l’entrée du collège au 10 rue des Sources : demander l’adresse avant toute comparaison avec vos 7 min actuelles.",
+      label: "Adresse retrouvée : trajets désormais vérifiables précisément",
+      text: "La maison est située au 15 rue des Chauffernes, dans le quartier Déviation–Route Nationale Nord. L’adresse confirme la parcelle annoncée de 325 m². Les itinéraires directs vers l’entrée de Saint-Laurent au 10 rue des Sources et vers GGSB sont maintenant enregistrés ; leurs durées doivent être relevées aux horaires scolaires avant de valoriser définitivement l’emplacement.",
       links: [
-        { label: "Repère Saint-Laurent", url: "https://www.google.com/maps/search/?api=1&query=10%20rue%20des%20Sources%2C%2077400%20Lagny-sur-Marne" }
+        { label: "Itinéraire à pied vers Saint-Laurent", url: "https://www.google.com/maps/dir/?api=1&origin=15%20rue%20des%20Chauffernes%2C%2077400%20Lagny-sur-Marne&destination=10%20rue%20des%20Sources%2C%2077400%20Lagny-sur-Marne&travelmode=walking" },
+        { label: "Itinéraire vers GGSB", url: "https://www.google.com/maps/dir/?api=1&origin=15%20rue%20des%20Chauffernes%2C%2077400%20Lagny-sur-Marne&destination=28%20rue%20du%20Tir%2C%2077500%20Chelles&travelmode=driving" }
       ]
     },
     tags: ["3 chambres hors sous-sol", "Sous-sol total", "Garage", "Stockage", "Maison individuelle probable", "Jardin faisant le tour", "Terrain 325 m²", "Quartier calme", "Cheminée", "Balcon", "DPE D", "GES D"],
     updates: [
+      { date: "19/10/2026", text: "Adresse exacte retrouvée : 15 rue des Chauffernes. La parcelle publique associée mesure bien 325 m², ce qui confirme l’identification." },
       { date: "06/09/2026", text: "Annonce ajoutée à 359 000 € avec 12 photos ; secteur Saint-Laurent annoncé mais adresse exacte encore inconnue." }
     ],
     description: "Petite surface habitable mais configuration prometteuse : trois chambres hors sous-sol, sous-sol total et jardin faisant le tour de la maison, potentiellement proche de Saint-Laurent.",
     fullDescription: [
-      "Maison traditionnelle libre de toute occupation, proposée à 359 000 €, développant 81,12 m² habitables sur une parcelle de 325 m². L’annonce insiste sur un environnement calme et un terrain permettant de faire le tour de la maison.",
+      "Maison traditionnelle construite en 1971, libre de toute occupation et proposée à 359 000 €. Elle développe 81,12 m² habitables sur la parcelle de 325 m² du 15 rue des Chauffernes. L’annonce insiste sur un environnement calme et un terrain permettant de faire le tour de la maison.",
       "La partie habitable comprend un salon avec cheminée ouvrant sur un balcon et trois chambres lumineuses. L’annonce ne fournit ni plan détaillé ni surfaces pièce par pièce : il faut vérifier que chacune des trois chambres constitue une vraie chambre confortable et qu’aucune n’est traversante.",
       "Un sous-sol total permet de rentrer une voiture et apporte une importante capacité de stockage. Pour votre projet, il pourrait absorber cartons, Warhammer, outils et matériel sportif, voire une salle de sport ou un mini-dojo partiel si la hauteur, la ventilation, l’humidité et la surface dégagée le permettent.",
       "Le terrain de 325 m² reste compact, mais sa circulation tout autour de la maison est un vrai avantage : absence de mitoyenneté directe probable, accès pratique au jardin et possibilité d’installer la barre de traction dehors. L’exposition, le vis-à-vis et la surface réellement utilisable derrière la maison restent à vérifier.",
@@ -1548,14 +1551,14 @@ window.PROPERTIES = [
     ],
     familyFit: {
       score: 4.0,
-      verdict: "Une candidate compacte mais étonnamment alignée avec vos priorités : trois chambres dans la maison, sous-sol total pour le stockage et le sport, jardin circulant et possible proximité de Saint-Laurent. Elle peut devenir un bon compromis à condition que les chambres ne soient pas minuscules, que le sous-sol soit sain et que l’adresse confirme un vrai trajet à pied.",
+      verdict: "Une candidate compacte mais étonnamment alignée avec vos priorités : trois chambres dans la maison, sous-sol total pour le stockage et le sport, jardin circulant et adresse désormais identifiée. Elle peut devenir un bon compromis à condition que les chambres ne soient pas minuscules, que le sous-sol soit sain et que le trajet réel vers Saint-Laurent reste acceptable à pied.",
       pros: [
         "Trois chambres hors sous-sol : le besoin des parents et des deux filles est respecté sans compromis.",
         "Sous-sol total avec garage : très utile pour les cartons, Warhammer, jeux en rotation, outils et matériel de sport.",
         "Potentiel de salle de sport ou mini-dojo au sous-sol sans sacrifier une chambre, sous réserve des contrôles techniques.",
         "Terrain faisant le tour de la maison : correspond précisément à votre préférence et limite le problème de mitoyenneté.",
         "Terrain de 325 m² suffisant pour terrasse, Shiba et barre de traction, avec moins d’entretien qu’un très grand jardin.",
-        "Secteur Saint-Laurent annoncé : possibilité réelle de préserver une partie de votre organisation piétonne.",
+        "Adresse exacte désormais connue : les trajets scolaires peuvent être testés sans dépendre du quartier approximatif indiqué par l’annonce.",
         "DPE D et GES D : profil énergétique plus rassurant que plusieurs maisons anciennes du radar."
       ],
       cons: [
@@ -1563,11 +1566,11 @@ window.PROPERTIES = [
         "Aucune pièce bonus chauffée annoncée pour les mangas, BD, Magic, Sylvanian et jeux de société.",
         "Les collections fragiles ne doivent pas être placées au sous-sol avant contrôle rigoureux de l’humidité et de la température.",
         "À 4 426 €/m², elle est chère pour sa surface ; une grande partie de sa valeur dépend du quartier et du sous-sol.",
-        "Adresse exacte inconnue : le prétendu secteur Saint-Laurent ne garantit pas encore un trajet scolaire satisfaisant à pied.",
+        "La rue des Chauffernes est dans le secteur Déviation–Route Nationale Nord : vérifier le trajet scolaire réel plutôt que se fier à l’intitulé commercial « secteur Saint-Laurent ».",
         "Description commerciale très vague : absence de surfaces des chambres, de l’état intérieur, de l’année de construction et des équipements précis.",
         "Une seule pièce de vie semble annoncée ; avec vos collections et jeux, elle risque de saturer rapidement."
       ],
-      criteria: ["3 chambres maison principale: oui", "Chambre au sous-sol: aucune", "Saint-Laurent à pied: potentiel à confirmer", "Sous-sol total: oui", "Collections: bon stockage, exposition difficile", "Mini-dojo: bon potentiel sous-sol", "Garage: oui", "Tour de maison: oui annoncé", "Chien: très bon", "Mitoyenneté: probablement aucune, à confirmer", "Énergie: correct", "Prix au m²: élevé", "Surface habitable: faible"]
+      criteria: ["3 chambres maison principale: oui", "Chambre au sous-sol: aucune", "Adresse: 15 rue des Chauffernes", "Saint-Laurent à pied: trajet à chronométrer", "Sous-sol total: oui", "Collections: bon stockage, exposition difficile", "Mini-dojo: bon potentiel sous-sol", "Garage: oui", "Tour de maison: oui annoncé", "Chien: très bon", "Mitoyenneté: probablement aucune, à confirmer", "Énergie: correct", "Prix au m²: élevé", "Surface habitable: faible"]
     }
   }
 ];

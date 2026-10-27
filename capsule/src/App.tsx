@@ -38,6 +38,7 @@ import {
   InsightsPage,
   SettingsPage,
 } from "./pages";
+import { ColorimetryPage } from "./screens/Colorimetry";
 export type Actions = {
   data: Wardrobe;
   commit: (fn: (d: Wardrobe) => void, message?: string) => void;
@@ -54,6 +55,7 @@ export type Actions = {
   replace: (d: Wardrobe) => Promise<void>;
 };
 const nav = [
+  { id: "colors", label: "Colorimétrie", icon: Sun },
   { id: "today", label: "Aujourd’hui", icon: Sun },
   { id: "wardrobe", label: "Dressing", icon: Shirt },
   { id: "outfits", label: "Tenues & planches", icon: Layers },
@@ -344,6 +346,8 @@ export default function App() {
             <WishlistPage {...actions} />
           ) : page === "inspiration" ? (
             <InspirationsPage {...actions} />
+          ) : page === "colors" ? (
+            <ColorimetryPage {...actions} />
           ) : page === "insights" ? (
             <InsightsPage {...actions} />
           ) : (

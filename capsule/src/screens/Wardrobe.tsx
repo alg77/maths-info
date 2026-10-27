@@ -1,3 +1,4 @@
+import { ColorAdvice } from "./Colorimetry";
 import { useState } from "react";
 import {
   Plus,
@@ -303,6 +304,7 @@ export function ItemDetail(
         <div>
           <div className="eyebrow">{g.brand || g.category}</div>
           <h2>{g.name}</h2>
+          <ColorAdvice item={g} data={data} />
           <div className="chips">
             {g.styles.map((s) => (
               <Chip key={s}>{s}</Chip>

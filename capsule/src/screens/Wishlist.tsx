@@ -1,3 +1,4 @@
+import { ColorAdvice } from "./Colorimetry";
 import { useMemo, useState } from "react";
 import { Plus, ArrowUpRight, Pencil, Check, Layers, Leaf } from "lucide-react";
 import type { Actions } from "../App";
@@ -101,6 +102,7 @@ export function WishlistPage(a: Actions) {
               <div>
                 <div className="eyebrow">VOTRE PROCHAINE PIÈCE ?</div>
                 <h2>{g.name}</h2>
+                <ColorAdvice item={g} data={data} />
                 <div className="chips">
                   <Chip active>
                     {result.cascade
