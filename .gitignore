@@ -1,0 +1,13 @@
+# Dépendances Python locales
+SakuraMaths/Studio/vendor/
+
+# Fichiers temporaires Python
+__pycache__/
+*.pyc
+
+# Environnements virtuels
+.venv/
+venv/
+
+# Dépendances JavaScript
+node_modules/
