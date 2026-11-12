@@ -1,0 +1,126 @@
+{
+ "_aide": "Ajoute tes vidéos ici. youtubeId = la partie après « v= » (ou après youtu.be/). Uniquement des vidéos officielles intégrables. Pour les dramas, youtubeId peut rester null en attendant une bande-annonce officielle. Les titres « à compléter » viennent de liens fournis sans titre : remplace-les par le vrai titre si tu veux (le lecteur YouTube affiche de toute façon le titre officiel).",
+ "videos": [
+  {
+   "id": "bts-dynamite",
+   "title": "Dynamite (Official MV)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "gdZLi9oWNZg",
+   "official": true,
+   "channel": "HYBE LABELS",
+   "karaoke": true
+  },
+  {
+   "id": "bts-butter",
+   "title": "Butter (Official MV)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "WMweEpGlu_U",
+   "official": true,
+   "channel": "HYBE LABELS",
+   "karaoke": true
+  },
+  {
+   "id": "rokudenashi-1",
+   "title": "Rokudenashi — vidéo 1 (titre à compléter)",
+   "artist": "Rokudenashi",
+   "category": "J-pop",
+   "youtubeId": "5GUaMOpfmr8",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "bts-1",
+   "title": "BTS — vidéo 1 (titre à compléter)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "9NZW0Utv2jg",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "bts-2",
+   "title": "BTS — vidéo 2 (titre à compléter)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "Fj3euSYAtnc",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "bts-3",
+   "title": "BTS — vidéo 3 (titre à compléter)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "Iq6RdCTLBd8",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "bts-4",
+   "title": "BTS — vidéo 4 (titre à compléter)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "MEoxtFRfPoc",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "bts-5",
+   "title": "BTS — vidéo 5 (titre à compléter)",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "6mguUpAdBbg",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "bts-on",
+   "title": "BTS (방탄소년단) 'ON' Kinetic Manifesto Film : Come Prima",
+   "artist": "BTS",
+   "category": "K-pop",
+   "youtubeId": "gwMa6gpoE9I",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "kpop-demon-hunters-what-it-sounds-like",
+   "title": "KPop Demon Hunters — What It Sounds Like - Lyric Video | Netflix",
+   "artist": "KPop Demon Hunters",
+   "category": "K-pop",
+   "youtubeId": "Qz7-Pa3QFQI",
+   "official": true,
+   "karaoke": true
+  },
+  {
+   "id": "kpop-demon-hunters-golden",
+   "title": "KPop Demon Hunters — Golden - Lyric Video | Netflix",
+   "artist": "KPop Demon Hunters",
+   "category": "K-pop",
+   "youtubeId": "OwpgvSo_G0g",
+   "official": true,
+   "karaoke": true
+  }
+ ],
+ "dramas": [
+  {
+   "id": "exemple-1",
+   "title": "Exemple de fiche drama",
+   "year": null,
+   "genre": "Romance · comédie",
+   "pitch": "Fiche d'exemple : remplace-la par un drama de ton choix (titre, année, résumé) et ajoute l'identifiant YouTube de sa bande-annonce officielle.",
+   "youtubeId": null,
+   "example": true
+  },
+  {
+   "id": "exemple-2",
+   "title": "Exemple de fiche drama (historique)",
+   "year": null,
+   "genre": "Sageuk · aventure",
+   "pitch": "Fiche d'exemple à compléter. Les affiches sont générées automatiquement à partir du titre et des couleurs.",
+   "youtubeId": null,
+   "example": true
+  }
+ ]
+}
