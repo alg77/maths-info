@@ -101,6 +101,16 @@
    "youtubeId": "OwpgvSo_G0g",
    "official": true,
    "karaoke": true
+  },
+  {
+   "id": "video-12",
+   "title": "Vidéo ajoutée (titre à compléter)",
+   "artist": "Vidéo officielle",
+   "category": "K-pop",
+   "youtubeId": "uo1YZXlP3O8",
+   "official": true,
+   "karaoke": true,
+   "source": "lien fourni par Amara"
   }
  ],
  "dramas": [
