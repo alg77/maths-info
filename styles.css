@@ -7,11 +7,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Images/background.webp');
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    color: #fff; /* Pour que le texte soit lisible sur l'image de fond */
+    background: #f5f5f5; /* Fond sobre sans image */
+    color: #333; /* Texte sombre pour lisibilité */
 }
 
 header {
@@ -109,7 +106,7 @@ section {
 
 /* Style pour les liens */
 a {
-    color: #ffffff; /* Couleur du lien, blanc pour contraster avec le fond sombre */
+    color: #006633; /* Couleur du lien, lisible sur le fond clair */
     text-decoration: underline; /* Souligne les liens pour plus de visibilité */
     font-weight: bold; /* Gras pour une meilleure lisibilité */
     transition: color 0.3s ease; /* Transition douce lors du survol */
@@ -126,7 +123,7 @@ a:focus {
 }
 
 a:visited {
-    color: #d3d3d3; /* Légèrement gris pour les liens déjà visités */
+    color: #004d26; /* Légèrement plus foncé pour les liens déjà visités */
 }
 
 /* Optionnel : Style spécifique pour les liens dans les sections */
