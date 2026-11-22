@@ -50,6 +50,16 @@
   .bank-hide{ display:block; padding:6px 14px; font-size:12px; color:#655; }
   .armed-hint{ background:#fdf3e6; border:1px solid #f0dcc0; color:#a8782c; border-radius:9px; padding:7px 9px; font-size:12px; margin:6px 14px; }
   .armed-hint[hidden]{ display:none; }
+  /* Capsules PDF propres à la Terminale NSI (référentiel REF / DESC). */
+  .pdoc-chip{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  @media print{
+    body.print-progression .pdoc-legend .pdoc-h2{display:block!important}
+    body.print-gantt .glabel{min-width:235px!important;max-width:235px!important;width:235px!important}
+    body.print-gantt .gtitle{font-size:8px!important;line-height:1.15!important;overflow:visible!important;overflow-wrap:anywhere}
+    body.print-gantt .gcompprint{display:flex!important;flex-wrap:wrap;gap:2px;margin-top:2px}
+    body.print-gantt .gcompprint:empty{display:none!important}
+    body.print-gantt .gcompprint .pdoc-chip{font-size:7px;line-height:1.15;padding:1px 4px}
+  }
 </style>
 </head>
 <body data-page="progressions">
@@ -680,7 +690,7 @@ function renderGantt(){
     var num=document.createElement('span'); num.className='num'; num.textContent=(gi+1); num.title='N° de séquence'; gseq.appendChild(num);
     var titleBox=document.createElement('span'); titleBox.className='gtitlebox';
     var title=document.createElement('span'); title.className='gtitle'; title.textContent=p.seq.title; title.title=p.seq.title; titleBox.appendChild(title);
-    var compPrint=document.createElement('span'); compPrint.className='gcompprint'; compPrint.textContent=(p.seq.comps||[]).join(' · '); titleBox.appendChild(compPrint);
+    var compPrint=document.createElement('span'); compPrint.className='gcompprint'; compPrint.innerHTML=competenceChips(p.seq.comps); titleBox.appendChild(compPrint);
     gseq.appendChild(titleBox);
     var thSel=document.createElement('select'); thSel.title='Thème';
     Object.keys(THEMES).forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; if(p.seq.theme===t)o.selected=true; thSel.appendChild(o); });
@@ -749,6 +759,13 @@ function setAllSeqDetails(open){
 function renderAll(){ recode(); renderCal(); renderSeq(); renderGantt(); renderFreq(); syncAllDetailsToggle(); if(bankOpen) renderBank(); }
 document.getElementById('withDetails').addEventListener('change',function(){ setAllSeqDetails(this.checked); });
 document.getElementById('addSeq').addEventListener('click',function(){ S.seq.push({code:'X',title:'Nouvelle séquence',theme:'D',weeks:1,comps:[],objectifs:[],automatismes:[],activitesTP:[]}); save(); renderAll(); window.scrollTo(0,document.getElementById('seqList').scrollHeight); });
+function competenceChips(comps){
+  return (comps||[]).map(function(c){
+    var f=REF.find(function(f){ return f.k===c; });
+    if(!f) return '';
+    return '<span class="pdoc-chip" style="background:var(--'+f.k+')" title="'+esc(f.name)+'">'+esc(c)+'</span>';
+  }).join('');
+}
 function renderPrintDoc(withDetails){
   var root=document.getElementById('printDoc'); root.innerHTML='';
   var head=document.createElement('div'); head.className='pdoc-head';
@@ -759,8 +776,9 @@ function renderPrintDoc(withDetails){
   phead(1);
   S.seq.forEach(function(s,i){
     var blk=document.createElement('div'); blk.className='pdoc-seq';
-    var codes=s.comps.length?('<span class="pdoc-codes">'+esc(s.comps.join(' · '))+'</span>'):'';
-    blk.innerHTML='<div><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b> &nbsp;'+codes+'</div>';
+    var chips=competenceChips(s.comps);
+    blk.innerHTML='<div class="pdoc-seqhead"><span class="pdoc-code" style="background:var(--'+s.theme+')">'+esc(s.code)+'</span> <b>'+esc(s.title)+'</b></div>'
+      +(chips?'<div class="pdoc-chips">'+chips+'</div>':'');
     if(withDetails && s.details){ var ul=document.createElement('ul'); s.details.split('\n').forEach(function(l){ l=l.trim(); if(l){ var li=document.createElement('li'); li.textContent=l; ul.appendChild(li); } }); blk.appendChild(ul); }
     if(withDetails && (s.objectifs.length||s.automatismes.length)){
       var ulo=document.createElement('ul'); ulo.className='pdoc-obj';
@@ -777,6 +795,16 @@ function renderPrintDoc(withDetails){
     cum+=(Number(s.weeks)||0);
     while(bi<breaks.length && cum>=breaks[bi].tw-1e-9){ var vd=document.createElement('div'); vd.className='pdoc-vac'; vd.textContent='— Vacances de '+vacArticle(breaks[bi].nom)+breaks[bi].nom+' —'; root.appendChild(vd); period++; phead(period); bi++; }
   });
+  var leg=document.createElement('div'); leg.className='pdoc-legend';
+  leg.innerHTML='<h2 class="pdoc-h2">Compétences travaillées</h2>';
+  var list=document.createElement('ul'); list.className='pdoc-leg-list';
+  REF.forEach(function(f){
+    var li=document.createElement('li');
+    li.innerHTML=competenceChips([f.k])+' <b>'+esc(f.name)+'</b>'
+      +'<div class="pdoc-leg-sublist">'+esc(DESC[f.k]||'')+'</div>';
+    list.appendChild(li);
+  });
+  leg.appendChild(list); root.appendChild(leg);
 }
 function currentDocTitle(){ return (document.querySelector('h1') ? document.querySelector('h1').textContent.replace(/[🌸💻]/g,'').trim() : 'progression'); }
 function slugify(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'progression'; }
