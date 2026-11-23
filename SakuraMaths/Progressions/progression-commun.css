@@ -9,6 +9,19 @@
    Requiert '../fond-sakura-maths.png' à la racine de SakuraMaths.
    ============================================================ */
 
+  /* Références BO : un objectif par ligne, texte intégral pour comparer aux commentaires. */
+  body .obj-zone,body .auto-zone{flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+  body .obj-zone .objchip,body .auto-zone .objchip{
+    width:100%;max-width:none;min-width:0;box-sizing:border-box;
+    border-radius:8px;padding:6px 8px;align-items:flex-start;line-height:1.45;
+  }
+  body .obj-zone .objchip .oc-txt,body .auto-zone .objchip .oc-txt{
+    flex:1;min-width:0;max-width:none;white-space:normal;
+    overflow:visible;text-overflow:clip;overflow-wrap:anywhere;
+  }
+  body .obj-zone .objchip .oc-code,body .auto-zone .objchip .oc-code,
+  body .obj-zone .objchip .oc-rm,body .auto-zone .objchip .oc-rm{flex:none}
+
   :root{
     --paper:#fbf4f2; --surface:rgba(255,253,252,.84); --surface-2:rgba(253,245,244,.74);
     --ink:#4a414a; --muted:#877884; --line:rgba(240,228,226,.82); --accent:#d98ba4; --accent-ink:#a8607c;

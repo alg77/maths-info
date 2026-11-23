@@ -315,7 +315,7 @@ function objChipHTML(id,i){
   return '<span class="objchip'+(isAuto?' auto':'')+(isTp?' tp':'')+'" draggable="true" data-id="'+id+'" data-from="'+i+'" title="'+tip+'">'
     +(isAuto?'<span class="oc-auto-ico">🛠</span>':'')+(isTp?'<span class="oc-auto-ico">🚀</span>':'')
     +'<span class="oc-code" style="background:'+col+'">'+esc(id)+'</span>'
-    +'<span class="oc-txt">'+esc(objShort(id))+'</span>'
+    +'<span class="oc-txt">'+esc(objText(id))+'</span>'
     +'<button type="button" class="oc-rm" data-id="'+id+'" data-i="'+i+'" title="Retirer">×</button></span>';
 }
 function ozoneHTML(s,i,field,label,emptyTxt){
